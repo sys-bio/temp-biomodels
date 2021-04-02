@@ -7,4 +7,5 @@ The goals of the project are to:
 * Fill in any gaps we can (such as missing SED-ML files)
 
 Project plan:  https://docs.google.com/spreadsheets/d/1BRDkurmUDzTlvTZPOFlZeZFvMnKTqlSZswEEPmJ-aME/edit#gid=0
+
 Email list:  biomodels-project@googlegroups.com
