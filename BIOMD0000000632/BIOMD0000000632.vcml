@@ -1,0 +1,2766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Kollarovic2016 - Cell fate decision at G1-S transition">
+      <Model Name="MODEL1505080000">
+         <ModelParameters>
+            <Parameter Name="CycECdk2a_0" Role="user defined" Unit="tbd">2.28154</Parameter>
+            <Parameter Name="CycECdk2_0" Role="user defined" Unit="tbd">1.36697471606784</Parameter>
+            <Parameter Name="Cdk2_0" Role="user defined" Unit="tbd">0.0166736</Parameter>
+            <Parameter Name="CycE_0" Role="user defined" Unit="tbd">9.2179813538304</Parameter>
+            <Parameter Name="VC_SpConcFactor_mole_litre_1_uM_1" Role="user defined" Unit="mole.litre-1.uM-1">
+               1.0E-6
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+            <Parameter Name="Cdk2_T" Role="user defined" Unit="tbd">((Cdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="Gy" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="prop_C" Role="user defined" Unit="tbd">0.0905648</Parameter>
+            <Parameter Name="FociPerGy" Role="user defined" Unit="tbd">28.9678</Parameter>
+            <Parameter Name="k_TAF" Role="user defined" Unit="tbd">0.973822</Parameter>
+            <Parameter Name="TAF" Role="user defined" Unit="tbd">0.506228</Parameter>
+            <Parameter Name="DNAdamagefoci_0" Role="user defined" Unit="tbd">(Gy * FociPerGy)</Parameter>
+            <Parameter Name="BaseDNAdamage" Role="user defined" Unit="tbd">2.16068</Parameter>
+            <Parameter Name="Cdk2_Thr160" Role="user defined" Unit="tbd">((CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="Fit_Cdk2_Thr160" Role="user defined" Unit="tbd">(((CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1)) / (Metabolite_5_0 + Metabolite_7_0))</Parameter>
+            <Parameter Name="Fit_Cdk2_T" Role="user defined" Unit="tbd">(((Cdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1)) / (Metabolite_3_0 + Metabolite_5_0 + Metabolite_7_0))</Parameter>
+            <Parameter Name="Fit_CycE_T" Role="user defined" Unit="tbd">(((CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1) + (CycE * VC_SpConcFactor_mole_litre_1_uM_1)) / (Metabolite_5_0 + Metabolite_7_0 + Metabolite_1_0))</Parameter>
+            <Parameter Name="k4b" Role="user defined" Unit="tbd">(vb3_v_0 / (Cdk2 * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="k6b" Role="user defined" Unit="tbd">(vb5_v_0 / (CycE * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="k8b" Role="user defined" Unit="tbd">(vb7_k1_0 * Cdk2 * VC_SpConcFactor_mole_litre_1_uM_1 * CycE * VC_SpConcFactor_mole_litre_1_uM_1 / (CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="k2b" Role="user defined" Unit="tbd">((vb1_k0_0 + (2.0 * vb1_k1_0 * vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1 / ((vb1_kb_0 * vb1_Kma_0) + (vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1) + pow((pow(((vb1_kb_0 * vb1_Kma_0) + (vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1) + vb1_kb_0 - (vb1_ka_0 * CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1)),2.0) - (4.0 * (vb1_kb_0 - (vb1_ka_0 * CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1)) * vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1)),0.5) + vb1_kb_0 - (vb1_ka_0 * CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1)))) * CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1 / (CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1) / (1.0 + pow((vb1_Ki_0 * p21 * VC_SpConcFactor_mole_litre_1_uM_1),vb1_h_0)))</Parameter>
+            <Parameter Name="CycE_T" Role="user defined" Unit="tbd">((CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1) + (CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1) + (CycE * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="k6a" Role="user defined" Unit="tbd">(va5_k_0 * p53 * VC_SpConcFactor_mole_litre_1_uM_1 / (p21 * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="k4a" Role="user defined" Unit="tbd">(va3_k_0 * DDR * VC_SpConcFactor_mole_litre_1_uM_1 / (p53 * VC_SpConcFactor_mole_litre_1_uM_1))</Parameter>
+            <Parameter Name="Fit_Cdk2a" Role="user defined" Unit="tbd">(CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1 / Metabolite_7_0)</Parameter>
+            <Parameter Name="vb3_v_0" Role="user defined" Unit="tbd">99.84</Parameter>
+            <Parameter Name="vb5_v_0" Role="user defined" Unit="tbd">9.99936</Parameter>
+            <Parameter Name="vb7_k1_0" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="vb1_k0_0" Role="user defined" Unit="tbd">0.10249</Parameter>
+            <Parameter Name="vb1_k1_0" Role="user defined" Unit="tbd">4.00486</Parameter>
+            <Parameter Name="vb1_ka_0" Role="user defined" Unit="tbd">3.40431</Parameter>
+            <Parameter Name="vb1_Kmb_0" Role="user defined" Unit="tbd">0.00842472</Parameter>
+            <Parameter Name="vb1_kb_0" Role="user defined" Unit="tbd">0.324616</Parameter>
+            <Parameter Name="vb1_Kma_0" Role="user defined" Unit="tbd">0.001143917344</Parameter>
+            <Parameter Name="vb1_Ki_0" Role="user defined" Unit="tbd">0.394586</Parameter>
+            <Parameter Name="vb1_h_0" Role="user defined" Unit="tbd">4.93142</Parameter>
+            <Parameter Name="va5_k_0" Role="user defined" Unit="tbd">193.258</Parameter>
+            <Parameter Name="va3_k_0" Role="user defined" Unit="tbd">0.00547468</Parameter>
+            <Parameter Name="Metabolite_3_0" Role="user defined" Unit="tbd">(Cdk2 * VC_SpConcFactor_mole_litre_1_uM_1)</Parameter>
+            <Parameter Name="Metabolite_5_0" Role="user defined" Unit="tbd">(CycECdk2 * VC_SpConcFactor_mole_litre_1_uM_1)</Parameter>
+            <Parameter Name="Metabolite_7_0" Role="user defined" Unit="tbd">(CycECdk2a * VC_SpConcFactor_mole_litre_1_uM_1)</Parameter>
+            <Parameter Name="Metabolite_1_0" Role="user defined" Unit="tbd">(CycE * VC_SpConcFactor_mole_litre_1_uM_1)</Parameter>
+            <Parameter Name="ModelValue_9_0" Role="user defined" Unit="tbd">TAF</Parameter>
+            <Parameter Name="VC_TimeConvFactor" Role="user defined" Unit="1">
+               2.777777777777778E-4
+               <Annotation>Conversion from SBML time units to VC time units</Annotation>
+            </Parameter>
+            <Parameter Name="VC_SpConvFactor_uM_litre_mole_1" Role="user defined" Unit="uM.litre.mole-1">
+               1000000.0
+               <Annotation>Conversion from SBML concentration units to VC concentration units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="CycE">
+            <Annotation>CycE</Annotation>
+         </Compound>
+         <Compound Name="Cdk2">
+            <Annotation>Cdk2</Annotation>
+         </Compound>
+         <Compound Name="CycECdk2">
+            <Annotation>CycECdk2</Annotation>
+         </Compound>
+         <Compound Name="CycECdk2a">
+            <Annotation>CycECdk2a</Annotation>
+         </Compound>
+         <Compound Name="p21">
+            <Annotation>p21</Annotation>
+         </Compound>
+         <Compound Name="DNADamageC">
+            <Annotation>DNADamageC</Annotation>
+         </Compound>
+         <Compound Name="DNADamageS">
+            <Annotation>DNADamageS</Annotation>
+         </Compound>
+         <Compound Name="DDR">
+            <Annotation>DDR</Annotation>
+         </Compound>
+         <Compound Name="p53">
+            <Annotation>p53</Annotation>
+         </Compound>
+         <Feature Name="compartment" />
+         <LocalizedCompound Name="CycE" CompoundRef="CycE" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Cdk2" CompoundRef="Cdk2" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="CycECdk2" CompoundRef="CycECdk2" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="CycECdk2a" CompoundRef="CycECdk2a" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="p21" CompoundRef="p21" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="DNADamageC" CompoundRef="DNADamageC" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="DNADamageS" CompoundRef="DNADamageS" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="DDR" CompoundRef="DDR" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="p53" CompoundRef="p53" Structure="compartment" OverrideName="true" />
+         <SimpleReaction Structure="compartment" Name="vb5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="CycE" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(vb5_v_0 * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vb6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CycE" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k6b * CycE * CycE_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="CycE_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vb3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="Cdk2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(vb3_v_0 * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vb4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cdk2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k4b * Cdk2 * Cdk2_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="Cdk2_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vb7" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CycE" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Cdk2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CycECdk2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * vb7_k1_0 * CycE * CycE_ConcFactor * Cdk2 * Cdk2_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="CycE_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="Cdk2_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vb8" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CycECdk2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CycE" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cdk2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k8b * CycECdk2 * CycECdk2_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="CycECdk2_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vb1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CycECdk2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CycECdk2a" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="p21" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * (vb1_k0_0 + (2.0 * vb1_k1_0 * vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * CycECdk2a_ConcFactor / ((vb1_kb_0 * vb1_Kma_0) + (vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * CycECdk2a_ConcFactor) + pow((pow(((vb1_kb_0 * vb1_Kma_0) + (vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * CycECdk2a_ConcFactor) + vb1_kb_0 - (vb1_ka_0 * CycECdk2a * CycECdk2a_ConcFactor)),2.0) - (4.0 * (vb1_kb_0 - (vb1_ka_0 * CycECdk2a * CycECdk2a_ConcFactor)) * vb1_ka_0 * vb1_Kmb_0 * CycECdk2a * CycECdk2a_ConcFactor)),0.5) + vb1_kb_0 - (vb1_ka_0 * CycECdk2a * CycECdk2a_ConcFactor)))) * CycECdk2 * CycECdk2_ConcFactor / (1.0 + pow((vb1_Ki_0 * p21 * p21_ConcFactor),vb1_h_0)))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="CycECdk2_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="CycECdk2a_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="p21_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vb2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CycECdk2a" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CycECdk2" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="p21" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k2b * CycECdk2a * CycECdk2a_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="CycECdk2a_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="va3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="DDR" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * va3_k_0 * DDR * DDR_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="DDR_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="va2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="DNADamageC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k1 * DNADamageC * DNADamageC_ConcFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="2.777777777777778E-4 second-1">0.0164994</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="DNADamageC_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="va1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="DNADamageS" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k1 * DNADamageS * DNADamageS_ConcFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="2.777777777777778E-4 second-1">0.234805</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="DNADamageS_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="va5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="p21" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="p53" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * va5_k_0 * p53 * p53_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="p53_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="va6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p21" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="p53" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k6a * p21 * p21_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="p21_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="va4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="DDR" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k4a * p53 * p53_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="p53_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="compartment" Structure="compartment" />
+      </Model>
+      <SimulationSpec Name="MODEL1505080000_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="compartment" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000002E9">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CycE" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>CycE_0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Cdk2" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>Cdk2_0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CycECdk2" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>CycECdk2_0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CycECdk2a" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>CycECdk2a_0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="p21" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DNADamageC" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DNADamageS" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DDR" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * (BaseDNAdamage + (DNADamageC * VC_SpConcFactor_mole_litre_1_uM_1) + (DNADamageS * VC_SpConcFactor_mole_litre_1_uM_1) + TAF))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="p53" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="vb5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vb6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vb3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vb4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vb7" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vb8" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vb1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vb2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="va3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="va2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="va1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="va5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="va6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="va4" ReactionMapping="included" />
+         </ReactionContext>
+         <BioEvents>
+            <BioEvent Name="DNADamage">
+               <Trigger>((t * VC_TimeConvFactor) &gt; 0.0)</Trigger>
+               <Delay UseValuesFromTriggerTime="true">0.0</Delay>
+               <EventAssignment Variable="TAF">(ModelValue_9_0 + (k_TAF * pow(Gy,0.5)))</EventAssignment>
+               <EventAssignment Variable="DNADamageC">(VC_SpConvFactor_uM_litre_mole_1 * prop_C * DNAdamagefoci_0)</EventAssignment>
+               <EventAssignment Variable="DNADamageS">(VC_SpConvFactor_uM_litre_mole_1 * (1.0 - prop_C) * DNAdamagefoci_0)</EventAssignment>
+            </BioEvent>
+         </BioEvents>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0007050" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006281" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/mamo/MAMO_0000046" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:2000772" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0000452" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1505080000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000632" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/26830321" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node34">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">j.schaber@web.de</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node52">
+                                 <vcard:Family>Schaber</vcard:Family>
+                                 <vcard:Given>Joerg</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <vcard:Orgname rdf:nodeID="node53" />
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_10>
+                        <rdf:Description rdf:nodeID="node35">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">william.gray@yale.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node60">
+                                 <vcard:Family>William</vcard:Family>
+                                 <vcard:Given>Gray</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node61">
+                                 <vcard:Orgname>Yale University</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_10>
+                     <rdf:_11>
+                        <rdf:Description rdf:nodeID="node36">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">dbhaskar92@math.ubc.ca</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node62">
+                                 <vcard:Family>Dhananjay</vcard:Family>
+                                 <vcard:Given>Bhaskar</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node63">
+                                 <vcard:Orgname>University of British Columbia</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_11>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node37">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">rgutenk@email.arizona.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node64">
+                                 <vcard:Family>Gutenkunst</vcard:Family>
+                                 <vcard:Given>Ryan</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node65">
+                                 <vcard:Orgname>University of Arizona</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:nodeID="node38">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">alyssalynfortier@email.arizona.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node66">
+                                 <vcard:Family>Fortier</vcard:Family>
+                                 <vcard:Given>Alyssa</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node45" />
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:nodeID="node39">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">jknappw@gmail.com</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node46">
+                                 <vcard:Family>Knapp-Wilson</vcard:Family>
+                                 <vcard:Given>Jordan</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node47">
+                                 <vcard:Orgname>University of Arizona</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_4>
+                     <rdf:_5>
+                        <rdf:Description rdf:nodeID="node40">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">ljhkamp@email.arizona.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node48">
+                                 <vcard:Family>Haferkamp</vcard:Family>
+                                 <vcard:Given>Laura</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node49">
+                                 <vcard:Orgname>University of Arizona</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_5>
+                     <rdf:_6>
+                        <rdf:Description rdf:nodeID="node41">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">codystep09@email.arizona.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node50">
+                                 <vcard:Family>Stepanski</vcard:Family>
+                                 <vcard:Given>Cody</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node51">
+                                 <vcard:Orgname>University of Arizona</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_6>
+                     <rdf:_7>
+                        <rdf:Description rdf:nodeID="node42">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">amybethx@rocketmail.com</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node54">
+                                 <vcard:Family>Amy Beth</vcard:Family>
+                                 <vcard:Given>Prager</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node55">
+                                 <vcard:Orgname>Fundacion Ceibal</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_7>
+                     <rdf:_8>
+                        <rdf:Description rdf:nodeID="node43">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">leshriver@email.wm.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node56">
+                                 <vcard:Family>Lauren</vcard:Family>
+                                 <vcard:Given>Shriver</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node57">
+                                 <vcard:Orgname>College of William and Mary</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_8>
+                     <rdf:_9>
+                        <rdf:Description rdf:nodeID="node44">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">kslav@sas.upenn.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node58">
+                                 <vcard:Family>Kalina</vcard:Family>
+                                 <vcard:Given>Slavkova</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node59">
+                                 <vcard:Orgname>University of Pennsylvania</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_9>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2017-03-30T15:27:28Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2017-04-10T07:06:44Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P24864" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI2">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P24941" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI3">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P24864" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P24941" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI35">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006351" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI36">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI37">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006351" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI38">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI39">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="urn:miriam:reactome:R-HSA-69191" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI4">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P24941" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P24864" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI41">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="urn:miriam:reactome:R-HSA-188350" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI42">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="urn:miriam:reactome:R-HSA-69195" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI43">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006974" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI44">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006281" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI45">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006281" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI46">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006978" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI47">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI48">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node30">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:2001021" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI5">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node31">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P38936" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI9">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node32">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04637" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_92cfddc4-2e02-414f-9348-e494dc18895a">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node33">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0001590" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:nodeID="node45">
+               <vcard:Orgname xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">University of Arizona</vcard:Orgname>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="Species(p21)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">p21 is also known as cyclin-dependent-kinase inhibitor 1</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI5">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P38936" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Cdk2)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">represents Cdk2</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI2">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P24941" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(va3)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">The DDR (DNA damage response) signal influences the accumulation of p53 by preventing its degradation.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI43">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006974" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(va5)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">The DDR (DNA damage response) signal influences accumulation of p53 which stimulates transcription of p21.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI46">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006978" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(CycECdk2a)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">represents phosphorylated Cdk2 and dephosphorylated CyclinE1 in a complex</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI4">
+                           
+      
+                           <CopasiMT:hasPart>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P24864" />
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P24941" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:hasPart>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb5)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">CycE is constitutively produced</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI35">
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:sbo:SBO:0000291" />
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006351" />
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006412" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb2)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">The CycECdk2 complex is deactivated by phosphorylation by Wee1.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI42">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="urn:miriam:reactome:R-HSA-69195" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(CycECdk2)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">represents the CycE/Cdk2 complex</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI3">
+                           
+      
+                           <CopasiMT:hasPart>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P24864" />
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P24941" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:hasPart>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb4)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">The degradation of Cdk is constitutive in some versions of the model but positively regulated by p21 in other versions. The "hasProperty: positive regulation of proteosome-mediated ubiquitin-dependent degradation" annotation is thus only relevant for versions of the model where p21 regulates the degradation process.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI38">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0032436" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:sbo:SBO:0000291" />
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0043161" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Structure(compartment)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#_92cfddc4-2e02-414f-9348-e494dc18895a">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2017-03-30T15:43:38Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:bto:BTO:0001590" />
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb8)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">Surprisingly, there were no more specific annotations for the dissociation of a cyclin-CDK complex.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI40">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:1904030" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:sbo:SBO:0000180" />
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb6)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">CycE is constitutively degraded</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI36">
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:sbo:SBO:0000291" />
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0043161" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(DDR)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">Total DNA damage is the sum of base DNA damage (BASE), slowly repairable damage (DNADamageC), quickly repairable damage (DNADamageS), and unrepairable telomere double strand breaks (TAF)</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI8">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0042769" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <bqbiol:isPropertyOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0035861" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:isPropertyOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(DNADamageC)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">The model uses DNADamageC as a way to quantify DNA damage that can be repaired slowly. Slow repair is mainly attributed to cell cycle checkpoints. It is difficult to annotate this, as it is simply a way to quantify slowly repairable damage and is not a protein nor small molecule species. Thus, it is described with "isPropertyOf" double strand break sites and "hasProperty" DNA damage checkpoint.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI6">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0000077" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <bqbiol:isPropertyOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0035861" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:isPropertyOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(CycE)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">represents Cyclin E</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P24864" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(va2)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">Slowly repairable DNA damage is repaired.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI44">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0072432" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006281" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(va1)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">Quickly repairable DNA damage is repaired.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI45">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006281" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb3)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">The production of Cdk2 is consititutive in some versions of the model but negatively regulated by p21 in other versions. The "hasProperty: negative regulation of cyclin-dependent kinase activity" annotation is thus only relevant for versions of the model where this negative feedback aspect is included.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI37">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:1904030" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:sbo:SBO:0000291" />
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006351" />
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006412" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(va6)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">p21 is constitutively deactivated</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI47">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0043161" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(va4)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">DDR signal is constitutively deactivated</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI48">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:2001021" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="BioModel(Kollarovic2016 - Cell fate decision at G1-S transition)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Kollarovic2016 - Cell fate decision at G1-S
+transition</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/26830321" title="Access to this publication">To senesce or not to
+    senesce: how primary human fibroblasts decide their cell fate
+    after DNA damage.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Kollarovic G, Studencka M, Ivanova
+  L, Lauenstein C, Heinze K, Lapytsko A, Talemi SR, Figueiredo AS,
+  Schaber J.</div>
+                        
+      
+                        <div class="bibo:Journal">Aging (Albany NY) 2016 Jan;</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>Excessive DNA damage can induce an irreversible cell cycle
+    arrest, called senescence, which is generally perceived as an
+    important tumour-suppressor mechanism. However, it is unclear
+    how cells decide whether to senesce or not after DNA damage. By
+    combining experimental data with a parameterized mathematical
+    model we elucidate this cell fate decision at the G1-S
+    transition. Our model provides a quantitative and conceptually
+    new understanding of how human fibroblasts decide whether DNA
+    damage is beyond repair and senesce. Model and data imply that
+    the G1-S transition is regulated by a bistable hysteresis
+    switch with respect to Cdk2 activity, which in turn is
+    controlled by the Cdk2/p21 ratio rather than cyclin abundance.
+    We experimentally confirm the resulting predictions that to
+    induce senescence i) in healthy cells both high initial and
+    elevated background DNA damage are necessary and sufficient,
+    and ii) in already damaged cells much lower additional DNA
+    damage is sufficient. Our study provides a mechanistic
+    explanation of a) how noise in protein abundances allows cells
+    to overcome the G1-S arrest even with substantial DNA damage,
+    potentially leading to neoplasia, and b) how accumulating DNA
+    damage with age increasingly sensitizes cells for
+    senescence.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000632">BIOMD0000000632</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI0">
+                           
+      
+                           <bqbiol:hasTaxon>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/taxonomy/9606" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasTaxon>
+                           
+      
+                           <dcterms:bibliographicCitation>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <CopasiMT:isDescribedBy rdf:resource="http://identifiers.org/pubmed/26830321" />
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </dcterms:bibliographicCitation>
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2017-03-30T15:27:28Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+      
+                           <dcterms:creator>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>codystep09@email.arizona.edu</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Stepanski</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Cody</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>University of Arizona</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>ljhkamp@email.arizona.edu</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Haferkamp</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Laura</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>University of Arizona</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>jknappw@gmail.com</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Knapp-Wilson</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Jordan</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>University of Arizona</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>alyssalynfortier@email.arizona.edu</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Fortier</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Alyssa</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>University of Arizona</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>rgutenk@email.arizona.edu</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Gutenkunst</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Ryan</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>University of Arizona</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>dbhaskar92@math.ubc.ca</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Dhananjay</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Bhaskar</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>University of British Columbia</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>william.gray@yale.edu</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>William</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Gray</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>Yale University</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>kslav@sas.upenn.edu</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Kalina</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Slavkova</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>University of Pennsylvania</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>leshriver@email.wm.edu</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Lauren </vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Shriver</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>College of William and Mary</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>amybethx@rocketmail.com</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Amy Beth</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Prager</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>Fundacion Ceibal</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>j.schaber@web.de</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Schaber</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Joerg</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname />
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </dcterms:creator>
+                           
+      
+                           <dcterms:modified>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2017-03-30T15:40:17Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:modified>
+                           
+      
+                           <CopasiMT:hasPart>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006281" />
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0007050" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:hasPart>
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/biomodels.db/MODEL1505080000" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/biomodels.db/BIOMD0000000632" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+      
+                           <CopasiMT:isPartOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:2000772" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isPartOf>
+                           
+      
+                           <CopasiMT:occursIn>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/bto/BTO:0000452" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:occursIn>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(DNADamageS)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">The model uses DNADamageS as a way to quantify DNA damage that can be repaired quickly. Fast repair is not well elucidated but could be due to chromatin structure or DNA sequence context. It is difficult to annotate this, as it is simply a way to quantify quickly repairable damage and is not a protein nor small molecule species. Thus, it is described with "isPropertyOf" double strand break sites and "hasProperty" double strand break repair. While double strand break repair applies to both slow and fast repair, the distinction is made by applying cell cycle checkpoint repair to slowly repairable damage, DNADamageC above, and not to DNADamageS.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI7">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0006302" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <bqbiol:isPropertyOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0035861" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:isPropertyOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(p53)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">represents p53</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI9">
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P04637" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb1)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">CycECdk2 is activated by a CAK. The active form engages in a positive feedback loop, and the activation process can be inhibited by p21.</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI41">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:1904031" />
+                                 
+          
+                                 <rdf:li rdf:resource="urn:miriam:reactome:R-HSA-69562" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="urn:miriam:reactome:R-HSA-188350" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(vb7)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">CycECdk2 complex association</body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI39">
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:sbo:SBO:0000526" />
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="urn:miriam:reactome:R-HSA-69191" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI43" vcid="ReactionStep(va3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI47" vcid="ReactionStep(va6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI5" vcid="Species(p21)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Species(CycE)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI42" vcid="ReactionStep(vb2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI8" vcid="Species(DDR)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI2" vcid="Species(Cdk2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI4" vcid="Species(CycECdk2a)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI9" vcid="Species(p53)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI44" vcid="ReactionStep(va2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI3" vcid="Species(CycECdk2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI45" vcid="ReactionStep(va1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI37" vcid="ReactionStep(vb3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI48" vcid="ReactionStep(va4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI38" vcid="ReactionStep(vb4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI6" vcid="Species(DNADamageC)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI39" vcid="ReactionStep(vb7)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI36" vcid="ReactionStep(vb6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI35" vcid="ReactionStep(vb5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI7" vcid="Species(DNADamageS)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_92cfddc4-2e02-414f-9348-e494dc18895a" vcid="Structure(compartment)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI40" vcid="ReactionStep(vb8)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Kollarovic2016 - Cell fate decision at G1-S transition)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI46" vcid="ReactionStep(va5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI41" vcid="ReactionStep(vb1)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

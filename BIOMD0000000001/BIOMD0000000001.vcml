@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Edelstein1996 - EPSP ACh event">
+      <Model Name="BIOMD0000000001">
+         <ModelParameters>
+            <Parameter Name="kf_0" Role="user defined" Unit="tbd">3000.0</Parameter>
+            <Parameter Name="kr_0" Role="user defined" Unit="tbd">8000.0</Parameter>
+            <Parameter Name="kf_1" Role="user defined" Unit="tbd">1500.0</Parameter>
+            <Parameter Name="kr_1" Role="user defined" Unit="tbd">16000.0</Parameter>
+            <Parameter Name="kf_2" Role="user defined" Unit="tbd">30000.0</Parameter>
+            <Parameter Name="kr_2" Role="user defined" Unit="tbd">700.0</Parameter>
+            <Parameter Name="kf_3" Role="user defined" Unit="tbd">3000.0</Parameter>
+            <Parameter Name="kr_3" Role="user defined" Unit="tbd">8.64</Parameter>
+            <Parameter Name="kf_4" Role="user defined" Unit="tbd">1500.0</Parameter>
+            <Parameter Name="kr_4" Role="user defined" Unit="tbd">17.28</Parameter>
+            <Parameter Name="kf_5" Role="user defined" Unit="tbd">0.54</Parameter>
+            <Parameter Name="kr_5" Role="user defined" Unit="tbd">10800.0</Parameter>
+            <Parameter Name="kf_6" Role="user defined" Unit="tbd">130.0</Parameter>
+            <Parameter Name="kr_6" Role="user defined" Unit="tbd">2740.0</Parameter>
+            <Parameter Name="kf_7" Role="user defined" Unit="tbd">3000.0</Parameter>
+            <Parameter Name="kr_7" Role="user defined" Unit="tbd">4.0</Parameter>
+            <Parameter Name="kf_8" Role="user defined" Unit="tbd">1500.0</Parameter>
+            <Parameter Name="kr_8" Role="user defined" Unit="tbd">8.0</Parameter>
+            <Parameter Name="kf_9" Role="user defined" Unit="tbd">19.7</Parameter>
+            <Parameter Name="kr_9" Role="user defined" Unit="tbd">3.74</Parameter>
+            <Parameter Name="kf_10" Role="user defined" Unit="tbd">19.85</Parameter>
+            <Parameter Name="kr_10" Role="user defined" Unit="tbd">1.74</Parameter>
+            <Parameter Name="kf_11" Role="user defined" Unit="tbd">20.0</Parameter>
+            <Parameter Name="kr_11" Role="user defined" Unit="tbd">0.81</Parameter>
+            <Parameter Name="kf_12" Role="user defined" Unit="tbd">3000.0</Parameter>
+            <Parameter Name="kr_12" Role="user defined" Unit="tbd">4.0</Parameter>
+            <Parameter Name="kf_13" Role="user defined" Unit="tbd">1500.0</Parameter>
+            <Parameter Name="kr_13" Role="user defined" Unit="tbd">8.0</Parameter>
+            <Parameter Name="kf_14" Role="user defined" Unit="tbd">0.05</Parameter>
+            <Parameter Name="kr_14" Role="user defined" Unit="tbd">0.0012</Parameter>
+            <Parameter Name="kf_15" Role="user defined" Unit="tbd">0.05</Parameter>
+            <Parameter Name="kr_15" Role="user defined" Unit="tbd">0.0012</Parameter>
+            <Parameter Name="kf_16" Role="user defined" Unit="tbd">0.05</Parameter>
+            <Parameter Name="kr_16" Role="user defined" Unit="tbd">0.0012</Parameter>
+            <Parameter Name="t2" Role="user defined" Unit="tbd">20.0</Parameter>
+         </ModelParameters>
+         <Compound Name="BLL">
+            <Annotation>BLL</Annotation>
+         </Compound>
+         <Compound Name="IL">
+            <Annotation>IL</Annotation>
+         </Compound>
+         <Compound Name="AL">
+            <Annotation>AL</Annotation>
+         </Compound>
+         <Compound Name="A">
+            <Annotation>A</Annotation>
+         </Compound>
+         <Compound Name="BL">
+            <Annotation>BL</Annotation>
+         </Compound>
+         <Compound Name="B">
+            <Annotation>B</Annotation>
+         </Compound>
+         <Compound Name="DLL">
+            <Annotation>DLL</Annotation>
+         </Compound>
+         <Compound Name="D">
+            <Annotation>D</Annotation>
+         </Compound>
+         <Compound Name="ILL">
+            <Annotation>ILL</Annotation>
+         </Compound>
+         <Compound Name="DL">
+            <Annotation>DL</Annotation>
+         </Compound>
+         <Compound Name="I">
+            <Annotation>I</Annotation>
+         </Compound>
+         <Compound Name="ALL">
+            <Annotation>ALL</Annotation>
+         </Compound>
+         <Feature Name="comp1" />
+         <LocalizedCompound Name="BLL" CompoundRef="BLL" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="IL" CompoundRef="IL" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="AL" CompoundRef="AL" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="A" CompoundRef="A" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="BL" CompoundRef="BL" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="B" CompoundRef="B" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="DLL" CompoundRef="DLL" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="D" CompoundRef="D" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="ILL" CompoundRef="ILL" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="DL" CompoundRef="DL" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="I" CompoundRef="I" Structure="comp1" OverrideName="true" />
+         <LocalizedCompound Name="ALL" CompoundRef="ALL" Structure="comp1" OverrideName="true" />
+         <SimpleReaction Structure="comp1" Name="React0" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="B" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="BL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_0 * B * B_ConcFactor) - (kr_0 * BL * BL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="BL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="B_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="BL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="BLL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_1 * BL * BL_ConcFactor) - (kr_1 * BLL * BLL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="BLL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="BL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="BLL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ALL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_2 * BLL * BLL_ConcFactor) - (kr_2 * ALL * ALL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="BLL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="ALL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="A" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="AL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_3 * A * A_ConcFactor) - (kr_3 * AL * AL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="AL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="A_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="AL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ALL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_4 * AL * AL_ConcFactor) - (kr_4 * ALL * ALL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="AL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="ALL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="B" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="A" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_5 * B * B_ConcFactor) - (kr_5 * A * A_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="A_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="B_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="BL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="AL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_6 * BL * BL_ConcFactor) - (kr_6 * AL * AL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="AL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="BL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React7" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="I" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="IL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_7 * I * I_ConcFactor) - (kr_7 * IL * IL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="IL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="I_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React8" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="IL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ILL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_8 * IL * IL_ConcFactor) - (kr_8 * ILL * ILL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="IL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="ILL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React9" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="A" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="I" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_9 * A * A_ConcFactor) - (kr_9 * I * I_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="A_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="I_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React10" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="AL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="IL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_10 * AL * AL_ConcFactor) - (kr_10 * IL * IL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="IL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="AL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React11" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="ALL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ILL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_11 * ALL * ALL_ConcFactor) - (kr_11 * ILL * ILL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="ILL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="ALL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React12" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="DL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_12 * D * D_ConcFactor) - (kr_12 * DL * DL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="D_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="DL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React13" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="DL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="DLL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_13 * DL * DL_ConcFactor) - (kr_13 * DLL * DLL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="DLL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="DL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React14" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="I" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="D" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_14 * I * I_ConcFactor) - (kr_14 * D * D_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="D_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="I_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React15" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="IL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="DL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_15 * IL * IL_ConcFactor) - (kr_15 * DL * DL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="IL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="DL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="comp1" Name="React16" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="ILL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="DLL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((kf_16 * ILL * ILL_ConcFactor) - (kr_16 * DLL * DLL_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="DLL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="ILL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="comp1" Structure="comp1" />
+      </Model>
+      <SimulationSpec Name="BIOMD0000000001_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="comp1" GeometryClass="Compartment" SubVolume="Compartment" Size="0.1">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="BLL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="IL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="AL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="A" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="BL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="B" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>16.605778811026198</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DLL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ILL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="I" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ALL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="React0" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React7" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React8" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React9" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React10" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React11" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React12" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React13" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React14" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React15" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="React16" ReactionMapping="included" />
+         </ReactionContext>
+         <BioEvents>
+            <BioEvent Name="RemovalACh">
+               <Trigger>(t &gt; t2)</Trigger>
+               <EventAssignment Variable="kf_0">0.0</EventAssignment>
+               <EventAssignment Variable="kf_3">0.0</EventAssignment>
+               <EventAssignment Variable="kf_7">0.0</EventAssignment>
+               <EventAssignment Variable="kf_12">0.0</EventAssignment>
+               <EventAssignment Variable="kf_1">0.0</EventAssignment>
+               <EventAssignment Variable="kf_4">0.0</EventAssignment>
+               <EventAssignment Variable="kf_8">0.0</EventAssignment>
+               <EventAssignment Variable="kf_13">0.0</EventAssignment>
+            </BioEvent>
+         </BioEvents>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000001">
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/7787" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0007274" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0007166" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0019226" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL6613849442" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000001" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/8983160" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node35">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lenov@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node36">
+                                 <vcard:Family>Le Novère</vcard:Family>
+                                 <vcard:Given>Nicolas</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node37">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node6">
+                     <dcterms:W3CDTF>2005-02-02T14:56:11Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2017-05-19T14:33:51Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000002">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0031594" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000003">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000004">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000005">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000006">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000007">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000008">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000009">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000010">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000011">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000012">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000013">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000014">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR002394" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005892" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000016">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000017">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000018">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004889" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000019">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000020">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000021">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004889" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000022">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004889" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000023">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000024">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000025">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node30">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004889" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000026">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node31">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004889" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000027">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node32">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004889" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000028">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node33">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_000029">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node34">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0042166" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="ReactionStep(React16)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>biliganded intermediate &lt;=&gt; biliganded desensitised</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(ALL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>biliganted active state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(I)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>unliganted intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(DL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>monoliganded desensitised state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(AL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>monoliganded active state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React9)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>unliganded active &lt;=&gt; unliganded intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React6)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>opening of monoliganded</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(IL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>monoliganded intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React15)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>monoliganded intermediate &lt;=&gt; monoliganded desensitised</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React7)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>first ligand on intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(DLL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>biliganded desensitised state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(BL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>monoliganded basal state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React3)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>first ligand on active</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(A)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>unkiganded active state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="BioModel(Edelstein1996 - EPSP ACh event)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Edelstein1996 - EPSP ACh event</div>
+                     
+    
+                     <div class="dc:description">
+                        
+      
+                        <p>
+                           Model of a nicotinic Excitatory Post-Synaptic Potential in a
+  Torpedo electric organ. Acetylcholine is not represented
+  explicitely, but by an event that changes the constants of
+  transition from unliganded to liganded. 
+  
+                           <br />
+                        </p>
+                        
+  
+                     </div>
+                     
+  
+                     <div class="dc:provenance">
+                        
+    
+                        <p>This model has initially been encoded using StochSim.</p>
+                        
+  
+                     </div>
+                     
+  
+                     <div class="dc:bibliographicCitation">
+                        
+    
+                        <p>This model is described in the article:</p>
+                        
+    
+                        <div class="bibo:title">
+                           
+      
+                           <a href="http://identifiers.org/pubmed/8983160" title="Access to this publication">A kinetic mechanism for
+    nicotinic acetylcholine receptors based on multiple allosteric
+    transitions.</a>
+                           
+    
+                        </div>
+                        
+    
+                        <div class="bibo:authorList">Edelstein SJ, Schaad O, Henry E,
+  Bertrand D, Changeux JP.</div>
+                        
+    
+                        <div class="bibo:Journal">Biol Cybern 1996 Nov; 75(5):
+  361-379</div>
+                        
+    
+                        <p>Abstract:</p>
+                        
+    
+                        <div class="bibo:abstract">
+                           
+      
+                           <p>Nicotinic acetylcholine receptors are transmembrane
+    oligomeric proteins that mediate interconversions between open
+    and closed channel states under the control of
+    neurotransmitters. Fast in vitro chemical kinetics and in vivo
+    electrophysiological recordings are consistent with the
+    following multi-step scheme. Upon binding of agonists, receptor
+    molecules in the closed but activatable resting state (the
+    Basal state, B) undergo rapid transitions to states of higher
+    affinities with either open channels (the Active state, A) or
+    closed channels (the initial Inactivatable and fully
+    Desensitized states, I and D). In order to represent the
+    functional properties of such receptors, we have developed a
+    kinetic model that links conformational interconversion rates
+    to agonist binding and extends the general principles of the
+    Monod-Wyman-Changeux model of allosteric transitions. The
+    crucial assumption is that the linkage is controlled by the
+    position of the interconversion transition states on a
+    hypothetical linear reaction coordinate. Application of the
+    model to the peripheral nicotine acetylcholine receptor (nAChR)
+    accounts for the main properties of ligand-gating, including
+    single-channel events, and several new relationships are
+    predicted. Kinetic simulations reveal errors inherent in using
+    the dose-response analysis, but justify its application under
+    defined conditions. The model predicts that (in order to
+    overcome the intrinsic stability of the B state and to produce
+    the appropriate cooperativity) channel activation is driven by
+    an A state with a Kd in the 50 nM range, hence some 140-fold
+    stronger than the apparent affinity of the open state deduced
+    previously. According to the model, recovery from the
+    desensitized states may occur via rapid transit through the A
+    state with minimal channel opening, thus without necessarily
+    undergoing a distinct recovery pathway, as assumed in the
+    standard 'cycle' model. Transitions to the desensitized states
+    by low concentration 'pre-pulses' are predicted to occur
+    without significant channel opening, but equilibrium values of
+    IC50 can be obtained only with long pre-pulse times.
+    Predictions are also made concerning allosteric effectors and
+    their possible role in coincidence detection. In terms of
+    future developments, the analysis presented here provides a
+    physical basis for constructing more biologically realistic
+    models of synaptic modulation that may be applied to artificial
+    neural networks.</p>
+                           
+    
+                        </div>
+                        
+  
+                     </div>
+                     
+  
+                     <div class="dc:publisher">
+                        
+    
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000001">BIOMD0000000001</a>
+                           .
+                        </p>
+                        
+  
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React10)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>monoliganded active &lt;=&gt; monoliganded intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React14)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>unliganded intermediate &lt;=&gt; unliganded desensitised</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React13)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>second ligand on desensitised</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(ILL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>biliganded intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(D)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>fully desensitised state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React1)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>second ligand on basal</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React4)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>second ligand on active</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React0)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>first ligand on basal</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React2)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>opening of biliganded</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React12)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>first ligand on desensitised</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React8)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>second ligand on intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React11)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>biliganded active &lt;=&gt; biliganded intermediate</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(React5)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>opening of unliganded</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(BLL)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>biliganded basal state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(B)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>unliganded basal state</p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000010" vcid="Species(D)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000017" vcid="ReactionStep(React1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000003" vcid="Species(BLL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000009" vcid="Species(DLL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000012" vcid="Species(DL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000032" vcid="ReactionStep(React16)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000011" vcid="Species(ILL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000006" vcid="Species(A)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000021" vcid="ReactionStep(React5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000020" vcid="ReactionStep(React4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000008" vcid="Species(B)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000025" vcid="ReactionStep(React9)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000005" vcid="Species(AL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000027" vcid="ReactionStep(React11)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000007" vcid="Species(BL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000023" vcid="ReactionStep(React7)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000019" vcid="ReactionStep(React3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000001" vcid="BioModel(Edelstein1996 - EPSP ACh event)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000029" vcid="ReactionStep(React13)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000024" vcid="ReactionStep(React8)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000031" vcid="ReactionStep(React15)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000028" vcid="ReactionStep(React12)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000016" vcid="ReactionStep(React0)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000026" vcid="ReactionStep(React10)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000014" vcid="Species(ALL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000018" vcid="ReactionStep(React2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000030" vcid="ReactionStep(React14)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000022" vcid="ReactionStep(React6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000013" vcid="Species(I)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000004" vcid="Species(IL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_000002" vcid="Structure(comp1)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

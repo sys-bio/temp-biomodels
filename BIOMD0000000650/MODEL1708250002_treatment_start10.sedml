@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.22 (Build 170) on 2018-01-18 11:55 with libSBML version 5.15.3. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="500" numberOfPoints="20000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+    <steadyState id="steady2">
+      <algorithm kisaoID="KISAO:0000282"/>
+    </steadyState>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <task id="task2" modelReference="model" simulationReference="steady2"/>
+    <repeatedTask id="task3" range="range1" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range1" start="0" end="350" numberOfPoints="100" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue range="range1" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;S&apos;]">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range1 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="l_1_task1" name="[macrophage]">
+      <listOfVariables>
+        <variable id="p1_l_task1" name="l" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;l&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_l_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="m_2_task1" name="[mutated cell]">
+      <listOfVariables>
+        <variable id="p1_m_task1" name="m" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;m&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_m_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="n_3_task1" name="[normal cell]">
+      <listOfVariables>
+        <variable id="p1_n_task1" name="n" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;n&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_n_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="time_task3" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="l_1_task3" name="[macrophage]">
+      <listOfVariables>
+        <variable id="p1_l_task3" name="l" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;l&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_l_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="m_2_task3" name="[mutated cell]">
+      <listOfVariables>
+        <variable id="p1_m_task3" name="m" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;m&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_m_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="n_3_task3" name="[normal cell]">
+      <listOfVariables>
+        <variable id="p1_n_task3" name="n" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;n&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_n_task3 </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="l,n,m concs">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[macrophage]" logX="false" logY="false" xDataReference="time_task1" yDataReference="l_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[mutated cell]" logX="false" logY="false" xDataReference="time_task1" yDataReference="m_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[normal cell]" logX="false" logY="false" xDataReference="time_task1" yDataReference="n_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task3" name="l,n,m concs">
+      <listOfCurves>
+        <curve id="p1_curve_1_task3" name="[macrophage]" logX="false" logY="false" xDataReference="time_task3" yDataReference="l_1_task3"/>
+        <curve id="p1_curve_2_task3" name="[mutated cell]" logX="false" logY="false" xDataReference="time_task3" yDataReference="m_2_task3"/>
+        <curve id="p1_curve_3_task3" name="[normal cell]" logX="false" logY="false" xDataReference="time_task3" yDataReference="n_3_task3"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

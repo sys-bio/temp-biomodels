@@ -1,0 +1,2190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Levchenko2000_MAPK_noScaffold">
+      <Model Name="MAPK_in_Solution">
+         <Compound Name="MAPK">
+            <Annotation>MAPK</Annotation>
+         </Compound>
+         <Compound Name="MAPKMEKpp">
+            <Annotation>MAPKMEKpp</Annotation>
+         </Compound>
+         <Compound Name="MAPKp">
+            <Annotation>MAPKp</Annotation>
+         </Compound>
+         <Compound Name="MAPKPH">
+            <Annotation>MAPKPH</Annotation>
+         </Compound>
+         <Compound Name="MAPKpMAPKPH">
+            <Annotation>MAPKpMAPKPH</Annotation>
+         </Compound>
+         <Compound Name="MAPKpMEKpp">
+            <Annotation>MAPKpMEKpp</Annotation>
+         </Compound>
+         <Compound Name="MAPKpp">
+            <Annotation>MAPKpp</Annotation>
+         </Compound>
+         <Compound Name="MAPKppMAPKPH">
+            <Annotation>MAPKppMAPKPH</Annotation>
+         </Compound>
+         <Compound Name="MEK">
+            <Annotation>MEK</Annotation>
+         </Compound>
+         <Compound Name="MEKp">
+            <Annotation>MEKp</Annotation>
+         </Compound>
+         <Compound Name="MEKPH">
+            <Annotation>MEKPH</Annotation>
+         </Compound>
+         <Compound Name="MEKpMEKPH">
+            <Annotation>MEKpMEKPH</Annotation>
+         </Compound>
+         <Compound Name="MEKpp">
+            <Annotation>MEKpp</Annotation>
+         </Compound>
+         <Compound Name="MEKppMEKPH">
+            <Annotation>MEKppMEKPH</Annotation>
+         </Compound>
+         <Compound Name="MEKpRAFp">
+            <Annotation>MEKpRAFp</Annotation>
+         </Compound>
+         <Compound Name="MEKRAFp">
+            <Annotation>MEKRAFp</Annotation>
+         </Compound>
+         <Compound Name="RAF">
+            <Annotation>RAF</Annotation>
+         </Compound>
+         <Compound Name="RAFK">
+            <Annotation>RAFK</Annotation>
+         </Compound>
+         <Compound Name="RAFp">
+            <Annotation>RAFp</Annotation>
+         </Compound>
+         <Compound Name="RAFPH">
+            <Annotation>RAFPH</Annotation>
+         </Compound>
+         <Compound Name="RAFpRAFPH">
+            <Annotation>RAFpRAFPH</Annotation>
+         </Compound>
+         <Compound Name="RAFRAFK">
+            <Annotation>RAFRAFK</Annotation>
+         </Compound>
+         <Feature Name="Cytoplasm" />
+         <LocalizedCompound Name="MAPK" CompoundRef="MAPK" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MAPKMEKpp" CompoundRef="MAPKMEKpp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MAPKp" CompoundRef="MAPKp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MAPKPH" CompoundRef="MAPKPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MAPKpMAPKPH" CompoundRef="MAPKpMAPKPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MAPKpMEKpp" CompoundRef="MAPKpMEKpp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MAPKpp" CompoundRef="MAPKpp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MAPKppMAPKPH" CompoundRef="MAPKppMAPKPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEK" CompoundRef="MEK" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEKp" CompoundRef="MEKp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEKPH" CompoundRef="MEKPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEKpMEKPH" CompoundRef="MEKpMEKPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEKpp" CompoundRef="MEKpp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEKppMEKPH" CompoundRef="MEKppMEKPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEKpRAFp" CompoundRef="MEKpRAFp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="MEKRAFp" CompoundRef="MEKRAFp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="RAF" CompoundRef="RAF" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="RAFK" CompoundRef="RAFK" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="RAFp" CompoundRef="RAFp" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="RAFPH" CompoundRef="RAFPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="RAFpRAFPH" CompoundRef="RAFpRAFPH" Structure="Cytoplasm" OverrideName="true" />
+         <LocalizedCompound Name="RAFRAFK" CompoundRef="RAFRAFK" Structure="Cytoplasm" OverrideName="true" />
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RAF" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="RAFK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFRAFK" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a1 * RAF * RAFK / KMOLE)</Parameter>
+               <Parameter Name="a1" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RAFRAFK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAF" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFK" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d1 * RAFRAFK / KMOLE)</Parameter>
+               <Parameter Name="d1" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.4</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RAFRAFK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k1 * RAFRAFK / KMOLE)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="RAFPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFpRAFPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a2 * RAFp * RAFPH / KMOLE)</Parameter>
+               <Parameter Name="a2" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">0.5</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RAFpRAFPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d2 * RAFpRAFPH / KMOLE)</Parameter>
+               <Parameter Name="d2" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.5</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RAFpRAFPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAF" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k2 * RAFpRAFPH / KMOLE)</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction7" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEK" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKRAFp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a3 * MEK * RAFp / KMOLE)</Parameter>
+               <Parameter Name="a3" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">3.3</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction8" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKRAFp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d3 * MEKRAFp / KMOLE)</Parameter>
+               <Parameter Name="d3" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.42</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction9" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKRAFp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k3 * MEKRAFp / KMOLE)</Parameter>
+               <Parameter Name="k3" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction10" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKp" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="MEKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpMEKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a4 * MEKp * MEKPH / KMOLE)</Parameter>
+               <Parameter Name="a4" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">10.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction11" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKpMEKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d4 * MEKpMEKPH / KMOLE)</Parameter>
+               <Parameter Name="d4" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.8</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction12" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKpMEKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k4 * MEKpMEKPH / KMOLE)</Parameter>
+               <Parameter Name="k4" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction13" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKp" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpRAFp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a5 * MEKp * RAFp / KMOLE)</Parameter>
+               <Parameter Name="a5" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">3.3</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction14" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKpRAFp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d5 * MEKpRAFp / KMOLE)</Parameter>
+               <Parameter Name="d5" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.4</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction15" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKpRAFp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RAFp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k5 * MEKpRAFp / KMOLE)</Parameter>
+               <Parameter Name="k5" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction16" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKPH" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKppMEKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a6 * MEKPH * MEKpp / KMOLE)</Parameter>
+               <Parameter Name="a6" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">10.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction17" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKppMEKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d6 * MEKppMEKPH / KMOLE)</Parameter>
+               <Parameter Name="d6" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.8</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction18" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MEKppMEKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k6 * MEKppMEKPH / KMOLE)</Parameter>
+               <Parameter Name="k6" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction19" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPK" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKMEKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a7 * MAPK * MEKpp / KMOLE)</Parameter>
+               <Parameter Name="a7" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">20.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction20" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKMEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d7 * MAPKMEKpp / KMOLE)</Parameter>
+               <Parameter Name="d7" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.6</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction21" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKMEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k7 * MAPKMEKpp / KMOLE)</Parameter>
+               <Parameter Name="k7" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction22" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKp" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="MAPKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKpMAPKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a8 * MAPKp * MAPKPH / KMOLE)</Parameter>
+               <Parameter Name="a8" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">5.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction23" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKpMAPKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d8 * MAPKpMAPKPH / KMOLE)</Parameter>
+               <Parameter Name="d8" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.4</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction24" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKpMAPKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPK" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k8 * MAPKpMAPKPH / KMOLE)</Parameter>
+               <Parameter Name="k8" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction25" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKp" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKpMEKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a9 * MAPKp * MEKpp / KMOLE)</Parameter>
+               <Parameter Name="a9" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">20.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction26" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKpMEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d9 * MAPKpMEKpp / KMOLE)</Parameter>
+               <Parameter Name="d9" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.6</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction27" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKpMEKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MEKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k9 * MAPKpMEKpp / KMOLE)</Parameter>
+               <Parameter Name="k9" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction28" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKPH" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="MAPKpp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKppMAPKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * a10 * MAPKPH * MAPKpp / KMOLE)</Parameter>
+               <Parameter Name="a10" Role="user defined" Unit="1.0E-6 mole.s-1.uM-2">5.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction29" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKppMAPKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKpp" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * d10 * MAPKppMAPKPH / KMOLE)</Parameter>
+               <Parameter Name="d10" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.4</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytoplasm" Name="Reaction30" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPKppMAPKPH" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKp" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="MAPKPH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k10 * MAPKppMAPKPH / KMOLE)</Parameter>
+               <Parameter Name="k10" Role="user defined" Unit="1.0E-6 mole.s-1.uM-1">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="Cytoplasm" Structure="Cytoplasm" />
+      </Model>
+      <SimulationSpec Name="MAPK_in_Solution_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="Cytoplasm" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPK" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.4</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPKMEKpp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPKp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPKPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.3</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPKpMAPKPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPKpMEKpp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPKpp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPKppMAPKPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEK" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.2</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEKp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEKPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.2</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEKpMEKPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEKpp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEKppMEKPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEKpRAFp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MEKRAFp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RAF" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.3</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RAFK" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.2</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RAFp" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RAFPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.3</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RAFpRAFPH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RAFRAFK" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="Reaction1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction7" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction8" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction9" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction10" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction11" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction12" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction13" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction14" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction15" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction16" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction17" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction18" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction19" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction20" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction21" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction22" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction23" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction24" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction25" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction26" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction27" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction28" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction29" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction30" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191248">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0005737" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191261">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P26696" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191281">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P26696" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191301">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P26696" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191321">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q90W58" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191341">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P26696" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q90W58" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191361">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P26696" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191381">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P26696" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191401">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P26696" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q90W58" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191421">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191441">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191481">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191501">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191521">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191541">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P09560" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191561">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P09560" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q05116" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191581">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P09560" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191601">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR003577" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191621">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P09560" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191661">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P09560" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191681">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P09560" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR003577" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191702">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_996" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031435" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191722">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191743">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.11.1" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0008349" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0000185" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006468" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191763">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031435" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191783">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191803">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/3.1.3.16" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0051390" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006470" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191823">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_143" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031434" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031435" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191843">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node30">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191862">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node31">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_614" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node32">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.11.25" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0004709" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006468" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191883">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node33">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031434" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191902">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node34">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191923">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node35">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/3.1.3.16" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006470" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191943">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node36">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_143" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node37">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031435" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031434" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191962">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node38">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_191983">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node39">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_614" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node40">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.11.25" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006468" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0004709" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0000186" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192002">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node41">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031434" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192022">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node42">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192042">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node43">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/3.1.3.16" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0051389" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006470" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192063">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node44">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0051019" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031434" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node45">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_495" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_1780" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192083">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node46">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192102">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node47">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_2247" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_136" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node48">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.12.2" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006468" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0004708" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192122">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node49">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0051019" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192142">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node50">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192162">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node51">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/3.1.3.16" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006470" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192182">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node52">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_495" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_1780" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node53">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0051019" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0031434" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192203">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node54">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192223">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node55">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_136" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_2247" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node56">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.12.2" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0000187" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006468" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0004708" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192243">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node57">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0051019" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192262">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node58">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_192283">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node59">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/3.1.3.16" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006470" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0000188" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_350630">
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node60">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_634" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node61">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0000165" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node62">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/8355" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node63">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL6615234250" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node64">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000011" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDerivedFrom xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node65">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000009" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/6501300" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/6947258" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqmodel:isDerivedFrom>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node66">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/10823939" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node67">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node70">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">bshapiro@jpl.nasa.gov</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node71">
+                                 <vcard:Family>Shapiro</vcard:Family>
+                                 <vcard:Given>Bruce</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node72">
+                                 <vcard:Orgname>NASA Jet Propulsion Laboratory</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node68">
+                     <dcterms:W3CDTF>2005-02-15T00:12:30Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node69">
+                     <dcterms:W3CDTF>2013-06-03T13:36:09Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Levchenko2000_MAPK_noScaffold)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <h1>MAPK cascade in solution (no scaffold)</h1>
+                     
+    
+                     <table border="0" cellpadding="2" cellspacing="0">
+                        
+      
+                        <thead>
+                           
+        
+                           <tr>
+                              
+          
+                              <th align="left" bgcolor="#eeeeee" valign="middle">Description</th>
+                              
+        
+                           </tr>
+                           
+      
+                        </thead>
+                        
+      
+                        <tbody>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>This model describes a basic 3-
+							stage Mitogen Activated Protein Kinase (MAPK)
+							 cascade in solution. This cascade is typically expressed as RAF=
+							=&gt;MEK==&gt;MAPK (alternative forms are K3==&gt;K2==&gt;
+							K1 and KKK==&gt;KK==&gt;K)
+							. The input signal is RAFK (RAF Kinase)
+							 and the output signal is MAPKpp (
+							doubly phosphorylated form of MAPK)
+							.  RAFK phosphorylates RAF once to RAFp.  RAFp,
+							 the phosphorylated form of RAF induces two phoshporylations of MEK,
+							to MEKp and MEKpp. MEKpp,
+							 the doubly phosphorylated form of MEK,
+							 induces two phosphorylations of MAPK to MAPKp and MAPKpp.</td>
+                              
+        
+                           </tr>
+                           
+      
+                        </tbody>
+                        
+    
+                     </table>
+                     
+    
+                     <table border="0" cellpadding="2" cellspacing="0">
+                        
+      
+                        <thead>
+                           
+        
+                           <tr>
+                              
+          
+                              <th align="left" bgcolor="#eeeeee" valign="middle">Rate constant      </th>
+                              
+          
+                              <th align="left" bgcolor="#eeeeee" valign="middle">Reaction</th>
+                              
+        
+                           </tr>
+                           
+      
+                        </thead>
+                        
+      
+                        <tbody>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a10 = 5.</td>
+                              
+          
+                              <td>MAPKPH + MAPKpp -&gt; MAPKppMAPKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a1 = 1.</td>
+                              
+          
+                              <td>RAF + RAFK -&gt; RAFRAFK</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a2 = 0.5</td>
+                              
+          
+                              <td>RAFp + RAFPH -&gt; RAFpRAFPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a3 = 3.3</td>
+                              
+          
+                              <td>MEK + RAFp -&gt; MEKRAFp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a4 = 10.</td>
+                              
+          
+                              <td>MEKp + MEKPH -&gt; MEKpMEKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a5 = 3.3</td>
+                              
+          
+                              <td>MEKp + RAFp -&gt; MEKpRAFp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a6 = 10.</td>
+                              
+          
+                              <td>MEKPH + MEKpp -&gt; MEKppMEKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a7 = 20.</td>
+                              
+          
+                              <td>MAPK + MEKpp -&gt; MAPKMEKpp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a8 = 5.</td>
+                              
+          
+                              <td>MAPKp + MAPKPH -&gt; MAPKpMAPKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>a9 = 20.</td>
+                              
+          
+                              <td>MAPKp + MEKpp -&gt; MAPKpMEKpp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d10 = 0.4</td>
+                              
+          
+                              <td>MAPKppMAPKPH -&gt; MAPKPH + MAPKpp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d1 = 0.4</td>
+                              
+          
+                              <td>RAFRAFK -&gt; RAF + RAFK</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d2 = 0.5</td>
+                              
+          
+                              <td>RAFpRAFPH -&gt; RAFp + RAFPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d3 = 0.42</td>
+                              
+          
+                              <td>MEKRAFp -&gt; MEK + RAFp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d4 = 0.8</td>
+                              
+          
+                              <td>MEKpMEKPH -&gt; MEKp + MEKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d5 = 0.4</td>
+                              
+          
+                              <td>MEKpRAFp -&gt; MEKp + RAFp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d6 = 0.8</td>
+                              
+          
+                              <td>MEKppMEKPH -&gt; MEKPH + MEKpp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d7 = 0.6</td>
+                              
+          
+                              <td>MAPKMEKpp -&gt; MAPK + MEKpp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d8 = 0.4</td>
+                              
+          
+                              <td>MAPKpMAPKPH -&gt; MAPKp + MAPKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>d9 = 0.6</td>
+                              
+          
+                              <td>MAPKpMEKpp -&gt; MAPKp + MEKpp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k10 = 0.1</td>
+                              
+          
+                              <td>MAPKppMAPKPH -&gt; MAPKp + MAPKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k1 = 0.1</td>
+                              
+          
+                              <td>RAFRAFK -&gt; RAFK + RAFp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k2 = 0.1</td>
+                              
+          
+                              <td>RAFpRAFPH -&gt; RAF + RAFPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k3 = 0.1</td>
+                              
+          
+                              <td>MEKRAFp -&gt; MEKp + RAFp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k4 = 0.1</td>
+                              
+          
+                              <td>MEKpMEKPH -&gt; MEK + MEKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k5 = 0.1</td>
+                              
+          
+                              <td>MEKpRAFp -&gt; MEKpp + RAFp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k6 = 0.1</td>
+                              
+          
+                              <td>MEKppMEKPH -&gt; MEKp + MEKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k7 = 0.1</td>
+                              
+          
+                              <td>MAPKMEKpp -&gt; MAPKp + MEKpp</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k8 = 0.1</td>
+                              
+          
+                              <td>MAPKpMAPKPH -&gt; MAPK + MAPKPH</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>k9 = 0.1</td>
+                              
+          
+                              <td>MAPKpMEKpp -&gt; MAPKpp + MEKpp</td>
+                              
+        
+                           </tr>
+                           
+      
+                        </tbody>
+                        
+    
+                     </table>
+                     
+    
+                     <table border="0" cellpadding="2" cellspacing="0">
+                        
+      
+                        <thead>
+                           
+        
+                           <tr>
+                              
+          
+                              <th align="left" bgcolor="#eeeeee" valign="middle">Variable</th>
+                              
+          
+                              <th align="left" bgcolor="#eeeeee" valign="middle">IC  </th>
+                              
+          
+                              <th align="left" bgcolor="#eeeeee" valign="middle">ODE</th>
+                              
+        
+                           </tr>
+                           
+      
+                        </thead>
+                        
+      
+                        <tbody>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPK</td>
+                              
+          
+                              <td>0.3</td>
+                              
+          
+                              <td>MAPK'[t] == d7*MAPKMEKpp[t] + k8*MAPKpMAPKPH[t] -
+							 a7*MAPK[t]*MEKpp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPKMEKpp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MAPKMEKpp'[t] == -(d7*MAPKMEKpp[t]) - k7*MAPKMEKpp[t]
+							 + a7*MAPK[t]*MEKpp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPKp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MAPKp'[t] == k7*MAPKMEKpp[t] - a8*MAPKp[t]*MAPKPH[t]
+							 + d8*MAPKpMAPKPH[t] + d9*MAPKpMEKpp[t] + k10*
+							MAPKppMAPKPH[t] - a9*MAPKp[t]*MEKpp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPKPH</td>
+                              
+          
+                              <td>0.3</td>
+                              
+          
+                              <td>MAPKPH'[t] == -(a8*MAPKp[t]*MAPKPH[t]) + d8*MAPKpMAPKPH[
+							t] + k8*MAPKpMAPKPH[t] - a10*MAPKPH[t]*MAPKpp[t] +
+							 d10*MAPKppMAPKPH[t] + k10*MAPKppMAPKPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPKpMAPKPH</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MAPKpMAPKPH'[t] == a8*MAPKp[t]*MAPKPH[t] - d8*
+							MAPKpMAPKPH[t] - k8*MAPKpMAPKPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPKpMEKpp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MAPKpMEKpp'[t] == -(d9*MAPKpMEKpp[t]) - k9*MAPKpMEKpp[t]
+							 + a9*MAPKp[t]*MEKpp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPKpp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MAPKpp'[t] == k9*MAPKpMEKpp[t] - a10*MAPKPH[t]*MAPKpp[t]
+							 + d10*MAPKppMAPKPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MAPKppMAPKPH</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MAPKppMAPKPH'[t] == a10*MAPKPH[t]*MAPKpp[t] - d10*
+							MAPKppMAPKPH[t] - k10*MAPKppMAPKPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEK</td>
+                              
+          
+                              <td>0.2</td>
+                              
+          
+                              <td>MEK'[t] == k4*MEKpMEKPH[t] + d3*MEKRAFp[t] -
+							 a3*MEK[t]*RAFp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEKp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MEKp'[t] == -(a4*MEKp[t]*MEKPH[t]) + d4*MEKpMEKPH[t]
+							 + k6*MEKppMEKPH[t] + d5*MEKpRAFp[t] + k3*MEKRAFp[
+							t] - a5*MEKp[t]*RAFp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEKPH</td>
+                              
+          
+                              <td>0.2</td>
+                              
+          
+                              <td>MEKPH'[t] == -(a4*MEKp[t]*MEKPH[t]) + d4*MEKpMEKPH[t]
+							 + k4*MEKpMEKPH[t] - a6*MEKPH[t]*MEKpp[t] + d6*
+							MEKppMEKPH[t] + k6*MEKppMEKPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEKpMEKPH</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MEKpMEKPH'[t] == a4*MEKp[t]*MEKPH[t] - d4*MEKpMEKPH[t]
+							 - k4*MEKpMEKPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEKpp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MEKpp'[t] == d7*MAPKMEKpp[t] + k7*MAPKMEKpp[t] +
+							 d9*MAPKpMEKpp[t] + k9*MAPKpMEKpp[t] - a7*MAPK[t]*
+							MEKpp[t] - a9*MAPKp[t]*MEKpp[t] - a6*MEKPH[t]*MEKpp[t]
+							 + d6*MEKppMEKPH[t] + k5*MEKpRAFp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEKppMEKPH</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MEKppMEKPH'[t] == a6*MEKPH[t]*MEKpp[t] - d6*MEKppMEKPH[
+							t] - k6*MEKppMEKPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEKpRAFp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MEKpRAFp'[t] == -(d5*MEKpRAFp[t]) - k5*MEKpRAFp[t]
+							 + a5*MEKp[t]*RAFp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>MEKRAFp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>MEKRAFp'[t] == -(d3*MEKRAFp[t]) - k3*MEKRAFp[t] +
+							 a3*MEK[t]*RAFp[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>RAF</td>
+                              
+          
+                              <td>0.4</td>
+                              
+          
+                              <td>RAF'[t] == -(a1*RAF[t]*RAFK[t]) + k2*RAFpRAFPH[t] +
+							 d1*RAFRAFK[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>RAFK</td>
+                              
+          
+                              <td>0.1</td>
+                              
+          
+                              <td>RAFK'[t] == -(a1*RAF[t]*RAFK[t]) + d1*RAFRAFK[t] +
+							 k1*RAFRAFK[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>RAFp</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>RAFp'[t] == d5*MEKpRAFp[t] + k5*MEKpRAFp[t] +
+							 d3*MEKRAFp[t] + k3*MEKRAFp[t] - a3*MEK[t]*RAFp[t]
+							 - a5*MEKp[t]*RAFp[t] - a2*RAFp[t]*RAFPH[t] + d2*
+							RAFpRAFPH[t] + k1*RAFRAFK[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>RAFPH</td>
+                              
+          
+                              <td>0.3</td>
+                              
+          
+                              <td>RAFPH'[t] == -(a2*RAFp[t]*RAFPH[t]) + d2*RAFpRAFPH[t]
+							 + k2*RAFpRAFPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>RAFpRAFPH</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>RAFpRAFPH'[t] == a2*RAFp[t]*RAFPH[t] - d2*RAFpRAFPH[t]
+							 - k2*RAFpRAFPH[t]</td>
+                              
+        
+                           </tr>
+                           
+        
+                           <tr>
+                              
+          
+                              <td>RAFRAFK</td>
+                              
+          
+                              <td>0</td>
+                              
+          
+                              <td>RAFRAFK'[t] == a1*RAF[t]*RAFK[t] - d1*RAFRAFK[t] -
+							 k1*RAFRAFK[t]</td>
+                              
+        
+                           </tr>
+                           
+      
+                        </tbody>
+                        
+    
+                     </table>
+                     
+    
+                     <p>Generated by Cellerator Version 1.4.3 (6-March-2004) using Mathematica 5.0 
+				for Mac OS X (November 19, 2003), March 6, 2004 12:18:07, using (PowerMac,
+				PowerPC,Mac OS X,MacOSX,Darwin)</p>
+                     
+    
+                     <p>author=B.E.Shapiro</p>
+                     
+    
+                     <p>
+                        This model originates from BioModels Database: A Database of Annotated Published Models (http://www.ebi.ac.uk/biomodels/). It is copyright (c) 2005-2010 The BioModels.net Team.      
+                        <br />
+                        
+          For more information see the      
+                        <a href="http://www.ebi.ac.uk/biomodels/legal.html" target="_blank">terms of use</a>
+                        
+          .      
+                        <br />
+                        
+          To cite BioModels Database, please use:      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a>
+                        
+
+                     </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191661" vcid="Species(RAFpRAFPH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191301" vcid="Species(MAPKp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191281" vcid="Species(MAPKMEKpp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191943" vcid="ReactionStep(Reaction13)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191421" vcid="Species(MEK)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191621" vcid="Species(RAFp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191722" vcid="ReactionStep(Reaction2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191441" vcid="Species(MEKp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192283" vcid="ReactionStep(Reaction30)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192022" vcid="ReactionStep(Reaction17)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191501" vcid="Species(MEKpp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191883" vcid="ReactionStep(Reaction10)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191743" vcid="ReactionStep(Reaction3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191902" vcid="ReactionStep(Reaction11)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192243" vcid="ReactionStep(Reaction28)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191321" vcid="Species(MAPKPH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191823" vcid="ReactionStep(Reaction7)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192002" vcid="ReactionStep(Reaction16)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191401" vcid="Species(MAPKppMAPKPH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_350630" vcid="BioModel(Levchenko2000_MAPK_noScaffold)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192203" vcid="ReactionStep(Reaction26)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192262" vcid="ReactionStep(Reaction29)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191381" vcid="Species(MAPKpp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191702" vcid="ReactionStep(Reaction1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191601" vcid="Species(RAFK)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191541" vcid="Species(MEKpRAFp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192162" vcid="ReactionStep(Reaction24)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192042" vcid="ReactionStep(Reaction18)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191561" vcid="Species(MEKRAFp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192142" vcid="ReactionStep(Reaction23)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191962" vcid="ReactionStep(Reaction14)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191843" vcid="ReactionStep(Reaction8)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192102" vcid="ReactionStep(Reaction21)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191681" vcid="Species(RAFRAFK)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191261" vcid="Species(MAPK)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191521" vcid="Species(MEKppMEKPH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192063" vcid="ReactionStep(Reaction19)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191923" vcid="ReactionStep(Reaction12)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191581" vcid="Species(RAF)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191983" vcid="ReactionStep(Reaction15)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191763" vcid="ReactionStep(Reaction4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191803" vcid="ReactionStep(Reaction6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191481" vcid="Species(MEKpMEKPH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192223" vcid="ReactionStep(Reaction27)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191783" vcid="ReactionStep(Reaction5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192083" vcid="ReactionStep(Reaction20)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191862" vcid="ReactionStep(Reaction9)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191361" vcid="Species(MAPKpMEKpp)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192182" vcid="ReactionStep(Reaction25)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191248" vcid="Structure(Cytoplasm)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_192122" vcid="ReactionStep(Reaction22)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191641" vcid="Species(RAFPH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191341" vcid="Species(MAPKpMAPKPH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_191461" vcid="Species(MEKPH)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+
