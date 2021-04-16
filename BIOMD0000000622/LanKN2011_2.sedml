@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="4800" numberOfPoints="480000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+    <steadyState id="steady2">
+      <algorithm kisaoID="KISAO:0000282"/>
+    </steadyState>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <task id="task2" modelReference="model" simulationReference="steady2"/>
+    <repeatedTask id="task3" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="0" end="200" numberOfPoints="1000" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue range="range0" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Bmi1&apos;]">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Bmi1_1_task1" name="[Bmi1]">
+      <listOfVariables>
+        <variable id="p1_Bmi1_task1" name="Bmi1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Bmi1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Bmi1_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Bmi1ubd_2_task1" name="[Bmi1ubd]">
+      <listOfVariables>
+        <variable id="p1_Bmi1ubd_task1" name="Bmi1ubd" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Bmi1ubd&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Bmi1ubd_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1B_3_task1" name="[R1B]">
+      <listOfVariables>
+        <variable id="p1_R1B_task1" name="R1B" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1B&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1B_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1Bubd_4_task1" name="[R1Bubd]">
+      <listOfVariables>
+        <variable id="p1_R1Bubd_task1" name="R1Bubd" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1Bubd&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1Bubd_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="USP7tot_5_task1" name="[USP7tot]">
+      <listOfVariables>
+        <variable id="p1_USP7tot_task1" name="USP7tot" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;USP7tot&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_USP7tot_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Z_6_task1" name="[Z]">
+      <listOfVariables>
+        <variable id="p1_Z_task1" name="Z" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Z&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Z_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Zub_7_task1" name="[Zub]">
+      <listOfVariables>
+        <variable id="p1_Zub_task1" name="Zub" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Zub&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Zub_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1Buba_8_task1" name="[R1Buba]">
+      <listOfVariables>
+        <variable id="p1_R1Buba_task1" name="R1Buba" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1Buba&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1Buba_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1Bub_9_task1" name="[R1Bub]">
+      <listOfVariables>
+        <variable id="p1_R1Bub_task1" name="R1Bub" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1Bub&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1Bub_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="H2A_10_task1" name="[H2A]">
+      <listOfVariables>
+        <variable id="p1_H2A_task1" name="H2A" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H2A&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_H2A_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="H2Auba_11_task1" name="[H2Auba]">
+      <listOfVariables>
+        <variable id="p1_H2Auba_task1" name="H2Auba" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H2Auba&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_H2Auba_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="time_task3" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Bmi1_1_task3" name="[Bmi1]">
+      <listOfVariables>
+        <variable id="p1_Bmi1_task3" name="Bmi1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Bmi1&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Bmi1_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Bmi1ubd_2_task3" name="[Bmi1ubd]">
+      <listOfVariables>
+        <variable id="p1_Bmi1ubd_task3" name="Bmi1ubd" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Bmi1ubd&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Bmi1ubd_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1B_3_task3" name="[R1B]">
+      <listOfVariables>
+        <variable id="p1_R1B_task3" name="R1B" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1B&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1B_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1Bubd_4_task3" name="[R1Bubd]">
+      <listOfVariables>
+        <variable id="p1_R1Bubd_task3" name="R1Bubd" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1Bubd&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1Bubd_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="USP7tot_5_task3" name="[USP7tot]">
+      <listOfVariables>
+        <variable id="p1_USP7tot_task3" name="USP7tot" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;USP7tot&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_USP7tot_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Z_6_task3" name="[Z]">
+      <listOfVariables>
+        <variable id="p1_Z_task3" name="Z" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Z&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Z_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Zub_7_task3" name="[Zub]">
+      <listOfVariables>
+        <variable id="p1_Zub_task3" name="Zub" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Zub&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Zub_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1Buba_8_task3" name="[R1Buba]">
+      <listOfVariables>
+        <variable id="p1_R1Buba_task3" name="R1Buba" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1Buba&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1Buba_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="R1Bub_9_task3" name="[R1Bub]">
+      <listOfVariables>
+        <variable id="p1_R1Bub_task3" name="R1Bub" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R1Bub&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_R1Bub_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="H2A_10_task3" name="[H2A]">
+      <listOfVariables>
+        <variable id="p1_H2A_task3" name="H2A" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H2A&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_H2A_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="H2Auba_11_task3" name="[H2Auba]">
+      <listOfVariables>
+        <variable id="p1_H2Auba_task3" name="H2Auba" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H2Auba&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_H2Auba_task3 </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[Bmi1]" logX="false" logY="false" xDataReference="time_task1" yDataReference="Bmi1_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Bmi1ubd]" logX="false" logY="false" xDataReference="time_task1" yDataReference="Bmi1ubd_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[R1B]" logX="false" logY="false" xDataReference="time_task1" yDataReference="R1B_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[R1Bubd]" logX="false" logY="false" xDataReference="time_task1" yDataReference="R1Bubd_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[USP7tot]" logX="false" logY="false" xDataReference="time_task1" yDataReference="USP7tot_5_task1"/>
+        <curve id="p1_curve_6_task1" name="[Z]" logX="false" logY="false" xDataReference="time_task1" yDataReference="Z_6_task1"/>
+        <curve id="p1_curve_7_task1" name="[Zub]" logX="false" logY="false" xDataReference="time_task1" yDataReference="Zub_7_task1"/>
+        <curve id="p1_curve_8_task1" name="[R1Buba]" logX="false" logY="false" xDataReference="time_task1" yDataReference="R1Buba_8_task1"/>
+        <curve id="p1_curve_9_task1" name="[R1Bub]" logX="false" logY="false" xDataReference="time_task1" yDataReference="R1Bub_9_task1"/>
+        <curve id="p1_curve_10_task1" name="[H2A]" logX="false" logY="false" xDataReference="time_task1" yDataReference="H2A_10_task1"/>
+        <curve id="p1_curve_11_task1" name="[H2Auba]" logX="false" logY="false" xDataReference="time_task1" yDataReference="H2Auba_11_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task3" name="Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task3" name="[Bmi1]" logX="false" logY="false" xDataReference="time_task3" yDataReference="Bmi1_1_task3"/>
+        <curve id="p1_curve_2_task3" name="[Bmi1ubd]" logX="false" logY="false" xDataReference="time_task3" yDataReference="Bmi1ubd_2_task3"/>
+        <curve id="p1_curve_3_task3" name="[R1B]" logX="false" logY="false" xDataReference="time_task3" yDataReference="R1B_3_task3"/>
+        <curve id="p1_curve_4_task3" name="[R1Bubd]" logX="false" logY="false" xDataReference="time_task3" yDataReference="R1Bubd_4_task3"/>
+        <curve id="p1_curve_5_task3" name="[USP7tot]" logX="false" logY="false" xDataReference="time_task3" yDataReference="USP7tot_5_task3"/>
+        <curve id="p1_curve_6_task3" name="[Z]" logX="false" logY="false" xDataReference="time_task3" yDataReference="Z_6_task3"/>
+        <curve id="p1_curve_7_task3" name="[Zub]" logX="false" logY="false" xDataReference="time_task3" yDataReference="Zub_7_task3"/>
+        <curve id="p1_curve_8_task3" name="[R1Buba]" logX="false" logY="false" xDataReference="time_task3" yDataReference="R1Buba_8_task3"/>
+        <curve id="p1_curve_9_task3" name="[R1Bub]" logX="false" logY="false" xDataReference="time_task3" yDataReference="R1Bub_9_task3"/>
+        <curve id="p1_curve_10_task3" name="[H2A]" logX="false" logY="false" xDataReference="time_task3" yDataReference="H2A_10_task3"/>
+        <curve id="p1_curve_11_task3" name="[H2Auba]" logX="false" logY="false" xDataReference="time_task3" yDataReference="H2Auba_11_task3"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

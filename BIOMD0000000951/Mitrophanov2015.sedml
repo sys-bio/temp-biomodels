@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="4800" numberOfPoints="4800">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <repeatedTask id="task2" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="0.25" end="1" numberOfPoints="5" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue range="range0" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;f_pH&apos;]">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task1"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="IIa_plus_1_2mIIa_1_task1" name="Values[IIa+1.2mIIa]">
+      <listOfVariables>
+        <variable id="p1_IIa_plus_1_2mIIa_task1" name="IIa_plus_1_2mIIa" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;IIa_plus_1_2mIIa&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_IIa_plus_1_2mIIa_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="minutes_1_task1" name="minutes">
+      <listOfVariables>
+        <variable id="p1_minutes_task1" name="minutes" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;minutes&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_minutes_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="TAT_1_task1" name="Values[TAT]">
+      <listOfVariables>
+        <variable id="p2_TAT_task1" name="TAT" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;TAT&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_TAT_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="minutes_1_task12" name="minutes">
+      <listOfVariables>
+        <variable id="p2_minutes_task1" name="minutes" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;minutes&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_minutes_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="time_task2" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="IIa_plus_1_2mIIa_1_task2" name="Values[IIa+1.2mIIa]">
+      <listOfVariables>
+        <variable id="p1_IIa_plus_1_2mIIa_task2" name="IIa_plus_1_2mIIa" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;IIa_plus_1_2mIIa&apos;]" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_IIa_plus_1_2mIIa_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="minutes_1_task2" name="minutes">
+      <listOfVariables>
+        <variable id="p1_minutes_task2" name="minutes" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;minutes&apos;]" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_minutes_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="TAT_1_task2" name="Values[TAT]">
+      <listOfVariables>
+        <variable id="p2_TAT_task2" name="TAT" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;TAT&apos;]" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_TAT_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="minutes_1_task22" name="minutes">
+      <listOfVariables>
+        <variable id="p2_minutes_task2" name="minutes" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;minutes&apos;]" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_minutes_task2 </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Figure 2C Thrombin">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="Values[IIa+1.2mIIa]" logX="false" logY="false" xDataReference="minutes_1_task1" yDataReference="IIa_plus_1_2mIIa_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="Figure 2D TAT">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="Values[TAT]" logX="false" logY="false" xDataReference="minutes_1_task12" yDataReference="TAT_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task2" name="Figure 2C Thrombin">
+      <listOfCurves>
+        <curve id="p1_curve_1_task2" name="Values[IIa+1.2mIIa]" logX="false" logY="false" xDataReference="minutes_1_task2" yDataReference="IIa_plus_1_2mIIa_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_4_task2" name="Figure 2D TAT">
+      <listOfCurves>
+        <curve id="p2_curve_1_task2" name="Values[TAT]" logX="false" logY="false" xDataReference="minutes_1_task22" yDataReference="TAT_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

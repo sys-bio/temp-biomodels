@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="700000" numberOfPoints="700000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="V_1_task1" name="[V]">
+      <listOfVariables>
+        <variable id="p1_V_task1" name="V" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;V&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="adp_2_task1" name="[adp]">
+      <listOfVariables>
+        <variable id="p1_adp_task1" name="adp" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;adp&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_adp_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="c_3_task1" name="[c]">
+      <listOfVariables>
+        <variable id="p1_c_task1" name="c" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;c&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_c_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="fbp_4_task1" name="[fbp]">
+      <listOfVariables>
+        <variable id="p1_fbp_task1" name="fbp" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;fbp&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_fbp_task1 </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="plot_1">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[V]" logX="false" logY="false" xDataReference="time_task1" yDataReference="V_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[adp]" logX="false" logY="false" xDataReference="time_task1" yDataReference="adp_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[c]" logX="false" logY="false" xDataReference="time_task1" yDataReference="c_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[fbp]" logX="false" logY="false" xDataReference="time_task1" yDataReference="fbp_4_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

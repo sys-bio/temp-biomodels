@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+    <steadyState id="steady2">
+      <algorithm kisaoID="KISAO:0000282"/>
+    </steadyState>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <task id="task2" modelReference="model" simulationReference="steady2"/>
+    <repeatedTask id="task3" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="1e-11" end="1e-07" numberOfPoints="50" type="log"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue range="range0" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="parameter_1_1_task1" name="Values[DoubleGasOccupancy]">
+      <listOfVariables>
+        <variable id="p1_parameter_1_task1" name="parameter_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;parameter_1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_parameter_1_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="S1_1_task1" name="S1">
+      <listOfVariables>
+        <variable id="p1_S1_task1" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="time_task3" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="parameter_1_1_task3" name="Values[DoubleGasOccupancy]">
+      <listOfVariables>
+        <variable id="p1_parameter_1_task3" name="parameter_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;parameter_1&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_parameter_1_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="S1_1_task3" name="S1">
+      <listOfVariables>
+        <variable id="p1_S1_task3" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task3 </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Scan of Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="Values[DoubleGasOccupancy]" logX="true" logY="false" xDataReference="S1_1_task1" yDataReference="parameter_1_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task3" name="Scan of Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task3" name="Values[DoubleGasOccupancy]" logX="true" logY="false" xDataReference="S1_1_task3" yDataReference="parameter_1_1_task3"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
