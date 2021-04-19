@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
 <sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.xml"/>
+  </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1200" numberOfPoints="1200">
       <algorithm kisaoID="KISAO:0000019"/>
@@ -9,9 +11,6 @@
       <algorithm kisaoID="KISAO:0000282"/>
     </steadyState>
   </listOfSimulations>
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.xml"/>
-  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <task id="task2" modelReference="model" simulationReference="steady2"/>
@@ -21,12 +20,12 @@
         <uniformRange id="range1" start="0" end="10" numberOfPoints="40" type="linear"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue range="range0" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range0 </ci>
           </math>
         </setValue>
-        <setValue range="range1" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range1 </ci>
           </math>
@@ -39,161 +38,161 @@
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ARPPtot_1_task1" name="Values[ARPPtot]">
-      <listOfVariables>
-        <variable id="p1_ARPPtot_task1" name="ARPPtot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ARPPtot&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ARPPtot_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ARPPtot_task1" name="ARPPtot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ARPPtot&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A46_2_task1" name="[A46]">
-      <listOfVariables>
-        <variable id="p1_A46_task1" name="A46" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_A46_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_A46_task1" name="A46" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A88_3_task1" name="[A88]">
-      <listOfVariables>
-        <variable id="p1_A88_task1" name="A88" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A88&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_A88_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_A88_task1" name="A88" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A88&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="M_4_task1" name="[M]">
-      <listOfVariables>
-        <variable id="p1_M_task1" name="M" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_M_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_M_task1" name="M" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="PKA_5_task1" name="[PKA]">
-      <listOfVariables>
-        <variable id="p1_PKA_task1" name="PKA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;PKA&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_PKA_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_PKA_task1" name="PKA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;PKA&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A46bar_1_task1" name="Values[A46bar]">
-      <listOfVariables>
-        <variable id="p2_A46bar_task1" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A46bar&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_A46bar_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p2_A46bar_task1" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A46bar&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="cAMP_1_task1" name="cAMP">
-      <listOfVariables>
-        <variable id="p2_cAMP_task1" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_cAMP_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p2_cAMP_task1" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="time_task3" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ARPPtot_1_task3" name="Values[ARPPtot]">
-      <listOfVariables>
-        <variable id="p1_ARPPtot_task3" name="ARPPtot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ARPPtot&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ARPPtot_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ARPPtot_task3" name="ARPPtot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ARPPtot&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A46_2_task3" name="[A46]">
-      <listOfVariables>
-        <variable id="p1_A46_task3" name="A46" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_A46_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_A46_task3" name="A46" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A88_3_task3" name="[A88]">
-      <listOfVariables>
-        <variable id="p1_A88_task3" name="A88" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A88&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_A88_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_A88_task3" name="A88" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A88&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="M_4_task3" name="[M]">
-      <listOfVariables>
-        <variable id="p1_M_task3" name="M" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_M_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_M_task3" name="M" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="PKA_5_task3" name="[PKA]">
-      <listOfVariables>
-        <variable id="p1_PKA_task3" name="PKA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;PKA&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_PKA_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_PKA_task3" name="PKA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;PKA&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A46bar_1_task3" name="Values[A46bar]">
-      <listOfVariables>
-        <variable id="p2_A46bar_task3" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A46bar&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_A46bar_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p2_A46bar_task3" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A46bar&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="cAMP_1_task3" name="cAMP">
-      <listOfVariables>
-        <variable id="p2_cAMP_task3" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_cAMP_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p2_cAMP_task3" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="timecourses">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[ARPPtot]" logX="false" logY="false" xDataReference="time_task1" yDataReference="ARPPtot_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[A46]" logX="false" logY="false" xDataReference="time_task1" yDataReference="A46_2_task1"/>
-        <curve id="p1_curve_3_task1" name="[A88]" logX="false" logY="false" xDataReference="time_task1" yDataReference="A88_3_task1"/>
-        <curve id="p1_curve_4_task1" name="[M]" logX="false" logY="false" xDataReference="time_task1" yDataReference="M_4_task1"/>
-        <curve id="p1_curve_5_task1" name="[PKA]" logX="false" logY="false" xDataReference="time_task1" yDataReference="PKA_5_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[ARPPtot]" logX="false" xDataReference="time_task1" logY="false" yDataReference="ARPPtot_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[A46]" logX="false" xDataReference="time_task1" logY="false" yDataReference="A46_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[A88]" logX="false" xDataReference="time_task1" logY="false" yDataReference="A88_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[M]" logX="false" xDataReference="time_task1" logY="false" yDataReference="M_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[PKA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="PKA_5_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1" name="Bifurcation">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="Values[A46bar]" logX="false" logY="false" xDataReference="cAMP_1_task1" yDataReference="A46bar_1_task1"/>
+        <curve id="p2_curve_1_task1" name="Values[A46bar]" logX="false" xDataReference="cAMP_1_task1" logY="false" yDataReference="A46bar_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_3_task3" name="timecourses">
       <listOfCurves>
-        <curve id="p1_curve_1_task3" name="Values[ARPPtot]" logX="false" logY="false" xDataReference="time_task3" yDataReference="ARPPtot_1_task3"/>
-        <curve id="p1_curve_2_task3" name="[A46]" logX="false" logY="false" xDataReference="time_task3" yDataReference="A46_2_task3"/>
-        <curve id="p1_curve_3_task3" name="[A88]" logX="false" logY="false" xDataReference="time_task3" yDataReference="A88_3_task3"/>
-        <curve id="p1_curve_4_task3" name="[M]" logX="false" logY="false" xDataReference="time_task3" yDataReference="M_4_task3"/>
-        <curve id="p1_curve_5_task3" name="[PKA]" logX="false" logY="false" xDataReference="time_task3" yDataReference="PKA_5_task3"/>
+        <curve id="p1_curve_1_task3" name="Values[ARPPtot]" logX="false" xDataReference="time_task3" logY="false" yDataReference="ARPPtot_1_task3"/>
+        <curve id="p1_curve_2_task3" name="[A46]" logX="false" xDataReference="time_task3" logY="false" yDataReference="A46_2_task3"/>
+        <curve id="p1_curve_3_task3" name="[A88]" logX="false" xDataReference="time_task3" logY="false" yDataReference="A88_3_task3"/>
+        <curve id="p1_curve_4_task3" name="[M]" logX="false" xDataReference="time_task3" logY="false" yDataReference="M_4_task3"/>
+        <curve id="p1_curve_5_task3" name="[PKA]" logX="false" xDataReference="time_task3" logY="false" yDataReference="PKA_5_task3"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_4_task3" name="Bifurcation">
       <listOfCurves>
-        <curve id="p2_curve_1_task3" name="Values[A46bar]" logX="false" logY="false" xDataReference="cAMP_1_task3" yDataReference="A46bar_1_task3"/>
+        <curve id="p2_curve_1_task3" name="Values[A46bar]" logX="false" xDataReference="cAMP_1_task3" logY="false" yDataReference="A46bar_1_task3"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>
