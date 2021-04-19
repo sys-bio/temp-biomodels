@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
 <sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="10" numberOfPoints="100">
       <algorithm kisaoID="KISAO:0000019"/>
@@ -9,9 +11,6 @@
       <algorithm kisaoID="KISAO:0000282"/>
     </steadyState>
   </listOfSimulations>
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
-  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <task id="task2" modelReference="model" simulationReference="steady2"/>
@@ -22,17 +21,17 @@
         <uniformRange id="range2" start="0.01" end="1000" numberOfPoints="20" type="log"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue range="range0" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_off_R_G&apos;]">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_off_R_G&apos;]" range="range0">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range0 </ci>
           </math>
         </setValue>
-        <setValue range="range1" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Rtot&apos;]">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Rtot&apos;]" range="range1">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range1 </ci>
           </math>
         </setValue>
-        <setValue range="range2" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" range="range2">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range2 </ci>
           </math>
@@ -45,131 +44,131 @@
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="tot_Rrgs_1_task1" name="Values[tot_Rrgs]">
-      <listOfVariables>
-        <variable id="p1_tot_Rrgs_task1" name="tot_Rrgs" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tot_Rrgs&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_tot_Rrgs_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_tot_Rrgs_task1" name="tot_Rrgs" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tot_Rrgs&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_1_task1" name="L">
-      <listOfVariables>
-        <variable id="p1_L_task1" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_L_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_L_task1" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Gbg_2_task1" name="[Gbg]">
-      <listOfVariables>
-        <variable id="p1_Gbg_task1" name="Gbg" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Gbg&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_Gbg_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_Gbg_task1" name="Gbg" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Gbg&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_2_task1" name="L">
-      <listOfVariables>
-        <variable id="p1_L_task12" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_L_task12 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_L_task12" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="time_task3" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="k_off_R_G_1_task3" name="k_off_R_G">
-      <listOfVariables>
-        <variable id="p1_k_off_R_G_task3" name="k_off_R_G" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_off_R_G&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_k_off_R_G_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_k_off_R_G_task3" name="k_off_R_G" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_off_R_G&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Rtot_1_task3" name="Rtot">
-      <listOfVariables>
-        <variable id="p3_Rtot_task3" name="Rtot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Rtot&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p3_Rtot_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p3_Rtot_task3" name="Rtot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Rtot&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_1_task3" name="L">
-      <listOfVariables>
-        <variable id="p5_L_task3" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p5_L_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p5_L_task3" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_1_task3">
-      <listOfVariables>
-        <variable id="p7__task3" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p7__task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p7__task3" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="tot_LR_1_task3" name="tot_LR">
-      <listOfVariables>
-        <variable id="p9_tot_LR_task3" name="tot_LR" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tot_LR&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p9_tot_LR_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p9_tot_LR_task3" name="tot_LR" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tot_LR&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="tot_Rrgs_1_task3" name="Values[tot_Rrgs]">
-      <listOfVariables>
-        <variable id="p1_tot_Rrgs_task3" name="tot_Rrgs" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tot_Rrgs&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_tot_Rrgs_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_tot_Rrgs_task3" name="tot_Rrgs" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tot_Rrgs&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_1_task32" name="L">
-      <listOfVariables>
-        <variable id="p1_L_task3" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_L_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_L_task3" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Gbg_2_task3" name="[Gbg]">
-      <listOfVariables>
-        <variable id="p1_Gbg_task3" name="Gbg" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Gbg&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_Gbg_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_Gbg_task3" name="Gbg" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Gbg&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_2_task3" name="L">
-      <listOfVariables>
-        <variable id="p1_L_task32" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_L_task32 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_L_task32" name="L" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;L&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="DoR">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[tot_Rrgs]" logX="true" logY="false" xDataReference="L_1_task1" yDataReference="tot_Rrgs_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[Gbg]" logX="true" logY="false" xDataReference="L_2_task1" yDataReference="Gbg_2_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[tot_Rrgs]" logX="true" xDataReference="L_1_task1" logY="false" yDataReference="tot_Rrgs_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Gbg]" logX="true" xDataReference="L_2_task1" logY="false" yDataReference="Gbg_2_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="report_task3" name="Steady-State">
@@ -183,8 +182,8 @@
     </report>
     <plot2D id="plot_3_task3" name="DoR">
       <listOfCurves>
-        <curve id="p1_curve_1_task3" name="Values[tot_Rrgs]" logX="true" logY="false" xDataReference="L_1_task32" yDataReference="tot_Rrgs_1_task3"/>
-        <curve id="p1_curve_2_task3" name="[Gbg]" logX="true" logY="false" xDataReference="L_2_task3" yDataReference="Gbg_2_task3"/>
+        <curve id="p1_curve_1_task3" name="Values[tot_Rrgs]" logX="true" xDataReference="L_1_task32" logY="false" yDataReference="tot_Rrgs_1_task3"/>
+        <curve id="p1_curve_2_task3" name="[Gbg]" logX="true" xDataReference="L_2_task3" logY="false" yDataReference="Gbg_2_task3"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

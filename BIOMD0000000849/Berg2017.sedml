@@ -1,66 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
 <sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="200" numberOfPoints="100">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
   </listOfSimulations>
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
-  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="pH_1_task1" name="Values[pH]">
-      <listOfVariables>
-        <variable id="p1_pH_task1" name="pH" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;pH&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_pH_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_pH_task1" name="pH" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;pH&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Gluc_b_2_task1" name="[Gluc_b]">
-      <listOfVariables>
-        <variable id="p1_Gluc_b_task1" name="Gluc_b" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Gluc_b&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_Gluc_b_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_Gluc_b_task1" name="Gluc_b" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Gluc_b&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="K_ECF_mmol_3_task1" name="[K_ECF_mmol]">
-      <listOfVariables>
-        <variable id="p1_K_ECF_mmol_task1" name="K_ECF_mmol" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;K_ECF_mmol&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_K_ECF_mmol_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_K_ECF_mmol_task1" name="K_ECF_mmol" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;K_ECF_mmol&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="K_sal_4_task1" name="[K_sal]">
-      <listOfVariables>
-        <variable id="p1_K_sal_task1" name="K_sal" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;K_sal&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_K_sal_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_K_sal_task1" name="K_sal" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;K_sal&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[pH]" logX="false" logY="false" xDataReference="time_task1" yDataReference="pH_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[Gluc_b]" logX="false" logY="false" xDataReference="time_task1" yDataReference="Gluc_b_2_task1"/>
-        <curve id="p1_curve_3_task1" name="[K_ECF_mmol]" logX="false" logY="false" xDataReference="time_task1" yDataReference="K_ECF_mmol_3_task1"/>
-        <curve id="p1_curve_4_task1" name="[K_sal]" logX="false" logY="false" xDataReference="time_task1" yDataReference="K_sal_4_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[pH]" logX="false" xDataReference="time_task1" logY="false" yDataReference="pH_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Gluc_b]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Gluc_b_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[K_ECF_mmol]" logX="false" xDataReference="time_task1" logY="false" yDataReference="K_ECF_mmol_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[K_sal]" logX="false" xDataReference="time_task1" logY="false" yDataReference="K_sal_4_task1"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

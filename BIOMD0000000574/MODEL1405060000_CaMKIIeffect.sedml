@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by COPASI version 4.30.240 (Source) with libSBML version 5.19.0. -->
 <sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1" numberOfPoints="100">
       <algorithm kisaoID="KISAO:0000019"/>
@@ -9,9 +11,6 @@
       <algorithm kisaoID="KISAO:0000282"/>
     </steadyState>
   </listOfSimulations>
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
-  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <task id="task2" modelReference="model" simulationReference="steady2"/>
@@ -20,7 +19,7 @@
         <uniformRange id="range0" start="1e-09" end="0.001" numberOfPoints="50" type="log"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue range="range0" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" range="range0">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range0 </ci>
           </math>
@@ -33,97 +32,97 @@
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ybarC_0_1_task1" name="Values[ybarC_0]">
-      <listOfVariables>
-        <variable id="p1_ybarC_0_task1" name="ybarC_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_0&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ybarC_0_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ybarC_0_task1" name="ybarC_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_0&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ca_1_task1" name="ca">
-      <listOfVariables>
-        <variable id="p1_ca_task1" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ca_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ca_task1" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ybarC_tot_2_task1" name="Values[ybarC_tot]">
-      <listOfVariables>
-        <variable id="p1_ybarC_tot_task1" name="ybarC_tot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_tot&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ybarC_tot_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ybarC_tot_task1" name="ybarC_tot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_tot&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ca_2_task1" name="ca">
-      <listOfVariables>
-        <variable id="p1_ca_task12" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ca_task12 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ca_task12" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="time_task3" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ybarC_0_1_task3" name="Values[ybarC_0]">
-      <listOfVariables>
-        <variable id="p1_ybarC_0_task3" name="ybarC_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_0&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ybarC_0_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ybarC_0_task3" name="ybarC_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_0&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ca_1_task3" name="ca">
-      <listOfVariables>
-        <variable id="p1_ca_task3" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ca_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ca_task3" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ybarC_tot_2_task3" name="Values[ybarC_tot]">
-      <listOfVariables>
-        <variable id="p1_ybarC_tot_task3" name="ybarC_tot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_tot&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ybarC_tot_task3 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ybarC_tot_task3" name="ybarC_tot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ybarC_tot&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ca_2_task3" name="ca">
-      <listOfVariables>
-        <variable id="p1_ca_task32" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task3"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_ca_task32 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_ca_task32" name="ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ca&apos;]" taskReference="task3"/>
+      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Saturation of calmodulin C-lobe in the presence of CaMKII">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[ybarC_0]" logX="true" logY="false" xDataReference="ca_1_task1" yDataReference="ybarC_0_1_task1"/>
-        <curve id="p1_curve_2_task1" name="Values[ybarC_tot]" logX="true" logY="false" xDataReference="ca_2_task1" yDataReference="ybarC_tot_2_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[ybarC_0]" logX="true" xDataReference="ca_1_task1" logY="false" yDataReference="ybarC_0_1_task1"/>
+        <curve id="p1_curve_2_task1" name="Values[ybarC_tot]" logX="true" xDataReference="ca_2_task1" logY="false" yDataReference="ybarC_tot_2_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task3" name="Saturation of calmodulin C-lobe in the presence of CaMKII">
       <listOfCurves>
-        <curve id="p1_curve_1_task3" name="Values[ybarC_0]" logX="true" logY="false" xDataReference="ca_1_task3" yDataReference="ybarC_0_1_task3"/>
-        <curve id="p1_curve_2_task3" name="Values[ybarC_tot]" logX="true" logY="false" xDataReference="ca_2_task3" yDataReference="ybarC_tot_2_task3"/>
+        <curve id="p1_curve_1_task3" name="Values[ybarC_0]" logX="true" xDataReference="ca_1_task3" logY="false" yDataReference="ybarC_0_1_task3"/>
+        <curve id="p1_curve_2_task3" name="Values[ybarC_tot]" logX="true" xDataReference="ca_2_task3" logY="false" yDataReference="ybarC_tot_2_task3"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>
