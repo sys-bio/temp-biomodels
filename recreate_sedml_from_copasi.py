@@ -1,0 +1,182 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Apr  9 15:02:37 2021
+
+@author: Lucian
+"""
+
+import COPASI
+import os
+import re
+import difflib
+import libsedml
+
+allfiles = {}
+for root, __, files in os.walk(os.getcwd()):
+    allfiles[root] = files
+
+bad_copasifiles = ["MODEL1305060000_edited.cps", "Aubert2002.cps", "khajanchi2017.cps"]
+
+copasi_with_diff_sedml = ["MODEL1511290000.cps", "Tsai2014.cps", "Theinmozhi_2018.cps", "Bravo2012.cps", "Panteleev2010_full_model.cps", "Wang2016_2.cps", "Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.cps", "Dudziuk2019.cps", "Coulibaly2019.cps", "Sun2018.cps", "Smith2011_V1.cps", "Lee2017_Paracetamol_Metabolism.cps", ]
+
+copasi_with_better_sedml = ["OVDC.cps", "Smith1980_HypothalamicRegulation.cps", "DiCamillo2016.cps", "Verma2016.cps", "Rao2014.cps", "Radosavljevic2009.cps", "Berg2017.cps", "Proctor2017_model4.cps", "Simon2019.cps", "Simon2019_model3.cps", "Simon2019_Figure3b.cps", "verma2017.cps", "Rodenfels2019_V1.cps", "Giantsos-Adams2013_Figure11.cps", "Proctoe2017_model1.cps", ]
+
+sedml_with_correct_names = ["BIOMD0000000539.cps", "MODEL1603240000.cps", "ARPP-16_Layer1_mutualInhibitions.cps", "ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.cps", "ARPP-16_Layer1and2and3_mutualInhibitions_PKAinhibitsMAST3_dominantNegative.cps", "Barr2016.cps", "Malinzi2018 - tumour-immune interaction model.cps", "Perez-Garcia19 Computational design of improved standardized chemotherapy protocols for grade 2 oligodendrogliomas.cps", "Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.cps", "Jung2019.cps", "Smith2011_V1.cps", "Linke2017_figure1b.cps"]
+#Note: Rodenfels2019_V1.cps might be a bugfix on Copasi's part:  the difference is that the labels in the report are better.
+
+copasifiles = []
+sedfiles = {}
+sbmlfiles = {}
+multised = []
+multisbml = []
+sbml_warnings = open("sbml_warnings.txt", "w")
+sedml_warnings = open("sedml_warnings.txt", "w")
+copasi_diff = open("copasi_sedml_conflicts.csv", "w")
+for direc in allfiles:
+    for file in allfiles[direc]:
+        ncps = 0
+        if ".cps" in file and "test_" not in file and file not in bad_copasifiles:
+            ncps += 1
+            copasifiles.append([direc, file])
+        if ".sedml" in file and "copasi" not in file and "test_" not in file:
+            if direc not in sedfiles:
+                sedfiles[direc] = []
+            sedfiles[direc].append(file)
+        if ".xml" in file:
+            if direc not in sbmlfiles:
+                sbmlfiles[direc] = []
+            sbmlfiles[direc].append(file)
+        if file in copasi_with_diff_sedml:
+            copasi_diff.write("Couldn't tell," + direc + "," + file + "\n")
+        if file in copasi_with_better_sedml:
+            copasi_diff.write("Copasi better," + direc + "," + file + "\n")
+            
+    if ncps>1:
+        print("Multiple copasi files in", direc)
+
+copasi_diff.close()
+
+guesses = open("guesses.txt", "w")
+def getorig(sedlist, copasiname, newsedml, direc):
+    for sedfile in sedlist:
+        if sedfile == copasiname.replace("cps", "sedml"):
+            return sedfile
+    todels = []
+    for sedfile in sedlist:
+        #Remove any sedml files that have *different* copasi files that are probably their origin
+        sedcheck = sedfile.replace("sedml", "cps")
+        if os.path.exists(direc + "/" + sedcheck):
+            todels.append(sedfile)
+    for todel in todels:
+        sedlist.remove(todel)
+    if len(sedlist) == 0:
+        return copasiname.replace("cps", "sedml")
+    if len(sedlist)==1:
+        return sedlist[0]
+    mindiff = len(newsedml)
+    retfile = sedlist[0]
+    for sedfile in sedlist:
+        biomdsed = direc + "/" + sedfile
+        f1_text = open(biomdsed).readlines()
+        # Sum the lines of difference to find the least different.
+        difftotal = 0
+        for line in difflib.unified_diff(f1_text, newsedml, fromfile=sedfile, tofile=copasiname):
+            difftotal += 1
+        if difftotal < mindiff:
+            mindiff = difftotal
+            retfile = sedfile
+    print("The sedml file most similar to the output of " + copasiname + ": " + retfile + "\n")
+    guesses.write(direc + "," + copasiname + "," + retfile + "\n")
+    return retfile
+
+
+def fixSedSBMLTarget(sedml, sbml, sbmllist, cfile, direc):
+    sed = libsedml.readSedMLFromString(sedml)
+    if (sed.getNumModels() != 1):
+        print("Not exactly one SBML model")
+        assert(False)
+    model = sed.getModel(0)
+    source = model.getSource()
+    if source in sbmllist:
+        return libsedml.writeSedMLToString(sed)
+
+    #If there are both "_url" and "_urn" models, just use the "_url" one.
+    urlmods = []
+    for sbmlmod in sbmllist:
+        if "_url" in sbmlmod:
+            urlmods.append(sbmlmod)
+    for urlmod in urlmods:
+        urnversion = urlmod.replace("url", "urn")
+        if urnversion in sbmllist:
+            sbmllist.remove(urnversion)
+
+    #If there's only one option, use that.
+    if len(sbmllist) == 1:
+        model.setSource(sbmllist[0])
+        return libsedml.writeSedMLToString(sed)
+
+    #If the name matches exactly, use that:
+    for sbmlfile in sbmllist:
+        if sbmlfile == cfile.replace("cps", "xml"):
+            model.setSource(sbmlfile)
+            return libsedml.writeSedMLToString(sed)
+            
+    #Otherwise, we have to see which one matches the saved SBML file the most closely
+    mindiff = len(sbml)
+    retfile = sbmllist[0]
+    for sbmlfile in sbmllist:
+        biomdsbml = direc + "/" + sbmlfile
+        # Sum the lines of difference to find the least different.
+        difftotal = 0
+        for line in difflib.unified_diff(sbml, biomdsbml):
+            difftotal += 1
+        if difftotal < mindiff:
+            mindiff = difftotal
+            retfile = sbmlfile
+    print("The SBML file most similar to the output of " + cfile + ": " + sbmlfile)
+    guesses.write(direc + "," + cfile + "," + sbmlfile + "\n")
+    model.setSource(retfile)
+    return libsedml.writeSedMLToString(sed)
+    
+    
+        
+
+dm = COPASI.CRootContainer.addDatamodel()
+for [direc, cfile] in copasifiles:
+    # copasised = direc + "/test_" + cfile
+    copasised = direc + "/" + cfile
+    copasised = copasised.replace("cps", "sedml")
+    # print(copasised)
+    # now load a copasi file / import sbml whatever
+    result = dm.loadModel(direc + "/" + cfile)
+    msg = COPASI.CCopasiMessage.getAllMessageText()
+    # if msg:
+        # print("Loading", cfile, ": ", msg)
+    if (not result):
+        print("Failed to load model", direc, cfile)
+        assert(False)
+    # Must export SBML first so Copasi knows how to make SEDML
+    sbml = dm.exportSBMLToString(None, 3, 1)
+    msg = COPASI.CCopasiMessage.getAllMessageText()
+    if msg:
+        # print("Exporting SBML from", cfile, ": ", msg)
+        sbml_warnings.write(direc + "\n" + cfile + "\n" + msg + "\n\n")
+    # Export SEDML.
+    sedml = dm.exportSEDMLToString(None, 1, 2)
+    sedml = re.sub(r'on 20.*with', 'with', sedml)
+    sedml = fixSedSBMLTarget(sedml, sbml, sbmlfiles[direc], cfile, direc)
+    msg = COPASI.CCopasiMessage.getAllMessageText()
+    if msg:
+        # print("Exporting SEDML from", cfile, ": ", msg)
+        sedml_warnings.write(direc + "\n" + cfile + "\n" + msg + "\n\n")
+    if "No plot/report definition" not in msg and cfile not in copasi_with_diff_sedml: #and cfile not in sedml_with_correct_names:
+        if direc in sedfiles:
+            seds = sedfiles[direc]
+            origsed = getorig(seds, cfile, sedml, direc)
+            if len(seds)==1:
+                copasised = direc + "/"+ origsed
+        csedout = open(copasised, "w")
+        csedout.write(sedml)
+        csedout.close()
+
+guesses.close()
