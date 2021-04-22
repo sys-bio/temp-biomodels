@@ -1,0 +1,110 @@
+name: Continuous integration
+
+on:
+  push:
+
+jobs:
+  fixEntries:
+    name: Fix the entries of BioModels and commit to the repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Setup pip cache
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/Python
+          key: ${{ runner.os }}-pip-${{ hashFiles('site_creator/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install pip and setuptools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade setuptools
+
+      - name: Install requirements
+        run: python -m pip install -r requirements.txt
+
+      - name: Fix entries
+        run: python fix-entries.py
+
+      - name: Setup Git
+        run: |
+          git config --global user.email "bot@reproduciblebiomodels.org"
+          git config --global user.name "Center for Reproducible Biomodeling Modeling Bot"
+          git config pull.rebase false
+
+      - id: commit-fixed-entries
+        name: Commit changes to the fixed entries
+        run: |
+          git stash
+          git pull
+          set + e
+          git stash pop
+          git add fix-entries/
+          git commit -m "Updated fixed versions of entries"
+          if [[ $? = 0 ]]; then
+            fixedEntriesChanged=1
+          else
+            fixedEntriesChanged=0
+          fi
+          echo "::set-output name=fixedEntriesChanged::$fixedEntriesChanged"
+
+      - name: Push the changes to the compiled website
+        if: steps.commit-fixed-entries.outputs.fixedEntriesChanged == '1'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+  testEntries:
+    name: Test that the entries of BioModels are valid and can be executed successfully
+    needs:
+     - fixEntries
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Setup pip cache
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/Python
+          key: ${{ runner.os }}-pip-${{ hashFiles('site_creator/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install pip and setuptools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade setuptools
+
+      - name: Install requirements
+        run: python -m pip install -r tests/requirements.txt
+
+      - name: Test entries and record the results
+        run: python -m pytest --verbose --junitxml="test-results.xml" tests/
+
+      - name: Save the test results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: Test results
+          path: ${{ github.workspace }}/test-results.xml
+          if-no-files-found: warn
