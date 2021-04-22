@@ -50,7 +50,7 @@ jobs:
           git pull
           set +e
           git stash pop
-          git add fix-entries/
+          git add fixed-entries/
           git commit -m "Updated fixed versions of entries"
           if [[ $? = 0 ]]; then
             fixedEntriesChanged=1
@@ -100,6 +100,10 @@ jobs:
 
       - name: Test entries and record the results
         run: python -m pytest --verbose --junitxml="test-results.xml" tests/
+
+      - name: Test entries and record the results
+        if: success() || failure()
+        run: python summarize-test-results.py
 
       - name: Save the test results
         uses: actions/upload-artifact@v2

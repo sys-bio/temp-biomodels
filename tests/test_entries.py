@@ -18,20 +18,25 @@ from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_c
 import datetime
 import dateutil.tz
 import glob
+import imghdr
+import itertools
 import os
 import parameterized
+import PyPDF2
 import requests
 import shutil
+import subprocess
 import tempfile
 import unittest
 
-MAX_SEDML_FILES = None
-ENTRIES_DIR = os.path.join(os.path.dirname(__file__), '..')
+
+MAX_SEDML_FILES = os.getenv('MAX_SEDML_FILES', None)
+ENTRIES_DIR = os.path.join(os.path.dirname(__file__), '..', 'fixed-entries')
 SEDML_FILES = sorted((os.path.relpath(filename, ENTRIES_DIR).replace('/', '_').replace('.', '_'),
                       os.path.relpath(filename, ENTRIES_DIR),
                       ) for filename in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*', '**', '*.sedml'), recursive=True))
-if MAX_SEDML_FILES:
-    SEDML_FILES = SEDML_FILES[0:MAX_SEDML_FILES]
+if MAX_SEDML_FILES is not None:
+    SEDML_FILES = SEDML_FILES[0:int(MAX_SEDML_FILES)]
 # entries to test
 
 SIMULATORS = [
@@ -70,6 +75,14 @@ EXTENSION_COMBINE_FORMAT_MAP = {
 
 SBML_EDAM_ID = 'format_2585'
 
+PDF_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.pdf'), recursive=True))
+PNG_FILES = sorted((filename,) for filename in itertools.chain(
+    glob.glob(os.path.join(ENTRIES_DIR, '**', '*.png'), recursive=True),
+    glob.glob(os.path.join(ENTRIES_DIR, '**', '*.PNG'), recursive=True),
+))
+JPG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.jpg'), recursive=True))
+SVG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.svg'), recursive=True))
+
 
 class EntriesTestCase(unittest.TestCase):
     def setUp(self):
@@ -78,13 +91,13 @@ class EntriesTestCase(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.temp_dirname)
 
-    @parameterized.parameterized.expand(SEDML_FILES)
+    @parameterized.parameterized.expand(SEDML_FILES, skip_on_empty=True)
     def test_sedml_is_valid(self, sanitized_name, name):
         # Validate file
         filename = os.path.join(ENTRIES_DIR, name)
         SedmlSimulationReader().run(filename)
 
-    @parameterized.parameterized.expand(SEDML_FILES_SIMULATORS)
+    @parameterized.parameterized.expand(SEDML_FILES_SIMULATORS, skip_on_empty=True)
     def test_sedml_can_be_executed(self, sanitized_name, name, simulator):
         # Validate file
         filename = os.path.join(ENTRIES_DIR, name)
@@ -105,6 +118,32 @@ class EntriesTestCase(unittest.TestCase):
         docker_image = 'ghcr.io/biosimulators/{}:{}'.format(simulator['id'], simulator['version'])
         exec_sedml_docs_in_archive_with_containerized_simulator(
             archive_filename, out_dir, docker_image)
+
+    @parameterized.parameterized.expand(PDF_FILES, skip_on_empty=True)
+    def test_pdf_files(self, filename):
+        try:
+            with open(filename, 'rb') as file:
+                PyPDF2.PdfFileReader(file)
+        except PyPDF2.utils.PdfReadError:
+            raise Exception('{} is not a valid PDF file'.format(filename))
+
+    @parameterized.parameterized.expand(PNG_FILES, skip_on_empty=True)
+    def test_png_files(self, filename):
+        if imghdr.what(filename) != 'png':
+            raise Exception('{} is not a valid PNG file'.format(filename))
+
+    @parameterized.parameterized.expand(JPG_FILES, skip_on_empty=True)
+    def test_jpg_files(self, filename):
+        if imghdr.what(filename) != 'jpeg':
+            raise Exception('{} is not a valid JPEG file'.format(filename))
+
+    @parameterized.parameterized.expand(SVG_FILES, skip_on_empty=True)
+    @unittest.skip('Files have errors, but readers are able to read the files nonetheless')
+    def test_svg_files(self, filename):
+        try:
+            subprocess.check_call(['svgcheck', '--repair', filename])
+        except:
+            raise Exception('{} is not a valid SVG file'.format(filename))
 
 
 def does_simulator_have_capabilities_to_execute_sed_document(sed_doc, simulator_specs):
