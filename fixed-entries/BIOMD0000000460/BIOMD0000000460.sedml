@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/"><listOfModels>
+    <model id="model1" language="urn:sedml:language:sbml" source="BIOMD0000000460_url.xml"/>
+    <model id="model2" language="urn:sedml:language:sbml" source="BIOMD0000000460_url.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="200"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="200"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="200"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="200"/>
+      </listOfChanges>
+    </model>
+    <model id="model3" language="urn:sedml:language:sbml" source="BIOMD0000000460_url.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="1000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="1000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="1000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@name=&quot;IPTG&quot;]/@initialConcentration" newValue="1000"/>
+      </listOfChanges>
+    </model>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="800" numberOfPoints="1000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model1" simulationReference="sim1"/>
+    <task id="task2" modelReference="model2" simulationReference="sim1"/>
+    <task id="task3" modelReference="model3" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time" name="time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_0 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_0" name="time" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="lacz_1" name="lacz_1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> lacz </ci>
+      </math>
+      <listOfVariables>
+        <variable id="lacz" name="lacz" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='lacz']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="lacz_2" name="lacz_2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> lacz2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="lacz2" name="lacz" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='lacz']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="lacz_3" name="lacz_3">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> lacz3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="lacz3" name="lacz" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='lacz']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot1">
+      <listOfCurves>
+        <curve id="curve_0" logX="false" xDataReference="time" logY="false" yDataReference="lacz_1"/>
+        <curve id="curve_1" logX="false" xDataReference="time" logY="false" yDataReference="lacz_2"/>
+        <curve id="curve_2" logX="false" xDataReference="time" logY="false" yDataReference="lacz_3"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

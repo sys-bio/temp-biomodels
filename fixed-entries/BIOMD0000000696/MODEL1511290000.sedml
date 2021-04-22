@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="BIOMD0000000696_url.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="50" numberOfPoints="5000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <repeatedTask id="task2" range="range1" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range1" start="79" end="200" numberOfPoints="2" type="linear"/>
+        <uniformRange id="range2" start="1" end="171" numberOfPoints="2" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='gamma_1']" range="range1">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range1 </ci>
+          </math>
+        </setValue>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='k_mC_C_gC']" range="range2">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range2 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task1"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="J1_1_task1" name="Values[J1]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_J1_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_J1_task1" name="J1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J1']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="x8_1_task1" name="[x8]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_x8_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_x8_task1" name="x8" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='x8']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="time_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="J1_1_task2" name="Values[J1]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_J1_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_J1_task2" name="J1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J1']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="x8_1_task2" name="[x8]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_x8_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_x8_task2" name="x8" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='x8']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Figure 5A">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="Values[J1]" logX="false" xDataReference="time_task1" logY="false" yDataReference="J1_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="Figure 5B">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[x8]" logX="false" xDataReference="time_task1" logY="false" yDataReference="x8_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task2" name="Figure 5A">
+      <listOfCurves>
+        <curve id="p1_curve_1_task2" name="Values[J1]" logX="false" xDataReference="time_task2" logY="false" yDataReference="J1_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_4_task2" name="Figure 5B">
+      <listOfCurves>
+        <curve id="p2_curve_1_task2" name="[x8]" logX="false" xDataReference="time_task2" logY="false" yDataReference="x8_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Moore_2004_fig6.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="naive_Tcells_1_task1" name="[naive_Tcells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_naive_Tcells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_naive_Tcells_task1" name="naive_Tcells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='naive_Tcells']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="eff_Tcells_2_task1" name="[eff_Tcells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_eff_Tcells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_eff_Tcells_task1" name="eff_Tcells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='eff_Tcells']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="tumor_cells_3_task1" name="[tumor_cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_tumor_cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_tumor_cells_task1" name="tumor_cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='tumor_cells']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[naive_Tcells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="naive_Tcells_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[eff_Tcells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="eff_Tcells_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[tumor_cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="tumor_cells_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

@@ -1,0 +1,2365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Bush2016 - Simplified Carrousel model of GPCR">
+      <Model Name="MODEL1610220000">
+         <ModelParameters>
+            <Parameter Name="L" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="K_d_L_R" Role="user defined" Unit="tbd">5.6</Parameter>
+            <Parameter Name="lambda" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="lambda_t" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="lambda_d" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="K_d_R_G" Role="user defined" Unit="tbd">36.0</Parameter>
+            <Parameter Name="eta" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="rho" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="k_Ef_G" Role="user defined" Unit="tbd">ModelValue_47</Parameter>
+            <Parameter Name="k_Hf_Gt" Role="user defined" Unit="tbd">0.002</Parameter>
+            <Parameter Name="k_Af_Gd" Role="user defined" Unit="tbd">0.2158</Parameter>
+            <Parameter Name="k_Ef_RG" Role="user defined" Unit="tbd">6.2E-4</Parameter>
+            <Parameter Name="k_Ef_LRG" Role="user defined" Unit="tbd">1.5</Parameter>
+            <Parameter Name="k_Hf_LRGt" Role="user defined" Unit="tbd">k_Hf_RGt</Parameter>
+            <Parameter Name="k_Af_LRGd" Role="user defined" Unit="tbd">k_Af_Gd</Parameter>
+            <Parameter Name="k_Hf_RGt" Role="user defined" Unit="tbd">0.11</Parameter>
+            <Parameter Name="k_Af_RGd" Role="user defined" Unit="tbd">k_Af_Gd</Parameter>
+            <Parameter Name="Rtot" Role="user defined" Unit="tbd">3308.0</Parameter>
+            <Parameter Name="Gtot" Role="user defined" Unit="tbd">2042.0</Parameter>
+            <Parameter Name="k_on_L_R" Role="user defined" Unit="tbd">(L * k_off_L_R / K_d_L_R)</Parameter>
+            <Parameter Name="k_off_L_R" Role="user defined" Unit="tbd">0.001</Parameter>
+            <Parameter Name="k_on_L_RG" Role="user defined" Unit="tbd">(L * k_off_L_RG / (lambda * K_d_L_R))</Parameter>
+            <Parameter Name="k_off_L_RG" Role="user defined" Unit="tbd">k_off_L_R</Parameter>
+            <Parameter Name="k_on_L_RGt" Role="user defined" Unit="tbd">(L * k_off_L_RGt / (lambda_t * K_d_L_R))</Parameter>
+            <Parameter Name="k_off_L_RGt" Role="user defined" Unit="tbd">k_off_L_R</Parameter>
+            <Parameter Name="k_on_L_RGd" Role="user defined" Unit="tbd">(L * k_off_L_RGd / (lambda_d * K_d_L_R))</Parameter>
+            <Parameter Name="k_off_L_RGd" Role="user defined" Unit="tbd">k_off_L_R</Parameter>
+            <Parameter Name="k_on_R_G" Role="user defined" Unit="tbd">(k_off_R_G / (0.6024096385542169 * K_d_R_G))</Parameter>
+            <Parameter Name="k_off_R_G" Role="user defined" Unit="tbd">0.1</Parameter>
+            <Parameter Name="k_on_LR_G" Role="user defined" Unit="tbd">(k_off_LR_G / (0.6024096385542169 * lambda * K_d_R_G))</Parameter>
+            <Parameter Name="k_off_LR_G" Role="user defined" Unit="tbd">k_off_R_G</Parameter>
+            <Parameter Name="k_on_R_Gt" Role="user defined" Unit="tbd">(k_off_R_Gt / (0.6024096385542169 * eta * K_d_R_G))</Parameter>
+            <Parameter Name="k_off_R_Gt" Role="user defined" Unit="tbd">k_off_R_G</Parameter>
+            <Parameter Name="k_on_LR_Gt" Role="user defined" Unit="tbd">(k_off_LR_Gt / (0.6024096385542169 * lambda_t * eta * K_d_R_G))</Parameter>
+            <Parameter Name="k_off_LR_Gt" Role="user defined" Unit="tbd">k_off_R_G</Parameter>
+            <Parameter Name="k_on_R_Gd" Role="user defined" Unit="tbd">(k_off_R_Gd / (0.6024096385542169 * rho * K_d_R_G))</Parameter>
+            <Parameter Name="k_off_R_Gd" Role="user defined" Unit="tbd">k_off_R_G</Parameter>
+            <Parameter Name="k_on_LR_Gd" Role="user defined" Unit="tbd">(k_off_LR_Gd / (0.6024096385542169 * lambda_d * rho * K_d_R_G))</Parameter>
+            <Parameter Name="k_off_LR_Gd" Role="user defined" Unit="tbd">k_off_R_G</Parameter>
+            <Parameter Name="k_Ar_Gd" Role="user defined" Unit="tbd">(0.6024096385542169 * K_d_Gd_Gbg * k_Af_Gd)</Parameter>
+            <Parameter Name="k_Ar_RGd" Role="user defined" Unit="tbd">(0.6024096385542169 * K_d_Gd_Gbg * k_Af_RGd / rho)</Parameter>
+            <Parameter Name="k_Ar_LRGd" Role="user defined" Unit="tbd">(0.6024096385542169 * lambda * K_d_Gd_Gbg * k_Af_LRGd / (lambda_d * rho))</Parameter>
+            <Parameter Name="VC_SpConcFactor_9_999999999999999E14_um3_litre_1" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">
+               602.0
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+            <Parameter Name="tot_LR" Role="user defined" Unit="tbd">((LRG * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRGd * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRGt * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LR * VC_SpConcFactor_9_999999999999999E14_um3_litre_1))</Parameter>
+            <Parameter Name="tot_RG" Role="user defined" Unit="tbd">((RG * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (RGd * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (RGt * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRG * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRGd * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRGt * VC_SpConcFactor_9_999999999999999E14_um3_litre_1))</Parameter>
+            <Parameter Name="tot_G" Role="user defined" Unit="tbd">((G * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRG * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (RG * VC_SpConcFactor_9_999999999999999E14_um3_litre_1))</Parameter>
+            <Parameter Name="tot_Gd" Role="user defined" Unit="tbd">((Gd * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRGd * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (RGd * VC_SpConcFactor_9_999999999999999E14_um3_litre_1))</Parameter>
+            <Parameter Name="tot_Gt" Role="user defined" Unit="tbd">((Gt * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (LRGt * VC_SpConcFactor_9_999999999999999E14_um3_litre_1) + (RGt * VC_SpConcFactor_9_999999999999999E14_um3_litre_1))</Parameter>
+            <Parameter Name="k_Ef_Gd" Role="user defined" Unit="tbd">6.2E-4</Parameter>
+            <Parameter Name="k_Ef_RGd" Role="user defined" Unit="tbd">k_Ef_RG</Parameter>
+            <Parameter Name="k_Ef_LRGd" Role="user defined" Unit="tbd">k_Ef_LRG</Parameter>
+            <Parameter Name="K_d_Gd_Gbg" Role="user defined" Unit="tbd">0.01</Parameter>
+            <Parameter Name="ModelValue_47" Role="user defined" Unit="tbd">k_Ef_Gd</Parameter>
+         </ModelParameters>
+         <Compound Name="R">
+            <Annotation>R</Annotation>
+         </Compound>
+         <Compound Name="LR">
+            <Annotation>LR</Annotation>
+         </Compound>
+         <Compound Name="G">
+            <Annotation>G</Annotation>
+         </Compound>
+         <Compound Name="Gt">
+            <Annotation>Gt</Annotation>
+         </Compound>
+         <Compound Name="Gd">
+            <Annotation>Gd</Annotation>
+         </Compound>
+         <Compound Name="RG">
+            <Annotation>RG</Annotation>
+         </Compound>
+         <Compound Name="Gbg">
+            <Annotation>Gbg</Annotation>
+         </Compound>
+         <Compound Name="LRG">
+            <Annotation>LRG</Annotation>
+         </Compound>
+         <Compound Name="LRGt">
+            <Annotation>LRGt</Annotation>
+         </Compound>
+         <Compound Name="RGd">
+            <Annotation>RGd</Annotation>
+         </Compound>
+         <Compound Name="RGt">
+            <Annotation>RGt</Annotation>
+         </Compound>
+         <Compound Name="LRGd">
+            <Annotation>LRGd</Annotation>
+         </Compound>
+         <Feature Name="PM" />
+         <LocalizedCompound Name="R" CompoundRef="R" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="LR" CompoundRef="LR" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="G" CompoundRef="G" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="Gt" CompoundRef="Gt" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="Gd" CompoundRef="Gd" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="RG" CompoundRef="RG" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="Gbg" CompoundRef="Gbg" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="LRG" CompoundRef="LRG" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="LRGt" CompoundRef="LRGt" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="RGd" CompoundRef="RGd" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="RGt" CompoundRef="RGt" Structure="PM" OverrideName="true" />
+         <LocalizedCompound Name="LRGd" CompoundRef="LRGd" Structure="PM" OverrideName="true" />
+         <SimpleReaction Structure="PM" Name="binding_R_G" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="R" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="G" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_R_G * R * R_ConcFactor * G * G_ConcFactor) - (k_off_R_G * RG * RG_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="R_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="G_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="RG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_L_R" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="R" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LR" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_L_R * R * R_ConcFactor) - (k_off_L_R * LR * LR_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="R_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LR_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_R_Gt" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="R" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Gt" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RGt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_R_Gt * R * R_ConcFactor * Gt * Gt_ConcFactor) - (k_off_R_Gt * RGt * RGt_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="R_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="Gt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="RGt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_R_Gd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="R" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Gd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RGd" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_R_Gd * R * R_ConcFactor * Gd * Gd_ConcFactor) - (k_off_R_Gd * RGd * RGd_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="R_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="Gd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="RGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_LR_G" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="LR" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="G" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_LR_G * LR * LR_ConcFactor * G * G_ConcFactor) - (k_off_LR_G * LRG * LRG_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="LR_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="G_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LRG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_LR_Gt" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="LR" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Gt" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRGt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_LR_Gt * LR * LR_ConcFactor * Gt * Gt_ConcFactor) - (k_off_LR_Gt * LRGt * LRGt_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="LR_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="Gt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LRGt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_LR_Gd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="LR" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Gd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRGd" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_LR_Gd * LR * LR_ConcFactor * Gd * Gd_ConcFactor) - (k_off_LR_Gd * LRGd * LRGd_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="LR_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="Gd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LRGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_L_RG" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_L_RG * RG * RG_ConcFactor) - (k_off_L_RG * LRG * LRG_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="RG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LRG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_L_RGt" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RGt" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRGt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_L_RGt * RGt * RGt_ConcFactor) - (k_off_L_RGt * LRGt * LRGt_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="LRGt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="RGt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="exchange_G" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="G" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Gt" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Gbg" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Ef_G * G * G_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="G_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="hydrolysis_Gt" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Gt" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Gd" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Hf_Gt * Gt * Gt_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="Gt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="association_Gd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Gd" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Gbg" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="G" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_Af_Gd * Gd * Gd_ConcFactor * Gbg * Gbg_ConcFactor) - (k_Ar_Gd * G * G_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="G_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="Gd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="Gbg_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="exchange_RG" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Gbg" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RGt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Ef_RG * RG * RG_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="RG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="exchange_LRG" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="LRG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Gbg" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRGt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Ef_LRG * LRG * LRG_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="LRG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="hydrolysis_RGt" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RGt" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RGd" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Hf_RGt * RGt * RGt_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="RGt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="hydrolysis_LRGt" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="LRGt" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRGd" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Hf_LRGt * LRGt * LRGt_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="LRGt_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="association_RGd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Gbg" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="RGd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_Af_RGd * Gbg * Gbg_ConcFactor * RGd * RGd_ConcFactor) - (k_Ar_RGd * RG * RG_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="RG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="Gbg_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="RGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="association_LRGd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Gbg" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="LRGd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_Af_LRGd * Gbg * Gbg_ConcFactor * LRGd * LRGd_ConcFactor) - (k_Ar_LRGd * LRG * LRG_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="Gbg_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LRG_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LRGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="binding_L_RGd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RGd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRGd" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((k_on_L_RGd * RGd * RGd_ConcFactor) - (k_off_L_RGd * LRGd * LRGd_ConcFactor)) * KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="RGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+               <Parameter Name="LRGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="exchange_Gd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Gd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Gt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Ef_Gd * Gd * Gd_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="Gd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="exchange_RGd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="RGd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="RGt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Ef_RGd * RGd * RGd_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="RGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="exchange_LRGd" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="LRGd" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="LRGt" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * k_Ef_LRGd * LRGd * LRGd_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-15 litre.um-3">1.0</Parameter>
+               <Parameter Name="LRGd_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="PM" Structure="PM" />
+      </Model>
+      <SimulationSpec Name="MODEL1610220000_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="PM" GeometryClass="Compartment" SubVolume="Compartment" Size="3.92">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="R" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(Rtot / PM)</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="LR" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="G" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(Gtot / PM)</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Gt" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Gd" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Gbg" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="LRG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="LRGt" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RGd" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="RGt" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="LRGd" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="binding_R_G" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_L_R" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_R_Gt" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_R_Gd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_LR_G" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_LR_Gt" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_LR_Gd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_L_RG" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_L_RGt" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="exchange_G" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="hydrolysis_Gt" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="association_Gd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="exchange_RG" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="exchange_LRG" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="hydrolysis_RGt" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="hydrolysis_LRGt" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="association_RGd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="association_LRGd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="binding_L_RGd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="exchange_Gd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="exchange_RGd" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="exchange_LRGd" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0000772" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0001664" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/mamo/MAMO_0000003" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/4932" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1610220000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000637" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/28034910" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node21">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">abush84@gmail.com</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node23">
+                                 <vcard:Family>Bush</vcard:Family>
+                                 <vcard:Given>Alan</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node24">
+                                 <vcard:Orgname>IFIBYNE-UBA-CONICET</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node22">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">kothamav@babraham.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node25">
+                                 <vcard:Family>Kothamachu</vcard:Family>
+                                 <vcard:Given>Varun</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node26">
+                                 <vcard:Orgname>Babraham Institute</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node6">
+                     <dcterms:W3CDTF>2013-07-31T12:29:40Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2017-05-16T13:52:38Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/fma/FMA:63841" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI10">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:15996" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P01149" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI11">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:17552" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI12">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:15996" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI13">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:17552" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P01149" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI2">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI3">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P01149" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI4">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18851" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI5">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:15996" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18851" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI6">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:17552" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI7">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18851" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI8">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18851" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI9">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P0CI39" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P01149" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18851" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P18852" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="ReactionStep(hydrolysis_Gt)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI75">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:56:55Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(association_LRGd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI82">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T14:07:05Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_LR_Gd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI71">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:48:53Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_LR_Gt)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI70">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:46:57Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Gbg)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>free G_beta_gamma heterodimer</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI8">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:48:25Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(R)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Free, unoccupied receptor, uncoupled from G protein</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI2">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:43:22Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(G)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Heterotrimeric G protein, uncoupled from receptor</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI4">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:45:16Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(exchange_G)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI74">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:55:40Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(hydrolysis_LRGt)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI80">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T14:04:24Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(exchange_LRG)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI78">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T14:02:26Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(exchange_RG)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI77">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T14:01:18Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_L_RG)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI72">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:49:43Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_LR_G)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI69">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:46:23Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(exchange_Gd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI84">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-10-15T11:26:36Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(association_Gd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI76">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:59:07Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(exchange_RGd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI85">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-10-15T11:31:49Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="BioModel(Bush2016 - Simplified Carrousel model of GPCR)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Bush2016 - Simplified Carrousel model of
+GPCR</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/28034910" title="Access to this publication">Yeast GPCR signaling
+    reflects the fraction of occupied receptors, not the
+    number.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Bush A, Vasen G, Constantinou A,
+  Dunayevich P, Patop IL, Blaustein M, Colman-Lerner A.</div>
+                        
+      
+                        <div class="bibo:Journal">Mol. Syst. Biol. 2016 Dec; 12(12):
+  898</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>According to receptor theory, the effect of a ligand depends
+    on the amount of agonist-receptor complex. Therefore, changes
+    in receptor abundance should have quantitative effects.
+    However, the response to pheromone in Saccharomyces cerevisiae
+    is robust (unaltered) to increases or reductions in the
+    abundance of the G-protein-coupled receptor (GPCR), Ste2,
+    responding instead to the fraction of occupied receptor. We
+    found experimentally that this robustness originates during
+    G-protein activation. We developed a complete mathematical
+    model of this step, which suggested the ability to compute
+    fractional occupancy depends on the physical interaction
+    between the inhibitory regulator of G-protein signaling (RGS),
+    Sst2, and the receptor. Accordingly, replacing Sst2 by the
+    heterologous hsRGS4, incapable of interacting with the
+    receptor, abolished robustness. Conversely, forcing hsRGS4:Ste2
+    interaction restored robustness. Taken together with other
+    results of our work, we conclude that this GPCR pathway
+    computes fractional occupancy because ligand-bound GPCR-RGS
+    complexes stimulate signaling while unoccupied complexes
+    actively inhibit it. In eukaryotes, many RGSs bind to specific
+    GPCRs, suggesting these complexes with opposing activities also
+    detect fraction occupancy by a ratiometric measurement. Such
+    complexes operate as push-pull devices, which we have recently
+    described.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="bm:curation">
+                        
+      
+                        <p style="margin-top: 0px; margin-right: 0px; margin-left: 0px; font-size: 11px; line-height: normal; font-family: Menlo; color: rgb(0, 0, 0);">
+                           
+        
+                           <br />
+                           
+      
+                        </p>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000637">BIOMD0000000637</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI0">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:29:40Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+      
+                           <dcterms:creator>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <vCard:EMAIL>abush84@gmail.com</vCard:EMAIL>
+                                 
+          
+                                 <vCard:N>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:Family>Bush</vCard:Family>
+                                       
+              
+                                       <vCard:Given>Alan</vCard:Given>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </vCard:N>
+                                 
+          
+                                 <vCard:ORG>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:Orgname>IFIBYNE-UBA-CONICET</vCard:Orgname>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </vCard:ORG>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:creator>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(RGt)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>unoccupied receptor - GalphaGTP complex</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI12">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:51:35Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_L_R)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI66">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:40:53Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_R_Gd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI68">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:44:55Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Gd)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>free GalphaGDP</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI6">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:47:15Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Structure(PM)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Plasma membrane volume. Defined as the volume contained in h=50nm spanning the membrane, in a spherical cell of Rc=2.5um of radius. 
+V_PM=4*pi*h*Rc^2=3.92 fl</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:39:53Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(association_RGd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI81">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T14:06:14Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(exchange_LRGd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI86">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-10-15T11:32:54Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(LRGt)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Ligand bound receptor, coupled to GalphaGTP</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI10">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:49:30Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_R_G)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI65">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:16:38Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_R_Gt)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI67">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:44:20Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(LRGd)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Ligand bound receptor, coupled to GalphaGDP</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI13">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:52:30Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_L_RGt)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI73">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T13:53:11Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(LR)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Ligand bound receptor, uncoupled from G protein</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI3">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:44:13Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(RG)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>unoccupied receptor - heterotirmeric G protein complex</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI7">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:47:27Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(hydrolysis_RGt)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI79">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T14:03:31Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(binding_L_RGd)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI83">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-08-01T11:14:29Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(RGd)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>unoccupied receptor - GalphaGDP complex</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI11">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:49:42Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Gt)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>free GalphaGTP</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI5">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:47:04Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(LRG)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Ligand bound receptor, coupled to heterotrimeric G protein</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI9">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2013-07-31T12:48:55Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI4" vcid="Species(G)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Structure(PM)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI77" vcid="ReactionStep(exchange_RG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI79" vcid="ReactionStep(hydrolysis_RGt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI81" vcid="ReactionStep(association_RGd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI5" vcid="Species(Gt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI12" vcid="Species(RGt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI6" vcid="Species(Gd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI76" vcid="ReactionStep(association_Gd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI71" vcid="ReactionStep(binding_LR_Gd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI13" vcid="Species(LRGd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI82" vcid="ReactionStep(association_LRGd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI11" vcid="Species(RGd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI74" vcid="ReactionStep(exchange_G)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI9" vcid="Species(LRG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI75" vcid="ReactionStep(hydrolysis_Gt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI69" vcid="ReactionStep(binding_LR_G)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI3" vcid="Species(LR)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI67" vcid="ReactionStep(binding_R_Gt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI70" vcid="ReactionStep(binding_LR_Gt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI10" vcid="Species(LRGt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Bush2016 - Simplified Carrousel model of GPCR)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI68" vcid="ReactionStep(binding_R_Gd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI83" vcid="ReactionStep(binding_L_RGd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI84" vcid="ReactionStep(exchange_Gd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI78" vcid="ReactionStep(exchange_LRG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI2" vcid="Species(R)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI65" vcid="ReactionStep(binding_R_G)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI85" vcid="ReactionStep(exchange_RGd)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI7" vcid="Species(RG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI72" vcid="ReactionStep(binding_L_RG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI8" vcid="Species(Gbg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI73" vcid="ReactionStep(binding_L_RGt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI66" vcid="ReactionStep(binding_L_R)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI80" vcid="ReactionStep(hydrolysis_LRGt)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI86" vcid="ReactionStep(exchange_LRGd)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

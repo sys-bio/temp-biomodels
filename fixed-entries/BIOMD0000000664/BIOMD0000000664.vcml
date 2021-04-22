@@ -1,0 +1,1917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Muller2008 - MAPKactivation_Dynamics">
+      <Model Name="Muller2008_MAPKactivation_Dynamics">
+         <ModelParameters>
+            <Parameter Name="a1" Role="user defined" Unit="6.0E-5 mole.litre-1.second-1">10.0</Parameter>
+            <Parameter Name="VC_TimeConvFactor" Role="user defined" Unit="1">
+               0.016666666666666666
+               <Annotation>Conversion from SBML time units to VC time units</Annotation>
+            </Parameter>
+            <Parameter Name="g1" Role="user defined" Unit="tbd">((((t * VC_TimeConvFactor) &gt;= 5.0) &amp;&amp; ((t * VC_TimeConvFactor) &lt; 10.0)) * !((((t * VC_TimeConvFactor) &gt;= 0.0) &amp;&amp; ((t * VC_TimeConvFactor) &lt; 5.0))))</Parameter>
+            <Parameter Name="b1" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="d1" Role="user defined" Unit="0.016666694444490742 second-1">0.2</Parameter>
+            <Parameter Name="a2" Role="user defined" Unit="6.0E-5 mole.litre-1.second-1">10.0</Parameter>
+            <Parameter Name="g2" Role="user defined" Unit="tbd">(((t * VC_TimeConvFactor) &gt;= 0.0) &amp;&amp; ((t * VC_TimeConvFactor) &lt; 5.0))</Parameter>
+            <Parameter Name="b2" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="d2" Role="user defined" Unit="0.016666694444490742 second-1">0.1</Parameter>
+            <Parameter Name="f53" Role="user defined" Unit="6.0E-5 litre.mole-1.second-1">1.5</Parameter>
+            <Parameter Name="f13" Role="user defined" Unit="6.0E-5 litre.mole-1.second-1">0.6</Parameter>
+            <Parameter Name="h36_y3" Role="user defined" Unit="6.0E-5 litre.mole-1.second-1">0.1</Parameter>
+            <Parameter Name="d3" Role="user defined" Unit="0.016666694444490742 second-1">1.0</Parameter>
+            <Parameter Name="E" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="f14" Role="user defined" Unit="0.016666694444490742 second-1">0.1</Parameter>
+            <Parameter Name="f24" Role="user defined" Unit="0.016666694444490742 second-1">0.8</Parameter>
+            <Parameter Name="d4" Role="user defined" Unit="0.016666694444490742 second-1">1.1</Parameter>
+            <Parameter Name="f35" Role="user defined" Unit="0.016666694444490742 second-1">0.3</Parameter>
+            <Parameter Name="f45" Role="user defined" Unit="0.016666694444490742 second-1">0.1</Parameter>
+            <Parameter Name="d5" Role="user defined" Unit="0.016666694444490742 second-1">1.0</Parameter>
+            <Parameter Name="d6" Role="user defined" Unit="0.016666694444490742 second-1">0.001</Parameter>
+         </ModelParameters>
+         <Compound Name="FGFR">
+            <Annotation>FGFR</Annotation>
+         </Compound>
+         <Compound Name="MSH">
+            <Annotation>MSH</Annotation>
+         </Compound>
+         <Compound Name="B_Raf">
+            <Annotation>B_Raf</Annotation>
+         </Compound>
+         <Compound Name="MAPK">
+            <Annotation>MAPK</Annotation>
+         </Compound>
+         <Compound Name="C_Raf_inactive">
+            <Annotation>C_Raf_inactive</Annotation>
+         </Compound>
+         <Compound Name="g2_0">
+            <Annotation>g2_0</Annotation>
+         </Compound>
+         <Compound Name="C_Raf">
+            <Annotation>C_Raf</Annotation>
+         </Compound>
+         <Compound Name="g1_0">
+            <Annotation>g1_0</Annotation>
+         </Compound>
+         <Feature Name="Compartment" />
+         <LocalizedCompound Name="FGFR" CompoundRef="FGFR" Structure="Compartment" OverrideName="true" />
+         <LocalizedCompound Name="MSH" CompoundRef="MSH" Structure="Compartment" OverrideName="true" />
+         <LocalizedCompound Name="B_Raf" CompoundRef="B_Raf" Structure="Compartment" OverrideName="true" />
+         <LocalizedCompound Name="MAPK" CompoundRef="MAPK" Structure="Compartment" OverrideName="true" />
+         <LocalizedCompound Name="C_Raf_inactive" CompoundRef="C_Raf_inactive" Structure="Compartment" OverrideName="true" />
+         <LocalizedCompound Name="g2_0" CompoundRef="g2_0" Structure="Compartment" OverrideName="true" />
+         <LocalizedCompound Name="C_Raf" CompoundRef="C_Raf" Structure="Compartment" OverrideName="true" />
+         <LocalizedCompound Name="g1_0" CompoundRef="g1_0" Structure="Compartment" OverrideName="true" />
+         <SimpleReaction Structure="Compartment" Name="FGFR_Activation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="FGFR" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="g1_0" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * a1 * g1 / (b1 + g1))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="FGFR_Degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="FGFR" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * d1 * FGFR * FGFR_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="FGFR_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="MSH_Activation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="MSH" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="g2_0" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * a2 * g2 / (b2 + g2))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="MSH_Degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MSH" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * d2 * MSH * MSH_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="MSH_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="C_Raf_Activation_1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="C_Raf" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="FGFR" />
+            <Modifier LocalizedCompoundRef="C_Raf_inactive" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * f13 * ( - (C_Raf_inactive * C_Raf_inactive_ConcFactor) + E - (C_Raf * C_Raf_ConcFactor)) * FGFR * FGFR_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="FGFR_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="C_Raf_inactive_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="C_Raf_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="C_Raf_Activation_2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="C_Raf" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="MAPK" />
+            <Modifier LocalizedCompoundRef="C_Raf_inactive" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * f53 * ( - (C_Raf_inactive * C_Raf_inactive_ConcFactor) + E - (C_Raf * C_Raf_ConcFactor)) * MAPK * MAPK_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="MAPK_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="C_Raf_inactive_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="C_Raf_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="C_Raf_Degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="C_Raf" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * d3 * C_Raf * C_Raf_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="C_Raf_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="B_Raf_Activation_1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="B_Raf" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="FGFR" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * f14 * FGFR * FGFR_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="FGFR_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="B_Raf_Activation_2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="B_Raf" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="MSH" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * f24 * MSH * MSH_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="MSH_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="B_Raf_Degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="B_Raf" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * d4 * B_Raf * B_Raf_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="B_Raf_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="MAPK_Activation_1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="MAPK" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="C_Raf" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * f35 * C_Raf * C_Raf_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="C_Raf_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="MAPK_Activation_2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="MAPK" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="B_Raf" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * f45 * B_Raf * B_Raf_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="B_Raf_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="MAPK_Degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="MAPK" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * d5 * MAPK * MAPK_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="MAPK_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="C_Raf_Inactivation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="C_Raf" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="C_Raf_inactive" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="MSH" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * h36_y3 * MSH * MSH_ConcFactor * C_Raf * C_Raf_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="MSH_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="C_Raf_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Compartment" Name="Inactive_C_Raf_degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="C_Raf_inactive" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * d6 * C_Raf_inactive * C_Raf_inactive_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.litre.uM.s-1.mol-1">16666.666666667</Parameter>
+               <Parameter Name="C_Raf_inactive_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="Compartment" Structure="Compartment" />
+      </Model>
+      <SimulationSpec Name="Muller2008_MAPKactivation_Dynamics_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="Compartment" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="FGFR" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MSH" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="B_Raf" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="MAPK" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="C_Raf_inactive" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="g2_0" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * ((t &gt;= 0.0) &amp;&amp; (t &lt; 5.0)))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="C_Raf" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="g1_0" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * ((t &gt;= 5.0) &amp;&amp; (t &lt; 10.0)) * !(((t &gt;= 0.0) &amp;&amp; (t &lt; 5.0))))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="FGFR_Activation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="FGFR_Degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="MSH_Activation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="MSH_Degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="C_Raf_Activation_1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="C_Raf_Activation_2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="C_Raf_Degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="B_Raf_Activation_1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="B_Raf_Activation_2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="B_Raf_Degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="MAPK_Activation_1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="MAPK_Activation_2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="MAPK_Degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="C_Raf_Inactivation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Inactive_C_Raf_degradation" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043408" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/mamo/MAMO_0000046" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0000848" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000664" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL8687732743" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/18171696" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/18171696" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node42">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">mroberts@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node43">
+                                 <vcard:Family>Roberts</vcard:Family>
+                                 <vcard:Given>Matthew Grant</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node44">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2018-01-26T12:13:03Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node10">
+                     <dcterms:W3CDTF>2018-01-29T11:15:37Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node11">
+                     <dcterms:W3CDTF>2018-01-29T11:15:37Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P11362" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI2">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pr/PR:000001239" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI29">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/sbo/SBO:0000170" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI3">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P15056" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI30">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/sbo/SBO:0000179" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI31">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/sbo/SBO:0000170" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI32">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/sbo/SBO:0000179" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI33">
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-5673000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-442726" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI34">
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-5673000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-442726" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI35">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/SBO:0000179" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI36">
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-5673000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-442726" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI37">
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-5673000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-442726" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI38">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/sbo/SBO:0000179" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI39">
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-5674135" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node30">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-442737" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI4">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node31">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P28482" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI40">
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node32">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-5674135" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node33">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/R-HSA-442737" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI41">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node34">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/sbo/SBO:0000179" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI43">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node35">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/sbo/SBO:0000179" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI5">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node36">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04049" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI6">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node37">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ncit/C41210" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node38">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/fma/FMA:74643" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI7">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node39">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04049" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI8">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node40">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ncit/C41210" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node41">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05230" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="Species(g1_0)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI8">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/ncit/C41210" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P05230" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(MAPK_Degradation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI41">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000179" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(C_Raf_Degradation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI35">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/SBO:0000179" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(C_Raf_inactive)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI5">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P04049" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(B_Raf_Activation_1)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI36">
+                           
+      
+                           <CopasiMT:isPartOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-5673000" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isPartOf>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-442726" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(g2_0)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI6">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/ncit/C41210" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/fma/FMA:74643" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(FGFR_Degradation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI30">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000179" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(Inactive_C_Raf_degradation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI43">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000179" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(C_Raf_Activation_1)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI33">
+                           
+      
+                           <CopasiMT:isPartOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-5673000" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isPartOf>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-442726" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(FGFR)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P11362" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(B_Raf_Activation_2)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI37">
+                           
+      
+                           <CopasiMT:isPartOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-5673000" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isPartOf>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-442726" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="BioModel(Muller2008 - MAPKactivation_Dynamics)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Muller2008 - MAPKactivation_Dynamics</div>
+                     
+    
+                     <div class="dc:description">
+                        Simplified mathematical model (model B)
+for predicting MAPK signal expression.
+
+                        <br />
+                     </div>
+                     
+  
+                     <div class="dc:bibliographicCitation">
+                        
+    
+                        <p>This model is described in the article:</p>
+                        
+    
+                        <div class="bibo:title">
+                           
+      
+                           <a href="http://identifiers.org/pubmed/18171696" title="Access to this publication">Network topology determines
+    dynamics of the mammalian MAPK1,2 signaling network: bifan
+    motif regulation of C-Raf and B-Raf isoforms by FGFR and
+    MC1R.</a>
+                           
+    
+                        </div>
+                        
+    
+                        <div class="bibo:authorList">Muller M, Obeyesekere M, Mills GB,
+  Ram PT.</div>
+                        
+    
+                        <div class="bibo:Journal">FASEB J. 2008 May; 22(5):
+  1393-1403</div>
+                        
+    
+                        <p>Abstract:</p>
+                        
+    
+                        <div class="bibo:abstract">
+                           
+      
+                           <p>Activation of the fibroblast growth factor (FGFR) and
+    melanocyte stimulating hormone (MC1R) receptors stimulates
+    B-Raf and C-Raf isoforms that regulate the dynamics of MAPK1,2
+    signaling. Network topology motifs in mammalian cells include
+    feed-forward and feedback loops and bifans where signals from
+    two upstream molecules integrate to modulate the activity of
+    two downstream molecules. We computationally modeled and
+    experimentally tested signal processing in the
+    FGFR/MC1R/B-Raf/C-Raf/MAPK1,2 network in human melanoma cells;
+    identifying 7 regulatory loops and a bifan motif. Signaling
+    from FGFR leads to sustained activation of MAPK1,2, whereas
+    signaling from MC1R results in transient activation of MAPK1,2.
+    The dynamics of MAPK activation depends critically on the
+    expression level and connectivity to C-Raf, which is critical
+    for a sustained MAPK1,2 response. A partially incoherent bifan
+    motif with a feedback loop acts as a logic gate to integrate
+    signals and regulate duration of activation of the MAPK
+    signaling cascade. Further reducing a 106-node ordinary
+    differential equations network encompassing the complete
+    network to a 6-node network encompassing rate-limiting
+    processes sustains the feedback loops and the bifan, providing
+    sufficient information to predict biological responses.</p>
+                           
+    
+                        </div>
+                        
+  
+                     </div>
+                     
+  
+                     <div class="dc:publisher">
+                        
+    
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000664">BIOMD0000000664</a>
+                           .
+                        </p>
+                        
+  
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/25414348" target="_blank">Chelliah V et al. BioModels: ten-year
+  anniversary. Nucl. Acids Res. 2015, 43(Database
+  issue):D542-8</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI0">
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000046" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <bqbiol:hasProperty>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/go/GO:0043408" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasProperty>
+                           
+      
+                           <bqbiol:hasTaxon>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/taxonomy/9606" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </bqbiol:hasTaxon>
+                           
+      
+                           <dcterms:bibliographicCitation>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <CopasiMT:isDescribedBy rdf:resource="http://identifiers.org/pubmed/18171696" />
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </dcterms:bibliographicCitation>
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2018-01-26T12:13:03Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+      
+                           <dcterms:creator>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:EMAIL>mroberts@ebi.ac.uk</vCard:EMAIL>
+                                       
+              
+                                       <vCard:N>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Family>Roberts</vCard:Family>
+                                             
+                  
+                                             <vCard:Given>Matthew Grant</vCard:Given>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:N>
+                                       
+              
+                                       <vCard:ORG>
+                                          
+                
+                                          <rdf:Description>
+                                             
+                  
+                                             <vCard:Orgname>EMBL-EBI</vCard:Orgname>
+                                             
+                
+                                          </rdf:Description>
+                                          
+              
+                                       </vCard:ORG>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </rdf:li>
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </dcterms:creator>
+                           
+      
+                           <dcterms:modified>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2018-01-26T12:13:03Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:modified>
+                           
+      
+                           <CopasiMT:is>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/biomodels.db/MODEL8687732743" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:is>
+                           
+      
+                           <CopasiMT:occursIn>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/bto/BTO:0000848" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:occursIn>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(FGFR_Activation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI29">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000170" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(C_Raf_Activation_2)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI34">
+                           
+      
+                           <CopasiMT:isPartOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-5673000" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isPartOf>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-442726" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(MSH_Degradation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI32">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000179" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(MAPK_Activation_1)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI39">
+                           
+      
+                           <CopasiMT:isPartOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-5674135" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isPartOf>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-442737" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(MSH)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI2">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/pr/PR:000001239" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(B_Raf)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI3">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P15056" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(C_Raf)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI7">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P04049" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(MAPK)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI4">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/uniprot/P28482" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(MAPK_Activation_2)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI40">
+                           
+      
+                           <CopasiMT:isPartOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-5674135" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isPartOf>
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/reactome/R-HSA-442737" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(B_Raf_Degradation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI38">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000179" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(C_Raf_Inactivation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI42">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2018-01-26T13:24:02Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(MSH_Activation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI31">
+                           
+      
+                           <CopasiMT:isVersionOf>
+                              
+        
+                              <rdf:Bag>
+                                 
+          
+                                 <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000170" />
+                                 
+        
+                              </rdf:Bag>
+                              
+      
+                           </CopasiMT:isVersionOf>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI38" vcid="ReactionStep(B_Raf_Degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI31" vcid="ReactionStep(MSH_Activation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI2" vcid="Species(MSH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI5" vcid="Species(C_Raf_inactive)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI29" vcid="ReactionStep(FGFR_Activation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/e9651315-777b-411a-b029-e129c00e6c5f" vcid="Structure(Compartment)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Species(FGFR)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI4" vcid="Species(MAPK)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI42" vcid="ReactionStep(C_Raf_Inactivation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI36" vcid="ReactionStep(B_Raf_Activation_1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI7" vcid="Species(C_Raf)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI33" vcid="ReactionStep(C_Raf_Activation_1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI8" vcid="Species(g1_0)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI35" vcid="ReactionStep(C_Raf_Degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI40" vcid="ReactionStep(MAPK_Activation_2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Muller2008 - MAPKactivation_Dynamics)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI3" vcid="Species(B_Raf)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI32" vcid="ReactionStep(MSH_Degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI39" vcid="ReactionStep(MAPK_Activation_1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI30" vcid="ReactionStep(FGFR_Degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI37" vcid="ReactionStep(B_Raf_Activation_2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI34" vcid="ReactionStep(C_Raf_Activation_2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI41" vcid="ReactionStep(MAPK_Degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI43" vcid="ReactionStep(Inactive_C_Raf_degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI6" vcid="Species(g2_0)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

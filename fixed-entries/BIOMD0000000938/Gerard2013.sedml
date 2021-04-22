@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Gerard2013.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="120" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cdk_1_task1" name="[Cdk]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Cdk_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Cdk_task1" name="Cdk" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Cdk']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Anaphase_promoting_complex_Phosphorylated_2_task1" name="[Anaphase_promoting_complex_Phosphorylated]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Anaphase_promoting_complex_Phosphorylated_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Anaphase_promoting_complex_Phosphorylated_task1" name="Anaphase_promoting_complex_Phosphorylated" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Anaphase_promoting_complex_Phosphorylated']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Securin_3_task1" name="[Securin]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Securin_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Securin_task1" name="Securin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Securin']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Anaphase_promoting_complex_4_task1" name="[Anaphase_promoting_complex]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Anaphase_promoting_complex_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Anaphase_promoting_complex_task1" name="Anaphase_promoting_complex" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Anaphase_promoting_complex']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Figure 4B">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[Cdk]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Cdk_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Anaphase_promoting_complex_Phosphorylated]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Anaphase_promoting_complex_Phosphorylated_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[Securin]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Securin_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[Anaphase_promoting_complex]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Anaphase_promoting_complex_4_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

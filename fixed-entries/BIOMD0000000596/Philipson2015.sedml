@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Philipson2015.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1200" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CytoE_1_task1" name="[CytoE]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_CytoE_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_CytoE_task1" name="CytoE" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CytoE']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CytoL_2_task1" name="[CytoL]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_CytoL_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_CytoL_task1" name="CytoL" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CytoL']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="NFkB_3_task1" name="[NFkB]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_NFkB_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_NFkB_task1" name="NFkB" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='NFkB']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="TRAF6_4_task1" name="[TRAF6]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_TRAF6_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_TRAF6_task1" name="TRAF6" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='TRAF6']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="plot">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[CytoE]" logX="false" xDataReference="time_task1" logY="false" yDataReference="CytoE_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[CytoL]" logX="false" xDataReference="time_task1" logY="false" yDataReference="CytoL_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[NFkB]" logX="false" xDataReference="time_task1" logY="false" yDataReference="NFkB_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[TRAF6]" logX="false" xDataReference="time_task1" logY="false" yDataReference="TRAF6_4_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

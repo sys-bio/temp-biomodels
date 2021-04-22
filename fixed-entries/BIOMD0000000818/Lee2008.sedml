@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Lee2008.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="15" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Myc_1_task1" name="[Myc]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Myc_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Myc_task1" name="Myc" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Myc']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Myc_ser62_2_task1" name="[Myc_ser62]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Myc_ser62_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Myc_ser62_task1" name="Myc_ser62" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Myc_ser62']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Myc_thr58_3_task1" name="[Myc_thr58]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Myc_thr58_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Myc_thr58_task1" name="Myc_thr58" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Myc_thr58']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Myc_total_4_task1" name="[Myc_total]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Myc_total_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Myc_total_task1" name="Myc_total" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Myc_total']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="ERK_1_task1" name="[ERK]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_ERK_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_ERK_task1" name="ERK" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='ERK']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="PI3K_1_task1" name="[PI3K]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_PI3K_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_PI3K_task1" name="PI3K" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PI3K']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="myc">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[Myc]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Myc_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Myc_ser62]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Myc_ser62_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[Myc_thr58]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Myc_thr58_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[Myc_total]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Myc_total_4_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="ERK">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[ERK]" logX="false" xDataReference="time_task1" logY="false" yDataReference="ERK_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task1" name="PI3K">
+      <listOfCurves>
+        <curve id="p3_curve_1_task1" name="[PI3K]" logX="false" xDataReference="time_task1" logY="false" yDataReference="PI3K_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

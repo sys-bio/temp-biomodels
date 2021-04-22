@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Baker2017 - The role of cytokines, MMPs and fibronectin fragments osteoarthritis">
+      <Model Name="MODEL1704120000">
+         <ModelParameters>
+            <Parameter Name="Afh" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="Afp" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="Aph" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="App" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="Fdam" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="Gamma_f" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="Gamma_m" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="Gamma_p" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="Mbp" Role="user defined" Unit="tbd">0.01</Parameter>
+            <Parameter Name="Mph" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="Mpp" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="Pbp" Role="user defined" Unit="tbd">0.01</Parameter>
+            <Parameter Name="Pfp" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="Ppp" Role="user defined" Unit="tbd">10.0</Parameter>
+         </ModelParameters>
+         <Compound Name="solution0">
+            <Annotation>solution0</Annotation>
+         </Compound>
+         <Compound Name="solution1">
+            <Annotation>solution1</Annotation>
+         </Compound>
+         <Compound Name="solution2">
+            <Annotation>solution2</Annotation>
+         </Compound>
+         <Compound Name="solution3">
+            <Annotation>solution3</Annotation>
+         </Compound>
+         <Feature Name="compartmentOne" />
+         <LocalizedCompound Name="solution0" CompoundRef="solution0" Structure="compartmentOne" OverrideName="true" />
+         <LocalizedCompound Name="solution1" CompoundRef="solution1" Structure="compartmentOne" OverrideName="true" />
+         <LocalizedCompound Name="solution2" CompoundRef="solution2" Structure="compartmentOne" OverrideName="true" />
+         <LocalizedCompound Name="solution3" CompoundRef="solution3" Structure="compartmentOne" OverrideName="true" />
+         <SimpleReaction Structure="compartmentOne" Name="R_1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="solution3" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Fdam / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution3" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * solution2 * solution2_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution3" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Gamma_f * solution3 * solution3_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution3_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="solution2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Mbp / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Mpp * pow((solution0 * solution0_ConcFactor),2.0) / (Mph + pow((solution0 * solution0_ConcFactor),2.0)) / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution0_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Gamma_m * solution2 * solution2_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_7" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * App * pow((solution0 * solution0_ConcFactor),2.0) / (Aph + pow((solution0 * solution0_ConcFactor),2.0)) / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution0_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_8" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution3" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution3" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Afp * pow((solution3 * solution3_ConcFactor),2.0) / (Afh + pow((solution3 * solution3_ConcFactor),2.0)) / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution3_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_9" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * solution1 * solution1_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution1_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_10" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Pbp / (1.0 + pow((solution1 * solution1_ConcFactor),2.0)) / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution1_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_11" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution0" Stoichiometry="2" />
+            <Product LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * pow((solution0 * solution0_ConcFactor),2.0) * Ppp / (1.0 + pow((solution1 * solution1_ConcFactor),2.0)) / (1.0 + pow((solution0 * solution0_ConcFactor),2.0)) / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution0_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="solution1_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_12" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="solution3" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="solution3" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * pow((solution3 * solution3_ConcFactor),2.0) * Pfp / (1.0 + pow((solution1 * solution1_ConcFactor),2.0)) / (1.0 + pow((solution3 * solution3_ConcFactor),2.0)) / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution1_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="solution3_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartmentOne" Name="R_13" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="solution0" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * Gamma_p * solution0 * solution0_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="solution0_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="compartmentOne" Structure="compartmentOne" />
+      </Model>
+      <SimulationSpec Name="MODEL1704120000_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="compartmentOne" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="solution0" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>5000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="solution1" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="solution2" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="solution3" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="R_1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_7" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_8" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_9" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_10" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_11" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_12" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R_13" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level3/version1/core/a8a2d1bc-f5ca-4ada-b4b7-ade8ad2c69c9">
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1704120000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Baker2017 - The role of cytokines, MMPs and fibronectin fragments osteoarthritis)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Baker2017 - The role of cytokines, MMPs and
+fibronectin fragments osteoarthritis</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/28213682" title="Access to this publication">Mathematical modelling of
+    cytokines, MMPs and fibronectin fragments in osteoarthritic
+    cartilage.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Baker M, Brook BS, Owen MR.</div>
+                        
+      
+                        <div class="bibo:Journal">J Math Biol 2017 Feb; :</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>Osteoarthritis (OA) is a degenerative disease which causes
+    pain and stiffness in joints. OA progresses through excessive
+    degradation of joint cartilage, eventually leading to
+    significant joint degeneration and loss of function. Cytokines,
+    a group of cell signalling proteins, present in raised
+    concentrations in OA joints, can be classified into
+    pro-inflammatory and anti-inflammatory groups. They mediate
+    cartilage degradation through several mechanisms, primarily the
+    up-regulation of matrix metalloproteinases (MMPs), a group of
+    collagen-degrading enzymes. In this paper we show that the
+    interactions of cytokines within cartilage have a crucial role
+    to play in OA progression and treatment. We develop a
+    four-variable ordinary differential equation model for the
+    interactions between pro- and anti-inflammatory cytokines, MMPs
+    and fibronectin fragments (Fn-fs), a by-product of cartilage
+    degradation and up-regulator of cytokines. We show that the
+    model has four classes of dynamic behaviour: homoeostasis,
+    bistable inflammation, tristable inflammation and persistent
+    inflammation. We show that positive and negative feedbacks
+    controlling cytokine production rates can determine either a
+    pre-disposition to OA or initiation of OA. Further, we show
+    that manipulation of cytokine, MMP and Fn-fs levels can be used
+    to treat OA, but we suggest that multiple treatment targets may
+    be essential to halt or slow disease progression.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/MODEL1704120000">MODEL1704120000</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/fb6ebbc5-39fd-4fbb-a7d9-f71bb2419d42" vcid="ReactionStep(R_11)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_5c41fc05-8391-4990-809a-29e54a56f38f" vcid="Species(solution2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_6f0f8187-d083-4993-9a47-71913e6d842f" vcid="Species(solution1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/a7f65330-7bf5-4572-8a51-3ed1cf29b2f2" vcid="ReactionStep(R_8)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/da67b423-4489-40dc-b9a8-92fa23bd345d" vcid="ReactionStep(R_10)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_22ea1119-9210-4190-baef-00edd0e65e9c" vcid="ReactionStep(R_4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/cb23d82d-031f-4376-b8e9-2cfd4b1708b5" vcid="Species(solution3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/e0cd34d3-bd02-44dd-8833-3885e44ceda2" vcid="ReactionStep(R_7)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_37fbbd28-7dcc-4e02-92f0-07f0fb51d928" vcid="ReactionStep(R_6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_3d535bc9-0567-491f-aa38-89e4c01e68da" vcid="ReactionStep(R_12)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/e2ab97a0-c699-4d36-a81c-7f215c30ffa8" vcid="ReactionStep(R_5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/b4688468-2568-4a3c-ae5a-634ab2233427" vcid="ReactionStep(R_2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_539088ef-d00b-4e0d-bf18-2220618c4486" vcid="Structure(compartmentOne)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/a8a2d1bc-f5ca-4ada-b4b7-ade8ad2c69c9" vcid="BioModel(Baker2017 - The role of cytokines, MMPs and fibronectin fragments osteoarthritis)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_71b23520-9d13-4618-922e-beb6ae83d529" vcid="ReactionStep(R_3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_641cd8a8-d174-41b6-98e2-c3289ecdfb76" vcid="ReactionStep(R_1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_508f7877-96d8-4772-885d-cfe90b6a3f6c" vcid="ReactionStep(R_9)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/_72496d1c-394d-4a6f-8fa6-bc971e411178" vcid="Species(solution0)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level3/version1/core/afd1911e-9137-499d-9261-a9562f810089" vcid="ReactionStep(R_13)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

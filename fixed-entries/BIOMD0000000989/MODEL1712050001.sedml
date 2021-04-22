@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="MODEL1712050001.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1400" numberOfPoints="1400">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <repeatedTask id="task2" range="range0" resetModel="true">
+      <listOfRanges>
+        <vectorRange id="range0">
+          <value> 1 </value>
+          <value> 2.5 </value>
+          <value> 5 </value>
+          <value> 25 </value>
+          <value> 100 </value>
+        </vectorRange>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='TGFb_LIGAND_Dose']" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task1"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="NUC_CYT_SMAD2_1_task1" name="Values[NUC/CYT SMAD2]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_NUC_CYT_SMAD2_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_NUC_CYT_SMAD2_task1" name="NUC_CYT_SMAD2" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='NUC_CYT_SMAD2']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="time_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="NUC_CYT_SMAD2_1_task2" name="Values[NUC/CYT SMAD2]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_NUC_CYT_SMAD2_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_NUC_CYT_SMAD2_task2" name="NUC_CYT_SMAD2" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='NUC_CYT_SMAD2']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="SMAD2 ratio">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="Values[NUC/CYT SMAD2]" logX="false" xDataReference="time_task1" logY="false" yDataReference="NUC_CYT_SMAD2_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task2" name="SMAD2 ratio">
+      <listOfCurves>
+        <curve id="p1_curve_1_task2" name="Values[NUC/CYT SMAD2]" logX="false" xDataReference="time_task2" logY="false" yDataReference="NUC_CYT_SMAD2_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

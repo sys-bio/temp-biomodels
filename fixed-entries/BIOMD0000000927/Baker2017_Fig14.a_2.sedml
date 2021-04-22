@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Baker2017_Fig14..xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="39" numberOfPoints="500">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="solution3_1_task1" name="[Fragments]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_solution3_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_solution3_task1" name="solution3" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='solution3']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="solution2_2_task1" name="[MMP]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_solution2_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_solution2_task1" name="solution2" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='solution2']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="solution0_3_task1" name="[p-Cytokines]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_solution0_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_solution0_task1" name="solution0" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='solution0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="plot">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[Fragments]" logX="false" xDataReference="time_task1" logY="false" yDataReference="solution3_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[MMP]" logX="false" xDataReference="time_task1" logY="false" yDataReference="solution2_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[p-Cytokines]" logX="false" xDataReference="time_task1" logY="false" yDataReference="solution0_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

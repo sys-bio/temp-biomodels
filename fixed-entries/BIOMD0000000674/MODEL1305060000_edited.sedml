@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="BIOMD0000000674_url.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="24" numberOfPoints="2400">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="sam_1_task1" name="[SAM]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_sam_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_sam_task1" name="sam" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='sam']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="c_gsh_2_task1" name="[c_GSH]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_c_gsh_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_c_gsh_task1" name="c_gsh" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='c_gsh']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="met_3_task1" name="[c_Methionine]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_met_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_met_task1" name="met" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='met']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_CBS_1_task1" name="(V_CBS).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_V_CBS_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_V_CBS_task1" name="V_CBS" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_CBS']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_DNMT_2_task1" name="(V_DNMT).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_V_DNMT_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_V_DNMT_task1" name="V_DNMT" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_DNMT']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_GS_3_task1" name="(V_GS).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_V_GS_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_V_GS_task1" name="V_GS" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_GS']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hcy_1_task1" name="[Homocysteine]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_hcy_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_hcy_task1" name="hcy" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hcy']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="b_gsh_2_task1" name="[b_GSH]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_b_gsh_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_b_gsh_task1" name="b_gsh" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='b_gsh']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="c_5mf_3_task1" name="[c_5-methyl-THF]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_c_5mf_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_c_5mf_task1" name="c_5mf" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='c_5mf']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="figure1b">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[SAM]" logX="false" xDataReference="time_task1" logY="false" yDataReference="sam_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[c_GSH]" logX="false" xDataReference="time_task1" logY="false" yDataReference="c_gsh_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[c_Methionine]" logX="false" xDataReference="time_task1" logY="false" yDataReference="met_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="figure1c">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="(V_CBS).Flux" logX="false" xDataReference="time_task1" logY="false" yDataReference="V_CBS_1_task1"/>
+        <curve id="p2_curve_2_task1" name="(V_DNMT).Flux" logX="false" xDataReference="time_task1" logY="false" yDataReference="V_DNMT_2_task1"/>
+        <curve id="p2_curve_3_task1" name="(V_GS).Flux" logX="false" xDataReference="time_task1" logY="false" yDataReference="V_GS_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task1" name="figure1d">
+      <listOfCurves>
+        <curve id="p3_curve_1_task1" name="[Homocysteine]" logX="false" xDataReference="time_task1" logY="false" yDataReference="hcy_1_task1"/>
+        <curve id="p3_curve_2_task1" name="[b_GSH]" logX="false" xDataReference="time_task1" logY="false" yDataReference="b_gsh_2_task1"/>
+        <curve id="p3_curve_3_task1" name="[c_5-methyl-THF]" logX="false" xDataReference="time_task1" logY="false" yDataReference="c_5mf_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

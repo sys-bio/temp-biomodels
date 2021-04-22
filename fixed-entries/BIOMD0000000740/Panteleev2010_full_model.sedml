@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Panteleev2010_full_model.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="300" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <repeatedTask id="task2" range="range1" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range1" start="0" end="0.00064" numberOfPoints="10" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='TF']" range="range1">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range1 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task1"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="fibrin_1_task1" name="[fibrin]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_fibrin_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_fibrin_task1" name="fibrin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='fibrin']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="fibrin_1_task1" name="[fibrin]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_fibrin_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_fibrin_task1" name="fibrin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='fibrin']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="TF_1_task1" name="TF">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_TF_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_TF_task1" name="TF" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='TF']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="time_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="fibrin_1_task2" name="[fibrin]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_fibrin_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_fibrin_task2" name="fibrin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='fibrin']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="fibrin_1_task2" name="[fibrin]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_fibrin_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_fibrin_task2" name="fibrin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='fibrin']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="TF_1_task2" name="TF">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_TF_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_TF_task2" name="TF" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='TF']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Figure 1A">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[fibrin]" logX="false" xDataReference="time_task1" logY="false" yDataReference="fibrin_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="Figure 5A">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[fibrin]" logX="false" xDataReference="TF_1_task1" logY="false" yDataReference="fibrin_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task2" name="Figure 1A">
+      <listOfCurves>
+        <curve id="p1_curve_1_task2" name="[fibrin]" logX="false" xDataReference="time_task2" logY="false" yDataReference="fibrin_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_4_task2" name="Figure 5A">
+      <listOfCurves>
+        <curve id="p2_curve_1_task2" name="[fibrin]" logX="false" xDataReference="TF_1_task2" logY="false" yDataReference="fibrin_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Leloup2004_Set1.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="18" outputEndTime="92" numberOfPoints="74">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="MC_0_1_task1" name="[MC]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_MC_0_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_MC_0_task1" name="MC_0" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='MC_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="MP_0_2_task1" name="[MP]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_MP_0_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_MP_0_task1" name="MP_0" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='MP_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="MB_0_1_task1" name="[MB]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_MB_0_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_MB_0_task1" name="MB_0" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='MB_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="plot">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[MC]" logX="false" xDataReference="time_task1" logY="false" yDataReference="MC_0_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[MP]" logX="false" xDataReference="time_task1" logY="false" yDataReference="MP_0_2_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="plot_1">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[MB]" logX="false" xDataReference="time_task1" logY="false" yDataReference="MB_0_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

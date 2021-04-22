@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Abernathy2016.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3502.854812346" numberOfPoints="1227">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CSC_Plot_1_task1" name="[CSC Plot]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_CSC_Plot_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_CSC_Plot_task1" name="CSC_Plot" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CSC_Plot']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CTL_Plot_2_task1" name="[CTL Plot]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_CTL_Plot_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_CTL_Plot_task1" name="CTL_Plot" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CTL_Plot']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Tumor_Plot_3_task1" name="[Tumor Plot]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Tumor_Plot_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Tumor_Plot_task1" name="Tumor_Plot" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Tumor_Plot']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Fig1">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[CSC Plot]" logX="false" xDataReference="time_task1" logY="false" yDataReference="CSC_Plot_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[CTL Plot]" logX="false" xDataReference="time_task1" logY="false" yDataReference="CTL_Plot_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[Tumor Plot]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Tumor_Plot_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

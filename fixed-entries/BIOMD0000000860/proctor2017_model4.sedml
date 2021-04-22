@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="MODEL1610100004_url.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="14400" numberOfPoints="1000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="miR_1_task1" name="[miR]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_miR_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_miR_task1" name="miR" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='miR']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="TF1_2_task1" name="[TF1]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_TF1_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_TF1_task1" name="TF1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='TF1']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="TF1target_mRNA_3_task1" name="[TF1target_mRNA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_TF1target_mRNA_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_TF1target_mRNA_task1" name="TF1target_mRNA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='TF1target_mRNA']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[miR]" logX="false" xDataReference="time_task1" logY="false" yDataReference="miR_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[TF1]" logX="false" xDataReference="time_task1" logY="false" yDataReference="TF1_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[TF1target_mRNA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="TF1target_mRNA_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

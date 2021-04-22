@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Li2008.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="350" numberOfPoints="3500">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <repeatedTask id="task2" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="0.3" end="10" numberOfPoints="10" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='kzring_closed2']" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task1"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="DNA_1_task1" name="[DNA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_DNA_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_DNA_task1" name="DNA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='DNA']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Elong_2_task1" name="[Elong]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Elong_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Elong_task1" name="Elong" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Elong']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Ini_3_task1" name="[Ini]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Ini_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Ini_task1" name="Ini" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Ini']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hccrM_1_task1" name="[hccrM]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hccrM_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hccrM_task1" name="hccrM" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hccrM']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hcori_2_task1" name="[hcori]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hcori_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hcori_task1" name="hcori" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hcori']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hctrA_3_task1" name="[hctrA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hctrA_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hctrA_task1" name="hctrA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hctrA']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hfts_4_task1" name="[hfts]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hfts_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hfts_task1" name="hfts" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hfts']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CtrA_1_task1" name="[CtrA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_CtrA_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_CtrA_task1" name="CtrA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CtrA']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="DivK_P_2_task1" name="[DivK_P]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_DivK_P_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_DivK_P_task1" name="DivK_P" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='DivK_P']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="GcrA_3_task1" name="[GcrA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_GcrA_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_GcrA_task1" name="GcrA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='GcrA']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CcrM_1_task1" name="[CcrM]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_CcrM_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_CcrM_task1" name="CcrM" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CcrM']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="DnaA_2_task1" name="[DnaA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_DnaA_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_DnaA_task1" name="DnaA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='DnaA']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Fts_3_task1" name="[Fts]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_Fts_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_Fts_task1" name="Fts" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Fts']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Zring_4_task1" name="[Zring]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_Zring_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_Zring_task1" name="Zring" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Zring']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="time_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="DNA_1_task2" name="[DNA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_DNA_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_DNA_task2" name="DNA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='DNA']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Elong_2_task2" name="[Elong]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Elong_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Elong_task2" name="Elong" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Elong']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Ini_3_task2" name="[Ini]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Ini_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Ini_task2" name="Ini" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Ini']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hccrM_1_task2" name="[hccrM]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hccrM_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hccrM_task2" name="hccrM" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hccrM']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hcori_2_task2" name="[hcori]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hcori_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hcori_task2" name="hcori" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hcori']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hctrA_3_task2" name="[hctrA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hctrA_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hctrA_task2" name="hctrA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hctrA']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="hfts_4_task2" name="[hfts]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_hfts_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_hfts_task2" name="hfts" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='hfts']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CtrA_1_task2" name="[CtrA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_CtrA_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_CtrA_task2" name="CtrA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CtrA']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="DivK_P_2_task2" name="[DivK_P]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_DivK_P_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_DivK_P_task2" name="DivK_P" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='DivK_P']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="GcrA_3_task2" name="[GcrA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_GcrA_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_GcrA_task2" name="GcrA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='GcrA']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CcrM_1_task2" name="[CcrM]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_CcrM_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_CcrM_task2" name="CcrM" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='CcrM']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="DnaA_2_task2" name="[DnaA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_DnaA_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_DnaA_task2" name="DnaA" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='DnaA']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Fts_3_task2" name="[Fts]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_Fts_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_Fts_task2" name="Fts" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Fts']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Zring_4_task2" name="[Zring]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_Zring_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_Zring_task2" name="Zring" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Zring']" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Figure 4A">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[DNA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="DNA_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Elong]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Elong_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[Ini]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Ini_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="Figure 4B">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[hccrM]" logX="false" xDataReference="time_task1" logY="false" yDataReference="hccrM_1_task1"/>
+        <curve id="p2_curve_2_task1" name="[hcori]" logX="false" xDataReference="time_task1" logY="false" yDataReference="hcori_2_task1"/>
+        <curve id="p2_curve_3_task1" name="[hctrA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="hctrA_3_task1"/>
+        <curve id="p2_curve_4_task1" name="[hfts]" logX="false" xDataReference="time_task1" logY="false" yDataReference="hfts_4_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task1" name="Figure 4C">
+      <listOfCurves>
+        <curve id="p3_curve_1_task1" name="[CtrA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="CtrA_1_task1"/>
+        <curve id="p3_curve_2_task1" name="[DivK_P]" logX="false" xDataReference="time_task1" logY="false" yDataReference="DivK_P_2_task1"/>
+        <curve id="p3_curve_3_task1" name="[GcrA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="GcrA_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_4_task1" name="Figure 4D">
+      <listOfCurves>
+        <curve id="p4_curve_1_task1" name="[CcrM]" logX="false" xDataReference="time_task1" logY="false" yDataReference="CcrM_1_task1"/>
+        <curve id="p4_curve_2_task1" name="[DnaA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="DnaA_2_task1"/>
+        <curve id="p4_curve_3_task1" name="[Fts]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Fts_3_task1"/>
+        <curve id="p4_curve_4_task1" name="[Zring]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Zring_4_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_5_task2" name="Figure 4A">
+      <listOfCurves>
+        <curve id="p1_curve_1_task2" name="[DNA]" logX="false" xDataReference="time_task2" logY="false" yDataReference="DNA_1_task2"/>
+        <curve id="p1_curve_2_task2" name="[Elong]" logX="false" xDataReference="time_task2" logY="false" yDataReference="Elong_2_task2"/>
+        <curve id="p1_curve_3_task2" name="[Ini]" logX="false" xDataReference="time_task2" logY="false" yDataReference="Ini_3_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_6_task2" name="Figure 4B">
+      <listOfCurves>
+        <curve id="p2_curve_1_task2" name="[hccrM]" logX="false" xDataReference="time_task2" logY="false" yDataReference="hccrM_1_task2"/>
+        <curve id="p2_curve_2_task2" name="[hcori]" logX="false" xDataReference="time_task2" logY="false" yDataReference="hcori_2_task2"/>
+        <curve id="p2_curve_3_task2" name="[hctrA]" logX="false" xDataReference="time_task2" logY="false" yDataReference="hctrA_3_task2"/>
+        <curve id="p2_curve_4_task2" name="[hfts]" logX="false" xDataReference="time_task2" logY="false" yDataReference="hfts_4_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_7_task2" name="Figure 4C">
+      <listOfCurves>
+        <curve id="p3_curve_1_task2" name="[CtrA]" logX="false" xDataReference="time_task2" logY="false" yDataReference="CtrA_1_task2"/>
+        <curve id="p3_curve_2_task2" name="[DivK_P]" logX="false" xDataReference="time_task2" logY="false" yDataReference="DivK_P_2_task2"/>
+        <curve id="p3_curve_3_task2" name="[GcrA]" logX="false" xDataReference="time_task2" logY="false" yDataReference="GcrA_3_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_8_task2" name="Figure 4D">
+      <listOfCurves>
+        <curve id="p4_curve_1_task2" name="[CcrM]" logX="false" xDataReference="time_task2" logY="false" yDataReference="CcrM_1_task2"/>
+        <curve id="p4_curve_2_task2" name="[DnaA]" logX="false" xDataReference="time_task2" logY="false" yDataReference="DnaA_2_task2"/>
+        <curve id="p4_curve_3_task2" name="[Fts]" logX="false" xDataReference="time_task2" logY="false" yDataReference="Fts_3_task2"/>
+        <curve id="p4_curve_4_task2" name="[Zring]" logX="false" xDataReference="time_task2" logY="false" yDataReference="Zring_4_task2"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

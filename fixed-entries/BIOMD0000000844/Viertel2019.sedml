@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Viertel2019.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="2000" numberOfPoints="10000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="IBK_1_task1" name="Values[IBK]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_IBK_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_IBK_task1" name="IBK" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='IBK']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="IH_2_task1" name="Values[IH]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_IH_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_IH_task1" name="IH" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='IH']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="ILVA_3_task1" name="Values[ILVA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_ILVA_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_ILVA_task1" name="ILVA" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='ILVA']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="INaP_4_task1" name="Values[INaP]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_INaP_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_INaP_task1" name="INaP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='INaP']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Ca_5_task1" name="[Ca]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Ca_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Ca_task1" name="Ca" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Ca']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_6_task1" name="[V]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_task1" name="V" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='V']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Fig_1">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="Values[IBK]" logX="false" xDataReference="time_task1" logY="false" yDataReference="IBK_1_task1"/>
+        <curve id="p1_curve_2_task1" name="Values[IH]" logX="false" xDataReference="time_task1" logY="false" yDataReference="IH_2_task1"/>
+        <curve id="p1_curve_3_task1" name="Values[ILVA]" logX="false" xDataReference="time_task1" logY="false" yDataReference="ILVA_3_task1"/>
+        <curve id="p1_curve_4_task1" name="Values[INaP]" logX="false" xDataReference="time_task1" logY="false" yDataReference="INaP_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[Ca]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Ca_5_task1"/>
+        <curve id="p1_curve_6_task1" name="[V]" logX="false" xDataReference="time_task1" logY="false" yDataReference="V_6_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

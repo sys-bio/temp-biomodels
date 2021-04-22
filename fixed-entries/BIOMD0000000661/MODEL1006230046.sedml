@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="BIOMD0000000661_url.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="24" numberOfPoints="240">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="T_1_task1" name="[T-cells (T)]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_T_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_T_task1" name="T" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='T']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="LT_2_task1" name="[mFasL (LT)]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_LT_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_LT_task1" name="LT" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='LT']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="RT_3_task1" name="[FasR (RT)]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_RT_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_RT_task1" name="RT" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='RT']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="m_4_task1" name="[Tumour cells (m)]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_m_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_m_task1" name="m" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='m']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Lm_5_task1" name="[mFasL (Lm)]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Lm_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Lm_task1" name="Lm" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Lm']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Rm_6_task1" name="[FasR (Rm)]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Rm_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Rm_task1" name="Rm" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Rm']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="SL_7_task1" name="[sFasL (SL)]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_SL_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_SL_task1" name="SL" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='SL']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[T-cells (T)]" logX="false" xDataReference="time_task1" logY="false" yDataReference="T_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[mFasL (LT)]" logX="false" xDataReference="time_task1" logY="false" yDataReference="LT_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[FasR (RT)]" logX="false" xDataReference="time_task1" logY="false" yDataReference="RT_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[Tumour cells (m)]" logX="false" xDataReference="time_task1" logY="false" yDataReference="m_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[mFasL (Lm)]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Lm_5_task1"/>
+        <curve id="p1_curve_6_task1" name="[FasR (Rm)]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Rm_6_task1"/>
+        <curve id="p1_curve_7_task1" name="[sFasL (SL)]" logX="false" xDataReference="time_task1" logY="false" yDataReference="SL_7_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

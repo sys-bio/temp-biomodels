@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2"><listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Adams2019.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="10000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+    <steadyState id="steady2">
+      <algorithm kisaoID="KISAO:0000282"/>
+    </steadyState>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <task id="task2" modelReference="model" simulationReference="steady2"/>
+    <repeatedTask id="task3" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="0.1" end="35" numberOfPoints="25" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_1_Phenylalanine_Biosynthesis_Shikimate_1_task1" name="(V_1_Phenylalanine_Biosynthesis_Shikimate).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_1_Phenylalanine_Biosynthesis_Shikimate_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_1_Phenylalanine_Biosynthesis_Shikimate_task1" name="V_1_Phenylalanine_Biosynthesis_Shikimate" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_1_Phenylalanine_Biosynthesis_Shikimate']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_1_task1" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task1" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_2_Shikimate_Transport_2_task1" name="(V_2_Shikimate_Transport).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_2_Shikimate_Transport_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_2_Shikimate_Transport_task1" name="V_2_Shikimate_Transport" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_2_Shikimate_Transport']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_2_task1" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task12 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task12" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_3_Caffeoyl_Shikimate_Biosynthesis_3_task1" name="(V_3_Caffeoyl_Shikimate_Biosynthesis).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_3_Caffeoyl_Shikimate_Biosynthesis_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_3_Caffeoyl_Shikimate_Biosynthesis_task1" name="V_3_Caffeoyl_Shikimate_Biosynthesis" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_3_Caffeoyl_Shikimate_Biosynthesis']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_3_task1" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task13 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task13" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_4_Mass_Release_Monolignol_Pathway_4_task1" name="(V_4_Mass_Release_Monolignol_Pathway).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_4_Mass_Release_Monolignol_Pathway_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_4_Mass_Release_Monolignol_Pathway_task1" name="V_4_Mass_Release_Monolignol_Pathway" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_4_Mass_Release_Monolignol_Pathway']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_4_task1" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task14 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task14" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_5_Phenylalanine_To_Protein_5_task1" name="(V_5_Phenylalanine_To_Protein).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_5_Phenylalanine_To_Protein_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_5_Phenylalanine_To_Protein_task1" name="V_5_Phenylalanine_To_Protein" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_5_Phenylalanine_To_Protein']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_5_task1" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task15 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task15" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="time_task3" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_1_Phenylalanine_Biosynthesis_Shikimate_1_task3" name="(V_1_Phenylalanine_Biosynthesis_Shikimate).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_1_Phenylalanine_Biosynthesis_Shikimate_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_1_Phenylalanine_Biosynthesis_Shikimate_task3" name="V_1_Phenylalanine_Biosynthesis_Shikimate" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_1_Phenylalanine_Biosynthesis_Shikimate']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_1_task3" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task3" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_2_Shikimate_Transport_2_task3" name="(V_2_Shikimate_Transport).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_2_Shikimate_Transport_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_2_Shikimate_Transport_task3" name="V_2_Shikimate_Transport" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_2_Shikimate_Transport']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_2_task3" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task32 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task32" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_3_Caffeoyl_Shikimate_Biosynthesis_3_task3" name="(V_3_Caffeoyl_Shikimate_Biosynthesis).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_3_Caffeoyl_Shikimate_Biosynthesis_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_3_Caffeoyl_Shikimate_Biosynthesis_task3" name="V_3_Caffeoyl_Shikimate_Biosynthesis" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_3_Caffeoyl_Shikimate_Biosynthesis']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_3_task3" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task33 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task33" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_4_Mass_Release_Monolignol_Pathway_4_task3" name="(V_4_Mass_Release_Monolignol_Pathway).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_4_Mass_Release_Monolignol_Pathway_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_4_Mass_Release_Monolignol_Pathway_task3" name="V_4_Mass_Release_Monolignol_Pathway" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_4_Mass_Release_Monolignol_Pathway']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_4_task3" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task34 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task34" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="V_5_Phenylalanine_To_Protein_5_task3" name="(V_5_Phenylalanine_To_Protein).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_V_5_Phenylalanine_To_Protein_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_V_5_Phenylalanine_To_Protein_task3" name="V_5_Phenylalanine_To_Protein" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id='V_5_Phenylalanine_To_Protein']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="a_0_5_task3" name="a_0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_a_0_task35 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_a_0_task35" name="a_0" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='a_0']" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Adams2019_Fig_4_D">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="(V_1_Phenylalanine_Biosynthesis_Shikimate).Flux" logX="false" xDataReference="a_0_1_task1" logY="false" yDataReference="V_1_Phenylalanine_Biosynthesis_Shikimate_1_task1"/>
+        <curve id="p1_curve_2_task1" name="(V_2_Shikimate_Transport).Flux" logX="false" xDataReference="a_0_2_task1" logY="false" yDataReference="V_2_Shikimate_Transport_2_task1"/>
+        <curve id="p1_curve_3_task1" name="(V_3_Caffeoyl_Shikimate_Biosynthesis).Flux" logX="false" xDataReference="a_0_3_task1" logY="false" yDataReference="V_3_Caffeoyl_Shikimate_Biosynthesis_3_task1"/>
+        <curve id="p1_curve_4_task1" name="(V_4_Mass_Release_Monolignol_Pathway).Flux" logX="false" xDataReference="a_0_4_task1" logY="false" yDataReference="V_4_Mass_Release_Monolignol_Pathway_4_task1"/>
+        <curve id="p1_curve_5_task1" name="(V_5_Phenylalanine_To_Protein).Flux" logX="false" xDataReference="a_0_5_task1" logY="false" yDataReference="V_5_Phenylalanine_To_Protein_5_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task3" name="Adams2019_Fig_4_D">
+      <listOfCurves>
+        <curve id="p1_curve_1_task3" name="(V_1_Phenylalanine_Biosynthesis_Shikimate).Flux" logX="false" xDataReference="a_0_1_task3" logY="false" yDataReference="V_1_Phenylalanine_Biosynthesis_Shikimate_1_task3"/>
+        <curve id="p1_curve_2_task3" name="(V_2_Shikimate_Transport).Flux" logX="false" xDataReference="a_0_2_task3" logY="false" yDataReference="V_2_Shikimate_Transport_2_task3"/>
+        <curve id="p1_curve_3_task3" name="(V_3_Caffeoyl_Shikimate_Biosynthesis).Flux" logX="false" xDataReference="a_0_3_task3" logY="false" yDataReference="V_3_Caffeoyl_Shikimate_Biosynthesis_3_task3"/>
+        <curve id="p1_curve_4_task3" name="(V_4_Mass_Release_Monolignol_Pathway).Flux" logX="false" xDataReference="a_0_4_task3" logY="false" yDataReference="V_4_Mass_Release_Monolignol_Pathway_4_task3"/>
+        <curve id="p1_curve_5_task3" name="(V_5_Phenylalanine_To_Protein).Flux" logX="false" xDataReference="a_0_5_task3" logY="false" yDataReference="V_5_Phenylalanine_To_Protein_5_task3"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
