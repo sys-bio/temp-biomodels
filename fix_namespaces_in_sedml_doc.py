@@ -42,7 +42,7 @@ def run(filename):
             raise Exception('Namespaces clash')
         root_namespaces[prefix] = uri
 
-    root2 = etree.Element(root.tag, nsmap=root_namespaces)
+    root2 = etree.Element(root.tag, nsmap=root_namespaces, attrib=root.attrib)
     doc_etree_2 = etree.ElementTree(root2)
     for child in root.getchildren():
         root2.append(child)
