@@ -96,7 +96,9 @@ jobs:
           python -m pip install --upgrade setuptools
 
       - name: Install requirements
-        run: python -m pip install -r tests/requirements.txt
+        run: |
+          python -m pip install -r tests/requirements.txt
+          sudo apt-get install -y --no-install-recommends xppaut
 
       - name: Test entries and record the results
         run: python -m pytest --verbose --junitxml="test-results.xml" tests/

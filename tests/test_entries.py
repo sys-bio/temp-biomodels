@@ -16,6 +16,7 @@ from biosimulators_utils.sedml.data_model import SedDocument, Task, SteadyStateS
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
 from lxml import etree
+from pyxpp import pyxpp
 import datetime
 import dateutil.tz
 import glob
@@ -86,6 +87,7 @@ PNG_FILES = sorted((filename,) for filename in itertools.chain(
 ))
 SVG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.svg'), recursive=True))
 XML_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.xml'), recursive=True))
+XPP_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.xpp'), recursive=True))
 ZIP_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.zip'), recursive=True))
 
 
@@ -158,6 +160,11 @@ class EntriesTestCase(unittest.TestCase):
     @parameterized.parameterized.expand(XML_FILES, skip_on_empty=True)
     def test_xml_files(self, filename):
         etree.parse(filename)
+
+    @parameterized.parameterized.expand(XPP_FILES, skip_on_empty=True)
+    def test_xpp_files(self, filename):
+        subprocess = pyxpp.dry_run(filename)
+        self.assertNotIn('Error', subprocess.stdout.decode(), subprocess.stdout.decode())
 
     @parameterized.parameterized.expand(ZIP_FILES, skip_on_empty=True)
     def test_zip_files(self, filename):
