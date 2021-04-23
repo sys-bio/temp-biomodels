@@ -29,6 +29,7 @@ import owlready2
 import parameterized
 import PyPDF2
 import requests
+import scipy.io
 import shutil
 import subprocess
 import tempfile
@@ -82,6 +83,7 @@ SBML_EDAM_ID = 'format_2585'
 
 IPYNB_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.ipynb'), recursive=True))
 JPG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.jpg'), recursive=True))
+MAT_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.mat'), recursive=True))
 OWL_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.owl'), recursive=True))
 PDF_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.pdf'), recursive=True))
 PNG_FILES = sorted((filename,) for filename in itertools.chain(
@@ -140,6 +142,10 @@ class EntriesTestCase(unittest.TestCase):
     def test_jpg_files(self, filename):
         if imghdr.what(filename) != 'jpeg':
             raise Exception('{} is not a valid JPEG file'.format(filename))
+
+    @parameterized.parameterized.expand(MAT_FILES, skip_on_empty=True)
+    def test_mat_files(self, filename):
+        scipy.io.loadmat(filename)
 
     @parameterized.parameterized.expand(OWL_FILES, skip_on_empty=True)
     def test_owl_files(self, filename):
