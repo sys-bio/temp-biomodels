@@ -1,0 +1,1867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Hernjak2005_Calcium_Signaling">
+      <Model Name="Hernjak2005_Calcium_Signaling">
+         <ModelParameters>
+            <Parameter Name="pulses0" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="p0" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="delta" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="tau" Role="user defined" Unit="tbd">0.012</Parameter>
+            <Parameter Name="Ks" Role="user defined" Unit="tbd">1.188</Parameter>
+            <Parameter Name="A1" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="B1" Role="user defined" Unit="tbd">2.0</Parameter>
+            <Parameter Name="VC_SpConcFactor_1_00000000000000013E18_um3_metre_3" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">
+               602.0
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+            <Parameter Name="flux0_ar" Role="user defined" Unit="tbd">(((t &gt; t1) &amp;&amp; (t &lt; t2)) * Jch * ((0.0016611295681 * Ca_Extracellular * VC_SpConcFactor_1_00000000000000013E18_um3_metre_3) - (0.0016611295681 * Ca_Cytosol * VC_SpConcFactor_1_00000000000000013E18_um3_metre_3)))</Parameter>
+            <Parameter Name="Jch" Role="user defined" Unit="tbd">13.25</Parameter>
+            <Parameter Name="t1" Role="user defined" Unit="tbd">0.1</Parameter>
+            <Parameter Name="t2" Role="user defined" Unit="tbd">0.105</Parameter>
+            <Parameter Name="flux1_ar" Role="user defined" Unit="tbd">(((t &gt; t1) &amp;&amp; (t &lt; t2)) * JchD * ((0.0016611295681 * Ca_D_Extracellular * VC_SpConcFactor_1_00000000000000013E18_um3_metre_3) - (0.0016611295681 * Ca_D_Cytosol * VC_SpConcFactor_1_00000000000000013E18_um3_metre_3)))</Parameter>
+            <Parameter Name="JchD" Role="user defined" Unit="tbd">6.25</Parameter>
+            <Parameter Name="pulses_ar" Role="user defined" Unit="tbd">(((t &gt; delta) * p0 * exp( - ((t - delta) * Ks))) + ((t &gt; (tau + delta)) * p1 * exp( - ((t - (tau + delta)) * Ks))) + ((t &gt; ((2.0 * tau) + delta)) * p2 * exp( - (Ks * (t - ((2.0 * tau) + delta))))) + ((t &gt; ((3.0 * tau) + delta)) * p3 * exp( - (Ks * (t - ((3.0 * tau) + delta))))) + ((t &gt; ((4.0 * tau) + delta)) * p4 * exp( - (Ks * (t - ((4.0 * tau) + delta))))) + ((t &gt; ((5.0 * tau) + delta)) * p5 * exp( - (Ks * (t - ((5.0 * tau) + delta))))) + ((t &gt; ((6.0 * tau) + delta)) * p6 * exp( - (Ks * (t - ((6.0 * tau) + delta))))) + ((t &gt; ((7.0 * tau) + delta)) * p7 * exp( - (Ks * (t - ((7.0 * tau) + delta))))) + ((t &gt; ((8.0 * tau) + delta)) * p8 * exp( - (Ks * (t - ((8.0 * tau) + delta))))) + ((t &gt; ((9.0 * tau) + delta)) * p9 * exp( - (Ks * (t - ((9.0 * tau) + delta))))) + ((t &gt; ((10.0 * tau) + delta)) * p10 * exp( - (Ks * (t - ((10.0 * tau) + delta))))) + ((t &gt; ((11.0 * tau) + delta)) * p11 * exp( - (Ks * (t - ((11.0 * tau) + delta))))))</Parameter>
+            <Parameter Name="p1" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p2" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p3" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p4" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p5" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p6" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p7" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p8" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p9" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p10" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p11" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p12" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="p13" Role="user defined" Unit="tbd">1.0</Parameter>
+         </ModelParameters>
+         <Compound Name="ERDensity_ERM">
+            <Annotation>ERDensity_ERM</Annotation>
+         </Compound>
+         <Compound Name="PA_D_Cytosol">
+            <Annotation>PA_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="PABCa_D_Cytosol">
+            <Annotation>PABCa_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="Ca_D_ER">
+            <Annotation>Ca_D_ER</Annotation>
+         </Compound>
+         <Compound Name="h_D_ERM">
+            <Annotation>h_D_ERM</Annotation>
+         </Compound>
+         <Compound Name="PABMg_D_Cytosol">
+            <Annotation>PABMg_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="ERDensity_D_ERM">
+            <Annotation>ERDensity_D_ERM</Annotation>
+         </Compound>
+         <Compound Name="CG_D_Cytosol">
+            <Annotation>CG_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="D28kB_D_Cytosol">
+            <Annotation>D28kB_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="PA_Cytosol">
+            <Annotation>PA_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="CG_Cytosol">
+            <Annotation>CG_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="PABCa_Cytosol">
+            <Annotation>PABCa_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="Mg_Cytosol">
+            <Annotation>Mg_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="D28k_high_Cytosol">
+            <Annotation>D28k_high_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="D28k_high_D_Cytosol">
+            <Annotation>D28k_high_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="Ca_ER">
+            <Annotation>Ca_ER</Annotation>
+         </Compound>
+         <Compound Name="D28kB_high_D_Cytosol">
+            <Annotation>D28kB_high_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="CGB_D_Cytosol">
+            <Annotation>CGB_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="Ca_D_Cytosol">
+            <Annotation>Ca_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="CGB_Cytosol">
+            <Annotation>CGB_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="D28k_Cytosol">
+            <Annotation>D28k_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="D28kB_high_Cytosol">
+            <Annotation>D28kB_high_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="PABMg_Cytosol">
+            <Annotation>PABMg_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="IP3_Cytosol">
+            <Annotation>IP3_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="Ca_Extracellular">
+            <Annotation>Ca_Extracellular</Annotation>
+         </Compound>
+         <Compound Name="D28k_D_Cytosol">
+            <Annotation>D28k_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="IP3_D_Cytosol">
+            <Annotation>IP3_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="Mg_D_Cytosol">
+            <Annotation>Mg_D_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="Ca_Cytosol">
+            <Annotation>Ca_Cytosol</Annotation>
+         </Compound>
+         <Compound Name="h_ERM">
+            <Annotation>h_ERM</Annotation>
+         </Compound>
+         <Compound Name="Ca_D_Extracellular">
+            <Annotation>Ca_D_Extracellular</Annotation>
+         </Compound>
+         <Compound Name="D28kB_Cytosol">
+            <Annotation>D28kB_Cytosol</Annotation>
+         </Compound>
+         <Feature Name="Extracellular" />
+         <Feature Name="Cytosol" />
+         <Feature Name="ER" />
+         <Membrane InsideFeature="Cytosol" OutsideFeature="Extracellular" MembraneVoltage="Voltage_PM" Name="PM" />
+         <Membrane InsideFeature="ER" OutsideFeature="Cytosol" MembraneVoltage="Voltage_ERM" Name="ERM" />
+         <LocalizedCompound Name="ERDensity_ERM" CompoundRef="ERDensity_ERM" Structure="ERM" OverrideName="true" />
+         <LocalizedCompound Name="PA_D_Cytosol" CompoundRef="PA_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="PABCa_D_Cytosol" CompoundRef="PABCa_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="Ca_D_ER" CompoundRef="Ca_D_ER" Structure="ER" OverrideName="true" />
+         <LocalizedCompound Name="h_D_ERM" CompoundRef="h_D_ERM" Structure="ERM" OverrideName="true" />
+         <LocalizedCompound Name="PABMg_D_Cytosol" CompoundRef="PABMg_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="ERDensity_D_ERM" CompoundRef="ERDensity_D_ERM" Structure="ERM" OverrideName="true" />
+         <LocalizedCompound Name="CG_D_Cytosol" CompoundRef="CG_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="D28kB_D_Cytosol" CompoundRef="D28kB_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="PA_Cytosol" CompoundRef="PA_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="CG_Cytosol" CompoundRef="CG_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="PABCa_Cytosol" CompoundRef="PABCa_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="Mg_Cytosol" CompoundRef="Mg_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="D28k_high_Cytosol" CompoundRef="D28k_high_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="D28k_high_D_Cytosol" CompoundRef="D28k_high_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="Ca_ER" CompoundRef="Ca_ER" Structure="ER" OverrideName="true" />
+         <LocalizedCompound Name="D28kB_high_D_Cytosol" CompoundRef="D28kB_high_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="CGB_D_Cytosol" CompoundRef="CGB_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="Ca_D_Cytosol" CompoundRef="Ca_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="CGB_Cytosol" CompoundRef="CGB_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="D28k_Cytosol" CompoundRef="D28k_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="D28kB_high_Cytosol" CompoundRef="D28kB_high_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="PABMg_Cytosol" CompoundRef="PABMg_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="IP3_Cytosol" CompoundRef="IP3_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="Ca_Extracellular" CompoundRef="Ca_Extracellular" Structure="Extracellular" OverrideName="true" />
+         <LocalizedCompound Name="D28k_D_Cytosol" CompoundRef="D28k_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="IP3_D_Cytosol" CompoundRef="IP3_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="Mg_D_Cytosol" CompoundRef="Mg_D_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="Ca_Cytosol" CompoundRef="Ca_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <LocalizedCompound Name="h_ERM" CompoundRef="h_ERM" Structure="ERM" OverrideName="true" />
+         <LocalizedCompound Name="Ca_D_Extracellular" CompoundRef="Ca_D_Extracellular" Structure="Extracellular" OverrideName="true" />
+         <LocalizedCompound Name="D28kB_Cytosol" CompoundRef="D28kB_Cytosol" Structure="Cytosol" OverrideName="true" />
+         <SimpleReaction Structure="Cytosol" Name="CD28k_highDbinding" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28k_high_D_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="D28kB_high_D_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * D28k_high_D_Cytosol * D28k_high_D_Cytosol_ConcFactor * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * D28kB_high_D_Cytosol * D28kB_high_D_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">2.6</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">5.5</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28k_high_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28kB_high_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PA_Dbinding" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PA_D_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="PABCa_D_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * PA_D_Cytosol * PA_D_Cytosol_ConcFactor * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * PABCa_D_Cytosol * PABCa_D_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">0.95</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">107.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PA_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABCa_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CG_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="CG_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * CG_D_Cytosol * CG_D_Cytosol_ConcFactor) - (0.00166112956810631 * CG_Cytosol * CG_Cytosol_ConcFactor)) / l_n / pow(r_d,2.0) / l_star) + (D * ((0.00166112956810631 * CG_D_Cytosol * CG_D_Cytosol_ConcFactor) - CG_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">15.0</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="CG_F" Role="user defined" Unit="0.001 mole.metre-3">140.47567</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="r_d" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="CG_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="CG_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="IP3deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="IP3_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="IP3_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * IP3_D_Cytosol * IP3_D_Cytosol_ConcFactor) - (0.00166112956810631 * IP3_Cytosol * IP3_Cytosol_ConcFactor)) / l_n / pow(r_d,2.0) / l_star) + (D * ((0.00166112956810631 * IP3_D_Cytosol * IP3_D_Cytosol_ConcFactor) - IP3_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">283.0</Parameter>
+               <Parameter Name="IP3_F" Role="user defined" Unit="0.001 mole.metre-3">0.16</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="r_d" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="IP3_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="IP3_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28kB_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28kB_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28kB_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * D28kB_D_Cytosol * D28kB_D_Cytosol_ConcFactor) - (0.00166112956810631 * D28kB_Cytosol * D28kB_Cytosol_ConcFactor)) / l_n / pow(r_D,2.0) / l_star) + (D * ((0.00166112956810631 * D28kB_D_Cytosol * D28kB_D_Cytosol_ConcFactor) - D28kB_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_D" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="D28kB_F" Role="user defined" Unit="0.001 mole.metre-3">4.16951</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28kB_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28kB_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28k_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28k_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28k_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * D28k_D_Cytosol * D28k_D_Cytosol_ConcFactor) - (0.00166112956810631 * D28k_Cytosol * D28k_Cytosol_ConcFactor)) / l_n / pow(r_D,2.0) / l_star) + (D * ((0.00166112956810631 * D28k_D_Cytosol * D28k_D_Cytosol_ConcFactor) - D28k_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="D28k_F" Role="user defined" Unit="0.001 mole.metre-3">75.83049</Parameter>
+               <Parameter Name="r_D" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28k_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28k_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PA_MgD" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PA_D_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Mg_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="PABMg_D_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * PA_D_Cytosol * PA_D_Cytosol_ConcFactor * Mg_D_Cytosol * Mg_D_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * PABMg_D_Cytosol * PABMg_D_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">25.0</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">0.8</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PA_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABMg_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Mg_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PA_Ca" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PA_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="PABCa_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * PA_Cytosol * PA_Cytosol_ConcFactor * Ca_Cytosol * Ca_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * PABCa_Cytosol * PABCa_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">0.95</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">107.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PA_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABCa_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PABMg_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PABMg_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PABMg_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * PABMg_D_Cytosol * PABMg_D_Cytosol_ConcFactor) - (0.00166112956810631 * PABMg_Cytosol * PABMg_Cytosol_ConcFactor)) / l_n / pow(r_d,2.0) / l_star) + (D * ((0.00166112956810631 * PABMg_D_Cytosol * PABMg_D_Cytosol_ConcFactor) - PABMg_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">43.0</Parameter>
+               <Parameter Name="PABMg_F" Role="user defined" Unit="0.001 mole.metre-3">60.47222</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="r_d" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PABMg_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABMg_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28k_high_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28k_high_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28k_high_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * D28k_high_D_Cytosol * D28k_high_D_Cytosol_ConcFactor) - (0.00166112956810631 * D28k_high_Cytosol * D28k_high_Cytosol_ConcFactor)) / l_n / pow(r_D,2.0) / l_star) + (D * ((0.00166112956810631 * D28k_high_D_Cytosol * D28k_high_D_Cytosol_ConcFactor) - D28k_high_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D28k_high_F" Role="user defined" Unit="0.001 mole.metre-3">73.01104</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_D" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28k_high_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28k_high_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="Ca_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Ca_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * Ca_Cytosol * Ca_Cytosol_ConcFactor) - (0.00166112956810631 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">223.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28kB_high_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28kB_high_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28kB_high_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * D28kB_high_D_Cytosol * D28kB_high_D_Cytosol_ConcFactor) - (0.00166112956810631 * D28kB_high_Cytosol * D28kB_high_Cytosol_ConcFactor)) / l_n / pow(r_D,2.0) / l_star) + (D * ((0.00166112956810631 * D28kB_high_D_Cytosol * D28kB_high_D_Cytosol_ConcFactor) - D28kB_high_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="D28kB_high_F" Role="user defined" Unit="0.001 mole.metre-3">6.98896</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_D" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28kB_high_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28kB_high_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CG_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="CG_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * CG_Cytosol * CG_Cytosol_ConcFactor) - (0.00166112956810631 * CG_D_Cytosol * CG_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">15.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="CG_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="CG_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28kB_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28kB_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28kB_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * D28kB_Cytosol * D28kB_Cytosol_ConcFactor) - (0.00166112956810631 * D28kB_Cytosol * D28kB_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28kB_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="reaction1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="h_D_ERM" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Ca_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1"> - (sbmlRateFactor * (Kinh - (((0.00166112956810631 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor) + Kinh) * h_D_ERM)) * Kon)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="Kon" Role="user defined" Unit="1.0E15 molecules.metre.mole-1.second-1">2.7</Parameter>
+               <Parameter Name="Kinh" Role="user defined" Unit="0.001 mole.metre-3">0.2</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CGbinding" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CGB_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * CG_Cytosol * CG_Cytosol_ConcFactor * Ca_Cytosol * Ca_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * CGB_Cytosol * CGB_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">140.0</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">430.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="CG_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="CGB_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CaD28k_med" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28k_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="D28kB_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * D28k_Cytosol * D28k_Cytosol_ConcFactor * Ca_Cytosol * Ca_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * D28kB_Cytosol * D28kB_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">35.8</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">43.5</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28k_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28kB_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PABCa_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PABCa_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PABCa_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * PABCa_D_Cytosol * PABCa_D_Cytosol_ConcFactor) - (0.00166112956810631 * PABCa_Cytosol * PABCa_Cytosol_ConcFactor)) / l_n / pow(r_d,2.0) / l_star) + (D * ((0.00166112956810631 * PABCa_D_Cytosol * PABCa_D_Cytosol_ConcFactor) - PABCa_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">43.0</Parameter>
+               <Parameter Name="PABCa_F" Role="user defined" Unit="0.001 mole.metre-3">16.32481</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="r_d" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PABCa_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABCa_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="IP3_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="IP3_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="IP3_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * IP3_Cytosol * IP3_Cytosol_ConcFactor) - (0.00166112956810631 * IP3_D_Cytosol * IP3_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">283.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="IP3_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="IP3_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28k_high_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28k_high_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28k_high_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * D28k_high_Cytosol * D28k_high_Cytosol_ConcFactor) - (0.00166112956810631 * D28k_high_D_Cytosol * D28k_high_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28k_high_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28k_high_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="reaction0" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="h_ERM" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Ca_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1"> - (sbmlRateFactor * (Kinh - (((0.00166112956810631 * Ca_Cytosol * Ca_Cytosol_ConcFactor) + Kinh) * h_ERM)) * Kon)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="Kon" Role="user defined" Unit="1.0E15 molecules.metre.mole-1.second-1">2.7</Parameter>
+               <Parameter Name="Kinh" Role="user defined" Unit="0.001 mole.metre-3">0.2</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PABMg_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PABMg_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PABMg_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * PABMg_Cytosol * PABMg_Cytosol_ConcFactor) - (0.00166112956810631 * PABMg_D_Cytosol * PABMg_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">43.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PABMg_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABMg_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CD28k_high" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28k_high_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="D28kB_high_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * D28k_high_Cytosol * D28k_high_Cytosol_ConcFactor * Ca_Cytosol * Ca_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * D28kB_high_Cytosol * D28kB_high_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">2.6</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">5.5</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28k_high_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28kB_high_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28kBDbinding" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="D28k_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="D28kB_D_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor * D28k_D_Cytosol * D28k_D_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * D28kB_D_Cytosol * D28kB_D_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">35.8</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">43.5</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28kB_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28k_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PABCa_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PABCa_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PABCa_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * PABCa_Cytosol * PABCa_Cytosol_ConcFactor) - (0.00166112956810631 * PABCa_D_Cytosol * PABCa_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">43.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PABCa_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABCa_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PA_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PA_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PA_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * PA_Cytosol * PA_Cytosol_ConcFactor) - (0.00166112956810631 * PA_D_Cytosol * PA_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">43.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PA_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PA_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CGB_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CGB_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="CGB_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * CGB_D_Cytosol * CGB_D_Cytosol_ConcFactor) - (0.00166112956810631 * CGB_Cytosol * CGB_Cytosol_ConcFactor)) / l_n / pow(r_d,2.0) / l_star) + (D * ((0.00166112956810631 * CGB_D_Cytosol * CGB_D_Cytosol_ConcFactor) - CGB_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">15.0</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="CGB_F" Role="user defined" Unit="0.001 mole.metre-3">19.5243</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="r_d" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="CGB_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="CGB_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PA_Mg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PA_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Mg_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="PABMg_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * PA_Cytosol * PA_Cytosol_ConcFactor * Mg_Cytosol * Mg_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * PABMg_Cytosol * PABMg_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">25.0</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">0.8</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PA_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Mg_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PABMg_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="PA_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PA_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PA_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * PA_D_Cytosol * PA_D_Cytosol_ConcFactor) - (0.00166112956810631 * PA_Cytosol * PA_Cytosol_ConcFactor)) / l_n / pow(r_d,2.0) / l_star) + (D * ((0.00166112956810631 * PA_D_Cytosol * PA_D_Cytosol_ConcFactor) - PA_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">43.0</Parameter>
+               <Parameter Name="PA_F" Role="user defined" Unit="0.001 mole.metre-3">3.20298</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="r_d" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="PA_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="PA_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="IP3_degr" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="IP3_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * Kdegr * ((0.00166112956810631 * IP3_Cytosol * IP3_Cytosol_ConcFactor) - IP3_CytosolS) / KMOLE)</Parameter>
+               <Parameter Name="IP3_CytosolS" Role="user defined" Unit="0.001 mole.metre-3">0.16</Parameter>
+               <Parameter Name="Kdegr" Role="user defined" Unit="second-1">0.14</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="IP3_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28kB_high_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28kB_high_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28kB_high_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * D28kB_high_Cytosol * D28kB_high_Cytosol_ConcFactor) - (0.00166112956810631 * D28kB_high_D_Cytosol * D28kB_high_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28kB_high_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28kB_high_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="D28k_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="D28k_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="D28k_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * D28k_Cytosol * D28k_Cytosol_ConcFactor) - (0.00166112956810631 * D28k_D_Cytosol * D28k_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">28.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="D28k_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="D28k_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CGB_d" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CGB_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="CGB_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.75 * sbmlRateFactor * KMOLE * D * ((0.00166112956810631 * CGB_Cytosol * CGB_Cytosol_ConcFactor) - (0.00166112956810631 * CGB_D_Cytosol * CGB_D_Cytosol_ConcFactor)) * pow(r_neck,2.0) / l / pow(r_spine,3.0) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">15.0</Parameter>
+               <Parameter Name="l" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_spine" Role="user defined" Unit="1.0E-6 metre">0.288</Parameter>
+               <Parameter Name="r_neck" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="CGB_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="CGB_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="CG_Dbinding" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG_D_Cytosol" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CGB_D_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((2.7593514420370556E-6 * Kf * CG_D_Cytosol * CG_D_Cytosol_ConcFactor * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor) - (0.00166112956810631 * Kr * CGB_D_Cytosol * CGB_D_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="Kr" Role="user defined" Unit="second-1">140.0</Parameter>
+               <Parameter Name="Kf" Role="user defined" Unit="1000 metre3.mole-1.second-1">430.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="CG_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="CGB_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="IP3_degr1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="IP3_D_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * Kdegr * ((0.00166112956810631 * IP3_D_Cytosol * IP3_D_Cytosol_ConcFactor) - IP3_CytosolD) / KMOLE)</Parameter>
+               <Parameter Name="IP3_CytosolD" Role="user defined" Unit="0.001 mole.metre-3">0.16</Parameter>
+               <Parameter Name="Kdegr" Role="user defined" Unit="second-1">0.14</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="IP3_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="Ca_deg" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Ca_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * ((D * pow(r_n,2.0) * ((0.00166112956810631 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor) - (0.00166112956810631 * Ca_Cytosol * Ca_Cytosol_ConcFactor)) / l_n / pow(r_D,2.0) / l_star) + (D * ((0.00166112956810631 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor) - Ca_F) / l_star / lc)) / KMOLE)</Parameter>
+               <Parameter Name="D" Role="user defined" Unit="1.0E-12 metre2.second-1">223.0</Parameter>
+               <Parameter Name="Ca_F" Role="user defined" Unit="0.001 mole.metre-3">0.045</Parameter>
+               <Parameter Name="l_n" Role="user defined" Unit="1.0E-6 metre">0.66</Parameter>
+               <Parameter Name="r_D" Role="user defined" Unit="1.0E-6 metre">1.0</Parameter>
+               <Parameter Name="lc" Role="user defined" Unit="1.0E-6 metre">5.6265</Parameter>
+               <Parameter Name="r_n" Role="user defined" Unit="1.0E-6 metre">0.1</Parameter>
+               <Parameter Name="l_star" Role="user defined" Unit="1.0E-6 metre">27.9812</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Cytosol" Name="pulses" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="IP3_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * KMOLE * SVR * Js * pulses_ar / Rs / KMOLE)</Parameter>
+               <Parameter Name="Rs" Role="user defined" Unit="1">0.288</Parameter>
+               <Parameter Name="SVR" Role="user defined" Unit="1000000 metre-1">3.0</Parameter>
+               <Parameter Name="Js" Role="user defined" Unit="1.0E-9 mole.metre-2.second-1">0.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="9.999999999999999E-19 metre3.um-3">1.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="ER_leak_flux" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_ER" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="ERDensity_ERM" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1"> - (sbmlRateFactor * ERDensity_ERM * vL * (1.0 - (0.00166112956810631 * Ca_Cytosol * Ca_Cytosol_ConcFactor / (0.00166112956810631 * Ca_ER * Ca_ER_ConcFactor))) / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="vL" Role="user defined" Unit="1.0E-21 mole.molecules-1.second-1">0.12396</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_ER_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="SERCA_fluxD" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_D_ER" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="ERDensity_D_ERM" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1">(2.7593514420370556E-6 * sbmlRateFactor * ERDensity_D_ERM * vP * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor / ((kP * kP) + (2.7593514420370556E-6 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="kP" Role="user defined" Unit="tbd">0.27</Parameter>
+               <Parameter Name="vP" Role="user defined" Unit="1.0E-21 mole.molecules-1.second-1">3.75</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="IP3R_fluxD" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_D_ER" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="h_D_ERM" />
+            <Modifier LocalizedCompoundRef="ERDensity_D_ERM" />
+            <Modifier LocalizedCompoundRef="IP3_D_Cytosol" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1"> - (sbmlRateFactor * ERDensity_D_ERM * Jmax2 * (1.0 - (0.00166112956810631 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor / (0.00166112956810631 * Ca_D_ER * Ca_D_ER_ConcFactor))) * pow((2.7593514420370556E-6 * h_D_ERM * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor * IP3_D_Cytosol * IP3_D_Cytosol_ConcFactor / ((0.00166112956810631 * IP3_D_Cytosol * IP3_D_Cytosol_ConcFactor) + dI) / ((0.00166112956810631 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor) + Kact)),3.0) / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="Jmax2" Role="user defined" Unit="1.0E-57 metre6.mole.molecules-4.second-1">21000.0</Parameter>
+               <Parameter Name="dI" Role="user defined" Unit="0.001 mole.metre-3">20.0</Parameter>
+               <Parameter Name="Kact" Role="user defined" Unit="0.001 mole.metre-3">0.3</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_D_ER_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="IP3_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="SERCA_flux" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_ER" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="ERDensity_ERM" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1">(2.7593514420370556E-6 * sbmlRateFactor * ERDensity_ERM * vP * Ca_Cytosol * Ca_Cytosol_ConcFactor * Ca_Cytosol * Ca_Cytosol_ConcFactor / ((kP * kP) + (2.7593514420370556E-6 * Ca_Cytosol * Ca_Cytosol_ConcFactor * Ca_Cytosol * Ca_Cytosol_ConcFactor)) / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="kP" Role="user defined" Unit="tbd">0.27</Parameter>
+               <Parameter Name="vP" Role="user defined" Unit="1.0E-21 mole.molecules-1.second-1">3.75</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="flux0" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_Extracellular" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1">(sbmlRateFactor * flux0_ar / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="IP3R_flux" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_ER" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="ERDensity_ERM" />
+            <Modifier LocalizedCompoundRef="IP3_Cytosol" />
+            <Modifier LocalizedCompoundRef="h_ERM" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1"> - (sbmlRateFactor * ERDensity_ERM * Jmax2 * (1.0 - (0.00166112956810631 * Ca_Cytosol * Ca_Cytosol_ConcFactor / (0.00166112956810631 * Ca_ER * Ca_ER_ConcFactor))) * pow((2.7593514420370556E-6 * h_ERM * IP3_Cytosol * IP3_Cytosol_ConcFactor * Ca_Cytosol * Ca_Cytosol_ConcFactor / ((0.00166112956810631 * IP3_Cytosol * IP3_Cytosol_ConcFactor) + dI) / ((0.00166112956810631 * Ca_Cytosol * Ca_Cytosol_ConcFactor) + Kact)),3.0) / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="Jmax2" Role="user defined" Unit="1.0E-57 metre6.mole.molecules-4.second-1">21000.0</Parameter>
+               <Parameter Name="dI" Role="user defined" Unit="0.001 mole.metre-3">20.0</Parameter>
+               <Parameter Name="Kact" Role="user defined" Unit="0.001 mole.metre-3">0.3</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_ER_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="IP3_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="PM" Name="flux1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_D_Extracellular" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1">(sbmlRateFactor * flux1_ar / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="ERM" Name="ER_leak_fluxD" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Ca_D_Cytosol" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Ca_D_ER" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="ERDensity_D_ERM" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="molecules.um-2.s-1"> - (sbmlRateFactor * ERDensity_D_ERM * vL * (1.0 - (0.00166112956810631 * Ca_D_Cytosol * Ca_D_Cytosol_ConcFactor / (0.00166112956810631 * Ca_D_ER * Ca_D_ER_ConcFactor))) / KMOLE)</Parameter>
+               <Parameter Name="I" Role="inward current density" Unit="pA.um-2">0.0</Parameter>
+               <Parameter Name="vL" Role="user defined" Unit="1.0E-21 mole.molecules-1.second-1">0.12396</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1.0E-12 metre2.um-2">1.0</Parameter>
+               <Parameter Name="Ca_D_ER_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+               <Parameter Name="Ca_D_Cytosol_ConcFactor" Role="user defined" Unit="1.00000000000000013E18 um3.metre-3">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="Extracellular" Structure="Extracellular" />
+         <Diagram Name="Cytosol" Structure="Cytosol" />
+         <Diagram Name="ER" Structure="ER" />
+         <Diagram Name="PM" Structure="PM" />
+         <Diagram Name="ERM" Structure="ERM" />
+      </Model>
+      <SimulationSpec Name="Hernjak2005_Calcium_Signaling_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="Extracellular" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+            <FeatureMapping Feature="Cytosol" GeometryClass="Compartment" SubVolume="Compartment" Size="14169.5000044198">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+            <FeatureMapping Feature="ER" GeometryClass="Compartment" SubVolume="Compartment" Size="2500.0">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+            <MembraneMapping Membrane="PM" SurfaceToVolumeRatio="1.000000000046792" VolumeFraction="0.9999400137968426" Size="16669.5000051998" CalculateVoltage="false" SpecificCapacitance="1.0" InitialVoltage="0.0" GeometryClass="Compartment" />
+            <MembraneMapping Membrane="ERM" SurfaceToVolumeRatio="20.0" VolumeFraction="0.1499745042944985" Size="50000.0" CalculateVoltage="false" SpecificCapacitance="1.0" InitialVoltage="0.0" GeometryClass="Compartment" />
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ERDensity_ERM" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PA_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>3.20298</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PABCa_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>16.324810000000003</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Ca_D_ER" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>400.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="h_D_ERM" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.8</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PABMg_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>60.47222000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ERDensity_D_ERM" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CG_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>140.47567</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28kB_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>4.16951</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PA_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>3.20298</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CG_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>140.47567</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PABCa_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>16.324810000000003</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mg_Cytosol" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>590.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28k_high_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>73.01104</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28k_high_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>73.01104</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Ca_ER" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>400.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28kB_high_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>6.98896</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CGB_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>19.5243</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Ca_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.045</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CGB_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>19.5243</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28k_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>75.83049000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28kB_high_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>6.98896</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PABMg_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>60.47222000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="IP3_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.16</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Ca_Extracellular" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28k_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>75.83049000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="IP3_D_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.16</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mg_D_Cytosol" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>590.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Ca_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.045</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="h_ERM" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.8</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Ca_D_Extracellular" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="D28kB_Cytosol" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>4.16951</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="CD28k_highDbinding" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PA_Dbinding" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CG_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="IP3deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28kB_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28k_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PA_MgD" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PA_Ca" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PABMg_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28k_high_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Ca_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28kB_high_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CG_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28kB_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CGbinding" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CaD28k_med" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PABCa_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="IP3_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28k_high_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction0" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PABMg_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CD28k_high" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28kBDbinding" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PABCa_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PA_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CGB_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PA_Mg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="PA_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="IP3_degr" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28kB_high_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="D28k_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CGB_d" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="CG_Dbinding" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="IP3_degr1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Ca_deg" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="pulses" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="ER_leak_flux" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="SERCA_fluxD" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="IP3R_fluxD" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="SERCA_flux" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="flux0" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="IP3R_flux" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="flux1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="ER_leak_fluxD" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000003">
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/7711" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.pathway/hsa04730" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006816" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0060025" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0001011" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1629310283" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000162" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16169982" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node74">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">hdharuri@cds.caltech.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node75">
+                                 <vcard:Family>Dharuri</vcard:Family>
+                                 <vcard:Given>Harish</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node76">
+                                 <vcard:Orgname>California Institute of Technology</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2008-01-28T11:44:38Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2014-02-20T17:06:51Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000040">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005576" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000041">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005829" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000042">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005783" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000043">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005886" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000044">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005789" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000046">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000047">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000048">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000050">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00305" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:25107" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000053">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000054">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000056">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000057">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:18420" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00305" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000058">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000059">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000060">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000061">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000063">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000065">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node30">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000066">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node31">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000067">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node32">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00305" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node33">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:25107" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P20472" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000068">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node34">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:16595" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C01245" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000069">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node35">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000070">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node36">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000071">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node37">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:16595" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C01245" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000072">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node38">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:18420" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00305" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000073">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node39">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000075">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node40">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000076">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node41">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P05937" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000077">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node42">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000078">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node43">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000081">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node44">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000082">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node45">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000083">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node46">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0000287" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000084">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node47">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000085">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node48">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000086">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node49">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000088">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node50">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000090">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node51">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000092">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node52">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000093">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node53">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000094">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node54">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000096">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node55">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000098">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node56">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000099">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node57">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000100">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node58">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000101">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node59">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000102">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node60">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000104">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node61">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0000287" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000105">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node62">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000108">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node63">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000109">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node64">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000111">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node65">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005509" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000115">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node66">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000116">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node67">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000117">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node68">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000118">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node69">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000119">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node70">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000120">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node71">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000121">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node72">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000122">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node73">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0051924" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Hernjak2005_Calcium_Signaling)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>The model reproduces the time profiles of Calcium in the spine and dendrites as depicted in Fig 8 and Fig 9 of the paper for CF activation.</p>
+                     
+    
+                     <p>The model was reproduced using MathSBML.</p>
+                     
+    
+                     <p>Please note that the units of volume species is molecules/micrometer cubed as against the units of microMolar given in the paper. To convert the units to microMolar multiply the species concentration by the conversion factor 1/602.</p>
+                     
+    
+                     <br />
+                     
+    
+                     <p>
+                        This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2010 The BioModels Team.      
+                        <br />
+                        
+          For more information see the      
+                        <a href="http://www.ebi.ac.uk/biomodels/legal.html" target="_blank">terms of use</a>
+                        
+          .      
+                        <br />
+                        
+          To cite BioModels Database, please use      
+                        <a href="http://www.pubmedcentral.nih.gov/articlerender.fcgi?tool=pubmed&amp;pubmedid=16381960" target="_blank">Le Novère N., Bornstein B., Broicher A., Courtot M., Donizelli M., Dharuri H., Li L., Sauro H., Schilstra M., Shapiro B., Snoep J.L., Hucka M. (2006) BioModels Database: A Free, Centralized Database of Curated, Published, Quantitative Kinetic Models of Biochemical and Cellular Systems Nucleic Acids Res., 34: D689-D691.</a>
+                        
+
+                     </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000080" vcid="ReactionStep(IP3deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000111" vcid="ReactionStep(CG_Dbinding)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000106" vcid="ReactionStep(IP3_degr)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000114" vcid="ReactionStep(pulses)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000086" vcid="ReactionStep(D28k_high_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000047" vcid="Species(PABCa_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000070" vcid="Species(D28k_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000117" vcid="ReactionStep(IP3R_fluxD)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000063" vcid="Species(Ca_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000094" vcid="ReactionStep(PABCa_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000072" vcid="Species(Mg_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000090" vcid="ReactionStep(D28kB_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000109" vcid="ReactionStep(D28k_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000084" vcid="ReactionStep(PA_Ca)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000103" vcid="ReactionStep(CGB_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000100" vcid="ReactionStep(D28kBDbinding)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000069" vcid="Species(Ca_Extracellular)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000055" vcid="Species(CG_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000098" vcid="ReactionStep(PABMg_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000112" vcid="ReactionStep(IP3_degr1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000093" vcid="ReactionStep(CaD28k_med)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000045" vcid="Species(ERDensity_ERM)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000042" vcid="Structure(ER)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000068" vcid="Species(IP3_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000040" vcid="Structure(Extracellular)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000003" vcid="BioModel(Hernjak2005_Calcium_Signaling)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000110" vcid="ReactionStep(CGB_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000101" vcid="ReactionStep(PABCa_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000071" vcid="Species(IP3_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000060" vcid="Species(Ca_ER)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000078" vcid="ReactionStep(PA_Dbinding)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000118" vcid="ReactionStep(SERCA_flux)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000062" vcid="Species(CGB_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000079" vcid="ReactionStep(CG_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000048" vcid="Species(Ca_D_ER)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000122" vcid="ReactionStep(ER_leak_fluxD)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000121" vcid="ReactionStep(flux1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000052" vcid="Species(CG_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000066" vcid="Species(D28kB_high_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000056" vcid="Species(PABCa_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000099" vcid="ReactionStep(CD28k_high)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000077" vcid="ReactionStep(CD28k_highDbinding)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000057" vcid="Species(Mg_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000074" vcid="Species(h_ERM)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000119" vcid="ReactionStep(flux0)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000104" vcid="ReactionStep(PA_Mg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000085" vcid="ReactionStep(PABMg_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000064" vcid="Species(CGB_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000083" vcid="ReactionStep(PA_MgD)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000089" vcid="ReactionStep(CG_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000105" vcid="ReactionStep(PA_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000113" vcid="ReactionStep(Ca_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000120" vcid="ReactionStep(IP3R_flux)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000088" vcid="ReactionStep(D28kB_high_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000116" vcid="ReactionStep(SERCA_fluxD)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000082" vcid="ReactionStep(D28k_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000108" vcid="ReactionStep(D28kB_high_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000076" vcid="Species(D28kB_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000075" vcid="Species(Ca_D_Extracellular)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000096" vcid="ReactionStep(D28k_high_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000092" vcid="ReactionStep(CGbinding)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000059" vcid="Species(D28k_high_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000053" vcid="Species(D28kB_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000091" vcid="ReactionStep(reaction1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000054" vcid="Species(PA_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000058" vcid="Species(D28k_high_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000095" vcid="ReactionStep(IP3_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000115" vcid="ReactionStep(ER_leak_flux)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000061" vcid="Species(D28kB_high_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000067" vcid="Species(PABMg_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000050" vcid="Species(PABMg_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000043" vcid="Structure(PM)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000041" vcid="Structure(Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000087" vcid="ReactionStep(Ca_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000046" vcid="Species(PA_D_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000049" vcid="Species(h_D_ERM)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000065" vcid="Species(D28k_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000044" vcid="Structure(ERM)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000081" vcid="ReactionStep(D28kB_deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000102" vcid="ReactionStep(PA_d)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000097" vcid="ReactionStep(reaction0)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000073" vcid="Species(Ca_Cytosol)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000051" vcid="Species(ERDensity_D_ERM)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

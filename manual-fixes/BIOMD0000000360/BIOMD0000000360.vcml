@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Panteleev2002_TFPImechanism_schmema2">
+      <Model Name="Model_1">
+         <Compound Name="VIIa_TF">
+            <Annotation>VIIa_TF</Annotation>
+         </Compound>
+         <Compound Name="X">
+            <Annotation>X</Annotation>
+         </Compound>
+         <Compound Name="VIIa_TF_X">
+            <Annotation>VIIa_TF_X</Annotation>
+         </Compound>
+         <Compound Name="VIIa_TF_Xa">
+            <Annotation>VIIa_TF_Xa</Annotation>
+         </Compound>
+         <Compound Name="Xa">
+            <Annotation>Xa</Annotation>
+         </Compound>
+         <Compound Name="TFPI">
+            <Annotation>TFPI</Annotation>
+         </Compound>
+         <Compound Name="Xa_TFPI">
+            <Annotation>Xa_TFPI</Annotation>
+         </Compound>
+         <Compound Name="Xa_TFPI_VIIa_TF">
+            <Annotation>Xa_TFPI_VIIa_TF</Annotation>
+         </Compound>
+         <Compound Name="VIIa_TF_Xa_TFPI">
+            <Annotation>VIIa_TF_Xa_TFPI</Annotation>
+         </Compound>
+         <Feature Name="compartment" />
+         <LocalizedCompound Name="VIIa_TF" CompoundRef="VIIa_TF" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="X" CompoundRef="X" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="VIIa_TF_X" CompoundRef="VIIa_TF_X" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="VIIa_TF_Xa" CompoundRef="VIIa_TF_Xa" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Xa" CompoundRef="Xa" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="TFPI" CompoundRef="TFPI" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Xa_TFPI" CompoundRef="Xa_TFPI" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Xa_TFPI_VIIa_TF" CompoundRef="Xa_TFPI_VIIa_TF" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="VIIa_TF_Xa_TFPI" CompoundRef="VIIa_TF_Xa_TFPI" Structure="compartment" OverrideName="true" />
+         <SimpleReaction Structure="compartment" Name="reaction_1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VIIa_TF" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="X" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="VIIa_TF_X" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((k1 * VIIa_TF * VIIa_TF_ConcFactor * X * X_ConcFactor) - (k2 * VIIa_TF_X * VIIa_TF_X_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="1.6666666666666666E7 litre.second-1.mole-1">5.0</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="0.016666666666666666 second-1">770.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="VIIa_TF_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="X_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="VIIa_TF_X_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="reaction_2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VIIa_TF_X" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="VIIa_TF_Xa" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k1 * VIIa_TF_X * VIIa_TF_X_ConcFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="0.016666666666666666 second-1">420.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="VIIa_TF_X_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="reaction_3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VIIa_TF_Xa" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="VIIa_TF" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Xa" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((k1 * VIIa_TF_Xa * VIIa_TF_Xa_ConcFactor) - (k2 * VIIa_TF * VIIa_TF_ConcFactor * Xa * Xa_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="0.016666666666666666 second-1">770.0</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="1.6666666666666666E7 litre.second-1.mole-1">5.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="VIIa_TF_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="VIIa_TF_Xa_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="Xa_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="reaction_4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Xa" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="TFPI" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Xa_TFPI" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((k1 * Xa * Xa_ConcFactor * TFPI * TFPI_ConcFactor) - (k2 * Xa_TFPI * Xa_TFPI_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="1.6666666666666666E7 litre.second-1.mole-1">0.054</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="0.016666666666666666 second-1">0.02</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="Xa_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="Xa_TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="reaction_5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VIIa_TF" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Xa_TFPI" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Xa_TFPI_VIIa_TF" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((k1 * VIIa_TF * VIIa_TF_ConcFactor * Xa_TFPI * Xa_TFPI_ConcFactor) - (k2 * Xa_TFPI_VIIa_TF * Xa_TFPI_VIIa_TF_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="1.6666666666666666E7 litre.second-1.mole-1">0.44</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="0.016666666666666666 second-1">0.066</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="VIIa_TF_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="Xa_TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="Xa_TFPI_VIIa_TF_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="reaction_6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VIIa_TF_Xa" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="TFPI" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="VIIa_TF_Xa_TFPI" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((k1 * VIIa_TF_Xa * VIIa_TF_Xa_ConcFactor * TFPI * TFPI_ConcFactor) - (k2 * VIIa_TF_Xa_TFPI * VIIa_TF_Xa_TFPI_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="1.6666666666666666E7 litre.second-1.mole-1">10.0</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="0.016666666666666666 second-1">0.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="VIIa_TF_Xa_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="VIIa_TF_Xa_TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="reaction_7" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VIIa_TF_Xa_TFPI" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="VIIa_TF" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Xa_TFPI" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((k1 * VIIa_TF_Xa_TFPI * VIIa_TF_Xa_TFPI_ConcFactor) - (k2 * VIIa_TF * VIIa_TF_ConcFactor * Xa_TFPI * Xa_TFPI_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="0.016666666666666666 second-1">0.0</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="1.6666666666666666E7 litre.second-1.mole-1">0.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="VIIa_TF_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="Xa_TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="VIIa_TF_Xa_TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="reaction_8" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VIIa_TF_Xa_TFPI" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Xa_TFPI_VIIa_TF" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((k1 * VIIa_TF_Xa_TFPI * VIIa_TF_Xa_TFPI_ConcFactor) - (k2 * Xa_TFPI_VIIa_TF * Xa_TFPI_VIIa_TF_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="0.016666666666666666 second-1">0.0</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="0.016666666666666666 second-1">0.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="6.0E10 second.litre.uM.s-1.mole-1">1.6666666666667E-5</Parameter>
+               <Parameter Name="Xa_TFPI_VIIa_TF_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+               <Parameter Name="VIIa_TF_Xa_TFPI_ConcFactor" Role="user defined" Unit="1.0E-9 mole.litre-1.uM-1">1000.0000000000001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="compartment" Structure="compartment" />
+      </Model>
+      <SimulationSpec Name="Model_1_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="compartment" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="VIIa_TF" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>9.999997E-4</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="X" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.16999989999999995</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="VIIa_TF_X" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="VIIa_TF_Xa" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Xa" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="TFPI" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.002399999</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Xa_TFPI" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Xa_TFPI_VIIa_TF" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="VIIa_TF_Xa_TFPI" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="reaction_1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_7" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_8" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_0">
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/2759" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0007596" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1108260007" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000360" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/11985578" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node17">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">schubert@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node18">
+                                 <vcard:Family>Schubert</vcard:Family>
+                                 <vcard:Given>Michael</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node19">
+                                 <vcard:Orgname>EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node6">
+                     <dcterms:W3CDTF>2011-08-26T16:36:14Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2014-05-28T16:17:16Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_1">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P08709" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P13726" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_2">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00742" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_3">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P08709" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P13726" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00742" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_4">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P08709" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P13726" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00742" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_5">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00742" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_6">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P10646" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_7">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00742" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P10646" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_8">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00742" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P10646" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P08709" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P13726" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_9">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P08709" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P13726" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00742" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P10646" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList />
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_14" vcid="ReactionStep(reaction_5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_1" vcid="Species(VIIa_TF)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_16" vcid="ReactionStep(reaction_7)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8" vcid="Species(Xa_TFPI_VIIa_TF)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_13" vcid="ReactionStep(reaction_4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2" vcid="Species(X)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_12" vcid="ReactionStep(reaction_3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_6" vcid="Species(TFPI)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_15" vcid="ReactionStep(reaction_6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_5" vcid="Species(Xa)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_18" vcid="Structure(compartment)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7" vcid="Species(Xa_TFPI)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0" vcid="BioModel(Panteleev2002_TFPImechanism_schmema2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_9" vcid="Species(VIIa_TF_Xa_TFPI)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_10" vcid="ReactionStep(reaction_1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4" vcid="Species(VIIa_TF_Xa)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3" vcid="Species(VIIa_TF_X)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_17" vcid="ReactionStep(reaction_8)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_11" vcid="ReactionStep(reaction_2)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

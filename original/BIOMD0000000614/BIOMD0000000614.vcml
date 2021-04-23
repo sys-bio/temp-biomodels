@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Kamihira2000">
+      <Model Name="Kamihira2000">
+         <ModelParameters>
+            <Parameter Name="k1" Role="user defined" Unit="tbd">2.79E-6</Parameter>
+            <Parameter Name="k2" Role="user defined" Unit="tbd">2.29</Parameter>
+            <Parameter Name="a" Role="user defined" Unit="tbd">5.85E-5</Parameter>
+         </ModelParameters>
+         <Compound Name="f">
+            <Annotation>f</Annotation>
+         </Compound>
+         <Feature Name="compartment_" />
+         <LocalizedCompound Name="f" CompoundRef="f" Structure="compartment_" OverrideName="true" />
+         <SimpleReaction Structure="compartment_" Name="R1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="f" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(k1 * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment_" Name="R2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="f" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k2 * a * f * f_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="f_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment_" Name="R3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="f" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k1 * f * f_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="f_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment_" Name="R4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="f" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k2 * a * f * f_ConcFactor * f * f_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.litre.mol-1">1000000.0</Parameter>
+               <Parameter Name="f_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="compartment_" Structure="compartment_" />
+      </Model>
+      <SimulationSpec Name="Kamihira2000_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="compartment_" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="f" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="R1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="R4" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:1902903" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1608100002" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000614" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/10850796" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node9">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">tvarusai@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node10">
+                                 <vcard:Family>Varusai</vcard:Family>
+                                 <vcard:Given>Thawfeek</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node11">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node6">
+                     <dcterms:W3CDTF>2016-08-08T15:40:42Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2016-08-18T11:19:02Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P01258" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="Species(f)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>This species indicates the fraction of human calcitonin in the system.</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2016-08-15T11:20:45Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="BioModel(Kamihira2000)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Kamihira2000 - calcitonin fibrillation kinetics</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <div class="dc:description">
+                           
+        
+                           <p>This model studies the kinetics of human calcitonin fibrillation described as a two-step process. Empirical data is used to determine the parameter values. Results show that the first step in fibrillation is a slow homogenous reaction and the second step is a fast autocatalytic heterogenous reaction.</p>
+                           
+      
+                        </div>
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/10850796" title="Access to this publication">Conformational transitions
+    and fibrillation mechanism of human calcitonin as studied by
+    high-resolution solid-state 13C NMR.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Kamihira M, Naito A, Tuzi S, Nosaka
+  AY, Saitô H.</div>
+                        
+      
+                        <div class="bibo:Journal">Protein Sci. 2000 May; 9(5):
+  867-877</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>Conformational transitions of human calcitonin (hCT) during
+    fibril formation in the acidic and neutral conditions were
+    investigated by high-resolution solid-state 13C NMR
+    spectroscopy. In aqueous acetic acid solution (pH 3.3), a local
+    alpha-helical form is present around Gly10 whereas a random
+    coil form is dominant as viewed from Phe22, Ala26, and Ala31 in
+    the monomer form on the basis of the 13C chemical shifts. On
+    the other hand, a local beta-sheet form as viewed from Gly10
+    and Phe22, and both beta-sheet and random coil as viewed from
+    Ala26 and Ala31 were detected in the fibril at pH 3.3. The
+    results indicate that conformational transitions from
+    alpha-helix to beta-sheet, and from random coil to beta-sheet
+    forms occurred in the central and C-terminus regions,
+    respectively, during the fibril formation. The increased 13C
+    resonance intensities of fibrils after a certain delay time
+    suggests that the fibrillation can be explained by a two-step
+    reaction mechanism in which the first step is a homogeneous
+    association to form a nucleus, and the second step is an
+    autocatalytic heterogeneous fibrillation. In contrast to the
+    fibril at pH 3.3, the fibril at pH 7.5 formed a local
+    beta-sheet conformation at the central region and exhibited a
+    random coil at the C-terminus region. Not only a hydrophobic
+    interaction among the amphiphilic alpha-helices, but also an
+    electrostatic interaction between charged side chains can play
+    an important role for the fibril formation at pH 7.5 and 3.3
+    acting as electrostatically favorable and unfavorable
+    interactions, respectively. These results suggest that hCT
+    fibrils are formed by stacking antiparallel beta-sheets at pH
+    7.5 and a mixture of antiparallel and parallel beta-sheets at
+    pH 3.3.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000614">BIOMD0000000614</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(R1)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI5">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2016-08-15T11:23:09Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(R3)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI6">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2016-08-15T11:23:23Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_732ebd23-9615-4c54-bbf5-7c374aeef040" vcid="Structure(compartment_)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI6" vcid="ReactionStep(R3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI5" vcid="ReactionStep(R1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Kamihira2000)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/dc109037-5493-4148-bbc1-794a90b34a14" vcid="ReactionStep(R4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_1d37350b-bbcc-4fd6-bffc-9e8cf46ec999" vcid="ReactionStep(R2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Species(f)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

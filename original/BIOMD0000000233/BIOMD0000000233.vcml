@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Wilhelm2009_BistableReaction">
+      <Model Name="Wilhelm2009_BistableReaction">
+         <Compound Name="S">
+            <Annotation>S</Annotation>
+         </Compound>
+         <Compound Name="P">
+            <Annotation>P</Annotation>
+         </Compound>
+         <Compound Name="X">
+            <Annotation>X</Annotation>
+         </Compound>
+         <Compound Name="Y">
+            <Annotation>Y</Annotation>
+         </Compound>
+         <Feature Name="batch" />
+         <LocalizedCompound Name="S" CompoundRef="S" Structure="batch" OverrideName="true" />
+         <LocalizedCompound Name="P" CompoundRef="P" Structure="batch" OverrideName="true" />
+         <LocalizedCompound Name="X" CompoundRef="X" Structure="batch" OverrideName="true" />
+         <LocalizedCompound Name="Y" CompoundRef="Y" Structure="batch" OverrideName="true" />
+         <SimpleReaction Structure="batch" Name="r1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="S" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Y" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="X" Stoichiometry="2" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k1 * S * S_ConcFactor * Y * Y_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="k1" Role="user defined" Unit="litre2.mol-1.s-1">8.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="S_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="Y_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="batch" Name="r2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="X" Stoichiometry="2" />
+            <Product LocalizedCompoundRef="X" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Y" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k2 * pow((X * X_ConcFactor),2.0) / KMOLE)</Parameter>
+               <Parameter Name="k2" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="X_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="batch" Name="r3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="X" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Y" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Y" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k3 * X * X_ConcFactor * Y * Y_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="k3" Role="user defined" Unit="litre2.mol-1.s-1">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="X_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="Y_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="batch" Name="r4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="X" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="P" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k4 * X * X_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="k4" Role="user defined" Unit="litre.s-1">1.5</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="X_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="batch" Structure="batch" />
+      </Model>
+      <SimulationSpec Name="Wilhelm2009_BistableReaction_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="batch" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="S" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="P" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="X" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Y" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="r1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r4" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_BistableReaction">
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/131567" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0009889" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL2425356597" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000233" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/19737387" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node8">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">thomas.wilhelm@bbsrc.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node9">
+                                 <vcard:Family>Wilhelm</vcard:Family>
+                                 <vcard:Given>Thomas</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node10">
+                                 <vcard:Orgname>IFR, Norwich, UK</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node6">
+                     <dcterms:W3CDTF>2009-06-30T17:26:59Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2015-02-25T12:43:45Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Wilhelm2009_BistableReaction)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>
+                        
+      This a model from the article:
+      
+                        <br />
+                        
+    
+                        <strong> The smallest chemical reaction system with bistability
+</strong>
+                        
+    
+                        <br />
+                        
+Thomas Wilhelm
+      
+                        <em>BMC Systems Biology</em>
+                        2009;Sep 8;3:90.
+      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/19737387">19737387</a>
+                        ,
+      
+                        <br />
+                        
+    
+                        <strong>Abstract:</strong>
+                        
+    
+                        <br />
+                        
+Background
+
+      
+                        <br />
+                        
+Bistability underlies basic biological phenomena, such as cell division, differentiation, cancer onset, and apoptosis. So far biologists identified two necessary conditions for bistability: positive feedback and ultrasensitivity.
+
+                        <br />
+                        
+Results
+
+                        <br />
+                        
+Biological systems are based upon elementary mono- and bimolecular chemical reactions. In order to definitely clarify all necessary conditions for bistability we here present the corresponding minimal system. According to our definition, it contains the minimal number of (i) reactants, (ii) reactions, and (iii) terms in the corresponding ordinary differential equations (decreasing importance from i-iii). The minimal bistable system contains two reactants and four irreversible reactions (three bimolecular, one monomolecular).
+
+We discuss the roles of the reactions with respect to the necessary conditions for bistability: two reactions comprise the positive feedback loop, a third reaction filters out small stimuli thus enabling a stable 'off' state, and the fourth reaction prevents explosions. We argue that prevention of explosion is a third general necessary condition for bistability, which is so far lacking discussion in the literature.
+
+Moreover, in addition to proving that in two-component systems three steady states are necessary for bistability (five for tristability, etc.), we also present a simple general method to design such systems: one just needs one production and three different degradation mechanisms (one production, five degradations for tristability, etc.). This helps modelling multistable systems and it is important for corresponding synthetic biology projects.
+
+                        <br />
+                         
+Conclusion
+
+                        <br />
+                         
+The presented minimal bistable system finally clarifies the often discussed question for the necessary conditions for bistability. The three necessary conditions are: positive feedback, a mechanism to filter out small stimuli and a mechanism to prevent explosions. This is important for modelling bistability with simple systems and for synthetically designing new bistable systems. Our simple model system is also well suited for corresponding teaching purposes.
+   
+                     </p>
+                     
+  
+                     <br />
+                     
+  
+                     <p style="font-size:x-small;">This is a Systems Biology Markup Language (SBML) file, generated by MathSBML 2.9.0 [8-Oct-2008] 30-Jun-2009 17:26:58(GMT+00:59). SBML is a form of XML, and most XML files will not display properly in an internet browser. To view the contents of an XML file use the "Page Source" or equivalent button on you browser.</p>
+                     
+  
+                     <p>
+                        This model originates from BioModels Database: A Database of Annotated Published Models (http://www.ebi.ac.uk/biomodels/). It is copyright (c) 2005-2012 The BioModels.net Team.
+                        <br />
+                        
+For more information see the 
+                        <a href="http://www.ebi.ac.uk/biomodels/legal.html" target="_blank">terms of use</a>
+                        .
+                        <br />
+                        
+To cite BioModels Database, please use: 
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a>
+                        
+
+                     </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825151" vcid="Species(Y)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_BistableReaction" vcid="BioModel(Wilhelm2009_BistableReaction)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825146" vcid="Structure(batch)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825153" vcid="ReactionStep(r1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825154" vcid="ReactionStep(r2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825150" vcid="Species(X)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825156" vcid="ReactionStep(r4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825155" vcid="ReactionStep(r3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825148" vcid="Species(S)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_825149" vcid="Species(P)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

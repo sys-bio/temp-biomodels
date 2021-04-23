@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Cronwright2002_Glycerol_Synthesis">
+      <Model Name="Cronwright2002_Glycerol_Synthesis">
+         <Compound Name="G3P">
+            <Annotation>G3P</Annotation>
+         </Compound>
+         <Compound Name="Gly">
+            <Annotation>Gly</Annotation>
+         </Compound>
+         <Compound Name="DHAP">
+            <Annotation>DHAP</Annotation>
+         </Compound>
+         <Feature Name="compartment" />
+         <LocalizedCompound Name="G3P" CompoundRef="G3P" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Gly" CompoundRef="Gly" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="DHAP" CompoundRef="DHAP" Structure="compartment" OverrideName="true" />
+         <SimpleReaction Structure="compartment" Name="Gpd_p" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="DHAP" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="G3P" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ((NADH * DHAP * DHAP_ConcFactor) - (NAD * G3P * G3P_ConcFactor / Keq1)) * Vf1 / ((1.0 + (F16BP / K1f16bp) + (ATP / K1atp) + (ADP / K1adp)) * (1.0 + (NADH / K1nadh) + (NAD / K1nad)) * (1.0 + (DHAP * DHAP_ConcFactor / K1dhap) + (G3P * G3P_ConcFactor / K1g3p))) / (K1nadh * K1dhap))</Parameter>
+               <Parameter Name="NADH" Role="user defined" Unit="0.001 mole.litre-1">1.87</Parameter>
+               <Parameter Name="Keq1" Role="user defined" Unit="dimensionless">10000.0</Parameter>
+               <Parameter Name="ATP" Role="user defined" Unit="0.001 mole.litre-1">2.37</Parameter>
+               <Parameter Name="K1g3p" Role="user defined" Unit="0.001 mole.litre-1">1.2</Parameter>
+               <Parameter Name="K1dhap" Role="user defined" Unit="0.001 mole.litre-1">0.54</Parameter>
+               <Parameter Name="K1adp" Role="user defined" Unit="0.001 mole.litre-1">2.0</Parameter>
+               <Parameter Name="K1nadh" Role="user defined" Unit="0.001 mole.litre-1">0.023</Parameter>
+               <Parameter Name="ADP" Role="user defined" Unit="0.001 mole.litre-1">2.17</Parameter>
+               <Parameter Name="NAD" Role="user defined" Unit="0.001 mole.litre-1">1.45</Parameter>
+               <Parameter Name="F16BP" Role="user defined" Unit="0.001 mole.litre-1">6.01</Parameter>
+               <Parameter Name="K1nad" Role="user defined" Unit="0.001 mole.litre-1">0.93</Parameter>
+               <Parameter Name="K1atp" Role="user defined" Unit="0.001 mole.litre-1">0.73</Parameter>
+               <Parameter Name="Vf1" Role="user defined" Unit="1.6666666666666667E-5 mole.litre-1.second-1">47.0</Parameter>
+               <Parameter Name="K1f16bp" Role="user defined" Unit="0.001 mole.litre-1">4.8</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60000 second.litre.uM.s-1.mole-1">16.666666666667002</Parameter>
+               <Parameter Name="G3P_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="DHAP_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="Gpp_p" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="G3P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Gly" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * V2 * G3P * G3P_ConcFactor / ((1.0 + (G3P * G3P_ConcFactor / K2g3p)) * (1.0 + (Phi / K2phi))) / K2g3p)</Parameter>
+               <Parameter Name="V2" Role="user defined" Unit="1.6666666666666667E-5 mole.litre-1.second-1">53.0</Parameter>
+               <Parameter Name="K2g3p" Role="user defined" Unit="0.001 mole.litre-1">3.5</Parameter>
+               <Parameter Name="Phi" Role="user defined" Unit="0.001 mole.litre-1">1.0</Parameter>
+               <Parameter Name="K2phi" Role="user defined" Unit="0.001 mole.litre-1">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60000 second.litre.uM.s-1.mole-1">16.666666666667002</Parameter>
+               <Parameter Name="G3P_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="compartment" Structure="compartment" />
+      </Model>
+      <SimulationSpec Name="Cronwright2002_Glycerol_Synthesis_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="compartment" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="G3P" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Gly" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>15100.000000000002</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DHAP" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>590.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="Gpd_p" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Gpp_p" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000002">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006114" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.pathway/sce00561" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/4932" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL6624139162" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000076" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/12200299" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node15">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">jls@sun.ac.za</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node17">
+                                 <vcard:Family>Snoep</vcard:Family>
+                                 <vcard:Given>Jacky L</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node18">
+                                 <vcard:Orgname>Stellenbosh University</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node16">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">hdharuri@cds.caltech.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node19">
+                                 <vcard:Family>Dharuri</vcard:Family>
+                                 <vcard:Given>Harish</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node20">
+                                 <vcard:Orgname>California Institute of Technology</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2006-11-06T02:32:33Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2012-05-16T10:18:47Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000003">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0005737" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000004">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:15978" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00093" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000005">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:17754" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00116" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000006">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:16108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00111" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000007">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/1.1.1.94" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R00842" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000008">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/3.1.3.21" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R00841" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Cronwright2002_Glycerol_Synthesis)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="left">
+                        
+      
+                        <font face="Arial, Helvetica, sans-serif">
+                           
+        
+                           <b>
+                              
+          
+                              <a href="http://www.sbml.org/">SBML</a>
+                              
+              level 2 code generated for the JWS Online project by Jacky Snoep using          
+                              <a href="http://pysces.sourceforge.net/">PySCeS</a>
+                              
+          
+                              <br />
+                              
+              Run this model online at          
+                              <a href="http://jjj.biochem.sun.ac.za/">http://jjj.biochem.sun.ac.za</a>
+                              
+          
+                              <br />
+                              
+              To cite JWS Online please refer to: Olivier, B.G. and Snoep, J.L. (2004)          
+                              <a href="http://bioinformatics.oupjournals.org/cgi/content/abstract/20/13/2143">Web-based 
+modelling using JWS Online</a>
+                              
+              , Bioinformatics, 20:2143-2144          
+                           </b>
+                           
+      
+                        </font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p align="right">
+                        
+      
+                        <font color="#FFFFFF">.</font>
+                        
+    
+                     </p>
+                     
+    
+                     <p>
+                        
+      
+                        <u>Biomodels Curation</u>
+                        
+          The model reproduces the flux value of "Gpp p" (rate of Glycerol synthesis) as depicted in Fig 3 of the paper. The model reproduces the flux for early exponential phase , however it can be used to reproduce the values for other phases by plugging in appropriate values for maximal rates as given in Table 1 and metabolite concentrations as given in Table 2 of the paper. The model was succesfully reproduced using Jarnac.      
+                     </p>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000005" vcid="Species(Gly)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000006" vcid="Species(DHAP)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000004" vcid="Species(G3P)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000003" vcid="Structure(compartment)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000002" vcid="BioModel(Cronwright2002_Glycerol_Synthesis)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000007" vcid="ReactionStep(Gpd_p)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000008" vcid="ReactionStep(Gpp_p)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+
