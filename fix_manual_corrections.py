@@ -17,7 +17,7 @@ FIXES = {
     ],
     'BIOMD0000000618': [
         {
-            'filename': 'BIOMD0000000618.sedml',
+            'filename': 'BIOMD0000000618_SED-ML.xml',
             'old': '<model id="model2" language="urn:sedml:language:sbml" source="model1">',
             'new': '<model id="model2" language="urn:sedml:language:sbml" source="#model1">',
         }
