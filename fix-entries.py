@@ -8,7 +8,7 @@ import os
 import shutil
 import sys
 
-MANUALLY_FIXED_ENTRIES_DIR = os.path.dirname(__file__)
+MANUALLY_FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'fixed-entries')
 FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'fully-fixed-entries')
 
 
