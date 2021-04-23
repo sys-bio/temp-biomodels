@@ -60,7 +60,13 @@ FIXES = {
             'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
             'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
         },
-    ]
+    ],
+    'BIOMD0000000810/Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.sedml': [
+        {
+            'old': '<model id="Ganguli2018-immuno regulatory mechanisms in tumor microenvironment"',
+            'new': '<model id="model1"',
+        }
+    ],
 }
 
 
