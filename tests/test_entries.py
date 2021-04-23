@@ -172,6 +172,8 @@ class EntriesTestCase(unittest.TestCase):
         with open(filename, 'r') as file:
             ast.parse(file.read())
 
+        subprocess.check_call(['flake8', filename])
+
     @parameterized.parameterized.expand(SVG_FILES, skip_on_empty=True)
     @unittest.skip('Files have errors, but readers are able to read the files nonetheless')
     def test_svg_files(self, filename):
