@@ -29,6 +29,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+import zipfile
 
 
 MAX_SEDML_FILES = os.getenv('MAX_SEDML_FILES', None)
@@ -152,6 +153,12 @@ class EntriesTestCase(unittest.TestCase):
     @parameterized.parameterized.expand(XML_FILES, skip_on_empty=True)
     def test_xml_files(self, filename):
         etree.parse(filename)
+
+    @parameterized.parameterized.expand(ZIP_FILES, skip_on_empty=True)
+    def test_zip_files(self, filename):
+        with open(filename, 'rb') as file:
+            zip_file = zipfile.ZipFile(file, mode='r')
+            zip_file.extractall(self.temp_dirname)
 
 
 def does_simulator_have_capabilities_to_execute_sed_document(sed_doc, simulator_specs):
