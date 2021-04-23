@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Cloutier2012 - Feedback motif for Parkinson's disease">
+      <Model Name="Cloutier2012">
+         <ModelParameters>
+            <Parameter Name="k1" Role="user defined" Unit="tbd">17280.0</Parameter>
+            <Parameter Name="k2" Role="user defined" Unit="tbd">17280.0</Parameter>
+            <Parameter Name="k3" Role="user defined" Unit="tbd">0.168</Parameter>
+            <Parameter Name="k4" Role="user defined" Unit="tbd">0.168</Parameter>
+            <Parameter Name="dalphasyn" Role="user defined" Unit="tbd">15.0</Parameter>
+            <Parameter Name="kalphasyn" Role="user defined" Unit="tbd">8.5</Parameter>
+            <Parameter Name="VC_TimeConvFactor" Role="user defined" Unit="1">
+               1.1574074074074073E-5
+               <Annotation>Conversion from SBML time units to VC time units</Annotation>
+            </Parameter>
+            <Parameter Name="S1" Role="user defined" Unit="tbd">(2.6 * (((t * VC_TimeConvFactor) &gt; 10.0) &amp;&amp; ((t * VC_TimeConvFactor) &lt; 150.0)))</Parameter>
+            <Parameter Name="S2_4" Role="user defined" Unit="tbd">1.0</Parameter>
+         </ModelParameters>
+         <Compound Name="ROS">
+            <Annotation>ROS</Annotation>
+         </Compound>
+         <Compound Name="alpha_syn">
+            <Annotation>alpha_syn</Annotation>
+         </Compound>
+         <Feature Name="Neuron" />
+         <LocalizedCompound Name="ROS" CompoundRef="ROS" Structure="Neuron" OverrideName="true" />
+         <LocalizedCompound Name="alpha_syn" CompoundRef="alpha_syn" Structure="Neuron" OverrideName="true" />
+         <SimpleReaction Structure="Neuron" Name="ROS_1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="ROS" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="alpha_syn" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k1 * (1.0 + S1 + (dalphasyn * pow((alpha_syn * alpha_syn_ConcFactor / kalphasyn),4.0) / (1.0 + pow((alpha_syn * alpha_syn_ConcFactor / kalphasyn),4.0)))))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="86400000 second.litre.uM.s-1.mole-1">0.011574074074074002</Parameter>
+               <Parameter Name="alpha_syn_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Neuron" Name="ROS_2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="ROS" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k2 * S2_4 * ROS * ROS_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="86400000 second.litre.uM.s-1.mole-1">0.011574074074074002</Parameter>
+               <Parameter Name="ROS_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Neuron" Name="aSyn_1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="alpha_syn" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="ROS" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k3 * S2_4 * ROS * ROS_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="86400000 second.litre.uM.s-1.mole-1">0.011574074074074002</Parameter>
+               <Parameter Name="ROS_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Neuron" Name="aSyn_2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="alpha_syn" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k4 * S2_4 * alpha_syn * alpha_syn_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="86400000 second.litre.uM.s-1.mole-1">0.011574074074074002</Parameter>
+               <Parameter Name="alpha_syn_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="Neuron" Structure="Neuron" />
+      </Model>
+      <SimulationSpec Name="Cloutier2012_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="Neuron" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E12">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ROS" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1000.0000000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="alpha_syn" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1000.0000000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="ROS_1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="ROS_2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="aSyn_1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="aSyn_2" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:hasVersion xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:14330" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasVersion>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0000302" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0070841" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1410300000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000558" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDerivedFrom xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/22757585" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDerivedFrom>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/22757587" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node13">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lloret@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node14">
+                                 <vcard:Family>Lloret i Villas</vcard:Family>
+                                 <vcard:Given>Audald</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node15">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2014-11-26T11:29:00Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2015-04-17T10:08:05Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0000938" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI2">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:26523" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI3">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P37840" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="ReactionStep(ROS_1)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI12">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-09-16T14:28:23Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(ROS)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Reactive oxygen species</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI2">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-09-16T14:19:50Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(alpha_syn)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Misfolded alpha-synuclein</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI3">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-09-16T14:20:14Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Structure(Neuron)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Type cell: Neuron</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-10-07T15:59:20Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(ROS_2)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI13">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-09-16T14:30:56Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(aSyn_2)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI15">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-09-16T14:33:45Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="BioModel(Cloutier2012 - Feedback motif for Parkinson&amp;apos;s disease)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Cloutier2012 - Feedback motif for Parkinson's
+disease</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/22757587" title="Access to this publication">Feedback motif for the
+    pathogenesis of Parkinson's disease.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Cloutier M, Middleton R, Wellstead
+  P.</div>
+                        
+      
+                        <div class="bibo:Journal">IET Syst Biol 2012 Jun; 6(3):
+  86-93</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>Previous article on the integrative modelling of Parkinson's
+    disease (PD) described a mathematical model with properties
+    suggesting that PD pathogenesis is associated with a
+    feedback-induced biochemical bistability. In this article, the
+    authors show that the dynamics of the mathematical model can be
+    extracted and distilled into an equivalent two-state feedback
+    motif whose stability properties are controlled by
+    multi-factorial combinations of risk factors and genetic
+    mutations associated with PD. Based on this finding, the
+    authors propose a principle for PD pathogenesis in the form of
+    the switch-like transition of a bistable feedback process from
+    'healthy' homeostatic levels of reactive oxygen species and the
+    protein ?-synuclein, to an alternative 'disease' state in which
+    concentrations of both molecules are stable at the damagingly
+    high-levels associated with PD. The bistability is analysed
+    using the rate curves and steady-state response characteristics
+    of the feedback motif. In particular, the authors show how a
+    bifurcation in the feedback motif marks the pathogenic moment
+    at which the 'healthy' state is lost and the 'disease' state is
+    initiated. Further analysis shows how known risks (such as:
+    age, toxins and genetic predisposition) modify the stability
+    characteristics of the feedback motif in a way that is
+    compatible with known features of PD, and which explain
+    properties such as: multi-factorial causality, variability in
+    susceptibility and severity, multi-timescale progression and
+    the special cases of familial Parkinson's and Parkinsonian
+    symptoms induced purely by toxic stress.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="bm:curation">Stress of 2.6 obtained by optimization
+(parameter S1) was imposed between days 10 and 150 in order to
+reproduce the Figure.</div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000558">BIOMD0000000558</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(aSyn_1)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI14">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-09-16T14:31:31Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Cloutier2012 - Feedback motif for Parkinson&amp;apos;s disease)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI2" vcid="Species(ROS)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI14" vcid="ReactionStep(aSyn_1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Structure(Neuron)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI12" vcid="ReactionStep(ROS_1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI3" vcid="Species(alpha_syn)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI13" vcid="ReactionStep(ROS_2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI15" vcid="ReactionStep(aSyn_2)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

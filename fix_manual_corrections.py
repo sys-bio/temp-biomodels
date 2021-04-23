@@ -1,6 +1,6 @@
 import os
 
-FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'fully-fixed-entries')
+FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
 
 FIXES = {
     'BIOMD0000000806': [
@@ -119,7 +119,7 @@ def run(id):
         return
 
     for fix in fixes:
-        filename = os.path.join(FIXED_ENTRIES_DIR, id, fix['filename'])
+        filename = os.path.join(FINAL_ENTRIES_DIR, id, fix['filename'])
 
         with open(filename, 'r') as file:
             contents = file.read()

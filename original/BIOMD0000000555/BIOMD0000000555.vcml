@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Auer2010 - Correlation between lag time and aggregation rate in protein aggregation">
+      <Model Name="MODEL1411100000">
+         <ModelParameters>
+            <Parameter Name="omega" Role="user defined" Unit="tbd">35.3</Parameter>
+            <Parameter Name="n" Role="user defined" Unit="tbd">7.2</Parameter>
+            <Parameter Name="a" Role="user defined" Unit="tbd">(-1.0 + (n * exp( - ((-1.0 + n) / n))))</Parameter>
+            <Parameter Name="e" Role="user defined" Unit="tbd">2.718</Parameter>
+            <Parameter Name="k" Role="user defined" Unit="tbd">0.205</Parameter>
+            <Parameter Name="ka" Role="user defined" Unit="tbd">(k / e)</Parameter>
+            <Parameter Name="C" Role="user defined" Unit="tbd">6.9E-4</Parameter>
+            <Parameter Name="t1" Role="user defined" Unit="tbd">((1.0 + log((1.0 / C)) - e) / k)</Parameter>
+            <Parameter Name="VC_TimeConvFactor" Role="user defined" Unit="1">
+               2.777777777777778E-4
+               <Annotation>Conversion from SBML time units to VC time units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="Amyloid">
+            <Annotation>Amyloid</Annotation>
+         </Compound>
+         <Feature Name="Brain" />
+         <LocalizedCompound Name="Amyloid" CompoundRef="Amyloid" Structure="Brain" OverrideName="true" />
+         <Diagram Name="Brain" Structure="Brain" />
+      </Model>
+      <SimulationSpec Name="MODEL1411100000_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="Brain" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E12">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Amyloid" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * (1.0 - exp( - pow((t * VC_TimeConvFactor / omega),n))))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:10652" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:14330" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:1990000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1411100000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000555" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/20602358" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node12">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lloret@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node13">
+                                 <vcard:Family>Lloret i Villas</vcard:Family>
+                                 <vcard:Given>Audald</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node14">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2014-11-10T14:26:52Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2016-04-08T17:42:51Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pato/PATO:0001629" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:60425" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_5637168c-89e2-40b9-8df8-6a642bd62ee9">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0000142" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Auer2010 - Correlation between lag time and aggregation rate in protein aggregation)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Auer2010 - Correlation between lag time and
+aggregation rate in protein aggregation</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/20602358" title="Access to this publication">Insight into the correlation
+    between lag time and aggregation rate in the kinetics of
+    protein aggregation.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Auer S, Kashchiev D.</div>
+                        
+      
+                        <div class="bibo:Journal">Proteins 2010 Aug; 78(11):
+  2412-2416</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>Under favorable conditions, many proteins can assemble into
+    macroscopically large aggregates such as the amyloid fibrils
+    that are associated with Alzheimer's, Parkinson's, and other
+    neurological and systemic diseases. The overall process of
+    protein aggregation is characterized by initial lag time during
+    which no detectable aggregation occurs in the solution and by
+    maximal aggregation rate at which the dissolved protein
+    converts into aggregates. In this study, the correlation
+    between the lag time and the maximal rate of protein
+    aggregation is analyzed. It is found that the product of these
+    two quantities depends on a single numerical parameter, the
+    kinetic index of the curve quantifying the time evolution of
+    the fraction of protein aggregated. As this index depends
+    relatively little on the conditions and/or system studied, our
+    finding provides insight into why for many experiments the
+    values of the product of the lag time and the maximal
+    aggregation rate are often equal or quite close to each other.
+    It is shown how the kinetic index is related to a basic kinetic
+    parameter of a recently proposed theory of protein
+    aggregation.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000555">BIOMD0000000555</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI0">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-11-03T13:44:19Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Amyloid)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Amyloid fibrils or other aggregates</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-11-03T13:44:51Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Species(Amyloid)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Auer2010 - Correlation between lag time and aggregation rate in protein aggregation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_5637168c-89e2-40b9-8df8-6a642bd62ee9" vcid="Structure(Brain)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

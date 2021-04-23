@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Westermark2003_Pancreatic_GlycOsc_extended">
+      <Model Name="Westermark2003_Pancreatic_GlycOsc_extended">
+         <ModelParameters>
+            <Parameter Name="Vgk" Role="user defined" Unit="0.001 mole.second-1.litre-1">(Vgk_min * dw_per_ml / min_to_sec)</Parameter>
+            <Parameter Name="hGK" Role="user defined" Unit="1">1.7</Parameter>
+            <Parameter Name="KeqGPI" Role="user defined" Unit="1">0.3</Parameter>
+            <Parameter Name="KeqTPI" Role="user defined" Unit="1">0.045455</Parameter>
+            <Parameter Name="Vpfk" Role="user defined" Unit="0.001 mole.second-1.litre-1">(Vpfk_min * dw_per_ml / min_to_sec)</Parameter>
+            <Parameter Name="Vfba" Role="user defined" Unit="0.001 mole.second-1.litre-1">(Vfba_min * dw_per_ml / min_to_sec)</Parameter>
+            <Parameter Name="Vgapdh" Role="user defined" Unit="0.001 mole.second-1.litre-1">(Vgapdh_min * dw_per_ml / min_to_sec)</Parameter>
+            <Parameter Name="Sgk" Role="user defined" Unit="0.001 mole.litre-1">8.0</Parameter>
+            <Parameter Name="Spfk" Role="user defined" Unit="0.001 mole.litre-1">4.0</Parameter>
+            <Parameter Name="Sfba" Role="user defined" Unit="0.001 mole.litre-1">0.005</Parameter>
+            <Parameter Name="Sgapdh" Role="user defined" Unit="0.001 mole.litre-1">0.005</Parameter>
+            <Parameter Name="Xpfk" Role="user defined" Unit="0.001 mole.litre-1">0.01</Parameter>
+            <Parameter Name="alpha" Role="user defined" Unit="1">5.0</Parameter>
+            <Parameter Name="hx" Role="user defined" Unit="1">2.5</Parameter>
+            <Parameter Name="hpfk" Role="user defined" Unit="1">2.5</Parameter>
+            <Parameter Name="hact" Role="user defined" Unit="1">1.0</Parameter>
+            <Parameter Name="dw_per_ml" Role="user defined" Unit="kilogram.litre-1">0.3333</Parameter>
+            <Parameter Name="min_to_sec" Role="user defined" Unit="1">60.0</Parameter>
+            <Parameter Name="Vgk_min" Role="user defined" Unit="1.6666666666666667E-5 mole.second-1.kilogram-1">10.0</Parameter>
+            <Parameter Name="Vpfk_min" Role="user defined" Unit="1.6666666666666667E-5 mole.second-1.kilogram-1">100.0</Parameter>
+            <Parameter Name="Vfba_min" Role="user defined" Unit="1.6666666666666667E-5 mole.second-1.kilogram-1">25.0</Parameter>
+            <Parameter Name="Vgapdh_min" Role="user defined" Unit="1.6666666666666667E-5 mole.second-1.kilogram-1">250.0</Parameter>
+            <Parameter Name="Pfba" Role="user defined" Unit="0.001 mole.litre-1">0.5</Parameter>
+            <Parameter Name="Qfba" Role="user defined" Unit="0.001 mole.litre-1">0.275</Parameter>
+            <Parameter Name="KeqFBA" Role="user defined" Unit="0.001 mole.litre-1">0.1</Parameter>
+            <Parameter Name="VC_SpConcFactor_0_001_mole_litre_1_uM_1" Role="user defined" Unit="0.001 mole.litre-1.uM-1">
+               0.001
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+            <Parameter Name="sigma" Role="user defined" Unit="tbd">(F6P * VC_SpConcFactor_0_001_mole_litre_1_uM_1 / Spfk)</Parameter>
+         </ModelParameters>
+         <Compound Name="GLC">
+            <Annotation>GLC</Annotation>
+         </Compound>
+         <Compound Name="G6P_F6P">
+            <Annotation>G6P_F6P</Annotation>
+         </Compound>
+         <Compound Name="F6P">
+            <Annotation>F6P</Annotation>
+         </Compound>
+         <Compound Name="FBP">
+            <Annotation>FBP</Annotation>
+         </Compound>
+         <Compound Name="G3P">
+            <Annotation>G3P</Annotation>
+         </Compound>
+         <Compound Name="DHAP">
+            <Annotation>DHAP</Annotation>
+         </Compound>
+         <Compound Name="DHAP_G3P">
+            <Annotation>DHAP_G3P</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="GLC" CompoundRef="GLC" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="G6P_F6P" CompoundRef="G6P_F6P" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="F6P" CompoundRef="F6P" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="FBP" CompoundRef="FBP" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="G3P" CompoundRef="G3P" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="DHAP" CompoundRef="DHAP" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="DHAP_G3P" CompoundRef="DHAP_G3P" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="vgk" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="GLC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="G6P_F6P" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * Vgk * pow((GLC * GLC_ConcFactor / Sgk),hGK) / (1.0 + pow((GLC * GLC_ConcFactor / Sgk),hGK)))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000 second.litre.uM.s-1.mole-1">1000.0000000000001</Parameter>
+               <Parameter Name="GLC_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="vpfk" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="G6P_F6P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="FBP" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="F6P" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * Vpfk * pow((F6P * F6P_ConcFactor / Spfk),(hpfk - ((hpfk - hact) * FBP * FBP_ConcFactor / (1.0 + (FBP * FBP_ConcFactor / Sfba)) / Sfba))) / (pow((F6P * F6P_ConcFactor / Spfk),(hpfk - ((hpfk - hact) * FBP * FBP_ConcFactor / (1.0 + (FBP * FBP_ConcFactor / Sfba)) / Sfba))) + ((1.0 + pow((FBP * FBP_ConcFactor / Xpfk),hx)) / (1.0 + (pow(alpha,(hpfk - ((hpfk - hact) * FBP * FBP_ConcFactor / (1.0 + (FBP * FBP_ConcFactor / Sfba)) / Sfba))) * pow((FBP * FBP_ConcFactor / Xpfk),hx))))))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000 second.litre.uM.s-1.mole-1">1000.0000000000001</Parameter>
+               <Parameter Name="F6P_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="FBP_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="vfba" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="FBP" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="DHAP_G3P" Stoichiometry="2" />
+            <Modifier LocalizedCompoundRef="G3P" />
+            <Modifier LocalizedCompoundRef="DHAP" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * Vfba * ((FBP * FBP_ConcFactor / Sfba) - (G3P * G3P_ConcFactor * DHAP * DHAP_ConcFactor / (Pfba * Qfba * KeqFBA))) / (1.0 + (FBP * FBP_ConcFactor / Sfba) + (DHAP * DHAP_ConcFactor / Qfba) + (G3P * G3P_ConcFactor * DHAP * DHAP_ConcFactor / (Pfba * Qfba))))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000 second.litre.uM.s-1.mole-1">1000.0000000000001</Parameter>
+               <Parameter Name="FBP_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="G3P_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="DHAP_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="vgapdh" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="DHAP_G3P" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="G3P" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * Vgapdh * G3P * G3P_ConcFactor / (Sgapdh + (G3P * G3P_ConcFactor)))</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000 second.litre.uM.s-1.mole-1">1000.0000000000001</Parameter>
+               <Parameter Name="G3P_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="Westermark2003_Pancreatic_GlycOsc_extended_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="GLC" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>10000.000000000002</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="G6P_F6P" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>3717.2800000000007</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="F6P" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000.0000000000001 * KeqGPI * G6P_F6P * VC_SpConcFactor_0_001_mole_litre_1_uM_1 / (1.0 + KeqGPI))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="FBP" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.63612</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="G3P" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000.0000000000001 * KeqTPI * DHAP_G3P * VC_SpConcFactor_0_001_mole_litre_1_uM_1 / (1.0 + KeqTPI))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DHAP" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000.0000000000001 * ((DHAP_G3P * VC_SpConcFactor_0_001_mole_litre_1_uM_1) - (G3P * VC_SpConcFactor_0_001_mole_litre_1_uM_1)))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="DHAP_G3P" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>2.6296600000000003</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="vgk" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vpfk" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vfba" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vgapdh" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000002">
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/40674" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.pathway/map00010" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_1383" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006096" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL9574422639" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000236" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDerivedFrom xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/6271617" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDerivedFrom>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/12829470" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node34">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lukas@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node38">
+                                 <vcard:Family>Endler</vcard:Family>
+                                 <vcard:Given>Lukas</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node39">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node35">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">viji@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node40">
+                                 <vcard:Family>Chelliah</vcard:Family>
+                                 <vcard:Given>Vijayalakshmi</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node41">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:nodeID="node36">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">paal@nada.kth.se</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node42">
+                                 <vcard:Family>Westermark</vcard:Family>
+                                 <vcard:Given>Paal O</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node37" />
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_3>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2009-08-06T16:54:12Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node10">
+                     <dcterms:W3CDTF>2014-06-03T14:56:48Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000018">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/fma/FMA:70586" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005623" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000019">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:17234" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00293" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000020">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00092" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00085" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:4170" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:14314" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:15946" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000021">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:15946" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00085" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000022">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:16905" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00354" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000023">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29052" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00118" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000024">
+               <bqbiol:hasVersion xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R00725" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R00771" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasVersion>
+               <bqbiol:hasVersion xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004347" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004396" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasVersion>
+               <bqbiol:hasVersion xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/5.3.1.9" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.1.1" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasVersion>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000025">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R00756" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0003872" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.1.11" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000026">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R01068" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/4.1.2.13" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004332" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000047">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:16108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00111" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000048">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:16108" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:29052" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node30">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00111" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00118" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:16108" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000052">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node31">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R01061" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node32">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0004365" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node33">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/1.2.1.12" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:nodeID="node37">
+               <vcard:Orgname xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">Royal Institute of Technology, Stockholm, Sweden.</vcard:Orgname>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Westermark2003_Pancreatic_GlycOsc_extended)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>
+                        
+      This is the extended model described in eq. 2 of the article: 
+                        <br />
+                        
+    
+                        <strong>A model of phosphofructokinase and glycolytic oscillations in the pancreatic beta-cell. </strong>
+                        
+    
+                        <br />
+                        Westermark PO and Lansner A. 
+                        <em>Biophys J.</em>
+                         2003 Jul;85(1):126-39. PMID: 
+      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/12829470">12829470</a>
+                        , doi:
+                        <a href="http://dx.doi.org/10.1016/S0006-3495(03)74460-9">10.1016/S0006-3495(03)74460-9</a>
+                        
+    
+                        <br />
+                        
+    
+                        <strong>Abstract:</strong>
+                        
+    
+                        <br />
+                        
+We have constructed a model of the upper part of the glycolysis in the pancreatic beta-cell. The model comprises the enzymatic reactions from glucokinase to glyceraldehyde-3-phosphate dehydrogenase (GAPD). Our results show, for a substantial part of the parameter space, an oscillatory behavior of the glycolysis for a large range of glucose concentrations. We show how the occurrence of oscillations depends on glucokinase, aldolase and/or GAPD activities, and how the oscillation period depends on the phosphofructokinase activity. We propose that the ratio of glucokinase and aldolase and/or GAPD activities are adequate as characteristics of the glucose responsiveness, rather than only the glucokinase activity. We also propose that the rapid equilibrium between different oligomeric forms of phosphofructokinase may reduce the oscillation period sensitivity to phosphofructokinase activity. Methodologically, we show that a satisfying description of phosphofructokinase kinetics can be achieved using the irreversible Hill equation with allosteric modifiers. We emphasize the use of parameter ranges rather than fixed values, and the use of operationally well-defined parameters in order for this methodology to be feasible. The theoretical results presented in this study apply to the study of insulin secretion mechanisms, since glycolytic oscillations have been proposed as a cause of oscillations in the ATP/ADP ratio which is linked to insulin secretion.
+      
+                     </p>
+                     
+  
+                     <p>
+                        This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2009 The BioModels Team.
+                        <br />
+                        For more information see the 
+                        <a href="http://www.ebi.ac.uk/biomodels/legal.html" target="_blank">terms of use</a>
+                        .
+                        <br />
+                        To cite BioModels Database, please use 
+                        <a href="http://www.pubmedcentral.nih.gov/articlerender.fcgi?tool=pubmed&amp;pubmedid=16381960" target="_blank">Le Novère N., Bornstein B., Broicher A., Courtot M., Donizelli M., Dharuri H., Li L., Sauro H., Schilstra M., Shapiro B., Snoep J.L., Hucka M. (2006) BioModels Database: A Free, Centralized Database of Curated, Published, Quantitative Kinetic Models of Biochemical and Cellular Systems Nucleic Acids Res., 34: D689-D691.</a>
+                        
+
+                     </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000025" vcid="ReactionStep(vpfk)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000019" vcid="Species(GLC)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000023" vcid="Species(G3P)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000021" vcid="Species(F6P)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000047" vcid="Species(DHAP)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000026" vcid="ReactionStep(vfba)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000018" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000024" vcid="ReactionStep(vgk)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000052" vcid="ReactionStep(vgapdh)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000020" vcid="Species(G6P_F6P)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000002" vcid="BioModel(Westermark2003_Pancreatic_GlycOsc_extended)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000022" vcid="Species(FBP)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000048" vcid="Species(DHAP_G3P)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

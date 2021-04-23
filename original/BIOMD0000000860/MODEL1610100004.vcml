@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Proctor2017- Role of microRNAs in osteoarthritis (Positive Feedforward Incoherent By MicroRNA)">
+      <Model Name="MODEL1610100004">
+         <ModelParameters>
+            <Parameter Name="kdegMiR" Role="user defined" Unit="tbd">4.0E-4</Parameter>
+            <Parameter Name="kdegTF1targetmRNA" Role="user defined" Unit="tbd">0.001</Parameter>
+            <Parameter Name="kdegTF1targetmRNAbyMiR" Role="user defined" Unit="tbd">5.0E-5</Parameter>
+            <Parameter Name="ksynTF1targetmRNA" Role="user defined" Unit="tbd">0.004</Parameter>
+            <Parameter Name="ksynMiR" Role="user defined" Unit="tbd">2.0E-4</Parameter>
+            <Parameter Name="VC_SpConvFactor_litre_um_3" Role="user defined" Unit="litre.um-3">
+               1.6611295681063124E-18
+               <Annotation>Conversion from SBML concentration units to VC concentration units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="miR">
+            <Annotation>miR</Annotation>
+         </Compound>
+         <Compound Name="TF1">
+            <Annotation>TF1</Annotation>
+         </Compound>
+         <Compound Name="TF1target_mRNA">
+            <Annotation>TF1target_mRNA</Annotation>
+         </Compound>
+         <Compound Name="Sink">
+            <Annotation>Sink</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="miR" CompoundRef="miR" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="TF1" CompoundRef="TF1" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="TF1target_mRNA" CompoundRef="TF1target_mRNA" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Sink" CompoundRef="Sink" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="miR_synthesis" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="TF1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="miR" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="TF1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(ksynMiR * TF1 * TF1_ConcFactor)</Parameter>
+               <Parameter Name="TF1_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="miR_degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="miR" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kdegMiR * miR * miR_ConcFactor)</Parameter>
+               <Parameter Name="miR_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="TF1target_transcription" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="TF1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="TF1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="TF1target_mRNA" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(ksynTF1targetmRNA * TF1 * TF1_ConcFactor)</Parameter>
+               <Parameter Name="TF1_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="TF1target_mRNA_degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="TF1target_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kdegTF1targetmRNA * TF1target_mRNA * TF1target_mRNA_ConcFactor)</Parameter>
+               <Parameter Name="TF1target_mRNA_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="TF1target_mRNA_degradation_via_MiR" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="miR" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="TF1target_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="miR" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kdegTF1targetmRNAbyMiR * miR * miR_ConcFactor * TF1target_mRNA * TF1target_mRNA_ConcFactor)</Parameter>
+               <Parameter Name="miR_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+               <Parameter Name="TF1target_mRNA_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="MODEL1610100004_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="miR" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="TF1" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="TF1target_mRNA" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Sink" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="miR_synthesis" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="miR_degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="TF1target_transcription" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="TF1target_mRNA_degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="TF1target_mRNA_degradation_via_MiR" ReactionMapping="included" />
+         </ReactionContext>
+         <BioEvents>
+            <BioEvent Name="ActivateSignal">
+               <Trigger>(t &gt; 3600.0)</Trigger>
+               <EventAssignment Variable="TF1">(500.0 * VC_SpConvFactor_litre_um_3)</EventAssignment>
+            </BioEvent>
+         </BioEvents>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/edc5020c-d1a4-4218-a46c-f62d25ae679a">
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1610100004" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Proctor2017- Role of microRNAs in osteoarthritis &amp;lpar;Positive Feedforward Incoherent By MicroRNA&amp;rpar;)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Proctor2017- Role of microRNAs in
+osteoarthritis (Positive Feedforward Incoherent By MicroRNA)</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/29095952" title="Access to this publication">Computer simulation models
+    as a tool to investigate the role of microRNAs in
+    osteoarthritis.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Proctor CJ, Smith GR.</div>
+                        
+      
+                        <div class="bibo:Journal">PLoS ONE 2017; 12(11): e0187568</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>The aim of this study was to show how computational models
+    can be used to increase our understanding of the role of
+    microRNAs in osteoarthritis (OA) using miR-140 as an example.
+    Bioinformatics analysis and experimental results from the
+    literature were used to create and calibrate models of gene
+    regulatory networks in OA involving miR-140 along with key
+    regulators such as NF-?B, SMAD3, and RUNX2. The individual
+    models were created with the modelling standard, Systems
+    Biology Markup Language, and integrated to examine the overall
+    effect of miR-140 on cartilage homeostasis. Down-regulation of
+    miR-140 may have either detrimental or protective effects for
+    cartilage, indicating that the role of miR-140 is complex.
+    Studies of individual networks in isolation may therefore lead
+    to different conclusions. This indicated the need to combine
+    the five chosen individual networks involving miR-140 into an
+    integrated model. This model suggests that the overall effect
+    of miR-140 is to change the response to an IL-1 stimulus from a
+    prolonged increase in matrix degrading enzymes to a pulse-like
+    response so that cartilage degradation is temporary. Our
+    current model can easily be modified and extended as more
+    experimental data become available about the role of miR-140 in
+    OA. In addition, networks of other microRNAs that are important
+    in OA could be incorporated. A fully integrated model could not
+    only aid our understanding of the mechanisms of microRNAs in
+    ageing cartilage but could also provide a useful tool to
+    investigate the effect of potential interventions to prevent
+    cartilage loss.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/MODEL1610100004">MODEL1610100004</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/25414348" target="_blank">Chelliah V et al. BioModels: ten-year
+  anniversary. Nucl. Acids Res. 2015, 43(Database
+  issue):D542-8</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_5c3b5598-1fde-4d85-8f8a-1b746a3be6f4" vcid="ReactionStep(TF1target_mRNA_degradation_via_MiR)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_73c058a1-58db-424c-a842-65d620e963bb" vcid="ReactionStep(TF1target_mRNA_degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/d436db32-8ce5-437b-92ac-aa70d06adcfd" vcid="Species(Sink)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_9a64f26e-4927-4b75-890b-c001221511f6" vcid="ReactionStep(miR_degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_6986f74a-33d9-4096-8554-a4175b86b4c0" vcid="ReactionStep(TF1target_transcription)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/ac5c9fe4-7a68-4365-b4ce-45fb3e5f3dba" vcid="Species(TF1target_mRNA)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2c321c52-a9a2-43b8-8c35-a1015cb66622" vcid="Species(TF1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/deb2fd90-6bc9-4fd7-9987-f5596bb50fca" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/edc5020c-d1a4-4218-a46c-f62d25ae679a" vcid="BioModel(Proctor2017- Role of microRNAs in osteoarthritis &amp;lpar;Positive Feedforward Incoherent By MicroRNA&amp;rpar;)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_6bb009a4-5406-4fd2-8755-984ca34920df" vcid="Species(miR)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4b723ff2-28e3-4697-aa5f-71e2a199529a" vcid="ReactionStep(miR_synthesis)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

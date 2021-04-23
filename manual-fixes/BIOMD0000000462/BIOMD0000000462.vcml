@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Proctor2012 - Role of Amyloid-beta dimers in aggregation formation">
+      <Model Name="BIOMD0000000462">
+         <ModelParameters>
+            <Parameter Name="kprod" Role="user defined" Unit="tbd">1.86E-5</Parameter>
+            <Parameter Name="kdeg" Role="user defined" Unit="tbd">2.1E-5</Parameter>
+            <Parameter Name="kdimer" Role="user defined" Unit="tbd">1.1783E-7</Parameter>
+            <Parameter Name="kdedimer" Role="user defined" Unit="tbd">8.4655E-6</Parameter>
+            <Parameter Name="kdisagg" Role="user defined" Unit="tbd">5.4357E-5</Parameter>
+            <Parameter Name="kpf" Role="user defined" Unit="tbd">2.785E-6</Parameter>
+            <Parameter Name="kpg" Role="user defined" Unit="tbd">0.00574</Parameter>
+            <Parameter Name="kpghalf" Role="user defined" Unit="tbd">4.0</Parameter>
+            <Parameter Name="kdegNep" Role="user defined" Unit="tbd">1.8E-10</Parameter>
+         </ModelParameters>
+         <Compound Name="Abeta">
+            <Annotation>Abeta</Annotation>
+         </Compound>
+         <Compound Name="AbDim">
+            <Annotation>AbDim</Annotation>
+         </Compound>
+         <Compound Name="AbP">
+            <Annotation>AbP</Annotation>
+         </Compound>
+         <Compound Name="Source">
+            <Annotation>Source</Annotation>
+         </Compound>
+         <Compound Name="Sink">
+            <Annotation>Sink</Annotation>
+         </Compound>
+         <Compound Name="Nep">
+            <Annotation>Nep</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="Abeta" CompoundRef="Abeta" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="AbDim" CompoundRef="AbDim" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="AbP" CompoundRef="AbP" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Source" CompoundRef="Source" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Sink" CompoundRef="Sink" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Nep" CompoundRef="Nep" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="Abetaproduction" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Source" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Abeta" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kprod * Source * Source_ConcFactor)</Parameter>
+               <Parameter Name="Source_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="AbetaDegradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Abeta" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Nep" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Nep" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(0.001 * kdeg * Abeta * Abeta_ConcFactor * Nep * Nep_ConcFactor)</Parameter>
+               <Parameter Name="Abeta_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+               <Parameter Name="Nep_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="AbetaDimerisation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Abeta" Stoichiometry="2" />
+            <Product LocalizedCompoundRef="AbDim" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(0.5 * kdimer * (-1.0 + (Abeta * Abeta_ConcFactor)) * Abeta * Abeta_ConcFactor)</Parameter>
+               <Parameter Name="Abeta_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="AbetaDedimerisation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="AbDim" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Abeta" Stoichiometry="2" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kdedimer * AbDim * AbDim_ConcFactor)</Parameter>
+               <Parameter Name="AbDim_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="AbetaPlaqueFormation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="AbDim" Stoichiometry="2" />
+            <Product LocalizedCompoundRef="AbP" Stoichiometry="4" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(0.5 * kpf * (-1.0 + (AbDim * AbDim_ConcFactor)) * AbDim * AbDim_ConcFactor)</Parameter>
+               <Parameter Name="AbDim_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="AbetaPlaqueGrowth" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Abeta" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="AbP" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="AbP" Stoichiometry="2" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kpg * pow((AbP * AbP_ConcFactor),2.0) * Abeta * Abeta_ConcFactor / (pow(kpghalf,2.0) + pow((AbP * AbP_ConcFactor),2.0)))</Parameter>
+               <Parameter Name="Abeta_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+               <Parameter Name="AbP_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="AbetaDisaggregation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="AbP" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Abeta" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kdisagg * AbP * AbP_ConcFactor)</Parameter>
+               <Parameter Name="AbP_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="NepDegradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Nep" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(kdegNep * Nep * Nep_ConcFactor)</Parameter>
+               <Parameter Name="Nep_ConcFactor" Role="user defined" Unit="um3.litre-1">6.0200000000000013E17</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="BIOMD0000000462_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Abeta" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="AbDim" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="AbP" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Source" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1.6611295681063124E-18</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Sink" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1.6611295681063124E-18</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Nep" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1.6611295681063125E-15</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="Abetaproduction" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="AbetaDegradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="AbetaDimerisation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="AbetaDedimerisation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="AbetaPlaqueFormation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="AbetaPlaqueGrowth" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="AbetaDisaggregation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="NepDegradation" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_947376">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:10652" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0097242" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0070841" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1202290000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000462" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/22748062" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node13">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">c.j.proctor@ncl.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node15">
+                                 <vcard:Family>Proctor</vcard:Family>
+                                 <vcard:Given>Carole</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node16">
+                                 <vcard:Orgname>University of Newcastle</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node14">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">viji@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node17">
+                                 <vcard:Family>Chelliah</vcard:Family>
+                                 <vcard:Given>Vijayalakshmi</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node18">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2013-06-06T19:51:15Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2014-10-10T11:22:18Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_947424">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:64645" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_947436">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:64645" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043234" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_947448">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:64645" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0002774" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_947484">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P08473" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Proctor2012 - Role of Amyloid-beta dimers in aggregation formation)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Proctor2012 - Amyloid-beta aggregation</div>
+                     
+    
+                     <div class="dc:description">
+                        
+      
+                        <p>This model supports the current thinking that levels of dimers are important in initiating the aggregation process.</p>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/22748062" title="Access to this publication">Aggregation, impaired degradation and immunization targeting of amyloid-beta dimers in Alzheimer's disease: a stochastic modelling approach.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Proctor CJ, Pienaar IS, Elson JL, Kirkwood TB</div>
+                        
+      
+                        <div class="bibo:Journal">Molecular Neurodegeneration. 2012; 7:32</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>
+                              
+          
+                              <b>BACKGROUND:</b>
+                              
+              Alzheimer's disease (AD) is the most frequently diagnosed neurodegenerative disorder affecting humans, with advanced age being the most prominent risk factor for developing AD. Despite intense research efforts aimed at elucidating the precise molecular underpinnings of AD, a definitive answer is still lacking. In recent years, consensus has grown that dimerisation of the polypeptide amyloid-beta (Aß), particularly Aß₄₂, plays a crucial role in the neuropathology that characterise AD-affected post-mortem brains, including the large-scale accumulation of fibrils, also referred to as senile plaques. This has led to the realistic hope that targeting Aß₄₂ immunotherapeutically could drastically reduce plaque burden in the ageing brain, thus delaying AD onset or symptom progression. Stochastic modelling is a useful tool for increasing understanding of the processes underlying complex systems-affecting disorders such as AD, providing a rapid and inexpensive strategy for testing putative new therapies. In light of the tool's utility, we developed computer simulation models to examine Aß₄₂ turnover and its aggregation in detail and to test the effect of immunization against Aß dimers.          
+                           </p>
+                           
+        
+                           <p>
+                              
+          
+                              <b>RESULTS:</b>
+                              
+              Our model demonstrates for the first time that even a slight decrease in the clearance rate of Aß₄₂ monomers is sufficient to increase the chance of dimers forming, which could act as instigators of protofibril and fibril formation, resulting in increased plaque levels. As the process is slow and levels of Aβ are normally low, stochastic effects are important. Our model predicts that reducing the rate of dimerisation leads to a significant reduction in plaque levels and delays onset of plaque formation. The model was used to test the effect of an antibody mediated immunological response. Our results showed that plaque levels were reduced compared to conditions where antibodies are not present.          
+                           </p>
+                           
+        
+                           <p>
+                              
+          
+                              <b>CONCLUSION:</b>
+                              
+              Our model supports the current thinking that levels of dimers are important in initiating the aggregation process. Although substantial knowledge exists regarding the process, no therapeutic intervention is on offer that reliably decreases disease burden in AD patients. Computer modelling could serve as one of a number of tools to examine both the validity of reliable biomarkers and aid the discovery of successful intervention strategies.          
+                           </p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on        
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+            and identified by:        
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000462">BIOMD0000000462</a>
+                           
+            .        
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use:        
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models</a>
+                           
+            .        
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or neighbouring rights to this encoded model have been dedicated to the public domain worldwide. Please refer to        
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0 Public Domain Dedication</a>
+                           
+            for more information.        
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947472" vcid="Species(Sink)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947928" vcid="ReactionStep(AbetaDisaggregation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947376" vcid="BioModel(Proctor2012 - Role of Amyloid-beta dimers in aggregation formation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947604" vcid="ReactionStep(Abetaproduction)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947460" vcid="Species(Source)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947436" vcid="Species(AbDim)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947448" vcid="Species(AbP)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947424" vcid="Species(Abeta)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947484" vcid="Species(Nep)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947772" vcid="ReactionStep(AbetaDedimerisation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947724" vcid="ReactionStep(AbetaDimerisation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947976" vcid="ReactionStep(NepDegradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947652" vcid="ReactionStep(AbetaDegradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947412" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947820" vcid="ReactionStep(AbetaPlaqueFormation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_947868" vcid="ReactionStep(AbetaPlaqueGrowth)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

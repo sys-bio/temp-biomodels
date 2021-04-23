@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Ferreira2003_CML_generation2">
+      <Model Name="Ferreira_CML_generation">
+         <ModelParameters>
+            <Parameter Name="VC_SpConcFactor_mol_litre_1_uM_1" Role="user defined" Unit="mol.litre-1.uM-1">
+               1.0E-6
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+            <Parameter Name="Fraction_Amadori" Role="user defined" Unit="tbd">(294.11764705882354 * Amadori * VC_SpConcFactor_mol_litre_1_uM_1)</Parameter>
+            <Parameter Name="Fraction_CML" Role="user defined" Unit="tbd">(294.11764705882354 * CML * VC_SpConcFactor_mol_litre_1_uM_1)</Parameter>
+         </ModelParameters>
+         <Compound Name="Glucose">
+            <Annotation>Glucose</Annotation>
+         </Compound>
+         <Compound Name="Lysine">
+            <Annotation>Lysine</Annotation>
+         </Compound>
+         <Compound Name="Schiff">
+            <Annotation>Schiff</Annotation>
+         </Compound>
+         <Compound Name="Amadori">
+            <Annotation>Amadori</Annotation>
+         </Compound>
+         <Compound Name="Glyoxal">
+            <Annotation>Glyoxal</Annotation>
+         </Compound>
+         <Compound Name="CML">
+            <Annotation>CML</Annotation>
+         </Compound>
+         <Feature Name="compartment" />
+         <LocalizedCompound Name="Glucose" CompoundRef="Glucose" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Lysine" CompoundRef="Lysine" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Schiff" CompoundRef="Schiff" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Amadori" CompoundRef="Amadori" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Glyoxal" CompoundRef="Glyoxal" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="CML" CompoundRef="CML" Structure="compartment" OverrideName="true" />
+         <SimpleReaction Structure="compartment" Name="v1a" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Glucose" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Lysine" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Schiff" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * p1 * k1a * Glucose * Glucose_ConcFactor * Lysine * Lysine_ConcFactor)</Parameter>
+               <Parameter Name="k1a" Role="user defined" Unit="tbd">0.09</Parameter>
+               <Parameter Name="p1" Role="user defined" Unit="tbd">0.115</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Glucose_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="Lysine_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v1b" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Schiff" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Glucose" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Lysine" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k1b * Schiff * Schiff_ConcFactor)</Parameter>
+               <Parameter Name="k1b" Role="user defined" Unit="2.777777777777778E-4 second-1">0.36</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Schiff_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v2a" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Schiff" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Amadori" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * p2 * k2a * Schiff * Schiff_ConcFactor)</Parameter>
+               <Parameter Name="k2a" Role="user defined" Unit="tbd">0.033</Parameter>
+               <Parameter Name="p2" Role="user defined" Unit="tbd">0.75</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Schiff_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v2b" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Amadori" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Schiff" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * p2 * k2b * Amadori * Amadori_ConcFactor)</Parameter>
+               <Parameter Name="k2b" Role="user defined" Unit="tbd">0.0012</Parameter>
+               <Parameter Name="p2" Role="user defined" Unit="tbd">0.75</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Amadori_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Glucose" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Glyoxal" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ox * p3 * k3 * pow((4.0 * Glucose * Glucose_ConcFactor),0.36))</Parameter>
+               <Parameter Name="k3" Role="user defined" Unit="tbd">7.92E-7</Parameter>
+               <Parameter Name="p3" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="ox" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Glucose_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Amadori" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CML" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ox * p4 * k4 * Amadori * Amadori_ConcFactor)</Parameter>
+               <Parameter Name="k4" Role="user defined" Unit="tbd">8.6E-5</Parameter>
+               <Parameter Name="p4" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="ox" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Amadori_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Lysine" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Glyoxal" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CML" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ox * p5 * k5 * Lysine * Lysine_ConcFactor * Glyoxal * Glyoxal_ConcFactor)</Parameter>
+               <Parameter Name="k5" Role="user defined" Unit="tbd">0.019</Parameter>
+               <Parameter Name="p5" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="ox" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Lysine_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="Glyoxal_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v5b" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Glyoxal" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k5b * Glyoxal * Glyoxal_ConcFactor)</Parameter>
+               <Parameter Name="k5b" Role="user defined" Unit="2.777777777777778E-4 second-1">0.0017</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Glyoxal_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Schiff" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CML" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ox * p6 * k3 * pow((4.0 * Schiff * Schiff_ConcFactor),0.36))</Parameter>
+               <Parameter Name="k3" Role="user defined" Unit="tbd">7.92E-7</Parameter>
+               <Parameter Name="p6" Role="user defined" Unit="tbd">2.7</Parameter>
+               <Parameter Name="ox" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Schiff_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v7a" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="Lysine" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Schiff" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.05 * sbmlRateFactor * ox * p7 * k3 * pow((4.0 * Schiff * Schiff_ConcFactor),0.36))</Parameter>
+               <Parameter Name="k3" Role="user defined" Unit="tbd">7.92E-7</Parameter>
+               <Parameter Name="p7" Role="user defined" Unit="tbd">60.0</Parameter>
+               <Parameter Name="ox" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Schiff_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v7b" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="Glyoxal" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Schiff" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(0.005 * sbmlRateFactor * ox * p7 * k3 * pow((4.0 * Schiff * Schiff_ConcFactor),0.36))</Parameter>
+               <Parameter Name="k3" Role="user defined" Unit="tbd">7.92E-7</Parameter>
+               <Parameter Name="p7" Role="user defined" Unit="tbd">60.0</Parameter>
+               <Parameter Name="ox" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Schiff_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="v7c" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Schiff" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * ox * p7 * k3 * pow((4.0 * Schiff * Schiff_ConcFactor),0.36))</Parameter>
+               <Parameter Name="k3" Role="user defined" Unit="tbd">7.92E-7</Parameter>
+               <Parameter Name="p7" Role="user defined" Unit="tbd">60.0</Parameter>
+               <Parameter Name="ox" Role="user defined" Unit="tbd">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mol-1">277.77777777778</Parameter>
+               <Parameter Name="Schiff_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="compartment" Structure="compartment" />
+      </Model>
+      <SimulationSpec Name="Ferreira_CML_generation_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="compartment" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Glucose" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>250000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Lysine" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>3400.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Schiff" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Amadori" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Glyoxal" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CML" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="v1a" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v1b" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v2a" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v2b" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v5b" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v7a" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v7b" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="v7c" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/metaid_0000002">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0018205" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005518" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:9120" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:9351" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/131567" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL0733584307" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000053" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/12911334" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node12">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">hdharuri@cds.caltech.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node13">
+                                 <vcard:Family>Dharuri</vcard:Family>
+                                 <vcard:Given>Harish</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node14">
+                                 <vcard:Orgname>California Institute of Technology</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2006-04-09T20:54:45Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2014-10-09T15:39:20Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/metaid_0000005">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:17234" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00293" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/metaid_0000006">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:25094" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/metaid_0000009">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C14448" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:34779" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Ferreira2003_CML_generation2)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>The model should reproduce the figure 2F of the article.</p>
+                     
+    
+                     <p>The equation 7 has been split into equations 7a-7c, in order to take into account the different flux rates of Lysine and CML formation from Schiff.</p>
+                     
+    
+                     <p>The model was tested in Jarnac (SBML L2 V1) and Copasi (SBML L2 V3).</p>
+                     
+    
+                     <br />
+                     
+    
+                     <p>
+                        To the extent possible under law, all copyright and related or neighbouring rights to this encoded model have been dedicated to the public domain worldwide. Please refer to      
+                        <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Creative Commons CC0">CC0 Public Domain Dedication</a>
+                        
+          for more information.      
+                     </p>
+                     
+  
+                     <p>In summary, you are entitled to use this encoded model in absolutely any manner you deem suitable, verbatim, or with modification, alone or embedded it in a larger context, redistribute it, commercially or not, in a restricted way or not.</p>
+                     
+  
+                     <br />
+                     
+  
+                     <p>
+                        To cite BioModels Database, please use:      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a>
+                        
+
+                     </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000020" vcid="ReactionStep(v4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000017" vcid="ReactionStep(v2a)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000016" vcid="ReactionStep(v1b)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000010" vcid="Species(CML)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000024" vcid="ReactionStep(v7a)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000015" vcid="ReactionStep(v1a)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000007" vcid="Species(Schiff)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000005" vcid="Species(Glucose)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000021" vcid="ReactionStep(v5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000004" vcid="Structure(compartment)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000002" vcid="BioModel(Ferreira2003_CML_generation2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000025" vcid="ReactionStep(v7b)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000022" vcid="ReactionStep(v5b)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000019" vcid="ReactionStep(v3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000009" vcid="Species(Glyoxal)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000023" vcid="ReactionStep(v6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000008" vcid="Species(Amadori)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000026" vcid="ReactionStep(v7c)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000018" vcid="ReactionStep(v2b)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/metaid_0000006" vcid="Species(Lysine)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

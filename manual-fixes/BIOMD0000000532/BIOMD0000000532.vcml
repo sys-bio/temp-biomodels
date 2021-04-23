@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Vazquez2014 - Chemical inhibition from amyloid protein aggregation kinetics">
+      <Model Name="MODEL1407300000">
+         <ModelParameters>
+            <Parameter Name="xm" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="vm" Role="user defined" Unit="tbd">0.25</Parameter>
+            <Parameter Name="lambda" Role="user defined" Unit="tbd">3.0</Parameter>
+            <Parameter Name="kx" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="mx" Role="user defined" Unit="tbd">5.0</Parameter>
+            <Parameter Name="ax" Role="user defined" Unit="tbd">2.0</Parameter>
+            <Parameter Name="kv" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="mv" Role="user defined" Unit="tbd">4.0</Parameter>
+            <Parameter Name="av" Role="user defined" Unit="tbd">2.0</Parameter>
+            <Parameter Name="klambda" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="mlambda" Role="user defined" Unit="tbd">2.0</Parameter>
+            <Parameter Name="alambda" Role="user defined" Unit="tbd">2.0</Parameter>
+            <Parameter Name="C" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="VC_TimeConvFactor" Role="user defined" Unit="1">
+               2.777777777777778E-4
+               <Annotation>Conversion from SBML time units to VC time units</Annotation>
+            </Parameter>
+            <Parameter Name="VC_SpConcFactor_mol_litre_1_uM_1" Role="user defined" Unit="mol.litre-1.uM-1">
+               1.0E-6
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="X">
+            <Annotation>X</Annotation>
+         </Compound>
+         <Compound Name="Xm">
+            <Annotation>Xm</Annotation>
+         </Compound>
+         <Compound Name="Vm">
+            <Annotation>Vm</Annotation>
+         </Compound>
+         <Compound Name="Lambda">
+            <Annotation>Lambda</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="X" CompoundRef="X" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Xm" CompoundRef="Xm" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Vm" CompoundRef="Vm" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Lambda" CompoundRef="Lambda" Structure="cell" OverrideName="true" />
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="MODEL1407300000_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="X" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * Xm * VC_SpConcFactor_mol_litre_1_uM_1 / (1.0 + exp((2.0 + (4.0 * ((Lambda * VC_SpConcFactor_mol_litre_1_uM_1) - (t * VC_TimeConvFactor)) * Vm * VC_SpConcFactor_mol_litre_1_uM_1 / (Xm * VC_SpConcFactor_mol_litre_1_uM_1))))))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Xm" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * xm * (1.0 - (kx * (1.0 - exp( - (0.6931471805599453 * pow((C / mx),ax)))))))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Vm" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * vm * (1.0 - (kv * (1.0 - exp( - (0.6931471805599453 * pow((C / mv),av)))))))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Lambda" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * lambda * (1.0 + (klambda * (1.0 - exp( - (0.6931471805599453 * pow((C / mlambda),alambda)))))))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:10652" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:1990000" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0070841" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1407300000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000532" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/24572069" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node11">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lloret@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node12">
+                                 <vcard:Family>Lloret i Villas</vcard:Family>
+                                 <vcard:Given>Audald</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node13">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2014-07-30T13:46:49Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2014-09-08T13:27:02Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0002774" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_2bc948c3-5ab8-42ca-8944-f8a2f3261c19">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0000142" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Vazquez2014 - Chemical inhibition from amyloid protein aggregation kinetics)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Vazquez2014 - Chemical inhibition from
+amyloid protein aggregation kinetics</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/24572069" title="Access to this publication">Modeling of chemical
+    inhibition from amyloid protein aggregation kinetics.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Vázquez JA.</div>
+                        
+      
+                        <div class="bibo:Journal">BMC Pharmacol Toxicol 2014; 15(1):
+  9</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>BACKGROUNDS: The process of amyloid proteins aggregation
+    causes several human neuropathologies. In some cases, e.g.
+    fibrillar deposits of insulin, the problems are generated in
+    the processes of production and purification of protein and in
+    the pump devices or injectable preparations for diabetics.
+    Experimental kinetics and adequate modelling of chemical
+    inhibition from amyloid aggregation are of practical importance
+    in order to study the viable processing, formulation and
+    storage as well as to predict and optimize the best conditions
+    to reduce the effect of protein nucleation. RESULTS: In this
+    manuscript, experimental data of insulin, A?42 amyloid protein
+    and apomyoglobin fibrillation from recent bibliography were
+    selected to evaluate the capability of a bivariate sigmoid
+    equation to model them. The mathematical functions (logistic
+    combined with Weibull equation) were used in reparameterized
+    form and the effect of inhibitor concentrations on kinetic
+    parameters from logistic equation were perfectly defined and
+    explained. The surfaces of data were accurately described by
+    proposed model and the presented analysis characterized the
+    inhibitory influence on the protein aggregation by several
+    chemicals. Discrimination between true and apparent inhibitors
+    was also confirmed by the bivariate equation. EGCG for insulin
+    (working at pH?=?7.4/T?=?37°C) and taiwaniaflavone for
+    A?42 were the compounds studied that shown the greatest
+    inhibition capacity. CONCLUSIONS: An accurate, simple and
+    effective model to investigate the inhibition of chemicals on
+    amyloid protein aggregation has been developed. The equation
+    could be useful for the clear quantification of inhibitor
+    potential of chemicals and rigorous comparison among them.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000532">BIOMD0000000532</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI0">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-07-10T16:29:00Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(X)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Amyloid aggregation growth measured as absorbance at 600 nm, relative ThT fluorescence intensity (%) and ThT fluorescence intensity at 482 nm or 490 nm. Units: absorbance units (AU) or (%).</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-07-10T16:30:03Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Xm)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Maximum aggregation growth. Units: Au or %</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI2">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-07-10T16:30:04Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Lambda)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Lag phase. Units: h or d</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI4">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-07-10T16:30:01Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(Vm)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Maximum aggregation rate. Units: AU h-1, Au d-1 or % h-1</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI3">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2014-07-10T16:30:02Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Species(X)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2bc948c3-5ab8-42ca-8944-f8a2f3261c19" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI2" vcid="Species(Xm)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI3" vcid="Species(Vm)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Vazquez2014 - Chemical inhibition from amyloid protein aggregation kinetics)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI4" vcid="Species(Lambda)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

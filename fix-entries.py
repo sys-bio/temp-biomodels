@@ -9,8 +9,8 @@ import os
 import shutil
 import sys
 
-MANUALLY_FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'fixed-entries')
-FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'fully-fixed-entries')
+MANUALLY_FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'manual-fixes')
+FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
 
 
 def get_entry_ids():
@@ -45,12 +45,12 @@ def fix_entry(id):
     Args:
         id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
     """
-    if not os.path.isdir(FIXED_ENTRIES_DIR):
-        os.makedirs(FIXED_ENTRIES_DIR)
+    if not os.path.isdir(FINAL_ENTRIES_DIR):
+        os.makedirs(FINAL_ENTRIES_DIR)
 
     # start from manually fixed version of entry
     from_dir = os.path.join(MANUALLY_FIXED_ENTRIES_DIR, id)
-    to_dir = os.path.join(FIXED_ENTRIES_DIR, id)
+    to_dir = os.path.join(FINAL_ENTRIES_DIR, id)
     if os.path.isdir(to_dir):
         shutil.rmtree(to_dir)
     shutil.copytree(from_dir, to_dir)
@@ -58,9 +58,9 @@ def fix_entry(id):
     # apply automated fixes
     fix_manual_corrections.run(id)
 
-    sedml_filenames = glob.glob(os.path.join(FIXED_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
+    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     for filename in sedml_filenames:
-        name = os.path.relpath(filename, FIXED_ENTRIES_DIR)
+        name = os.path.relpath(filename, FINAL_ENTRIES_DIR)
         fix_namespaces_in_sedml_doc.run(name, filename)
 
 
