@@ -22,6 +22,7 @@ import glob
 import imghdr
 import itertools
 import os
+import owlready2
 import parameterized
 import PyPDF2
 import requests
@@ -127,6 +128,11 @@ class EntriesTestCase(unittest.TestCase):
     def test_jpg_files(self, filename):
         if imghdr.what(filename) != 'jpeg':
             raise Exception('{} is not a valid JPEG file'.format(filename))
+
+    @parameterized.parameterized.expand(OWL_FILES, skip_on_empty=True)
+    def test_owl_files(self, filename):
+        onto = owlready2.get_ontology(filename)
+        onto.load()
 
     @parameterized.parameterized.expand(PDF_FILES, skip_on_empty=True)
     def test_pdf_files(self, filename):
