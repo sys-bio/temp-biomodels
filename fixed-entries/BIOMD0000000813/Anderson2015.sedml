@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Anderson2015.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="500" numberOfPoints="1000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="x_Tumor_Cells_1_task1" name="[x_Tumor_Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_x_Tumor_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_x_Tumor_Cells_task1" name="x_Tumor_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x_Tumor_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="y_CD4_T_Cells_1_task1" name="[y_CD4_T_Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_y_CD4_T_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_y_CD4_T_Cells_task1" name="y_CD4_T_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;y_CD4_T_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Anderson2015_Figure_2_A_Tumor">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[x_Tumor_Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="x_Tumor_Cells_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="Anderson2015_Figure_2_A_CD4">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[y_CD4_T_Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="y_CD4_T_Cells_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

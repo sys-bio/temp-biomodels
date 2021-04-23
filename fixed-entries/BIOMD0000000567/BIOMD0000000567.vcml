@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Morris2009 - α-Synuclein aggregation variable temperature and pH">
+      <Model Name="MODEL1501160001">
+         <ModelParameters>
+            <Parameter Name="k1" Role="user defined" Unit="tbd">4.0E-5</Parameter>
+            <Parameter Name="k2" Role="user defined" Unit="tbd">1.57E-6</Parameter>
+            <Parameter Name="A0" Role="user defined" Unit="tbd">(k2A0 / k2)</Parameter>
+            <Parameter Name="k2A0" Role="user defined" Unit="tbd">0.29</Parameter>
+            <Parameter Name="VC_TimeConvFactor" Role="user defined" Unit="1">
+               2.777777777777778E-4
+               <Annotation>Conversion from SBML time units to VC time units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="B">
+            <Annotation>B</Annotation>
+         </Compound>
+         <Compound Name="A">
+            <Annotation>A</Annotation>
+         </Compound>
+         <Feature Name="Brain" />
+         <LocalizedCompound Name="B" CompoundRef="B" Structure="Brain" OverrideName="true" />
+         <LocalizedCompound Name="A" CompoundRef="A" Structure="Brain" OverrideName="true" />
+         <SimpleReaction Structure="Brain" Name="Nucleation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="A" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="B" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k1 * A * A_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="A_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="Brain" Name="Growth" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="B" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="A" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="B" Stoichiometry="2" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(sbmlRateFactor * k2 * B * B_ConcFactor * A * A_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="3600 second.litre.uM.s-1.mole-1">277.77777777778</Parameter>
+               <Parameter Name="B_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="A_ConcFactor" Role="user defined" Unit="mole.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="Brain" Structure="Brain" />
+      </Model>
+      <SimulationSpec Name="MODEL1501160001_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="Brain" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E12">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="B" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>(1000000.0 * ((k2A0 / k2) - (((k1 / k2) + (k2A0 / k2)) / (1.0 + (exp(((k1 + (k2 * k2A0 / k2)) * t * VC_TimeConvFactor)) * k1 / (k2 * k2A0 / k2))))))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="A" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="Nucleation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Growth" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:10652" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:14330" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:12858" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:1990000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1501160000" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000567" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDerivedFrom xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/15794636" />
+                     </rdf:_1>
+                     <rdf:_10>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16981683" />
+                     </rdf:_10>
+                     <rdf:_11>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16981676" />
+                     </rdf:_11>
+                     <rdf:_12>
+                        <rdf:Description rdf:about="http://identifiers.org/doi/10.1021/ja9705102" />
+                     </rdf:_12>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16117499" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/12785778" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16536526" />
+                     </rdf:_4>
+                     <rdf:_5>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16301322" />
+                     </rdf:_5>
+                     <rdf:_6>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16981679" />
+                     </rdf:_6>
+                     <rdf:_7>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16081040" />
+                     </rdf:_7>
+                     <rdf:_8>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/12186976" />
+                     </rdf:_8>
+                     <rdf:_9>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16981684" />
+                     </rdf:_9>
+                  </rdf:Bag>
+               </bqmodel:isDerivedFrom>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/18247636" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node13">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lloret@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node14">
+                                 <vcard:Family>Lloret i Villas</vcard:Family>
+                                 <vcard:Given>Audald</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node15">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2015-01-16T16:30:06Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2015-01-23T16:57:13Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI1">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pr/PR:P04156" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI2">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pr/PR:P04156" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_3dc20fc0-7af7-4695-89ef-4e0a4551c49a">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0000142" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="Species(A)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Monomeric form of the α-Synuclein (μM)</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI2">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2015-01-13T17:12:46Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="BioModel(Morris2009 - α-Synuclein aggregation variable temperature and pH)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Morris2008 - Fitting protein aggregation data
+via F-W 2-step mechanism</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/18247636" title="Access to this publication">Fitting neurological protein
+    aggregation kinetic data via a 2-step, minimal/"Ockham's razor"
+    model: the Finke-Watzky mechanism of nucleation followed by
+    autocatalytic surface growth.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Morris AM, Watzky MA, Agar JN, Finke
+  RG.</div>
+                        
+      
+                        <div class="bibo:Journal">Biochemistry 2008 Feb; 47(8):
+  2413-2427</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>The aggregation of proteins has been hypothesized to be an
+    underlying cause of many neurological disorders including
+    Alzheimer's, Parkinson's, and Huntington's diseases; protein
+    aggregation is also important to normal life function in cases
+    such as G to F-actin, glutamate dehydrogenase, and tubulin and
+    flagella formation. For this reason, the underlying mechanism
+    of protein aggregation, and accompanying kinetic models for
+    protein nucleation and growth (growth also being called
+    elongation, polymerization, or fibrillation in the literature),
+    have been investigated for more than 50 years. As a way to
+    concisely present the key prior literature in the protein
+    aggregation area, Table 1 in the main text summarizes 23 papers
+    by 10 groups of authors that provide 5 basic classes of
+    mechanisms for protein aggregation over the period from 1959 to
+    2007. However, and despite this major prior effort, still
+    lacking are both (i) anything approaching a consensus mechanism
+    (or mechanisms), and (ii) a generally useful, and thus widely
+    used, simplest/"Ockham's razor" kinetic model and associated
+    equations that can be routinely employed to analyze a broader
+    range of protein aggregation kinetic data. Herein we
+    demonstrate that the 1997 Finke-Watzky (F-W) 2-step mechanism
+    of slow continuous nucleation, A --&gt; B (rate constant k1),
+    followed by typically fast, autocatalytic surface growth, A + B
+    --&gt; 2B (rate constant k2), is able to quantitatively account
+    for the kinetic curves from all 14 representative data sets of
+    neurological protein aggregation found by a literature search
+    (the prion literature was largely excluded for the purposes of
+    this study in order provide some limit to the resultant
+    literature that was covered). The F-W model is able to
+    deconvolute the desired nucleation, k1, and growth, k2, rate
+    constants from those 14 data sets obtained by four different
+    physical methods, for three different proteins, and in nine
+    different labs. The fits are generally good, and in many cases
+    excellent, with R2 values &gt;or=0.98 in all cases. As such,
+    this contribution is the current record of the widest set of
+    protein aggregation data best fit by what is also the simplest
+    model offered to date. Also provided is the mathematical
+    connection between the 1997 F-W 2-step mechanism and the 2000
+    3-step mechanism proposed by Saitô and co-workers. In
+    particular, the kinetic equation for Saitô's 3-step
+    mechanism is shown to be mathematically identical to the
+    earlier, 1997 2-step F-W mechanism under the 3 simplifying
+    assumptions Saitô and co-workers used to derive their
+    kinetic equation. A list of the 3 main caveats/limitations of
+    the F-W kinetic model is provided, followed by the main
+    conclusions from this study as well as some needed future
+    experiments.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000567">BIOMD0000000567</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI0">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2015-01-13T17:05:38Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(B)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <pre>Polymeric form of the α-Synuclein (Tht Fluorescence)</pre>
+                     
+  
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI1">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2015-01-13T17:12:02Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(Growth)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI8">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2015-01-13T17:16:24Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="ReactionStep(Nucleation)">
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI7">
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2015-01-13T17:14:42Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI7" vcid="ReactionStep(Nucleation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3dc20fc0-7af7-4695-89ef-4e0a4551c49a" vcid="Structure(Brain)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI1" vcid="Species(B)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Morris2009 - α-Synuclein aggregation variable temperature and pH)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI2" vcid="Species(A)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI8" vcid="ReactionStep(Growth)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

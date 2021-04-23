@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="MODEL1712050002.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1400" numberOfPoints="1400">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <repeatedTask id="task2" range="range0" resetModel="true">
+      <listOfRanges>
+        <vectorRange id="range0">
+          <value> 1 </value>
+          <value> 2.5 </value>
+          <value> 5 </value>
+          <value> 25 </value>
+          <value> 100 </value>
+        </vectorRange>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;TGFb_LIGAND_Dose&apos;]" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task1"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="TGFb_1_task1" name="[TGFb]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_TGFb_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_TGFb_task1" name="TGFb" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;TGFb&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="time_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="TGFb_1_task2" name="[TGFb]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_TGFb_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_TGFb_task2" name="TGFb" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;TGFb&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="TGFb">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[TGFb]" logX="false" xDataReference="time_task1" logY="false" yDataReference="TGFb_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task2" name="TGFb">
+      <listOfCurves>
+        <curve id="p1_curve_1_task2" name="[TGFb]" logX="false" xDataReference="time_task2" logY="false" yDataReference="TGFb_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

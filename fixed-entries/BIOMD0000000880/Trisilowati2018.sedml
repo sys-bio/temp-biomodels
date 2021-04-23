@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Trisilowati2018.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="30" numberOfPoints="1000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="D_Dendritic_Cells_1_task1" name="[D_Dendritic_Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_D_Dendritic_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_D_Dendritic_Cells_task1" name="D_Dendritic_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;D_Dendritic_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="H_CD4_T_Cells_2_task1" name="[H_CD4_T_Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_H_CD4_T_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_H_CD4_T_Cells_task1" name="H_CD4_T_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H_CD4_T_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="L_CD8_T_Cells_3_task1" name="[L_CD8_T_Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_L_CD8_T_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_L_CD8_T_Cells_task1" name="L_CD8_T_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L_CD8_T_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="T_Tumor_Cells_4_task1" name="[T_Tumor_Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_T_Tumor_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_T_Tumor_Cells_task1" name="T_Tumor_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;T_Tumor_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Trisilowati2018_Figure_1">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[D_Dendritic_Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="D_Dendritic_Cells_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[H_CD4_T_Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="H_CD4_T_Cells_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[L_CD8_T_Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="L_CD8_T_Cells_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[T_Tumor_Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="T_Tumor_Cells_4_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

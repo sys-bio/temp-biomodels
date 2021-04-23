@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Lipniacki2004.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="385200" numberOfPoints="10000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="NFKB_nuc_1_task1" name="[NFKB_nuc]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_NFKB_nuc_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_NFKB_nuc_task1" name="NFKB_nuc" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NFKB_nuc&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="IKK_active_1_task1" name="[IKK_active]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_IKK_active_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_IKK_active_task1" name="IKK_active" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;IKK_active&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="IkB_mRNA_amp_1_task1" name="Values[IkB_mRNA_amp]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_IkB_mRNA_amp_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_IkB_mRNA_amp_task1" name="IkB_mRNA_amp" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;IkB_mRNA_amp&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="A20_mRNA_amp_1_task1" name="Values[A20_mRNA_amp]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_A20_mRNA_amp_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_A20_mRNA_amp_task1" name="A20_mRNA_amp" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A20_mRNA_amp&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="NFKB_nuc">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[NFKB_nuc]" logX="false" xDataReference="time_task1" logY="false" yDataReference="NFKB_nuc_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="IKKa">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[IKK_active]" logX="false" xDataReference="time_task1" logY="false" yDataReference="IKK_active_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task1" name="IkB_mRNA">
+      <listOfCurves>
+        <curve id="p3_curve_1_task1" name="Values[IkB_mRNA_amp]" logX="false" xDataReference="time_task1" logY="false" yDataReference="IkB_mRNA_amp_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_4_task1" name="A20_mRNA">
+      <listOfCurves>
+        <curve id="p4_curve_1_task1" name="Values[A20_mRNA_amp]" logX="false" xDataReference="time_task1" logY="false" yDataReference="A20_mRNA_amp_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
