@@ -24,6 +24,7 @@ import glob
 import imghdr
 import itertools
 import json
+import libsbml
 import nbformat
 import os
 import owlready2
@@ -82,6 +83,15 @@ EXTENSION_COMBINE_FORMAT_MAP = {
 
 SBML_EDAM_ID = 'format_2585'
 
+
+def is_file_sbml(filename):
+    try:
+        root = etree.parse(filename).getroot()
+        return root.nsmap[None].startswith('http://www.sbml.org/')
+    except:
+        return False
+
+
 IPYNB_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.ipynb'), recursive=True))
 JPG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.jpg'), recursive=True))
 MAT_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.mat'), recursive=True))
@@ -92,8 +102,10 @@ PNG_FILES = sorted((filename,) for filename in itertools.chain(
     glob.glob(os.path.join(ENTRIES_DIR, '**', '*.PNG'), recursive=True),
 ))
 PY_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.py'), recursive=True))
+ALL_XML_FILES = set((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.xml'), recursive=True))
+SBML_FILES = list(filter(lambda filename: is_file_sbml(filename[0]), ALL_XML_FILES))
 SVG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.svg'), recursive=True))
-XML_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.xml'), recursive=True))
+OTHER_XML_FILES = sorted(set(ALL_XML_FILES).difference(set(SBML_FILES)))
 XPP_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.xpp'), recursive=True))
 ZIP_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.zip'), recursive=True))
 
@@ -174,6 +186,18 @@ class EntriesTestCase(unittest.TestCase):
 
         subprocess.check_call(['flake8', filename])
 
+    @parameterized.parameterized.expand(SBML_FILES, skip_on_empty=True)
+    def test_sbml_files(self, filename):
+        doc = libsbml.readSBMLFromFile(filename)
+        has_error = False
+        for i_error in range(doc.getNumErrors()):
+            if not (sbml_error.isInfo() or sbml_error.isWarning()):
+                has_error = True
+                break
+        if has_error:
+            log = doc.getErrorLog()
+            raise Exception(log.toString())
+
     @parameterized.parameterized.expand(SVG_FILES, skip_on_empty=True)
     def test_svg_files(self, filename):
         try:
@@ -181,8 +205,8 @@ class EntriesTestCase(unittest.TestCase):
         except:
             raise Exception('{} is not a valid SVG file'.format(filename))
 
-    @parameterized.parameterized.expand(XML_FILES, skip_on_empty=True)
-    def test_xml_files(self, filename):
+    @parameterized.parameterized.expand(OTHER_XML_FILES, skip_on_empty=True)
+    def test_other_xml_files(self, filename):
         etree.parse(filename)
 
     @parameterized.parameterized.expand(XPP_FILES, skip_on_empty=True)
