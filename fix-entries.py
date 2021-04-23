@@ -2,11 +2,16 @@
 # master program to fix the entries of BioModels
 
 import argparse
+import fix_manual_corrections
+import fix_namespaces_in_sedml_doc
+import fix_sedml_extensions
 import glob
 import os
+import shutil
 import sys
 
-ENTRIES_DIR = os.path.dirname(__file__)
+MANUALLY_FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'manual-fixes')
+FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
 
 
 def get_entry_ids():
@@ -15,7 +20,8 @@ def get_entry_ids():
     Returns:
         :obj:`list` of :obj:`str`: ids of the entries of BioModels (e.g., ``["BIOMD0000000230"]``)
     """
-    return sorted(os.path.relpath(dirname, ENTRIES_DIR) for dirname in glob.glob(os.path.join(ENTRIES_DIR, "final", 'BIOMD0*')))
+    return sorted(os.path.relpath(dirname, MANUALLY_FIXED_ENTRIES_DIR)
+                  for dirname in glob.glob(os.path.join(MANUALLY_FIXED_ENTRIES_DIR, 'BIOMD*')))
 
 
 def fix_entries(ids):
@@ -40,7 +46,24 @@ def fix_entry(id):
     Args:
         id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
     """
-    pass
+    if not os.path.isdir(FINAL_ENTRIES_DIR):
+        os.makedirs(FINAL_ENTRIES_DIR)
+
+    # start from manually fixed version of entry
+    from_dir = os.path.join(MANUALLY_FIXED_ENTRIES_DIR, id)
+    to_dir = os.path.join(FINAL_ENTRIES_DIR, id)
+    if os.path.isdir(to_dir):
+        shutil.rmtree(to_dir)
+    shutil.copytree(from_dir, to_dir)
+
+    # apply automated fixes
+    fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
+    fix_sedml_extensions.run(id, FINAL_ENTRIES_DIR)
+
+    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
+    for filename in sedml_filenames:
+        name = os.path.relpath(filename, FINAL_ENTRIES_DIR)
+        fix_namespaces_in_sedml_doc.run(name, FINAL_ENTRIES_DIR)
 
 
 if __name__ == "__main__":
