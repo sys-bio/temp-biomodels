@@ -12,9 +12,10 @@
 from biosimulators_utils.combine.data_model import CombineArchive, CombineArchiveContent, CombineArchiveContentFormat
 from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.data_model import Person
-from biosimulators_utils.sedml.data_model import SedDocument, Task, SteadyStateSimulation, UniformTimeCourseSimulation
+from biosimulators_utils.sedml.data_model import Task, SteadyStateSimulation, UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
+from biosimulators_utils.simulator import specs as simulator_specs
 from lxml import etree
 from pyxpp import pyxpp
 import ast
@@ -30,7 +31,6 @@ import os
 import owlready2
 import parameterized
 import PyPDF2
-import requests
 import scipy.io
 import shutil
 import subprocess
@@ -61,12 +61,7 @@ SIMULATORS.sort(key=lambda simulator: simulator['id'])
 # simulators to use to check the executability of the entries
 
 for simulator in SIMULATORS:
-    url = 'https://api.biosimulators.org/simulators/{}'.format(simulator['id'])
-    if simulator['version'] != 'latest':
-        url += '/{}'.format(simulator['version'])
-    response = requests.get(url)
-    response.raise_for_status()
-    simulator['specs'] = response.json()[0]
+    simulator['specs'] = simulator_specs.get_simulator_specs(simulator['id'], simulator['version'])
 
 SEDML_FILES_SIMULATORS = []
 for sanitized_name, name in SEDML_FILES:
@@ -221,89 +216,15 @@ class EntriesTestCase(unittest.TestCase):
             zip_file.extractall(self.temp_dirname)
 
 
-def does_simulator_have_capabilities_to_execute_sed_document(sed_doc, simulator_specs):
-    """ Determine if a simulator has the capabilities to execute a SED document
-
-    Args:
-        sed_doc (:obj:`SedDocument): SED document
-        simulator_specs (:obj:`dict`): specifications of a simulation tool
-
-    Returns:
-        :obj:`bool`: whether the simulator has the capabilities to execute the SED document
-    """
-    for task in sed_doc.tasks:
-        if not does_simulator_have_capabilities_to_execute_sed_task(task, simulator_specs):
-            return False
-    return True
-
-
-def does_simulator_have_capabilities_to_execute_sed_task(task, simulator_specs):
-    """ Determine if a simulator has the capabilities to execute a SED task
-
-    Args:
-        task (:obj:`Task`): SED task
-        simulator_specs (:obj:`dict`): specifications of a simulation tool
-
-    Returns:
-        :obj:`bool`: whether the simulator has the capabilities to execute the SED task
-    """
-    if isinstance(task, Task):
-        for alg_specs in simulator_specs['algorithms']:
-            if does_algorithm_implementation_have_capabilities_to_execute_sed_task(task, alg_specs):
-                return True
-
+def does_simulator_have_capabilities_to_execute_sed_document(doc, simulator_specs):
+    if not simulator_specs.does_simulator_have_capabilities_to_execute_sed_document(doc, simulator_specs):
         return False
 
-    else:
-        return True
-
-
-def does_algorithm_implementation_have_capabilities_to_execute_sed_task(task, algorithm_specs):
-    """ Determine if an implementation of an algorithm has the capabilities to execute a SED task
-
-    Args:
-        task (:obj:`Task`): SED task
-        algorithm_specs (:obj:`dict`): specifications of the implementation of an algorithm
-
-    Returns:
-        :obj:`bool`: whether the implementation of the algorithm has the capabilities to execute the SED task
-    """
-    model = task.model
-    simulation = task.simulation
-    algorithm = simulation.algorithm
-
-    if algorithm_specs['kisaoId']['id'] == algorithm.kisao_id:
-        # check if implementation supports SMBL
-        supports_format = False
-        for model_format_specs in algorithm_specs['modelFormats']:
-            if model_format_specs['id'] == SBML_EDAM_ID:
-                supports_format = True
-                break
-        if not supports_format:
+    for task in doc.tasks:
+        if isinstance(task, Task) and not isinstance(task.simulation(SteadyStateSimulation, UniformTimeCourseSimulation)):
             return False
 
-        # check if implementation supports the type of simulation
-        if not isinstance(simulation, (SteadyStateSimulation, UniformTimeCourseSimulation)):
-            return False
-
-        # check if implementation supports the parameters of the algorithm
-        supports_parameters = True
-        for change in algorithm.changes:
-            supports_parameter = False
-            for parameter_specs in algorithm_specs['parameters']:
-                if parameter_specs['kisaoId']['id'] == change.kisao_id:
-                    supports_parameter = True
-                    break
-            if not supports_parameter:
-                supports_parameters = False
-                break
-
-        if not supports_parameters:
-            return False
-
-        return True
-
-    return False
+    return True
 
 
 def build_combine_archive(master_sedml_name, archive_filename):

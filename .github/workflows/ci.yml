@@ -34,6 +34,23 @@ jobs:
       - name: Install requirements
         run: python -m pip install -r requirements.txt
 
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '15'
+
+      - name: Install Systems Biology Format Converter (SBFC)
+        run: |
+          cd /tmp
+          wget https://sourceforge.net/projects/sbfc/files/sbfc/sbfc-1.3.7.zip/download -O sbfc-1.3.7.zip
+          unzip sbfc-1.3.7.zip
+          mv sbfc-1.3.7 /opt/
+          rm sbfc-1.3.7.zip
+          echo "/opt/sbfc-1.3.7" >> $GITHUB_PATH
+
+      - name: Install XPP
+        run: sudo apt-get install -y --no-install-recommends xppaut
+
       - name: Fix entries
         run: python fix-entries.py
 
@@ -43,24 +60,24 @@ jobs:
           git config --global user.name "Center for Reproducible Biomodeling Modeling Bot"
           git config pull.rebase false
 
-      - id: commit-fixed-entries
+      - id: commit-final-entries
         name: Commit changes to the fixed entries
         run: |
           git stash
           git pull
           set +e
           git stash pop
-          git add fixed-entries/
+          git add final/
           git commit -m "Updated fixed versions of entries"
           if [[ $? = 0 ]]; then
-            fixedEntriesChanged=1
+            finalEntriesChanged=1
           else
-            fixedEntriesChanged=0
+            finalEntriesChanged=0
           fi
-          echo "::set-output name=fixedEntriesChanged::$fixedEntriesChanged"
+          echo "::set-output name=finalEntriesChanged::$finalEntriesChanged"
 
       - name: Push the changes to the fixed entries
-        if: steps.commit-fixed-entries.outputs.fixedEntriesChanged == '1'
+        if: steps.commit-final-entries.outputs.finalEntriesChanged == '1'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -96,9 +113,10 @@ jobs:
           python -m pip install --upgrade setuptools
 
       - name: Install requirements
-        run: |
-          python -m pip install -r tests/requirements.txt
-          sudo apt-get install -y --no-install-recommends xppaut
+        run: python -m pip install -r tests/requirements.txt
+
+      - name: Install XPP
+        run: sudo apt-get install -y --no-install-recommends xppaut
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -111,7 +129,7 @@ jobs:
       - name: Test entries and record the results
         run: python -m pytest --verbose --junitxml="test-results.xml" tests/
 
-      - name: Test entries and record the results
+      - name: Summarize test results
         if: success() || failure()
         run: python summarize-test-results.py
 
