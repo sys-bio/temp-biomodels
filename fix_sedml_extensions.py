@@ -20,10 +20,13 @@ def run(id, working_dir):
     changed = []
 
     for xml_filename in glob.glob(os.path.join(working_dir, id, '**', '*.xml'), recursive=True):
-        root = etree.parse(xml_filename).getroot()
-        if root.nsmap[None].startswith('http://sed-ml.org/'):
-            sedml_filename = xml_filename.replace('.xml', '.sbml')
-            shutil.move(xml_filename, sedml_filename)
-            changed.append(xml_filename)
+        try:
+            root = etree.parse(xml_filename).getroot()
+            if root.nsmap[None].startswith('http://sed-ml.org/'):
+                sedml_filename = xml_filename.replace('.xml', '.sbml')
+                shutil.move(xml_filename, sedml_filename)
+                changed.append(xml_filename)
+        except etree.XMLSyntaxError:
+            pass
 
     return changed
