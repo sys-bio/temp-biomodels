@@ -15,6 +15,7 @@ from biosimulators_utils.data_model import Person
 from biosimulators_utils.sedml.data_model import SedDocument, Task, SteadyStateSimulation, UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
+from lxml import etree
 import datetime
 import dateutil.tz
 import glob
@@ -75,13 +76,16 @@ EXTENSION_COMBINE_FORMAT_MAP = {
 
 SBML_EDAM_ID = 'format_2585'
 
+JPG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.jpg'), recursive=True))
+OWL_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.owl'), recursive=True))
 PDF_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.pdf'), recursive=True))
 PNG_FILES = sorted((filename,) for filename in itertools.chain(
     glob.glob(os.path.join(ENTRIES_DIR, '**', '*.png'), recursive=True),
     glob.glob(os.path.join(ENTRIES_DIR, '**', '*.PNG'), recursive=True),
 ))
-JPG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.jpg'), recursive=True))
 SVG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.svg'), recursive=True))
+XML_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.xml'), recursive=True))
+ZIP_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.zip'), recursive=True))
 
 
 class EntriesTestCase(unittest.TestCase):
@@ -119,6 +123,11 @@ class EntriesTestCase(unittest.TestCase):
         exec_sedml_docs_in_archive_with_containerized_simulator(
             archive_filename, out_dir, docker_image)
 
+    @parameterized.parameterized.expand(JPG_FILES, skip_on_empty=True)
+    def test_jpg_files(self, filename):
+        if imghdr.what(filename) != 'jpeg':
+            raise Exception('{} is not a valid JPEG file'.format(filename))
+
     @parameterized.parameterized.expand(PDF_FILES, skip_on_empty=True)
     def test_pdf_files(self, filename):
         try:
@@ -132,11 +141,6 @@ class EntriesTestCase(unittest.TestCase):
         if imghdr.what(filename) != 'png':
             raise Exception('{} is not a valid PNG file'.format(filename))
 
-    @parameterized.parameterized.expand(JPG_FILES, skip_on_empty=True)
-    def test_jpg_files(self, filename):
-        if imghdr.what(filename) != 'jpeg':
-            raise Exception('{} is not a valid JPEG file'.format(filename))
-
     @parameterized.parameterized.expand(SVG_FILES, skip_on_empty=True)
     @unittest.skip('Files have errors, but readers are able to read the files nonetheless')
     def test_svg_files(self, filename):
@@ -144,6 +148,10 @@ class EntriesTestCase(unittest.TestCase):
             subprocess.check_call(['svgcheck', '--repair', filename])
         except:
             raise Exception('{} is not a valid SVG file'.format(filename))
+
+    @parameterized.parameterized.expand(XML_FILES, skip_on_empty=True)
+    def test_xml_files(self, filename):
+        etree.parse(filename)
 
 
 def does_simulator_have_capabilities_to_execute_sed_document(sed_doc, simulator_specs):

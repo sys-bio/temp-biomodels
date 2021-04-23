@@ -56,10 +56,11 @@ def fix_entry(id):
     shutil.copytree(from_dir, to_dir)
 
     # apply automated fixes
+    fix_manual_corrections.run(id)
+
     sedml_filenames = glob.glob(os.path.join(FIXED_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     for filename in sedml_filenames:
         name = os.path.relpath(filename, FIXED_ENTRIES_DIR)
-        fix_manual_corrections.run(name, filename)
         fix_namespaces_in_sedml_doc.run(name, filename)
 
 
