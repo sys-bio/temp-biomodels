@@ -60,24 +60,24 @@ jobs:
           git config --global user.name "Center for Reproducible Biomodeling Modeling Bot"
           git config pull.rebase false
 
-      - id: commit-fixed-entries
+      - id: commit-final-entries
         name: Commit changes to the fixed entries
         run: |
           git stash
           git pull
           set +e
           git stash pop
-          git add fixed-entries/
+          git add final/
           git commit -m "Updated fixed versions of entries"
           if [[ $? = 0 ]]; then
-            fixedEntriesChanged=1
+            finalEntriesChanged=1
           else
-            fixedEntriesChanged=0
+            finalEntriesChanged=0
           fi
-          echo "::set-output name=fixedEntriesChanged::$fixedEntriesChanged"
+          echo "::set-output name=finalEntriesChanged::$finalEntriesChanged"
 
       - name: Push the changes to the fixed entries
-        if: steps.commit-fixed-entries.outputs.fixedEntriesChanged == '1'
+        if: steps.commit-final-entries.outputs.finalEntriesChanged == '1'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
