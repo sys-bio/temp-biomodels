@@ -3,13 +3,14 @@ import libsbml
 import os
 
 
-def run(filename):
+def run(name, filename):
     """ Fix the namespaces in a SED-ML file and save the file in place
 
     * Remove duplicate SED-ML namespace declarations -- automatically fixed by LXML
     * Add namespaces for models
 
     Args:
+        name (:obj:`str`): file name
         filename (:obj:`str`): path to SED-ML file to fix
     """
     # parse file

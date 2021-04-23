@@ -3,6 +3,7 @@
 
 import argparse
 import fix_namespaces_in_sedml_doc
+import fix_manual_corrections
 import glob
 import os
 import shutil
@@ -57,7 +58,9 @@ def fix_entry(id):
     # apply automated fixes
     sedml_filenames = glob.glob(os.path.join(FIXED_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     for filename in sedml_filenames:
-        fix_namespaces_in_sedml_doc.run(filename)
+        name = os.path.relpath(filename, FIXED_ENTRIES_DIR)
+        fix_manual_corrections.run(name, filename)
+        fix_namespaces_in_sedml_doc.run(name, filename)
 
 
 if __name__ == "__main__":
