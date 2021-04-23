@@ -22,6 +22,8 @@ import dateutil.tz
 import glob
 import imghdr
 import itertools
+import json
+import nbformat
 import os
 import owlready2
 import parameterized
@@ -78,6 +80,7 @@ EXTENSION_COMBINE_FORMAT_MAP = {
 
 SBML_EDAM_ID = 'format_2585'
 
+IPYNB_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.ipynb'), recursive=True))
 JPG_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.jpg'), recursive=True))
 OWL_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.owl'), recursive=True))
 PDF_FILES = sorted((filename,) for filename in glob.glob(os.path.join(ENTRIES_DIR, '**', '*.pdf'), recursive=True))
@@ -125,6 +128,13 @@ class EntriesTestCase(unittest.TestCase):
         docker_image = 'ghcr.io/biosimulators/{}:{}'.format(simulator['id'], simulator['version'])
         exec_sedml_docs_in_archive_with_containerized_simulator(
             archive_filename, out_dir, docker_image)
+
+    @parameterized.parameterized.expand(IPYNB_FILES, skip_on_empty=True)
+    def test_ipynb_files(self, filename):
+        with open(filename) as file:
+            version = json.load(file)['nbformat']
+        with open(filename) as file:
+            nbformat.read(file, as_version=version)
 
     @parameterized.parameterized.expand(JPG_FILES, skip_on_empty=True)
     def test_jpg_files(self, filename):
