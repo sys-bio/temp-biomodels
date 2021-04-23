@@ -2,8 +2,9 @@
 # master program to fix the entries of BioModels
 
 import argparse
-import fix_namespaces_in_sedml_doc
 import fix_manual_corrections
+import fix_namespaces_in_sedml_doc
+import fix_sedml_extensions
 import glob
 import os
 import shutil
@@ -56,12 +57,13 @@ def fix_entry(id):
     shutil.copytree(from_dir, to_dir)
 
     # apply automated fixes
-    fix_manual_corrections.run(id)
+    fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
+    fix_sedml_extensions.run(id, FINAL_ENTRIES_DIR)
 
     sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     for filename in sedml_filenames:
         name = os.path.relpath(filename, FINAL_ENTRIES_DIR)
-        fix_namespaces_in_sedml_doc.run(name, filename)
+        fix_namespaces_in_sedml_doc.run(name, FINAL_ENTRIES_DIR)
 
 
 if __name__ == "__main__":
