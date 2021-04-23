@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.27 (Build 217) on 2020-03-06 23:57 with libSBML version 5.18.0. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+    <steadyState id="steady2">
+      <algorithm kisaoID="KISAO:0000282"/>
+    </steadyState>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model1" language="urn:sedml:language:sbml" source="model1.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model1" simulationReference="sim1"/>
+    <task id="task2" modelReference="model1" simulationReference="steady2"/>
+    <repeatedTask id="task3" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="0.6" end="4" numberOfPoints="100" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue range="range0" modelReference="model1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v&apos;]">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="x_1_task1" name="[x]">
+      <listOfVariables>
+        <variable id="p1_x_task1" name="x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_x_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="v_1_task1" name="v">
+      <listOfVariables>
+        <variable id="p1_v_task1" name="v" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_v_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="y_2_task1" name="[y]">
+      <listOfVariables>
+        <variable id="p1_y_task1" name="y" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;y&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_y_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="v_2_task1" name="v">
+      <listOfVariables>
+        <variable id="p1_v_task1" name="v" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_v_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="time_task3" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="x_1_task3" name="[x]">
+      <listOfVariables>
+        <variable id="p1_x_task3" name="x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_x_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="v_1_task3" name="v">
+      <listOfVariables>
+        <variable id="p1_v_task3" name="v" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_v_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="y_2_task3" name="[y]">
+      <listOfVariables>
+        <variable id="p1_y_task3" name="y" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;y&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_y_task3 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="v_2_task3" name="v">
+      <listOfVariables>
+        <variable id="p1_v_task3" name="v" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v&apos;]" taskReference="task3"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_v_task3 </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="plot">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[x]" logX="false" logY="false" xDataReference="v_1_task1" yDataReference="x_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[y]" logX="false" logY="false" xDataReference="v_2_task1" yDataReference="y_2_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task3" name="plot">
+      <listOfCurves>
+        <curve id="p1_curve_1_task3" name="[x]" logX="false" logY="false" xDataReference="v_1_task3" yDataReference="x_1_task3"/>
+        <curve id="p1_curve_2_task3" name="[y]" logX="false" logY="false" xDataReference="v_2_task3" yDataReference="y_2_task3"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

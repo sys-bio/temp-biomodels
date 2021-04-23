@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.20 (Build 145) on 2017-03-01 20:01 with libSBML version 5.13.0. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="100" outputEndTime="500" numberOfPoints="25000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="MODEL1603240000" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000627.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="MODEL1603240000" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time" name="Time">
+      <listOfVariables>
+        <variable id="var_time" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="BOLD_signal_1" name="Values[BOLD signal]">
+      <listOfVariables>
+        <variable id="p1_BOLD_signal" name="BOLD_signal" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;BOLD_signal&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_BOLD_signal </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="vSTIM_1" name="(Na+_exchange_extracellular_space_neurons  (stimulation)).Flux">
+      <listOfVariables>
+        <variable id="p2_vSTIM" name="vSTIM" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;vSTIM&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_vSTIM </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="venous_balloon_1" name="Compartments[venous balloon].Volume">
+      <listOfVariables>
+        <variable id="p3_venous_balloon" name="venous_balloon" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;venous_balloon&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_venous_balloon </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot1" name="Figure 3. Pane (c)">
+      <listOfCurves>
+        <curve id="p1_curve_1" name="Values[BOLD signal]" logX="false" logY="false" xDataReference="time" yDataReference="BOLD_signal_1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot2" name="Figure 3. Pane (a)">
+      <listOfCurves>
+        <curve id="p2_curve_1" name="(Na+_exchange_extracellular_space_neurons  (stimulation)).Flux" logX="false" logY="false" xDataReference="time" yDataReference="vSTIM_1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot3" name="Figure 3. Pane (b)">
+      <listOfCurves>
+        <curve id="p3_curve_1" name="Compartments[venous balloon].Volume" logX="false" logY="false" xDataReference="time" yDataReference="venous_balloon_1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

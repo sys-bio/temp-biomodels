@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.24 (Build 197) on 2019-08-13 15:55 with libSBML version 5.17.0. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="640" numberOfPoints="1000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="NFKB_nuc_1_task1" name="[NFKB_nuc]">
+      <listOfVariables>
+        <variable id="p1_NFKB_nuc_task1" name="NFKB_nuc" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NFKB_nuc&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_NFKB_nuc_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="NFKB_nuc_actual_1_task1" name="Values[NFKB_nuc_actual]">
+      <listOfVariables>
+        <variable id="p2_NFKB_nuc_actual_task1" name="NFKB_nuc_actual" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;NFKB_nuc_actual&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_NFKB_nuc_actual_task1 </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="NFKB_nuc">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[NFKB_nuc]" logX="false" logY="false" xDataReference="time_task1" yDataReference="NFKB_nuc_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="NFKN_nuc_vol">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="Values[NFKB_nuc_actual]" logX="false" logY="false" xDataReference="time_task1" yDataReference="NFKB_nuc_actual_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

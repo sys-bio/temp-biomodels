@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Proctor2008 - p53/Mdm2 circuit - p53 stabilisation by ATM">
+      <Model Name="BIOMD0000000188">
+         <ModelParameters>
+            <Parameter Name="IR" Role="user defined" Unit="10 gray">0.0</Parameter>
+            <Parameter Name="ksynMdm2" Role="user defined" Unit="second-1">4.95E-4</Parameter>
+            <Parameter Name="kdegMdm2" Role="user defined" Unit="second-1">4.33E-4</Parameter>
+            <Parameter Name="ksynp53" Role="user defined" Unit="second-1">0.006</Parameter>
+            <Parameter Name="kdegp53" Role="user defined" Unit="second-1">8.25E-4</Parameter>
+            <Parameter Name="kbinMdm2p53" Role="user defined" Unit="mole-1.second-1">0.001155</Parameter>
+            <Parameter Name="krelMdm2p53" Role="user defined" Unit="second-1">1.155E-5</Parameter>
+            <Parameter Name="ksynMdm2mRNA" Role="user defined" Unit="second-1">1.0E-4</Parameter>
+            <Parameter Name="kdegMdm2mRNA" Role="user defined" Unit="second-1">1.0E-4</Parameter>
+            <Parameter Name="kactATM" Role="user defined" Unit="mole-1.second-1">1.0E-4</Parameter>
+            <Parameter Name="kdegATMMdm2" Role="user defined" Unit="second-1">4.0E-4</Parameter>
+            <Parameter Name="kinactATM" Role="user defined" Unit="second-1">5.0E-4</Parameter>
+            <Parameter Name="kphosp53" Role="user defined" Unit="mole-1.second-1">5.0E-4</Parameter>
+            <Parameter Name="kdephosp53" Role="user defined" Unit="second-1">0.5</Parameter>
+            <Parameter Name="kphosMdm2" Role="user defined" Unit="mole-1.second-1">2.0</Parameter>
+            <Parameter Name="kdephosMdm2" Role="user defined" Unit="second-1">0.5</Parameter>
+            <Parameter Name="kdam" Role="user defined" Unit="0.1 mole.second-1.gray-1">0.08</Parameter>
+            <Parameter Name="krepair" Role="user defined" Unit="second-1">2.0E-5</Parameter>
+            <Parameter Name="kproteff" Role="user defined" Unit="1">1.0</Parameter>
+            <Parameter Name="ksynp53mRNA" Role="user defined" Unit="second-1">0.001</Parameter>
+            <Parameter Name="kdegp53mRNA" Role="user defined" Unit="second-1">1.0E-4</Parameter>
+            <Parameter Name="VC_SpConcFactor_mol_litre_1_uM_1" Role="user defined" Unit="mol.litre-1.uM-1">
+               1.0E-6
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="Mdm2">
+            <Annotation>Mdm2</Annotation>
+         </Compound>
+         <Compound Name="p53">
+            <Annotation>p53</Annotation>
+         </Compound>
+         <Compound Name="Mdm2_p53">
+            <Annotation>Mdm2_p53</Annotation>
+         </Compound>
+         <Compound Name="Mdm2_mRNA">
+            <Annotation>Mdm2_mRNA</Annotation>
+         </Compound>
+         <Compound Name="p53_mRNA">
+            <Annotation>p53_mRNA</Annotation>
+         </Compound>
+         <Compound Name="ATMA">
+            <Annotation>ATMA</Annotation>
+         </Compound>
+         <Compound Name="ATMI">
+            <Annotation>ATMI</Annotation>
+         </Compound>
+         <Compound Name="p53_P">
+            <Annotation>p53_P</Annotation>
+         </Compound>
+         <Compound Name="Mdm2_P">
+            <Annotation>Mdm2_P</Annotation>
+         </Compound>
+         <Compound Name="damDNA">
+            <Annotation>damDNA</Annotation>
+         </Compound>
+         <Compound Name="Sink">
+            <Annotation>Sink</Annotation>
+         </Compound>
+         <Compound Name="Source">
+            <Annotation>Source</Annotation>
+         </Compound>
+         <Compound Name="p53deg">
+            <Annotation>p53deg</Annotation>
+         </Compound>
+         <Compound Name="p53syn">
+            <Annotation>p53syn</Annotation>
+         </Compound>
+         <Compound Name="mdm2deg">
+            <Annotation>mdm2deg</Annotation>
+         </Compound>
+         <Compound Name="mdm2syn">
+            <Annotation>mdm2syn</Annotation>
+         </Compound>
+         <Compound Name="Mdm2mRNAdeg">
+            <Annotation>Mdm2mRNAdeg</Annotation>
+         </Compound>
+         <Compound Name="Mdm2mRNAsyn">
+            <Annotation>Mdm2mRNAsyn</Annotation>
+         </Compound>
+         <Compound Name="totp53">
+            <Annotation>totp53</Annotation>
+         </Compound>
+         <Compound Name="totMdm2">
+            <Annotation>totMdm2</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="Mdm2" CompoundRef="Mdm2" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="p53" CompoundRef="p53" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Mdm2_p53" CompoundRef="Mdm2_p53" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Mdm2_mRNA" CompoundRef="Mdm2_mRNA" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="p53_mRNA" CompoundRef="p53_mRNA" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="ATMA" CompoundRef="ATMA" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="ATMI" CompoundRef="ATMI" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="p53_P" CompoundRef="p53_P" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Mdm2_P" CompoundRef="Mdm2_P" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="damDNA" CompoundRef="damDNA" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Sink" CompoundRef="Sink" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Source" CompoundRef="Source" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="p53deg" CompoundRef="p53deg" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="p53syn" CompoundRef="p53syn" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="mdm2deg" CompoundRef="mdm2deg" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="mdm2syn" CompoundRef="mdm2syn" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Mdm2mRNAdeg" CompoundRef="Mdm2mRNAdeg" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Mdm2mRNAsyn" CompoundRef="Mdm2mRNAsyn" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="totp53" CompoundRef="totp53" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="totMdm2" CompoundRef="totMdm2" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="p53mRNASynthesis" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Source" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53_mRNA" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ksynp53mRNA * Source * Source_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Source_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="p53mRNADegradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p53_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdegp53mRNA * p53_mRNA * p53_mRNA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="p53_mRNA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2Synthesis" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="mdm2syn" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ksynMdm2 * Mdm2_mRNA * Mdm2_mRNA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_mRNA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2mRNASynthesis1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2mRNAsyn" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ksynMdm2mRNA * p53 * p53_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="p53_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2mRNASynthesis2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p53_P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53_P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2mRNAsyn" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ksynMdm2mRNA * p53_P * p53_P_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="p53_P_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2mRNADegradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2mRNAdeg" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdegMdm2mRNA * Mdm2_mRNA * Mdm2_mRNA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_mRNA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2Degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="mdm2deg" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdegMdm2 * kproteff * Mdm2 * Mdm2_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="p53Synthesis" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p53_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53_mRNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53syn" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ksynp53 * p53_mRNA * p53_mRNA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="p53_mRNA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="p53Degradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2_p53" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53deg" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdegp53 * kproteff * Mdm2_p53 * Mdm2_p53_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_p53_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="P53_Mdm2Binding" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2_p53" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbinMdm2p53 * Mdm2 * Mdm2_ConcFactor * p53 * p53_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="p53_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="P53_Mdm2Release" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2_p53" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * krelMdm2p53 * Mdm2_p53 * Mdm2_p53_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_p53_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="DNAdamage" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="damDNA" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdam * IR / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="DNArepair" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="damDNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * krepair * damDNA * damDNA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="damDNA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="ATMactivation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="ATMI" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="damDNA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ATMA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="damDNA" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kactATM * ATMI * ATMI_ConcFactor * damDNA * damDNA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="ATMI_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="damDNA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="p53phoshorylation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="ATMA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ATMA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53_P" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kphosp53 * p53 * p53_ConcFactor * ATMA * ATMA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="p53_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="ATMA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="p53dephosorylation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="p53_P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="p53" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdephosp53 * p53_P * p53_P_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="p53_P_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2phoshorylation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="ATMA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ATMA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2_P" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kphosMdm2 * Mdm2 * Mdm2_ConcFactor * ATMA * ATMA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="ATMA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2dephosorylation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2_P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Mdm2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdephosMdm2 * Mdm2_P * Mdm2_P_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_P_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Mdm2Pdegradation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Mdm2_P" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Sink" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="mdm2deg" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kdegATMMdm2 * Mdm2_P * Mdm2_P_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Mdm2_P_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="ATMInactivation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="ATMA" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="ATMI" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kinactATM * ATMA * ATMA_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="ATMA_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="BIOMD0000000188_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mdm2" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>5000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="p53" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>5000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mdm2_p53" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>9.5E7</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mdm2_mRNA" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1.0E7</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="p53_mRNA" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1.0E7</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ATMA" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ATMI" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>2.0E8</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="p53_P" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mdm2_P" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="damDNA" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Sink" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Source" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>1000000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="p53deg" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="p53syn" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="mdm2deg" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="mdm2syn" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mdm2mRNAdeg" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Mdm2mRNAsyn" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="totp53" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(1000000.0 * ((p53 * VC_SpConcFactor_mol_litre_1_uM_1) + (Mdm2_p53 * VC_SpConcFactor_mol_litre_1_uM_1) + (p53_P * VC_SpConcFactor_mol_litre_1_uM_1)))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="totMdm2" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(1000000.0 * ((Mdm2 * VC_SpConcFactor_mol_litre_1_uM_1) + (Mdm2_p53 * VC_SpConcFactor_mol_litre_1_uM_1) + (Mdm2_P * VC_SpConcFactor_mol_litre_1_uM_1)))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="p53mRNASynthesis" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="p53mRNADegradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2Synthesis" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2mRNASynthesis1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2mRNASynthesis2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2mRNADegradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2Degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="p53Synthesis" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="p53Degradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="P53_Mdm2Binding" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="P53_Mdm2Release" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="DNAdamage" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="DNArepair" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="ATMactivation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="p53phoshorylation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="p53dephosorylation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2phoshorylation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2dephosorylation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Mdm2Pdegradation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="ATMInactivation" ReactionMapping="included" />
+         </ReactionContext>
+         <BioEvents>
+            <BioEvent Name="stressCell">
+               <Trigger>(t &gt;= 3600.0)</Trigger>
+               <EventAssignment Variable="IR">25.0</EventAssignment>
+            </BioEvent>
+            <BioEvent Name="stopStress">
+               <Trigger>(t &gt;= 3660.0)</Trigger>
+               <EventAssignment Variable="IR">0.0</EventAssignment>
+            </BioEvent>
+         </BioEvents>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000002">
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_85" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isPartOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.pathway/hsa04115" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isPartOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/reactome/REACT_309" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043516" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL5836973167" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000188" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/18706112" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node52">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">c.j.proctor@ncl.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node56">
+                                 <vcard:Family>Proctor</vcard:Family>
+                                 <vcard:Given>Carole</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node57">
+                                 <vcard:Orgname>University of Newcastle</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node53">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">viji@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node58">
+                                 <vcard:Family>Chelliah</vcard:Family>
+                                 <vcard:Given>Vijayalakshmi</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node59">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:nodeID="node54">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">dgray@ohri.ca</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node60">
+                                 <vcard:Family>Gray</vcard:Family>
+                                 <vcard:Given>Douglas A</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node55" />
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_3>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2008-09-01T11:45:30Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node10">
+                     <dcterms:W3CDTF>2016-04-08T15:43:18Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000024">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005623" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000025">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q00987" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+               <bqbiol:isEncodedBy xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ensembl/ENSG00000135679" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isEncodedBy>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000026">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04637" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+               <bqbiol:isEncodedBy xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ensembl/ENSG00000141510" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isEncodedBy>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000027">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04637" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q00987" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000028">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:33699" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00046" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000029">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:33699" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00046" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000030">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q13315" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000031">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q13315" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000032">
+               <bqbiol:encodes xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04637" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:encodes>
+               <bqbiol:isEncodedBy xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ensembl/ENSG00000141510" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isEncodedBy>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000033">
+               <bqbiol:encodes xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q00987" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:encodes>
+               <bqbiol:isEncodedBy xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ensembl/ENSG00000135679" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isEncodedBy>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000035">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:16991" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006974" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000038">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000039">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000040">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000041">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000042">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node30">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006402" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000043">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node31">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0003700" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000048">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node32">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0003700" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000049">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node33">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006402" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000050">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node34">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000051">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node35">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0003700" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000052">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node36">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0003700" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000053">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node37">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006402" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000054">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node38">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000055">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node39">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000056">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node40">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000057">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node41">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0002039" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000058">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node42">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043624" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000059">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node43">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006974" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000060">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node44">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006281" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000061">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node45">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006468" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000062">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node46">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006468" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000063">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node47">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006470" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000064">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node48">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006468" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000065">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node49">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006470" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000066">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node50">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043161" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/metaid_0000067">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node51">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006470" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:nodeID="node55">
+               <vcard:Orgname xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">Ottawa Health Research Institute, Ottawa.</vcard:Orgname>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Proctor2008 - p53/Mdm2 circuit - p53 stabilisation by ATM)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Proctor2008 - p53/Mdm2 circuit - p53 stabilisation by ATM</div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/18706112" title="Access to this publication">Explaining oscillations and
+    variability in the p53-Mdm2 system.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Proctor CJ, Gray DA.</div>
+                        
+      
+                        <div class="bibo:Journal">BMC Syst Biol 2008; 2: 75</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>BACKGROUND: In individual living cells p53 has been found to
+    be expressed in a series of discrete pulses after DNA damage.
+    Its negative regulator Mdm2 also demonstrates oscillatory
+    behaviour. Attempts have been made recently to explain this
+    behaviour by mathematical models but these have not addressed
+    explicit molecular mechanisms. We describe two stochastic
+    mechanistic models of the p53/Mdm2 circuit and show that
+    sustained oscillations result directly from the key biological
+    features, without assuming complicated mathematical functions
+    or requiring more than one feedback loop. Each model examines a
+    different mechanism for providing a negative feedback loop
+    which results in p53 activation after DNA damage. The first
+    model (ARF model) looks at the mechanism of p14ARF which
+    sequesters Mdm2 and leads to stabilisation of p53. The second
+    model (ATM model) examines the mechanism of ATM activation
+    which leads to phosphorylation of both p53 and Mdm2 and
+    increased degradation of Mdm2, which again results in p53
+    stabilisation. The models can readily be modified as further
+    information becomes available, and linked to other models of
+    cellular ageing. RESULTS: The ARF model is robust to changes in
+    its parameters and predicts undamped oscillations after DNA
+    damage so long as the signal persists. It also predicts that if
+    there is a gradual accumulation of DNA damage, such as may
+    occur in ageing, oscillations break out once a threshold level
+    of damage is acquired. The ATM model requires an additional
+    step for p53 synthesis for sustained oscillations to develop.
+    The ATM model shows much more variability in the oscillatory
+    behaviour and this variability is observed over a wide range of
+    parameter values. This may account for the large variability
+    seen in the experimental data which so far has examined ARF
+    negative cells. CONCLUSION: The models predict more regular
+    oscillations if ARF is present and suggest the need for further
+    experiments in ARF positive cells to test these predictions.
+    Our work illustrates the importance of systems biology
+    approaches to understanding the complex role of p53 in both
+    ageing and cancer.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:publisher">
+                        
+      
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000188">BIOMD0000000188</a>
+                           .
+                        </p>
+                        
+    
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000048" vcid="ReactionStep(p53mRNASynthesis)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000031" vcid="Species(ATMI)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000029" vcid="Species(p53_mRNA)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000050" vcid="ReactionStep(Mdm2Synthesis)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000060" vcid="ReactionStep(DNArepair)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000064" vcid="ReactionStep(Mdm2phoshorylation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000028" vcid="Species(Mdm2_mRNA)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000055" vcid="ReactionStep(p53Synthesis)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000053" vcid="ReactionStep(Mdm2mRNADegradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000045" vcid="Species(totMdm2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000037" vcid="Species(Source)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000067" vcid="ReactionStep(ATMInactivation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000030" vcid="Species(ATMA)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000042" vcid="Species(Mdm2mRNAdeg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000039" vcid="Species(p53syn)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000032" vcid="Species(p53_P)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000033" vcid="Species(Mdm2_P)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000059" vcid="ReactionStep(DNAdamage)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000036" vcid="Species(Sink)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000049" vcid="ReactionStep(p53mRNADegradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000027" vcid="Species(Mdm2_p53)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000051" vcid="ReactionStep(Mdm2mRNASynthesis1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000056" vcid="ReactionStep(p53Degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000044" vcid="Species(totp53)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000058" vcid="ReactionStep(P53_Mdm2Release)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000065" vcid="ReactionStep(Mdm2dephosorylation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000054" vcid="ReactionStep(Mdm2Degradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000026" vcid="Species(p53)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000043" vcid="Species(Mdm2mRNAsyn)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000038" vcid="Species(p53deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000002" vcid="BioModel(Proctor2008 - p53/Mdm2 circuit - p53 stabilisation by ATM)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000062" vcid="ReactionStep(p53phoshorylation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000057" vcid="ReactionStep(P53_Mdm2Binding)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000066" vcid="ReactionStep(Mdm2Pdegradation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000040" vcid="Species(mdm2deg)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000063" vcid="ReactionStep(p53dephosorylation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000041" vcid="Species(mdm2syn)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000024" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000061" vcid="ReactionStep(ATMactivation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000025" vcid="Species(Mdm2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000035" vcid="Species(damDNA)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/metaid_0000052" vcid="ReactionStep(Mdm2mRNASynthesis2)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

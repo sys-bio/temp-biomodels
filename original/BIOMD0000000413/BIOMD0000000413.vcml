@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Band2012_DII-Venus_FullModel">
+      <Model Name="DIIVENUS_fullmodel">
+         <ModelParameters>
+            <Parameter Name="kd" Role="user defined" Unit="tbd">0.334</Parameter>
+            <Parameter Name="ka" Role="user defined" Unit="tbd">8.22E-4</Parameter>
+            <Parameter Name="mu" Role="user defined" Unit="tbd">0.79</Parameter>
+            <Parameter Name="ld" Role="user defined" Unit="tbd">4.49</Parameter>
+            <Parameter Name="lm" Role="user defined" Unit="tbd">0.175</Parameter>
+            <Parameter Name="la" Role="user defined" Unit="tbd">1.15</Parameter>
+            <Parameter Name="delta" Role="user defined" Unit="tbd">0.486</Parameter>
+            <Parameter Name="lambda" Role="user defined" Unit="tbd">0.00316</Parameter>
+            <Parameter Name="TIR1T" Role="user defined" Unit="tbd">18.5</Parameter>
+            <Parameter Name="alpha_tr" Role="user defined" Unit="tbd">30.5</Parameter>
+         </ModelParameters>
+         <Compound Name="auxin">
+            <Annotation>auxin</Annotation>
+         </Compound>
+         <Compound Name="TIR1">
+            <Annotation>TIR1</Annotation>
+         </Compound>
+         <Compound Name="auxinTIR1">
+            <Annotation>auxinTIR1</Annotation>
+         </Compound>
+         <Compound Name="auxinTIR1VENUS">
+            <Annotation>auxinTIR1VENUS</Annotation>
+         </Compound>
+         <Compound Name="VENUS">
+            <Annotation>VENUS</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="auxin" CompoundRef="auxin" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="TIR1" CompoundRef="TIR1" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="auxinTIR1" CompoundRef="auxinTIR1" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="auxinTIR1VENUS" CompoundRef="auxinTIR1VENUS" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="VENUS" CompoundRef="VENUS" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="auxin_TIR1association" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="auxin" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="TIR1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="auxinTIR1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ka * auxin * auxin_ConcFactor * TIR1 * TIR1_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="auxin_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="TIR1_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="auxin_TIR1dissociation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="auxinTIR1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="auxin" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="TIR1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kd * auxinTIR1 * auxinTIR1_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="auxinTIR1_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="auxin_TIR1_VENUSassociation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="auxinTIR1" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="VENUS" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="auxinTIR1VENUS" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * la * auxinTIR1 * auxinTIR1_ConcFactor * VENUS * VENUS_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="auxinTIR1_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="VENUS_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="auxin_TIR1_VENUSdissociation" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="auxinTIR1VENUS" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="auxinTIR1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="VENUS" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ld * auxinTIR1VENUS * auxinTIR1VENUS_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="auxinTIR1VENUS_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="auxin_TIR1_VENUSdissociationleadingtoubiquitination" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="auxinTIR1VENUS" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="auxinTIR1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * lm * auxinTIR1VENUS * auxinTIR1VENUS_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="auxinTIR1VENUS_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="auxinproduction" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="auxin" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * alpha_tr / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="auxindecay" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="auxin" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * mu * auxin * auxin_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="auxin_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="VENUSproduction" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="VENUS" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * delta / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="VENUSphotobleachingdecay" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="VENUS" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * lambda * VENUS * VENUS_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="VENUS_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="DIIVENUS_fullmodel_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="auxin" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>7380000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="TIR1" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1.54E7</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="auxinTIR1" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>280000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="auxinTIR1VENUS" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>2780000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="VENUS" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>4.04E7</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="auxin_TIR1association" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="auxin_TIR1dissociation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="auxin_TIR1_VENUSassociation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="auxin_TIR1_VENUSdissociation" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="auxin_TIR1_VENUSdissociationleadingtoubiquitination" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="auxinproduction" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="auxindecay" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="VENUSproduction" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="VENUSphotobleachingdecay" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119096">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/mamo/MAMO_0000046" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/3701" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0090354" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0009958" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1203230002" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000413" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/22393022" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node24">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">viji@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node26">
+                                 <vcard:Family>Chelliah</vcard:Family>
+                                 <vcard:Given>Vijayalakshmi</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node27">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node25">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">leah.band@cpib.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node28">
+                                 <vcard:Family>Band</vcard:Family>
+                                 <vcard:Given>Leah</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node29">
+                                 <vcard:Orgname>Centre for Plant Integrative Biology, University of Nottingham</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2012-04-05T14:38:40Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2014-04-02T00:25:31Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119099">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005623" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119101">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P49677" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119102">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q570C0" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q9ZR12" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q9LW29" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q9LPW7" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119104">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P49677" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q570C0" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119106">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P49677" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q570C0" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q9XFM0" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q940U6" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119108">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q940U6" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q9XFM0" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119110">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006461" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119112">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119114">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006461" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119116">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119118">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043241" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119120">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119122">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119124">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_119126">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Band2012_DII-Venus_FullModel)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>
+                        
+      This model is from the article:
+      
+                        <br />
+                        
+    
+                        <strong> Root gravitropism is regulated by a transient lateral auxin gradient controlled by a tipping-point mechanism.
+</strong>
+                        
+    
+                        <br />
+                        
+Band LR, Wells DM, Larrieu A, Sun J, Middleton AM, French AP, Brunoud G, Sato EM, Wilson MH, Péret B, Oliva M, Swarup R, Sairanen I, Parry G, Ljung K, Beeckman T, Garibaldi JM, Estelle M, Owen MR, Vissenberg K, Hodgman TC, Pridmore TP, King JR, Vernoux T, Bennett MJ.
+      
+                        <em>Proc Natl Acad Sci U S A.</em>
+                        2012 Mar 20;109(12):4668-73 
+      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/22393022">22393022</a>
+                        ,
+      
+                        <br />
+                        
+    
+                        <strong>Abstract:</strong>
+                        
+    
+                        <br />
+                        
+Gravity profoundly influences plant growth and development. Plants respond to changes in orientation by using gravitropic responses to modify their growth. Cholodny and Went hypothesized over 80 years ago that plants bend in response to a gravity stimulus by generating a lateral gradient of a growth regulator at an organ's apex, later found to be auxin. Auxin regulates root growth by targeting Aux/IAA repressor proteins for degradation. We used an Aux/IAA-based reporter, domain II (DII)-VENUS, in conjunction with a mathematical model to quantify auxin redistribution following a gravity stimulus. Our multidisciplinary approach revealed that auxin is rapidly redistributed to the lower side of the root within minutes of a 90° gravity stimulus. Unexpectedly, auxin asymmetry was rapidly lost as bending root tips reached an angle of 40° to the horizontal. We hypothesize roots use a "tipping point" mechanism that operates to reverse the asymmetric auxin flow at the midpoint of root bending. These mechanistic insights illustrate the scientific value of developing quantitative reporters such as DII-VENUS in conjunction with parameterized mathematical models to provide high-resolution kinetics of hormone redistribution.
+   
+                     </p>
+                     
+  
+                     <p>
+   This model corresponds to the full model described in the article. </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119114" vcid="ReactionStep(auxin_TIR1_VENUSassociation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119099" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119106" vcid="Species(auxinTIR1VENUS)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119096" vcid="BioModel(Band2012_DII-Venus_FullModel)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119118" vcid="ReactionStep(auxin_TIR1_VENUSdissociationleadingtoubiquitination)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119120" vcid="ReactionStep(auxinproduction)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119108" vcid="Species(VENUS)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119124" vcid="ReactionStep(VENUSproduction)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119116" vcid="ReactionStep(auxin_TIR1_VENUSdissociation)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119126" vcid="ReactionStep(VENUSphotobleachingdecay)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119102" vcid="Species(TIR1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119122" vcid="ReactionStep(auxindecay)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119104" vcid="Species(auxinTIR1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119101" vcid="Species(auxin)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119110" vcid="ReactionStep(auxin_TIR1association)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_119112" vcid="ReactionStep(auxin_TIR1dissociation)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

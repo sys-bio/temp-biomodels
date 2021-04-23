@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Lockwood2006 - Alzheimer's Disease PBPK model">
+      <Model Name="Lockwood2006___AlzheimersDisease_PBPK_model">
+         <ModelParameters>
+            <Parameter Name="S0" Role="user defined" Unit="tbd">30.0</Parameter>
+            <Parameter Name="alpha" Role="user defined" Unit="tbd">0.0164</Parameter>
+            <Parameter Name="MODEL_TIME" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="PD_CeP" Role="user defined" Unit="tbd">ADAS_COG_P</Parameter>
+            <Parameter Name="PD_CeA" Role="user defined" Unit="tbd">((Model_Inactive * (MODEL_TYPE == 0.0)) + (((Model_active_Linear * (MODEL_TYPE == 1.0)) + (((Model_active_Hyperbolic * (MODEL_TYPE == 2.0)) + (((Model_active_Sigmoidal * (MODEL_TYPE == 3.0)) + (!((MODEL_TYPE == 3.0)) * Model_active_U_Shaped * (MODEL_TYPE == 4.0))) * !((MODEL_TYPE == 2.0)))) * !((MODEL_TYPE == 1.0)))) * !((MODEL_TYPE == 0.0))))</Parameter>
+            <Parameter Name="epsilon" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="S" Role="user defined" Unit="tbd">(S0 + (alpha * MODEL_TIME) + PD_CeP + PD_CeA + epsilon)</Parameter>
+            <Parameter Name="Beta_P" Role="user defined" Unit="tbd">-3.0</Parameter>
+            <Parameter Name="Keq_P" Role="user defined" Unit="tbd">(0.6931471805599453 / t_half_eq)</Parameter>
+            <Parameter Name="Kel_P" Role="user defined" Unit="tbd">(0.6931471805599453 / t_half_el)</Parameter>
+            <Parameter Name="t_half_eq" Role="user defined" Unit="tbd">6.0</Parameter>
+            <Parameter Name="t_half_el" Role="user defined" Unit="tbd">7.0</Parameter>
+            <Parameter Name="Beta_A" Role="user defined" Unit="tbd">-0.047</Parameter>
+            <Parameter Name="CeA" Role="user defined" Unit="tbd">25.0</Parameter>
+            <Parameter Name="ECeA_50" Role="user defined" Unit="tbd">21.0</Parameter>
+            <Parameter Name="Emax" Role="user defined" Unit="tbd">( - (4.0 * (MODEL_TYPE == 2.0)) + (( - (3.0 * (MODEL_TYPE == 3.0)) - (6.0 * !((MODEL_TYPE == 3.0)) * (MODEL_TYPE == 4.0))) * !((MODEL_TYPE == 2.0))))</Parameter>
+            <Parameter Name="n" Role="user defined" Unit="tbd">((4.0 * (MODEL_TYPE == 3.0)) + (3.0 * !((MODEL_TYPE == 3.0)) * (MODEL_TYPE == 4.0)))</Parameter>
+            <Parameter Name="CeA_U" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="ICea_U" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="ECea_U50" Role="user defined" Unit="tbd">18.0</Parameter>
+            <Parameter Name="ICea_U50" Role="user defined" Unit="tbd">38.0</Parameter>
+            <Parameter Name="MODEL_TYPE" Role="user defined" Unit="tbd">3.0</Parameter>
+            <Parameter Name="ANT_AGONIST_COMBINATION" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="Model_Inactive" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="Model_active_Linear" Role="user defined" Unit="tbd">(Beta_A * CeA)</Parameter>
+            <Parameter Name="Model_active_Hyperbolic" Role="user defined" Unit="tbd">(Emax * CeA / (ECeA_50 + CeA))</Parameter>
+            <Parameter Name="Model_active_Sigmoidal" Role="user defined" Unit="tbd">(Emax * pow(CeA,n) / (pow(ECeA_50,n) + pow(CeA,n)))</Parameter>
+            <Parameter Name="Model_active_U_Shaped" Role="user defined" Unit="tbd">(Emax * ((pow(CeA_U,n) / (pow(ECea_U50,n) + pow(CeA_U,n))) - (pow(ICea_U,n) / (pow(ICea_U50,n) + pow(ICea_U,n)))))</Parameter>
+            <Parameter Name="ADAS_COG_P" Role="user defined" Unit="tbd">((exp( - (Kel_P * MODEL_TIME)) - exp( - (Keq_P * MODEL_TIME))) * Beta_P * Keq_P / (Keq_P - Kel_P))</Parameter>
+         </ModelParameters>
+         <Feature Name="Compartment" />
+         <Diagram Name="Compartment" Structure="Compartment" />
+      </Model>
+      <SimulationSpec Name="Lockwood2006___AlzheimersDisease_PBPK_model_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="Compartment" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E12">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext />
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/COPASI0">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:38325" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:isDescribedBy xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doi/10.1007/s11095-006-9048-8" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isDescribedBy>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/mamo/MAMO_0000020" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/hp/HP:0002511" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1006230054" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000673" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/16906456" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node11">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">mroberts@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node13">
+                                 <vcard:Family>Roberts</vcard:Family>
+                                 <vcard:Given>Matthew Grant</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node14">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node12">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">j.lawson@auckland.ac.nz</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node15">
+                                 <vcard:Family>Lawson</vcard:Family>
+                                 <vcard:Given>James</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node16">
+                                 <vcard:Orgname>Auckland Bioengineering Institute</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2018-02-12T12:01:55Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2018-02-14T15:38:13Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node10">
+                     <dcterms:W3CDTF>2018-02-14T15:38:13Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Lockwood2006 - Alzheimer&amp;apos;s Disease PBPK model)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Lockwood2006 - AlzheimersDisease PBPK
+model</div>
+                     
+    
+                     <div class="dc:description">
+                        A mathematical model to predict the
+effectiveness of CI-1017 (muscarinic agonist) for Alzheimer's
+disease by evaluating changes in ADAS-cog score.
+
+                        <br />
+                     </div>
+                     
+  
+                     <div class="dc:bibliographicCitation">
+                        
+    
+                        <p>This model is described in the article:</p>
+                        
+    
+                        <div class="bibo:title">
+                           
+      
+                           <a href="http://identifiers.org/pubmed/16906456" title="Access to this publication">Application of clinical
+    trial simulation to compare proof-of-concept study designs for
+    drugs with a slow onset of effect; an example in Alzheimer's
+    disease.</a>
+                           
+    
+                        </div>
+                        
+    
+                        <div class="bibo:authorList">Lockwood P, Ewy W, Hermann D,
+  Holford N.</div>
+                        
+    
+                        <div class="bibo:Journal">Pharm. Res. 2006 Sep; 23(9):
+  2050-2059</div>
+                        
+    
+                        <p>Abstract:</p>
+                        
+    
+                        <div class="bibo:abstract">
+                           
+      
+                           <p>OBJECTIVE: Clinical trial simulation (CTS) was used to
+    select a robust design to test the hypothesis that a new
+    treatment was effective for Alzheimer's disease (AD).
+    Typically, a parallel group, placebo controlled, 12-week trial
+    in 200-400 AD patients would be used to establish drug effect
+    relative to placebo (i.e., Ho: Drug Effect = 0). We evaluated
+    if a crossover design would allow smaller and shorter duration
+    trials. MATERIALS AND METHODS: A family of plausible drug and
+    disease models describing the time course of the AD assessment
+    scale (ADAS-Cog) was developed based on Phase I data and
+    literature reports of other treatments for AD. The models
+    included pharmacokinetic, pharmacodynamic, disease progression,
+    and placebo components. Eight alternative trial designs were
+    explored via simulation. One hundred replicates of each
+    combination of drug and disease model and trial design were
+    simulated. A 'positive trial' reflecting drug activity was
+    declared considering both a dose trend test (p &lt; 0.05) and
+    pair-wise comparisons to placebo (p &lt; 0.025). RESULTS: A 4 x
+    4 Latin Square design was predicted to have at least 80% power
+    to detect activity across a range of drug and disease models.
+    The trial design was subsequently implemented and the trial was
+    completed. Based on the results of the actual trial, a
+    conclusive decision about further development was taken. The
+    crossover design provided enhanced power over a parallel group
+    design due to the lower residual variability. CONCLUSION: CTS
+    aided the decision to use a more efficient proof of concept
+    trial design, leading to savings of up to US 4 M dollars in
+    direct costs and a firm decision 8-12 months earlier than a
+    12-week parallel group trial.</p>
+                           
+    
+                        </div>
+                        
+  
+                     </div>
+                     
+  
+                     <div class="dc:publisher">
+                        
+    
+                        <p>
+                           This model is hosted on 
+  
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+  and identified by: 
+  
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000673">BIOMD0000000673</a>
+                           .
+                        </p>
+                        
+  
+                        <p>
+                           To cite BioModels Database, please use: 
+  
+                           <a href="http://identifiers.org/pubmed/25414348" target="_blank">Chelliah V et al. BioModels: ten-year
+  anniversary. Nucl. Acids Res. 2015, 43(Database
+  issue):D542-8</a>
+                           .
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a>
+                            for more information.
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+               <annotationList>
+                  <COPASI xmlns="http://www.copasi.org/static/sbml">
+                     
+  
+                     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                        
+    
+                        <rdf:Description rdf:about="#COPASI0">
+                           
+      
+                           <dcterms:bibliographicCitation>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <CopasiMT:isDescribedBy rdf:resource="urn:miriam:doi:10.1007/s11095-006-9048-8" />
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:bibliographicCitation>
+                           
+      
+                           <dcterms:created>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <dcterms:W3CDTF>2018-02-12T12:01:55Z</dcterms:W3CDTF>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:created>
+                           
+      
+                           <dcterms:creator>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <vCard:EMAIL>mroberts@ebi.ac.uk</vCard:EMAIL>
+                                 
+          
+                                 <vCard:N>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:Family>Roberts</vCard:Family>
+                                       
+              
+                                       <vCard:Given>Matthew Grant</vCard:Given>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </vCard:N>
+                                 
+          
+                                 <vCard:ORG>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:Orgname>EMBL-EBI</vCard:Orgname>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </vCard:ORG>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:creator>
+                           
+      
+                           <dcterms:creator>
+                              
+        
+                              <rdf:Description>
+                                 
+          
+                                 <vCard:EMAIL>j.lawson@auckland.ac.nz</vCard:EMAIL>
+                                 
+          
+                                 <vCard:N>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:Family>Lawson</vCard:Family>
+                                       
+              
+                                       <vCard:Given>James</vCard:Given>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </vCard:N>
+                                 
+          
+                                 <vCard:ORG>
+                                    
+            
+                                    <rdf:Description>
+                                       
+              
+                                       <vCard:Orgname>Auckland Bioengineering Institute</vCard:Orgname>
+                                       
+            
+                                    </rdf:Description>
+                                    
+          
+                                 </vCard:ORG>
+                                 
+        
+                              </rdf:Description>
+                              
+      
+                           </dcterms:creator>
+                           
+      
+                           <CopasiMT:hasPart rdf:resource="urn:miriam:chebi:CHEBI:38325" />
+                           
+      
+                           <CopasiMT:is rdf:resource="urn:miriam:biomodels.db:MODEL1006230054" />
+                           
+      
+                           <CopasiMT:isVersionOf rdf:resource="urn:miriam:mamo:MAMO_0000020" />
+                           
+      
+                           <CopasiMT:occursIn rdf:resource="urn:miriam:hp:HP:0002511" />
+                           
+    
+                        </rdf:Description>
+                        
+  
+                     </rdf:RDF>
+                     
+
+                  </COPASI>
+               </annotationList>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/COPASI0" vcid="BioModel(Lockwood2006 - Alzheimer&amp;apos;s Disease PBPK model)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_933c2ce1-49c6-4b95-9992-9f94ca01d2a5" vcid="Structure(Compartment)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+

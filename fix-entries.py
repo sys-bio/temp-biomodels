@@ -15,7 +15,7 @@ def get_entry_ids():
     Returns:
         :obj:`list` of :obj:`str`: ids of the entries of BioModels (e.g., ``["BIOMD0000000230"]``)
     """
-    return sorted(os.path.relpath(dirname, ENTRIES_DIR) for dirname in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*')))
+    return sorted(os.path.relpath(dirname, ENTRIES_DIR) for dirname in glob.glob(os.path.join(ENTRIES_DIR, "final", 'BIOMD0*')))
 
 
 def fix_entries(ids):
