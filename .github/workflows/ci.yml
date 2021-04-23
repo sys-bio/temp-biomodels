@@ -100,6 +100,14 @@ jobs:
           python -m pip install -r tests/requirements.txt
           sudo apt-get install -y --no-install-recommends xppaut
 
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+
+      - name: Install requirements
+        run: npm install -g svglint
+
       - name: Test entries and record the results
         run: python -m pytest --verbose --junitxml="test-results.xml" tests/
 

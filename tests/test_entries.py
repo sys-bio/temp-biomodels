@@ -178,7 +178,7 @@ class EntriesTestCase(unittest.TestCase):
     @unittest.skip('Files have errors, but readers are able to read the files nonetheless')
     def test_svg_files(self, filename):
         try:
-            subprocess.check_call(['svgcheck', '--repair', filename])
+            subprocess.check_call(['svglint', filename])
         except:
             raise Exception('{} is not a valid SVG file'.format(filename))
 
