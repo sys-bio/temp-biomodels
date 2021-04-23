@@ -31,7 +31,7 @@ import unittest
 
 
 MAX_SEDML_FILES = os.getenv('MAX_SEDML_FILES', None)
-ENTRIES_DIR = os.path.join(os.path.dirname(__file__), '..', 'fixed-entries')
+ENTRIES_DIR = os.path.join(os.path.dirname(__file__), '..', 'fully-fixed-entries')
 SEDML_FILES = sorted((os.path.relpath(filename, ENTRIES_DIR).replace('/', '_').replace('.', '_'),
                       os.path.relpath(filename, ENTRIES_DIR),
                       ) for filename in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*', '**', '*.sedml'), recursive=True))
