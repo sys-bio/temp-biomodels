@@ -15,6 +15,52 @@ FIXES = {
             'new': '<model id="model2" language="urn:sedml:language:sbml" source="#model1">',
         }
     ],
+    # 'BIOMD0000000637/Bush2016-Simplified-Carrousel-model-of-GPCR.sedml': [
+    #     {
+    #         'old': '<dataSet id="ds_4_task3" dataReference="_1_task3"/>',
+    #         'new': '<dataSet id="ds_4_task3" label="p7" dataReference="_1_task3"/>',
+    #     }
+    # ],
+    'BIOMD0000000816/OV25.sedml': [
+        {
+            'old': '<model language="urn:sedml:language:sbml" source="model.xml"/>',
+            'new': '',
+        },
+        {
+            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
+            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
+        },
+    ],
+    'BIOMD0000000816/OV5.sedml': [
+        {
+            'old': '<model language="urn:sedml:language:sbml" source="model.xml"/>',
+            'new': '',
+        },
+        {
+            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
+            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
+        },
+    ],
+    'BIOMD0000000817/OV25.sedml': [
+        {
+            'old': '<model language="urn:sedml:language:sbml" source="model"/>',
+            'new': '',
+        },
+        {
+            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
+            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
+        },
+    ],
+    'BIOMD0000000817/OV5.sedml': [
+        {
+            'old': '<model language="urn:sedml:language:sbml" source="model"/>',
+            'new': '',
+        },
+        {
+            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
+            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
+        },
+    ]
 }
 
 
