@@ -13,9 +13,6 @@ def run(rel_filename, working_dir):
     Args:
         rel_filename (:obj:`str`): relative filename
         working_dir (:obj:`str`): directory of entries to change (e.g., ``final``, ``original``)
-
-    Returns:
-        :obj:`list` of :obj:`str`: list of corrected files
     """
     sbml_filename = os.path.join(working_dir, rel_filename)
 
