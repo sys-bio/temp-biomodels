@@ -9,6 +9,7 @@
 :License: MIT
 """
 
+from biomodels_qc.validation import is_xpp_file_valid
 from biosimulators_utils.combine.data_model import CombineArchive, CombineArchiveContent, CombineArchiveContentFormat
 from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.data_model import Person
@@ -17,7 +18,6 @@ from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
 from biosimulators_utils.simulator import specs as simulator_specs
 from lxml import etree
-from pyxpp import pyxpp
 import ast
 import datetime
 import dateutil.tz
@@ -206,8 +206,7 @@ class EntriesTestCase(unittest.TestCase):
 
     @parameterized.parameterized.expand(XPP_FILES, skip_on_empty=True)
     def test_xpp_files(self, filename):
-        subprocess = pyxpp.dry_run(filename)
-        self.assertNotIn('Error', subprocess.stdout.decode(), subprocess.stdout.decode())
+        self.assertTrue(is_xpp_file_valid(filename))
 
     @parameterized.parameterized.expand(ZIP_FILES, skip_on_empty=True)
     def test_zip_files(self, filename):

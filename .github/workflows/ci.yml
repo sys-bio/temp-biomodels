@@ -1,4 +1,4 @@
-name: Continuous integration
+name: Continuous integration (temp-biomodels)
 
 on:
   push:
@@ -31,9 +31,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --upgrade setuptools
 
-      - name: Install requirements
-        run: python -m pip install -r requirements.txt
-
       - uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
@@ -51,8 +48,15 @@ jobs:
       - name: Install XPP
         run: sudo apt-get install -y --no-install-recommends xppaut
 
+      - name: Install BioModels QC
+        working-directory: biomodels_qc
+        run: python -m pip install .
+
+      - name: Install requirements
+        run: python -m pip install -r requirements.txt
+
       - name: Fix entries
-        run: python fix-entries.py
+        run: python fix-entries.py --convert-files
 
       - name: Setup Git
         run: |
@@ -112,11 +116,15 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --upgrade setuptools
 
-      - name: Install requirements
-        run: python -m pip install -r tests/requirements.txt
-
       - name: Install XPP
         run: sudo apt-get install -y --no-install-recommends xppaut
+
+      - name: Install BioModels QC
+        working-directory: biomodels_qc
+        run: python -m pip install .
+
+      - name: Install requirements
+        run: python -m pip install -r tests/requirements.txt
 
       - name: Install Node.js
         uses: actions/setup-node@v2
