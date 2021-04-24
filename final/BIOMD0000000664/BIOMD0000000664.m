@@ -188,9 +188,9 @@ function z=function_1_1(a1,b1,g1), z=(a1*g1/(b1+g1));end
 
 function z=function_1_2(a2,b2,g2), z=(a2*g2/(b2+g2));end
 
-function z=function_2_1(C_Raf,C_Raf_inactive,E,FGFR,f13), z=(f13*((E-C_Raf)-C_Raf_inactive)*FGFR);end
+function z=function_2_1(C_Raf,C_Raf_inactive,E,FGFR,f13), z=(f13*(E-C_Raf-C_Raf_inactive)*FGFR);end
 
-function z=function_3_1(C_Raf,C_Raf_inactive,E,MAPK,f53), z=(f53*((E-C_Raf)-C_Raf_inactive)*MAPK);end
+function z=function_3_1(C_Raf,C_Raf_inactive,E,MAPK,f53), z=(f53*(E-C_Raf-C_Raf_inactive)*MAPK);end
 
 function z=function_4_1(FGFR,f14), z=(f14*FGFR);end
 

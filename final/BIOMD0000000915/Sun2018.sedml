@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Sun2018 - Instantaneous mutation rate in cancer initiation and progression.xml"/>
-  </listOfModels>
-  <listOfSimulations>
-    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3600" numberOfPoints="100">
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="2016" numberOfPoints="56">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
   </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <repeatedTask id="task2" range="range0" resetModel="true">
@@ -15,7 +14,7 @@
         <uniformRange id="range0" start="0" end="3e-05" numberOfPoints="1" type="linear"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;b_0&apos;]" range="range0">
+        <setValue range="range0" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='b_0']">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range0 </ci>
           </math>
@@ -28,65 +27,173 @@
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
-      </math>
       <listOfVariables>
         <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
       </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="p_2_1_task1" name="[patient_2]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_p_2_task1 </ci>
+        <ci> var_time_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p2_p_2_task1" name="p_2" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p_2&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="p_8_2_task1" name="[patient_8]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_p_8_task1 </ci>
-      </math>
+    <dataGenerator id="DT1_1_task1" name="Values[DT_P1]">
       <listOfVariables>
-        <variable id="p2_p_8_task1" name="p_8" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p_8&apos;]" taskReference="task1"/>
+        <variable id="p2_DT1_task1" name="DT1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT1']" taskReference="task1"/>
       </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT1_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT2_2_task1" name="Values[DT_P2]">
+      <listOfVariables>
+        <variable id="p2_DT2_task1" name="DT2" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT2']" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT2_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT3_3_task1" name="Values[DT_P3]">
+      <listOfVariables>
+        <variable id="p2_DT3_task1" name="DT3" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT3']" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT3_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT4_4_task1" name="Values[DT_P4]">
+      <listOfVariables>
+        <variable id="p2_DT4_task1" name="DT4" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT4']" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT4_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT5_5_task1" name="Values[DT_P5]">
+      <listOfVariables>
+        <variable id="p2_DT5_task1" name="DT5" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT5']" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT5_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT6_6_task1" name="Values[DT_P6]">
+      <listOfVariables>
+        <variable id="p2_DT6_task1" name="DT6" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT6']" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT6_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT7_7_task1" name="Values[DT_P7]">
+      <listOfVariables>
+        <variable id="p2_DT7_task1" name="DT7" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT7']" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT7_task1 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="c_8_task1" name="Values[model DB]">
+      <listOfVariables>
+        <variable id="p2_c_task1" name="c" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='c']" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_c_task1 </ci>
+      </math>
     </dataGenerator>
     <dataGenerator id="time_task2" name="Time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task2 </ci>
-      </math>
       <listOfVariables>
         <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
       </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="p_2_1_task2" name="[patient_2]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_p_2_task2 </ci>
+        <ci> var_time_task2 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p2_p_2_task2" name="p_2" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p_2&apos;]" taskReference="task2"/>
-      </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="p_8_2_task2" name="[patient_8]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_p_8_task2 </ci>
-      </math>
+    <dataGenerator id="DT1_1_task2" name="Values[DT_P1]">
       <listOfVariables>
-        <variable id="p2_p_8_task2" name="p_8" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p_8&apos;]" taskReference="task2"/>
+        <variable id="p2_DT1_task2" name="DT1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT1']" taskReference="task2"/>
       </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT1_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT2_2_task2" name="Values[DT_P2]">
+      <listOfVariables>
+        <variable id="p2_DT2_task2" name="DT2" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT2']" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT2_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT3_3_task2" name="Values[DT_P3]">
+      <listOfVariables>
+        <variable id="p2_DT3_task2" name="DT3" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT3']" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT3_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT4_4_task2" name="Values[DT_P4]">
+      <listOfVariables>
+        <variable id="p2_DT4_task2" name="DT4" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT4']" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT4_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT5_5_task2" name="Values[DT_P5]">
+      <listOfVariables>
+        <variable id="p2_DT5_task2" name="DT5" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT5']" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT5_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT6_6_task2" name="Values[DT_P6]">
+      <listOfVariables>
+        <variable id="p2_DT6_task2" name="DT6" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT6']" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT6_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="DT7_7_task2" name="Values[DT_P7]">
+      <listOfVariables>
+        <variable id="p2_DT7_task2" name="DT7" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='DT7']" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_DT7_task2 </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="c_8_task2" name="Values[model DB]">
+      <listOfVariables>
+        <variable id="p2_c_task2" name="c" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='c']" taskReference="task2"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_c_task2 </ci>
+      </math>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_1_task1" name="Fig1">
+    <plot2D id="plot_1_task1" name="Fig.3">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="[patient_2]" logX="false" xDataReference="time_task1" logY="false" yDataReference="p_2_1_task1"/>
-        <curve id="p2_curve_2_task1" name="[patient_8]" logX="false" xDataReference="time_task1" logY="false" yDataReference="p_8_2_task1"/>
+        <curve id="p2_curve_1_task1" name="Values[DT_P1]" logX="false" logY="false" xDataReference="time_task1" yDataReference="DT1_1_task1"/>
+        <curve id="p2_curve_2_task1" name="Values[DT_P2]" logX="false" logY="false" xDataReference="time_task1" yDataReference="DT2_2_task1"/>
+        <curve id="p2_curve_3_task1" name="Values[DT_P3]" logX="false" logY="false" xDataReference="time_task1" yDataReference="DT3_3_task1"/>
+        <curve id="p2_curve_4_task1" name="Values[DT_P4]" logX="false" logY="false" xDataReference="time_task1" yDataReference="DT4_4_task1"/>
+        <curve id="p2_curve_5_task1" name="Values[DT_P5]" logX="false" logY="false" xDataReference="time_task1" yDataReference="DT5_5_task1"/>
+        <curve id="p2_curve_6_task1" name="Values[DT_P6]" logX="false" logY="false" xDataReference="time_task1" yDataReference="DT6_6_task1"/>
+        <curve id="p2_curve_7_task1" name="Values[DT_P7]" logX="false" logY="false" xDataReference="time_task1" yDataReference="DT7_7_task1"/>
+        <curve id="p2_curve_8_task1" name="Values[model DB]" logX="false" logY="false" xDataReference="time_task1" yDataReference="c_8_task1"/>
       </listOfCurves>
     </plot2D>
-    <plot2D id="plot_2_task2" name="Fig1">
+    <plot2D id="plot_2_task2" name="Fig.3">
       <listOfCurves>
-        <curve id="p2_curve_1_task2" name="[patient_2]" logX="false" xDataReference="time_task2" logY="false" yDataReference="p_2_1_task2"/>
-        <curve id="p2_curve_2_task2" name="[patient_8]" logX="false" xDataReference="time_task2" logY="false" yDataReference="p_8_2_task2"/>
+        <curve id="p2_curve_1_task2" name="Values[DT_P1]" logX="false" logY="false" xDataReference="time_task2" yDataReference="DT1_1_task2"/>
+        <curve id="p2_curve_2_task2" name="Values[DT_P2]" logX="false" logY="false" xDataReference="time_task2" yDataReference="DT2_2_task2"/>
+        <curve id="p2_curve_3_task2" name="Values[DT_P3]" logX="false" logY="false" xDataReference="time_task2" yDataReference="DT3_3_task2"/>
+        <curve id="p2_curve_4_task2" name="Values[DT_P4]" logX="false" logY="false" xDataReference="time_task2" yDataReference="DT4_4_task2"/>
+        <curve id="p2_curve_5_task2" name="Values[DT_P5]" logX="false" logY="false" xDataReference="time_task2" yDataReference="DT5_5_task2"/>
+        <curve id="p2_curve_6_task2" name="Values[DT_P6]" logX="false" logY="false" xDataReference="time_task2" yDataReference="DT6_6_task2"/>
+        <curve id="p2_curve_7_task2" name="Values[DT_P7]" logX="false" logY="false" xDataReference="time_task2" yDataReference="DT7_7_task2"/>
+        <curve id="p2_curve_8_task2" name="Values[model DB]" logX="false" logY="false" xDataReference="time_task2" yDataReference="c_8_task2"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

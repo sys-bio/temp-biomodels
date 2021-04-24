@@ -14,10 +14,14 @@
 %
 % Model name = Leloup2003_CircClock_LD_REV-ERBalpha
 %
+% isDerivedFrom http://identifiers.org/kegg.pathway/hsa04710
+% isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000083
+% isDerivedFrom http://identifiers.org/biomodels.db/MODEL4710748444
+% isDerivedFrom http://identifiers.org/go/GO:0042752
+% isDerivedFrom http://identifiers.org/taxonomy/40674
+% isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000021
 % is http://identifiers.org/biomodels.db/MODEL4710748444
 % is http://identifiers.org/biomodels.db/BIOMD0000000083
-% isDescribedBy http://identifiers.org/pubmed/12775757
-% isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000021
 %
 
 
@@ -80,369 +84,305 @@ function xdot=f(x,t)
 	compartment_cell=1.0;
 % Parameter:   id =  parameter_0000096, name = LD
 % Parameter:   id =  parameter_0000097, name = vsp
+% Parameter:   id =  vmP, name = vmP
+	global_par_vmP=2.2;
+% Parameter:   id =  kdmp, name = kdmp
+	global_par_kdmp=0.02;
+% Parameter:   id =  vsC, name = vsC
+	global_par_vsC=2.2;
+% Parameter:   id =  vmC, name = vmC
+	global_par_vmC=2.0;
+% Parameter:   id =  kdmc, name = kdmc
+	global_par_kdmc=0.02;
+% Parameter:   id =  vsB, name = vsB
+	global_par_vsB=1.8;
+% Parameter:   id =  vmB, name = vmB
+	global_par_vmB=1.3;
+% Parameter:   id =  kdmb, name = kdmb
+	global_par_kdmb=0.02;
+% Parameter:   id =  ksP, name = ksP
+	global_par_ksP=1.2;
+% Parameter:   id =  V1P, name = V1P
+	global_par_V1P=9.6;
+% Parameter:   id =  V2P, name = V2P
+	global_par_V2P=0.6;
+% Parameter:   id =  k4, name = k4
+	global_par_k4=0.4;
+% Parameter:   id =  k3, name = k3
+	global_par_k3=0.8;
+% Parameter:   id =  kdn, name = kdn
+	global_par_kdn=0.02;
+% Parameter:   id =  ksC, name = ksC
+	global_par_ksC=3.2;
+% Parameter:   id =  V1C, name = V1C
+	global_par_V1C=1.2;
+% Parameter:   id =  V2C, name = V2C
+	global_par_V2C=0.2;
+% Parameter:   id =  kdnC, name = kdnC
+	global_par_kdnC=0.02;
+% Parameter:   id =  KmB, name = KmB
+	global_par_KmB=0.4;
+% Parameter:   id =  Kp, name = Kp
+	global_par_Kp=1.006;
+% Parameter:   id =  Kdp, name = Kdp
+	global_par_Kdp=0.1;
+% Parameter:   id =  VdPC, name = VdPC
+	global_par_VdPC=3.4;
+% Parameter:   id =  vdCC, name = vdCC
+	global_par_vdCC=1.4;
+% Parameter:   id =  Kd, name = Kd
+	global_par_Kd=0.3;
+% Parameter:   id =  V1PC, name = V1PC
+	global_par_V1PC=2.4;
+% Parameter:   id =  V2PC, name = V2PC
+	global_par_V2PC=0.2;
+% Parameter:   id =  k2, name = k2
+	global_par_k2=0.4;
+% Parameter:   id =  k1, name = k1
+	global_par_k1=0.8;
+% Parameter:   id =  V3PC, name = V3PC
+	global_par_V3PC=2.4;
+% Parameter:   id =  V4PC, name = V4PC
+	global_par_V4PC=0.2;
+% Parameter:   id =  k7, name = k7
+	global_par_k7=1.0;
+% Parameter:   id =  k8, name = k8
+	global_par_k8=0.2;
+% Parameter:   id =  vdPCC, name = vdPCC
+	global_par_vdPCC=1.4;
+% Parameter:   id =  vdPCN, name = vdPCN
+	global_par_vdPCN=1.4;
+% Parameter:   id =  ksB, name = ksB
+	global_par_ksB=0.32;
+% Parameter:   id =  V1B, name = V1B
+	global_par_V1B=1.4;
+% Parameter:   id =  V2B, name = V2B
+	global_par_V2B=0.2;
+% Parameter:   id =  k5, name = k5
+	global_par_k5=0.8;
+% Parameter:   id =  k6, name = k6
+	global_par_k6=0.4;
+% Parameter:   id =  vdBC, name = vdBC
+	global_par_vdBC=3.0;
+% Parameter:   id =  V3B, name = V3B
+	global_par_V3B=1.4;
+% Parameter:   id =  V4B, name = V4B
+	global_par_V4B=0.4;
+% Parameter:   id =  vdBN, name = vdBN
+	global_par_vdBN=3.0;
+% Parameter:   id =  vdIN, name = vdIN
+	global_par_vdIN=1.6;
+% Parameter:   id =  vsR, name = vsR
+	global_par_vsR=1.6;
+% Parameter:   id =  KAR, name = KAR
+	global_par_KAR=0.6;
+% Parameter:   id =  vmR, name = vmR
+	global_par_vmR=1.6;
+% Parameter:   id =  kmR, name = kmR
+	global_par_kmR=0.4;
+% Parameter:   id =  kdmr, name = kdmr
+	global_par_kdmr=0.02;
+% Parameter:   id =  ksR, name = ksR
+	global_par_ksR=1.7;
+% Parameter:   id =  k9, name = k9
+	global_par_k9=0.8;
+% Parameter:   id =  k10, name = k10
+	global_par_k10=0.4;
+% Parameter:   id =  vdRC, name = vdRC
+	global_par_vdRC=4.4;
+% Parameter:   id =  vdRN, name = vdRN
+	global_par_vdRN=0.8;
+% Parameter:   id =  KAP, name = KAP
+	global_par_KAP=0.6;
+% Parameter:   id =  KAC, name = KAC
+	global_par_KAC=0.6;
+% Parameter:   id =  KmP, name = KmP
+	global_par_KmP=0.3;
+% Parameter:   id =  KmC, name = KmC
+	global_par_KmC=0.4;
+% Parameter:   id =  h, name = h
+	global_par_h=2.0;
+% Parameter:   id =  m, name = m
+	global_par_m=2.0;
+% Parameter:   id =  n, name = n
+	global_par_n=2.0;
 % assignmentRule: variable = parameter_0000096
-	global_par_parameter_0000096=function_5(12, time);
+	global_par_parameter_0000096=ceil(sin(pi*time/12+0.001)/2);
 % assignmentRule: variable = parameter_0000097
 	global_par_parameter_0000097=2.4+(3-2.4)*global_par_parameter_0000096;
 
-% Reaction: id = reaction_0, name = Mb synthesized	% Local Parameter:   id =  vsb, name = vsb
-	reaction_reaction_0_vsb=1.8;
-	% Local Parameter:   id =  K, name = Kib
+% Reaction: id = reaction_0, name = Mb synthesized	% Local Parameter:   id =  K, name = K
 	reaction_reaction_0_K=1.0;
-	% Local Parameter:   id =  m, name = m
-	reaction_reaction_0_m=2.0;
 
-	reaction_reaction_0=compartment_cell*function_0(reaction_reaction_0_vsb, reaction_reaction_0_K, reaction_reaction_0_m, x(19));
+	reaction_reaction_0=compartment_cell*global_par_vsB*reaction_reaction_0_K^global_par_m/(reaction_reaction_0_K^global_par_m+x(19)^global_par_m);
 
-% Reaction: id = reaction_1, name = Mb translated into protein	% Local Parameter:   id =  k, name = ksb
-	reaction_reaction_1_k=0.32;
+% Reaction: id = reaction_1, name = Mb translated into protein
+	reaction_reaction_1=compartment_cell*global_par_ksB*x(1);
 
-	reaction_reaction_1=compartment_cell*function_1(reaction_reaction_1_k, x(1));
+% Reaction: id = reaction_2, name = Mb nonspecific degradation
+	reaction_reaction_2=compartment_cell*global_par_kdmb*x(1);
 
-% Reaction: id = reaction_2, name = Mb nonspecific degradation	% Local Parameter:   id =  k1, name = kdmb
-	reaction_reaction_2_k1=0.02;
+% Reaction: id = reaction_3, name = Bc phosphorylation
+	reaction_reaction_3=compartment_cell*global_par_V1B*x(2)/(global_par_Kp+x(2));
 
-	reaction_reaction_2=compartment_cell*reaction_reaction_2_k1*x(1);
+% Reaction: id = reaction_4, name = Bc transfered from cytosolic to nuclear
+	reaction_reaction_4=compartment_cell*(global_par_k5*x(2)-global_par_k6*x(4));
 
-% Reaction: id = reaction_3, name = Bc phosphorylation	% Local Parameter:   id =  V, name = V1b
-	reaction_reaction_3_V=1.4;
-	% Local Parameter:   id =  Km, name = Kp
-	reaction_reaction_3_Km=1.006;
+% Reaction: id = reaction_5, name = Mc translated into protein
+	reaction_reaction_5=compartment_cell*global_par_ksC*x(6);
 
-	reaction_reaction_3=compartment_cell*function_2(reaction_reaction_3_V, x(2), reaction_reaction_3_Km);
+% Reaction: id = reaction_6, name = Mc nonspecific degradation
+	reaction_reaction_6=compartment_cell*global_par_kdmc*x(6);
 
-% Reaction: id = reaction_4, name = Bc transfered from cytosolic to nuclear	% Local Parameter:   id =  k1, name = k5
-	reaction_reaction_4_k1=0.8;
-	% Local Parameter:   id =  k2, name = k6
-	reaction_reaction_4_k2=0.4;
+% Reaction: id = reaction_7, name = Cc phosphorylation
+	reaction_reaction_7=compartment_cell*global_par_V1C*x(5)/(global_par_Kp+x(5));
 
-	reaction_reaction_4=compartment_cell*(reaction_reaction_4_k1*x(2)-reaction_reaction_4_k2*x(4));
+% Reaction: id = reaction_8, name = Ccp specific degradation
+	reaction_reaction_8=compartment_cell*global_par_vdCC*x(7)/(global_par_Kd+x(7));
 
-% Reaction: id = reaction_5, name = Mc translated into protein	% Local Parameter:   id =  k, name = ksc
-	reaction_reaction_5_k=3.2;
+% Reaction: id = reaction_9, name = Mp synthesis
+	reaction_reaction_9=compartment_cell*global_par_parameter_0000097*x(4)^global_par_n/(global_par_KAP^global_par_n+x(4)^global_par_n);
 
-	reaction_reaction_5=compartment_cell*function_1(reaction_reaction_5_k, x(6));
+% Reaction: id = reaction_10, name = Mp translated into protein
+	reaction_reaction_10=compartment_cell*global_par_ksP*x(8);
 
-% Reaction: id = reaction_6, name = Mc nonspecific degradation	% Local Parameter:   id =  k1, name = kdmc
-	reaction_reaction_6_k1=0.02;
+% Reaction: id = reaction_11, name = Pcp specific degradation
+	reaction_reaction_11=compartment_cell*global_par_VdPC*x(10)/(global_par_Kd+x(10));
 
-	reaction_reaction_6=compartment_cell*reaction_reaction_6_k1*x(6);
+% Reaction: id = reaction_12, name = Pc phospholation
+	reaction_reaction_12=compartment_cell*global_par_V1P*x(9)/(global_par_Kp+x(9));
 
-% Reaction: id = reaction_7, name = Cc phosphorylation	% Local Parameter:   id =  V, name = V1c
-	reaction_reaction_7_V=1.2;
-	% Local Parameter:   id =  Km, name = Kp
-	reaction_reaction_7_Km=1.006;
+% Reaction: id = reaction_13, name = Cc and Pc produce PCc
+	reaction_reaction_13=compartment_cell*(global_par_k3*x(5)*x(9)-global_par_k4*x(11));
 
-	reaction_reaction_7=compartment_cell*function_2(reaction_reaction_7_V, x(5), reaction_reaction_7_Km);
+% Reaction: id = reaction_14, name = PCc phospholation
+	reaction_reaction_14=compartment_cell*global_par_V1PC*x(11)/(global_par_Kp+x(11));
 
-% Reaction: id = reaction_8, name = Ccp specific degradation	% Local Parameter:   id =  V, name = vdcc
-	reaction_reaction_8_V=1.4;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_8_Km=0.3;
+% Reaction: id = reaction_15, name = PCcp specific degradation
+	reaction_reaction_15=compartment_cell*global_par_vdPCC*x(12)/(global_par_Kd+x(12));
 
-	reaction_reaction_8=compartment_cell*function_2(reaction_reaction_8_V, x(7), reaction_reaction_8_Km);
+% Reaction: id = reaction_16, name = PCc transfered into nuclear
+	reaction_reaction_16=compartment_cell*(global_par_k1*x(11)-global_par_k2*x(13));
 
-% Reaction: id = reaction_9, name = Mp synthesis	% Local Parameter:   id =  n, name = n
-	reaction_reaction_9_n=2.0;
-	% Local Parameter:   id =  K, name = Kap
-	reaction_reaction_9_K=0.6;
+% Reaction: id = reaction_17, name = PCnp nonspecific degradation
+	reaction_reaction_17=compartment_cell*global_par_kdn*x(15);
 
-	reaction_reaction_9=compartment_cell*function_3(global_par_parameter_0000097, x(4), reaction_reaction_9_n, reaction_reaction_9_K);
+% Reaction: id = reaction_18, name = Bcp nonspecific degradation
+	reaction_reaction_18=compartment_cell*global_par_kdn*x(3);
 
-% Reaction: id = reaction_10, name = Mp translated into protein	% Local Parameter:   id =  k, name = ksp
-	reaction_reaction_10_k=1.2;
+% Reaction: id = reaction_19, name = Bnp nonspecific degradation
+	reaction_reaction_19=compartment_cell*global_par_kdn*x(14);
 
-	reaction_reaction_10=compartment_cell*function_1(reaction_reaction_10_k, x(8));
+% Reaction: id = reaction_20, name = Mc synthesis
+	reaction_reaction_20=compartment_cell*global_par_vsC*x(4)^global_par_n/(global_par_KAC^global_par_n+x(4)^global_par_n);
 
-% Reaction: id = reaction_11, name = Pcp specific degradation	% Local Parameter:   id =  V, name = vdpc
-	reaction_reaction_11_V=3.4;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_11_Km=0.3;
+% Reaction: id = reaction_21, name = PCn phospholation
+	reaction_reaction_21=compartment_cell*global_par_V3PC*x(13)/(global_par_Kp+x(13));
 
-	reaction_reaction_11=compartment_cell*function_2(reaction_reaction_11_V, x(10), reaction_reaction_11_Km);
+% Reaction: id = reaction_22, name = Mp nonspecific degradation
+	reaction_reaction_22=compartment_cell*global_par_kdmp*x(8);
 
-% Reaction: id = reaction_12, name = Pc phospholation	% Local Parameter:   id =  V, name = V1p
-	reaction_reaction_12_V=9.6;
-	% Local Parameter:   id =  Km, name = Kp
-	reaction_reaction_12_Km=1.006;
+% Reaction: id = reaction_23, name = Per_Cry and Clock_Bmal form inactive complex
+	reaction_reaction_23=compartment_cell*(global_par_k7*x(13)*x(4)-global_par_k8*x(16));
 
-	reaction_reaction_12=compartment_cell*function_2(reaction_reaction_12_V, x(9), reaction_reaction_12_Km);
+% Reaction: id = reaction_24, name = Mb specific degradation
+	reaction_reaction_24=compartment_cell*global_par_vmB*x(1)/(global_par_KmB+x(1));
 
-% Reaction: id = reaction_13, name = Cc and Pc produce PCc	% Local Parameter:   id =  k1, name = k3
-	reaction_reaction_13_k1=0.8;
-	% Local Parameter:   id =  k2, name = k4
-	reaction_reaction_13_k2=0.4;
+% Reaction: id = reaction_25, name = Mc specific degradation
+	reaction_reaction_25=compartment_cell*global_par_vmC*x(6)/(global_par_KmC+x(6));
 
-	reaction_reaction_13=compartment_cell*(reaction_reaction_13_k1*x(5)*x(9)-reaction_reaction_13_k2*x(11));
+% Reaction: id = reaction_26, name = Mp specific degradation
+	reaction_reaction_26=compartment_cell*global_par_vmP*x(8)/(global_par_KmP+x(8));
 
-% Reaction: id = reaction_14, name = PCc phospholation	% Local Parameter:   id =  V, name = V1pc
-	reaction_reaction_14_V=2.4;
-	% Local Parameter:   id =  Km, name = Kp
-	reaction_reaction_14_Km=1.006;
+% Reaction: id = reaction_27, name = Pc nonspecific degradation
+	reaction_reaction_27=compartment_cell*global_par_kdn*x(9);
 
-	reaction_reaction_14=compartment_cell*function_2(reaction_reaction_14_V, x(11), reaction_reaction_14_Km);
+% Reaction: id = reaction_28, name = Cc nonspecific degradation
+	reaction_reaction_28=compartment_cell*global_par_kdnC*x(5);
 
-% Reaction: id = reaction_15, name = PCcp specific degradation	% Local Parameter:   id =  V, name = vdpcc
-	reaction_reaction_15_V=1.4;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_15_Km=0.3;
+% Reaction: id = reaction_29, name = Pcp nonspecific degradation
+	reaction_reaction_29=compartment_cell*global_par_kdn*x(10);
 
-	reaction_reaction_15=compartment_cell*function_2(reaction_reaction_15_V, x(12), reaction_reaction_15_Km);
+% Reaction: id = reaction_30, name = Ccp nonspecific degradation
+	reaction_reaction_30=compartment_cell*global_par_kdn*x(7);
 
-% Reaction: id = reaction_16, name = PCc transfered into nuclear	% Local Parameter:   id =  k1, name = k1
-	reaction_reaction_16_k1=0.8;
-	% Local Parameter:   id =  k2, name = k2
-	reaction_reaction_16_k2=0.4;
+% Reaction: id = reaction_31, name = PCcp nonspecific degradation
+	reaction_reaction_31=compartment_cell*global_par_kdn*x(12);
 
-	reaction_reaction_16=compartment_cell*(reaction_reaction_16_k1*x(11)-reaction_reaction_16_k2*x(13));
+% Reaction: id = reaction_32, name = PCc nonspecific degradation
+	reaction_reaction_32=compartment_cell*global_par_kdn*x(11);
 
-% Reaction: id = reaction_17, name = PCnp nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_17_k1=0.02;
+% Reaction: id = reaction_33, name = PCnp specific degradation
+	reaction_reaction_33=compartment_cell*global_par_vdPCN*x(15)/(global_par_Kd+x(15));
 
-	reaction_reaction_17=compartment_cell*reaction_reaction_17_k1*x(15);
+% Reaction: id = reaction_34, name = Bc nonspecific degradation
+	reaction_reaction_34=compartment_cell*global_par_kdn*x(2);
 
-% Reaction: id = reaction_18, name = Bcp nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_18_k1=0.02;
+% Reaction: id = reaction_35, name = Bcp specific degradation
+	reaction_reaction_35=compartment_cell*global_par_vdBC*x(3)/(global_par_Kd+x(3));
 
-	reaction_reaction_18=compartment_cell*reaction_reaction_18_k1*x(3);
+% Reaction: id = reaction_36, name = Bn phospholation
+	reaction_reaction_36=compartment_cell*global_par_V3B*x(4)/(global_par_Kp+x(4));
 
-% Reaction: id = reaction_19, name = Bnp nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_19_k1=0.02;
+% Reaction: id = reaction_37, name = Bnp specific degradation
+	reaction_reaction_37=compartment_cell*global_par_vdBN*x(14)/(global_par_Kd+x(14));
 
-	reaction_reaction_19=compartment_cell*reaction_reaction_19_k1*x(14);
+% Reaction: id = reaction_38, name = In nonspecific degration
+	reaction_reaction_38=compartment_cell*global_par_kdn*x(16);
 
-% Reaction: id = reaction_20, name = Mc synthesis	% Local Parameter:   id =  Vs, name = vsc
-	reaction_reaction_20_Vs=2.2;
-	% Local Parameter:   id =  n, name = n
-	reaction_reaction_20_n=2.0;
-	% Local Parameter:   id =  K, name = Kac
-	reaction_reaction_20_K=0.6;
+% Reaction: id = reaction_39, name = In specific degradation
+	reaction_reaction_39=compartment_cell*global_par_vdIN*x(16)/(global_par_Kd+x(16));
 
-	reaction_reaction_20=compartment_cell*function_3(reaction_reaction_20_Vs, x(4), reaction_reaction_20_n, reaction_reaction_20_K);
+% Reaction: id = reaction_40, name = Bn nonspecific degradation
+	reaction_reaction_40=compartment_cell*global_par_kdn*x(4);
 
-% Reaction: id = reaction_21, name = PCn phospholation	% Local Parameter:   id =  V, name = V3pc
-	reaction_reaction_21_V=2.4;
-	% Local Parameter:   id =  Km, name = Kp
-	reaction_reaction_21_Km=1.006;
+% Reaction: id = reaction_41, name = Bcp dephospholation
+	reaction_reaction_41=compartment_cell*global_par_V2B*x(3)/(global_par_Kdp+x(3));
 
-	reaction_reaction_21=compartment_cell*function_2(reaction_reaction_21_V, x(13), reaction_reaction_21_Km);
+% Reaction: id = reaction_42, name = Bnp dephospholation
+	reaction_reaction_42=compartment_cell*global_par_V4B*x(14)/(global_par_Kdp+x(14));
 
-% Reaction: id = reaction_22, name = Mp nonspecific degradation	% Local Parameter:   id =  k1, name = kdmp
-	reaction_reaction_22_k1=0.02;
+% Reaction: id = reaction_43, name = Ccp dephospholation
+	reaction_reaction_43=compartment_cell*global_par_V2C*x(7)/(global_par_Kdp+x(7));
 
-	reaction_reaction_22=compartment_cell*reaction_reaction_22_k1*x(8);
+% Reaction: id = reaction_44, name = Pcp dephospholation
+	reaction_reaction_44=compartment_cell*global_par_V2P*x(10)/(global_par_Kdp+x(10));
 
-% Reaction: id = reaction_23, name = Per_Cry and Clock_Bmal form inactive complex	% Local Parameter:   id =  k1, name = k7
-	reaction_reaction_23_k1=1.0;
-	% Local Parameter:   id =  k2, name = k8
-	reaction_reaction_23_k2=0.2;
+% Reaction: id = reaction_45, name = PCnp dephospholation
+	reaction_reaction_45=compartment_cell*global_par_V4PC*x(15)/(global_par_Kdp+x(15));
 
-	reaction_reaction_23=compartment_cell*(reaction_reaction_23_k1*x(13)*x(4)-reaction_reaction_23_k2*x(16));
+% Reaction: id = reaction_46, name = PCn nonspecific degradation
+	reaction_reaction_46=compartment_cell*global_par_kdn*x(13);
 
-% Reaction: id = reaction_24, name = Mb specific degradation	% Local Parameter:   id =  V, name = vmb
-	reaction_reaction_24_V=1.3;
-	% Local Parameter:   id =  Km, name = Kmb
-	reaction_reaction_24_Km=0.4;
+% Reaction: id = reaction_47, name = PCcp dephospholation
+	reaction_reaction_47=compartment_cell*global_par_V2PC*x(12)/(global_par_Kdp+x(12));
 
-	reaction_reaction_24=compartment_cell*function_2(reaction_reaction_24_V, x(1), reaction_reaction_24_Km);
+% Reaction: id = reaction_48, name = Mr synthesized
+	reaction_reaction_48=compartment_cell*global_par_vsR*x(4)^global_par_h/(global_par_KAR^global_par_h+x(4)^global_par_h);
 
-% Reaction: id = reaction_25, name = Mc specific degradation	% Local Parameter:   id =  V, name = vmc
-	reaction_reaction_25_V=2.0;
-	% Local Parameter:   id =  Km, name = Kmc
-	reaction_reaction_25_Km=0.4;
+% Reaction: id = reaction_49, name = Mr nonspecific degradation
+	reaction_reaction_49=compartment_cell*global_par_kdmr*x(17);
 
-	reaction_reaction_25=compartment_cell*function_2(reaction_reaction_25_V, x(6), reaction_reaction_25_Km);
+% Reaction: id = reaction_50, name = Mr specific degradation
+	reaction_reaction_50=compartment_cell*global_par_vmR*x(17)/(global_par_kmR+x(17));
 
-% Reaction: id = reaction_26, name = Mp specific degradation	% Local Parameter:   id =  V, name = vmp
-	reaction_reaction_26_V=2.2;
-	% Local Parameter:   id =  Km, name = Kmp
-	reaction_reaction_26_Km=0.3;
+% Reaction: id = reaction_51, name = Mr translated into protein
+	reaction_reaction_51=compartment_cell*global_par_ksR*x(17);
 
-	reaction_reaction_26=compartment_cell*function_2(reaction_reaction_26_V, x(8), reaction_reaction_26_Km);
+% Reaction: id = reaction_52, name = Rc transfered into nuclear
+	reaction_reaction_52=compartment_cell*(global_par_k9*x(18)-global_par_k10*x(19));
 
-% Reaction: id = reaction_27, name = Pc nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_27_k1=0.02;
+% Reaction: id = reaction_53, name = Rc specific degradation
+	reaction_reaction_53=compartment_cell*global_par_vdRC*x(18)/(global_par_Kd+x(18));
 
-	reaction_reaction_27=compartment_cell*reaction_reaction_27_k1*x(9);
+% Reaction: id = reaction_54, name = Rc nonspecific degradation
+	reaction_reaction_54=compartment_cell*global_par_kdn*x(18);
 
-% Reaction: id = reaction_28, name = Cc nonspecific degradation	% Local Parameter:   id =  k1, name = kdnc
-	reaction_reaction_28_k1=0.02;
+% Reaction: id = reaction_55, name = Rn specific degradation
+	reaction_reaction_55=compartment_cell*global_par_vdRN*x(19)/(global_par_Kd+x(19));
 
-	reaction_reaction_28=compartment_cell*reaction_reaction_28_k1*x(5);
-
-% Reaction: id = reaction_29, name = Pcp nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_29_k1=0.02;
-
-	reaction_reaction_29=compartment_cell*reaction_reaction_29_k1*x(10);
-
-% Reaction: id = reaction_30, name = Ccp nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_30_k1=0.02;
-
-	reaction_reaction_30=compartment_cell*reaction_reaction_30_k1*x(7);
-
-% Reaction: id = reaction_31, name = PCcp nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_31_k1=0.02;
-
-	reaction_reaction_31=compartment_cell*reaction_reaction_31_k1*x(12);
-
-% Reaction: id = reaction_32, name = PCc nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_32_k1=0.02;
-
-	reaction_reaction_32=compartment_cell*reaction_reaction_32_k1*x(11);
-
-% Reaction: id = reaction_33, name = PCnp specific degradation	% Local Parameter:   id =  V, name = vdpcn
-	reaction_reaction_33_V=1.4;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_33_Km=0.3;
-
-	reaction_reaction_33=compartment_cell*function_2(reaction_reaction_33_V, x(15), reaction_reaction_33_Km);
-
-% Reaction: id = reaction_34, name = Bc nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_34_k1=0.02;
-
-	reaction_reaction_34=compartment_cell*reaction_reaction_34_k1*x(2);
-
-% Reaction: id = reaction_35, name = Bcp specific degradation	% Local Parameter:   id =  V, name = vdbc
-	reaction_reaction_35_V=3.0;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_35_Km=0.3;
-
-	reaction_reaction_35=compartment_cell*function_2(reaction_reaction_35_V, x(3), reaction_reaction_35_Km);
-
-% Reaction: id = reaction_36, name = Bn phospholation	% Local Parameter:   id =  V, name = V3b
-	reaction_reaction_36_V=1.4;
-	% Local Parameter:   id =  Km, name = Kp
-	reaction_reaction_36_Km=1.006;
-
-	reaction_reaction_36=compartment_cell*function_2(reaction_reaction_36_V, x(4), reaction_reaction_36_Km);
-
-% Reaction: id = reaction_37, name = Bnp specific degradation	% Local Parameter:   id =  V, name = vdbn
-	reaction_reaction_37_V=3.0;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_37_Km=0.3;
-
-	reaction_reaction_37=compartment_cell*function_2(reaction_reaction_37_V, x(14), reaction_reaction_37_Km);
-
-% Reaction: id = reaction_38, name = In nonspecific degration	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_38_k1=0.02;
-
-	reaction_reaction_38=compartment_cell*reaction_reaction_38_k1*x(16);
-
-% Reaction: id = reaction_39, name = In specific degradation	% Local Parameter:   id =  V, name = vdin
-	reaction_reaction_39_V=1.6;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_39_Km=0.3;
-
-	reaction_reaction_39=compartment_cell*function_2(reaction_reaction_39_V, x(16), reaction_reaction_39_Km);
-
-% Reaction: id = reaction_40, name = Bn nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_40_k1=0.02;
-
-	reaction_reaction_40=compartment_cell*reaction_reaction_40_k1*x(4);
-
-% Reaction: id = reaction_41, name = Bcp dephospholation	% Local Parameter:   id =  V, name = V2b
-	reaction_reaction_41_V=0.2;
-	% Local Parameter:   id =  Km, name = Kdp
-	reaction_reaction_41_Km=0.1;
-
-	reaction_reaction_41=compartment_cell*function_2(reaction_reaction_41_V, x(3), reaction_reaction_41_Km);
-
-% Reaction: id = reaction_42, name = Bnp dephospholation	% Local Parameter:   id =  V, name = V4b
-	reaction_reaction_42_V=0.4;
-	% Local Parameter:   id =  Km, name = Kdp
-	reaction_reaction_42_Km=0.1;
-
-	reaction_reaction_42=compartment_cell*function_2(reaction_reaction_42_V, x(14), reaction_reaction_42_Km);
-
-% Reaction: id = reaction_43, name = Ccp dephospholation	% Local Parameter:   id =  V, name = V2c
-	reaction_reaction_43_V=0.2;
-	% Local Parameter:   id =  Km, name = Kdp
-	reaction_reaction_43_Km=0.1;
-
-	reaction_reaction_43=compartment_cell*function_2(reaction_reaction_43_V, x(7), reaction_reaction_43_Km);
-
-% Reaction: id = reaction_44, name = Pcp dephospholation	% Local Parameter:   id =  V, name = V2p
-	reaction_reaction_44_V=0.6;
-	% Local Parameter:   id =  Km, name = Kdp
-	reaction_reaction_44_Km=0.1;
-
-	reaction_reaction_44=compartment_cell*function_2(reaction_reaction_44_V, x(10), reaction_reaction_44_Km);
-
-% Reaction: id = reaction_45, name = PCnp dephospholation	% Local Parameter:   id =  V, name = V4pc
-	reaction_reaction_45_V=0.2;
-	% Local Parameter:   id =  Km, name = Kdp
-	reaction_reaction_45_Km=0.1;
-
-	reaction_reaction_45=compartment_cell*function_2(reaction_reaction_45_V, x(15), reaction_reaction_45_Km);
-
-% Reaction: id = reaction_46, name = PCn nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_46_k1=0.02;
-
-	reaction_reaction_46=compartment_cell*reaction_reaction_46_k1*x(13);
-
-% Reaction: id = reaction_47, name = PCcp dephospholation	% Local Parameter:   id =  V, name = V2pc
-	reaction_reaction_47_V=0.2;
-	% Local Parameter:   id =  Km, name = Kdp
-	reaction_reaction_47_Km=0.1;
-
-	reaction_reaction_47=compartment_cell*function_2(reaction_reaction_47_V, x(12), reaction_reaction_47_Km);
-
-% Reaction: id = reaction_48, name = Mr synthesized	% Local Parameter:   id =  Vs, name = vsr
-	reaction_reaction_48_Vs=1.6;
-	% Local Parameter:   id =  n, name = n
-	reaction_reaction_48_n=2.0;
-	% Local Parameter:   id =  K, name = Kar
-	reaction_reaction_48_K=0.6;
-
-	reaction_reaction_48=compartment_cell*function_3(reaction_reaction_48_Vs, x(4), reaction_reaction_48_n, reaction_reaction_48_K);
-
-% Reaction: id = reaction_49, name = Mr nonspecific degradation	% Local Parameter:   id =  k1, name = kdmr
-	reaction_reaction_49_k1=0.02;
-
-	reaction_reaction_49=compartment_cell*reaction_reaction_49_k1*x(17);
-
-% Reaction: id = reaction_50, name = Mr specific degradation	% Local Parameter:   id =  V, name = vmr
-	reaction_reaction_50_V=1.6;
-	% Local Parameter:   id =  Km, name = Kmr
-	reaction_reaction_50_Km=0.4;
-
-	reaction_reaction_50=compartment_cell*function_2(reaction_reaction_50_V, x(17), reaction_reaction_50_Km);
-
-% Reaction: id = reaction_51, name = Mr translated into protein	% Local Parameter:   id =  k, name = ksr
-	reaction_reaction_51_k=1.7;
-
-	reaction_reaction_51=compartment_cell*function_1(reaction_reaction_51_k, x(17));
-
-% Reaction: id = reaction_52, name = Rc transfered into nuclear	% Local Parameter:   id =  k1, name = k9
-	reaction_reaction_52_k1=0.8;
-	% Local Parameter:   id =  k2, name = k10
-	reaction_reaction_52_k2=0.4;
-
-	reaction_reaction_52=compartment_cell*(reaction_reaction_52_k1*x(18)-reaction_reaction_52_k2*x(19));
-
-% Reaction: id = reaction_53, name = Rc specific degradation	% Local Parameter:   id =  V, name = vdrc
-	reaction_reaction_53_V=4.4;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_53_Km=0.3;
-
-	reaction_reaction_53=compartment_cell*function_2(reaction_reaction_53_V, x(18), reaction_reaction_53_Km);
-
-% Reaction: id = reaction_54, name = Rc nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_54_k1=0.02;
-
-	reaction_reaction_54=compartment_cell*reaction_reaction_54_k1*x(18);
-
-% Reaction: id = reaction_55, name = Rn specific degradation	% Local Parameter:   id =  V, name = vdrn
-	reaction_reaction_55_V=0.8;
-	% Local Parameter:   id =  Km, name = Kd
-	reaction_reaction_55_Km=0.3;
-
-	reaction_reaction_55=compartment_cell*function_2(reaction_reaction_55_V, x(19), reaction_reaction_55_Km);
-
-% Reaction: id = reaction_56, name = Rn nonspecific degradation	% Local Parameter:   id =  k1, name = kdn
-	reaction_reaction_56_k1=0.02;
-
-	reaction_reaction_56=compartment_cell*reaction_reaction_56_k1*x(19);
+% Reaction: id = reaction_56, name = Rn nonspecific degradation
+	reaction_reaction_56=compartment_cell*global_par_kdn*x(19);
 
 	xdot=zeros(19,1);
 	
@@ -503,16 +443,6 @@ function xdot=f(x,t)
 % Species:   id = Rn, name = Rn, affected by kineticLaw
 	xdot(19) = (1/(compartment_cell))*(( 1.0 * reaction_reaction_52) + (-1.0 * reaction_reaction_55) + (-1.0 * reaction_reaction_56));
 end
-
-function z=function_3(Vs,B,n,K), z=(Vs*B^n/(K^n+B^n));end
-
-function z=function_2(V,substrate,Km), z=(V*substrate/(Km+substrate));end
-
-function z=function_1(k,mRNA), z=(k*mRNA);end
-
-function z=function_0(vsb,K,m,Bn), z=(vsb*K^m/(K^m+Bn^m));end
-
-function z=function_5(length,model_time), z=(ceil(sin(pi*model_time/length+0.001)/2));end
 
 % adding few functions representing operators used in SBML but not present directly 
 % in either matlab or octave. 

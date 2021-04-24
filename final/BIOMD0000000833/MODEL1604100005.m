@@ -12,7 +12,7 @@
 %
 
 %
-% Model name = NoName
+% Model name = DiCamillo2016 - Insulin signalling pathway - Rule-based model
 %
 % is http://identifiers.org/biomodels.db/MODEL1604100005
 %

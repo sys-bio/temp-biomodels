@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Park2019.xml"/>
-  </listOfModels>
-  <listOfSimulations>
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1" numberOfPoints="100">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
@@ -11,17 +7,20 @@
       <algorithm kisaoID="KISAO:0000282"/>
     </steadyState>
   </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <task id="task2" modelReference="model" simulationReference="steady2"/>
-    <repeatedTask id="task3" range="range0" resetModel="true">
+    <repeatedTask id="task3" range="range1" resetModel="true">
       <listOfRanges>
-        <uniformRange id="range0" start="602.214" end="6022140" numberOfPoints="1000" type="log"/>
+        <uniformRange id="range1" start="602.214" end="6022140" numberOfPoints="1000" type="log"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;IL7&apos;]" range="range0">
+        <setValue range="range1" modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='IL7']">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> range0 </ci>
+            <ci> range1 </ci>
           </math>
         </setValue>
       </listOfChanges>
@@ -32,63 +31,63 @@
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
-      </math>
       <listOfVariables>
         <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
       </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
     </dataGenerator>
     <dataGenerator id="f_7_1_task1" name="Values[f_7]">
+      <listOfVariables>
+        <variable id="p1_f_7_task1" name="f_7" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='f_7']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_f_7_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_f_7_task1" name="f_7" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;f_7&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="IL7_1_task1" name="IL7">
+      <listOfVariables>
+        <variable id="p1_IL7_task1" name="IL7" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='IL7']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_IL7_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_IL7_task1" name="IL7" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;IL7&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="time_task3" name="Time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task3 </ci>
-      </math>
       <listOfVariables>
         <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
       </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task3 </ci>
+      </math>
     </dataGenerator>
     <dataGenerator id="f_7_1_task3" name="Values[f_7]">
+      <listOfVariables>
+        <variable id="p1_f_7_task3" name="f_7" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='f_7']" taskReference="task3"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_f_7_task3 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_f_7_task3" name="f_7" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;f_7&apos;]" taskReference="task3"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="IL7_1_task3" name="IL7">
+      <listOfVariables>
+        <variable id="p1_IL7_task3" name="IL7" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='IL7']" taskReference="task3"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_IL7_task3 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_IL7_task3" name="IL7" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;IL7&apos;]" taskReference="task3"/>
-      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Park2019_Figure_2_A">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[f_7]" logX="true" xDataReference="IL7_1_task1" logY="false" yDataReference="f_7_1_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[f_7]" logX="true" logY="false" xDataReference="IL7_1_task1" yDataReference="f_7_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task3" name="Park2019_Figure_2_A">
       <listOfCurves>
-        <curve id="p1_curve_1_task3" name="Values[f_7]" logX="true" xDataReference="IL7_1_task3" logY="false" yDataReference="f_7_1_task3"/>
+        <curve id="p1_curve_1_task3" name="Values[f_7]" logX="true" logY="false" xDataReference="IL7_1_task3" yDataReference="f_7_1_task3"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

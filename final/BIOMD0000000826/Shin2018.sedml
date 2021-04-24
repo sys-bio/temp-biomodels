@@ -1,77 +1,76 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Shin2018.xml"/>
-  </listOfModels>
-  <listOfSimulations>
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1440" numberOfPoints="60000">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
   </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
-      </math>
       <listOfVariables>
         <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
       </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
     </dataGenerator>
     <dataGenerator id="pSTAT3_norm_1_task1" name="Values[pSTAT3_norm]">
+      <listOfVariables>
+        <variable id="p1_pSTAT3_norm_task1" name="pSTAT3_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='pSTAT3_norm']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_pSTAT3_norm_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_pSTAT3_norm_task1" name="pSTAT3_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;pSTAT3_norm&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="pERK_norm_1_task1" name="Values[pERK_norm]">
+      <listOfVariables>
+        <variable id="p2_pERK_norm_task1" name="pERK_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='pERK_norm']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_pERK_norm_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p2_pERK_norm_task1" name="pERK_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;pERK_norm&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="c_Met_norm_1_task1" name="Values[c-Met_norm]">
+      <listOfVariables>
+        <variable id="p3_c_Met_norm_task1" name="c_Met_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='c_Met_norm']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p3_c_Met_norm_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p3_c_Met_norm_task1" name="c_Met_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;c_Met_norm&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="PYK2_norm_1_task1" name="Values[PYK2_norm]">
+      <listOfVariables>
+        <variable id="p4_PYK2_norm_task1" name="PYK2_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='PYK2_norm']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p4_PYK2_norm_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p4_PYK2_norm_task1" name="PYK2_norm" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;PYK2_norm&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Shin2018_Figure_1_K">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[pSTAT3_norm]" logX="false" xDataReference="time_task1" logY="false" yDataReference="pSTAT3_norm_1_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[pSTAT3_norm]" logX="false" logY="false" xDataReference="time_task1" yDataReference="pSTAT3_norm_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1" name="Shin2018_Figure_1_L">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="Values[pERK_norm]" logX="false" xDataReference="time_task1" logY="false" yDataReference="pERK_norm_1_task1"/>
+        <curve id="p2_curve_1_task1" name="Values[pERK_norm]" logX="false" logY="false" xDataReference="time_task1" yDataReference="pERK_norm_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_3_task1" name="Shin2018_Figure_1_M">
       <listOfCurves>
-        <curve id="p3_curve_1_task1" name="Values[c-Met_norm]" logX="false" xDataReference="time_task1" logY="false" yDataReference="c_Met_norm_1_task1"/>
+        <curve id="p3_curve_1_task1" name="Values[c-Met_norm]" logX="false" logY="false" xDataReference="time_task1" yDataReference="c_Met_norm_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_4_task1" name="Shin2018_Figure_1_N">
       <listOfCurves>
-        <curve id="p4_curve_1_task1" name="Values[PYK2_norm]" logX="false" xDataReference="time_task1" logY="false" yDataReference="PYK2_norm_1_task1"/>
+        <curve id="p4_curve_1_task1" name="Values[PYK2_norm]" logX="false" logY="false" xDataReference="time_task1" yDataReference="PYK2_norm_1_task1"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

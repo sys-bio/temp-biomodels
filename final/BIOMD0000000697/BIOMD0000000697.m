@@ -15,9 +15,8 @@
 % Model name = Ciliberto2003 - CyclinE / Cdk2 timer in the cell cycle of Xenopus laevis embryo
 %
 % is http://identifiers.org/biomodels.db/MODEL0913242281
-% isDescribedBy http://identifiers.org/pubmed/12914904
-% isDescribedBy http://identifiers.org/pubmed/12914904
 % is http://identifiers.org/biomodels.db/BIOMD0000000697
+% isDescribedBy http://identifiers.org/pubmed/12914904
 %
 
 
@@ -285,7 +284,7 @@ function z=Function_phosphorylation_with_Wee1_1(Wee1_a,Xic_Cdk2_CycE,kwee), z=(k
 
 function z=Function_phosphorylation_with_Wee1_2(Cdk2_CycE,Wee1_a,kwee), z=(kwee*Wee1_a*Cdk2_CycE);end
 
-function z=Function_for_Kin_a_1(Cdk2_CycE,Jiact,Jiinact,Kin_a,kiact,kiinact), z=(kiact*(1-Kin_a)/((Jiact+1)-Kin_a)-kiinact*Cdk2_CycE*Kin_a/(Jiinact+Kin_a));end
+function z=Function_for_Kin_a_1(Cdk2_CycE,Jiact,Jiinact,Kin_a,kiact,kiinact), z=(kiact*(1-Kin_a)/(Jiact+1-Kin_a)-kiinact*Cdk2_CycE*Kin_a/(Jiinact+Kin_a));end
 
 function z=Function_for_degradation_of_Xic_Cyc_Cdk_3(Cdk2_CycErem,Deg_a,kedeg), z=(kedeg*Cdk2_CycErem*Deg_a);end
 
@@ -295,7 +294,7 @@ function z=function_removed_from_oscillatory_system_3(Xic_PCdk2_CycE,kon,phi), z
 
 function z=function_removed_from_oscillatory_system_4(Xic_Cdk2_CycE,kon,phi), z=(kon*phi*Xic_Cdk2_CycE);end
 
-function z=Function_for_Wee1_a_1(Jwact,Jwinact,Kin_a,Wee1_a,Wee1_total,kwact,kwinact), z=(kwact*(Wee1_total-Wee1_a)/((Jwact+Wee1_total)-Wee1_a)-kwinact*Kin_a*Wee1_a/(Jwinact+Wee1_a));end
+function z=Function_for_Wee1_a_1(Jwact,Jwinact,Kin_a,Wee1_a,Wee1_total,kwact,kwinact), z=(kwact*(Wee1_total-Wee1_a)/(Jwact+Wee1_total-Wee1_a)-kwinact*Kin_a*Wee1_a/(Jwinact+Wee1_a));end
 
 % adding few functions representing operators used in SBML but not present directly 
 % in either matlab or octave. 

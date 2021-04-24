@@ -1029,7 +1029,7 @@ function z=function_4_VmSERc_1(K_cser,K_mser,V_cser,V_mser,c_ser,cytosol,m_ser,m
 
 function z=function_4_V_DMGD_1(K_dmg_DMGD,K_thf_DMGD,Vm_DMGD,dmg,m_thf,mito,mito*MM_twosubst(Vm_DMGD,K_thf_DMGD,K_dmg_DMGD,m_thf), z=(dmg));end
 
-function z=function_4_V_MTHFR_1(K_2cf_MTHFR,K_NADPH_MTHFR,NADPH,Vm_MTHFR,c_2cf,sah,sam,MM_twosubst(Vm_MTHFR,K_2cf_MTHFR,K_NADPH_MTHFR,c_2cf), z=(NADPH)*72/((10+sam)-sah));end
+function z=function_4_V_MTHFR_1(K_2cf_MTHFR,K_NADPH_MTHFR,NADPH,Vm_MTHFR,c_2cf,sah,sam,MM_twosubst(Vm_MTHFR,K_2cf_MTHFR,K_NADPH_MTHFR,c_2cf), z=(NADPH)*72/(10+sam-sah));end
 
 function z=function_4_V_SAHH_1(K_hcy_SAHH,K_sah_SAHH,Vf_SAHH,Vr_SAHH,hcy,sah,MM(Vf_SAHH,K_sah_SAHH,K_hcy_SAHH), z=(sah)-MM(Vr_SAHH,hcy));end
 

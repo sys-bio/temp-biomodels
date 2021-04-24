@@ -209,7 +209,7 @@ function xdot=f(x,t)
 % assignmentRule: variable = INa
 	x(10)=global_par_gNa_max*x(2)^3*x(3)*(x(1)-global_par_ENa);
 % assignmentRule: variable = Stimulus
-	x(16)=piecewise(global_par_Stimulus_Magnitude, (time >= global_par_Stimulus_Start) && (((time-global_par_Stimulus_Start)-floor((time-global_par_Stimulus_Start)/global_par_Stimulus_Period)*global_par_Stimulus_Period) < global_par_Stimulus_Duration), 0);
+	x(16)=piecewise(global_par_Stimulus_Magnitude, (time >= global_par_Stimulus_Start) && ((time-global_par_Stimulus_Start-floor((time-global_par_Stimulus_Start)/global_par_Stimulus_Period)*global_par_Stimulus_Period) < global_par_Stimulus_Duration), 0);
 % assignmentRule: variable = IL
 	x(14)=global_par_gL_max*(x(1)-global_par_EL);
 % assignmentRule: variable = IT
@@ -245,9 +245,9 @@ function xdot=f(x,t)
 % assignmentRule: variable = ooinf
 	global_par_ooinf=global_par_alp*global_par_tau;
 % assignmentRule: variable = dinf
-	global_par_dinf=1/(1+exp(((-24.6)-x(1))/11.3));
+	global_par_dinf=1/(1+exp((-24.6-x(1))/11.3));
 % assignmentRule: variable = taud
-	global_par_taud=80/(1/cosh((-0.031)*(x(1)+37.1)));
+	global_par_taud=80/1/cosh((-0.031)*(x(1)+37.1));
 % assignmentRule: variable = alphad
 	global_par_alphad=global_par_dinf/global_par_taud;
 % assignmentRule: variable = betad

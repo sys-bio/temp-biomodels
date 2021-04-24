@@ -168,7 +168,7 @@ function z=modifier_function_1(parameter,modifier,substrate), z=(parameter*modif
 
 function z=function_for_Li(kf,Li,Ri,kre,Ci,Ve,Na), z=((kf*Li*Ri-kre*Ci)/(Ve*Na));end
 
-function z=function_for_L(kf,L,Rs,kr,Cs,kx,Li,Ve,Na,Y), z=(((kf*L*Rs-kr*Cs)-kx*Li*Ve*Na)*Y/Na);end
+function z=function_for_L(kf,L,Rs,kr,Cs,kx,Li,Ve,Na,Y), z=((kf*L*Rs-kr*Cs-kx*Li*Ve*Na)*Y/Na);end
 
 function z=modifier_function_3(parameter,modifier), z=(parameter*modifier);end
 

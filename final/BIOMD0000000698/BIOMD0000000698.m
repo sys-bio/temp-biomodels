@@ -176,7 +176,7 @@ function z=function_for_V_MS(V_max_MS,mTHF,Hcy,K_d_MS,K_m_Hcy_MS,K_m_mTHF_MS), z
 
 function z=function_for_V_CBS(beta1,AdoMet,AdoHcy,beta2,Hcy), z=((beta1*(AdoMet+AdoHcy)-beta2)*Hcy);end
 
-function z=function_for_V_BHMT(AdoMet,AdoHcy,V_max_bhmt,Hcy,K_m_BHMT), z=((0.7-0.025*((AdoMet+AdoHcy)-150))*V_max_bhmt*Hcy/(K_m_BHMT+Hcy));end
+function z=function_for_V_BHMT(AdoMet,AdoHcy,V_max_bhmt,Hcy,K_m_BHMT), z=((0.7-0.025*(AdoMet+AdoHcy-150))*V_max_bhmt*Hcy/(K_m_BHMT+Hcy));end
 
 function z=function_for_V_AH(alpha1,AdoHcy,alpha2,Hcy), z=(alpha1*(AdoHcy-alpha2*Hcy));end
 

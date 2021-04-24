@@ -113,9 +113,9 @@ x(3) = x(6);
 
 	xdot=zeros(6,1);
 	% rateRule: variable = l
-	xdot(4) = ((global_par_A*x(1)*(x(2)+global_par_F)*(global_par_N+1)/(global_par_N+x(1)+x(2)+x(3))+global_par_I*(1+global_par_S*(x(2)+global_par_F)))-global_par_K_l*x(1)*x(2)*(x(2)+global_par_F))-global_par_delta_l*x(1);
+	xdot(4) = global_par_A*x(1)*(x(2)+global_par_F)*(global_par_N+1)/(global_par_N+x(1)+x(2)+x(3))+global_par_I*(1+global_par_S*(x(2)+global_par_F))-global_par_K_l*x(1)*x(2)*(x(2)+global_par_F)-global_par_delta_l*x(1);
 	% rateRule: variable = m
-	xdot(5) = (global_par_xi*x(2)*(global_par_N+1)/(global_par_N+x(1)+x(2)+x(3))-x(2))-global_par_K_m*x(1)*x(2)*(x(2)+global_par_F);
+	xdot(5) = global_par_xi*x(2)*(global_par_N+1)/(global_par_N+x(1)+x(2)+x(3))-x(2)-global_par_K_m*x(1)*x(2)*(x(2)+global_par_F);
 	% rateRule: variable = n
 	xdot(6) = x(3)*(global_par_N+1)/(global_par_N+x(1)+x(2)+x(3))-x(3);
 	

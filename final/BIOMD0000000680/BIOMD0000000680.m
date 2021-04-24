@@ -98,9 +98,9 @@ x(4) = x(7);
 
 	xdot=zeros(7,1);
 	% rateRule: variable = phi_I
-	xdot(5) = (global_par_alpha*x(1)+global_par_k1*global_par_k2*x(2)*(1-global_par_k3*(x(2)+x(3))))-global_par_d1*x(2);
+	xdot(5) = global_par_alpha*x(1)+global_par_k1*global_par_k2*x(2)*(1-global_par_k3*(x(2)+x(3)))-global_par_d1*x(2);
 	% rateRule: variable = phi_R
-	xdot(6) = ((1-global_par_alpha)*x(1)+global_par_k1*global_par_k2*x(3)*(1-global_par_k3*(x(2)+x(3))))-global_par_d1*x(3);
+	xdot(6) = (1-global_par_alpha)*x(1)+global_par_k1*global_par_k2*x(3)*(1-global_par_k3*(x(2)+x(3)))-global_par_d1*x(3);
 	% rateRule: variable = T
 	xdot(7) = global_par_k4*x(2)-global_par_d2*x(4);
 	

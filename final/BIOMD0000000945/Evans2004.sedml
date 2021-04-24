@@ -1,69 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Evans2004.xml"/>
-  </listOfModels>
-  <listOfSimulations>
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="20" numberOfPoints="2000">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
   </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
-      </math>
       <listOfVariables>
         <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
       </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
     </dataGenerator>
     <dataGenerator id="H_m_1_task1" name="[H_m]">
+      <listOfVariables>
+        <variable id="p1_H_m_task1" name="H_m" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='H_m']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_H_m_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_H_m_task1" name="H_m" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H_m&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_m_2_task1" name="[L_m]">
+      <listOfVariables>
+        <variable id="p1_L_m_task1" name="L_m" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='L_m']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_L_m_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_L_m_task1" name="L_m" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L_m&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="H_c_1_task1" name="[H_c]">
+      <listOfVariables>
+        <variable id="p2_H_c_task1" name="H_c" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='H_c']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_H_c_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p2_H_c_task1" name="H_c" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H_c&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_c_2_task1" name="[L_c]">
+      <listOfVariables>
+        <variable id="p2_L_c_task1" name="L_c" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='L_c']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_L_c_task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p2_L_c_task1" name="L_c" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L_c&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="figure_4_left">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[H_m]" logX="false" xDataReference="time_task1" logY="false" yDataReference="H_m_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[L_m]" logX="false" xDataReference="time_task1" logY="false" yDataReference="L_m_2_task1"/>
+        <curve id="p1_curve_1_task1" name="[H_m]" logX="false" logY="false" xDataReference="time_task1" yDataReference="H_m_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[L_m]" logX="false" logY="false" xDataReference="time_task1" yDataReference="L_m_2_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1" name="figure_4_right">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="[H_c]" logX="false" xDataReference="time_task1" logY="false" yDataReference="H_c_1_task1"/>
-        <curve id="p2_curve_2_task1" name="[L_c]" logX="false" xDataReference="time_task1" logY="false" yDataReference="L_c_2_task1"/>
+        <curve id="p2_curve_1_task1" name="[H_c]" logX="false" logY="false" xDataReference="time_task1" yDataReference="H_c_1_task1"/>
+        <curve id="p2_curve_2_task1" name="[L_c]" logX="false" logY="false" xDataReference="time_task1" yDataReference="L_c_2_task1"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

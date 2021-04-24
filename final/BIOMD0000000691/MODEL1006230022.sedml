@@ -1,68 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="BIOMD0000000691_url.xml"/>
-  </listOfModels>
-  <listOfSimulations>
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="197" outputEndTime="200" numberOfPoints="300">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
   </listOfSimulations>
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
+  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
-      </math>
       <listOfVariables>
         <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
       </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
     </dataGenerator>
     <dataGenerator id="A3__Cell_1__1_task1" name="[A3{&quot;Cell 1&quot;}]">
+      <listOfVariables>
+        <variable id="p1_A3__Cell_1__task1" name="A3__Cell_1_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='A3__Cell_1_']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_A3__Cell_1__task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_A3__Cell_1__task1" name="A3__Cell_1_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A3__Cell_1_&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A3__Cell_2__2_task1" name="[A3{&quot;Cell 2&quot;}]">
+      <listOfVariables>
+        <variable id="p1_A3__Cell_2__task1" name="A3__Cell_2_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='A3__Cell_2_']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_A3__Cell_2__task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p1_A3__Cell_2__task1" name="A3__Cell_2_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A3__Cell_2_&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A3__Cell_2__1_task1" name="[A3{&quot;Cell 2&quot;}]">
+      <listOfVariables>
+        <variable id="p2_A3__Cell_2__task1" name="A3__Cell_2_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='A3__Cell_2_']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_A3__Cell_2__task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p2_A3__Cell_2__task1" name="A3__Cell_2_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A3__Cell_2_&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="A3__Cell_1__1_task12" name="A3__Cell_1_">
+    <dataGenerator id="A3__Cell_1__1_task1" name="A3__Cell_1_">
+      <listOfVariables>
+        <variable id="p2_A3__Cell_1__task1" name="A3__Cell_1_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='A3__Cell_1_']" taskReference="task1"/>
+      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_A3__Cell_1__task1 </ci>
       </math>
-      <listOfVariables>
-        <variable id="p2_A3__Cell_1__task1" name="A3__Cell_1_" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A3__Cell_1_&apos;]" taskReference="task1"/>
-      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="figure 6-8 time series">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[A3{&quot;Cell 1&quot;}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="A3__Cell_1__1_task1"/>
-        <curve id="p1_curve_2_task1" name="[A3{&quot;Cell 2&quot;}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="A3__Cell_2__2_task1"/>
+        <curve id="p1_curve_1_task1" name="[A3{&quot;Cell 1&quot;}]" logX="false" logY="false" xDataReference="time_task1" yDataReference="A3__Cell_1__1_task1"/>
+        <curve id="p1_curve_2_task1" name="[A3{&quot;Cell 2&quot;}]" logX="false" logY="false" xDataReference="time_task1" yDataReference="A3__Cell_2__2_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1" name="figure 6-8 phase plane">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="[A3{&quot;Cell 2&quot;}]" logX="false" xDataReference="A3__Cell_1__1_task12" logY="false" yDataReference="A3__Cell_2__1_task1"/>
+        <curve id="p2_curve_1_task1" name="[A3{&quot;Cell 2&quot;}]" logX="false" logY="false" xDataReference="A3__Cell_1__1_task1" yDataReference="A3__Cell_2__1_task1"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

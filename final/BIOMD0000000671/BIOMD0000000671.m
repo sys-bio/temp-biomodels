@@ -16,7 +16,7 @@
 %
 % is http://identifiers.org/biomodels.db/MODEL1708250001
 % is http://identifiers.org/biomodels.db/BIOMD0000000671
-% isDescribedBy http://identifiers.org/doi/10.1186/s12885-016-2164-x
+% isDescribedBy http://identifiers.org/pubmed/26921070
 %
 
 
@@ -127,7 +127,7 @@ x(7) = x(14);
 	% rateRule: variable = V_surf
 	xdot(12) = global_par_a_surf*x(5)/(x(5)+global_par_b_surf)^(1/3);
 	% rateRule: variable = V_gomp
-	xdot(13) = global_par_a_gomp*x(6)*ln(global_par_b_gomp/(x(6)+global_par_c_gomp));
+	xdot(13) = global_par_a_gomp*x(6)*log(global_par_b_gomp/(x(6)+global_par_c_gomp));
 	% rateRule: variable = V_bert
 	xdot(14) = global_par_a_bert*x(7)^(2/3)-global_par_b_bert*x(7);
 	

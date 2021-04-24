@@ -89,7 +89,7 @@ global_par_H2 = x(2);
 
 	xdot=zeros(2,1);
 	% rateRule: variable = H1
-	xdot(1) = (-global_par_beta_I*global_par_H1)+global_par_A;
+	xdot(1) = -global_par_beta_I*global_par_H1+global_par_A;
 	% rateRule: variable = H2
 	xdot(2) = global_par_beta_I*global_par_H1-global_par_beta_C*global_par_H2;
 end

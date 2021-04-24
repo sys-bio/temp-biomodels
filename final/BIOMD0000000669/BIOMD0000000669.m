@@ -223,11 +223,11 @@ x(5) = x(12);
 
 	xdot=zeros(12,1);
 	% rateRule: variable = G1
-	xdot(8) = ((2*(1-global_par_Inh_3)*(1-global_par_Inh_b)*global_par_k3*x(3)-(1-global_par_Inh_1)*(1-global_par_Inh_b)*global_par_k1*x(1))-(1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_k_apo*x(1))-(1+global_par_Sti_other_g)*(1+global_par_Sti_other_b)*global_par_k_other*x(1);
+	xdot(8) = 2*(1-global_par_Inh_3)*(1-global_par_Inh_b)*global_par_k3*x(3)-(1-global_par_Inh_1)*(1-global_par_Inh_b)*global_par_k1*x(1)-(1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_k_apo*x(1)-(1+global_par_Sti_other_g)*(1+global_par_Sti_other_b)*global_par_k_other*x(1);
 	% rateRule: variable = S
-	xdot(9) = (((1-global_par_Inh_1)*(1-global_par_Inh_b)*global_par_k1*x(1)-(1-global_par_Inh_g)*global_par_k2*x(2))-(1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_k_apo*x(2))-(1+global_par_Sti_other_g)*(1+global_par_Sti_other_b)*global_par_k_other*x(2);
+	xdot(9) = (1-global_par_Inh_1)*(1-global_par_Inh_b)*global_par_k1*x(1)-(1-global_par_Inh_g)*global_par_k2*x(2)-(1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_k_apo*x(2)-(1+global_par_Sti_other_g)*(1+global_par_Sti_other_b)*global_par_k_other*x(2);
 	% rateRule: variable = G2
-	xdot(10) = (((1-global_par_Inh_g)*global_par_k2*x(2)-(1-global_par_Inh_3)*(1-global_par_Inh_b)*global_par_k3*x(3))-(1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_k_apo*x(3))-(1+global_par_Sti_other_g)*(1+global_par_Sti_other_b)*global_par_k_other*x(3);
+	xdot(10) = (1-global_par_Inh_g)*global_par_k2*x(2)-(1-global_par_Inh_3)*(1-global_par_Inh_b)*global_par_k3*x(3)-(1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_k_apo*x(3)-(1+global_par_Sti_other_g)*(1+global_par_Sti_other_b)*global_par_k_other*x(3);
 	% rateRule: variable = R_apo
 	xdot(11) = (1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_k_apo*(x(1)+x(2)+x(3))-(1+global_par_Sti_apo_g)*(1+global_par_Sti_apo_b)*global_par_f1*global_par_k_apo*x(4);
 	% rateRule: variable = R_other
