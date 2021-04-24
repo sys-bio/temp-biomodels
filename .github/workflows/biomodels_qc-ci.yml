@@ -35,10 +35,9 @@ jobs:
 
       - name: Setup pip cache
         uses: actions/cache@v2
-        working-directory: biomodels_qc
         with:
           path: /opt/hostedtoolcache/Python
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('biomodels_qc/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -87,11 +86,10 @@ jobs:
       #       - uncomment
       # - name: Upload the coverage report to Codecov
       #   uses: codecov/codecov-action@v1.0.3
-      #   working-directory: biomodels_qc
       #   with:
       #    token: ${{ secrets.CODECOV_TOKEN }}
       #    flags: unittests
-      #    file: ./coverage.xml
+      #    file: biomodels_qc/coverage.xml
 
       # compile documentation
       - name: Compile the documentation
