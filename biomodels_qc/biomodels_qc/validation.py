@@ -9,6 +9,7 @@
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.warnings import BioSimulatorsWarning
 import ast
+import COPASI
 import enum
 import glob
 import imghdr
@@ -28,6 +29,7 @@ import zipfile
 
 __all__ = [
     'validate_entry',
+    'validate_copasi_file',
     'validate_image_file',
     'validate_ipynb_notebook_file',
     'validate_matlab_data_file',
@@ -36,6 +38,7 @@ __all__ = [
     'validate_python_file',
     'validate_sbml_file',
     'validate_sedml_file',
+    'validate_vcml_file',
     'validate_xml_file',
     'validate_xpp_file',
     'validate_zip_file',
@@ -50,10 +53,32 @@ class ImageFormat(str, enum.Enum):
     png = 'png'
 
 
+def validate_copasi_file(filename):
+    """ Determine if a COPASI file is valid
+
+    Args:
+        filename (:obj:`str`): path to COPASI file
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    assert COPASI.CRootContainer.getRoot() is not None
+    data_model = COPASI.CRootContainer.addDatamodel()
+    COPASI.CCopasiMessage.clearDeque()
+    if data_model.loadModel(filename):
+        return [], []
+    else:
+        return [[COPASI.CCopasiMessage.getAllMessageText()]], []
+
+
 def validate_image_file(filename, image_format):
     """ Determine if an image file is valid
 
     Args:
+        filename (:obj:`str`): path to image file
         image_format (:obj:`ImageFormat`): image format
 
     Returns:
@@ -247,6 +272,21 @@ def validate_svg_file(filename):
         return [[result.stderr.decode()]], []
 
 
+def validate_vcml_file(filename):
+    """ Determine if an VCML file is valid
+
+    Args:
+        filename (:obj:`str`): path to VCML file
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    return validate_xml_file(filename)
+
+
 def validate_xml_file(filename):
     """ Determine if an XML file is valid
 
@@ -317,6 +357,10 @@ def validate_zip_file(filename):
 
 
 EXTENSION_VALIDATOR_MAP = {
+    '.cps': {
+        'description': 'COPASI',
+        'validator': validate_copasi_file,
+    },
     '.gif': {
         'description': 'GIF image',
         'validator': lambda filename: validate_image_file(filename, ImageFormat.gif),
@@ -364,6 +408,10 @@ EXTENSION_VALIDATOR_MAP = {
     '.svg': {
         'description': 'SVG',
         'validator': validate_svg_file,
+    },
+    '.vcml': {
+        'description': 'VCML',
+        'validator': validate_vcml_file,
     },
     '.xml': {
         'description': 'XML',

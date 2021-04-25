@@ -23,15 +23,16 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertIn('uses data from repeated tasks', flatten_nested_list_of_strings(warnings))
 
-        valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692')
-        errors, warnings = validation.validate_entry(valid_dirname, file_extensions=['.cps'])
+        with open(os.path.join(self.temp_dirname, 'abc.xyz'), 'w') as file:
+            pass
+        errors, warnings = validation.validate_entry(self.temp_dirname)
         self.assertEqual(errors, [])
-        self.assertIn('not available for `.cps`', flatten_nested_list_of_strings(warnings))
+        self.assertIn('not available for `.xyz`', flatten_nested_list_of_strings(warnings))
 
         invalid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693')
         errors, warnings = validation.validate_entry(invalid_dirname)
         self.assertIn('is not a valid XPP', flatten_nested_list_of_strings(errors))
-        self.assertIn('not available for `.cps`', flatten_nested_list_of_strings(warnings))
+        self.assertIn('not available for `.sci`', flatten_nested_list_of_strings(warnings))
 
         errors, warnings = validation.validate_entry(invalid_dirname, filenames=['BIOMD0000000693.png'])
         self.assertEqual(errors, [])
@@ -45,6 +46,17 @@ class ValidationTestCase(unittest.TestCase):
             errors, warnings = validation.validate_entry(invalid_dirname, file_extensions=['.png'])
         self.assertEqual(errors, [])
         self.assertNotEqual(warnings, [])
+
+    def test_validate_copasi_file(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000042', 'BIOMD0000000042.cps')
+        errors, warnings = validation.validate_copasi_file(filename)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693', 'BIOMD0000000693.png')
+        errors, warnings = validation.validate_copasi_file(png_filename)
+        self.assertIn('Unrecognized content format', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
 
     def test_validate_image_file(self):
         png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693', 'BIOMD0000000693.png')
@@ -173,6 +185,17 @@ class ValidationTestCase(unittest.TestCase):
 
         png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.png')
         errors, warnings = validation.validate_svg_file(png_filename)
+        self.assertNotEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+    def test_validate_vcml_file(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000001', 'BIOMD0000000001.vcml')
+        errors, warnings = validation.validate_vcml_file(filename)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.png')
+        errors, warnings = validation.validate_vcml_file(png_filename)
         self.assertNotEqual(errors, [])
         self.assertEqual(warnings, [])
 
