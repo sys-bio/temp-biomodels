@@ -6,6 +6,8 @@
 :License: MIT
 """
 
+from biosimulators_utils.sedml.io import SedmlSimulationReader
+from biosimulators_utils.warnings import BioSimulatorsWarning
 import ast
 import enum
 import glob
@@ -21,6 +23,7 @@ import scipy.io
 import shutil
 import subprocess
 import tempfile
+import warnings
 import zipfile
 
 __all__ = [
@@ -32,6 +35,7 @@ __all__ = [
     'validate_pdf_file',
     'validate_python_file',
     'validate_sbml_file',
+    'validate_sedml_file',
     'validate_xml_file',
     'validate_xpp_file',
     'validate_zip_file',
@@ -199,6 +203,31 @@ def validate_sbml_file(filename):
     return errors, warnings
 
 
+def validate_sedml_file(filename):
+    """ Determine if a SED-ML file is valid
+
+    Args:
+        filename (:obj:`str`): path to SED-ML file
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    reader = SedmlSimulationReader()
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", BioSimulatorsWarning)
+            reader.run(filename)
+        return reader.errors, reader.warnings
+    except Exception:
+        if reader.errors:
+            return reader.errors, reader.warnings
+        else:
+            raise
+
+
 def validate_svg_file(filename):
     """ Determine if a SVG file is valid
 
@@ -327,6 +356,10 @@ EXTENSION_VALIDATOR_MAP = {
     '.sbml': {
         'description': 'SBML',
         'validator': validate_sbml_file,
+    },
+    '.sedml': {
+        'description': 'SED-ML',
+        'validator': validate_sedml_file,
     },
     '.svg': {
         'description': 'SVG',

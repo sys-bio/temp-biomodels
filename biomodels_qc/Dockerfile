@@ -71,6 +71,9 @@ RUN apt-get update -y \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Cython for better Owlready2 performance
+RUN pip install cython
+
 # Copy code for package into image and install it
 COPY . /root/biomodels_qc
 RUN pip install /root/biomodels_qc \

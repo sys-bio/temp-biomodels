@@ -16,6 +16,8 @@ from biosimulators_utils.sedml.data_model import Task, SteadyStateSimulation, Un
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
 from biosimulators_utils.simulator import specs as simulator_specs
+from biosimulators_utils.utils.core import flatten_nested_list_of_strings
+from warnings import warn
 import glob
 import os
 import parameterized
@@ -27,10 +29,10 @@ MAX_ENTRIES = os.getenv('MAX_ENTRIES', None)
 MAX_SEDML_FILES = os.getenv('MAX_SEDML_FILES', None)
 ENTRIES_DIR = os.path.join(os.path.dirname(__file__), '..', 'final')
 
-ENTRY_DIRS = [(dirname,) for dirname in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*'))]
+ENTRY_DIRS = sorted([(dirname,) for dirname in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*'))])
 if MAX_ENTRIES is not None:
     ENTRY_DIRS = ENTRY_DIRS[0:int(MAX_ENTRIES)]
-    
+
 SEDML_FILES = sorted((os.path.relpath(filename, ENTRIES_DIR).replace('/', '_').replace('.', '_'),
                       os.path.relpath(filename, ENTRIES_DIR),
                       ) for filename in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*', '**', '*.sedml'), recursive=True))
@@ -68,12 +70,6 @@ class EntriesTestCase(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.temp_dirname)
 
-    @parameterized.parameterized.expand(SEDML_FILES, skip_on_empty=True)
-    def test_is_sedml_valid(self, sanitized_name, name):
-        # Validate file
-        filename = os.path.join(ENTRIES_DIR, name)
-        SedmlSimulationReader().run(filename)
-
     @parameterized.parameterized.expand(SEDML_FILES_SIMULATORS, skip_on_empty=True)
     def test_can_sedml_be_executed(self, sanitized_name, name, simulator):
         # Validate file
@@ -99,7 +95,15 @@ class EntriesTestCase(unittest.TestCase):
 
     @parameterized.parameterized.expand(ENTRY_DIRS, skip_on_empty=True)
     def test_is_entry_valid(self, dirname):
-        self.assertTrue(validation.validate_entry(dirname))
+        errors, warnings = validation.validate_entry(dirname)
+
+        if warnings:
+            warnings = [['The entry at `{}` may be invalid.'.format(dirname), warnings]]
+            warn(flatten_nested_list_of_strings(warnings))
+
+        if errors:
+            errors = [['The entry at `{}` is invalid.'.format(dirname), errors]]
+            raise ValueError(flatten_nested_list_of_strings(errors))
 
 
 def does_simulator_have_capabilities_to_execute_sed_document(doc, simulator_specs):

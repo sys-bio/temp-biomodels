@@ -9,7 +9,7 @@ import unittest
 
 
 class CliTestCase(unittest.TestCase):
-    VALID_FIXTURE_DIRNAME = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000692')
+    VALID_FIXTURE_DIRNAME = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000600')
     INVALID_FIXTURE_DIRNAME = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000693')
 
     def setUp(self):

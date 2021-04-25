@@ -9,7 +9,6 @@
 from .convert import convert_entry
 from .validation import validate_entry
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
-from warnings import warn
 import biomodels_qc
 import cement
 import termcolor
@@ -82,14 +81,15 @@ class ValidateEntryController(cement.Controller):
         errors, warnings = validate_entry(args.dir, file_extensions=args.ext, filenames=args.file)
 
         if warnings:
-            warnings = [['The entry at `{}` may be invalid.', warnings]]
-            warn(termcolor.colored(flatten_nested_list_of_strings(warnings), 'yellow'), UserWarning)
+            warnings = [['The entry at `{}` may be invalid.'.format(args.dir), warnings]]
+            print(termcolor.colored(flatten_nested_list_of_strings(warnings), 'yellow'))
 
         if errors:
-            errors = [['The entry at `{}` is invalid.', errors]]
+            errors = [['The entry at `{}` is invalid.'.format(args.dir), errors]]
             raise SystemExit(termcolor.colored(flatten_nested_list_of_strings(errors), 'red'))
 
-        print('The entry at `{}` is valid.'.format(args.dir))
+        if not warnings:
+            print('The entry at `{}` is valid.'.format(args.dir))
 
 
 class ConvertEntryProjectController(cement.Controller):

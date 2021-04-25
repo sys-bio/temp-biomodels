@@ -18,8 +18,13 @@ class ValidationTestCase(unittest.TestCase):
         shutil.rmtree(self.temp_dirname)
 
     def test_validate_entry(self):
-        valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692')
+        valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724')
         errors, warnings = validation.validate_entry(valid_dirname)
+        self.assertEqual(errors, [])
+        self.assertIn('uses data from repeated tasks', flatten_nested_list_of_strings(warnings))
+
+        valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692')
+        errors, warnings = validation.validate_entry(valid_dirname, file_extensions=['.cps'])
         self.assertEqual(errors, [])
         self.assertIn('not available for `.cps`', flatten_nested_list_of_strings(warnings))
 
@@ -146,6 +151,18 @@ class ValidationTestCase(unittest.TestCase):
         bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'invalid_sbml.xml')
         errors, warnings = validation.validate_sbml_file(bad_filename)
         self.assertIn('must not contain undefined elements', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+    def test_validate_sedml_file(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
+        errors, warnings = validation.validate_sedml_file(filename)
+        self.assertEqual(errors, [])
+        self.assertIn('uses data from repeated tasks', flatten_nested_list_of_strings(warnings))
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'MODEL4968912141.sedml')
+        errors, warnings = validation.validate_sedml_file(bad_filename)
+        self.assertIn('Model `model` is invalid.', flatten_nested_list_of_strings(errors))
+        self.assertIn('BIOMD0000000692/model.xml` is not a file.', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
     def test_validate_svg_file(self):
