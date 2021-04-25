@@ -8,10 +8,13 @@ such as BioPAX, MATLAB/Octave, and XPP.
 """
 
 from .utils import get_smbl_files_for_entry
+from .validation import validate_xpp_file
 import enum
 import os
 import shutil
 import subprocess
+import termcolor
+import warnings
 
 
 __all__ = [
@@ -30,7 +33,11 @@ def convert_entry(dirname):
     """
     for filename in get_smbl_files_for_entry(dirname, include_urn_files=False):
         for alt_format in AltSbmlFormat.__members__.values():
-            convert_sbml(filename, alt_format)
+            alt_filename = convert_sbml(filename, alt_format)
+
+            if alt_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
+                warnings.warn(termcolor.colored('`{}` could not be converted to valid XPP file.'.format(filename)))
+                os.remove(alt_filename)
 
 
 class AltSbmlFormat(str, enum.Enum):
@@ -88,6 +95,9 @@ def convert_sbml(filename, format):
     Args:
         filename (:obj:`str`): path to SBML file
         format (:obj:`AltSbmlFormat`): another format
+
+    Returns:
+        :obj:`str`: path to converted file
     """
     format_data = ALT_SBML_FORMAT_DATA[format]
 
@@ -122,3 +132,5 @@ def convert_sbml(filename, format):
     if error:
         os.remove(final_converted_filename)
         raise ValueError(error)
+
+    return final_converted_filename

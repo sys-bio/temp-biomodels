@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # master program to fix the entries of BioModels
 
-import delete_invalid_xpp_file
 import fix_manual_corrections
 import fix_namespaces_in_sedml_doc
 import fix_sedml_extensions
@@ -74,11 +73,6 @@ def fix_entry(id, convert_files=False):
 
     if convert_files:
         convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
-
-    xpp_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xpp'), recursive=True)
-    for filename in xpp_filenames:
-        rel_filename = os.path.relpath(filename, FINAL_ENTRIES_DIR)
-        delete_invalid_xpp_file.run(rel_filename, FINAL_ENTRIES_DIR)
 
 
 if __name__ == "__main__":
