@@ -45,6 +45,7 @@ EXTENSION_COMBINE_FORMAT_MAP = {
     '.ipynb': 'http://purl.org/NET/mediatypes/application/x-ipynb+json',
     '.jpg': 'http://purl.org/NET/mediatypes/application/jpeg',
     '.jpeg': 'http://purl.org/NET/mediatypes/application/jpeg',
+    '.m': 'http://purl.org/NET/mediatypes/text/x-matlab',
     '.mat': 'http://purl.org/NET/mediatypes/application/x-matlab-data',
     '.owl': 'http://purl.org/NET/mediatypes/application/rdf+xml',
     '.pdf': 'http://purl.org/NET/mediatypes/application/pdf',

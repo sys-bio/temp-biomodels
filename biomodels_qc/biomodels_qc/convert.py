@@ -60,14 +60,14 @@ ALT_SBML_FORMAT_DATA = {
         'final_extension': '-biopax3.owl',
     },
     AltSbmlFormat.Matlab: {
-        'id': 'SBML2Matab',
+        'id': 'SBML2Matlab',
         'init_extension': '.m',
-        'final_extension': '.m',
+        'final_extension': '-matlab.m',
     },
     AltSbmlFormat.Octave: {
         'id': 'SBML2Octave',
         'init_extension': '.m',
-        'final_extension': '.m',
+        'final_extension': '-octave.m',
     },
     AltSbmlFormat.XPP: {
         'id': 'SBML2XPP',
@@ -93,10 +93,7 @@ def convert_sbml(filename, format):
 
     subprocess.check_call(['sbfConverter.sh', 'SBMLModel', format_data['id'], filename], stdout=subprocess.DEVNULL)
 
-    if format in [AltSbmlFormat.Matlab] and filename.endswith('_url.xml'):
-        init_converted_filename = filename[0:-8] + format_data['init_extension']
-    else:
-        init_converted_filename = os.path.splitext(filename)[0] + format_data['init_extension']
+    init_converted_filename = os.path.splitext(filename)[0] + format_data['init_extension']
 
     if filename.endswith('_url.xml'):
         final_converted_filename = filename[0:-8] + format_data['final_extension']
@@ -107,5 +104,21 @@ def convert_sbml(filename, format):
         shutil.move(init_converted_filename, final_converted_filename)
 
     os.remove(filename + '.done')
-    if os.path.isfile(filename[0:-4] + '.errorLog'):
-        os.remove(filename[0:-4] + '.errorLog')
+
+    error = None
+    with open(final_converted_filename, 'rb') as file:
+        line = file.readline().decode()
+        if line.startswith('####'):
+            line = file.readline().decode()
+            if line.startswith('#Something went wrong'):
+                error = 'Something went wrong'
+
+    error_log_filename = filename[0:-4] + '.errorLog'
+    if os.path.isfile(error_log_filename):
+        with open(error_log_filename, 'r') as file:
+            error = file.read()
+        os.remove(error_log_filename)
+
+    if error:
+        os.remove(final_converted_filename)
+        raise ValueError(error)

@@ -38,7 +38,8 @@ class ConvertTestCase(unittest.TestCase):
         self.assertEqual(new_files, set([
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-biopax2.owl'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-biopax3.owl'),
-            os.path.join(self.temp_entry_dirname, 'BIOMD0000000693.m'),
+            os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-matlab.m'),
+            os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-octave.m'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693.xpp'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693_urn.xml'),
         ]))
@@ -56,7 +57,15 @@ class ConvertTestCase(unittest.TestCase):
         self.assertEqual(new_files, set([
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-biopax2.owl'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-biopax3.owl'),
-            os.path.join(self.temp_entry_dirname, 'BIOMD0000000693.m'),
+            os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-matlab.m'),
+            os.path.join(self.temp_entry_dirname, 'BIOMD0000000693-octave.m'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693.xpp'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000693_urn.xml'),
         ]))
+
+    def test_convert_error_handling(self):
+        os.rename(os.path.join(self.temp_entry_dirname, 'BIOMD0000000693.svg'),
+                  os.path.join(self.temp_entry_dirname, 'BIOMD0000000693_url.xml'))
+
+        with self.assertRaises(ValueError):
+            convert.convert_entry(self.temp_entry_dirname)
