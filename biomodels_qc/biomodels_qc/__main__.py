@@ -8,8 +8,11 @@
 
 from .convert import convert_entry
 from .validation import validate_entry
-import cement
+from biosimulators_utils.utils.core import flatten_nested_list_of_strings
+from warnings import warn
 import biomodels_qc
+import cement
+import termcolor
 
 
 class BaseController(cement.Controller):
@@ -53,15 +56,39 @@ class ValidateEntryController(cement.Controller):
                     help='Path to a directory which contains the files for an entry of the BioModels database',
                 ),
             ),
+            (
+                ['--ext'],
+                dict(
+                    type=str,
+                    nargs='*',
+                    default=None,
+                    help='File extension to validate (.e.g, `.png`). Default: validate all files.',
+                ),
+            ),
+            (
+                ['--file'],
+                dict(
+                    type=str,
+                    nargs='*',
+                    default=None,
+                    help='Path relative to `dir` of file to validate (.e.g, `model.xml`). Default: validate all files.',
+                ),
+            ),
         ]
 
     @cement.ex(hide=True)
     def _default(self):
         args = self.app.pargs
-        try:
-            validate_entry(args.dir)
-        except ValueError as exception:
-            raise SystemExit(str(exception))
+        errors, warnings = validate_entry(args.dir, file_extensions=args.ext, filenames=args.file)
+
+        if warnings:
+            warnings = [['The entry at `{}` may be invalid.', warnings]]
+            warn(termcolor.colored(flatten_nested_list_of_strings(warnings), 'yellow'), UserWarning)
+
+        if errors:
+            errors = [['The entry at `{}` is invalid.', errors]]
+            raise SystemExit(termcolor.colored(flatten_nested_list_of_strings(errors), 'red'))
+
         print('The entry at `{}` is valid.'.format(args.dir))
 
 

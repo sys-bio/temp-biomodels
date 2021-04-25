@@ -6,11 +6,18 @@
 :License: MIT
 """
 
+from biosimulators_utils.combine.data_model import CombineArchive, CombineArchiveContent, CombineArchiveContentFormat
+from biosimulators_utils.combine.io import CombineArchiveWriter
+from biosimulators_utils.data_model import Person  # noqa: F401
+import datetime
+import dateutil.tz
 import glob
 import os
 
 __all__ = [
     'get_smbl_files_for_entry',
+    'EXTENSION_COMBINE_FORMAT_MAP',
+    'build_combine_archive',
 ]
 
 
@@ -30,3 +37,65 @@ def get_smbl_files_for_entry(dir, include_urn_files=False):
         filenames = list(filter(lambda filename: not filename.endswith('_urn.xml'), filenames))
 
     return filenames
+
+
+EXTENSION_COMBINE_FORMAT_MAP = {
+    '.cps': 'http://purl.org/NET/mediatypes/application/cps+xml',
+    '.gif': 'http://purl.org/NET/mediatypes/application/gif',
+    '.ipynb': 'http://purl.org/NET/mediatypes/application/x-ipynb+json',
+    '.jpg': 'http://purl.org/NET/mediatypes/application/jpeg',
+    '.jpeg': 'http://purl.org/NET/mediatypes/application/jpeg',
+    '.mat': 'http://purl.org/NET/mediatypes/application/x-matlab-data',
+    '.owl': 'http://purl.org/NET/mediatypes/application/rdf+xml',
+    '.pdf': 'http://purl.org/NET/mediatypes/application/pdf',
+    '.png': 'http://purl.org/NET/mediatypes/image/png',
+    '.py': 'http://purl.org/NET/mediatypes/application/x-python-code',
+    '.sbml': CombineArchiveContentFormat.SBML.value,
+    '.sedml': CombineArchiveContentFormat.SED_ML.value,
+    '.vcml': 'http://purl.org/NET/mediatypes/application/vcml+xml',
+    '.xml': CombineArchiveContentFormat.SBML.value,
+    '.xpp': 'http://purl.org/NET/mediatypes/text/plain',
+    '.zip': 'http://purl.org/NET/mediatypes/application/zip',
+}
+# map from file extensions to COMBINE format specification URLs
+
+
+def build_combine_archive(archive_dirname, master_rel_filename, archive_filename,
+                          description=None, authors=None):
+    """ Build a COMBINE/OMEX archive from a directory of files
+
+    Args:
+        archive_dirname (:obj:`str`): path to directory with the contents of the archive
+        master_rel_filename (:obj:`str`): filename of master SED-ML file, relative to
+            :obj:`archive_dirname`
+        archive_filename (:obj:`str`): path to save the COMBINE/OMEX archive
+        description (:obj:`str`, optional): description of the archive
+        authors (:obj:`list` of :obj:`Person`, optional): authors of the archive
+
+    """
+    now = datetime.datetime.now(tz=dateutil.tz.tzutc()).replace(microsecond=0)
+
+    archive = CombineArchive(
+        description=description,
+        authors=authors,
+        created=now,
+        updated=now,
+    )
+
+    for file in sorted(glob.glob(os.path.join(archive_dirname, '**', '*'), recursive=True)):
+        location = os.path.relpath(file, archive_dirname)
+        ext = os.path.splitext(file)[1]
+        format = EXTENSION_COMBINE_FORMAT_MAP.get(ext, 'http://purl.org/NET/mediatypes/application/octet-stream')
+        if format:
+            archive.contents.append(
+                CombineArchiveContent(
+                    location=location,
+                    format=format,
+                    master=location == master_rel_filename,
+                    authors=[],
+                    created=now,
+                    updated=now,
+                )
+            )
+
+    CombineArchiveWriter().run(archive, archive_dirname, archive_filename)

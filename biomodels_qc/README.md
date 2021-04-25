@@ -14,6 +14,9 @@ The application can be installed locally or executed as a Docker image.
 * Python >= 3.7
 * pip
 * [Systems Biology Format Converter](http://sbfc.sourceforge.net/mediawiki/index.php/Main_Page)
+    * Java
+* [SVGLint](https://www.npmjs.com/package/svglint)
+    * Node
 * [XPP](http://www.math.pitt.edu/~bard/xpp/xpp.html)
 
 ### Installation

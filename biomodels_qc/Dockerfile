@@ -55,6 +55,22 @@ RUN apt-get update -y \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
+# Install SVGLint
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        build-essential \
+    \
+    && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y  --no-install-recommends \
+        nodejs \
+    && npm install -g svglint \
+    \
+    && apt-get remove -y \
+        curl \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy code for package into image and install it
 COPY . /root/biomodels_qc
 RUN pip install /root/biomodels_qc \

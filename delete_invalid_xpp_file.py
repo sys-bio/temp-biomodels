@@ -1,5 +1,5 @@
 import os
-from biomodels_qc.validation import is_xpp_file_valid
+from biomodels_qc.validation import validate_xpp_file
 
 
 def run(rel_filename, working_dir):
@@ -10,5 +10,5 @@ def run(rel_filename, working_dir):
         working_dir (:obj:`str`): directory of entries to change (e.g., ``final``, ``original``)
     """
     filename = os.path.join(working_dir, rel_filename)
-    if not is_xpp_file_valid(filename):
+    if validate_xpp_file(filename)[0]:
         os.remove(filename)
