@@ -10,6 +10,7 @@ such as BioPAX, MATLAB/Octave, and XPP.
 from .utils import get_smbl_files_for_entry
 from .validation import validate_xpp_file
 import enum
+import glob
 import os
 import shutil
 import subprocess
@@ -101,7 +102,25 @@ def convert_sbml(filename, format):
     """
     format_data = ALT_SBML_FORMAT_DATA[format]
 
-    subprocess.check_call(['sbfConverter.sh', 'SBMLModel', format_data['id'], filename], stdout=subprocess.DEVNULL)
+    if os.name == 'nt':
+        sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.bat'))
+    else:
+        sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.sh'))
+    class_path = os.path.join(sbf_converter_home, 'lib')
+    env = {
+        'CLASSPATH': ':'.join(glob.glob(os.path.join(class_path, '*.jar'))
+                              + [os.path.join(class_path, 'paxtools-4.2/paxtools-4.2.0-no-jena.jar')])
+    }
+    result = subprocess.run([
+        'java',
+        '-Dmiriam.xml.export={}/miriam.xml'.format(sbf_converter_home),
+        'org.sbfc.converter.Converter',
+        'SBMLModel',
+        format_data['id'],
+        filename,
+    ], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    if result.returncode != 0:
+        raise ValueError(result.stderr.decode())
 
     init_converted_filename = os.path.splitext(filename)[0] + format_data['init_extension']
 
@@ -112,8 +131,6 @@ def convert_sbml(filename, format):
 
     if init_converted_filename != final_converted_filename:
         shutil.move(init_converted_filename, final_converted_filename)
-
-    os.remove(filename + '.done')
 
     error = None
     with open(final_converted_filename, 'rb') as file:
