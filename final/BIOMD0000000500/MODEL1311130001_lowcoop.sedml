@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="MODEL1311130001_lowcoop.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+    <steadyState id="steady2">
+      <algorithm kisaoID="KISAO:0000282"/>
+    </steadyState>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <task id="task2" modelReference="model" simulationReference="steady2"/>
+    <repeatedTask id="task3" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="1e-11" end="2e-07" numberOfPoints="50" type="log"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="GAS_siteOccupancy_1_task1" name="Values[GAS_siteOccupancy]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_GAS_siteOccupancy_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_GAS_siteOccupancy_task1" name="GAS_siteOccupancy" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;GAS_siteOccupancy&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="S1_1_task1" name="S1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_S1_task1" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="S1_2_task1" name="[S1]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task12 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_S1_task12" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="S1_2_task12" name="S1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task13 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_S1_task13" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="time_task3" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task3" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="GAS_siteOccupancy_1_task3" name="Values[GAS_siteOccupancy]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_GAS_siteOccupancy_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_GAS_siteOccupancy_task3" name="GAS_siteOccupancy" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;GAS_siteOccupancy&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="S1_1_task3" name="S1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task3 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_S1_task3" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="S1_2_task3" name="[S1]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task32 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_S1_task32" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="S1_2_task32" name="S1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_S1_task33 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_S1_task33" name="S1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Scan of Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="Values[GAS_siteOccupancy]" logX="true" xDataReference="S1_1_task1" logY="false" yDataReference="GAS_siteOccupancy_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[S1]" logX="true" xDataReference="S1_2_task12" logY="false" yDataReference="S1_2_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task3" name="Scan of Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task3" name="Values[GAS_siteOccupancy]" logX="true" xDataReference="S1_1_task3" logY="false" yDataReference="GAS_siteOccupancy_1_task3"/>
+        <curve id="p1_curve_2_task3" name="[S1]" logX="true" xDataReference="S1_2_task32" logY="false" yDataReference="S1_2_task3"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

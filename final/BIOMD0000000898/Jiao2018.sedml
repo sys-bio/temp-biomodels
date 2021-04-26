@@ -1,73 +1,74 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfSimulations>
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Jiao2018.xml"/>
+  </listOfModels>
+  <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="200" numberOfPoints="1000">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
   </listOfSimulations>
-  <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="model.xml"/>
-  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="A_PC_1_task1" name="[A_PC]">
-      <listOfVariables>
-        <variable id="p1_A_PC_task1" name="A_PC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='A_PC']" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_A_PC_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_A_PC_task1" name="A_PC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A_PC&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="D_TDSC_2_task1" name="[D_TDSC]">
-      <listOfVariables>
-        <variable id="p1_D_TDSC_task1" name="D_TDSC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='D_TDSC']" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_D_TDSC_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_D_TDSC_task1" name="D_TDSC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;D_TDSC&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="L_LSC_3_task1" name="[L_LSC]">
-      <listOfVariables>
-        <variable id="p1_L_LSC_task1" name="L_LSC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='L_LSC']" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_L_LSC_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_L_LSC_task1" name="L_LSC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L_LSC&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="S_HSC_4_task1" name="[S_HSC]">
-      <listOfVariables>
-        <variable id="p1_S_HSC_task1" name="S_HSC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='S_HSC']" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_S_HSC_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_S_HSC_task1" name="S_HSC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S_HSC&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="T_TDLC_5_task1" name="[T_TDLC]">
-      <listOfVariables>
-        <variable id="p1_T_TDLC_task1" name="T_TDLC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='T_TDLC']" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_T_TDLC_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_T_TDLC_task1" name="T_TDLC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;T_TDLC&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Jiao2018_Figure_5">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[A_PC]" logX="false" logY="false" xDataReference="time_task1" yDataReference="A_PC_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[D_TDSC]" logX="false" logY="false" xDataReference="time_task1" yDataReference="D_TDSC_2_task1"/>
-        <curve id="p1_curve_3_task1" name="[L_LSC]" logX="false" logY="false" xDataReference="time_task1" yDataReference="L_LSC_3_task1"/>
-        <curve id="p1_curve_4_task1" name="[S_HSC]" logX="false" logY="false" xDataReference="time_task1" yDataReference="S_HSC_4_task1"/>
-        <curve id="p1_curve_5_task1" name="[T_TDLC]" logX="false" logY="false" xDataReference="time_task1" yDataReference="T_TDLC_5_task1"/>
+        <curve id="p1_curve_1_task1" name="[A_PC]" logX="false" xDataReference="time_task1" logY="false" yDataReference="A_PC_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[D_TDSC]" logX="false" xDataReference="time_task1" logY="false" yDataReference="D_TDSC_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[L_LSC]" logX="false" xDataReference="time_task1" logY="false" yDataReference="L_LSC_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[S_HSC]" logX="false" xDataReference="time_task1" logY="false" yDataReference="S_HSC_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[T_TDLC]" logX="false" xDataReference="time_task1" logY="false" yDataReference="T_TDLC_5_task1"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

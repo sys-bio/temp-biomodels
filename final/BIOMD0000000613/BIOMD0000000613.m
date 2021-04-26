@@ -14,9 +14,9 @@
 %
 % Model name = Peterson2010 - Integrated calcium homeostasis and bone remodelling
 %
-% isDescribedBy http://identifiers.org/pubmed/19732857
 % is http://identifiers.org/biomodels.db/MODEL1604270004
 % is http://identifiers.org/biomodels.db/BIOMD0000000613
+% isDescribedBy http://identifiers.org/pubmed/19732857
 %
 
 

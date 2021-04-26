@@ -17,6 +17,7 @@
 % is http://identifiers.org/biomodels.db/MODEL1301110000
 % is http://identifiers.org/biomodels.db/BIOMD0000000438
 % isDescribedBy http://identifiers.org/doi/10.1016/j.ces.2012.12.016
+% is http://identifiers.org/taxonomy/131567
 %
 
 

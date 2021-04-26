@@ -15,9 +15,8 @@
 % Model name = Tomida2003 - Calcium Oscillatory-induced translocation of nuclear factor of activated T cells
 %
 % is http://identifiers.org/biomodels.db/MODEL0912160005
-% is http://identifiers.org/biomodels.db/BIOMD0000000678
 % isDescribedBy http://identifiers.org/pubmed/12881417
-% is http://identifiers.org/biomodels.db/MODEL0912160005
+% is http://identifiers.org/biomodels.db/BIOMD0000000678
 %
 
 
@@ -83,7 +82,7 @@ function xdot=f(x,t)
 % Parameter:   id =  ModelValue_13, name = Initial for stim_frequency
 	global_par_ModelValue_13=3.0;
 % assignmentRule: variable = NFAT_transported
-	x(3)=1-x(1)-x(2);
+	x(3)=(1-x(1))-x(2);
 % assignmentRule: variable = pNFAT
 	global_par_pNFAT=100*x(1);
 % assignmentRule: variable = tNFAT

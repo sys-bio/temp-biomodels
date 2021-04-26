@@ -23,7 +23,8 @@ def run(id, working_dir):
         try:
             root = etree.parse(xml_filename).getroot()
             if root.nsmap[None].startswith('http://sed-ml.org/'):
-                sedml_filename = xml_filename.replace('.xml', '.sbml')
+                sedml_filename = xml_filename.replace('_SED-ML.xml', '.sedml')
+                sedml_filename = sedml_filename.replace('-SEDML.xml', '.sedml')
                 shutil.move(xml_filename, sedml_filename)
                 changed.append(xml_filename)
         except etree.XMLSyntaxError:

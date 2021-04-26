@@ -3,7 +3,7 @@ import libsbml
 import os
 
 
-def run(rel_filename, working_dir):
+def fix_namespaces(rel_filename, working_dir):
     """ Fix the namespaces in a SED-ML file and save the file in place
 
     * Remove duplicate SED-ML namespace declarations -- automatically fixed by LXML
@@ -15,7 +15,10 @@ def run(rel_filename, working_dir):
     """
     filename = os.path.join(working_dir, rel_filename)
     # parse file
-    doc_etree = etree.parse(filename)
+    try:
+        doc_etree = etree.parse(filename)
+    except:
+        return
     root = doc_etree.getroot()
 
     # get models
@@ -55,3 +58,8 @@ def run(rel_filename, working_dir):
                       encoding="utf-8",
                       standalone=False,
                       pretty_print=True)
+    
+def run(sedml_filenames, FINAL_ENTRIES_DIR):
+    for filename in sedml_filenames:
+        name = os.path.relpath(filename, FINAL_ENTRIES_DIR)
+        fix_namespaces(name, FINAL_ENTRIES_DIR)

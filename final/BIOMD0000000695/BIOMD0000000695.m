@@ -290,14 +290,14 @@ function xdot=f(x,t)
 	reaction_R_35=compartment_compartmentOne*Function_for_R_35(global_par_AIh, global_par_apopFBL, compartment_compartmentOne, global_par_k1sh, x(1));
 
 %Event: id=Treatment_Break_after_28_days
-	event_Treatment_Break_after_28_days=((time > 28) && (time < 84)) && ((time-floor(time/7/3)*7/3) > global_par_Treatment_Duration);
+	event_Treatment_Break_after_28_days=((time > 28) && (time < 84)) && ((time-floor(time/(7/3))*7/3) > global_par_Treatment_Duration);
 
 	if(event_Treatment_Break_after_28_days) 
 		global_par_doseBL=0*90*global_par_skinType;
 	end
 
 %Event: id=Treatment_Start_after_28_days
-	event_Treatment_Start_after_28_days=((time > 28) && (time < 84)) && ((time-floor(time/7/3)*7/3) < global_par_Treatment_Duration);
+	event_Treatment_Start_after_28_days=((time > 28) && (time < 84)) && ((time-floor(time/(7/3))*7/3) < global_par_Treatment_Duration);
 
 	if(event_Treatment_Start_after_28_days) 
 		global_par_doseBL=90*global_par_skinType;

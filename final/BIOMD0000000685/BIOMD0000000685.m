@@ -105,13 +105,13 @@ global_par_C = x(4);
 
 	xdot=zeros(4,1);
 	% rateRule: variable = T
-	xdot(1) = global_par_r*global_par_T*(1-global_par_T/global_par_k)-global_par_d*global_par_T-global_par_gamma*global_par_T*global_par_C;
+	xdot(1) = (global_par_r*global_par_T*(1-global_par_T/global_par_k)-global_par_d*global_par_T)-global_par_gamma*global_par_T*global_par_C;
 	% rateRule: variable = A
-	xdot(2) = global_par_lambda-global_par_delta_1*global_par_A-global_par_alpha*global_par_A*global_par_T;
+	xdot(2) = (global_par_lambda-global_par_delta_1*global_par_A)-global_par_alpha*global_par_A*global_par_T;
 	% rateRule: variable = A_star
 	xdot(3) = global_par_alpha*global_par_A*global_par_T-global_par_delta_2*global_par_A_star;
 	% rateRule: variable = C
-	xdot(4) = global_par_eta*global_par_A_star*global_par_C/(global_par_epsilon*global_par_C+1)-global_par_q*global_par_T*global_par_C-global_par_mu*global_par_C;
+	xdot(4) = (global_par_eta*global_par_A_star*global_par_C/(global_par_epsilon*global_par_C+1)-global_par_q*global_par_T*global_par_C)-global_par_mu*global_par_C;
 end
 
 % adding few functions representing operators used in SBML but not present directly 
