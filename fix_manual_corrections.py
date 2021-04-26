@@ -1,3 +1,4 @@
+import enum
 import os
 import yaml
 
@@ -5,6 +6,12 @@ FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
 
 with open(__file__.replace('.py', '.yml'), 'r') as file:
     FIXES = yaml.load(file, Loader=yaml.Loader)
+
+
+class FixType(str, enum.Enum):
+    """ Type of manual fix """
+    replace_text = 'replace_text'
+    rename_file = 'rename_file'
 
 
 def run(id, working_dir):
@@ -27,12 +34,17 @@ def run(id, working_dir):
     for fix in fixes:
         filename = os.path.join(working_dir, id, fix['filename'])
 
-        with open(filename, 'r') as file:
-            contents = file.read()
+        if fix['type'] == FixType.replace_text.value:
+            with open(filename, 'rb') as file:
+                contents = file.read()
 
-        contents = contents.replace(fix['old'], fix['new'])
+            assert fix['old'].encode() in contents, "Text could not be replaced in `{}`".format(filename)
+            contents = contents.replace(fix['old'].encode(), fix['new'].encode())
 
-        with open(filename, 'w') as file:
-            file.write(contents)
+            with open(filename, 'wb') as file:
+                file.write(contents)
+
+        elif fix['type'] == FixType.rename_file.value:
+            os.rename(filename, os.path.join(working_dir, id, fix['new']))
 
     return sorted(set(fix['filename'] for fix in fixes))

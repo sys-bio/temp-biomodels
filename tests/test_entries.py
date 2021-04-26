@@ -78,7 +78,7 @@ class EntriesTestCase(unittest.TestCase):
         errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[simulator])
 
         if errors and 'One or more simulators could not execute the file' not in flatten_nested_list_of_strings(errors):
-            self.skipTest("`{}{}{}` is not a valid SED-ML file.".formats(entry_id, os.sep, rel_filename))
+            self.skipTest("`{}{}{}` is not a valid SED-ML file.".format(entry_id, os.sep, rel_filename))
 
         if 'no simulator has the capability to execute the file' in flatten_nested_list_of_strings(warnings):
             self.skipTest("`{}:{}` does not have the capability to execute `{}{}{}`.".format(

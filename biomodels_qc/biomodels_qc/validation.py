@@ -7,6 +7,7 @@
 """
 
 from .utils import build_combine_archive
+from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
 from biosimulators_utils.warnings import BioSimulatorsWarning
@@ -262,6 +263,12 @@ def validate_sedml_file(filename, dirname=None, simulators=None):
         else:
             raise
 
+    for simulation in sed_doc.simulations:
+        if isinstance(simulation, UniformTimeCourseSimulation):
+            sim_errors, sim_warnings = validate_sedml_uniform_time_course_simulation(simulation)
+            errors_list.extend(sim_errors)
+            warnings_list.extend(sim_warnings)
+
     if simulators is not None:
         fid, archive_filename = tempfile.mkstemp()
         os.close(fid)
@@ -297,6 +304,32 @@ def validate_sedml_file(filename, dirname=None, simulators=None):
             errors_list.append(['One or more simulators could not execute the file.', exec_errors])
 
     return errors_list, warnings_list
+
+
+def validate_sedml_uniform_time_course_simulation(simulation):
+    """ Check if a uniform time course simulation has odd parameters that could be incorrect
+
+    Args:
+        simulation (:obj:`UniformTimeCourseSimulation`): simulation
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    warnings = []
+    if (simulation.number_of_steps % 5) != 0:
+        warnings.append([
+            'Simulation `{}` has an unusual number of time steps.'.format(simulation.id),
+            [
+                ['Initial time: {}'.format(simulation.initial_time)],
+                ['Output start time: {}'.format(simulation.output_start_time)],
+                ['Output end time: {}'.format(simulation.output_end_time)],
+                ['Number of steps: {}'.format(simulation.number_of_steps)],
+            ]
+        ])
+    return [], warnings
 
 
 def validate_svg_file(filename):
