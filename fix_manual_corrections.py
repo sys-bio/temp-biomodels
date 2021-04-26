@@ -1,107 +1,17 @@
+import enum
 import os
+import yaml
 
 FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
 
-FIXES = {
-    'BIOMD0000000806': [
-        {
-            'filename': 'Macrophages Plasticity b.sedml',
-            'old': 'target="/sbml:sbml/sbml:modela/sbml:listofParameters/sbml:parameter[@id=&apos;v_r_m2&apos;]@value"',
-            'new': 'target="/sbml:sbml/sbml:modela/sbml:listofParameters/sbml:parameter[@id=&apos;v_r_m2&apos;]/@value"',
-        },
-        # {
-        #     'filename': 'Macrophages Plasticity b.sedml',
-        #     'old': '<model id="modelb" language="urn:sedml:language:sbml" source="model">',
-        #     'new': '<model id="modelb" language="urn:sedml:language:sbml" source="#model">',
-        # },
-    ],
-    # 'BIOMD0000000618': [
-    #     {
-    #         'filename': 'BIOMD0000000618.sedml',
-    #         'old': '<model id="model2" language="urn:sedml:language:sbml" source="model1">',
-    #         'new': '<model id="model2" language="urn:sedml:language:sbml" source="#model1">',
-    #     }
-    # ],
-    # 'BIOMD0000000637': [
-    #     {
-    #         'filename': 'Bush2016-Simplified-Carrousel-model-of-GPCR.sedml',
-    #         'old': '<dataSet id="ds_4_task3" dataReference="_1_task3"/>',
-    #         'new': '<dataSet id="ds_4_task3" label="p7" dataReference="_1_task3"/>',
-    #     }
-    # ],
-    'BIOMD0000000816': [
-        {
-            'filename': 'OV25.sedml',
-            'old': '<model language="urn:sedml:language:sbml" source="model.xml"/>',
-            'new': '',
-        },
-        {
-            'filename': 'OV25.sedml',
-            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
-            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
-        },
-        {
-            'filename': 'OV5.sedml',
-            'old': '<model language="urn:sedml:language:sbml" source="model.xml"/>',
-            'new': '',
-        },
-        {
-            'filename': 'OV5.sedml',
-            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
-            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
-        },
-    ],
-    'BIOMD0000000817': [
-        {
-            'filename': 'OV25.sedml',
-            'old': '<model language="urn:sedml:language:sbml" source="model"/>',
-            'new': '',
-        },
-        {
-            'filename': 'OV25.sedml',
-            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
-            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
-        },
-        {
-            'filename': 'OV5.sedml',
-            'old': '<model language="urn:sedml:language:sbml" source="model"/>',
-            'new': '',
-        },
-        {
-            'filename': 'OV5.sedml',
-            'old': '<model id="model.xml" language="urn:sedml:language:sbml" source="model.xml"/>',
-            'new': '<model id="model" language="urn:sedml:language:sbml" source="model.xml"/>',
-        },
-    ],
-    'BIOMD0000000810': [
-        {
-            'filename': 'Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.sedml',
-            'old': '<model id="Ganguli2018-immuno regulatory mechanisms in tumor microenvironment"',
-            'new': '<model id="model1"',
-        }
-    ],
-    'BIOMD0000000966': [
-        {
-            'filename': 'Cui2008.xml',
-            'old': 'render:globalRenderInformation',
-            'new': 'render:renderInformation',
-        }
-    ],
-    'BIOMD0000000967': [
-        {
-            'filename': 'McLean1991.xml',
-            'old': 'render:globalRenderInformation',
-            'new': 'render:renderInformation',
-        }
-    ],
-    'BIOMD0000000344': [
-        {
-            'filename': 'MODEL1005280000_highstress.xml',
-            'old': '\nte:</b> </p>',
-            'new': '\n<p><b>te:</b> </p>',
-        }
-    ],
-}
+with open(__file__.replace('.py', '.yml'), 'r') as file:
+    FIXES = yaml.load(file, Loader=yaml.Loader)
+
+
+class FixType(str, enum.Enum):
+    """ Type of manual fix """
+    replace_text = 'replace_text'
+    rename_file = 'rename_file'
 
 
 def run(id, working_dir):
@@ -124,12 +34,17 @@ def run(id, working_dir):
     for fix in fixes:
         filename = os.path.join(working_dir, id, fix['filename'])
 
-        with open(filename, 'r') as file:
-            contents = file.read()
+        if fix['type'] == FixType.replace_text.value:
+            with open(filename, 'rb') as file:
+                contents = file.read()
 
-        contents = contents.replace(fix['old'], fix['new'])
+            assert fix['old'].encode() in contents, "Text could not be replaced in `{}`".format(filename)
+            contents = contents.replace(fix['old'].encode(), fix['new'].encode())
 
-        with open(filename, 'w') as file:
-            file.write(contents)
+            with open(filename, 'wb') as file:
+                file.write(contents)
+
+        elif fix['type'] == FixType.rename_file.value:
+            os.rename(filename, os.path.join(working_dir, id, fix['new']))
 
     return sorted(set(fix['filename'] for fix in fixes))

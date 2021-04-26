@@ -7,15 +7,19 @@ such as BioPAX, MATLAB/Octave, and XPP.
 :License: MIT
 """
 
+import warnings
+import termcolor
+import subprocess
+import shutil
+import os
+import libsbml
+import glob
+import enum
 from .utils import get_smbl_files_for_entry
 from .validation import validate_xpp_file
-import enum
-import glob
-import os
-import shutil
-import subprocess
-import termcolor
-import warnings
+from biosimulators_utils.kisao.utils import get_ode_integration_kisao_term_ids
+from biosimulators_utils.sedml.data_model import Task
+from biosimulators_utils.sedml.io import SedmlSimulationReader
 
 
 __all__ = [
@@ -23,6 +27,8 @@ __all__ = [
     'AltSbmlFormat',
     'convert_sbml',
 ]
+
+_ODE_INTEGRATION_KISAO_TERM_IDS = None
 
 
 def convert_entry(dirname):
@@ -32,8 +38,53 @@ def convert_entry(dirname):
     Args:
         dir (:obj:`str): path to directory for a entry of the BioModels database
     """
+    module = globals()
+    if not module['_ODE_INTEGRATION_KISAO_TERM_IDS']:
+        module['_ODE_INTEGRATION_KISAO_TERM_IDS'] = get_ode_integration_kisao_term_ids()
+    ode_integration_kisao_term_ids = module['_ODE_INTEGRATION_KISAO_TERM_IDS']
+
+    has_sedml_task = False
+    ode_simulation = False
+    for filename in glob.glob(os.path.join(dirname, '**', "*.sedml"), recursive=True):
+        try:
+            doc = SedmlSimulationReader().run(filename)
+            for task in doc.tasks:
+                has_sedml_task = True
+                if isinstance(task, Task) and task.simulation.algorithm.kisao_id in ode_integration_kisao_term_ids:
+                    ode_simulation = True
+                    break
+
+        except ValueError:
+            pass
+
     for filename in get_smbl_files_for_entry(dirname, include_urn_files=False):
-        for alt_format in AltSbmlFormat.__members__.values():
+        alt_formats = list(AltSbmlFormat.__members__.values())
+
+        doc = libsbml.readSBMLFromFile(filename)
+        for i_plugin in range(doc.getNumPlugins()):
+            plugin = doc.getPlugin(i_plugin)
+            package_name = plugin.getPackageName()
+            if (
+                (has_sedml_task and not ode_simulation)
+                or package_name in ['arrays', 'comp', 'distrib', 'dyn', 'fbc', 'groups', 'math', 'multi', 'qual', 'spatial']
+            ):
+                for format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
+                    alt_formats.remove(format)
+
+                    if filename.endswith('_url.xml'):
+                        old_final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[format]['old_final_extension']
+                        final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[format]['final_extension']
+                    else:
+                        old_final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[format]['old_final_extension']
+                        final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[format]['final_extension']
+
+                    if os.path.isfile(old_final_converted_filename):
+                        os.remove(old_final_converted_filename)
+                    if os.path.isfile(final_converted_filename):
+                        os.remove(final_converted_filename)
+                break
+
+        for alt_format in alt_formats:
             alt_filename = convert_sbml(filename, alt_format)
 
             if alt_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
@@ -55,31 +106,37 @@ ALT_SBML_FORMAT_DATA = {
     AltSbmlFormat.SBML_URN: {
         'id': 'URL2URN',
         'init_extension': '-url2urn.xml',
+        'old_final_extension': '_urn.xml',
         'final_extension': '_urn.xml',
     },
     AltSbmlFormat.BioPAX_l2: {
         'id': 'SBML2BioPAX_l2',
         'init_extension': '-biopax2.owl',
+        'old_final_extension': '-biopax2.owl',
         'final_extension': '-biopax2.owl',
     },
     AltSbmlFormat.BioPAX_l3: {
         'id': 'SBML2BioPAX_l3',
         'init_extension': '-biopax3.owl',
+        'old_final_extension': '-biopax3.owl',
         'final_extension': '-biopax3.owl',
     },
     AltSbmlFormat.Matlab: {
         'id': 'SBML2Matlab',
         'init_extension': '.m',
+        'old_final_extension': '.m',
         'final_extension': '-matlab.m',
     },
     AltSbmlFormat.Octave: {
         'id': 'SBML2Octave',
         'init_extension': '.m',
+        'old_final_extension': '.m',
         'final_extension': '-octave.m',
     },
     AltSbmlFormat.XPP: {
         'id': 'SBML2XPP',
         'init_extension': '.xpp',
+        'old_final_extension': '.xpp',
         'final_extension': '.xpp',
     },
 }

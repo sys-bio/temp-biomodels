@@ -31,7 +31,7 @@ def get_entry_ids():
                   for dirname in glob.glob(os.path.join(MANUALLY_FIXED_ENTRIES_DIR, 'BIOMD*')))
 
 
-def fix_entries(ids, convert_files=False, guessfile=None):
+def fix_entries(ids, convert_files=False, guess_file=None):
     """ Fix the entries of BioModels
 
     Args:
@@ -43,13 +43,13 @@ def fix_entries(ids, convert_files=False, guessfile=None):
         print('  Fixing entry {}: {} ... '.format(i_entry + 1, id), end='')
         sys.stdout.flush()
 
-        fix_entry(id, convert_files=convert_files, guessfile=guessfile)
+        fix_entry(id, convert_files=convert_files, guess_file=guess_file)
 
         print('done')
     print('done')
 
 
-def fix_entry(id, convert_files=False, guessfile=None):
+def fix_entry(id, convert_files=False, guess_file=None):
     """ Fix an entry of BioModels
 
     Args:
@@ -69,39 +69,37 @@ def fix_entry(id, convert_files=False, guessfile=None):
     # Fix files/filenames
     fix_filenames.run(id, FINAL_ENTRIES_DIR)
     fix_sedml_extensions.run(id, FINAL_ENTRIES_DIR)
-    
+
     sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     copasi_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.cps'),   recursive=True)
-    sbml_filenames   = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'),   recursive=True)
-    omex_filenames   = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'),  recursive=True)
-    
-    #OMEX files
-    remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
-    
-    # if convert_files:
-    #     convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
+    sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'),   recursive=True)
+    omex_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'),  recursive=True)
 
-    #SED-ML files
+    # OMEX files
+    remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
+
+    if convert_files:
+        convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
+
+    # SED-ML files
     (sbml_msgs, sed_msgs, c_guesses) = recreate_sedml_from_copasi.run(sedml_filenames, copasi_filenames, sbml_filenames, id)
     nc_guesses = fix_models_non_copasi.run(sedml_filenames, sbml_filenames, id)
-    
-    #Write to file for later checking:
-    if guessfile:
+
+    # Write to file for later checking:
+    if guess_file:
         for guess in c_guesses:
             for entry in guess:
-                guessfile.write(entry)
-                guessfile.write(",")
-            guessfile.write("\n")
+                guess_file.write(entry)
+                guess_file.write(",")
+            guess_file.write("\n")
         for guess in nc_guesses:
             for entry in guess:
-                guessfile.write(entry)
-                guessfile.write(",")
-            guessfile.write("\n")
-    
+                guess_file.write(entry)
+                guess_file.write(",")
+            guess_file.write("\n")
+
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
     fix_namespaces_in_sedml_doc.run(sedml_filenames, FINAL_ENTRIES_DIR)
-
-
 
 
 if __name__ == "__main__":
@@ -129,6 +127,6 @@ if __name__ == "__main__":
         ids = args.entry_ids
     else:
         ids = get_entry_ids()[0:args.max_entries]
-    guessfile = open("guesses.csv", "w")
-    fix_entries(ids, convert_files=args.convert_files, guessfile=guessfile)
-    guessfile.close()
+    guess_file = open("guesses.csv", "w")
+    fix_entries(ids, convert_files=args.convert_files, guess_file=guess_file)
+    guess_file.close()
