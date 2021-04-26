@@ -63,7 +63,8 @@ class ConvertTestCase(unittest.TestCase):
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000692_urn.xml'),
         ]))
 
-    def test_dont_convert_non_kinetic_models_to_alt_ode_formats(self):
+    def test_dont_convert_non_continuous_kinetic_models_to_alt_ode_formats(self):
+        # qualitative model
         shutil.rmtree(self.temp_entry_dirname)
         shutil.copytree(os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000562'), self.temp_entry_dirname)
 
@@ -72,6 +73,26 @@ class ConvertTestCase(unittest.TestCase):
         self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'BIOMD0000000562-matlab.m')))
         self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'BIOMD0000000562-octave.m')))
         self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'BIOMD0000000562.xpp')))
+
+        # stochastic simulation
+        shutil.rmtree(self.temp_entry_dirname)
+        shutil.copytree(os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000806-SSA'), self.temp_entry_dirname)
+
+        convert.convert_entry(self.temp_entry_dirname)
+
+        self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model-matlab.m')))
+        self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model-octave.m')))
+        self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model.xpp')))
+
+        # continuous kinetic simulation
+        shutil.rmtree(self.temp_entry_dirname)
+        shutil.copytree(os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000806'), self.temp_entry_dirname)
+
+        convert.convert_entry(self.temp_entry_dirname)
+
+        self.assertTrue(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model-matlab.m')))
+        self.assertTrue(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model-octave.m')))
+        self.assertTrue(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model.xpp')))
 
     def test_convert_delete_bad_xpp(self):
         shutil.rmtree(self.temp_entry_dirname)
