@@ -1,4 +1,5 @@
 from biomodels_qc import validation
+from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 from unittest import mock
@@ -192,6 +193,17 @@ class ValidationTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             with mock.patch.object(SedmlSimulationReader, 'run', side_effect=ValueError):
                 validation.validate_sedml_file(bad_filename)
+
+    def test_validate_sedml_uniform_time_course_simulation(self):
+        simulation = UniformTimeCourseSimulation(number_of_points=1000)
+        errors, warnings = validation.validate_sedml_uniform_time_course_simulation(simulation)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        simulation.number_of_points += 1
+        errors, warnings = validation.validate_sedml_uniform_time_course_simulation(simulation)
+        self.assertEqual(errors, [])
+        self.assertIn('unusual number of time steps', flatten_nested_list_of_strings(warnings))
 
     def test_validate_sedml_file_with_execution(self):
         dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000806')
