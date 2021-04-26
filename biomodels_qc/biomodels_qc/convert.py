@@ -205,6 +205,7 @@ def convert_sbml(filename, format):
 
     if error:
         os.remove(final_converted_filename)
-        raise ValueError(error)
+        raise ValueError('Something went wrong converting `{}` to {}:\n\n  {}'.format(
+            filename, format.name, error.replace('\n', '\n  ')))
 
     return final_converted_filename

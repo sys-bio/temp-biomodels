@@ -9,7 +9,6 @@ import fix_filenames
 import recreate_sedml_from_copasi
 import remove_omex
 
-
 import argparse
 import glob
 import os
@@ -77,10 +76,6 @@ def fix_entry(id, convert_files=False, guess_file=None):
     # OMEX files
     remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
 
-    if convert_files:
-        from biomodels_qc.convert import convert_entry
-        convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
-
     # SED-ML files
     (sbml_msgs, sed_msgs, c_guesses) = recreate_sedml_from_copasi.run(sedml_filenames, copasi_filenames, sbml_filenames, id)
     nc_guesses = fix_models_non_copasi.run(sedml_filenames, sbml_filenames, id)
@@ -100,6 +95,10 @@ def fix_entry(id, convert_files=False, guess_file=None):
 
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
     fix_namespaces_in_sedml_doc.run(sedml_filenames, FINAL_ENTRIES_DIR)
+
+    if convert_files:
+        from biomodels_qc.convert import convert_entry
+        convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
 
 
 if __name__ == "__main__":
