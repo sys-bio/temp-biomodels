@@ -45,10 +45,14 @@ def convert_entry(dirname):
                     alt_formats.remove(format)
 
                     if filename.endswith('_url.xml'):
+                        old_final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[format]['old_final_extension']
                         final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[format]['final_extension']
                     else:
+                        old_final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[format]['old_final_extension']
                         final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[format]['final_extension']
 
+                    if os.path.isfile(old_final_converted_filename):
+                        os.remove(old_final_converted_filename)
                     if os.path.isfile(final_converted_filename):
                         os.remove(final_converted_filename)
                 break
@@ -75,31 +79,37 @@ ALT_SBML_FORMAT_DATA = {
     AltSbmlFormat.SBML_URN: {
         'id': 'URL2URN',
         'init_extension': '-url2urn.xml',
+        'old_final_extension': '_urn.xml',
         'final_extension': '_urn.xml',
     },
     AltSbmlFormat.BioPAX_l2: {
         'id': 'SBML2BioPAX_l2',
         'init_extension': '-biopax2.owl',
+        'old_final_extension': '-biopax2.owl',
         'final_extension': '-biopax2.owl',
     },
     AltSbmlFormat.BioPAX_l3: {
         'id': 'SBML2BioPAX_l3',
         'init_extension': '-biopax3.owl',
+        'old_final_extension': '-biopax3.owl',
         'final_extension': '-biopax3.owl',
     },
     AltSbmlFormat.Matlab: {
         'id': 'SBML2Matlab',
         'init_extension': '.m',
+        'old_final_extension': '.m',
         'final_extension': '-matlab.m',
     },
     AltSbmlFormat.Octave: {
         'id': 'SBML2Octave',
         'init_extension': '.m',
+        'old_final_extension': '.m',
         'final_extension': '-octave.m',
     },
     AltSbmlFormat.XPP: {
         'id': 'SBML2XPP',
         'init_extension': '.xpp',
+        'old_final_extension': '.xpp',
         'final_extension': '.xpp',
     },
 }
