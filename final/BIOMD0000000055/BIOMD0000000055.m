@@ -204,7 +204,7 @@ function xdot=f(x,t)
 	global_par_dayLength=12.0;
 
 % Reaction: id = one11, name = LHY transcription by light activation
-	reaction_one11=compartment_compartment*ceil(sin(pi*t/global_par_dayLength+0.001)/2)*global_par_q1*x(13);
+	reaction_one11=compartment_compartment*LD(t, global_par_dayLength)*global_par_q1*x(13);
 
 % Reaction: id = two11, name = Light independent LHY transcription	% Local Parameter:   id =  Fch_0, name = Fch_0
 	reaction_two11_Fch_0=8.0;
@@ -244,13 +244,13 @@ function xdot=f(x,t)
 	reaction_three15=compartment_compartment*global_par_r4*x(6);
 
 % Reaction: id = four15, name = Cytoplasmic TOC1 degradation
-	reaction_four15=compartment_compartment*((1-ceil(sin(pi*t/global_par_dayLength+0.001)/2))*global_par_m5+global_par_m6)*x(5)/(global_par_k5+x(5));
+	reaction_four15=compartment_compartment*((1-LD(t, global_par_dayLength))*global_par_m5+global_par_m6)*x(5)/(global_par_k5+x(5));
 
 % Reaction: id = one16, name = TOC1 movement into nucleus
 	reaction_one16=compartment_compartment*global_par_r3*x(5);
 
 % Reaction: id = three16, name = Nuclear TOC1 degradation
-	reaction_three16=compartment_compartment*((1-ceil(sin(pi*t/global_par_dayLength+0.001)/2))*global_par_m7+global_par_m8)*x(6)/(global_par_k6+x(6));
+	reaction_three16=compartment_compartment*((1-LD(t, global_par_dayLength))*global_par_m7+global_par_m8)*x(6)/(global_par_k6+x(6));
 
 % Reaction: id = one17, name = Protein X transcription
 	reaction_one17=compartment_compartment*global_par_n3*x(6)^global_par_d/(global_par_g4^global_par_d+x(6)^global_par_d);
@@ -274,7 +274,7 @@ function xdot=f(x,t)
 	reaction_three19=compartment_compartment*global_par_m11*x(9)/(global_par_k9+x(9));
 
 % Reaction: id = one20, name = Protein Y transcription
-	reaction_one20=compartment_compartment*(ceil(sin(pi*t/global_par_dayLength+0.001)/2)*global_par_q2*x(13)+(ceil(sin(pi*t/global_par_dayLength+0.001)/2)*global_par_n4+global_par_n5)*global_par_g5^global_par_e/(global_par_g5^global_par_e+x(6)^global_par_e))*global_par_g6^global_par_f/(global_par_g6^global_par_f+x(3)^global_par_f);
+	reaction_one20=compartment_compartment*(LD(t, global_par_dayLength)*global_par_q2*x(13)+(LD(t, global_par_dayLength)*global_par_n4+global_par_n5)*global_par_g5^global_par_e/(global_par_g5^global_par_e+x(6)^global_par_e))*global_par_g6^global_par_f/(global_par_g6^global_par_f+x(3)^global_par_f);
 
 % Reaction: id = two20, name = Protein Y mRNA degradation
 	reaction_two20=compartment_compartment*global_par_m12*x(10)/(global_par_k10+x(10));
@@ -295,13 +295,13 @@ function xdot=f(x,t)
 	reaction_three22=compartment_compartment*global_par_m14*x(12)/(global_par_k12+x(12));
 
 % Reaction: id = one23, name = Light dependent production of Protein P
-	reaction_one23=compartment_compartment*(1-ceil(sin(pi*t/global_par_dayLength+0.001)/2))*global_par_p5;
+	reaction_one23=compartment_compartment*(1-LD(t, global_par_dayLength))*global_par_p5;
 
 % Reaction: id = two23, name = Protein P degradation
 	reaction_two23=compartment_compartment*global_par_m15*x(13)/(global_par_k13+x(13));
 
 % Reaction: id = three23, name = Light activated Protein P degradation
-	reaction_three23=compartment_compartment*global_par_q3*ceil(sin(pi*t/global_par_dayLength+0.001)/2)*x(13);
+	reaction_three23=compartment_compartment*global_par_q3*LD(t, global_par_dayLength)*x(13);
 
 	xdot=zeros(13,1);
 	
@@ -344,6 +344,8 @@ function xdot=f(x,t)
 % Species:   id = cPn, name = light sensitive protein P, affected by kineticLaw
 	xdot(13) = (1/(compartment_compartment))*(( 1.0 * reaction_one23) + (-1.0 * reaction_two23) + (-1.0 * reaction_three23));
 end
+
+function z=LD(tod,length), z=(ceil(sin(pi*tod/length+0.001)/2));end
 
 % adding few functions representing operators used in SBML but not present directly 
 % in either matlab or octave. 

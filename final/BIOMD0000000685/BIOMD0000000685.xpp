@@ -75,11 +75,11 @@ aux R_1=R_1
 
 # rateRule: variable = T
 init T_renamed=0.1
-dT_renamed/dt=r*T_renamed*(1-T_renamed/k)-d*T_renamed-gamma*T_renamed*C
+dT_renamed/dt=(r*T_renamed*(1-T_renamed/k)-d*T_renamed)-gamma*T_renamed*C
 
 # rateRule: variable = A
 init A=2.0
-dA/dt=lambda-delta_1*A-alpha*A*T_renamed
+dA/dt=(lambda-delta_1*A)-alpha*A*T_renamed
 
 # rateRule: variable = A_star
 init A_star=2.0
@@ -87,7 +87,7 @@ dA_star/dt=alpha*A*T_renamed-delta_2*A_star
 
 # rateRule: variable = C
 init C=0.3
-dC/dt=eta*A_star*C/(epsilon*C+1)-q*T_renamed*C-mu*C
+dC/dt=(eta*A_star*C/(epsilon*C+1)-q*T_renamed*C)-mu*C
 
 @ meth=cvode, tol=1e-6, atol=1e-8
 # @ maxstor=1e6

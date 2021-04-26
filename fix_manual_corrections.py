@@ -9,19 +9,19 @@ FIXES = {
             'old': 'target="/sbml:sbml/sbml:modela/sbml:listofParameters/sbml:parameter[@id=&apos;v_r_m2&apos;]@value"',
             'new': 'target="/sbml:sbml/sbml:modela/sbml:listofParameters/sbml:parameter[@id=&apos;v_r_m2&apos;]/@value"',
         },
-        {
-            'filename': 'Macrophages Plasticity b.sedml',
-            'old': '<model id="modelb" language="urn:sedml:language:sbml" source="model">',
-            'new': '<model id="modelb" language="urn:sedml:language:sbml" source="#model">',
-        },
+        # {
+        #     'filename': 'Macrophages Plasticity b.sedml',
+        #     'old': '<model id="modelb" language="urn:sedml:language:sbml" source="model">',
+        #     'new': '<model id="modelb" language="urn:sedml:language:sbml" source="#model">',
+        # },
     ],
-    'BIOMD0000000618': [
-        {
-            'filename': 'BIOMD0000000618_SED-ML.xml',
-            'old': '<model id="model2" language="urn:sedml:language:sbml" source="model1">',
-            'new': '<model id="model2" language="urn:sedml:language:sbml" source="#model1">',
-        }
-    ],
+    # 'BIOMD0000000618': [
+    #     {
+    #         'filename': 'BIOMD0000000618.sedml',
+    #         'old': '<model id="model2" language="urn:sedml:language:sbml" source="model1">',
+    #         'new': '<model id="model2" language="urn:sedml:language:sbml" source="#model1">',
+    #     }
+    # ],
     # 'BIOMD0000000637': [
     #     {
     #         'filename': 'Bush2016-Simplified-Carrousel-model-of-GPCR.sedml',

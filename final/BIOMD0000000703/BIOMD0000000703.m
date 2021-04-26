@@ -340,7 +340,7 @@ function xdot=f(x,t)
 	xdot(11) = (1/(compartment_ER))*((-1.0 * reaction_x_degr) + ( 1.0 * reaction_x_syn));
 end
 
-function z=Rate_Law_for_b_syn_1(A4,A4_star,A6,A6_star,Ip,Ip_star,KA4,KA6,KX,Kb4,Kb6,Kth4,Kth6,alphaA4,alphaA6,alphaI,alphaX,b_star,betaI,kdb,nA,nA4,nA6,x,x_star), z=(kdb*(1+alphaI*(Ip-Ip_star))/(1+betaI*(Ip-Ip_star))*b_star+alphaA6*(1+Kb6*A4)*(A6-A6_star)^nA6/((A6-A6_star)^nA6+KA6^nA6*(1+Kth6*A4^nA))+alphaA4*(1+Kb4*A6)*(A4-A4_star)^nA4/((A4-A4_star)^nA4+KA4^nA4*(1+Kth4*A6)^nA4)+alphaX*(x-x_star)/(x-x_star+KX));end
+function z=Rate_Law_for_b_syn_1(A4,A4_star,A6,A6_star,Ip,Ip_star,KA4,KA6,KX,Kb4,Kb6,Kth4,Kth6,alphaA4,alphaA6,alphaI,alphaX,b_star,betaI,kdb,nA,nA4,nA6,x,x_star), z=(kdb*(1+alphaI*(Ip-Ip_star))/(1+betaI*(Ip-Ip_star))*b_star+alphaA6*(1+Kb6*A4)*(A6-A6_star)^nA6/((A6-A6_star)^nA6+KA6^nA6*(1+Kth6*A4^nA))+alphaA4*(1+Kb4*A6)*(A4-A4_star)^nA4/((A4-A4_star)^nA4+KA4^nA4*(1+Kth4*A6)^nA4)+alphaX*(x-x_star)/((x-x_star)+KX));end
 
 function z=Rate_Law_for_b_degr_1(Ip,Ip_star,alphaI,b,betaI,kdb), z=(kdb*(1+alphaI*(Ip-Ip_star))/(1+betaI*(Ip-Ip_star))*b);end
 
@@ -354,7 +354,7 @@ function z=Rate_Law_for_c_syn_1(A4,A4_star,A6,KA4c,Kc4,Kth4c,c_star,kdc,muA4,n),
 
 function z=Rate_Law_for_C_syn_1(C_star,Ep,Ep_star,c,c_star,kdC,ktC), z=((kdC*C_star/c_star+ktC*(Ep-Ep_star))*c);end
 
-function z=Rate_Law_for_g_syn_1(A4,A4_star,C,C_star,KA4g,KC,Kth4g,etaC,g_star,kdg), z=(kdg*g_star+etaC*(A4-A4_star+KA4g*(A4-A4_star)*(C-C_star))/(A4-A4_star+Kth4g*(A4-A4_star)*(C-C_star)+KC));end
+function z=Rate_Law_for_g_syn_1(A4,A4_star,C,C_star,KA4g,KC,Kth4g,etaC,g_star,kdg), z=(kdg*g_star+etaC*((A4-A4_star)+KA4g*(A4-A4_star)*(C-C_star))/((A4-A4_star)+Kth4g*(A4-A4_star)*(C-C_star)+KC));end
 
 function z=Rate_Law_for_G_syn_1(Ep,Ep_star,G_star,g,g_star,kdG,ktG), z=((kdG*G_star/g_star+ktG*(Ep-Ep_star))*g);end
 
@@ -366,7 +366,7 @@ function z=Rate_Law_for_Btot_syn_1(Btot_star,b,b_star,kdB), z=(kdB*Btot_star/b_s
 
 function z=Rate_Law_for_Ep_syn_1(Ep,Etot_norm,Kph,Pp,kph), z=(kph*(Etot_norm-Ep)*Pp/(Kph+(Etot_norm-Ep)));end
 
-function z=Rate_Law_for_x_syn_1(Ip,Kx,ksp,x,xtot_norm), z=(ksp*Ip*(xtot_norm-x)/(Kx+xtot_norm-x));end
+function z=Rate_Law_for_x_syn_1(Ip,Kx,ksp,x,xtot_norm), z=(ksp*Ip*(xtot_norm-x)/((Kx+xtot_norm)-x));end
 
 % adding few functions representing operators used in SBML but not present directly 
 % in either matlab or octave. 

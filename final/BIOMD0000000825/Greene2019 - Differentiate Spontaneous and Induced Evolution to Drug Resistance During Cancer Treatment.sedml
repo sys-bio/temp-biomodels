@@ -1,46 +1,47 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfSimulations>
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.xml"/>
+  </listOfModels>
+  <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="90" numberOfPoints="9000">
       <algorithm kisaoID="KISAO:0000019"/>
     </uniformTimeCourse>
   </listOfSimulations>
-  <listOfModels>
-    <model id="Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.xml" language="urn:sedml:language:sbml" source="Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.xml"/>
-  </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
-      <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> var_time_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="u_1_task1" name="Values[u]">
-      <listOfVariables>
-        <variable id="p1_u_task1" name="u" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='u']" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_u_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_u_task1" name="u" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;u&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Tumor_Volume_V_2_task1" name="[Tumor Volume V]">
-      <listOfVariables>
-        <variable id="p1_Tumor_Volume_V_task1" name="Tumor_Volume_V" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Tumor_Volume_V']" taskReference="task1"/>
-      </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p1_Tumor_Volume_V_task1 </ci>
       </math>
+      <listOfVariables>
+        <variable id="p1_Tumor_Volume_V_task1" name="Tumor_Volume_V" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Tumor_Volume_V&apos;]" taskReference="task1"/>
+      </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[u]" logX="false" logY="false" xDataReference="time_task1" yDataReference="u_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[Tumor Volume V]" logX="false" logY="false" xDataReference="time_task1" yDataReference="Tumor_Volume_V_2_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[u]" logX="false" xDataReference="time_task1" logY="false" yDataReference="u_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Tumor Volume V]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Tumor_Volume_V_2_task1"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

@@ -14,13 +14,13 @@
 %
 % Model name = Padala2017- ERK, PI3K/Akt and Wnt signalling network (bRaf mutated)
 %
-% is http://identifiers.org/biomodels.db/MODEL1708290000
 % is http://identifiers.org/biomodels.db/BIOMD0000000653
+% is http://identifiers.org/biomodels.db/MODEL1708290000
 % isDescribedBy http://identifiers.org/pubmed/28367561
-% isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000623
-% isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000033
 % isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000149
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
+% isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000033
+% isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000623
+% isDescribedBy http://identifiers.org/mamo/MAMO_0000046
 %
 
 

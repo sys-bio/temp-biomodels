@@ -15,8 +15,8 @@
 % Model name = Aguda1999 - G2 DNA damage checkpoint
 %
 % is http://identifiers.org/biomodels.db/MODEL6960055446
-% is http://identifiers.org/biomodels.db/BIOMD0000000704
 % isDescribedBy http://identifiers.org/pubmed/10500180
+% is http://identifiers.org/biomodels.db/BIOMD0000000704
 %
 
 

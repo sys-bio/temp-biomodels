@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Lewkiewics2019 - effects of aging on naive T cell populations and diversity.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="200" numberOfPoints="100">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="myu_1_task1" name="[myu]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_myu_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_myu_task1" name="myu" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;myu&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="N_2_task1" name="[Naive T-cells N]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_N_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_N_task1" name="N" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;N&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="gamma_3_task1" name="Values[gamma]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_gamma_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_gamma_task1" name="gamma" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[myu]" logX="false" xDataReference="time_task1" logY="false" yDataReference="myu_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Naive T-cells N]" logX="false" xDataReference="time_task1" logY="false" yDataReference="N_2_task1"/>
+        <curve id="p1_curve_3_task1" name="Values[gamma]" logX="false" xDataReference="time_task1" logY="false" yDataReference="gamma_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

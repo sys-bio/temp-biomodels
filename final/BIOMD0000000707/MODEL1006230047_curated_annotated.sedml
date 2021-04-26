@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="MODEL1006230047.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="90" numberOfPoints="300">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Pathogen_Virus_1_task1" name="[Pathogen Virus]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Pathogen_Virus_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Pathogen_Virus_task1" name="Pathogen_Virus" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pathogen_Virus&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Recombinant_Virus_2_task1" name="[Recombinant Virus]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Recombinant_Virus_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Recombinant_Virus_task1" name="Recombinant_Virus" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recombinant_Virus&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Normal_Th_cells_3_task1" name="[Normal Th cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Normal_Th_cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Normal_Th_cells_task1" name="Normal_Th_cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Normal_Th_cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Single_Infected_Th_Cells_4_task1" name="[Single Infected Th Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Single_Infected_Th_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Single_Infected_Th_Cells_task1" name="Single_Infected_Th_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Single_Infected_Th_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Double_Infected_Th_Cells_5_task1" name="[Double Infected Th Cells]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Double_Infected_Th_Cells_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Double_Infected_Th_Cells_task1" name="Double_Infected_Th_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Double_Infected_Th_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="[Pathogen Virus]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Pathogen_Virus_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Recombinant Virus]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Recombinant_Virus_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[Normal Th cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Normal_Th_cells_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[Single Infected Th Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Single_Infected_Th_Cells_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[Double Infected Th Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Double_Infected_Th_Cells_5_task1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
