@@ -11,6 +11,7 @@ from .utils import get_smbl_files_for_entry
 from .validation import validate_xpp_file
 import enum
 import glob
+import libsbml
 import os
 import shutil
 import subprocess
@@ -33,7 +34,26 @@ def convert_entry(dirname):
         dir (:obj:`str): path to directory for a entry of the BioModels database
     """
     for filename in get_smbl_files_for_entry(dirname, include_urn_files=False):
-        for alt_format in AltSbmlFormat.__members__.values():
+        alt_formats = list(AltSbmlFormat.__members__.values())
+
+        doc = libsbml.readSBMLFromFile(filename)
+        for i_plugin in range(doc.getNumPlugins()):
+            plugin = doc.getPlugin(i_plugin)
+            package_name = plugin.getPackageName()
+            if package_name in ['arrays', 'comp', 'distrib', 'dyn', 'fbc', 'groups', 'math', 'multi', 'qual', 'spatial']:
+                for format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
+                    alt_formats.remove(format)
+
+                    if filename.endswith('_url.xml'):
+                        final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[format]['final_extension']
+                    else:
+                        final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[format]['final_extension']
+
+                    if os.path.isfile(final_converted_filename):
+                        os.remove(final_converted_filename)
+                break
+
+        for alt_format in alt_formats:
             alt_filename = convert_sbml(filename, alt_format)
 
             if alt_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
