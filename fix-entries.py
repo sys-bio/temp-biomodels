@@ -9,7 +9,6 @@ import fix_filenames
 import recreate_sedml_from_copasi
 import remove_omex
 
-# from biomodels_qc.convert import convert_entry
 
 import argparse
 import glob
@@ -79,6 +78,7 @@ def fix_entry(id, convert_files=False, guess_file=None):
     remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
 
     if convert_files:
+        from biomodels_qc.convert import convert_entry
         convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
 
     # SED-ML files
