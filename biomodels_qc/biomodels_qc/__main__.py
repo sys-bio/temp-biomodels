@@ -73,12 +73,32 @@ class ValidateEntryController(cement.Controller):
                     help='Path relative to `dir` of file to validate (.e.g, `model.xml`). Default: validate all files.',
                 ),
             ),
+            (
+                ['--simulator'],
+                dict(
+                    type=str,
+                    nargs='*',
+                    default=None,
+                    help=(
+                        'Simulator to use to validate the executability of SED-ML files in the entry (.e.g, `copasi` or `copasi:4.30.240`)'
+                    ),
+                ),
+            ),
         ]
 
     @cement.ex(hide=True)
     def _default(self):
         args = self.app.pargs
-        errors, warnings = validate_entry(args.dir, file_extensions=args.ext, filenames=args.file)
+
+        if args.simulator is None:
+            simulators = None
+        else:
+            simulators = []
+            for simulator in args.simulator:
+                id, _, version = simulator.partition(':')
+                simulators.append({'id': id, 'version': version or None})
+
+        errors, warnings = validate_entry(args.dir, file_extensions=args.ext, filenames=args.file, simulators=simulators)
 
         if warnings:
             warnings = [['The entry at `{}` may be invalid.'.format(args.dir), warnings]]

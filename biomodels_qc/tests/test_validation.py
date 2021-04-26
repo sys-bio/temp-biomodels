@@ -1,7 +1,9 @@
 from biomodels_qc import validation
+from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 from unittest import mock
 import json
+import libsbml
 import os
 import shutil
 import tempfile
@@ -165,6 +167,12 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('must not contain undefined elements', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'invalid_sbml.xml')
+        with mock.patch.object(libsbml.SBMLError, 'isWarning', return_value=True):
+            errors, warnings = validation.validate_sbml_file(bad_filename)
+        self.assertEqual(errors, [])
+        self.assertIn('must not contain undefined elements', flatten_nested_list_of_strings(warnings))
+
     def test_validate_sedml_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
         errors, warnings = validation.validate_sedml_file(filename)
@@ -176,6 +184,31 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('Model `model` is invalid.', flatten_nested_list_of_strings(errors))
         self.assertIn('BIOMD0000000692/model.xml` is not a file.', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
+
+        with self.assertRaises(RuntimeError):
+            with mock.patch.object(SedmlSimulationReader, 'run', side_effect=RuntimeError):
+                validation.validate_sedml_file(bad_filename)
+
+        with self.assertRaises(ValueError):
+            with mock.patch.object(SedmlSimulationReader, 'run', side_effect=ValueError):
+                validation.validate_sedml_file(bad_filename)
+
+    def test_validate_sedml_file_with_execution(self):
+        dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000806')
+        filename = os.path.join(dirname, 'Macrophages Plasticity a.sedml')
+
+        errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'tellurium', 'version': 'latest'}])
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'copasi', 'version': 'latest'}])
+        self.assertEqual(errors, [])
+        self.assertIn('no simulator has the capability', flatten_nested_list_of_strings(warnings))
+
+        with mock.patch('biosimulators_utils.simulator.specs.does_simulator_have_capabilities_to_execute_sed_document', return_value=True):
+            errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'copasi', 'version': 'latest'}])
+            self.assertIn("could not execute the archive", flatten_nested_list_of_strings(errors))
+            self.assertEqual(warnings, [])
 
     def test_validate_svg_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.svg')

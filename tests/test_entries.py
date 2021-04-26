@@ -10,36 +10,32 @@
 """
 
 from biomodels_qc import validation
-from biomodels_qc.utils import build_combine_archive
-from biosimulators_utils.combine.data_model import CombineArchiveContentFormat
-from biosimulators_utils.sedml.data_model import Task, SteadyStateSimulation, UniformTimeCourseSimulation
-from biosimulators_utils.sedml.io import SedmlSimulationReader
-from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
-from biosimulators_utils.simulator import specs as simulator_specs
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 from warnings import warn
+import biosimulators_utils.simulator.specs
 import glob
 import os
 import parameterized
-import shutil
-import tempfile
 import unittest
 
 MAX_ENTRIES = os.getenv('MAX_ENTRIES', None)
 MAX_SEDML_FILES = os.getenv('MAX_SEDML_FILES', None)
 ENTRIES_DIR = os.path.join(os.path.dirname(__file__), '..', 'final')
 
+# get entries to test
 ENTRY_DIRS = sorted([(dirname,) for dirname in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*'))])
 if MAX_ENTRIES is not None:
     ENTRY_DIRS = ENTRY_DIRS[0:int(MAX_ENTRIES)]
 
-SEDML_FILES = sorted((os.path.relpath(filename, ENTRIES_DIR).replace('/', '_').replace('.', '_'),
-                      os.path.relpath(filename, ENTRIES_DIR),
+# get SED-ML files to test
+SEDML_FILES = sorted((os.path.relpath(filename, ENTRIES_DIR).replace(os.sep, '_').replace('.', '_'),
+                      os.path.relpath(filename, ENTRIES_DIR).partition(os.sep)[0],
+                      os.path.relpath(filename, ENTRIES_DIR).partition(os.sep)[2],
                       ) for filename in glob.glob(os.path.join(ENTRIES_DIR, 'BIOMD0*', '**', '*.sedml'), recursive=True))
 if MAX_SEDML_FILES is not None:
     SEDML_FILES = SEDML_FILES[0:int(MAX_SEDML_FILES)]
-# entries to test
 
+# get specifications of simulators to use to test SED-ML files
 SIMULATORS = [
     {
         'id': 'copasi',
@@ -51,48 +47,18 @@ SIMULATORS = [
     },
 ]
 SIMULATORS.sort(key=lambda simulator: simulator['id'])
-# simulators to use to check the executability of the entries
 
 for simulator in SIMULATORS:
-    simulator['specs'] = simulator_specs.get_simulator_specs(simulator['id'], simulator['version'])
+    simulator['specs'] = biosimulators_utils.simulator.specs.get_simulator_specs(simulator['id'], simulator['version'])
 
+# combinations of SED-ML files/simulators to test
 SEDML_FILES_SIMULATORS = []
-for sanitized_name, name in SEDML_FILES:
+for sanitized_name, entry_id, rel_filename in SEDML_FILES:
     for simulator in SIMULATORS:
-        SEDML_FILES_SIMULATORS.append((sanitized_name + '_' + simulator['id'], name, simulator))
-# combinations of files and simulators to check the executability of the entries
+        SEDML_FILES_SIMULATORS.append((sanitized_name + '_' + simulator['id'], entry_id, rel_filename, simulator))
 
 
 class EntriesTestCase(unittest.TestCase):
-    def setUp(self):
-        self.temp_dirname = tempfile.mkdtemp()
-
-    def tearDown(self):
-        shutil.rmtree(self.temp_dirname)
-
-    @parameterized.parameterized.expand(SEDML_FILES_SIMULATORS, skip_on_empty=True)
-    def test_can_sedml_be_executed(self, sanitized_name, name, simulator):
-        # Validate file
-        filename = os.path.join(ENTRIES_DIR, name)
-        try:
-            doc = SedmlSimulationReader().run(filename)
-        except:
-            self.skipTest("File is invalid.")
-
-        # Check if simulator has the capabilities to execute the archive
-        if not does_simulator_have_capabilities_to_execute_sed_document(doc, simulator['specs']):
-            self.skipTest('Simulator does not have the capabilities to execute the SED document')
-
-        # Execute entry if file is valid
-        archive_filename = os.path.join(self.temp_dirname, 'archive.omex')
-        dirname, _, rel_name = name.partition('/')
-        build_combine_archive(os.path.join(ENTRIES_DIR, dirname), rel_name, archive_filename)
-
-        out_dir = os.path.join(self.temp_dirname, 'outputs')
-        docker_image = 'ghcr.io/biosimulators/{}:{}'.format(simulator['id'], simulator['version'])
-        exec_sedml_docs_in_archive_with_containerized_simulator(
-            archive_filename, out_dir, docker_image)
-
     @parameterized.parameterized.expand(ENTRY_DIRS, skip_on_empty=True)
     def test_is_entry_valid(self, dirname):
         errors, warnings = validation.validate_entry(dirname)
@@ -105,13 +71,15 @@ class EntriesTestCase(unittest.TestCase):
             errors = [['The entry at `{}` is invalid.'.format(dirname), errors]]
             raise ValueError(flatten_nested_list_of_strings(errors))
 
+    @parameterized.parameterized.expand(SEDML_FILES_SIMULATORS, skip_on_empty=True)
+    def test_can_sedml_be_executed(self, sanitized_name, entry_id, rel_filename, simulator):
+        dirname = os.path.join(ENTRIES_DIR, entry_id)
+        filename = os.path.join(dirname, rel_filename)
+        errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[simulator])
 
-def does_simulator_have_capabilities_to_execute_sed_document(doc, simulator_specs):
-    if not simulator_specs.does_simulator_have_capabilities_to_execute_sed_document(doc, simulator_specs):
-        return False
+        if errors and 'One or more simulators could not execute the file' not in flatten_nested_list_of_strings(errors):
+            self.skipTest("`{}{}{}` is not a valid SED-ML file.".formats(entry_id, os.sep, rel_filename))
 
-    for task in doc.tasks:
-        if isinstance(task, Task) and not isinstance(task.simulation(SteadyStateSimulation, UniformTimeCourseSimulation)):
-            return False
-
-    return True
+        if 'no simulator has the capability to execute the file' in flatten_nested_list_of_strings(warnings):
+            self.skipTest("`{}:{}` does not have the capability to execute `{}{}{}`.".format(
+                simulator['id'], simulator['version'], entry_id, os.sep, rel_filename))

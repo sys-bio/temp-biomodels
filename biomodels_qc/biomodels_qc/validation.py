@@ -6,9 +6,12 @@
 :License: MIT
 """
 
+from .utils import build_combine_archive
 from biosimulators_utils.sedml.io import SedmlSimulationReader
+from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
 from biosimulators_utils.warnings import BioSimulatorsWarning
 import ast
+import biosimulators_utils.simulator.specs
 import COPASI
 import enum
 import glob
@@ -228,11 +231,14 @@ def validate_sbml_file(filename):
     return errors, warnings
 
 
-def validate_sedml_file(filename):
-    """ Determine if a SED-ML file is valid
+def validate_sedml_file(filename, dirname=None, simulators=None):
+    """ Determine if a SED-ML file is valid, optionally including checking whether it can be executed by 1 or more simulation tools
 
     Args:
         filename (:obj:`str`): path to SED-ML file
+        dirname (:obj:`str, optional): directory for the BioModels entry which includes this SED-ML file
+        simulators (:obj:`list` of :obj:`dict` with schema ``https://api.biosimulators.org/openapi.json#/components/schemas/Simulator``,
+            or two keys ``id`` and ``version``, optional): specifications of simulators to use to check that the SED-ML file can be executed
 
     Returns:
         :obj:`tuple`:
@@ -240,17 +246,57 @@ def validate_sedml_file(filename):
             * nested :obj:`list` of :obj:`str`: nested list of errors
             * nested :obj:`list` of :obj:`str`: nested list of warnings
     """
+    errors_list = []
+    warnings_list = []
+
     reader = SedmlSimulationReader()
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", BioSimulatorsWarning)
-            reader.run(filename)
-        return reader.errors, reader.warnings
-    except Exception:
+            sed_doc = reader.run(filename)
+        errors_list.extend(reader.errors)
+        warnings_list.extend(reader.warnings)
+    except ValueError:
         if reader.errors:
             return reader.errors, reader.warnings
         else:
             raise
+
+    if simulators is not None:
+        fid, archive_filename = tempfile.mkstemp()
+        os.close(fid)
+
+        build_combine_archive(dirname, os.path.relpath(filename, dirname), archive_filename)
+
+        has_capable_simulator = False
+        exec_errors = []
+        for simulator in simulators:
+            if 'algorithms' not in simulator:
+                simulator = biosimulators_utils.simulator.specs.get_simulator_specs(
+                    simulator['id'], simulator.get('version', None) or 'latest')
+
+            if biosimulators_utils.simulator.specs.does_simulator_have_capabilities_to_execute_sed_document(sed_doc, simulator):
+                has_capable_simulator = True
+
+                out_dir = tempfile.mkdtemp()
+
+                try:
+                    exec_sedml_docs_in_archive_with_containerized_simulator(
+                        archive_filename, out_dir, simulator['image']['url'])
+                except RuntimeError as exception:
+                    exec_errors.append(['{}:{} could not execute the file.'.format(
+                        simulator['id'], simulator['version']), [[str(exception)]]])
+
+                shutil.rmtree(out_dir)
+
+        os.remove(archive_filename)
+
+        if not has_capable_simulator:
+            warnings_list.append(['The executability could not be verified because no simulator has the capability to execute the file.'])
+        if exec_errors:
+            errors_list.append(['One or more simulators could not execute the file.', exec_errors])
+
+    return errors_list, warnings_list
 
 
 def validate_svg_file(filename):
@@ -428,15 +474,17 @@ EXTENSION_VALIDATOR_MAP = {
 }
 
 
-def validate_entry(dirname, file_extensions=None, filenames=None):
+def validate_entry(dirname, file_extensions=None, filenames=None, simulators=None):
     """ Validate an entry of the BioModels databse
 
     Args:
-        dir (:obj:`str): path to directory for a entry of the BioModels database
+        dirname (:obj:`str): path to directory for a entry of the BioModels database
         file_extensions (:obj:`list` of :obj:`str`, optional): list of file extensions (e.g., `.png`) to validate. Default:
             validate all file extensions
         filenames (:obj:`list` of :obj:`str`, optional): list of specific files to validate.
             Overides the :obj:`file_extensions` argument. Default: validate all files.
+        simulators (:obj:`list` of :obj:`dict` with schema ``https://api.biosimulators.org/openapi.json#/components/schemas/Simulator``,
+            or two keys ``id`` and ``version``, optional): specifications of simulators to use to check that SED-ML files can be executed
 
     Returns:
         :obj:`tuple`:
@@ -466,7 +514,12 @@ def validate_entry(dirname, file_extensions=None, filenames=None):
 
         file_type = EXTENSION_VALIDATOR_MAP.get(ext, None)
         if file_type:
-            file_errors, file_warnings = file_type['validator'](filename)
+            kwargs = {}
+            if file_type['validator'] == validate_sedml_file:
+                kwargs['dirname'] = dirname
+                kwargs['simulators'] = simulators
+
+            file_errors, file_warnings = file_type['validator'](filename, **kwargs)
             if file_errors:
                 errors.append(['`{}` is not a valid {} file.'.format(filename, file_type['description']), file_errors])
             if file_warnings:

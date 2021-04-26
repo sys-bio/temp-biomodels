@@ -59,6 +59,18 @@ class CliTestCase(unittest.TestCase):
             with biomodels_qc.__main__.App(argv=['validate', self.INVALID_FIXTURE_DIRNAME]) as app:
                 app.run()
 
+        dirname = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000806')
+        with biomodels_qc.__main__.App(argv=['validate', dirname, '--simulator', 'tellurium']) as app:
+            app.run()
+
+        dirname = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000806')
+        with biomodels_qc.__main__.App(argv=['validate', dirname, '--simulator', 'tellurium:latest']) as app:
+            app.run()
+
+        dirname = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000806')
+        with biomodels_qc.__main__.App(argv=['validate', dirname, '--simulator', 'tellurium:latest', 'copasi:latest']) as app:
+            app.run()
+
     def test_convert(self):
         temp_entry_dirname = os.path.join(self.temp_dirname, 'entry')
         shutil.copytree(self.VALID_FIXTURE_DIRNAME, temp_entry_dirname)
