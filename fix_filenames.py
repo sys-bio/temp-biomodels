@@ -24,7 +24,9 @@ def run(id, working_dir):
     changed = []
     if id not in RENAME:
         return changed
-    for filename in glob.glob(os.path.join(working_dir, id, '**', '**'), recursive=True):
+    filenames = glob.glob(os.path.join(working_dir, id, '**', '**'), recursive=True)
+    filenames.sort()
+    for filename in filenames:
         (orig, new) = RENAME[id]
         if orig in filename:
             shutil.move(filename, filename.replace(orig, new))

@@ -26,8 +26,10 @@ def get_entry_ids():
     Returns:
         :obj:`list` of :obj:`str`: ids of the entries of BioModels (e.g., ``["BIOMD0000000230"]``)
     """
-    return sorted(os.path.relpath(dirname, MANUALLY_FIXED_ENTRIES_DIR)
-                  for dirname in glob.glob(os.path.join(MANUALLY_FIXED_ENTRIES_DIR, 'BIOMD*')))
+    ids = [os.path.relpath(dirname, MANUALLY_FIXED_ENTRIES_DIR)
+           for dirname in glob.glob(os.path.join(MANUALLY_FIXED_ENTRIES_DIR, 'BIOMD*'))]
+    ids.sort()
+    return ids
 
 
 def fix_entries(ids, convert_files=False, guess_file=None):
@@ -73,6 +75,11 @@ def fix_entry(id, convert_files=False, guess_file=None):
     copasi_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.cps'), recursive=True)
     sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
     omex_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'), recursive=True)
+
+    sedml_filenames.sort()
+    copasi_filenames.sort()
+    sbml_filenames.sort()
+    omex_filenames.sort()
 
     # OMEX files
     remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)

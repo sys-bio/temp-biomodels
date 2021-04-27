@@ -45,7 +45,9 @@ def convert_entry(dirname):
 
     has_sedml_task = False
     ode_simulation = False
-    for filename in glob.glob(os.path.join(dirname, '**', "*.sedml"), recursive=True):
+    sed_ml_filenames = glob.glob(os.path.join(dirname, '**', "*.sedml"), recursive=True)
+    sed_ml_filenames.sort()
+    for filename in sed_ml_filenames:
         try:
             doc = SedmlSimulationReader().run(filename)
             for task in doc.tasks:
@@ -167,10 +169,12 @@ def convert_sbml(filename, format):
         sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.bat'))
     else:
         sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.sh'))
-    class_path = os.path.join(sbf_converter_home, 'lib')
+    jar_dirname = os.path.join(sbf_converter_home, 'lib')
+    jar_filenames = glob.glob(os.path.join(jar_dirname, '*.jar'))
+    jar_filenames.sort()
+    jar_filenames.append(os.path.join(jar_dirname, 'paxtools-4.2/paxtools-4.2.0-no-jena.jar'))
     env = {
-        'CLASSPATH': ':'.join(glob.glob(os.path.join(class_path, '*.jar'))
-                              + [os.path.join(class_path, 'paxtools-4.2/paxtools-4.2.0-no-jena.jar')])
+        'CLASSPATH': ':'.join(jar_filenames)
     }
     result = subprocess.run([
         'java',

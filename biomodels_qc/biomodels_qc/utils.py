@@ -32,6 +32,7 @@ def get_smbl_files_for_entry(dir, include_urn_files=False):
         :obj:`list` of :obj:`str`: SBML files for an entry of the BioModels database
     """
     filenames = glob.glob(os.path.join(dir, '**', '*.xml'), recursive=True)
+    filenames.sort()
 
     if not include_urn_files:
         filenames = list(filter(lambda filename: not filename.endswith('_urn.xml'), filenames))
@@ -83,9 +84,11 @@ def build_combine_archive(archive_dirname, master_rel_filename, archive_filename
         updated=now,
     )
 
-    for file in sorted(glob.glob(os.path.join(archive_dirname, '**', '*'), recursive=True)):
-        location = os.path.relpath(file, archive_dirname)
-        ext = os.path.splitext(file)[1]
+    filenames = glob.glob(os.path.join(archive_dirname, '**', '*'), recursive=True)
+    filenames.sort()
+    for filename in filenames:
+        location = os.path.relpath(filename, archive_dirname)
+        ext = os.path.splitext(filename)[1]
         format = EXTENSION_COMBINE_FORMAT_MAP.get(ext, 'http://purl.org/NET/mediatypes/application/octet-stream')
         if format:
             archive.contents.append(

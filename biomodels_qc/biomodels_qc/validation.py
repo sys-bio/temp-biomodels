@@ -508,6 +508,8 @@ def validate_entry(dirname, file_extensions=None, filenames=None, simulators=Non
         else:
             filenames = glob.glob(os.path.join(dirname, '**', "*"), recursive=True)
 
+    filenames.sort()
+
     # validate files
     for filename in filenames:
         ext = os.path.splitext(filename)[1].lower()
