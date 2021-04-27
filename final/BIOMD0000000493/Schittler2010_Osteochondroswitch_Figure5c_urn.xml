@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model name="Schittler2010_Osteochondroswitch" id="Schittler2010_Osteochondroswitch">
+    <listOfCompartments>
+      <compartment constant="true" id="default_compartment" size="1" spatialDimensions="3" sboTerm="SBO:0000410" />
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" constant="false" hasOnlySubstanceUnits="false" compartment="default_compartment" id="P" initialConcentration="12.03" />
+      <species boundaryCondition="false" constant="false" hasOnlySubstanceUnits="false" compartment="default_compartment" id="O" initialConcentration="0.14" />
+      <species boundaryCondition="false" constant="false" hasOnlySubstanceUnits="false" compartment="default_compartment" id="C" initialConcentration="0.14" />
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="aP" value="0.2" />
+      <parameter constant="true" id="n" value="2" />
+      <parameter constant="true" id="bP" value="0.5" />
+      <parameter constant="true" id="mP" value="10" />
+      <parameter constant="false" id="zD" value="0" />
+      <parameter constant="true" id="cPP" value="0.1" />
+      <parameter constant="true" id="kP" value="0.1" />
+      <parameter constant="true" id="aO" value="0.1" />
+      <parameter constant="true" id="bO" value="1" />
+      <parameter constant="false" id="zO" value="0" />
+      <parameter constant="true" id="mO" value="1" />
+      <parameter constant="true" id="cOC" value="0.1" />
+      <parameter constant="true" id="cOP" value="0.5" />
+      <parameter constant="true" id="cOO" value="0.1" />
+      <parameter constant="true" id="kO" value="0.1" />
+      <parameter constant="true" id="aC" value="0.1" />
+      <parameter constant="true" id="bC" value="1" />
+      <parameter constant="true" id="zC" value="0" />
+      <parameter constant="true" id="mC" value="1" />
+      <parameter constant="true" id="cCO" value="0.1" />
+      <parameter constant="true" id="cCP" value="0.5" />
+      <parameter constant="true" id="cCC" value="0.1" />
+      <parameter constant="true" id="kC" value="0.1" />
+    </listOfParameters>
+    <listOfReactions>
+      <reaction fast="false" id="a1" reversible="true">
+        <listOfProducts>
+          <speciesReference stoichiometry="1" constant="true" species="P" />
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <plus />
+                <apply>
+                  <times />
+                  <ci>aP</ci>
+                  <apply>
+                    <power />
+                    <ci>P</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+                <ci>bP</ci>
+              </apply>
+              <apply>
+                <plus />
+                <ci>mP</ci>
+                <ci>zD</ci>
+                <apply>
+                  <times />
+                  <ci>cPP</ci>
+                  <apply>
+                    <power />
+                    <ci>P</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction fast="false" id="a2" reversible="true">
+        <listOfReactants>
+          <speciesReference stoichiometry="1" constant="true" species="P" />
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>kP</ci>
+              <ci>P</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction fast="false" id="a3" reversible="true">
+        <listOfProducts>
+          <speciesReference stoichiometry="1" constant="true" species="O" />
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="P" />
+          <modifierSpeciesReference species="C" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <plus />
+                <apply>
+                  <times />
+                  <ci>aO</ci>
+                  <apply>
+                    <power />
+                    <ci>O</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+                <ci>bO</ci>
+                <ci>zO</ci>
+              </apply>
+              <apply>
+                <plus />
+                <ci>mO</ci>
+                <apply>
+                  <times />
+                  <ci>cOC</ci>
+                  <apply>
+                    <power />
+                    <ci>C</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times />
+                  <ci>cOP</ci>
+                  <apply>
+                    <power />
+                    <ci>P</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times />
+                  <ci>cOO</ci>
+                  <apply>
+                    <power />
+                    <ci>O</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction fast="false" id="a4" reversible="true">
+        <listOfReactants>
+          <speciesReference stoichiometry="1" constant="true" species="O" />
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>kO</ci>
+              <ci>O</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction fast="false" id="a5" reversible="true">
+        <listOfProducts>
+          <speciesReference stoichiometry="1" constant="true" species="C" />
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="P" />
+          <modifierSpeciesReference species="O" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <plus />
+                <apply>
+                  <times />
+                  <ci>aC</ci>
+                  <apply>
+                    <power />
+                    <ci>C</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+                <ci>bC</ci>
+                <ci>zC</ci>
+              </apply>
+              <apply>
+                <plus />
+                <ci>mC</ci>
+                <apply>
+                  <times />
+                  <ci>cCO</ci>
+                  <apply>
+                    <power />
+                    <ci>O</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times />
+                  <ci>cCP</ci>
+                  <apply>
+                    <power />
+                    <ci>P</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times />
+                  <ci>cCC</ci>
+                  <apply>
+                    <power />
+                    <ci>C</ci>
+                    <ci>n</ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction fast="false" id="a6" reversible="true">
+        <listOfReactants>
+          <speciesReference stoichiometry="1" constant="true" species="C" />
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>kC</ci>
+              <ci>C</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <listOfEvents>
+      <event useValuesFromTriggerTime="true" id="_E0">
+        <trigger persistent="true" initialValue="true">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <gt />
+              <ci>P</ci>
+              <cn>12.03</cn>
+            </apply>
+          </math>
+        </trigger>
+        <delay>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <cn type="integer">500</cn>
+          </math>
+        </delay>
+        <listOfEventAssignments>
+          <eventAssignment variable="zD">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn>0.8</cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event useValuesFromTriggerTime="true" id="_E2">
+        <trigger persistent="true" initialValue="true">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <gt />
+              <ci>P</ci>
+              <cn>12.03</cn>
+            </apply>
+          </math>
+        </trigger>
+        <delay>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <cn type="integer">100</cn>
+          </math>
+        </delay>
+        <listOfEventAssignments>
+          <eventAssignment variable="zO">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn type="integer">1</cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event useValuesFromTriggerTime="true" id="_E1">
+        <trigger persistent="true" initialValue="true">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <gt />
+              <ci>P</ci>
+              <cn>12.03</cn>
+            </apply>
+          </math>
+        </trigger>
+        <delay>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <cn type="integer">800</cn>
+          </math>
+        </delay>
+        <listOfEventAssignments>
+          <eventAssignment variable="zO">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn type="integer">0</cn>
+            </math>
+          </eventAssignment>
+          <eventAssignment variable="zD">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn type="integer">0</cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  </model>
+</sbml>
