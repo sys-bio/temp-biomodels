@@ -11,13 +11,24 @@ The application can be installed locally or executed as a Docker image.
 ## Local installation
 
 ### Requirements
-* Python >= 3.7
-* pip
+* Python >= 3.7.8+, 3.8.4+, or 3.9.0+
+* pip >= 19.3
 * [Systems Biology Format Converter](http://sbfc.sourceforge.net/mediawiki/index.php/Main_Page)
-    * Java
+    * Java 
 * [SVGLint](https://www.npmjs.com/package/svglint)
-    * Node
+    * [Node.js](https://nodejs.org/en/)
+        * [Mac OS installer](https://nodejs.org/en/download/)
+        * [Ubuntu instructions](https://github.com/nodesource/distributions/blob/master/README.md)
+        * [Windows installer](https://nodejs.org/en/download/)
 * [XPP](http://www.math.pitt.edu/~bard/xpp/xpp.html)
+    * [Mac OS instructions](http://www.math.pitt.edu/~bard/xpp/installonmac.html) 
+    * Ubuntu: `apt-get install xppaut`     
+    * [Windows instructions](http://www.math.pitt.edu/~bard/xpp/installonwindows.html)
+
+After installing the packages above, the following must be added to your system path:
+* `sbfConverter.sh` (Linux/Mac OS) or `sbfConverter.bat` (Windows)
+* `svglint`
+* `xppaut`
 
 ### Installation
 Run the following command to install the package.
