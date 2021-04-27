@@ -785,8 +785,8 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <Report reference="Report_21" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
-        <Parameter name="StepNumber" type="unsignedInteger" value="6501"/>
-        <Parameter name="StepSize" type="float" value="0.0098461538460000008"/>
+        <Parameter name="StepNumber" type="unsignedInteger" value="6400"/>
+        <Parameter name="StepSize" type="float" value="0.01"/>
         <Parameter name="Duration" type="float" value="64"/>
         <Parameter name="TimeSeriesRequested" type="bool" value="1"/>
         <Parameter name="OutputStartTime" type="float" value="0"/>

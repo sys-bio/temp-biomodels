@@ -7,6 +7,7 @@ import fix_namespaces_in_sedml_doc
 import fix_sedml_extensions
 import fix_filenames
 import recreate_sedml_from_copasi
+import remove_empty_containers_from_sedml_doc
 import remove_omex
 
 import argparse
@@ -95,6 +96,8 @@ def fix_entry(id, convert_files=False, guess_file=None):
 
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
     fix_namespaces_in_sedml_doc.run(sedml_filenames, FINAL_ENTRIES_DIR)
+    for sedml_filename in sedml_filenames:
+        remove_empty_containers_from_sedml_doc.run(sedml_filename)
 
     if convert_files:
         from biomodels_qc.convert import convert_entry

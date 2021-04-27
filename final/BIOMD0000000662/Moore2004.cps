@@ -1222,8 +1222,8 @@ the other parameters should have little effect on the outcome.      </p>
     <Task key="Task_11" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
-        <Parameter name="StepNumber" type="unsignedInteger" value="702"/>
-        <Parameter name="StepSize" type="float" value="0.142653"/>
+        <Parameter name="StepNumber" type="unsignedInteger" value="500"/>
+        <Parameter name="StepSize" type="float" value="0.2"/>
         <Parameter name="Duration" type="float" value="100"/>
         <Parameter name="TimeSeriesRequested" type="bool" value="1"/>
         <Parameter name="OutputStartTime" type="float" value="0"/>

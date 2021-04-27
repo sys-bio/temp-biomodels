@@ -737,7 +737,7 @@ Reaction scheme where the products are created from the reactants and the change
     </Task>
     <Task key="Task_15" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Problem>
-        <Parameter name="StepNumber" type="unsignedInteger" value="1001"/>
+        <Parameter name="StepNumber" type="unsignedInteger" value="1000"/>
         <Parameter name="StepSize" type="float" value="0.7"/>
         <Parameter name="Duration" type="float" value="700"/>
         <Parameter name="TimeSeriesRequested" type="bool" value="1"/>

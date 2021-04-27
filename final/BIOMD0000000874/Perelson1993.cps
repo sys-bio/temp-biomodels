@@ -976,9 +976,9 @@ of T-cell precursors.(ABSTRACT TRUNCATED AT 400 WORDS)      </p>
     <Task key="Task_1" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
-        <Parameter name="StepNumber" type="unsignedInteger" value="142"/>
-        <Parameter name="StepSize" type="float" value="25.886524820000002"/>
-        <Parameter name="Duration" type="float" value="3650"/>
+        <Parameter name="StepNumber" type="unsignedInteger" value="150"/>
+        <Parameter name="StepSize" type="float" value="25"/>
+        <Parameter name="Duration" type="float" value="3750"/>
         <Parameter name="TimeSeriesRequested" type="bool" value="1"/>
         <Parameter name="OutputStartTime" type="float" value="0"/>
         <Parameter name="Output Event" type="bool" value="0"/>

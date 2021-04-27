@@ -884,8 +884,8 @@ Hepatitis C virus (HCV); Infected cells; Infectious virions; Interferon; Noninfe
     <Task key="Task_11" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
-        <Parameter name="StepNumber" type="unsignedInteger" value="152"/>
-        <Parameter name="StepSize" type="float" value="0.23026315789999999"/>
+        <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
+        <Parameter name="StepSize" type="float" value="0.35"/>
         <Parameter name="Duration" type="float" value="35"/>
         <Parameter name="TimeSeriesRequested" type="bool" value="1"/>
         <Parameter name="OutputStartTime" type="float" value="0"/>

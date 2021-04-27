@@ -968,8 +968,8 @@ This is a mathematical study about tumor growth from a different perspective, wi
     <Task key="Task_15" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
-        <Parameter name="StepNumber" type="unsignedInteger" value="200002"/>
-        <Parameter name="StepSize" type="float" value="0.0002999985"/>
+        <Parameter name="StepNumber" type="unsignedInteger" value="1000"/>
+        <Parameter name="StepSize" type="float" value="0.06"/>
         <Parameter name="Duration" type="float" value="60"/>
         <Parameter name="TimeSeriesRequested" type="bool" value="1"/>
         <Parameter name="OutputStartTime" type="float" value="0"/>

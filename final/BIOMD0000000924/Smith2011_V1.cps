@@ -1552,8 +1552,8 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <Task key="Task_16" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="1"/>
-        <Parameter name="StepNumber" type="unsignedInteger" value="151"/>
-        <Parameter name="StepSize" type="float" value="0.79470198680000004"/>
+        <Parameter name="StepNumber" type="unsignedInteger" value="150"/>
+        <Parameter name="StepSize" type="float" value="0.8"/>
         <Parameter name="Duration" type="float" value="120"/>
         <Parameter name="TimeSeriesRequested" type="bool" value="1"/>
         <Parameter name="OutputStartTime" type="float" value="0"/>
