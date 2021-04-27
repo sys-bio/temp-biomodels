@@ -11,12 +11,16 @@ import re
 import difflib
 import libsedml
 
+#These Copasi files are all invalid.
 bad_copasifiles = ["MODEL1305060000_edited.cps", "Aubert2002.cps", "khajanchi2017.cps"]
 
-copasi_with_diff_sedml = ["MODEL1511290000.cps", "Tsai2014.cps", "Theinmozhi_2018.cps", "Bravo2012.cps", "Panteleev2010_full_model.cps", "Wang2016_2.cps", "Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.cps", "Dudziuk2019.cps", "Coulibaly2019.cps", "Sun2018.cps", "Smith2011_V1.cps", "Lee2017_Paracetamol_Metabolism.cps", ]
+#These Copasi files will be ignored, and the present SED-ML used instead.
+copasi_with_worse_sedml = ["Tsai2014.cps", "Panteleev2010_full_model.cps", "Wang2016_2.cps",]
 
-copasi_with_better_sedml = ["OVDC.cps", "Smith1980_HypothalamicRegulation.cps", "DiCamillo2016.cps", "Verma2016.cps", "Rao2014.cps", "Radosavljevic2009.cps", "Berg2017.cps", "Proctor2017_model4.cps", "Simon2019.cps", "Simon2019_model3.cps", "Simon2019_Figure3b.cps", "verma2017.cps", "Rodenfels2019_V1.cps", "Giantsos-Adams2013_Figure11.cps", "Proctoe2017_model1.cps", ]
+#Just for the record:  All Copasi files are treated as 'better' than the existing SED-ML, but for these files in particular, the SED-ML was noticably different.
+copasi_with_better_sedml = ["MODEL1511290000.cps", "Theinmozhi_2018.cps", "Bravo2012.cps", "Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.cps", "Dudziuk2019.cps", "Coulibaly2019.cps", "Sun2018.cps", "Smith2011_V1.cps", "Lee2017_Paracetamol_Metabolism.cps", "OVDC.cps", "Smith1980_HypothalamicRegulation.cps", "DiCamillo2016.cps", "Verma2016.cps", "Rao2014.cps", "Radosavljevic2009.cps", "Berg2017.cps", "Proctor2017_model4.cps", "Simon2019.cps", "Simon2019_model3.cps", "Simon2019_Figure3b.cps", "verma2017.cps", "Rodenfels2019_V1.cps", "Giantsos-Adams2013_Figure11.cps", "Proctoe2017_model1.cps", ]
 
+#Also for historical purposes:  these files all had the correct 'source' set for the SED-ML files.
 sedml_with_correct_names = ["BIOMD0000000539.cps", "MODEL1603240000.cps", "ARPP-16_Layer1_mutualInhibitions.cps", "ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.cps", "ARPP-16_Layer1and2and3_mutualInhibitions_PKAinhibitsMAST3_dominantNegative.cps", "Barr2016.cps", "Malinzi2018 - tumour-immune interaction model.cps", "Perez-Garcia19 Computational design of improved standardized chemotherapy protocols for grade 2 oligodendrogliomas.cps", "Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.cps", "Jung2019.cps", "Smith2011_V1.cps", "Linke2017_figure1b.cps"]
 #Note: Rodenfels2019_V1.cps might be a bugfix on Copasi's part:  the difference is that the labels in the report are better.
 
@@ -155,7 +159,7 @@ def run(sedml_filenames, copasi_filenames, sbml_filenames, id):
         cbase = os.path.basename(cfile)
         if cbase in bad_copasifiles:
             continue
-        if cbase in copasi_with_diff_sedml:
+        if cbase in copasi_with_worse_sedml:
             continue
         # print("Working on", cfile)
         (sbml_msg, sed_msg, guesses1) = regen_sedml(cfile, id, sbml_filenames, sedml_filenames)
