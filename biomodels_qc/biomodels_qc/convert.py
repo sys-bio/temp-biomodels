@@ -85,11 +85,15 @@ def convert_entry(dirname):
                 break
 
         for alt_format in alt_formats:
-            alt_filename = convert_sbml(filename, alt_format)
+            try:
+                alt_filename = convert_sbml(filename, alt_format)
 
-            if alt_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
-                warnings.warn(termcolor.colored('`{}` could not be converted to valid XPP file.'.format(filename)))
-                os.remove(alt_filename)
+                if alt_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
+                    warnings.warn(termcolor.colored('`{}` could not be converted to valid XPP file.'.format(filename)), UserWarning)
+                    os.remove(alt_filename)
+            except RuntimeError:
+                warnings.warn(termcolor.colored('`{}` could not be converted. Please check that the file is a valid SBML file.'.format(
+                    filename)), UserWarning)
 
 
 class AltSbmlFormat(str, enum.Enum):
@@ -189,23 +193,29 @@ def convert_sbml(filename, format):
     if init_converted_filename != final_converted_filename:
         shutil.move(init_converted_filename, final_converted_filename)
 
-    error = None
+    runtime_error = None
     with open(final_converted_filename, 'rb') as file:
         line = file.readline().decode()
         if line.startswith('####'):
             line = file.readline().decode()
             if line.startswith('#Something went wrong'):
-                error = 'Something went wrong'
+                runtime_error = 'sbfConverter failed'
 
+    value_error = None
     error_log_filename = filename[0:-4] + '.errorLog'
     if os.path.isfile(error_log_filename):
         with open(error_log_filename, 'r') as file:
-            error = file.read()
+            value_error = file.read()
         os.remove(error_log_filename)
 
-    if error:
+    if value_error:
         os.remove(final_converted_filename)
-        raise ValueError('Something went wrong converting `{}` to {}:\n\n  {}'.format(
-            filename, format.name, error.replace('\n', '\n  ')))
+        raise ValueError('`{}` could not be converted to {}:\n\n  {}'.format(
+            filename, format.name, value_error.replace('\n', '\n  ')))
+
+    if runtime_error:
+        os.remove(final_converted_filename)
+        raise RuntimeError('`{}` could not be converted to {}:\n\n  {}'.format(
+            filename, format.name, runtime_error.replace('\n', '\n  ')))
 
     return final_converted_filename

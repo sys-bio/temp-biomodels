@@ -106,5 +106,5 @@ class ConvertTestCase(unittest.TestCase):
         os.rename(os.path.join(self.temp_entry_dirname, 'BIOMD0000000692.svg'),
                   os.path.join(self.temp_entry_dirname, 'BIOMD0000000692_url.xml'))
 
-        with self.assertRaises(ValueError):
+        with self.assertWarnsRegex(UserWarning, 'could not be converted. Please check'):
             convert.convert_entry(self.temp_entry_dirname)
