@@ -6,10 +6,10 @@
 #
 
 #
-# Model name = Revilla2003_HIV1therapy
+# Model name = Revilla2003 - Controlling HIV infection using recombinant viruses
 #
-# is urn:miriam:biomodels.db:MODEL1006230047
-# isDescribedBy urn:miriam:pubmed:12941536
+# is http://identifiers.org/biomodels.db/MODEL1006230047
+# is http://identifiers.org/biomodels.db/BIOMD0000000707
 #
 
 # some function definitions that are allowed in SBML but not valid in xpp
@@ -18,31 +18,46 @@ ceil(x)=flr(1+x)
 @delay=50
 
 
-# Compartment: id = COMpartment, name = COMpartment, constant
-par COMpartme=1.0
+# FunctionDefinition id = Function_for_the_infection_of_normal_cell, name = Function for the infection of normal cell
+Function_(beta,x,v)=(beta*x*v)
 
-# Parameter:   id =  time_environment, name = time, constant
-par time_envi=NaN
 
-# Parameter:   id =  x, name = x, defined by a Rule
+# FunctionDefinition id = Constant_flux__irreversible, name = Constant flux (irreversible)
+Constant_(v)=(v)
 
-# Parameter:   id =  lamda, name = lamda, constant
-par lamda=2.0
+
+# FunctionDefinition id = Funtion_for_the_infection_of_single_infected_cel, name = Funtion for the infection of single infected cel
+Funtion_f(alpha,w,y)=(alpha*w*y)
+
+
+# FunctionDefinition id = Function_for_the_release_of_the_pathogen, name = Function for the release of the pathogen
+Functio_1(k,y)=(k*y)
+
+
+# FunctionDefinition id = Function_for_the_release_of_recombinant_virus, name = Function for the release of recombinant virus
+Functio_2(c,z)=(c*z)
+
+
+# Compartment: id = Plasma, name = Plasma, constant
+par Plasma=1.0
 
 # Parameter:   id =  d, name = d, constant
 par d=0.01
 
-# Parameter:   id =  y, name = y, defined by a Rule
+# Parameter:   id =  lamda, name = lamda, constant
+par lamda=2.0
+
+# Parameter:   id =  beta, name = beta, constant
+par beta=0.004
 
 # Parameter:   id =  a, name = a, constant
 par a=0.33
 
-# Parameter:   id =  z, name = z, defined by a Rule
+# Parameter:   id =  alpha, name = alpha, constant
+par alpha=0.004
 
 # Parameter:   id =  b, name = b, constant
 par b=2.0
-
-# Parameter:   id =  v, name = v, defined by a Rule
 
 # Parameter:   id =  k, name = k, constant
 par k=50.0
@@ -50,39 +65,81 @@ par k=50.0
 # Parameter:   id =  u, name = u, constant
 par u=2.0
 
-# Parameter:   id =  w, name = w, defined by a Rule
-
 # Parameter:   id =  c, name = c, constant
 par c=2000.0
 
 # Parameter:   id =  q, name = q, constant
 par q=2.0
 
-# Parameter:   id =  alpha, name = alpha, constant
-par alpha=0.0040
+# Reaction: id = Production_of_Normal_cells, name = Production of Normal cells
 
-# Parameter:   id =  beta, name = beta, constant
-par beta=0.0040
+Productio=Plasma*Constant_(lamda)
 
-# rateRule: variable = x
-init x=3.0
-dx/dt=1*lamda-(d*x+1*beta*x*v)
+# Reaction: id = Degradation_of_Normal_cells, name = Degradation of Normal cells
 
-# rateRule: variable = y
-init y=6.0
-dy/dt=1*beta*x*v-(a*y+1*alpha*w*y)
+Degradati=Plasma*d*Normal_Th
 
-# rateRule: variable = z
-init z=0.0
-dz/dt=1*alpha*w*y-b*z
+# Reaction: id = Infection_of_Normal_cells_with_Pathogen, name = Infection of Normal cells with Pathogen
 
-# rateRule: variable = v
-init v=149.0
-dv/dt=k*y-u*v
+Infection=Plasma*Function_(beta, Normal_Th, Pathogen_)
 
-# rateRule: variable = w
-init w=1.0
-dw/dt=c*z-q*w
+# Reaction: id = Degradation_of_Single_Infected_Cells, name = Degradation of Single Infected Cells
+
+Degrada_1=Plasma*a*Single_In
+
+# Reaction: id = Infection_of_Single_Infeced_Cells_with_Recombinant_Virus, name = Infection of Single Infeced Cells with Recombinant Virus
+
+Infecti_1=Plasma*Funtion_f(alpha, Recombina, Single_In)
+
+# Reaction: id = Release_of_Pathogen, name = Release of Pathogen
+
+Release_o=Plasma*Functio_1(k, Single_In)
+
+# Reaction: id = Degradation_of_Double_Infected_Cells, name = Degradation of Double Infected Cells
+
+Degrada_2=Plasma*b*Double_In
+
+# Reaction: id = Release_of_Recombinant_Virus, name = Release of Recombinant Virus
+
+Release_1=Plasma*Functio_2(c, Double_In)
+
+# Reaction: id = Degradation_of_Pathogen_Virus, name = Degradation of Pathogen Virus
+
+Degrada_3=Plasma*u*Pathogen_
+
+# Reaction: id = Degradation_of_Recombinant_Virus, name = Degradation of Recombinant Virus
+
+Degrada_4=Plasma*q*Recombina
+
+# Species:   id = Normal_Th_cells, name = Normal Th cells, affected by kineticLaw
+
+par Normal_Th=3.0
+aux Normal_Th=Normal_Th
+dNormal_Th/dt=(1/(Plasma))*(( 1.0 * Productio) + (-1.0 * Degradati) + (-1.0 * Infection))
+
+# Species:   id = Pathogen_Virus, name = Pathogen Virus, affected by kineticLaw
+
+par Pathogen_=149.0
+aux Pathogen_=Pathogen_
+dPathogen_/dt=(1/(Plasma))*(( 1.0 * Release_o) + (-1.0 * Degrada_3))
+
+# Species:   id = Single_Infected_Th_Cells, name = Single Infected Th Cells, affected by kineticLaw
+
+par Single_In=6.0
+aux Single_In=Single_In
+dSingle_In/dt=(1/(Plasma))*(( 1.0 * Infection) + (-1.0 * Degrada_1) + (-1.0 * Infecti_1))
+
+# Species:   id = Recombinant_Virus, name = Recombinant Virus, affected by kineticLaw
+
+par Recombina=1.0
+aux Recombina=Recombina
+dRecombina/dt=(1/(Plasma))*(( 1.0 * Release_1) + (-1.0 * Degrada_4))
+
+# Species:   id = Double_Infected_Th_Cells, name = Double Infected Th Cells, affected by kineticLaw
+
+par Double_In=0.0
+aux Double_In=Double_In
+dDouble_In/dt=(1/(Plasma))*(( 1.0 * Infecti_1) + (-1.0 * Degrada_2))
 
 @ meth=cvode, tol=1e-6, atol=1e-8
 # @ maxstor=1e6

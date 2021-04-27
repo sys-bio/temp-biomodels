@@ -185,13 +185,13 @@ par Jpds=0.04
 par Jspn=0.14
 
 # Parameter:   id =  ka15_p, name = ka15', constant
-par ka15_p=0.0020
+par ka15_p=0.002
 
 # Parameter:   id =  ka15_p_p, name = ka15'', constant
 par ka15_p_p=1.0
 
 # Parameter:   id =  ka15p, name = ka15p, constant
-par ka15p=0.0010
+par ka15p=0.001
 
 # Parameter:   id =  ka20_p, name = ka20', constant
 par ka20_p=0.05
@@ -272,7 +272,7 @@ par kd3f6=1.0
 par kd3pds_p_=0.04
 
 # Parameter:   id =  kdb2_p, name = kdb2', constant
-par kdb2_p=0.0030
+par kdb2_p=0.003
 
 # Parameter:   id =  kdb2_p_p, name = kdb2'', constant
 par kdb2_p_p=0.4
@@ -346,7 +346,7 @@ par KEZ2=0.2
 par ki15=0.5
 
 # Parameter:   id =  kicdh_p, name = kicdh', constant
-par kicdh_p=0.0010
+par kicdh_p=0.001
 
 # Parameter:   id =  kicdh_p_p, name = kicdh'', constant
 par kicdh_p_p=0.08
@@ -391,7 +391,7 @@ par ks14=0.2
 par ks1pds_p_=0.03
 
 # Parameter:   id =  ks20_p, name = ks20', constant
-par ks20_p=0.0060
+par ks20_p=0.006
 
 # Parameter:   id =  ks20_p_p, name = ks20'', constant
 par ks20_p_p=0.6
@@ -400,7 +400,7 @@ par ks20_p_p=0.6
 par ks2pds_p_=0.055
 
 # Parameter:   id =  ksb2_p, name = ksb2', constant
-par ksb2_p=0.0010
+par ksb2_p=0.001
 
 # Parameter:   id =  ksb2_p_p, name = ksb2'', constant
 par ksb2_p_p=0.04
@@ -409,7 +409,7 @@ par ksb2_p_p=0.04
 par ksb5_p=8.0E-4
 
 # Parameter:   id =  ksb5_p_p, name = ksb5'', constant
-par ksb5_p_p=0.0050
+par ksb5_p_p=0.005
 
 # Parameter:   id =  ksbud, name = ksbud, constant
 par ksbud=0.2
@@ -430,7 +430,7 @@ par ksf6_p=0.024
 par ksf6_p_p=0.12
 
 # Parameter:   id =  ksf6_p_p_p, name = ksf6''', constant
-par ksf6_p_p_=0.0040
+par ksf6_p_p_=0.004
 
 # Parameter:   id =  ksn2_p, name = ksn2', constant
 par ksn2_p=0.0
@@ -454,7 +454,7 @@ par ksppx=0.1
 par ksspn=0.1
 
 # Parameter:   id =  ksswi_p, name = ksswi', constant
-par ksswi_p=0.0050
+par ksswi_p=0.005
 
 # Parameter:   id =  ksswi_p_p, name = ksswi'', constant
 par ksswi_p_p=0.08
@@ -1269,19 +1269,19 @@ init TEM1GTP=0.9
 dTEM1GTP/dt=( 1.0 * TEM1_acti) + (-1.0 * inactiv_4)
 
 # event : reset_ORI
-reset_ORI=if (CLB2+CLB5-KEZ2 < 0) then (1.5) else (0.2)
+reset_ORI=if ((CLB2+CLB5-KEZ2) < 0) then (1.5) else (0.2)
 global 1 {reset_ORI - 1.1} {ORI=0}
 
 # event : start_S
-start_S=if (ORI-1 > 0) then (1.5) else (0.2)
+start_S=if ((ORI-1) > 0) then (1.5) else (0.2)
 global 1 {start_S - 1.1} {MAD2=mad2h;BUB2=bub2h}
 
 # event : spindle_checkpoint
-spindle_c=if (SPN-1 > 0) then (1.5) else (0.2)
+spindle_c=if ((SPN-1) > 0) then (1.5) else (0.2)
 global 1 {spindle_c - 1.1} {MAD2=mad2l;LTE1=lte1h;BUB2=bub2l}
 
 # event : cell_division
-cell_divi=if (CLB2-KEZ < 0) then (1.5) else (0.2)
+cell_divi=if ((CLB2-KEZ) < 0) then (1.5) else (0.2)
 global 1 {cell_divi - 1.1} {MASS=F*MASS;LTE1=lte1l;BUD=0;SPN=0}
 
 @ meth=cvode, tol=1e-6, atol=1e-8
