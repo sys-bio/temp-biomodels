@@ -10,5 +10,5 @@ def run(id, sbml_files, errlist):
         errlog = doc.getErrorLog()
         for e in range(errlog.getNumErrors()):
             err = errlog.getError(e)
-            if (err.getSeverity() > 1):
+            if (err.getSeverity() > libsbml.LIBSBML_SEV_WARNING):
                 errlist.append([id, os.path.basename(file), err.getMessage()])
