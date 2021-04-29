@@ -169,7 +169,7 @@ par dist=50.0
 par ip30=0.013
 
 # rateRule: variable = d
-init d=0.0
+init d=NaN
 dd/dt=ad*k*gf/(1+k*gf)-ddd*e*d
 
 # assignmentRule: variable = ad
@@ -177,23 +177,23 @@ ad=addash+gamma*(ca-p1)
 aux ad=ad
 
 # rateRule: variable = e
-init e=1.0
+init e=NaN
 de/dt=ae*(1+af*(yo-rs))-dee*x*e
 
 # rateRule: variable = r
-init r=0.0
+init r=NaN
 dr/dt=px*(rt-rs-r)*x/(qx+(rt-rs-r)+x)-ps*(yo-rs)*r
 
 # rateRule: variable = rs
-init rs=1.1
+init rs=NaN
 drs/dt=ps*(yo-rs)*r-pd*rs*d/(qd+rs+d)-pe*rs*e/(qe+rs+e)
 
 # rateRule: variable = x
-init x=0.0
+init x=NaN
 dx/dt=ax*e+f*(yo-rs)+g*x^2*e-dxx*x
 
 # rateRule: variable = ip3
-init ip3=0.0
+init ip3=NaN
 dip3/dt=scale*(rhstar*gstar-kdeg*ip3)
 
 # assignmentRule: variable = kg
@@ -217,11 +217,11 @@ rscon=(tanh((rscrit-rs)/0.01)+1)/2
 aux rscon=rscon
 
 # rateRule: variable = atp
-init atp=0.0
+init atp=NaN
 datp/dt=scale*(vatp_s*(y-atp)*rscon*ip3con*(ip3-ip3min)/(krel+ip3)-vdeg*atp/(kkdeg+atp))
 
 # rateRule: variable = y
-init y=0.0
+init y=NaN
 dy/dt=scale*(alpha*(ymax-y)-rscon*ip3con*vatp_s*(y-atp)*(ip3-ip3min)/(krel+ip3))
 
 # assignmentRule: variable = delta

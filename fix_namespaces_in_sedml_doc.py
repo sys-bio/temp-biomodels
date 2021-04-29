@@ -3,22 +3,17 @@ import libsbml
 import os
 
 
-def fix_namespaces(rel_filename, working_dir):
+def fix_namespaces(filename):
     """ Fix the namespaces in a SED-ML file and save the file in place
 
     * Remove duplicate SED-ML namespace declarations -- automatically fixed by LXML
     * Add namespaces for models
 
     Args:
-        rel_filename (:obj:`str`): file name relative to :obj:`working_dir`
-        working_dir (:obj:`str`): directory of entries to change (e.g., ``final``, ``original``)
+        filename (:obj:`str`): file name of the SEDML file (full path)
     """
-    filename = os.path.join(working_dir, rel_filename)
     # parse file
-    try:
-        doc_etree = etree.parse(filename)
-    except:
-        return
+    doc_etree = etree.parse(filename)
     root = doc_etree.getroot()
 
     # get models
@@ -59,7 +54,6 @@ def fix_namespaces(rel_filename, working_dir):
                       standalone=False,
                       pretty_print=True)
     
-def run(sedml_filenames, FINAL_ENTRIES_DIR):
+def run(sedml_filenames):
     for filename in sedml_filenames:
-        name = os.path.relpath(filename, FINAL_ENTRIES_DIR)
-        fix_namespaces(name, FINAL_ENTRIES_DIR)
+        fix_namespaces(filename)

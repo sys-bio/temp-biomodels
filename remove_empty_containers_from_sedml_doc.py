@@ -1,8 +1,7 @@
 import libsedml
-import os
 
 
-def run(filename):
+def remove_empty_containers(filename):
     """ Remove empty containers
 
     * Repeated tasks with no subtasks
@@ -64,3 +63,8 @@ def run(filename):
     # write corrected SED-ML
     if changed:
         libsedml.writeSedML(doc, filename)
+
+def run(sedml_filenames):
+    for sedml_filename in sedml_filenames:
+        remove_empty_containers(sedml_filename)
+

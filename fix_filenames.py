@@ -4,7 +4,8 @@ import shutil
 
 
 RENAME = {"BIOMD0000000923": ("Liò", "Lio"),
-          "BIOMD0000000864": ("Proctoe", "Proctor")
+          "BIOMD0000000864": ("Proctoe", "Proctor"),
+          "BIOMD0000000917": ("Orignal", "Original"),
 }
 
 

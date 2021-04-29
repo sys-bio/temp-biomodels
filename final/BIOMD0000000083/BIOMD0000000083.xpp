@@ -8,20 +8,36 @@
 #
 # Model name = Leloup2003_CircClock_LD_REV-ERBalpha
 #
-# isDerivedFrom http://identifiers.org/kegg.pathway/hsa04710
-# isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000083
-# isDerivedFrom http://identifiers.org/biomodels.db/MODEL4710748444
-# isDerivedFrom http://identifiers.org/go/GO:0042752
-# isDerivedFrom http://identifiers.org/taxonomy/40674
-# isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000021
 # is http://identifiers.org/biomodels.db/MODEL4710748444
 # is http://identifiers.org/biomodels.db/BIOMD0000000083
+# isDescribedBy http://identifiers.org/pubmed/12775757
+# isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000021
 #
 
 # some function definitions that are allowed in SBML but not valid in xpp
 ceil(x)=flr(1+x)
 
 @delay=50
+
+
+# FunctionDefinition id = function_3, name = Activation of gene
+function_(Vs,B,n,K)=(Vs*B^n/(K^n+B^n))
+
+
+# FunctionDefinition id = function_2, name = Michaelis-Menten (irreversible)
+functio_1(V,substrate,Km)=(V*substrate/(Km+substrate))
+
+
+# FunctionDefinition id = function_1, name = mRNA translated into protein
+functio_2(k,mRNA)=(k*mRNA)
+
+
+# FunctionDefinition id = function_0, name = Inhibition of gene
+functio_3(vsb,K,m,Bn)=(vsb*K^m/(K^m+Bn^m))
+
+
+# FunctionDefinition id = function_5, name = ceiling
+functio_4(length,model_time)=(ceil(sin(pi*model_time/length+0.001)/2))
 
 
 # Compartment: id = cell, name = cell, constant
@@ -31,191 +47,8 @@ par cell=1.0
 
 # Parameter:   id =  parameter_0000097, name = vsp, defined by a Rule
 
-# Parameter:   id =  vmP, name = vmP, constant
-par vmP=2.2
-
-# Parameter:   id =  kdmp, name = kdmp, constant
-par kdmp=0.02
-
-# Parameter:   id =  vsC, name = vsC, constant
-par vsC=2.2
-
-# Parameter:   id =  vmC, name = vmC, constant
-par vmC=2.0
-
-# Parameter:   id =  kdmc, name = kdmc, constant
-par kdmc=0.02
-
-# Parameter:   id =  vsB, name = vsB, constant
-par vsB=1.8
-
-# Parameter:   id =  vmB, name = vmB, constant
-par vmB=1.3
-
-# Parameter:   id =  kdmb, name = kdmb, constant
-par kdmb=0.02
-
-# Parameter:   id =  ksP, name = ksP, constant
-par ksP=1.2
-
-# Parameter:   id =  V1P, name = V1P, constant
-par V1P=9.6
-
-# Parameter:   id =  V2P, name = V2P, constant
-par V2P=0.6
-
-# Parameter:   id =  k4, name = k4, constant
-par k4=0.4
-
-# Parameter:   id =  k3, name = k3, constant
-par k3=0.8
-
-# Parameter:   id =  kdn, name = kdn, constant
-par kdn=0.02
-
-# Parameter:   id =  ksC, name = ksC, constant
-par ksC=3.2
-
-# Parameter:   id =  V1C, name = V1C, constant
-par V1C=1.2
-
-# Parameter:   id =  V2C, name = V2C, constant
-par V2C=0.2
-
-# Parameter:   id =  kdnC, name = kdnC, constant
-par kdnC=0.02
-
-# Parameter:   id =  KmB, name = KmB, constant
-par KmB=0.4
-
-# Parameter:   id =  Kp, name = Kp, constant
-par Kp=1.006
-
-# Parameter:   id =  Kdp, name = Kdp, constant
-par Kdp=0.1
-
-# Parameter:   id =  VdPC, name = VdPC, constant
-par VdPC=3.4
-
-# Parameter:   id =  vdCC, name = vdCC, constant
-par vdCC=1.4
-
-# Parameter:   id =  Kd, name = Kd, constant
-par Kd=0.3
-
-# Parameter:   id =  V1PC, name = V1PC, constant
-par V1PC=2.4
-
-# Parameter:   id =  V2PC, name = V2PC, constant
-par V2PC=0.2
-
-# Parameter:   id =  k2, name = k2, constant
-par k2=0.4
-
-# Parameter:   id =  k1, name = k1, constant
-par k1=0.8
-
-# Parameter:   id =  V3PC, name = V3PC, constant
-par V3PC=2.4
-
-# Parameter:   id =  V4PC, name = V4PC, constant
-par V4PC=0.2
-
-# Parameter:   id =  k7, name = k7, constant
-par k7=1.0
-
-# Parameter:   id =  k8, name = k8, constant
-par k8=0.2
-
-# Parameter:   id =  vdPCC, name = vdPCC, constant
-par vdPCC=1.4
-
-# Parameter:   id =  vdPCN, name = vdPCN, constant
-par vdPCN=1.4
-
-# Parameter:   id =  ksB, name = ksB, constant
-par ksB=0.32
-
-# Parameter:   id =  V1B, name = V1B, constant
-par V1B=1.4
-
-# Parameter:   id =  V2B, name = V2B, constant
-par V2B=0.2
-
-# Parameter:   id =  k5, name = k5, constant
-par k5=0.8
-
-# Parameter:   id =  k6, name = k6, constant
-par k6=0.4
-
-# Parameter:   id =  vdBC, name = vdBC, constant
-par vdBC=3.0
-
-# Parameter:   id =  V3B, name = V3B, constant
-par V3B=1.4
-
-# Parameter:   id =  V4B, name = V4B, constant
-par V4B=0.4
-
-# Parameter:   id =  vdBN, name = vdBN, constant
-par vdBN=3.0
-
-# Parameter:   id =  vdIN, name = vdIN, constant
-par vdIN=1.6
-
-# Parameter:   id =  vsR, name = vsR, constant
-par vsR=1.6
-
-# Parameter:   id =  KAR, name = KAR, constant
-par KAR=0.6
-
-# Parameter:   id =  vmR, name = vmR, constant
-par vmR=1.6
-
-# Parameter:   id =  kmR, name = kmR, constant
-par kmR=0.4
-
-# Parameter:   id =  kdmr, name = kdmr, constant
-par kdmr=0.02
-
-# Parameter:   id =  ksR, name = ksR, constant
-par ksR=1.7
-
-# Parameter:   id =  k9, name = k9, constant
-par k9=0.8
-
-# Parameter:   id =  k10, name = k10, constant
-par k10=0.4
-
-# Parameter:   id =  vdRC, name = vdRC, constant
-par vdRC=4.4
-
-# Parameter:   id =  vdRN, name = vdRN, constant
-par vdRN=0.8
-
-# Parameter:   id =  KAP, name = KAP, constant
-par KAP=0.6
-
-# Parameter:   id =  KAC, name = KAC, constant
-par KAC=0.6
-
-# Parameter:   id =  KmP, name = KmP, constant
-par KmP=0.3
-
-# Parameter:   id =  KmC, name = KmC, constant
-par KmC=0.4
-
-# Parameter:   id =  h, name = h, constant
-par h=2.0
-
-# Parameter:   id =  m, name = m, constant
-par m=2.0
-
-# Parameter:   id =  n, name = n, constant
-par n=2.0
-
 # assignmentRule: variable = parameter_0000096
-parameter=ceil(sin(pi*t/12+0.001)/2)
+parameter=functio_4(12, t)
 aux parameter=parameter
 
 # assignmentRule: variable = parameter_0000097
@@ -223,235 +56,514 @@ paramet_1=2.4+(3-2.4)*parameter
 aux paramet_1=paramet_1
 
 # Reaction: id = reaction_0, name = Mb synthesized
-# Local Parameter:   id =  K, name = K
+# Local Parameter:   id =  vsb, name = vsb
+par vsb=1.8
+
+# Local Parameter:   id =  K, name = Kib
 par K=1.0
 
+# Local Parameter:   id =  m, name = m
+par m=2.0
 
-reaction_=cell*vsB*K^m/(K^m+Rn^m)
+
+reaction_=cell*functio_3(vsb, K, m, Rn)
 
 # Reaction: id = reaction_1, name = Mb translated into protein
+# Local Parameter:   id =  k, name = ksb
+par k_1=0.32
 
-reactio_1=cell*ksB*Mb
+
+reactio_1=cell*functio_2(k_1, Mb)
 
 # Reaction: id = reaction_2, name = Mb nonspecific degradation
+# Local Parameter:   id =  k1, name = kdmb
+par k1=0.02
 
-reactio_2=cell*kdmb*Mb
+
+reactio_2=cell*k1*Mb
 
 # Reaction: id = reaction_3, name = Bc phosphorylation
+# Local Parameter:   id =  V, name = V1b
+par V=1.4
 
-reactio_3=cell*V1B*Bc/(Kp+Bc)
+# Local Parameter:   id =  Km, name = Kp
+par Km=1.006
+
+
+reactio_3=cell*functio_1(V, Bc, Km)
 
 # Reaction: id = reaction_4, name = Bc transfered from cytosolic to nuclear
+# Local Parameter:   id =  k1, name = k5
+par k1_1=0.8
 
-reactio_4=cell*(k5*Bc-k6*Bn)
+# Local Parameter:   id =  k2, name = k6
+par k2=0.4
+
+
+reactio_4=cell*(k1_1*Bc-k2*Bn)
 
 # Reaction: id = reaction_5, name = Mc translated into protein
+# Local Parameter:   id =  k, name = ksc
+par k_1_2=3.2
 
-reactio_5=cell*ksC*Mc
+
+reactio_5=cell*functio_2(k_1_2, Mc)
 
 # Reaction: id = reaction_6, name = Mc nonspecific degradation
+# Local Parameter:   id =  k1, name = kdmc
+par k1_1_2=0.02
 
-reactio_6=cell*kdmc*Mc
+
+reactio_6=cell*k1_1_2*Mc
 
 # Reaction: id = reaction_7, name = Cc phosphorylation
+# Local Parameter:   id =  V, name = V1c
+par V_1=1.2
 
-reactio_7=cell*V1C*Cc/(Kp+Cc)
+# Local Parameter:   id =  Km, name = Kp
+par Km_1=1.006
+
+
+reactio_7=cell*functio_1(V_1, Cc, Km_1)
 
 # Reaction: id = reaction_8, name = Ccp specific degradation
+# Local Parameter:   id =  V, name = vdcc
+par V_1_2=1.4
 
-reactio_8=cell*vdCC*Ccp/(Kd+Ccp)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2=0.3
+
+
+reactio_8=cell*functio_1(V_1_2, Ccp, Km_1_2)
 
 # Reaction: id = reaction_9, name = Mp synthesis
+# Local Parameter:   id =  n, name = n
+par n=2.0
 
-reactio_9=cell*paramet_1*Bn^n/(KAP^n+Bn^n)
+# Local Parameter:   id =  K, name = Kap
+par K_1_2_3=0.6
+
+
+reactio_9=cell*function_(paramet_1, Bn, n, K_1_2_3)
 
 # Reaction: id = reaction_10, name = Mp translated into protein
+# Local Parameter:   id =  k, name = ksp
+par k_1_2_3_4=1.2
 
-reacti_10=cell*ksP*Mp
+
+reacti_10=cell*functio_2(k_1_2_3_4, Mp)
 
 # Reaction: id = reaction_11, name = Pcp specific degradation
+# Local Parameter:   id =  V, name = vdpc
+par V_1_2_3=3.4
 
-reacti_11=cell*VdPC*Pcp/(Kd+Pcp)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2_3=0.3
+
+
+reacti_11=cell*functio_1(V_1_2_3, Pcp, Km_1_2_3)
 
 # Reaction: id = reaction_12, name = Pc phospholation
+# Local Parameter:   id =  V, name = V1p
+par V_1_2_3_4=9.6
 
-reacti_12=cell*V1P*Pc/(Kp+Pc)
+# Local Parameter:   id =  Km, name = Kp
+par Km_1_2__4=1.006
+
+
+reacti_12=cell*functio_1(V_1_2_3_4, Pc, Km_1_2__4)
 
 # Reaction: id = reaction_13, name = Cc and Pc produce PCc
+# Local Parameter:   id =  k1, name = k3
+par k1_1_2_3=0.8
 
-reacti_13=cell*(k3*Cc*Pc-k4*PCc)
+# Local Parameter:   id =  k2, name = k4
+par k2_1=0.4
+
+
+reacti_13=cell*(k1_1_2_3*Cc*Pc-k2_1*PCc)
 
 # Reaction: id = reaction_14, name = PCc phospholation
+# Local Parameter:   id =  V, name = V1pc
+par V_1_2_3_5=2.4
 
-reacti_14=cell*V1PC*PCc/(Kp+PCc)
+# Local Parameter:   id =  Km, name = Kp
+par Km_1_2__5=1.006
+
+
+reacti_14=cell*functio_1(V_1_2_3_5, PCc, Km_1_2__5)
 
 # Reaction: id = reaction_15, name = PCcp specific degradation
+# Local Parameter:   id =  V, name = vdpcc
+par V_1_2_3_6=1.4
 
-reacti_15=cell*vdPCC*PCcp/(Kd+PCcp)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2__6=0.3
+
+
+reacti_15=cell*functio_1(V_1_2_3_6, PCcp, Km_1_2__6)
 
 # Reaction: id = reaction_16, name = PCc transfered into nuclear
+# Local Parameter:   id =  k1, name = k1
+par k1_1_2__4=0.8
 
-reacti_16=cell*(k1*PCc-k2*PCn)
+# Local Parameter:   id =  k2, name = k2
+par k2_1_2=0.4
+
+
+reacti_16=cell*(k1_1_2__4*PCc-k2_1_2*PCn)
 
 # Reaction: id = reaction_17, name = PCnp nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2__5=0.02
 
-reacti_17=cell*kdn*PCnp
+
+reacti_17=cell*k1_1_2__5*PCnp
 
 # Reaction: id = reaction_18, name = Bcp nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2__6=0.02
 
-reacti_18=cell*kdn*Bcp
+
+reacti_18=cell*k1_1_2__6*Bcp
 
 # Reaction: id = reaction_19, name = Bnp nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2__7=0.02
 
-reacti_19=cell*kdn*Bnp
+
+reacti_19=cell*k1_1_2__7*Bnp
 
 # Reaction: id = reaction_20, name = Mc synthesis
+# Local Parameter:   id =  Vs, name = vsc
+par Vs=2.2
 
-reacti_20=cell*vsC*Bn^n/(KAC^n+Bn^n)
+# Local Parameter:   id =  n, name = n
+par n_1=2.0
+
+# Local Parameter:   id =  K, name = Kac
+par K_1_2_3_5=0.6
+
+
+reacti_20=cell*function_(Vs, Bn, n_1, K_1_2_3_5)
 
 # Reaction: id = reaction_21, name = PCn phospholation
+# Local Parameter:   id =  V, name = V3pc
+par V_1_2_3_7=2.4
 
-reacti_21=cell*V3PC*PCn/(Kp+PCn)
+# Local Parameter:   id =  Km, name = Kp
+par Km_1_2__7=1.006
+
+
+reacti_21=cell*functio_1(V_1_2_3_7, PCn, Km_1_2__7)
 
 # Reaction: id = reaction_22, name = Mp nonspecific degradation
+# Local Parameter:   id =  k1, name = kdmp
+par k1_1_2__8=0.02
 
-reacti_22=cell*kdmp*Mp
+
+reacti_22=cell*k1_1_2__8*Mp
 
 # Reaction: id = reaction_23, name = Per_Cry and Clock_Bmal form inactive complex
+# Local Parameter:   id =  k1, name = k7
+par k1_1_2__9=1.0
 
-reacti_23=cell*(k7*PCn*Bn-k8*In)
+# Local Parameter:   id =  k2, name = k8
+par k2_1_2_3=0.2
+
+
+reacti_23=cell*(k1_1_2__9*PCn*Bn-k2_1_2_3*In)
 
 # Reaction: id = reaction_24, name = Mb specific degradation
+# Local Parameter:   id =  V, name = vmb
+par V_1_2_3_8=1.3
 
-reacti_24=cell*vmB*Mb/(KmB+Mb)
+# Local Parameter:   id =  Km, name = Kmb
+par Km_1_2__8=0.4
+
+
+reacti_24=cell*functio_1(V_1_2_3_8, Mb, Km_1_2__8)
 
 # Reaction: id = reaction_25, name = Mc specific degradation
+# Local Parameter:   id =  V, name = vmc
+par V_1_2_3_9=2.0
 
-reacti_25=cell*vmC*Mc/(KmC+Mc)
+# Local Parameter:   id =  Km, name = Kmc
+par Km_1_2__9=0.4
+
+
+reacti_25=cell*functio_1(V_1_2_3_9, Mc, Km_1_2__9)
 
 # Reaction: id = reaction_26, name = Mp specific degradation
+# Local Parameter:   id =  V, name = vmp
+par V_1_2__10=2.2
 
-reacti_26=cell*vmP*Mp/(KmP+Mp)
+# Local Parameter:   id =  Km, name = Kmp
+par Km_1_2_10=0.3
+
+
+reacti_26=cell*functio_1(V_1_2__10, Mp, Km_1_2_10)
 
 # Reaction: id = reaction_27, name = Pc nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_10=0.02
 
-reacti_27=cell*kdn*Pc
+
+reacti_27=cell*k1_1_2_10*Pc
 
 # Reaction: id = reaction_28, name = Cc nonspecific degradation
+# Local Parameter:   id =  k1, name = kdnc
+par k1_1_2_11=0.02
 
-reacti_28=cell*kdnC*Cc
+
+reacti_28=cell*k1_1_2_11*Cc
 
 # Reaction: id = reaction_29, name = Pcp nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_12=0.02
 
-reacti_29=cell*kdn*Pcp
+
+reacti_29=cell*k1_1_2_12*Pcp
 
 # Reaction: id = reaction_30, name = Ccp nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_13=0.02
 
-reacti_30=cell*kdn*Ccp
+
+reacti_30=cell*k1_1_2_13*Ccp
 
 # Reaction: id = reaction_31, name = PCcp nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_14=0.02
 
-reacti_31=cell*kdn*PCcp
+
+reacti_31=cell*k1_1_2_14*PCcp
 
 # Reaction: id = reaction_32, name = PCc nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_15=0.02
 
-reacti_32=cell*kdn*PCc
+
+reacti_32=cell*k1_1_2_15*PCc
 
 # Reaction: id = reaction_33, name = PCnp specific degradation
+# Local Parameter:   id =  V, name = vdpcn
+par V_1_2__11=1.4
 
-reacti_33=cell*vdPCN*PCnp/(Kd+PCnp)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2_11=0.3
+
+
+reacti_33=cell*functio_1(V_1_2__11, PCnp, Km_1_2_11)
 
 # Reaction: id = reaction_34, name = Bc nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_16=0.02
 
-reacti_34=cell*kdn*Bc
+
+reacti_34=cell*k1_1_2_16*Bc
 
 # Reaction: id = reaction_35, name = Bcp specific degradation
+# Local Parameter:   id =  V, name = vdbc
+par V_1_2__12=3.0
 
-reacti_35=cell*vdBC*Bcp/(Kd+Bcp)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2_12=0.3
+
+
+reacti_35=cell*functio_1(V_1_2__12, Bcp, Km_1_2_12)
 
 # Reaction: id = reaction_36, name = Bn phospholation
+# Local Parameter:   id =  V, name = V3b
+par V_1_2__13=1.4
 
-reacti_36=cell*V3B*Bn/(Kp+Bn)
+# Local Parameter:   id =  Km, name = Kp
+par Km_1_2_13=1.006
+
+
+reacti_36=cell*functio_1(V_1_2__13, Bn, Km_1_2_13)
 
 # Reaction: id = reaction_37, name = Bnp specific degradation
+# Local Parameter:   id =  V, name = vdbn
+par V_1_2__14=3.0
 
-reacti_37=cell*vdBN*Bnp/(Kd+Bnp)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2_14=0.3
+
+
+reacti_37=cell*functio_1(V_1_2__14, Bnp, Km_1_2_14)
 
 # Reaction: id = reaction_38, name = In nonspecific degration
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_17=0.02
 
-reacti_38=cell*kdn*In
+
+reacti_38=cell*k1_1_2_17*In
 
 # Reaction: id = reaction_39, name = In specific degradation
+# Local Parameter:   id =  V, name = vdin
+par V_1_2__15=1.6
 
-reacti_39=cell*vdIN*In/(Kd+In)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2_15=0.3
+
+
+reacti_39=cell*functio_1(V_1_2__15, In, Km_1_2_15)
 
 # Reaction: id = reaction_40, name = Bn nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_18=0.02
 
-reacti_40=cell*kdn*Bn
+
+reacti_40=cell*k1_1_2_18*Bn
 
 # Reaction: id = reaction_41, name = Bcp dephospholation
+# Local Parameter:   id =  V, name = V2b
+par V_1_2__16=0.2
 
-reacti_41=cell*V2B*Bcp/(Kdp+Bcp)
+# Local Parameter:   id =  Km, name = Kdp
+par Km_1_2_16=0.1
+
+
+reacti_41=cell*functio_1(V_1_2__16, Bcp, Km_1_2_16)
 
 # Reaction: id = reaction_42, name = Bnp dephospholation
+# Local Parameter:   id =  V, name = V4b
+par V_1_2__17=0.4
 
-reacti_42=cell*V4B*Bnp/(Kdp+Bnp)
+# Local Parameter:   id =  Km, name = Kdp
+par Km_1_2_17=0.1
+
+
+reacti_42=cell*functio_1(V_1_2__17, Bnp, Km_1_2_17)
 
 # Reaction: id = reaction_43, name = Ccp dephospholation
+# Local Parameter:   id =  V, name = V2c
+par V_1_2__18=0.2
 
-reacti_43=cell*V2C*Ccp/(Kdp+Ccp)
+# Local Parameter:   id =  Km, name = Kdp
+par Km_1_2_18=0.1
+
+
+reacti_43=cell*functio_1(V_1_2__18, Ccp, Km_1_2_18)
 
 # Reaction: id = reaction_44, name = Pcp dephospholation
+# Local Parameter:   id =  V, name = V2p
+par V_1_2__19=0.6
 
-reacti_44=cell*V2P*Pcp/(Kdp+Pcp)
+# Local Parameter:   id =  Km, name = Kdp
+par Km_1_2_19=0.1
+
+
+reacti_44=cell*functio_1(V_1_2__19, Pcp, Km_1_2_19)
 
 # Reaction: id = reaction_45, name = PCnp dephospholation
+# Local Parameter:   id =  V, name = V4pc
+par V_1_2__20=0.2
 
-reacti_45=cell*V4PC*PCnp/(Kdp+PCnp)
+# Local Parameter:   id =  Km, name = Kdp
+par Km_1_2_20=0.1
+
+
+reacti_45=cell*functio_1(V_1_2__20, PCnp, Km_1_2_20)
 
 # Reaction: id = reaction_46, name = PCn nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_19=0.02
 
-reacti_46=cell*kdn*PCn
+
+reacti_46=cell*k1_1_2_19*PCn
 
 # Reaction: id = reaction_47, name = PCcp dephospholation
+# Local Parameter:   id =  V, name = V2pc
+par V_1_2__21=0.2
 
-reacti_47=cell*V2PC*PCcp/(Kdp+PCcp)
+# Local Parameter:   id =  Km, name = Kdp
+par Km_1_2_21=0.1
+
+
+reacti_47=cell*functio_1(V_1_2__21, PCcp, Km_1_2_21)
 
 # Reaction: id = reaction_48, name = Mr synthesized
+# Local Parameter:   id =  Vs, name = vsr
+par Vs_1=1.6
 
-reacti_48=cell*vsR*Bn^h/(KAR^h+Bn^h)
+# Local Parameter:   id =  n, name = n
+par n_1_2=2.0
+
+# Local Parameter:   id =  K, name = Kar
+par K_1_2_3_6=0.6
+
+
+reacti_48=cell*function_(Vs_1, Bn, n_1_2, K_1_2_3_6)
 
 # Reaction: id = reaction_49, name = Mr nonspecific degradation
+# Local Parameter:   id =  k1, name = kdmr
+par k1_1_2_20=0.02
 
-reacti_49=cell*kdmr*Mr
+
+reacti_49=cell*k1_1_2_20*Mr
 
 # Reaction: id = reaction_50, name = Mr specific degradation
+# Local Parameter:   id =  V, name = vmr
+par V_1_2__22=1.6
 
-reacti_50=cell*vmR*Mr/(kmR+Mr)
+# Local Parameter:   id =  Km, name = Kmr
+par Km_1_2_22=0.4
+
+
+reacti_50=cell*functio_1(V_1_2__22, Mr, Km_1_2_22)
 
 # Reaction: id = reaction_51, name = Mr translated into protein
+# Local Parameter:   id =  k, name = ksr
+par k_1_2_3_7=1.7
 
-reacti_51=cell*ksR*Mr
+
+reacti_51=cell*functio_2(k_1_2_3_7, Mr)
 
 # Reaction: id = reaction_52, name = Rc transfered into nuclear
+# Local Parameter:   id =  k1, name = k9
+par k1_1_2_21=0.8
 
-reacti_52=cell*(k9*Rc-k10*Rn)
+# Local Parameter:   id =  k2, name = k10
+par k2_1_2__4=0.4
+
+
+reacti_52=cell*(k1_1_2_21*Rc-k2_1_2__4*Rn)
 
 # Reaction: id = reaction_53, name = Rc specific degradation
+# Local Parameter:   id =  V, name = vdrc
+par V_1_2__23=4.4
 
-reacti_53=cell*vdRC*Rc/(Kd+Rc)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2_23=0.3
+
+
+reacti_53=cell*functio_1(V_1_2__23, Rc, Km_1_2_23)
 
 # Reaction: id = reaction_54, name = Rc nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_22=0.02
 
-reacti_54=cell*kdn*Rc
+
+reacti_54=cell*k1_1_2_22*Rc
 
 # Reaction: id = reaction_55, name = Rn specific degradation
+# Local Parameter:   id =  V, name = vdrn
+par V_1_2__24=0.8
 
-reacti_55=cell*vdRN*Rn/(Kd+Rn)
+# Local Parameter:   id =  Km, name = Kd
+par Km_1_2_24=0.3
+
+
+reacti_55=cell*functio_1(V_1_2__24, Rn, Km_1_2_24)
 
 # Reaction: id = reaction_56, name = Rn nonspecific degradation
+# Local Parameter:   id =  k1, name = kdn
+par k1_1_2_23=0.02
 
-reacti_56=cell*kdn*Rn
+
+reacti_56=cell*k1_1_2_23*Rn
 
 # Species:   id = Mb, name = Mb, affected by kineticLaw
 
