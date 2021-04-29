@@ -9,6 +9,7 @@ import fix_SBML_validity
 import fix_sedml_extensions
 import recreate_sedml_from_copasi
 import remove_empty_containers_from_sedml_doc
+import remove_non_sbml
 import remove_omex
 import validate_SBML
 
@@ -76,19 +77,19 @@ def fix_entry(id, convert_files=False, guess_file=None, validateSBML=False):
     fix_filenames.run(id, FINAL_ENTRIES_DIR)
     fix_sedml_extensions.run(id, FINAL_ENTRIES_DIR)
 
+    omex_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'), recursive=True)
+    remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
+
     #Collect lists of files
     sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     copasi_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.cps'), recursive=True)
     sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
-    omex_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'), recursive=True)
+    
+    remove_non_sbml.run(id, sbml_filenames)
 
     sedml_filenames.sort()
     copasi_filenames.sort()
     sbml_filenames.sort()
-    omex_filenames.sort()
-
-    # OMEX files
-    remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
 
     # SED-ML files: recreate from Copasi, then fix the model sources.
     (sbml_msgs, sed_msgs, c_guesses) = recreate_sedml_from_copasi.run(sedml_filenames, copasi_filenames, sbml_filenames, id)

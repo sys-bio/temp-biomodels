@@ -1,4 +1,4 @@
-import glob
+import zipfile
 import os
 
 
@@ -21,9 +21,10 @@ def run(id, omex_filenames, working_dir):
     removed = []
     for omex in omex_filenames:
        if id in KEEP:
-           #When we decide what to do with this file, do it here.
-           return removed
-       os.remove(os.path.join(working_dir, id, omex))
-       removed.append(omex)
+           zf = zipfile.ZipFile(omex, "r")
+           zf.extractall(path=os.path.dirname(omex))
+       else:
+           os.remove(os.path.join(working_dir, id, omex))
+           removed.append(omex)
 
     return removed

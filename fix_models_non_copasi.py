@@ -48,23 +48,27 @@ def fixSedSBMLTarget(sfilename, sbmllist, id, guesses):
     
         #If there's only one option, use that.
         if len(sbmllist) == 1:
-            model.setSource(os.path.basename(sbmllist[0]))
+            model.setSource(sbmllist[0])
             continue
     
         #If the name matches exactly, use that:
         for sbmlfile in sbmllist:
-            if sbmlfile == sfilename.replace("cps", "xml"):
-                model.setSource(os.path.basename(sbmlfile))
+            if sbmlfile == os.path.basename(sfilename).replace("cps", "xml"):
+                model.setSource(sbmlfile)
                 continue
                 
         #Otherwise... pick one at random?  Let's go with the first on the list.
-        guesses.append((id, sfilename, os.path.basename(sbmllist[0])))
-        model.setSource(os.path.basename(sbmllist[0]))
+        guesses.append((id, sfilename, sbmllist[0]))
+        model.setSource(sbmllist[0])
     return libsedml.writeSedMLToFile(sed, sfilename)
     
 def run(sedml_filenames, sbml_filenames, id):
     guesses = []
+    sbml_basenames = []
+    for sbmlfile in sbml_filenames:
+        sbml_basenames.append(os.path.basename(sbmlfile))
+        
     for sfilename in sedml_filenames:
-        fixSedSBMLTarget(sfilename, sbml_filenames, id, guesses)
+        fixSedSBMLTarget(sfilename, sbml_basenames, id, guesses)
     return guesses
         
