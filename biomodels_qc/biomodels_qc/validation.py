@@ -218,6 +218,7 @@ def validate_sbml_file(filename):
             * nested :obj:`list` of :obj:`str`: nested list of warnings
     """
     doc = libsbml.readSBMLFromFile(filename)
+    doc.checkConsistency()
 
     errors = []
     warnings = []

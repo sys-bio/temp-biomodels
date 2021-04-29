@@ -17,10 +17,10 @@ import glob
 import enum
 from .utils import get_smbl_files_for_entry
 from .validation import validate_xpp_file
-from biosimulators_utils.kisao.utils import get_ode_integration_kisao_term_ids
 from biosimulators_utils.sedml.data_model import Task
 from biosimulators_utils.sedml.io import SedmlSimulationReader
-
+from kisao import Kisao
+from kisao.utils import get_ode_algorithms
 
 __all__ = [
     'convert_entry',
@@ -40,7 +40,8 @@ def convert_entry(dirname):
     """
     module = globals()
     if not module['_ODE_INTEGRATION_KISAO_TERM_IDS']:
-        module['_ODE_INTEGRATION_KISAO_TERM_IDS'] = get_ode_integration_kisao_term_ids()
+        ode_alg_ids = Kisao().get_term_ids(get_ode_algorithms())
+        module['_ODE_INTEGRATION_KISAO_TERM_IDS'] = ode_alg_ids
     ode_integration_kisao_term_ids = module['_ODE_INTEGRATION_KISAO_TERM_IDS']
 
     has_sedml_task = False
