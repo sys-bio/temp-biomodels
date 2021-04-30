@@ -11,8 +11,8 @@ import re
 import difflib
 import libsedml
 
-#These Copasi files are all invalid.
-bad_copasifiles = ["MODEL1305060000_edited.cps", "Aubert2002.cps", "khajanchi2017.cps"]
+#These Copasi files are invalid (the later two were fixed by hand in manual-fixes).
+bad_copasifiles = ["MODEL1305060000_edited.cps",]# "Aubert2002.cps", "khajanchi2017.cps"]
 
 #These Copasi files will be ignored, and the present SED-ML used instead.
 copasi_with_worse_sedml = ["Tsai2014.cps", "Panteleev2010_full_model.cps", "Wang2016_2.cps",]

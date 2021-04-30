@@ -343,7 +343,7 @@ Reaction scheme where the products are created from the reactants and the change
       </ListOfParameterDescriptions>
     </Function>
   </ListOfFunctions>
-  <Model key="Model_4" name="Aubert2002" simulationType="time" timeUnit="s" volumeUnit="ml" areaUnit="mÂ²" lengthUnit="m" quantityUnit="mmol" type="deterministic" avogadroConstant="6.02214179e+023">
+  <Model key="Model_4" name="Aubert2002" simulationType="time" timeUnit="s" volumeUnit="ml" areaUnit="mA²" lengthUnit="m" quantityUnit="mmol" type="deterministic" avogadroConstant="6.02214179e+023">
     <MiriamAnnotation>
 <rdf:RDF
    xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
@@ -400,7 +400,7 @@ A Model of the Coupling between Brain Electrical Activity, Metabolism, and Hemod
 NeuroImage 17, 1162-1181 (2002)
 doi: 10.1006/nimg.2002.1224
 
-Authors: AgnÃ¨s Aubert and Robert Costalat
+Authors: Agnes Aubert and Robert Costalat
 
 All parameter values are identical to the parameter values in the publication instead of the value of Vmax,mito which was changed from 0.025 to to 0.05233 to guaranty that the value of equation 39 is 0.0192, as given in the caption of Fig. 4. We assume that the authors intended to write 0.052 and the value given below Fig.4 is a typographical error.
 

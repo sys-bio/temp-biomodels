@@ -370,7 +370,7 @@ subhaskhajanchi@gmail.com
 
 Abstract
 
-This paper describes the synergistic interaction between the growth of malignant gliomas and the immune system interactions using a system of coupled ordinary di®erential equations (ODEs). The proposed mathematical model comprises the interaction of glioma cells, macrophages, activated Cytotoxic T-Lymphocytes (CTLs), the immunosuppressive factor TGF- and the immuno-stimulatory factor IFN-. The dynamical behavior of the proposed system both analytically and numerically is investigated from the point of view of stability. By constructing Lyapunov functions, the global behavior of the glioma-free and the interior equilibrium point have been analyzed under some assumptions. Finally, we perform numerical simulations in order to illustrate our analytical findings by varying the system parameters.
+This paper describes the synergistic interaction between the growth of malignant gliomas and the immune system interactions using a system of coupled ordinary di®erential equations (ODEs). The proposed mathematical model comprises the interaction of glioma cells, macrophages, activated Cytotoxic T-Lymphocytes (CTLs), the immunosuppressive factor TGF-alpha and the immuno-stimulatory factor IFN-beta. The dynamical behavior of the proposed system both analytically and numerically is investigated from the point of view of stability. By constructing Lyapunov functions, the global behavior of the glioma-free and the interior equilibrium point have been analyzed under some assumptions. Finally, we perform numerical simulations in order to illustrate our analytical findings by varying the system parameters.
 
  Keywords: Uniform persistence; malignant gliomas; Lyapunov function; global dynamics.
     </Comment>
