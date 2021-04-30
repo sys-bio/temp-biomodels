@@ -10,6 +10,7 @@ from .utils import build_combine_archive
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
 from biosimulators_utils.warnings import BioSimulatorsWarning
+from kisao.data_model import AlgorithmSubstitutionPolicy
 import ast
 import biosimulators_utils.simulator.specs
 import COPASI
@@ -218,6 +219,7 @@ def validate_sbml_file(filename):
             * nested :obj:`list` of :obj:`str`: nested list of warnings
     """
     doc = libsbml.readSBMLFromFile(filename)
+    doc.checkConsistency()
 
     errors = []
     warnings = []
@@ -275,7 +277,8 @@ def validate_sedml_file(filename, dirname=None, simulators=None):
                 simulator = biosimulators_utils.simulator.specs.get_simulator_specs(
                     simulator['id'], simulator.get('version', None) or 'latest')
 
-            if biosimulators_utils.simulator.specs.does_simulator_have_capabilities_to_execute_sed_document(sed_doc, simulator):
+            if biosimulators_utils.simulator.specs.does_simulator_have_capabilities_to_execute_sed_document(
+                    sed_doc, simulator, alg_substitution_policy=AlgorithmSubstitutionPolicy.SAME_VARIABLES):
                 has_capable_simulator = True
 
                 out_dir = tempfile.mkdtemp()
