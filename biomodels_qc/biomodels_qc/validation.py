@@ -24,6 +24,7 @@ import nbformat
 import os
 import owlready2
 import PyPDF2
+import re
 import scipy.io
 import shutil
 import subprocess
@@ -33,6 +34,7 @@ import zipfile
 
 __all__ = [
     'validate_entry',
+    'validate_combine_archive',
     'validate_copasi_file',
     'validate_image_file',
     'validate_ipynb_notebook_file',
@@ -55,6 +57,29 @@ class ImageFormat(str, enum.Enum):
     jpg = 'jpeg'
     gif = 'gif'
     png = 'png'
+
+
+def validate_combine_archive(filename):
+    """ Determine if a COMBINE/OMEX archive is valid
+
+    Args:
+        filename (:obj:`str`): path to COMBINE/OMEX archive
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    errors = []
+    warnings = []
+
+    errors.append([(
+        'BioModels entries should not contain COMBINE/OMEX archives. '
+        'The BioModels platform automatically generates a COMBINE/OMEX archive for each entry.'
+    )])
+
+    return errors, warnings
 
 
 def validate_copasi_file(filename):
@@ -268,7 +293,7 @@ def validate_sedml_file(filename, dirname=None, simulators=None):
         fid, archive_filename = tempfile.mkstemp()
         os.close(fid)
 
-        build_combine_archive(dirname, os.path.relpath(filename, dirname), archive_filename)
+        build_combine_archive(dirname, [os.path.relpath(filename, dirname)], archive_filename)
 
         has_capable_simulator = False
         exec_errors = []
@@ -350,11 +375,19 @@ def validate_xml_file(filename):
     """
     try:
         root = lxml.etree.parse(filename).getroot()
-        if root.nsmap.get(None, '').startswith('http://www.sbml.org/'):
-            return validate_sbml_file(filename)
-        return [], []
     except Exception as exception:
         return [[str(exception)]], []
+
+    default_ns = root.nsmap.get(None, '')
+    if default_ns.startswith('http://www.sbml.org/'):
+        return validate_sbml_file(filename)
+    elif re.match(r'^http://identifiers\.org/combine\.specifications/omex-manifest($|\.)', default_ns):
+        return [[(
+            'BioModels entries should not contain manifests for COMBINE/OMEX archives. '
+            'The BioModels platform automatically generates a manifest for each entry.'
+        )]], []
+
+    return [], []
 
 
 def validate_xpp_file(filename):
@@ -430,6 +463,10 @@ EXTENSION_VALIDATOR_MAP = {
         'description': 'MATLAB data file',
         'validator': validate_matlab_data_file,
     },
+    '.omex': {
+        'description': 'COMBINE/OMEX archive',
+        'validator': validate_combine_archive,
+    },
     '.owl': {
         'description': 'OWL ontology',
         'validator': validate_owl_ontology_file,
@@ -453,6 +490,10 @@ EXTENSION_VALIDATOR_MAP = {
     '.sedml': {
         'description': 'SED-ML',
         'validator': validate_sedml_file,
+    },
+    '.sedx': {
+        'description': 'SED-ML archive',
+        'validator': validate_combine_archive,
     },
     '.svg': {
         'description': 'SVG',

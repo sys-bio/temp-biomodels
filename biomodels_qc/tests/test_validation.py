@@ -50,6 +50,12 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertNotEqual(warnings, [])
 
+    def test_validate_combine_archive(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000585', 'Rateitschak2012.omex')
+        errors, warnings = validation.validate_combine_archive(filename)
+        self.assertIn('should not contain COMBINE/OMEX archives', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
     def test_validate_copasi_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000042', 'BIOMD0000000042.cps')
         errors, warnings = validation.validate_copasi_file(filename)
@@ -202,13 +208,13 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertNotEqual(warnings, [])
 
-        # TODO: uncomment when new version of COPASI image released
-        # errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'copasi', 'version': 'latest'}])
-        # self.assertEqual(errors, [])
-        # self.assertIn('no simulator has the capability', flatten_nested_list_of_strings(warnings))
+        errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'cobrapy', 'version': 'latest'}])
+        self.assertEqual(errors, [])
+        self.assertIn("executability could not be verified", flatten_nested_list_of_strings(warnings))
 
         with mock.patch('biosimulators_utils.simulator.specs.does_simulator_have_capabilities_to_execute_sed_document', return_value=True):
-            errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'copasi', 'version': 'latest'}])
+            errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[
+                                                              {'id': 'cobrapy', 'version': 'latest'}])
             self.assertIn("could not execute the archive", flatten_nested_list_of_strings(errors))
             self.assertNotEqual(warnings, [])
 
@@ -253,6 +259,11 @@ class ValidationTestCase(unittest.TestCase):
         png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.png')
         errors, warnings = validation.validate_xml_file(png_filename)
         self.assertIn('Start tag expected', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        manifest_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000585', 'manifest.xml')
+        errors, warnings = validation.validate_xml_file(manifest_filename)
+        self.assertIn('should not contain manifests', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
     def test_validate_xpp_file(self):

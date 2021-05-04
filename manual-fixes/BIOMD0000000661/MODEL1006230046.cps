@@ -740,7 +740,7 @@ Reaction scheme where the products are created from the reactants and the change
 
         </MiriamAnnotation>
         <Comment>
-          1	is version of		urn:miriam:unknown:IDOMAL:0000393
+          1	is version of		http://purl.obolibrary.org/obo/IDOMAL_0000393
         </Comment>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_0" stoichiometry="1"/>

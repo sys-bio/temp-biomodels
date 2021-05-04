@@ -1772,7 +1772,7 @@ Reaction scheme where the products are created from the reactants and the change
     <dcterms:bibliographicCitation>
       <rdf:Description>
         <dcterms:description>Comparison of the Interactions of Transferrin Receptor and Transferrin Receptor 2 with Transferrin and the Hereditary Hemochromatosis Protein HFE</dcterms:description>
-        <CopasiMT:isDescribedBy rdf:resource="urn:miriam:unknown:10.1074/jbc.C000664200" />
+        <CopasiMT:isDescribedBy rdf:resource="urn:miriam:doi:10.1074/jbc.C000664200" />
       </rdf:Description>
     </dcterms:bibliographicCitation>
     <dcterms:created>
@@ -2402,7 +2402,6 @@ Reaction scheme where the products are created from the reactants and the change
         <dcterms:W3CDTF>2011-11-30T13:25:21Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
