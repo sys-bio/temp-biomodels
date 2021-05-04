@@ -6,11 +6,15 @@
 :License: MIT
 """
 
-from .convert import convert_entry
+from .convert import convert_entry, AltSbmlFormat
+from .utils import build_combine_archive
 from .validation import validate_entry
+from biosimulators_utils.data_model import Person
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 import biomodels_qc
 import cement
+import glob
+import os
 import termcolor
 
 
@@ -19,12 +23,12 @@ class BaseController(cement.Controller):
 
     class Meta:
         label = 'base'
-        description = (
-            "Program for quality controlling the BioModels database."
-        )
         help = (
             "Program for quality controlling entries of the BioModels database and converting "
             "the primary files for entries to alternative formats."
+        )
+        description = (
+            "Program for quality controlling the BioModels database."
         )
         arguments = [
             (['-v', '--version'], dict(
@@ -39,14 +43,14 @@ class BaseController(cement.Controller):
 
 
 class ValidateEntryController(cement.Controller):
-    """ Controller for validating an entry of the BioModels database """
+    """ Controller for validating an entry of the BioModels database. """
 
     class Meta:
         label = 'validate'
         stacked_on = 'base'
         stacked_type = 'nested'
-        help = "Validate an entry of the BioModels database"
-        description = "Validate an entry of the BioModels database"
+        help = "Validate an entry of the BioModels database."
+        description = "Validate all of the files that comprise an entry of the BioModels database."
         arguments = [
             (
                 ['dir'],
@@ -59,7 +63,7 @@ class ValidateEntryController(cement.Controller):
                 ['--ext'],
                 dict(
                     type=str,
-                    nargs='*',
+                    action='append',
                     default=None,
                     help='File extension to validate (.e.g, `.png`). Default: validate all files.',
                 ),
@@ -68,7 +72,7 @@ class ValidateEntryController(cement.Controller):
                 ['--file'],
                 dict(
                     type=str,
-                    nargs='*',
+                    action='append',
                     default=None,
                     help='Path relative to `dir` of file to validate (.e.g, `model.xml`). Default: validate all files.',
                 ),
@@ -77,7 +81,7 @@ class ValidateEntryController(cement.Controller):
                 ['--simulator'],
                 dict(
                     type=str,
-                    nargs='*',
+                    action='append',
                     default=None,
                     help=(
                         'Simulator to use to validate the executability of SED-ML files in the entry (.e.g, `copasi` or `copasi:4.30.240`)'
@@ -112,14 +116,88 @@ class ValidateEntryController(cement.Controller):
             print('The entry at `{}` is valid.'.format(args.dir))
 
 
+class BuildCombineArchiveController(cement.Controller):
+    """ Controller for packaging a directory for an entry of BioModels into a COMBINE/OMEX archive. """
+
+    class Meta:
+        label = 'build-archive'
+        stacked_on = 'base'
+        stacked_type = 'nested'
+        help = "Build a COMBINE/OMEX archive for an entry of BioModels."
+        description = "Build a directory for an entry of BioModels into a COMBINE/OMEX archive."
+        arguments = [
+            (
+                ['dir'],
+                dict(
+                    type=str,
+                    help='Path to a directory to package into a COMBINE/OMEX archive',
+                ),
+            ),
+            (
+                ['archive'],
+                dict(
+                    type=str,
+                    help='Path to a save COMBINE/OMEX archive',
+                ),
+            ),
+            (
+                ['--master'],
+                dict(
+                    type=str,
+                    action='append',
+                    default=None,
+                    help='Path to a file that should be marked as `master`. Default: mark all SED-ML files as master.',
+                ),
+            ),
+            (
+                ['--description'],
+                dict(
+                    type=str,
+                    default=None,
+                    help='Description of the archive.',
+                ),
+            ),
+            (
+                ['--author'],
+                dict(
+                    type=str,
+                    action='append',
+                    default=[],
+                    help='Author of the archive (Family Name, Given Name).',
+                ),
+            ),
+        ]
+
+    @cement.ex(hide=True)
+    def _default(self):
+        args = self.app.pargs
+
+        if args.master:
+            master_filenames = args.master
+        else:
+            master_filenames = glob.glob(os.path.join(args.dir, '**', '*.sedml'), recursive=True)
+        master_rel_filenames = [os.path.relpath(master_filename, args.dir) for master_filename in master_filenames]
+
+        description = args.description.strip() if args.description else None
+        authors = []
+        for author in args.author:
+            family_name, _, given_name = author.partition(',')
+            family_name = family_name.strip() or None
+            given_name = given_name.strip() or None
+            authors.append(Person(family_name=family_name, given_name=given_name))
+
+        build_combine_archive(args.dir, master_rel_filenames, args.archive,
+                              description=description, authors=authors)
+
+
 class ConvertEntryProjectController(cement.Controller):
-    """ Controller for converting the primary files for an entry of the BioModels database to alternative formats """
+    """ Controller for converting the primary files for an entry of the BioModels database to alternative formats. """
 
     class Meta:
         label = 'convert'
         stacked_on = 'base'
         stacked_type = 'nested'
-        help = "Convert "
+        help = "Convert the primary files for an entry of the BioModels database to alternative formats."
         description = (
             "Convert the primary files for an entry of the BioModels database to alternative formats "
             "such as BioPAX, MATLAB/Octave, and XPP."
@@ -132,12 +210,30 @@ class ConvertEntryProjectController(cement.Controller):
                     help='Path to a directory which contains the files for an entry of the BioModels database',
                 ),
             ),
+            (
+                ['--format'],
+                dict(
+                    type=str,
+                    action='append',
+                    default=None,
+                    help=(
+                        'Format to convert SBML files to ({}). Default: convert SBML files to all alternative formats.'.format(
+                            ', '.join(AltSbmlFormat.__members__.keys())
+                        )
+                    ),
+                ),
+            ),
         ]
 
     @cement.ex(hide=True)
     def _default(self):
         args = self.app.pargs
-        convert_entry(args.dir)
+        if args.format:
+            alt_sbml_formats = [AltSbmlFormat[format] for format in args.format]
+        else:
+            alt_sbml_formats = AltSbmlFormat.__members__.values()
+
+        convert_entry(args.dir, alt_sbml_formats=alt_sbml_formats)
 
 
 class App(cement.App):
@@ -148,6 +244,7 @@ class App(cement.App):
         handlers = [
             BaseController,
             ValidateEntryController,
+            BuildCombineArchiveController,
             ConvertEntryProjectController,
         ]
 

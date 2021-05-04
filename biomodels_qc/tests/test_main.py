@@ -67,13 +67,53 @@ class CliTestCase(unittest.TestCase):
         with biomodels_qc.__main__.App(argv=['validate', dirname, '--simulator', 'tellurium:latest']) as app:
             app.run()
 
-        dirname = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000806')
-        with biomodels_qc.__main__.App(argv=['validate', dirname, '--simulator', 'tellurium:latest', 'copasi:latest']) as app:
+        dirname = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000005')
+        with biomodels_qc.__main__.App(argv=[
+            'validate', dirname,
+            '--simulator', 'tellurium:latest',
+            '--simulator', 'copasi:latest'
+        ]) as app:
             app.run()
+
+    def test_build_combine_archive_with_master(self):
+        temp_entry_dirname = os.path.join(self.temp_dirname, 'entry')
+        shutil.copytree(self.INVALID_FIXTURE_DIRNAME, temp_entry_dirname)
+        temp_archive_filename = os.path.join(self.temp_dirname, 'archive.omex')
+
+        with biomodels_qc.__main__.App(argv=[
+            'build-archive', temp_entry_dirname,
+            temp_archive_filename,
+            '--master', os.path.join(temp_entry_dirname, 'MODEL7817907010.sedml'),
+            '--description', 'BIOMD0000000693',
+            '--author', 'BioModels Team',
+        ]) as app:
+            app.run()
+
+        self.assertTrue(os.path.isfile(temp_archive_filename))
+
+    def test_build_combine_archive_without_master(self):
+        temp_entry_dirname = os.path.join(self.temp_dirname, 'entry')
+        shutil.copytree(self.INVALID_FIXTURE_DIRNAME, temp_entry_dirname)
+        temp_archive_filename = os.path.join(self.temp_dirname, 'archive.omex')
+
+        with biomodels_qc.__main__.App(argv=[
+            'build-archive', temp_entry_dirname,
+            temp_archive_filename,
+        ]) as app:
+            app.run()
+
+        self.assertTrue(os.path.isfile(temp_archive_filename))
 
     def test_convert(self):
         temp_entry_dirname = os.path.join(self.temp_dirname, 'entry')
         shutil.copytree(self.VALID_FIXTURE_DIRNAME, temp_entry_dirname)
 
         with biomodels_qc.__main__.App(argv=['convert', temp_entry_dirname]) as app:
+            app.run()
+
+    def test_convert_select_formats(self):
+        temp_entry_dirname = os.path.join(self.temp_dirname, 'entry')
+        shutil.copytree(self.VALID_FIXTURE_DIRNAME, temp_entry_dirname)
+
+        with biomodels_qc.__main__.App(argv=['convert', temp_entry_dirname, '--format', 'Matlab']) as app:
             app.run()

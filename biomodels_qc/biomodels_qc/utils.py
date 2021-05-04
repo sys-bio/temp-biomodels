@@ -12,12 +12,15 @@ from biosimulators_utils.data_model import Person  # noqa: F401
 import datetime
 import dateutil.tz
 import glob
+import re
 import os
+import xmldiff.main
 
 __all__ = [
     'get_smbl_files_for_entry',
     'EXTENSION_COMBINE_FORMAT_MAP',
     'build_combine_archive',
+    'are_biopax_files_the_same',
 ]
 
 
@@ -62,13 +65,13 @@ EXTENSION_COMBINE_FORMAT_MAP = {
 # map from file extensions to COMBINE format specification URLs
 
 
-def build_combine_archive(archive_dirname, master_rel_filename, archive_filename,
+def build_combine_archive(archive_dirname, master_rel_filenames, archive_filename,
                           description=None, authors=None):
     """ Build a COMBINE/OMEX archive from a directory of files
 
     Args:
         archive_dirname (:obj:`str`): path to directory with the contents of the archive
-        master_rel_filename (:obj:`str`): filename of master SED-ML file, relative to
+        master_rel_filenames (:obj:`list` of :obj:`str`): filename of master file, relative to
             :obj:`archive_dirname`
         archive_filename (:obj:`str`): path to save the COMBINE/OMEX archive
         description (:obj:`str`, optional): description of the archive
@@ -90,16 +93,41 @@ def build_combine_archive(archive_dirname, master_rel_filename, archive_filename
         location = os.path.relpath(filename, archive_dirname)
         ext = os.path.splitext(filename)[1]
         format = EXTENSION_COMBINE_FORMAT_MAP.get(ext, 'http://purl.org/NET/mediatypes/application/octet-stream')
-        if format:
-            archive.contents.append(
-                CombineArchiveContent(
-                    location=location,
-                    format=format,
-                    master=location == master_rel_filename,
-                    authors=[],
-                    created=now,
-                    updated=now,
-                )
+        archive.contents.append(
+            CombineArchiveContent(
+                location=location,
+                format=format,
+                master=location in master_rel_filenames,
+                authors=[],
+                created=now,
+                updated=now,
             )
+        )
 
     CombineArchiveWriter().run(archive, archive_dirname, archive_filename)
+
+
+def are_biopax_files_the_same(filename_a, filename_b):
+    """ Determine if two BioPAX files are the same, ignoring the time stamps when they were generated
+
+    Args:
+        filename_a (:obj:`str`): path to first BioPAX file
+        filename_b (:obj:`str`): path to second BioPAX file
+
+    Returns:
+        :obj:`bool`: whether the files are the same, ignoring the time stamps when they were generated
+    """
+    diffs = xmldiff.main.diff_files(filename_a, filename_b)
+    if not diffs:
+        return True
+
+    if len(diffs) > 1:
+        return False
+
+    diff = diffs[0]
+    return (
+        isinstance(diff, xmldiff.actions.UpdateTextIn)
+        and re.match(r'^/rdf:RDF/bp:pathway/bp:COMMENT\[', diff.node) is not None
+        and re.match(r'^This BioPAX .* file was automatically generated on .* by .*, BioModels.net, EMBL-EBI.$',
+                     diff.text) is not None
+    )

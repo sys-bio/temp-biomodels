@@ -202,13 +202,13 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertNotEqual(warnings, [])
 
-        # TODO: uncomment when new version of COPASI image released
-        # errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'copasi', 'version': 'latest'}])
-        # self.assertEqual(errors, [])
-        # self.assertIn('no simulator has the capability', flatten_nested_list_of_strings(warnings))
+        errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'cobrapy', 'version': 'latest'}])
+        self.assertEqual(errors, [])
+        self.assertIn("executability could not be verified", flatten_nested_list_of_strings(warnings))
 
         with mock.patch('biosimulators_utils.simulator.specs.does_simulator_have_capabilities_to_execute_sed_document', return_value=True):
-            errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[{'id': 'copasi', 'version': 'latest'}])
+            errors, warnings = validation.validate_sedml_file(filename, dirname=dirname, simulators=[
+                                                              {'id': 'cobrapy', 'version': 'latest'}])
             self.assertIn("could not execute the archive", flatten_nested_list_of_strings(errors))
             self.assertNotEqual(warnings, [])
 

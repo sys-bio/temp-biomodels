@@ -102,9 +102,84 @@ class ConvertTestCase(unittest.TestCase):
 
         self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'BIOMD0000000693.xpp')))
 
-    def test_convert_error_handling(self):
+    def test_convert_entry_error_handling(self):
         os.rename(os.path.join(self.temp_entry_dirname, 'BIOMD0000000692.svg'),
                   os.path.join(self.temp_entry_dirname, 'BIOMD0000000692_url.xml'))
 
         with self.assertWarnsRegex(UserWarning, 'could not be converted. Please check'):
             convert.convert_entry(self.temp_entry_dirname)
+
+    def test_convert_sbml_error_handling(self):
+        with open(os.path.join(self.temp_entry_dirname, 'empty_file'), 'w'):
+            pass
+
+        with self.assertRaisesRegex(ValueError, 'The Systems Biology Format Converter failed'):
+            convert.convert_sbml(
+                os.path.join(self.temp_entry_dirname, 'empty_file'),
+                convert.AltSbmlFormat.Matlab,
+                os.path.join(self.temp_entry_dirname, 'not a file 2'))
+
+    def test_run_sbf_converter(self):
+        with self.assertRaises(ValueError):
+            convert.run_sbf_converter('not a file', 'not a format')
+
+    def test__handle_sbf_converter_errors_no_error(self):
+        temp_filename = os.path.join(self.temp_entry_dirname, 'temp.xml')
+        alt_filename = os.path.join(self.temp_entry_dirname, 'final.m')
+        with open(temp_filename, 'w'):
+            pass
+        with open(alt_filename, 'w'):
+            pass
+
+        convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+
+        self.assertTrue(os.path.isfile(alt_filename))
+
+    def test__handle_sbf_converter_errors_error_log(self):
+        temp_filename = os.path.join(self.temp_entry_dirname, 'temp.xml')
+        alt_filename = os.path.join(self.temp_entry_dirname, 'final.m')
+        error_log_filename = os.path.join(self.temp_entry_dirname, 'temp.errorLog')
+        with open(temp_filename, 'w'):
+            pass
+        with open(alt_filename, 'w'):
+            pass
+        with open(error_log_filename, 'w'):
+            pass
+
+        with self.assertRaises(ValueError):
+            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+
+        self.assertFalse(os.path.isfile(alt_filename))
+        self.assertFalse(os.path.isfile(error_log_filename))
+
+    def test__handle_sbf_converter_errors_failure_message(self):
+        temp_filename = os.path.join(self.temp_entry_dirname, 'temp.xml')
+        alt_filename = os.path.join(self.temp_entry_dirname, 'final.m')
+        with open(temp_filename, 'w'):
+            pass
+        with open(alt_filename, 'w') as file:
+            file.write('####\n')
+            file.write('#Something went wrong\n')
+
+        with self.assertRaises(RuntimeError):
+            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+
+        self.assertFalse(os.path.isfile(alt_filename))
+
+    def test__handle_sbf_converter_errors_multiple(self):
+        temp_filename = os.path.join(self.temp_entry_dirname, 'temp.xml')
+        alt_filename = os.path.join(self.temp_entry_dirname, 'final.m')
+        error_log_filename = os.path.join(self.temp_entry_dirname, 'temp.errorLog')
+        with open(temp_filename, 'w'):
+            pass
+        with open(alt_filename, 'w') as file:
+            file.write('####\n')
+            file.write('#Something went wrong\n')
+        with open(error_log_filename, 'w'):
+            pass
+
+        with self.assertRaises(ValueError):
+            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+
+        self.assertFalse(os.path.isfile(alt_filename))
+        self.assertFalse(os.path.isfile(error_log_filename))

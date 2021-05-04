@@ -29,8 +29,16 @@ class UtilsTestCase(unittest.TestCase):
 
     def test_build_combine_archive(self):
         archive_filename = os.path.join(self.temp_dirname, 'archive.omex')
-        utils.build_combine_archive(self.FIXTURE_DIRNAME, 'MODEL7817907010.sedml', archive_filename)
+        utils.build_combine_archive(self.FIXTURE_DIRNAME, ['MODEL7817907010.sedml'], archive_filename)
 
         archive_dirname = os.path.join(self.temp_dirname, 'archive')
         archive = CombineArchiveReader().run(archive_filename, archive_dirname)
         self.assertEqual(archive.get_master_content()[0].location, 'MODEL7817907010.sedml')
+
+    def test_are_biopax_files_the_same(self):
+        a = os.path.join(os.path.dirname(__file__), 'fixtures', 'are_biopax_files_the_same', 'BIOMD0000000692-biopax2.owl')
+        b = os.path.join(os.path.dirname(__file__), 'fixtures', 'are_biopax_files_the_same', 'BIOMD0000000692-biopax3.owl')
+        c = os.path.join(os.path.dirname(__file__), 'fixtures', 'are_biopax_files_the_same', 'BIOMD0000000692-biopax2-diff-timestamp.owl')
+        self.assertTrue(utils.are_biopax_files_the_same(a, a))
+        self.assertFalse(utils.are_biopax_files_the_same(a, b))
+        self.assertTrue(utils.are_biopax_files_the_same(a, c))

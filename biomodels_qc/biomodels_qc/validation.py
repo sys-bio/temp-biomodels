@@ -268,7 +268,7 @@ def validate_sedml_file(filename, dirname=None, simulators=None):
         fid, archive_filename = tempfile.mkstemp()
         os.close(fid)
 
-        build_combine_archive(dirname, os.path.relpath(filename, dirname), archive_filename)
+        build_combine_archive(dirname, [os.path.relpath(filename, dirname)], archive_filename)
 
         has_capable_simulator = False
         exec_errors = []

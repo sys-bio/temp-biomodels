@@ -7,37 +7,43 @@ such as BioPAX, MATLAB/Octave, and XPP.
 :License: MIT
 """
 
-import warnings
-import termcolor
-import subprocess
-import shutil
-import os
-import libsbml
-import glob
-import enum
-from .utils import get_smbl_files_for_entry
+from .utils import get_smbl_files_for_entry, are_biopax_files_the_same
 from .validation import validate_xpp_file
 from biosimulators_utils.sedml.data_model import Task
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from kisao import Kisao
 from kisao.utils import get_ode_algorithms
+import enum
+import glob
+import libsbml
+import os
+import shutil
+import subprocess
+import tempfile
+import termcolor
+import warnings
 
 __all__ = [
     'convert_entry',
     'AltSbmlFormat',
     'convert_sbml',
+    'run_sbf_converter',
 ]
 
 _ODE_INTEGRATION_KISAO_TERM_IDS = None
 
 
-def convert_entry(dirname):
+def convert_entry(dirname, alt_sbml_formats=None):
     """ Convert the primary files for an entry of the BioModels database to alternative formats
     such as BioPAX, MATLAB/Octave, and XPP.
 
     Args:
         dir (:obj:`str): path to directory for a entry of the BioModels database
+        alt_sbml_formats (:obj:`list` of :obj:`AltSbmlFormat`, optional): list of formats to convert
+            SBML files to
     """
+    alt_sbml_formats = alt_sbml_formats or list(AltSbmlFormat.__members__.values())
+
     module = globals()
     if not module['_ODE_INTEGRATION_KISAO_TERM_IDS']:
         ode_alg_ids = Kisao().get_term_ids(get_ode_algorithms())
@@ -61,8 +67,6 @@ def convert_entry(dirname):
             pass
 
     for filename in get_smbl_files_for_entry(dirname, include_urn_files=False):
-        alt_formats = list(AltSbmlFormat.__members__.values())
-
         doc = libsbml.readSBMLFromFile(filename)
         for i_plugin in range(doc.getNumPlugins()):
             plugin = doc.getPlugin(i_plugin)
@@ -71,15 +75,16 @@ def convert_entry(dirname):
                 (has_sedml_task and not ode_simulation)
                 or package_name in ['arrays', 'comp', 'distrib', 'dyn', 'fbc', 'groups', 'math', 'multi', 'qual', 'spatial']
             ):
-                for format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
-                    alt_formats.remove(format)
+                for alt_sbml_format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
+                    alt_sbml_formats.remove(alt_sbml_format)
 
                     if filename.endswith('_url.xml'):
-                        old_final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[format]['old_final_extension']
-                        final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[format]['final_extension']
+                        old_final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['old_final_extension']
+                        final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['final_extension']
                     else:
-                        old_final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[format]['old_final_extension']
-                        final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[format]['final_extension']
+                        old_final_converted_filename = os.path.splitext(
+                            filename)[0] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['old_final_extension']
+                        final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['final_extension']
 
                     if os.path.isfile(old_final_converted_filename):
                         os.remove(old_final_converted_filename)
@@ -87,11 +92,26 @@ def convert_entry(dirname):
                         os.remove(final_converted_filename)
                 break
 
-        for alt_format in alt_formats:
+        for alt_sbml_format in alt_sbml_formats:
             try:
-                alt_filename = convert_sbml(filename, alt_format)
+                format_data = ALT_SBML_FORMAT_DATA[alt_sbml_format]
+                if filename.endswith('_url.xml'):
+                    alt_filename = filename[0:-8] + format_data['final_extension']
+                else:
+                    alt_filename = os.path.splitext(filename)[0] + format_data['final_extension']
 
-                if alt_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
+                fid, temp_filename = tempfile.mkstemp()
+                os.close(fid)
+                convert_sbml(filename, alt_sbml_format, temp_filename)
+
+                move_to_alt_filename = True
+                if alt_sbml_format in [AltSbmlFormat.BioPAX_l2, AltSbmlFormat.BioPAX_l3] and os.path.isfile(alt_filename):
+                    move_to_alt_filename = not are_biopax_files_the_same(alt_filename, temp_filename)
+
+                if move_to_alt_filename:
+                    shutil.move(temp_filename, alt_filename)
+
+                if alt_sbml_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
                     warnings.warn(termcolor.colored('`{}` could not be converted to valid XPP file.'.format(filename)), UserWarning)
                     os.remove(alt_filename)
             except RuntimeError:
@@ -149,7 +169,7 @@ ALT_SBML_FORMAT_DATA = {
 }
 
 
-def convert_sbml(filename, format):
+def convert_sbml(filename, alt_format, alt_filename):
     """ Convert a SBML file to another format
 
     * SBML (with URNs)
@@ -159,15 +179,69 @@ def convert_sbml(filename, format):
 
     Args:
         filename (:obj:`str`): path to SBML file
-        format (:obj:`AltSbmlFormat`): another format
-
-    Returns:
-        :obj:`str`: path to converted file
+        alt_format (:obj:`AltSbmlFormat`): another format
+        alt_filename (:obj:`str`): path to save converted file
     """
-    format_data = ALT_SBML_FORMAT_DATA[format]
+    format_data = ALT_SBML_FORMAT_DATA[alt_format]
 
+    temp_dir = tempfile.mkdtemp()
+    temp_filename = os.path.join(temp_dir, os.path.basename(filename))
+    shutil.copyfile(filename, temp_filename)
+
+    try:
+        run_sbf_converter(temp_filename, format_data['id'])
+    except ValueError:
+        shutil.rmtree(temp_dir)
+        raise
+
+    init_converted_filename = os.path.splitext(temp_filename)[0] + format_data['init_extension']
+    shutil.move(init_converted_filename, alt_filename)
+
+    try:
+        _handle_sbf_converter_errors(filename, temp_filename, alt_filename, alt_format)
+    finally:
+        shutil.rmtree(temp_dir)
+
+
+def _handle_sbf_converter_errors(filename, temp_filename, alt_filename, alt_format):
+    value_error = None
+    error_log_filename = os.path.splitext(temp_filename)[0] + '.errorLog'
+    if os.path.isfile(error_log_filename):
+        with open(error_log_filename, 'r') as file:
+            value_error = file.read()
+        os.remove(error_log_filename)
+
+    runtime_error = None
+    with open(alt_filename, 'rb') as file:
+        line = file.readline().decode()
+        if line.startswith('####'):
+            line = file.readline().decode()
+            if line.startswith('#Something went wrong'):
+                runtime_error = 'sbfConverter failed'
+
+    if value_error is not None:
+        os.remove(alt_filename)
+        raise ValueError('`{}` could not be converted to {}:\n\n  {}'.format(
+            filename, alt_format.name, value_error.replace('\n', '\n  ')))
+
+    if runtime_error is not None:
+        os.remove(alt_filename)
+        raise RuntimeError('`{}` could not be converted to {}:\n\n  {}'.format(
+            filename, alt_format.name, runtime_error.replace('\n', '\n  ')))
+
+
+def run_sbf_converter(filename, format):
+    """ Run the Systems Biology Format Converter (SBFC)
+
+    Args:
+        filename (:obj:`str`): path to file to convert
+        format (:obj:`str`): format to convert file to
+
+    Raises:
+        :obj:`ValueError`: if the conversion failed
+    """
     if os.name == 'nt':
-        sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.bat'))
+        sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.bat'))  # pragma: no cover
     else:
         sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.sh'))
     jar_dirname = os.path.join(sbf_converter_home, 'lib')
@@ -182,45 +256,9 @@ def convert_sbml(filename, format):
         '-Dmiriam.xml.export={}/miriam.xml'.format(sbf_converter_home),
         'org.sbfc.converter.Converter',
         'SBMLModel',
-        format_data['id'],
+        format,
         filename,
     ], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
     if result.returncode != 0:
-        raise ValueError(result.stderr.decode())
-
-    init_converted_filename = os.path.splitext(filename)[0] + format_data['init_extension']
-
-    if filename.endswith('_url.xml'):
-        final_converted_filename = filename[0:-8] + format_data['final_extension']
-    else:
-        final_converted_filename = os.path.splitext(filename)[0] + format_data['final_extension']
-
-    if init_converted_filename != final_converted_filename:
-        shutil.move(init_converted_filename, final_converted_filename)
-
-    runtime_error = None
-    with open(final_converted_filename, 'rb') as file:
-        line = file.readline().decode()
-        if line.startswith('####'):
-            line = file.readline().decode()
-            if line.startswith('#Something went wrong'):
-                runtime_error = 'sbfConverter failed'
-
-    value_error = None
-    error_log_filename = filename[0:-4] + '.errorLog'
-    if os.path.isfile(error_log_filename):
-        with open(error_log_filename, 'r') as file:
-            value_error = file.read()
-        os.remove(error_log_filename)
-
-    if value_error:
-        os.remove(final_converted_filename)
-        raise ValueError('`{}` could not be converted to {}:\n\n  {}'.format(
-            filename, format.name, value_error.replace('\n', '\n  ')))
-
-    if runtime_error:
-        os.remove(final_converted_filename)
-        raise RuntimeError('`{}` could not be converted to {}:\n\n  {}'.format(
-            filename, format.name, runtime_error.replace('\n', '\n  ')))
-
-    return final_converted_filename
+        raise ValueError('The Systems Biology Format Converter failed:\n\n  {}'.format(
+            result.stderr.decode().replace('\n', '\n  ')))
