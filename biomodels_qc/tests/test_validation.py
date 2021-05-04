@@ -261,6 +261,11 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('Start tag expected', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
+        manifest_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000585', 'manifest.xml')
+        errors, warnings = validation.validate_xml_file(manifest_filename)
+        self.assertIn('should not contain manifests', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
     def test_validate_xpp_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.xpp')
         errors, warnings = validation.validate_xpp_file(filename)

@@ -24,6 +24,7 @@ import nbformat
 import os
 import owlready2
 import PyPDF2
+import re
 import scipy.io
 import shutil
 import subprocess
@@ -374,11 +375,19 @@ def validate_xml_file(filename):
     """
     try:
         root = lxml.etree.parse(filename).getroot()
-        if root.nsmap.get(None, '').startswith('http://www.sbml.org/'):
-            return validate_sbml_file(filename)
-        return [], []
     except Exception as exception:
         return [[str(exception)]], []
+
+    default_ns = root.nsmap.get(None, '')
+    if default_ns.startswith('http://www.sbml.org/'):
+        return validate_sbml_file(filename)
+    elif re.match(r'^http://identifiers\.org/combine\.specifications/omex-manifest($|\.)', default_ns):
+        return [[(
+            'BioModels entries should not contain manifests for COMBINE/OMEX archives. '
+            'The BioModels platform automatically generates a manifest for each entry.'
+        )]], []
+
+    return [], []
 
 
 def validate_xpp_file(filename):
