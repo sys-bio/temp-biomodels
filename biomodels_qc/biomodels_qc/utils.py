@@ -44,7 +44,7 @@ def get_smbl_files_for_entry(dir, include_urn_files=False):
 
 
 EXTENSION_COMBINE_FORMAT_MAP = {
-    '.cps': 'http://purl.org/NET/mediatypes/application/cps+xml',
+    '.cps': CombineArchiveContentFormat.CPS.value,
     '.gif': 'http://purl.org/NET/mediatypes/application/gif',
     '.ipynb': 'http://purl.org/NET/mediatypes/application/x-ipynb+json',
     '.jpg': 'http://purl.org/NET/mediatypes/application/jpeg',
@@ -57,7 +57,7 @@ EXTENSION_COMBINE_FORMAT_MAP = {
     '.py': 'http://purl.org/NET/mediatypes/application/x-python-code',
     '.sbml': CombineArchiveContentFormat.SBML.value,
     '.sedml': CombineArchiveContentFormat.SED_ML.value,
-    '.vcml': 'http://purl.org/NET/mediatypes/application/vcml+xml',
+    '.vcml': CombineArchiveContentFormat.VCML.value,
     '.xml': CombineArchiveContentFormat.SBML.value,
     '.xpp': 'http://purl.org/NET/mediatypes/text/plain',
     '.zip': 'http://purl.org/NET/mediatypes/application/zip',
