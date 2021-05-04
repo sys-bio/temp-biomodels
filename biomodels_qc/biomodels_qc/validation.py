@@ -33,6 +33,7 @@ import zipfile
 
 __all__ = [
     'validate_entry',
+    'validate_combine_archive',
     'validate_copasi_file',
     'validate_image_file',
     'validate_ipynb_notebook_file',
@@ -55,6 +56,29 @@ class ImageFormat(str, enum.Enum):
     jpg = 'jpeg'
     gif = 'gif'
     png = 'png'
+
+
+def validate_combine_archive(filename):
+    """ Determine if a COMBINE/OMEX archive is valid
+
+    Args:
+        filename (:obj:`str`): path to COMBINE/OMEX archive
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    errors = []
+    warnings = []
+
+    errors.append([(
+        'BioModels entries should not contain COMBINE/OMEX archives. '
+        'The BioModels platform automatically generates a COMBINE/OMEX archive for each entry.'
+    )])
+
+    return errors, warnings
 
 
 def validate_copasi_file(filename):
@@ -430,6 +454,10 @@ EXTENSION_VALIDATOR_MAP = {
         'description': 'MATLAB data file',
         'validator': validate_matlab_data_file,
     },
+    '.omex': {
+        'description': 'COMBINE/OMEX archive',
+        'validator': validate_combine_archive,
+    },
     '.owl': {
         'description': 'OWL ontology',
         'validator': validate_owl_ontology_file,
@@ -453,6 +481,10 @@ EXTENSION_VALIDATOR_MAP = {
     '.sedml': {
         'description': 'SED-ML',
         'validator': validate_sedml_file,
+    },
+    '.sedx': {
+        'description': 'SED-ML archive',
+        'validator': validate_combine_archive,
     },
     '.svg': {
         'description': 'SVG',

@@ -50,6 +50,12 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertNotEqual(warnings, [])
 
+    def test_validate_combine_archive(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000585', 'Rateitschak2012.omex')
+        errors, warnings = validation.validate_combine_archive(filename)
+        self.assertIn('should not contain COMBINE/OMEX archives', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
     def test_validate_copasi_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000042', 'BIOMD0000000042.cps')
         errors, warnings = validation.validate_copasi_file(filename)

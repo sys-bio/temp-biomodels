@@ -12,6 +12,7 @@ class FixType(str, enum.Enum):
     """ Type of manual fix """
     replace_text = 'replace_text'
     rename_file = 'rename_file'
+    remove_file = 'remove_file'
 
 
 def run(id, working_dir):
@@ -46,5 +47,11 @@ def run(id, working_dir):
 
         elif fix['type'] == FixType.rename_file.value:
             os.rename(filename, os.path.join(working_dir, id, fix['new']))
+
+        elif fix['type'] == FixType.remove_file.value:
+            os.remove(filename)
+
+        else:
+            raise NotImplementedError('Fix type `{}` is not supported.'.format(fix['type']))
 
     return sorted(set(fix['filename'] for fix in fixes))
