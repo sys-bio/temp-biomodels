@@ -1691,15 +1691,6 @@ Reaction scheme where the products are created from the reactants and the change
         <MiriamAnnotation>
 <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_64">
-    <dcterms:bibliographicCitation>
-      <rdf:Bag>
-        <rdf:li>
-          <rdf:Description>
-            <CopasiMT:isDescribedBy rdf:resource="urn:miriam:unknown:" />
-          </rdf:Description>
-        </rdf:li>
-      </rdf:Bag>
-    </dcterms:bibliographicCitation>
     <CopasiMT:is>
       <rdf:Bag>
         <rdf:li rdf:resource="urn:miriam:biomodels.sbo:0000180" />

@@ -1414,7 +1414,6 @@ not sufficient</dcterms:description>
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -1469,7 +1468,6 @@ not sufficient</dcterms:description>
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -1739,7 +1737,6 @@ not sufficient</dcterms:description>
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -2188,7 +2185,6 @@ not sufficient</dcterms:description>
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -2243,7 +2239,6 @@ not sufficient</dcterms:description>
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -2513,7 +2508,6 @@ not sufficient</dcterms:description>
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>

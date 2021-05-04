@@ -1337,7 +1337,6 @@ Reaction scheme where the products are created from the reactants and the change
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -1392,7 +1391,6 @@ Reaction scheme where the products are created from the reactants and the change
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -1662,7 +1660,6 @@ Reaction scheme where the products are created from the reactants and the change
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -2111,7 +2108,6 @@ Reaction scheme where the products are created from the reactants and the change
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -2166,7 +2162,6 @@ Reaction scheme where the products are created from the reactants and the change
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -2436,7 +2431,6 @@ Reaction scheme where the products are created from the reactants and the change
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0006826" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>

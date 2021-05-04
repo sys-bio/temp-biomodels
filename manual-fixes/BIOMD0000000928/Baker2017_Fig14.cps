@@ -808,7 +808,7 @@ fibronectin fragments osteoarthritis</div>
         <MiriamAnnotation>
 <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_4">
-    <bqmodel:isInstanceOf rdf:resource="urn:miriam:unknown:urn:miriam:unknown:SIO:010295" />
+    <bqmodel:isInstanceOf rdf:resource="http://semanticscience.org/resource/SIO_010295" />
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2018-01-19T11:53:26Z</dcterms:W3CDTF>
@@ -883,7 +883,7 @@ fibronectin fragments osteoarthritis</div>
         <MiriamAnnotation>
 <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_6">
-    <bqmodel:isInstanceOf rdf:resource="urn:miriam:unknown:urn:miriam:unknown:SIO:010295" />
+    <bqmodel:isInstanceOf rdf:resource="http://semanticscience.org/resource/SIO_010295" />
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2018-01-19T11:53:23Z</dcterms:W3CDTF>
@@ -925,7 +925,7 @@ fibronectin fragments osteoarthritis</div>
         <MiriamAnnotation>
 <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_7">
-    <bqmodel:isInstanceOf rdf:resource="urn:miriam:unknown:urn:miriam:unknown:SIO:010295" />
+    <bqmodel:isInstanceOf rdf:resource="http://semanticscience.org/resource/SIO_010295" />
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2018-01-19T11:53:23Z</dcterms:W3CDTF>
