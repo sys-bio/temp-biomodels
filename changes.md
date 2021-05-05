@@ -41,6 +41,7 @@ Summary of the changes to the content of BioModels
         * Reports with no data sets
         * 2D plots with no curves
         * 3D plots with no surfaces
+    * Decreased excessive numbers of steps of time courses
 
 * OMEX files
     * Replaced file with its content: BIOMD0000000585/Rateitschak2012.omex
