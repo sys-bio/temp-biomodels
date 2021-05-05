@@ -78,7 +78,7 @@ def validate_filename(filename):
     if (
         not re.match(r'^[a-z0-9_\-\. {}]+$'.format(re.escape(os.sep)), basename, re.IGNORECASE)
         or '..' in filename
-        or not re.match(r'^\.[a-z0-9_\-]+$', extension, re.IGNORECASE)
+        or not re.match(r'^\.[a-z0-9_\-]+$', extension)
     ):
         return [[(
             'Filename `{}` is invalid. Filenames should only contain letters, numbers, underscores, '
