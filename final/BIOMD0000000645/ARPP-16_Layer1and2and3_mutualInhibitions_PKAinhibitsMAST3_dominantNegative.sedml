@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2"><listOfModels>
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfModels>
     <model id="model" language="urn:sedml:language:sbml" source="BIOMD0000000645_url.xml"/>
   </listOfModels>
   <listOfSimulations>
@@ -13,18 +14,12 @@
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <task id="task2" modelReference="model" simulationReference="steady2"/>
-    <repeatedTask id="task3" range="range0" resetModel="true">
+    <repeatedTask id="task3" range="range1" resetModel="true">
       <listOfRanges>
-        <uniformRange id="range0" start="0" end="5" numberOfPoints="100" type="linear"/>
         <uniformRange id="range1" start="0" end="10" numberOfPoints="40" type="linear"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='cAMP']" range="range0">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> range0 </ci>
-          </math>
-        </setValue>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='A46']" range="range1">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range1 </ci>
           </math>
@@ -32,6 +27,21 @@
       </listOfChanges>
       <listOfSubTasks>
         <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+    <repeatedTask id="task4" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="0" end="5" numberOfPoints="100" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task3"/>
       </listOfSubTasks>
     </repeatedTask>
   </listOfTasks>
@@ -49,7 +59,7 @@
         <ci> p1_A46bar_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_A46bar_task1" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='A46bar']" taskReference="task1"/>
+        <variable id="p1_A46bar_task1" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A46bar&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="cAMP_1_task1" name="cAMP">
@@ -57,7 +67,7 @@
         <ci> p1_cAMP_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_cAMP_task1" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='cAMP']" taskReference="task1"/>
+        <variable id="p1_cAMP_task1" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="time_task3" name="Time">
@@ -73,7 +83,7 @@
         <ci> p1_A46bar_task3 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_A46bar_task3" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='A46bar']" taskReference="task3"/>
+        <variable id="p1_A46bar_task3" name="A46bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A46bar&apos;]" taskReference="task3"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="cAMP_1_task3" name="cAMP">
@@ -81,7 +91,7 @@
         <ci> p1_cAMP_task3 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_cAMP_task3" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='cAMP']" taskReference="task3"/>
+        <variable id="p1_cAMP_task3" name="cAMP" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" taskReference="task3"/>
       </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
