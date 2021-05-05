@@ -34,6 +34,7 @@ import zipfile
 
 __all__ = [
     'validate_entry',
+    'validate_filename',
     'validate_combine_archive',
     'validate_copasi_file',
     'validate_image_file',
@@ -57,6 +58,34 @@ class ImageFormat(str, enum.Enum):
     jpg = 'jpeg'
     gif = 'gif'
     png = 'png'
+
+
+def validate_filename(filename):
+    """ Determine if a filename is valid
+
+    * Check that name only involves alphanumeric characters, underscores and dashes
+
+    Args:
+        filename (:obj:`str`): path to file
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    basename, extension = os.path.splitext(filename)
+
+    if (
+        not re.match(r'^[a-z0-9_\-\. {}]+$'.format(re.escape(os.sep)), basename, re.IGNORECASE)
+        or '..' in filename
+        or not re.match(r'^\.[a-z0-9_\-]+$', extension, re.IGNORECASE)
+    ):
+        return [[(
+            'Filename `{}` is invalid. Filenames should only contain letters, numbers, underscores, '
+            'dashes and periods to separate extensions.'
+        ).format(filename)]], []
+    else:
+        return [], []
 
 
 def validate_combine_archive(filename):
@@ -556,6 +585,10 @@ def validate_entry(dirname, file_extensions=None, filenames=None, simulators=Non
 
     # validate files
     for filename in filenames:
+        temp_errors, temp_warnings = validate_filename(os.path.relpath(filename, dirname))
+        errors.extend(temp_errors)
+        warnings.extend(temp_warnings)
+
         ext = os.path.splitext(filename)[1].lower()
 
         file_type = EXTENSION_VALIDATOR_MAP.get(ext, None)

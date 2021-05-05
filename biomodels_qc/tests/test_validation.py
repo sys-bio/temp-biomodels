@@ -20,6 +20,13 @@ class ValidationTestCase(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.temp_dirname)
 
+    def test_validate_filename(self):
+        self.assertEqual(validation.validate_filename('model.xml'), ([], []))
+        self.assertEqual(validation.validate_filename(os.path.join('subdir', 'model.xml')), ([], []))
+        self.assertEqual(validation.validate_filename(os.path.join('subdir', 'model1_-.xml')), ([], []))
+        self.assertNotEqual(validation.validate_filename(os.path.join('subdir&', 'model1_-.xml')), ([], []))
+        self.assertNotEqual(validation.validate_filename(os.path.join('subdir', 'model-α.xml')), ([], []))
+
     def test_validate_entry(self):
         valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724')
         errors, warnings = validation.validate_entry(valid_dirname)
