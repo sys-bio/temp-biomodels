@@ -294,6 +294,41 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('should not contain manifests', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692-biopax2.owl')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000042', 'BIOMD0000000042.cps')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.svg')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000001', 'BIOMD0000000001.vcml')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
     def test_validate_xpp_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.xpp')
         errors, warnings = validation.validate_xpp_file(filename)

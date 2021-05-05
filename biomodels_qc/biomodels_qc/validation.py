@@ -488,6 +488,21 @@ def validate_xml_file(filename):
             'The BioModels platform automatically generates a manifest for each entry.'
         )]], []
 
+    elif root.nsmap.get('bp', '').startswith('http://www.biopax.org/release/') and os.path.splitext(filename)[1] != '.owl':
+        return [['BioPAX files should have the extension `.owl`']], []
+
+    elif default_ns.startswith('http://www.copasi.org/static/schema') and os.path.splitext(filename)[1] != '.cps':
+        return [['COPASI files should have the extension `.cps`']], []
+
+    elif default_ns.startswith('http://sed-ml.org/') and os.path.splitext(filename)[1] != '.sedml':
+        return [['SED-ML files should have the extension `.sedml`']], []
+
+    elif default_ns.startswith('http://www.w3.org/2000/svg') and os.path.splitext(filename)[1] != '.svg':
+        return [['SVG files should have the extension `.svg`']], []
+
+    elif default_ns.startswith('http://sourceforge.net/projects/vcell/vcml') and os.path.splitext(filename)[1] != '.vcml':
+        return [['VCell files should have the extension `.vcml`']], []
+
     return [], []
 
 
