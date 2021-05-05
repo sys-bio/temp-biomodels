@@ -77,8 +77,10 @@ def validate_filename(filename):
     basename, extension = os.path.splitext(filename)
 
     if (
-        not re.match(r'^[a-z0-9_\-\. {}]+$'.format(re.escape(os.sep)), basename, re.IGNORECASE)
+        not re.match(r'^[a-z0-9_\-\. \(\){}]+$'.format(re.escape(os.sep)), basename, re.IGNORECASE)
         or '..' in filename
+        or '.-' in filename
+        or '._' in filename
         or not re.match(r'^\.[a-z0-9_\-]+$', extension)
     ):
         return [[(
