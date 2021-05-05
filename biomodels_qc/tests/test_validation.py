@@ -65,12 +65,12 @@ class ValidationTestCase(unittest.TestCase):
 
     def test_validate_copasi_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000042', 'BIOMD0000000042.cps')
-        errors, warnings = validation.validate_copasi_file(filename)
+        errors, warnings = validation.validate_copasi_file_in_subprocess(filename)
         self.assertEqual(errors, [])
         self.assertEqual(warnings, [])
 
         png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693', 'BIOMD0000000693.png')
-        errors, warnings = validation.validate_copasi_file(png_filename)
+        errors, warnings = validation.validate_copasi_file_in_subprocess(png_filename)
         self.assertIn('Unrecognized content format', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 

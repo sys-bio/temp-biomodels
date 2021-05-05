@@ -16,6 +16,7 @@ import ast
 import biosimulators_utils.simulator.specs
 import COPASI
 import enum
+import faulthandler
 import glob
 import imghdr
 import json
@@ -29,15 +30,19 @@ import re
 import scipy.io
 import shutil
 import subprocess
+import sys
 import tempfile
 import warnings
 import zipfile
+
+faulthandler.enable()
 
 __all__ = [
     'validate_entry',
     'validate_filename',
     'validate_combine_archive',
     'validate_copasi_file',
+    'validate_copasi_file_in_subprocess',
     'validate_image_file',
     'validate_ipynb_notebook_file',
     'validate_matlab_data_file',
@@ -133,6 +138,34 @@ def validate_copasi_file(filename):
         return [], []
     else:
         return [[COPASI.CCopasiMessage.getAllMessageText()]], []
+
+
+def validate_copasi_file_in_subprocess(filename):
+    """ Determine if a COPASI file is valid, handling segmentation faults in COPASI
+
+    Args:
+        filename (:obj:`str`): path to COPASI file
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    result = subprocess.run(
+        [
+            sys.executable, '-c',
+            ';'.join([
+                'from biomodels_qc.validation import validate_copasi_file',
+                'import json',
+                'print(json.dumps(validate_copasi_file("{}")))'.format(filename),
+            ]),
+        ],
+        check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode == 0:
+        return json.loads(result.stdout.decode())
+    else:
+        return [['COPASI failed', [[result.stderr.decode()]]]], []
 
 
 def validate_image_file(filename, image_format):
@@ -509,7 +542,7 @@ def validate_zip_file(filename):
 EXTENSION_VALIDATOR_MAP = {
     '.cps': {
         'description': 'COPASI',
-        'validator': validate_copasi_file,
+        'validator': validate_copasi_file_in_subprocess,
     },
     '.gif': {
         'description': 'GIF image',
