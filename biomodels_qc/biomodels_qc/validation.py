@@ -50,6 +50,7 @@ __all__ = [
     'validate_pdf_file',
     'validate_python_file',
     'validate_sbml_file',
+    'validate_scilab_file',
     'validate_sedml_file',
     'validate_vcml_file',
     'validate_xml_file',
@@ -323,6 +324,26 @@ def validate_sbml_file(filename):
     return errors, warnings
 
 
+def validate_scilab_file(filename):
+    """ Determine if an Scilab file is valid
+
+    Args:
+        filename (:obj:`str`): path to Scilab file
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    result = subprocess.run(['scilab', '--parse-file', filename, '-nb', '-nwni'],
+                            check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode == 0:
+        return [], []
+    else:
+        return [['`{}` is not valid.'.format(filename)]], []
+
+
 def validate_sedml_file(filename, dirname=None, max_number_of_time_course_steps=1000, simulators=None):
     """ Determine if a SED-ML file is valid, optionally including checking whether it can be executed by 1 or more simulation tools
 
@@ -433,7 +454,13 @@ def validate_vcml_file(filename):
             * nested :obj:`list` of :obj:`str`: nested list of errors
             * nested :obj:`list` of :obj:`str`: nested list of warnings
     """
-    return validate_xml_file(filename)
+    errors, warnings = validate_xml_file(filename)
+
+    with open(filename, 'rb') as file:
+        if 'SBML Model could not be automatically converted to VCML'.encode() in file.read():
+            errors.append(['`{}` does not represent a valid model.'.format(filename)])
+
+    return errors, warnings
 
 
 def validate_xml_file(filename):
@@ -603,6 +630,10 @@ EXTENSION_VALIDATOR_MAP = {
     '.sbml': {
         'description': 'SBML',
         'validator': validate_sbml_file,
+    },
+    '.sci': {
+        'description': 'Scilab',
+        'validator': validate_scilab_file,
     },
     '.sedml': {
         'description': 'SED-ML',

@@ -67,3 +67,5 @@ Summary of the changes to the content of BioModels
     * Remove 1 invalid derived VCML file
     * Removed 22 corrupted PNG files
     * Removed MATLAB/Octave and XPP files for non-kinetic models
+    * Removed 399 bad VCML files
+    * Removed 524 bad Scilab files

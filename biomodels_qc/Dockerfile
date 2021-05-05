@@ -55,6 +55,13 @@ RUN apt-get update -y \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Scilab
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        scilab \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install SVGLint
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
