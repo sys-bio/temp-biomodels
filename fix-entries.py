@@ -80,11 +80,11 @@ def fix_entry(id, convert_files=False, guess_file=None, validateSBML=False):
     omex_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'), recursive=True)
     remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
 
-    #Collect lists of files
+    # Collect lists of files
     sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     copasi_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.cps'), recursive=True)
     sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
-    
+
     remove_non_sbml.run(id, sbml_filenames)
 
     sedml_filenames.sort()
@@ -107,13 +107,13 @@ def fix_entry(id, convert_files=False, guess_file=None, validateSBML=False):
                 guess_file.write(entry)
                 guess_file.write(",")
             guess_file.write("\n")
-            
+
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
     fix_SBML_validity.run(id, sbml_filenames)
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
 
-    #More expensive tests/fixes that we probably don't want to run all the time:
+    # More expensive tests/fixes that we probably don't want to run all the time:
     if validateSBML:
         validate_SBML.run(id, sbml_filenames, g_SBMLValidationErrors)
     if convert_files:
@@ -137,13 +137,13 @@ if __name__ == "__main__":
 
     parser.add_argument(
         '--convert-files',
-        help='Skip converting SBML files to alternative formats.',
+        help='Converting SBML files to alternative formats.',
         action='store_true'
     )
-    
+
     parser.add_argument(
         '--validateSBML',
-        help='Skip validating SBML files.',
+        help='Validate SBML files.',
         action='store_true',
     )
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
     guess_file = open("guesses.csv", "w")
     fix_entries(ids, convert_files=args.convert_files, guess_file=guess_file, validateSBML=args.validateSBML)
     guess_file.close()
-    
+
     if args.validateSBML:
         err_file = open("sbml_validation.csv", "w")
         for err in g_SBMLValidationErrors:
