@@ -20,7 +20,7 @@
 % isDerivedFrom http://identifiers.org/ncit/C28240
 % isDerivedFrom http://identifiers.org/biomodels.teddy/TEDDY_0000072
 % isDerivedFrom http://identifiers.org/taxonomy/1423
-% isDerivedFrom urn:miriam:unknown:https://link.springer.com/article/10.1007%2FBF01165134
+% isDerivedFrom urn:miriam:doi:10.1007/BF01165134
 % is http://identifiers.org/biomodels.db/MODEL2004140001
 % is http://identifiers.org/biomodels.db/BIOMD0000000932
 %

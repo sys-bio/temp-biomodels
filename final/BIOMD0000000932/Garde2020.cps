@@ -140,7 +140,7 @@
     <bqbiol:hasProperty rdf:resource="urn:miriam:mamo:MAMO_0000046"/>
     <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C28240"/>
     <bqbiol:hasTaxon rdf:resource="urn:miriam:taxonomy:1423"/>
-    <bqmodel:isDerivedFrom rdf:resource="urn:miriam:unknown:https://link.springer.com/article/10.1007%2FBF01165134"/>
+    <bqmodel:isDerivedFrom rdf:resource="urn:miriam:doi:10.1007/BF01165134"/>
     <dcterms:bibliographicCitation>
       <rdf:Description>
         <CopasiMT:isDescribedBy rdf:resource="urn:miriam:pubmed:32257302"/>

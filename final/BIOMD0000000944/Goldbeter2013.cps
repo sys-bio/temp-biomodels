@@ -162,7 +162,7 @@
     <bqbiol:hasProperty rdf:resource="urn:miriam:go:GO:0007049"/>
     <bqbiol:hasProperty rdf:resource="urn:miriam:mamo:MAMO_0000046"/>
     <bqbiol:hasTaxon rdf:resource="urn:miriam:omit:0002077"/>
-    <bqmodel:isDerivedFrom rdf:resource="urn:miriam:unknown:http://identifiers.org/pubmed/1833774"/>
+    <bqmodel:isDerivedFrom rdf:resource="urn:miriam:pubmed:1833774"/>
     <dcterms:bibliographicCitation>
       <rdf:Description>
         <CopasiMT:isDescribedBy rdf:resource="urn:miriam:pubmed:23892075"/>
