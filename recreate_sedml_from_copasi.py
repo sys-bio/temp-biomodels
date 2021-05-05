@@ -11,29 +11,44 @@ import re
 import difflib
 import libsedml
 
-#These Copasi files are invalid (the later two were fixed by hand in manual-fixes).
-bad_copasifiles = ["MODEL1305060000_edited.cps",]# "Aubert2002.cps", "khajanchi2017.cps"]
+# These Copasi files are invalid (the later two were fixed by hand in manual-fixes).
+bad_copasifiles = ["MODEL1305060000_edited.cps", ]  # "Aubert2002.cps", "khajanchi2017.cps"]
 
-#These Copasi files will be ignored, and the present SED-ML used instead.
-copasi_with_worse_sedml = ["Tsai2014.cps", "Panteleev2010_full_model.cps", "Wang2016_2.cps",]
+# These Copasi files will be ignored, and the present SED-ML used instead.
+copasi_with_worse_sedml = ["Tsai2014.cps", "Panteleev2010_full_model.cps", "Wang2016_2.cps", ]
 
-#Just for the record:  All Copasi files are treated as 'better' than the existing SED-ML, but for these files in particular, the SED-ML was noticably different.
-copasi_with_better_sedml = ["MODEL1511290000.cps", "Theinmozhi_2018.cps", "Bravo2012.cps", "Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.cps", "Dudziuk2019.cps", "Coulibaly2019.cps", "Sun2018.cps", "Smith2011_V1.cps", "Lee2017_Paracetamol_Metabolism.cps", "OVDC.cps", "Smith1980_HypothalamicRegulation.cps", "DiCamillo2016.cps", "Verma2016.cps", "Rao2014.cps", "Radosavljevic2009.cps", "Berg2017.cps", "Proctor2017_model4.cps", "Simon2019.cps", "Simon2019_model3.cps", "Simon2019_Figure3b.cps", "verma2017.cps", "Rodenfels2019_V1.cps", "Giantsos-Adams2013_Figure11.cps", "Proctoe2017_model1.cps", ]
+# Just for the record:  All Copasi files are treated as 'better' than the existing SED-ML,
+# but for these files in particular, the SED-ML was noticably different.
+copasi_with_better_sedml = ["MODEL1511290000.cps", "Theinmozhi_2018.cps", "Bravo2012.cps",
+                            "Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.cps",
+                            "Dudziuk2019.cps", "Coulibaly2019.cps", "Sun2018.cps", "Smith2011_V1.cps",
+                            "Lee2017_Paracetamol_Metabolism.cps", "OVDC.cps", "Smith1980_HypothalamicRegulation.cps",
+                            "DiCamillo2016.cps", "Verma2016.cps", "Rao2014.cps", "Radosavljevic2009.cps", "Berg2017.cps",
+                            "Proctor2017_model4.cps", "Simon2019.cps", "Simon2019_model3.cps", "Simon2019_Figure3b.cps",
+                            "verma2017.cps", "Rodenfels2019_V1.cps", "Giantsos-Adams2013_Figure11.cps", "Proctoe2017_model1.cps", ]
 
-#Also for historical purposes:  these files all had the correct 'source' set for the SED-ML files.
-sedml_with_correct_names = ["BIOMD0000000539.cps", "MODEL1603240000.cps", "ARPP-16_Layer1_mutualInhibitions.cps", "ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.cps", "ARPP-16_Layer1and2and3_mutualInhibitions_PKAinhibitsMAST3_dominantNegative.cps", "Barr2016.cps", "Malinzi2018 - tumour-immune interaction model.cps", "Perez-Garcia19 Computational design of improved standardized chemotherapy protocols for grade 2 oligodendrogliomas.cps", "Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.cps", "Jung2019.cps", "Smith2011_V1.cps", "Linke2017_figure1b.cps"]
-#Note: Rodenfels2019_V1.cps might be a bugfix on Copasi's part:  the difference is that the labels in the report are better.
+# Also for historical purposes:  these files all had the correct 'source' set for the SED-ML files.
+sedml_with_correct_names = ["BIOMD0000000539.cps", "MODEL1603240000.cps", "ARPP-16_Layer1_mutualInhibitions.cps",
+                            "ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.cps",
+                            "ARPP-16_Layer1and2and3_mutualInhibitions_PKAinhibitsMAST3_dominantNegative.cps",
+                            "Barr2016.cps", "Malinzi2018 - tumour-immune interaction model.cps",
+                            "Perez-Garcia19 Computational design of improved standardized chemotherapy protocols for grade 2 oligodendrogliomas.cps",
+                            "Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.cps",
+                            "Jung2019.cps", "Smith2011_V1.cps", "Linke2017_figure1b.cps"]
+# Note: Rodenfels2019_V1.cps might be a bugfix on Copasi's part:
+# the difference is that the labels in the report are better.
 
-nonascii_chars ={"López": "Lopez",
-                 }
-    
+nonascii_chars = {"López": "Lopez",
+                  }
+
+
 def getorig(sedlist, copasiname, newsedml, id, guesses):
     for sedfile in sedlist:
         if sedfile == copasiname.replace("cps", "sedml"):
             return sedfile
     todels = []
     for sedfile in sedlist:
-        #Remove any sedml files that have *different* copasi files that are probably their origin
+        # Remove any sedml files that have *different* copasi files that are probably their origin
         sedcheck = sedfile.replace("sedml", "cps")
         if os.path.exists(sedcheck):
             todels.append(sedfile)
@@ -41,7 +56,7 @@ def getorig(sedlist, copasiname, newsedml, id, guesses):
         sedlist.remove(todel)
     if len(sedlist) == 0:
         return copasiname.replace("cps", "sedml")
-    if len(sedlist)==1:
+    if len(sedlist) == 1:
         return sedlist[0]
     mindiff = len(newsedml)
     retfile = sedlist[0]
@@ -70,7 +85,7 @@ def fixSedSBMLTarget(sedml, sbml, sbmllist, cfile, id, guesses):
     if source in sbmllist:
         return libsedml.writeSedMLToString(sed)
 
-    #If there are both "_url" and "_urn" models, just use the "_url" one.
+    # If there are both "_url" and "_urn" models, just use the "_url" one.
     urlmods = []
     for sbmlmod in sbmllist:
         if "_url" in sbmlmod:
@@ -80,18 +95,18 @@ def fixSedSBMLTarget(sedml, sbml, sbmllist, cfile, id, guesses):
         if urnversion in sbmllist:
             sbmllist.remove(urnversion)
 
-    #If there's only one option, use that.
+    # If there's only one option, use that.
     if len(sbmllist) == 1:
         model.setSource(os.path.basename(sbmllist[0]))
         return libsedml.writeSedMLToString(sed)
 
-    #If the name matches exactly, use that:
+    # If the name matches exactly, use that:
     for sbmlfile in sbmllist:
         if sbmlfile == cfile.replace("cps", "xml"):
             model.setSource(os.path.basename(sbmlfile))
             return libsedml.writeSedMLToString(sed)
-            
-    #Otherwise, we have to see which one matches the saved SBML file the most closely
+
+    # Otherwise, we have to see which one matches the saved SBML file the most closely
     mindiff = len(sbml)
     retfile = sbmllist[0]
     for sbmlfile in sbmllist:
@@ -107,9 +122,8 @@ def fixSedSBMLTarget(sedml, sbml, sbmllist, cfile, id, guesses):
     guesses.append((id, os.path.basename(cfile), os.path.basename(sbmlfile)))
     model.setSource(os.path.basename(retfile))
     return libsedml.writeSedMLToString(sed)
-    
-    
-        
+
+
 def regen_sedml(cfile, id, sbml_filenames, sedml_filenames):
     dm = COPASI.CRootContainer.addDatamodel()
     # copasised = direc + "/test_" + cfile
@@ -137,7 +151,6 @@ def regen_sedml(cfile, id, sbml_filenames, sedml_filenames):
     guesses = []
     sedml = fixSedSBMLTarget(sedml, sbml, sbml_filenames, cfile, id, guesses)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
-    cbase = os.path.basename(cfile)
     if "No plot/report definition" not in sed_msg:
         if len(sedml_filenames) > 0:
             origsed = getorig(sedml_filenames, cfile, sedml, id, guesses)
@@ -149,6 +162,7 @@ def regen_sedml(cfile, id, sbml_filenames, sedml_filenames):
         csedout.write(sedml)
         csedout.close()
     return (sbml_msg, sed_msg, guesses)
+
 
 def run(sedml_filenames, copasi_filenames, sbml_filenames, id):
     sbml_msgs = []

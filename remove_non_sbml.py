@@ -1,8 +1,9 @@
 
-#Files that end in '.xml' but aren't SBML:
+# Files that end in '.xml' but aren't SBML:
 REMOVE = {
     "BIOMD0000000585": ["manifest", "metadata"],
 }
+
 
 def run(id, sbml_filenames):
     """ Remove non-SBML files

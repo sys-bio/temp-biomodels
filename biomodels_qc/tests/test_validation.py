@@ -1,5 +1,4 @@
 from biomodels_qc import validation
-from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 from unittest import mock
@@ -33,7 +32,7 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertIn('uses data from repeated tasks', flatten_nested_list_of_strings(warnings))
 
-        with open(os.path.join(self.temp_dirname, 'abc.xyz'), 'w') as file:
+        with open(os.path.join(self.temp_dirname, 'abc.xyz'), 'w'):
             pass
         errors, warnings = validation.validate_entry(self.temp_dirname)
         self.assertEqual(errors, [])
@@ -65,12 +64,12 @@ class ValidationTestCase(unittest.TestCase):
 
     def test_validate_copasi_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000042', 'BIOMD0000000042.cps')
-        errors, warnings = validation.validate_copasi_file(filename)
+        errors, warnings = validation.validate_copasi_file_in_subprocess(filename)
         self.assertEqual(errors, [])
         self.assertEqual(warnings, [])
 
         png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693', 'BIOMD0000000693.png')
-        errors, warnings = validation.validate_copasi_file(png_filename)
+        errors, warnings = validation.validate_copasi_file_in_subprocess(png_filename)
         self.assertIn('Unrecognized content format', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
@@ -217,7 +216,7 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(warnings, [])
 
         bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
-        _, warnings = validation.validate_sedml_file(bad_filename, max_number_of_steps=2)
+        _, warnings = validation.validate_sedml_file(bad_filename, max_number_of_time_course_steps=2)
         self.assertIn('unnecessary numbers of steps', flatten_nested_list_of_strings(warnings))
 
         with self.assertRaises(RuntimeError):
@@ -292,6 +291,41 @@ class ValidationTestCase(unittest.TestCase):
         manifest_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000585', 'manifest.xml')
         errors, warnings = validation.validate_xml_file(manifest_filename)
         self.assertIn('should not contain manifests', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692-biopax2.owl')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000042', 'BIOMD0000000042.cps')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.svg')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000001', 'BIOMD0000000001.vcml')
+        xml_filename = os.path.join(self.temp_dirname, 'invalid.xml')
+        shutil.copyfile(filename, xml_filename)
+        errors, warnings = validation.validate_xml_file(xml_filename)
+        self.assertIn('should have the extension', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
     def test_validate_xpp_file(self):

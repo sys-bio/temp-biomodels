@@ -8,4 +8,6 @@ The goals of the project are to:
 
 Project plan:  https://docs.google.com/spreadsheets/d/1BRDkurmUDzTlvTZPOFlZeZFvMnKTqlSZswEEPmJ-aME/edit#gid=0
 
+[Summary of changes](changes.md)
+
 Email list:  biomodels-project@googlegroups.com

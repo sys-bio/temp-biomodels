@@ -6,7 +6,7 @@ def remove_empty_containers(filename):
 
     * Repeated tasks with no subtasks
     * Reports with no data sets
-    * Plots with no curves or surfaces    
+    * Plots with no curves or surfaces
 
     Args:
         filename (:obj:`str`): file name
@@ -64,7 +64,7 @@ def remove_empty_containers(filename):
     if changed:
         libsedml.writeSedML(doc, filename)
 
+
 def run(sedml_filenames):
     for sedml_filename in sedml_filenames:
         remove_empty_containers(sedml_filename)
-

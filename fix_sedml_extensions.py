@@ -5,10 +5,7 @@ import shutil
 
 
 def run(id, working_dir):
-    """ Fix the namespaces in a SED-ML file and save the file in place
-
-    * Remove duplicate SED-ML namespace declarations -- automatically fixed by LXML
-    * Add namespaces for models
+    """ Change the extensions of SED-ML files to ``.sedml``
 
     Args:
         id (:obj:`str`): id of BioModels entry

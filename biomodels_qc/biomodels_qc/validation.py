@@ -16,6 +16,7 @@ import ast
 import biosimulators_utils.simulator.specs
 import COPASI
 import enum
+import faulthandler
 import glob
 import imghdr
 import json
@@ -29,15 +30,19 @@ import re
 import scipy.io
 import shutil
 import subprocess
+import sys
 import tempfile
 import warnings
 import zipfile
+
+faulthandler.enable()
 
 __all__ = [
     'validate_entry',
     'validate_filename',
     'validate_combine_archive',
     'validate_copasi_file',
+    'validate_copasi_file_in_subprocess',
     'validate_image_file',
     'validate_ipynb_notebook_file',
     'validate_matlab_data_file',
@@ -77,8 +82,10 @@ def validate_filename(filename):
     basename, extension = os.path.splitext(filename)
 
     if (
-        not re.match(r'^[a-z0-9_\-\. {}]+$'.format(re.escape(os.sep)), basename, re.IGNORECASE)
+        not re.match(r'^[a-z0-9_\-\. \(\){}]+$'.format(re.escape(os.sep)), basename, re.IGNORECASE)
         or '..' in filename
+        or '.-' in filename
+        or '._' in filename
         or not re.match(r'^\.[a-z0-9_\-]+$', extension)
     ):
         return [[(
@@ -131,6 +138,34 @@ def validate_copasi_file(filename):
         return [], []
     else:
         return [[COPASI.CCopasiMessage.getAllMessageText()]], []
+
+
+def validate_copasi_file_in_subprocess(filename):
+    """ Determine if a COPASI file is valid, handling segmentation faults in COPASI
+
+    Args:
+        filename (:obj:`str`): path to COPASI file
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    result = subprocess.run(
+        [
+            sys.executable, '-c',
+            ';'.join([
+                'from biomodels_qc.validation import validate_copasi_file',
+                'import json',
+                'print(json.dumps(validate_copasi_file("{}")))'.format(filename),
+            ]),
+        ],
+        check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode == 0:
+        return json.loads(result.stdout.decode())
+    else:
+        return [['COPASI failed', [[result.stderr.decode()]]]], []
 
 
 def validate_image_file(filename, image_format):
@@ -288,13 +323,14 @@ def validate_sbml_file(filename):
     return errors, warnings
 
 
-def validate_sedml_file(filename, dirname=None, max_number_of_steps=1000, simulators=None):
+def validate_sedml_file(filename, dirname=None, max_number_of_time_course_steps=1000, simulators=None):
     """ Determine if a SED-ML file is valid, optionally including checking whether it can be executed by 1 or more simulation tools
 
     Args:
         filename (:obj:`str`): path to SED-ML file
         dirname (:obj:`str, optional): directory for the BioModels entry which includes this SED-ML file
-        max_number_of_steps (:obj:`str`, optional): maximum number of steps before a warning for potentially excessive steps is raised
+        max_number_of_time_course_steps (:obj:`str`, optional): maximum number of steps of a uniform time course
+            before a warning for potentially excessive steps is raised
         simulators (:obj:`list` of :obj:`dict` with schema ``https://api.biosimulators.org/openapi.json#/components/schemas/Simulator``,
             or two keys ``id`` and ``version``, optional): specifications of simulators to use to check that the SED-ML file can be executed
 
@@ -323,7 +359,7 @@ def validate_sedml_file(filename, dirname=None, max_number_of_steps=1000, simula
     excessive_steps_warnings = []
     for simulation in sed_doc.simulations:
 
-        if isinstance(simulation, UniformTimeCourseSimulation) and simulation.number_of_steps > max_number_of_steps:
+        if isinstance(simulation, UniformTimeCourseSimulation) and simulation.number_of_steps > max_number_of_time_course_steps:
             excessive_steps_warnings.append(['`{}`: {} steps'.format(simulation.id, simulation.number_of_steps)])
     if excessive_steps_warnings:
         warnings_list.append(['Some time courses may have unnecessary numbers of steps.', excessive_steps_warnings])
@@ -453,6 +489,21 @@ def validate_xml_file(filename):
             'The BioModels platform automatically generates a manifest for each entry.'
         )]], []
 
+    elif root.nsmap.get('bp', '').startswith('http://www.biopax.org/release/') and os.path.splitext(filename)[1] != '.owl':
+        return [['BioPAX files should have the extension `.owl`']], []
+
+    elif default_ns.startswith('http://www.copasi.org/static/schema') and os.path.splitext(filename)[1] != '.cps':
+        return [['COPASI files should have the extension `.cps`']], []
+
+    elif default_ns.startswith('http://sed-ml.org/') and os.path.splitext(filename)[1] != '.sedml':
+        return [['SED-ML files should have the extension `.sedml`']], []
+
+    elif default_ns.startswith('http://www.w3.org/2000/svg') and os.path.splitext(filename)[1] != '.svg':
+        return [['SVG files should have the extension `.svg`']], []
+
+    elif default_ns.startswith('http://sourceforge.net/projects/vcell/vcml') and os.path.splitext(filename)[1] != '.vcml':
+        return [['VCell files should have the extension `.vcml`']], []
+
     return [], []
 
 
@@ -507,7 +558,7 @@ def validate_zip_file(filename):
 EXTENSION_VALIDATOR_MAP = {
     '.cps': {
         'description': 'COPASI',
-        'validator': validate_copasi_file,
+        'validator': validate_copasi_file_in_subprocess,
     },
     '.gif': {
         'description': 'GIF image',
