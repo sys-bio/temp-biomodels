@@ -176,6 +176,11 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertNotEqual(warnings, [])
 
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692_url.xml')
+        errors, warnings = validation.validate_xml_file(filename)
+        self.assertEqual(errors, [])
+        self.assertNotEqual(warnings, [])
+
         bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'invalid_sbml.xml')
         errors, warnings = validation.validate_sbml_file(bad_filename)
         self.assertIn('must not contain undefined elements', flatten_nested_list_of_strings(errors))
@@ -186,6 +191,18 @@ class ValidationTestCase(unittest.TestCase):
             errors, warnings = validation.validate_sbml_file(bad_filename)
         self.assertEqual(errors, [])
         self.assertIn('must not contain undefined elements', flatten_nested_list_of_strings(warnings))
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000661/BIOMD0000000661_url.xml')
+        _, warnings = validation.validate_xml_file(bad_filename)
+        self.assertIn('Some of the metadata in', flatten_nested_list_of_strings(warnings))
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000729/Goldbeter1996.xml')
+        _, warnings = validation.validate_xml_file(bad_filename)
+        self.assertIn('Some of the metadata in', flatten_nested_list_of_strings(warnings))
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000835/MODEL1403250000_urn.xml')
+        _, warnings = validation.validate_xml_file(bad_filename)
+        self.assertIn('Some of the metadata in', flatten_nested_list_of_strings(warnings))
 
     def test_validate_sedml_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')

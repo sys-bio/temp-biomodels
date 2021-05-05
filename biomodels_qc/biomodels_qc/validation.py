@@ -409,7 +409,34 @@ def validate_xml_file(filename):
 
     default_ns = root.nsmap.get(None, '')
     if default_ns.startswith('http://www.sbml.org/'):
-        return validate_sbml_file(filename)
+        errors = []
+        warnings = []
+
+        namespaces = {
+            "CopasiMT": "http://www.copasi.org/RDF/MiriamTerms#",
+            "bqmodel": "http://biomodels.net/model-qualifiers/",
+            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        }
+
+        metadata_warnings = []
+
+        invalid_metadata = (
+            root.xpath('.//CopasiMT:unknown', namespaces=namespaces)
+            + root.xpath('.//bqmodel:unknownQualifier', namespaces=namespaces)
+            + root.xpath('.//*[contains(@rdf:resource, "urn:miriam:unknown")]', namespaces=namespaces)
+        )
+        for el in invalid_metadata:
+            metadata_warnings.append(['L{}: {}:{}'.format(el.sourceline, el.prefix, el.tag.rpartition('}')[2])])
+
+        if metadata_warnings:
+            warnings.append(['Some of the metadata in `{}` is invalid.'.format(filename), metadata_warnings])
+
+        temp_errors, temp_warnings = validate_sbml_file(filename)
+        errors.extend(temp_errors)
+        warnings.extend(temp_warnings)
+
+        return errors, warnings
+
     elif re.match(r'^http://identifiers\.org/combine\.specifications/omex-manifest($|\.)', default_ns):
         return [[(
             'BioModels entries should not contain manifests for COMBINE/OMEX archives. '
