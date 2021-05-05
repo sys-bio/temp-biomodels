@@ -216,6 +216,10 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('BIOMD0000000692/model.xml` is not a file.', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
+        _, warnings = validation.validate_sedml_file(bad_filename, max_number_of_steps=2)
+        self.assertIn('unnecessary numbers of steps', flatten_nested_list_of_strings(warnings))
+
         with self.assertRaises(RuntimeError):
             with mock.patch.object(SedmlSimulationReader, 'run', side_effect=RuntimeError):
                 validation.validate_sedml_file(bad_filename)
