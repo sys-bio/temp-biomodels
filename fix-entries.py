@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # master program to fix the entries of BioModels
 
+import decrease_excessive_numbers_of_time_course_steps
 import fix_filenames
 import fix_manual_corrections
 import fix_models_non_copasi
@@ -73,6 +74,7 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
         shutil.rmtree(to_dir)
     shutil.copytree(from_dir, to_dir)
 
+    ###################################################
     # Fix files/filenames
     fix_filenames.run(id, FINAL_ENTRIES_DIR)
     fix_sedml_extensions.run(id, FINAL_ENTRIES_DIR)
@@ -80,6 +82,8 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     omex_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'), recursive=True)
     remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
 
+    ###################################################
+    # recreate files from COPASI, then fix the model sources
     # Collect lists of files
     sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
     copasi_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.cps'), recursive=True)
@@ -108,14 +112,26 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
                 guess_file.write(",")
             guess_file.write("\n")
 
+    ###################################################
+    # Apply more corrections
+    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
+    sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
+    sedml_filenames.sort()
+    sbml_filenames.sort()
+
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
     fix_sbml_validity.run(id, sbml_filenames)
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
+    decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
 
-    # More expensive tests/fixes that we probably don't want to run all the time:
+    ###################################################
+    # Validate SBML files
     if validate_sbml:
         validate_sbml_module.run(id, sbml_filenames, g_SBMLValidationErrors)
+
+    ###################################################
+    # Convert primary files to other formats
     if convert_files:
         from biomodels_qc.convert import convert_entry
         convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
