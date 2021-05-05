@@ -323,13 +323,14 @@ def validate_sbml_file(filename):
     return errors, warnings
 
 
-def validate_sedml_file(filename, dirname=None, max_number_of_steps=1000, simulators=None):
+def validate_sedml_file(filename, dirname=None, max_number_of_time_course_steps=1000, simulators=None):
     """ Determine if a SED-ML file is valid, optionally including checking whether it can be executed by 1 or more simulation tools
 
     Args:
         filename (:obj:`str`): path to SED-ML file
         dirname (:obj:`str, optional): directory for the BioModels entry which includes this SED-ML file
-        max_number_of_steps (:obj:`str`, optional): maximum number of steps before a warning for potentially excessive steps is raised
+        max_number_of_time_course_steps (:obj:`str`, optional): maximum number of steps of a uniform time course
+            before a warning for potentially excessive steps is raised
         simulators (:obj:`list` of :obj:`dict` with schema ``https://api.biosimulators.org/openapi.json#/components/schemas/Simulator``,
             or two keys ``id`` and ``version``, optional): specifications of simulators to use to check that the SED-ML file can be executed
 
@@ -358,7 +359,7 @@ def validate_sedml_file(filename, dirname=None, max_number_of_steps=1000, simula
     excessive_steps_warnings = []
     for simulation in sed_doc.simulations:
 
-        if isinstance(simulation, UniformTimeCourseSimulation) and simulation.number_of_steps > max_number_of_steps:
+        if isinstance(simulation, UniformTimeCourseSimulation) and simulation.number_of_steps > max_number_of_time_course_steps:
             excessive_steps_warnings.append(['`{}`: {} steps'.format(simulation.id, simulation.number_of_steps)])
     if excessive_steps_warnings:
         warnings_list.append(['Some time courses may have unnecessary numbers of steps.', excessive_steps_warnings])

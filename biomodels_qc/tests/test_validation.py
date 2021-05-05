@@ -217,7 +217,7 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(warnings, [])
 
         bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
-        _, warnings = validation.validate_sedml_file(bad_filename, max_number_of_steps=2)
+        _, warnings = validation.validate_sedml_file(bad_filename, max_number_of_time_course_steps=2)
         self.assertIn('unnecessary numbers of steps', flatten_nested_list_of_strings(warnings))
 
         with self.assertRaises(RuntimeError):
