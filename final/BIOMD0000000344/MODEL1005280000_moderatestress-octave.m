@@ -636,7 +636,7 @@ function xdot=f(x,t)
 % Species:   id = AggP_Proteasome, name = AggP_Proteasome, affected by kineticLaw
 	xdot(45) = ( 1.0 * reaction_ProteasomeInhibtion) + (-1.0 * reaction_ROSgenerationAggPProteasome) + ( 1.0 * reaction_ROSgenerationAggPProteasome) + (-1.0 * reaction_PICellDeath) + ( 1.0 * reaction_PICellDeath);
 	
-% Species:   id = ROS, name = ROS, defined in a rule 	xdot(46) = x(46);
+% Species:   id = ROS, name = ROS, involved in a rule 	xdot(46) = x(46);
 	
 % Species:   id = ATP, name = ATP
 %WARNING speciesID: ATP, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !

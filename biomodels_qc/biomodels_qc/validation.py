@@ -7,6 +7,7 @@
 """
 
 from .utils import build_combine_archive
+from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
 from biosimulators_utils.warnings import BioSimulatorsWarning
@@ -34,6 +35,7 @@ import zipfile
 
 __all__ = [
     'validate_entry',
+    'validate_filename',
     'validate_combine_archive',
     'validate_copasi_file',
     'validate_image_file',
@@ -57,6 +59,34 @@ class ImageFormat(str, enum.Enum):
     jpg = 'jpeg'
     gif = 'gif'
     png = 'png'
+
+
+def validate_filename(filename):
+    """ Determine if a filename is valid
+
+    * Check that name only involves alphanumeric characters, underscores and dashes
+
+    Args:
+        filename (:obj:`str`): path to file
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    basename, extension = os.path.splitext(filename)
+
+    if (
+        not re.match(r'^[a-z0-9_\-\. {}]+$'.format(re.escape(os.sep)), basename, re.IGNORECASE)
+        or '..' in filename
+        or not re.match(r'^\.[a-z0-9_\-]+$', extension)
+    ):
+        return [[(
+            'Filename `{}` is invalid. Filenames should only contain letters, numbers, underscores, '
+            'dashes and periods to separate extensions.'
+        ).format(filename)]], []
+    else:
+        return [], []
 
 
 def validate_combine_archive(filename):
@@ -258,12 +288,13 @@ def validate_sbml_file(filename):
     return errors, warnings
 
 
-def validate_sedml_file(filename, dirname=None, simulators=None):
+def validate_sedml_file(filename, dirname=None, max_number_of_steps=1000, simulators=None):
     """ Determine if a SED-ML file is valid, optionally including checking whether it can be executed by 1 or more simulation tools
 
     Args:
         filename (:obj:`str`): path to SED-ML file
         dirname (:obj:`str, optional): directory for the BioModels entry which includes this SED-ML file
+        max_number_of_steps (:obj:`str`, optional): maximum number of steps before a warning for potentially excessive steps is raised
         simulators (:obj:`list` of :obj:`dict` with schema ``https://api.biosimulators.org/openapi.json#/components/schemas/Simulator``,
             or two keys ``id`` and ``version``, optional): specifications of simulators to use to check that the SED-ML file can be executed
 
@@ -288,6 +319,14 @@ def validate_sedml_file(filename, dirname=None, simulators=None):
             return reader.errors, reader.warnings
         else:
             raise
+
+    excessive_steps_warnings = []
+    for simulation in sed_doc.simulations:
+
+        if isinstance(simulation, UniformTimeCourseSimulation) and simulation.number_of_steps > max_number_of_steps:
+            excessive_steps_warnings.append(['`{}`: {} steps'.format(simulation.id, simulation.number_of_steps)])
+    if excessive_steps_warnings:
+        warnings_list.append(['Some time courses may have unnecessary numbers of steps.', excessive_steps_warnings])
 
     if simulators is not None:
         fid, archive_filename = tempfile.mkstemp()
@@ -380,7 +419,34 @@ def validate_xml_file(filename):
 
     default_ns = root.nsmap.get(None, '')
     if default_ns.startswith('http://www.sbml.org/'):
-        return validate_sbml_file(filename)
+        errors = []
+        warnings = []
+
+        namespaces = {
+            "CopasiMT": "http://www.copasi.org/RDF/MiriamTerms#",
+            "bqmodel": "http://biomodels.net/model-qualifiers/",
+            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        }
+
+        metadata_warnings = []
+
+        invalid_metadata = (
+            root.xpath('.//CopasiMT:unknown', namespaces=namespaces)
+            + root.xpath('.//bqmodel:unknownQualifier', namespaces=namespaces)
+            + root.xpath('.//*[contains(@rdf:resource, "urn:miriam:unknown")]', namespaces=namespaces)
+        )
+        for el in invalid_metadata:
+            metadata_warnings.append(['L{}: {}:{}'.format(el.sourceline, el.prefix, el.tag.rpartition('}')[2])])
+
+        if metadata_warnings:
+            warnings.append(['Some of the metadata in `{}` is invalid.'.format(filename), metadata_warnings])
+
+        temp_errors, temp_warnings = validate_sbml_file(filename)
+        errors.extend(temp_errors)
+        warnings.extend(temp_warnings)
+
+        return errors, warnings
+
     elif re.match(r'^http://identifiers\.org/combine\.specifications/omex-manifest($|\.)', default_ns):
         return [[(
             'BioModels entries should not contain manifests for COMBINE/OMEX archives. '
@@ -556,6 +622,10 @@ def validate_entry(dirname, file_extensions=None, filenames=None, simulators=Non
 
     # validate files
     for filename in filenames:
+        temp_errors, temp_warnings = validate_filename(os.path.relpath(filename, dirname))
+        errors.extend(temp_errors)
+        warnings.extend(temp_warnings)
+
         ext = os.path.splitext(filename)[1].lower()
 
         file_type = EXTENSION_VALIDATOR_MAP.get(ext, None)

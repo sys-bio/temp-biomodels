@@ -94,6 +94,14 @@ class ConvertTestCase(unittest.TestCase):
         self.assertTrue(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model-octave.m')))
         self.assertTrue(os.path.isfile(os.path.join(self.temp_entry_dirname, 'model.xpp')))
 
+    def test_convert_delete_bad_urn_sbml(self):
+        shutil.rmtree(self.temp_entry_dirname)
+        shutil.copytree(os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000786'), self.temp_entry_dirname)
+
+        convert.convert_entry(self.temp_entry_dirname)
+
+        self.assertFalse(os.path.isfile(os.path.join(self.temp_entry_dirname, 'Lipniacki2004_urn.xml')))
+
     def test_convert_delete_bad_xpp(self):
         shutil.rmtree(self.temp_entry_dirname)
         shutil.copytree(os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000693'), self.temp_entry_dirname)

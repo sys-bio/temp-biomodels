@@ -345,7 +345,7 @@ Reaction scheme where the products are created from the reactants and the change
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
   <rdf:Description rdf:about="#Model_1">
-    <bqbiol:hasProperty rdf:resource="urn:miriam:unknown:http://purl.obolibrary.org/obo/CHMO_0002076"/>
+    <bqbiol:hasProperty rdf:resource="http://purl.obolibrary.org/obo/CHMO_0002076"/>
     <bqbiol:hasProperty>
       <rdf:Bag>
         <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000046"/>
@@ -356,7 +356,7 @@ Reaction scheme where the products are created from the reactants and the change
         <rdf:li rdf:resource="urn:miriam:taxonomy:7955"/>
       </rdf:Bag>
     </bqbiol:hasTaxon>
-    <bqmodel:isDerivedFrom rdf:resource="urn:miriam:unknown:https://www.ncbi.nlm.nih.gov/pubmed/24523664"/>
+    <bqmodel:isDerivedFrom rdf:resource="urn:miriam:pubmed:24523664"/>
     <dcterms:bibliographicCitation>
       <rdf:Bag>
         <rdf:li>

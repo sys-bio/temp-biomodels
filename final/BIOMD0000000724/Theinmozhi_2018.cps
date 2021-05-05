@@ -753,7 +753,6 @@ Autoimmune Diseases like HIV, HPV etc.
       </rdf:Description>
     </dcterms:created>
     <CopasiMT:isVersionOf rdf:resource="urn:miriam:uniprot:Q13094" />
-    <CopasiMT:unknown rdf:resource="urn:miriam:unknown:" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>

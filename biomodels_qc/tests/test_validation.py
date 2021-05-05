@@ -20,6 +20,13 @@ class ValidationTestCase(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.temp_dirname)
 
+    def test_validate_filename(self):
+        self.assertEqual(validation.validate_filename('model.xml'), ([], []))
+        self.assertEqual(validation.validate_filename(os.path.join('subdir', 'model.xml')), ([], []))
+        self.assertEqual(validation.validate_filename(os.path.join('subdir', 'model1_-.xml')), ([], []))
+        self.assertNotEqual(validation.validate_filename(os.path.join('subdir&', 'model1_-.xml')), ([], []))
+        self.assertNotEqual(validation.validate_filename(os.path.join('subdir', 'model-α.xml')), ([], []))
+
     def test_validate_entry(self):
         valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724')
         errors, warnings = validation.validate_entry(valid_dirname)
@@ -169,6 +176,11 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertNotEqual(warnings, [])
 
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692_url.xml')
+        errors, warnings = validation.validate_xml_file(filename)
+        self.assertEqual(errors, [])
+        self.assertNotEqual(warnings, [])
+
         bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'invalid_sbml.xml')
         errors, warnings = validation.validate_sbml_file(bad_filename)
         self.assertIn('must not contain undefined elements', flatten_nested_list_of_strings(errors))
@@ -179,6 +191,18 @@ class ValidationTestCase(unittest.TestCase):
             errors, warnings = validation.validate_sbml_file(bad_filename)
         self.assertEqual(errors, [])
         self.assertIn('must not contain undefined elements', flatten_nested_list_of_strings(warnings))
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000661/BIOMD0000000661_url.xml')
+        _, warnings = validation.validate_xml_file(bad_filename)
+        self.assertIn('Some of the metadata in', flatten_nested_list_of_strings(warnings))
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000729/Goldbeter1996.xml')
+        _, warnings = validation.validate_xml_file(bad_filename)
+        self.assertIn('Some of the metadata in', flatten_nested_list_of_strings(warnings))
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000835/MODEL1403250000_urn.xml')
+        _, warnings = validation.validate_xml_file(bad_filename)
+        self.assertIn('Some of the metadata in', flatten_nested_list_of_strings(warnings))
 
     def test_validate_sedml_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
@@ -191,6 +215,10 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('Model `model` is invalid.', flatten_nested_list_of_strings(errors))
         self.assertIn('BIOMD0000000692/model.xml` is not a file.', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
+
+        bad_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
+        _, warnings = validation.validate_sedml_file(bad_filename, max_number_of_steps=2)
+        self.assertIn('unnecessary numbers of steps', flatten_nested_list_of_strings(warnings))
 
         with self.assertRaises(RuntimeError):
             with mock.patch.object(SedmlSimulationReader, 'run', side_effect=RuntimeError):

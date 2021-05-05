@@ -273,7 +273,6 @@ Reaction scheme where the products are created from the reactants and the change
       </rdf:Description>
     </dcterms:creator>
     <CopasiMT:occursIn rdf:resource="urn:miriam:ncit:C94498"/>
-    <CopasiMT:unknown rdf:resource=""/>
   </rdf:Description>
 </rdf:RDF>
 
