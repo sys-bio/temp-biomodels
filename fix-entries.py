@@ -5,13 +5,13 @@ import fix_filenames
 import fix_manual_corrections
 import fix_models_non_copasi
 import fix_namespaces_in_sedml_doc
-import fix_SBML_validity
+import fix_sbml_validity
 import fix_sedml_extensions
 import recreate_sedml_from_copasi
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
 import remove_omex
-import validate_SBML
+import validate_sbml as validate_sbml_module
 
 import argparse
 import glob
@@ -37,26 +37,26 @@ def get_entry_ids():
     return ids
 
 
-def fix_entries(ids, convert_files=False, guess_file=None, validateSBML=False):
+def fix_entries(ids, convert_files=False, guess_file=None, validate_sbml=False):
     """ Fix the entries of BioModels
 
     Args:
         max_entries (:obj:`int`, optional): maximum number of entries to fix
         convert_files (:obj:`bool`, optional): convert primary files to other formats
-        validateSBML (:obj:`bool`, optional): validate SBML files
+        validate_sbml (:obj:`bool`, optional): validate SBML files
     """
     print('Fixing {} entries ...'.format(len(ids)))
     for i_entry, id in enumerate(ids):
         print('  Fixing entry {}: {} ... '.format(i_entry + 1, id), end='')
         sys.stdout.flush()
 
-        fix_entry(id, convert_files=convert_files, guess_file=guess_file, validateSBML=validateSBML)
+        fix_entry(id, convert_files=convert_files, guess_file=guess_file, validate_sbml=validate_sbml)
 
         print('done')
     print('done')
 
 
-def fix_entry(id, convert_files=False, guess_file=None, validateSBML=False):
+def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     """ Fix an entry of BioModels
 
     Args:
@@ -109,13 +109,13 @@ def fix_entry(id, convert_files=False, guess_file=None, validateSBML=False):
             guess_file.write("\n")
 
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
-    fix_SBML_validity.run(id, sbml_filenames)
+    fix_sbml_validity.run(id, sbml_filenames)
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
 
     # More expensive tests/fixes that we probably don't want to run all the time:
-    if validateSBML:
-        validate_SBML.run(id, sbml_filenames, g_SBMLValidationErrors)
+    if validate_sbml:
+        validate_sbml_module.run(id, sbml_filenames, g_SBMLValidationErrors)
     if convert_files:
         from biomodels_qc.convert import convert_entry
         convert_entry(os.path.join(FINAL_ENTRIES_DIR, id))
@@ -142,7 +142,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        '--validateSBML',
+        '--validate-sbml',
         help='Validate SBML files.',
         action='store_true',
     )
@@ -153,10 +153,10 @@ if __name__ == "__main__":
     else:
         ids = get_entry_ids()[0:args.max_entries]
     guess_file = open("guesses.csv", "w")
-    fix_entries(ids, convert_files=args.convert_files, guess_file=guess_file, validateSBML=args.validateSBML)
+    fix_entries(ids, convert_files=args.convert_files, guess_file=guess_file, validate_sbml=args.validate_sbml)
     guess_file.close()
 
-    if args.validateSBML:
+    if args.validate_sbml:
         err_file = open("sbml_validation.csv", "w")
         for err in g_SBMLValidationErrors:
             err[2] = err[2].replace("\n", " -- ")
