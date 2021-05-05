@@ -42,6 +42,9 @@ Summary of the changes to the content of BioModels
         * 2D plots with no curves
         * 3D plots with no surfaces
     * Decreased excessive numbers of steps of time courses
+    * Fixed syntactically incorrect XPaths
+    * Fixed SED-ML datasets with misssing labels
+    * Fixed variables of data generators with no symbols or targets
 
 * OMEX files
     * Replaced file with its content: BIOMD0000000585/Rateitschak2012.omex
