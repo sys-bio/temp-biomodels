@@ -114,13 +114,15 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
 
     ###################################################
     # Apply more corrections
-    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
-    sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
-    sedml_filenames.sort()
-    sbml_filenames.sort()
-
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
+
+    sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
+    sbml_filenames.sort()
     fix_sbml_validity.run(id, sbml_filenames)
+
+    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
+    sedml_filenames.sort()
+
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)

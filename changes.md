@@ -45,6 +45,8 @@ Summary of the changes to the content of BioModels
     * Fixed syntactically incorrect XPaths
     * Fixed SED-ML datasets with misssing labels
     * Fixed variables of data generators with no symbols or targets
+    * Fixed nested repeated tasks
+    * Removed duplicately defined data generators
 
 * OMEX files
     * Replaced file with its content: BIOMD0000000585/Rateitschak2012.omex
