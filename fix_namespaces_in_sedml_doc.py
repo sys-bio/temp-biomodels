@@ -53,7 +53,8 @@ def fix_namespaces(filename):
                       encoding="utf-8",
                       standalone=False,
                       pretty_print=True)
-    
+
+
 def run(sedml_filenames):
     for filename in sedml_filenames:
         fix_namespaces(filename)

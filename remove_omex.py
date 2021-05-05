@@ -20,11 +20,11 @@ def run(id, omex_filenames, working_dir):
     """
     removed = []
     for omex in omex_filenames:
-       if id in KEEP:
-           zf = zipfile.ZipFile(omex, "r")
-           zf.extractall(path=os.path.dirname(omex))
-       else:
-           os.remove(os.path.join(working_dir, id, omex))
-           removed.append(omex)
+        if id in KEEP:
+            zf = zipfile.ZipFile(omex, "r")
+            zf.extractall(path=os.path.dirname(omex))
+        else:
+            os.remove(os.path.join(working_dir, id, omex))
+            removed.append(omex)
 
     return removed

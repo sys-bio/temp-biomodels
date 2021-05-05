@@ -1,5 +1,4 @@
 from biomodels_qc import validation
-from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 from unittest import mock
@@ -33,7 +32,7 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertIn('uses data from repeated tasks', flatten_nested_list_of_strings(warnings))
 
-        with open(os.path.join(self.temp_dirname, 'abc.xyz'), 'w') as file:
+        with open(os.path.join(self.temp_dirname, 'abc.xyz'), 'w'):
             pass
         errors, warnings = validation.validate_entry(self.temp_dirname)
         self.assertEqual(errors, [])

@@ -17,7 +17,8 @@ bad_copasifiles = ["MODEL1305060000_edited.cps", ]  # "Aubert2002.cps", "khajanc
 # These Copasi files will be ignored, and the present SED-ML used instead.
 copasi_with_worse_sedml = ["Tsai2014.cps", "Panteleev2010_full_model.cps", "Wang2016_2.cps", ]
 
-# Just for the record:  All Copasi files are treated as 'better' than the existing SED-ML, but for these files in particular, the SED-ML was noticably different.
+# Just for the record:  All Copasi files are treated as 'better' than the existing SED-ML,
+# but for these files in particular, the SED-ML was noticably different.
 copasi_with_better_sedml = ["MODEL1511290000.cps", "Theinmozhi_2018.cps", "Bravo2012.cps",
                             "Ganguli2018-immuno regulatory mechanisms in tumor microenvironment.cps",
                             "Dudziuk2019.cps", "Coulibaly2019.cps", "Sun2018.cps", "Smith2011_V1.cps",
@@ -34,7 +35,8 @@ sedml_with_correct_names = ["BIOMD0000000539.cps", "MODEL1603240000.cps", "ARPP-
                             "Perez-Garcia19 Computational design of improved standardized chemotherapy protocols for grade 2 oligodendrogliomas.cps",
                             "Greene2019 - Differentiate Spontaneous and Induced Evolution to Drug Resistance During Cancer Treatment.cps",
                             "Jung2019.cps", "Smith2011_V1.cps", "Linke2017_figure1b.cps"]
-# Note: Rodenfels2019_V1.cps might be a bugfix on Copasi's part:  the difference is that the labels in the report are better.
+# Note: Rodenfels2019_V1.cps might be a bugfix on Copasi's part:
+# the difference is that the labels in the report are better.
 
 nonascii_chars = {"López": "Lopez",
                   }
@@ -149,7 +151,6 @@ def regen_sedml(cfile, id, sbml_filenames, sedml_filenames):
     guesses = []
     sedml = fixSedSBMLTarget(sedml, sbml, sbml_filenames, cfile, id, guesses)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
-    cbase = os.path.basename(cfile)
     if "No plot/report definition" not in sed_msg:
         if len(sedml_filenames) > 0:
             origsed = getorig(sedml_filenames, cfile, sedml, id, guesses)
