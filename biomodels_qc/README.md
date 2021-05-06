@@ -14,15 +14,23 @@ The application can be installed locally or executed as a Docker image.
 * Python >= 3.7.8+, 3.8.4+, or 3.9.0+
 * pip >= 19.3
 * [Systems Biology Format Converter](http://sbfc.sourceforge.net/mediawiki/index.php/Main_Page)
-    * Java 
+    * Java
+* [Octave](https://www.gnu.org/software/octave/)
+    * [Mac OS installer](https://www.gnu.org/software/octave/download)
+    * Ubuntu: `apt-get install octave`
+    * [Windows installer](https://www.gnu.org/software/octave/download)
+* [Scilab](https://www.scilab.org/)
+    * [Mac OS installer](https://www.scilab.org/download/)
+    * Ubuntu: `apt-get install scilab`
+    * [Windows installer](https://www.scilab.org/download/)
 * [SVGLint](https://www.npmjs.com/package/svglint)
     * [Node.js](https://nodejs.org/en/)
         * [Mac OS installer](https://nodejs.org/en/download/)
         * [Ubuntu instructions](https://github.com/nodesource/distributions/blob/master/README.md)
         * [Windows installer](https://nodejs.org/en/download/)
 * [XPP](http://www.math.pitt.edu/~bard/xpp/xpp.html)
-    * [Mac OS instructions](http://www.math.pitt.edu/~bard/xpp/installonmac.html) 
-    * Ubuntu: `apt-get install xppaut`     
+    * [Mac OS instructions](http://www.math.pitt.edu/~bard/xpp/installonmac.html)
+    * Ubuntu: `apt-get install xppaut`
     * [Windows instructions](http://www.math.pitt.edu/~bard/xpp/installonwindows.html)
 
 After installing the packages above, the following must be added to your system path:

@@ -45,6 +45,8 @@ Summary of the changes to the content of BioModels
     * Fixed syntactically incorrect XPaths
     * Fixed SED-ML datasets with misssing labels
     * Fixed variables of data generators with no symbols or targets
+    * Fixed nested repeated tasks
+    * Removed duplicately defined data generators
 
 * OMEX files
     * Replaced file with its content: BIOMD0000000585/Rateitschak2012.omex
@@ -64,4 +66,7 @@ Summary of the changes to the content of BioModels
     * Removed invalid derived XPP files
     * Remove 1 invalid derived VCML file
     * Removed 22 corrupted PNG files
-    * Removed MATLAB/Octave and XPP files for non-kinetic models
+    * Removed MATLAB/Octave, Scilab, XPP files for non-kinetic models
+    * Removed 158 bad Octave files
+    * Removed 524 bad Scilab files
+    * Removed 399 bad VCML files

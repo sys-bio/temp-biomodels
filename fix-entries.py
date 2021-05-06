@@ -9,6 +9,10 @@ import fix_namespaces_in_sedml_doc
 import fix_sbml_validity
 import fix_sedml_extensions
 import recreate_sedml_from_copasi
+import remove_bad_octave_files
+import remove_bad_scilab_files
+import remove_bad_vcml_files
+import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
 import remove_omex
@@ -80,22 +84,25 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     fix_sedml_extensions.run(id, FINAL_ENTRIES_DIR)
 
     omex_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.omex'), recursive=True)
+    omex_filenames.sort()
     remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
 
     ###################################################
     # recreate files from COPASI, then fix the model sources
     # Collect lists of files
-    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
-    copasi_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.cps'), recursive=True)
     sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
+    sbml_filenames.sort()
 
     remove_non_sbml.run(id, sbml_filenames)
 
+    # SED-ML files: recreate from Copasi, then fix the model sources.
+    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
+    copasi_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.cps'), recursive=True)
+    sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
     sedml_filenames.sort()
     copasi_filenames.sort()
     sbml_filenames.sort()
 
-    # SED-ML files: recreate from Copasi, then fix the model sources.
     (sbml_msgs, sed_msgs, c_guesses) = recreate_sedml_from_copasi.run(sedml_filenames, copasi_filenames, sbml_filenames, id)
     nc_guesses = fix_models_non_copasi.run(sedml_filenames, sbml_filenames, id)
 
@@ -114,16 +121,32 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
 
     ###################################################
     # Apply more corrections
-    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
-    sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
-    sedml_filenames.sort()
-    sbml_filenames.sort()
-
     fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
+
+    sbml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.xml'), recursive=True)
+    sbml_filenames.sort()
     fix_sbml_validity.run(id, sbml_filenames)
+
+    sedml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sedml'), recursive=True)
+    sedml_filenames.sort()
+
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
+
+    octave_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*-octave.m'), recursive=True)
+    octave_filenames.sort()
+    remove_bad_octave_files.run(octave_filenames)
+
+    scilab_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.scilab'), recursive=True)
+    scilab_filenames.sort()
+    remove_bad_scilab_files.run(scilab_filenames)
+
+    vcml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.vcml'), recursive=True)
+    vcml_filenames.sort()
+    remove_bad_vcml_files.run(vcml_filenames)
+
+    remove_converted_files_for_non_kinetic_models.run(os.path.join(FINAL_ENTRIES_DIR, id))
 
     ###################################################
     # Validate SBML files

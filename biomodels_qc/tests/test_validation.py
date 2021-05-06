@@ -41,7 +41,7 @@ class ValidationTestCase(unittest.TestCase):
         invalid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693')
         errors, warnings = validation.validate_entry(invalid_dirname)
         self.assertIn('is not a valid XPP', flatten_nested_list_of_strings(errors))
-        self.assertIn('not available for `.sci`', flatten_nested_list_of_strings(warnings))
+        self.assertIn('not available for `.m`', flatten_nested_list_of_strings(warnings))
 
         errors, warnings = validation.validate_entry(invalid_dirname, filenames=['BIOMD0000000693.png'])
         self.assertEqual(errors, [])
@@ -136,6 +136,17 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('Unknown mat file type', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
+    def test_validate_octave_file(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000003', 'BIOMD0000000003-octave.m')
+        errors, warnings = validation.validate_octave_file(filename)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693', 'BIOMD0000000693.png')
+        errors, warnings = validation.validate_octave_file(filename)
+        self.assertIn('is not valid', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
     def test_validate_owl_ontology_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692-biopax2.owl')
         errors, warnings = validation.validate_owl_ontology_file(filename)
@@ -203,6 +214,17 @@ class ValidationTestCase(unittest.TestCase):
         _, warnings = validation.validate_xml_file(bad_filename)
         self.assertIn('Some of the metadata in', flatten_nested_list_of_strings(warnings))
 
+    def test_validate_scilab_file(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000002', 'BIOMD0000000002.sci')
+        errors, warnings = validation.validate_scilab_file(filename)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000001', 'BIOMD0000000001.sci')
+        errors, warnings = validation.validate_scilab_file(filename)
+        self.assertIn('is not valid', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
     def test_validate_sedml_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724', 'Theinmozhi_2018.sedml')
         errors, warnings = validation.validate_sedml_file(filename)
@@ -260,6 +282,11 @@ class ValidationTestCase(unittest.TestCase):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000001', 'BIOMD0000000001.vcml')
         errors, warnings = validation.validate_vcml_file(filename)
         self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000006', 'BIOMD0000000006.vcml')
+        errors, warnings = validation.validate_vcml_file(filename)
+        self.assertIn('not represent a valid model', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
         png_filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692.png')

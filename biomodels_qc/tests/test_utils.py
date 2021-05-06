@@ -42,3 +42,20 @@ class UtilsTestCase(unittest.TestCase):
         self.assertTrue(utils.are_biopax_files_the_same(a, a))
         self.assertFalse(utils.are_biopax_files_the_same(a, b))
         self.assertTrue(utils.are_biopax_files_the_same(a, c))
+
+    def test_is_sbml_file(self):
+        filename = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000005', 'BIOMD0000000005_url.xml')
+        self.assertTrue(utils.is_sbml_file(filename))
+
+        filename = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000005', 'BIOMD0000000005.sedml')
+        self.assertFalse(utils.is_sbml_file(filename))
+
+        filename = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000522', 'SM9.zip')
+        self.assertFalse(utils.is_sbml_file(filename))
+
+    def test_does_sbml_file_represent_core_kinetic_model(self):
+        filename = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000005', 'BIOMD0000000005_url.xml')
+        self.assertTrue(utils.does_sbml_file_represent_core_kinetic_model(filename))
+
+        filename = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000562', 'BIOMD0000000562_url.xml')
+        self.assertFalse(utils.does_sbml_file_represent_core_kinetic_model(filename))
