@@ -43,6 +43,11 @@ class UtilsTestCase(unittest.TestCase):
         self.assertFalse(utils.are_biopax_files_the_same(a, b))
         self.assertTrue(utils.are_biopax_files_the_same(a, c))
 
+        a = os.path.join(os.path.dirname(__file__), 'fixtures', 'are_biopax_files_the_same', 'biopax3-a.owl')
+        b = os.path.join(os.path.dirname(__file__), 'fixtures', 'are_biopax_files_the_same', 'biopax3-b.owl')
+        self.assertTrue(utils.are_biopax_files_the_same(a, a))
+        self.assertTrue(utils.are_biopax_files_the_same(a, b))
+
     def test_is_sbml_file(self):
         filename = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000005', 'BIOMD0000000005_url.xml')
         self.assertTrue(utils.is_sbml_file(filename))

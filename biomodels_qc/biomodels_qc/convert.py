@@ -9,6 +9,7 @@ such as BioPAX, MATLAB/Octave, and XPP.
 
 from .utils import get_smbl_files_for_entry, are_biopax_files_the_same, does_sbml_file_represent_core_kinetic_model
 from .validation import validate_sbml_file, validate_xpp_file, validate_octave_file
+from .warnings import FileCouldNotBeConvertedWarning
 from biosimulators_utils.sedml.data_model import Task
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from kisao import Kisao
@@ -106,19 +107,22 @@ def convert_entry(dirname, alt_sbml_formats=None):
                     shutil.move(temp_filename, alt_filename)
 
                 if alt_sbml_format == AltSbmlFormat.Octave and validate_octave_file(alt_filename)[0]:
-                    warnings.warn(termcolor.colored('`{}` could not be converted to valid Octave file.'.format(filename)), UserWarning)
+                    warnings.warn(termcolor.colored('`{}` could not be converted to valid Octave file.'.format(filename)),
+                                  FileCouldNotBeConvertedWarning)
                     os.remove(alt_filename)
 
                 elif alt_sbml_format == AltSbmlFormat.SBML_URN and validate_sbml_file(alt_filename)[0]:
-                    warnings.warn(termcolor.colored('`{}` could not be converted to valid SBML file.'.format(filename)), UserWarning)
+                    warnings.warn(termcolor.colored('`{}` could not be converted to valid SBML file.'.format(filename)),
+                                  FileCouldNotBeConvertedWarning)
                     os.remove(alt_filename)
 
                 elif alt_sbml_format == AltSbmlFormat.XPP and validate_xpp_file(alt_filename)[0]:
-                    warnings.warn(termcolor.colored('`{}` could not be converted to valid XPP file.'.format(filename)), UserWarning)
+                    warnings.warn(termcolor.colored('`{}` could not be converted to valid XPP file.'.format(filename)),
+                                  FileCouldNotBeConvertedWarning)
                     os.remove(alt_filename)
             except RuntimeError:
                 warnings.warn(termcolor.colored('`{}` could not be converted. Please check that the file is a valid SBML file.'.format(
-                    filename)), UserWarning)
+                    filename)), FileCouldNotBeConvertedWarning)
 
 
 class AltSbmlFormat(str, enum.Enum):
