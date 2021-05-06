@@ -92,12 +92,12 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
 
     ###################################################
     # Fix files/filenames
-    fix_filenames.run(id, FINAL_ENTRIES_DIR)
-    fix_sedml_extensions.run(id, FINAL_ENTRIES_DIR)
+    fix_filenames.run(id, temp_entry_dir)
+    fix_sedml_extensions.run(temp_entry_dir)
 
     omex_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.omex'), recursive=True)
     omex_filenames.sort()
-    remove_omex.run(id, omex_filenames, FINAL_ENTRIES_DIR)
+    remove_omex.run(id, omex_filenames, temp_entry_dir)
 
     ###################################################
     # recreate files from COPASI, then fix the model sources
@@ -133,7 +133,7 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
 
     ###################################################
     # Apply more corrections
-    fix_manual_corrections.run(id, FINAL_ENTRIES_DIR)
+    fix_manual_corrections.run(id, temp_entry_dir)
 
     sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
     sbml_filenames.sort()

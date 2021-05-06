@@ -24,7 +24,7 @@ def run(id, omex_filenames, working_dir):
             zf = zipfile.ZipFile(omex, "r")
             zf.extractall(path=os.path.dirname(omex))
         else:
-            os.remove(os.path.join(working_dir, id, omex))
+            os.remove(os.path.join(working_dir, omex))
             removed.append(omex)
 
     return removed
