@@ -41,7 +41,7 @@ class ValidationTestCase(unittest.TestCase):
         invalid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693')
         errors, warnings = validation.validate_entry(invalid_dirname)
         self.assertIn('is not a valid XPP', flatten_nested_list_of_strings(errors))
-        self.assertIn('not available for `.sci`', flatten_nested_list_of_strings(warnings))
+        self.assertIn('not available for `.m`', flatten_nested_list_of_strings(warnings))
 
         errors, warnings = validation.validate_entry(invalid_dirname, filenames=['BIOMD0000000693.png'])
         self.assertEqual(errors, [])
