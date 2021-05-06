@@ -7,7 +7,7 @@ such as BioPAX, MATLAB/Octave, and XPP.
 :License: MIT
 """
 
-from .utils import get_smbl_files_for_entry, are_biopax_files_the_same
+from .utils import get_smbl_files_for_entry, are_biopax_files_the_same, does_sbml_file_represent_core_kinetic_model
 from .validation import validate_sbml_file, validate_xpp_file
 from biosimulators_utils.sedml.data_model import Task
 from biosimulators_utils.sedml.io import SedmlSimulationReader
@@ -67,30 +67,25 @@ def convert_entry(dirname, alt_sbml_formats=None):
             pass
 
     for filename in get_smbl_files_for_entry(dirname, include_urn_files=False):
-        doc = libsbml.readSBMLFromFile(filename)
-        for i_plugin in range(doc.getNumPlugins()):
-            plugin = doc.getPlugin(i_plugin)
-            package_name = plugin.getPackageName()
-            if (
-                (has_sedml_task and not ode_simulation)
-                or package_name in ['arrays', 'comp', 'distrib', 'dyn', 'fbc', 'groups', 'math', 'multi', 'qual', 'spatial']
-            ):
-                for alt_sbml_format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
-                    alt_sbml_formats.remove(alt_sbml_format)
+        if (
+            (has_sedml_task and not ode_simulation)
+            or not does_sbml_file_represent_core_kinetic_model(filename)
+        ):
+            for alt_sbml_format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
+                alt_sbml_formats.remove(alt_sbml_format)
 
-                    if filename.endswith('_url.xml'):
-                        old_final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['old_final_extension']
-                        final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['final_extension']
-                    else:
-                        old_final_converted_filename = os.path.splitext(
-                            filename)[0] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['old_final_extension']
-                        final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['final_extension']
+                if filename.endswith('_url.xml'):
+                    old_final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['old_final_extension']
+                    final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['final_extension']
+                else:
+                    old_final_converted_filename = os.path.splitext(
+                        filename)[0] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['old_final_extension']
+                    final_converted_filename = os.path.splitext(filename)[0] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['final_extension']
 
-                    if os.path.isfile(old_final_converted_filename):
-                        os.remove(old_final_converted_filename)
-                    if os.path.isfile(final_converted_filename):
-                        os.remove(final_converted_filename)
-                break
+                if os.path.isfile(old_final_converted_filename):
+                    os.remove(old_final_converted_filename)
+                if os.path.isfile(final_converted_filename):
+                    os.remove(final_converted_filename)
 
         for alt_sbml_format in alt_sbml_formats:
             try:

@@ -11,6 +11,7 @@ import fix_sedml_extensions
 import recreate_sedml_from_copasi
 import remove_bad_scilab_files
 import remove_bad_vcml_files
+import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
 import remove_omex
@@ -139,6 +140,8 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     vcml_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.vcml'), recursive=True)
     vcml_filenames.sort()
     remove_bad_vcml_files.run(vcml_filenames)
+
+    remove_converted_files_for_non_kinetic_models.run(os.path.join(FINAL_ENTRIES_DIR, id))
 
     ###################################################
     # Validate SBML files

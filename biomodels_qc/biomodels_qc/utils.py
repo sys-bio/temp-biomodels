@@ -12,6 +12,8 @@ from biosimulators_utils.data_model import Person  # noqa: F401
 import datetime
 import dateutil.tz
 import glob
+import libsbml
+import lxml.etree
 import re
 import os
 import xmldiff.main
@@ -21,6 +23,8 @@ __all__ = [
     'EXTENSION_COMBINE_FORMAT_MAP',
     'build_combine_archive',
     'are_biopax_files_the_same',
+    'is_sbml_file',
+    'does_sbml_file_represent_core_kinetic_model',
 ]
 
 
@@ -131,3 +135,40 @@ def are_biopax_files_the_same(filename_a, filename_b):
         and re.match(r'^This BioPAX .* file was automatically generated on .* by .*, BioModels.net, EMBL-EBI.$',
                      diff.text) is not None
     )
+
+
+def is_sbml_file(filename):
+    """ Determine whether a file is an SBML file
+
+    Args:
+        filename (:obj:`str`): path to file
+
+    Returns:
+        :obj:`bool`: whether the file is an SBML file
+    """
+    try:
+        root = lxml.etree.parse(filename).getroot()
+    except Exception:
+        return False
+
+    return root.nsmap.get(None, '').startswith('http://www.sbml.org/')
+
+
+def does_sbml_file_represent_core_kinetic_model(filename):
+    """ Determine whether an SBML file represents a core kinetic model
+
+    Args:
+        filename (:obj:`str`): path to SBML file
+
+    Returns:
+        :obj:`bool`: whether the file represents a core kinetic model (i.e., doesn't use other mathematical package)
+    """
+    doc = libsbml.readSBMLFromFile(filename)
+    for i_plugin in range(doc.getNumPlugins()):
+        plugin = doc.getPlugin(i_plugin)
+        package_name = plugin.getPackageName()
+        if (
+            package_name in ['arrays', 'comp', 'distrib', 'dyn', 'fbc', 'groups', 'math', 'multi', 'qual', 'spatial']
+        ):
+            return False
+    return True
