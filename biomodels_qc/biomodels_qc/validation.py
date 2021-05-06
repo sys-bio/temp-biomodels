@@ -167,7 +167,7 @@ def validate_copasi_file_in_subprocess(filename):
     if result.returncode == 0:
         return json.loads(result.stdout.decode())
     else:
-        return [['COPASI failed', [[result.stderr.decode()]]]], []
+        return [], [['`{}` could not be validated because COPASI failed.'.format(filename), [[result.stderr.decode()]]]]
 
 
 def validate_image_file(filename, image_format):
