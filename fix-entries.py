@@ -9,6 +9,7 @@ import fix_namespaces_in_sedml_doc
 import fix_sbml_validity
 import fix_sedml_extensions
 import recreate_sedml_from_copasi
+import remove_bad_octave_files
 import remove_bad_scilab_files
 import remove_bad_vcml_files
 import remove_converted_files_for_non_kinetic_models
@@ -132,6 +133,10 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
+
+    octave_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*-octave.m'), recursive=True)
+    octave_filenames.sort()
+    remove_bad_octave_files.run(octave_filenames)
 
     scilab_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.scilab'), recursive=True)
     scilab_filenames.sort()

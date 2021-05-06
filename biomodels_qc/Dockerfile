@@ -48,10 +48,10 @@ RUN mkdir /usr/share/man/man1/ \
     && rm -rf /var/lib/apt/lists/*
 ENV PATH /opt/sbfc-${SBFC_VERSION}:$PATH
 
-# Install XPP
+# Install Octave
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        xppaut \
+        octave \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
@@ -59,6 +59,13 @@ RUN apt-get update -y \
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
         scilab \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install XPP
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        xppaut \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 

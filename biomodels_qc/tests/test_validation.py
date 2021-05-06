@@ -136,6 +136,17 @@ class ValidationTestCase(unittest.TestCase):
         self.assertIn('Unknown mat file type', flatten_nested_list_of_strings(errors))
         self.assertEqual(warnings, [])
 
+    def test_validate_octave_file(self):
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000003', 'BIOMD0000000003-octave.m')
+        errors, warnings = validation.validate_octave_file(filename)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+        filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693', 'BIOMD0000000693.png')
+        errors, warnings = validation.validate_octave_file(filename)
+        self.assertIn('is not valid', flatten_nested_list_of_strings(errors))
+        self.assertEqual(warnings, [])
+
     def test_validate_owl_ontology_file(self):
         filename = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000692', 'BIOMD0000000692-biopax2.owl')
         errors, warnings = validation.validate_owl_ontology_file(filename)

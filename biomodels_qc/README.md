@@ -15,6 +15,10 @@ The application can be installed locally or executed as a Docker image.
 * pip >= 19.3
 * [Systems Biology Format Converter](http://sbfc.sourceforge.net/mediawiki/index.php/Main_Page)
     * Java
+* [Octave](https://www.gnu.org/software/octave/)
+    * [Mac OS installer](https://www.gnu.org/software/octave/download)
+    * Ubuntu: `apt-get install octave`
+    * [Windows installer](https://www.gnu.org/software/octave/download)
 * [Scilab](https://www.scilab.org/)
     * [Mac OS installer](https://www.scilab.org/download/)
     * Ubuntu: `apt-get install scilab`

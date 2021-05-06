@@ -46,6 +46,7 @@ __all__ = [
     'validate_image_file',
     'validate_ipynb_notebook_file',
     'validate_matlab_data_file',
+    'validate_octave_file',
     'validate_owl_ontology_file',
     'validate_pdf_file',
     'validate_python_file',
@@ -235,6 +236,30 @@ def validate_matlab_data_file(filename):
         return [], []
     except Exception as exception:
         return [[str(exception)]], []
+
+
+def validate_octave_file(filename):
+    """ Determine if an Octave file is valid
+
+    Args:
+        filename (:obj:`str`): path to Octave file
+
+    Returns:
+        :obj:`tuple`:
+
+            * nested :obj:`list` of :obj:`str`: nested list of errors
+            * nested :obj:`list` of :obj:`str`: nested list of warnings
+    """
+    result = subprocess.run(['octave', '--no-gui', '--no-window-system', '--quiet', filename],
+                            check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode == 0:
+        stderr = result.stderr.decode(errors="ignore")
+        if stderr.startswith('parse error'):
+            return [['`{}` is not valid.'.format(filename), [[stderr]]]], []
+        else:
+            return [], []
+    else:
+        raise RuntimeError('Octave failed')
 
 
 def validate_owl_ontology_file(filename):
@@ -603,6 +628,10 @@ EXTENSION_VALIDATOR_MAP = {
         'description': 'JPEG image',
         'validator': lambda filename: validate_image_file(filename, ImageFormat.jpeg),
     },
+    # '.m': {
+    #    'description': 'Octave script',
+    #    'validator': validate_octave_file,
+    # },
     '.mat': {
         'description': 'MATLAB data file',
         'validator': validate_matlab_data_file,

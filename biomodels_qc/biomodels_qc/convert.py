@@ -8,14 +8,13 @@ such as BioPAX, MATLAB/Octave, and XPP.
 """
 
 from .utils import get_smbl_files_for_entry, are_biopax_files_the_same, does_sbml_file_represent_core_kinetic_model
-from .validation import validate_sbml_file, validate_xpp_file
+from .validation import validate_sbml_file, validate_xpp_file, validate_octave_file
 from biosimulators_utils.sedml.data_model import Task
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from kisao import Kisao
 from kisao.utils import get_ode_algorithms
 import enum
 import glob
-import libsbml
 import os
 import shutil
 import subprocess
@@ -106,7 +105,11 @@ def convert_entry(dirname, alt_sbml_formats=None):
                 if move_to_alt_filename:
                     shutil.move(temp_filename, alt_filename)
 
-                if alt_sbml_format == AltSbmlFormat.SBML_URN and validate_sbml_file(alt_filename)[0]:
+                if alt_sbml_format == AltSbmlFormat.Octave and validate_octave_file(alt_filename)[0]:
+                    warnings.warn(termcolor.colored('`{}` could not be converted to valid Octave file.'.format(filename)), UserWarning)
+                    os.remove(alt_filename)
+
+                elif alt_sbml_format == AltSbmlFormat.SBML_URN and validate_sbml_file(alt_filename)[0]:
                     warnings.warn(termcolor.colored('`{}` could not be converted to valid SBML file.'.format(filename)), UserWarning)
                     os.remove(alt_filename)
 
