@@ -2,8 +2,6 @@ import enum
 import os
 import yaml
 
-FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
-
 with open(__file__.replace('.py', '.yml'), 'r') as file:
     FIXES = yaml.load(file, Loader=yaml.Loader)
 
