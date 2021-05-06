@@ -138,7 +138,7 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     octave_filenames.sort()
     remove_bad_octave_files.run(octave_filenames)
 
-    scilab_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.scilab'), recursive=True)
+    scilab_filenames = glob.glob(os.path.join(FINAL_ENTRIES_DIR, id, '**', '*.sci'), recursive=True)
     scilab_filenames.sort()
     remove_bad_scilab_files.run(scilab_filenames)
 
