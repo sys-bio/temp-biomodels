@@ -8,6 +8,8 @@ Command-line application for quality controlling entries in the [BioModels datab
 
 The application can be installed locally or executed as a Docker image.
 
+This application should be used in conjuction with best practices recommended [here](best-practices.md).
+
 ## Local installation
 
 ### Requirements

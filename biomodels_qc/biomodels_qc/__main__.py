@@ -9,13 +9,16 @@
 from .convert import convert_entry, AltSbmlFormat
 from .utils import build_combine_archive
 from .validation import validate_entry
+from .warnings import BiomodelsQcWarning
 from biosimulators_utils.data_model import Person
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
+from biosimulators_utils.warnings import BioSimulatorsWarning
 import biomodels_qc
 import cement
 import glob
 import os
 import termcolor
+import warnings
 
 
 class BaseController(cement.Controller):
@@ -88,6 +91,13 @@ class ValidateEntryController(cement.Controller):
                     ),
                 ),
             ),
+            (
+                ['--do-not-display-warnings'],
+                dict(
+                    action='store_true',
+                    help='Do not display warnings.',
+                ),
+            ),
         ]
 
     @cement.ex(hide=True)
@@ -102,17 +112,27 @@ class ValidateEntryController(cement.Controller):
                 id, _, version = simulator.partition(':')
                 simulators.append({'id': id, 'version': version or None})
 
-        errors, warnings = validate_entry(args.dir, file_extensions=args.ext, filenames=args.file, simulators=simulators)
+        with warnings.catch_warnings():
+            if args.do_not_display_warnings:
+                warnings.simplefilter("ignore", BiomodelsQcWarning)
+                warnings.simplefilter("ignore", BioSimulatorsWarning)
+            entry_errors, entry_warnings = validate_entry(args.dir, file_extensions=args.ext, filenames=args.file, simulators=simulators)
 
-        if warnings:
-            warnings = [['The entry at `{}` may be invalid.'.format(args.dir), warnings]]
-            print(termcolor.colored(flatten_nested_list_of_strings(warnings), 'yellow'))
+        if entry_warnings:
+            if args.do_not_display_warnings:
+                entry_warnings = [[(
+                    'The entry at `{}` may be invalid. Rerun this validation without `--do-not-display-warnings` '
+                    'to display additional information.'
+                ).format(args.dir)]]
+            else:
+                entry_warnings = [['The entry at `{}` may be invalid.'.format(args.dir), entry_warnings]]
+            print(termcolor.colored(flatten_nested_list_of_strings(entry_warnings), 'yellow'))
 
-        if errors:
-            errors = [['The entry at `{}` is invalid.'.format(args.dir), errors]]
-            raise SystemExit(termcolor.colored(flatten_nested_list_of_strings(errors), 'red'))
+        if entry_errors:
+            entry_errors = [['The entry at `{}` is invalid.'.format(args.dir), entry_errors]]
+            raise SystemExit(termcolor.colored(flatten_nested_list_of_strings(entry_errors), 'red'))
 
-        if not warnings:
+        if not entry_warnings:
             print('The entry at `{}` is valid.'.format(args.dir))
 
 
@@ -166,6 +186,13 @@ class BuildCombineArchiveController(cement.Controller):
                     help='Author of the archive (Family Name, Given Name).',
                 ),
             ),
+            (
+                ['--do-not-display-warnings'],
+                dict(
+                    action='store_true',
+                    help='Do not display warnings.',
+                ),
+            ),
         ]
 
     @cement.ex(hide=True)
@@ -186,8 +213,12 @@ class BuildCombineArchiveController(cement.Controller):
             given_name = given_name.strip() or None
             authors.append(Person(family_name=family_name, given_name=given_name))
 
-        build_combine_archive(args.dir, master_rel_filenames, args.archive,
-                              description=description, authors=authors)
+        with warnings.catch_warnings():
+            if args.do_not_display_warnings:
+                warnings.simplefilter("ignore", BiomodelsQcWarning)
+                warnings.simplefilter("ignore", BioSimulatorsWarning)
+            build_combine_archive(args.dir, master_rel_filenames, args.archive,
+                                  description=description, authors=authors)
 
 
 class ConvertEntryProjectController(cement.Controller):
@@ -223,6 +254,13 @@ class ConvertEntryProjectController(cement.Controller):
                     ),
                 ),
             ),
+            (
+                ['--do-not-display-warnings'],
+                dict(
+                    action='store_true',
+                    help='Do not display warnings.',
+                ),
+            ),
         ]
 
     @cement.ex(hide=True)
@@ -233,7 +271,11 @@ class ConvertEntryProjectController(cement.Controller):
         else:
             alt_sbml_formats = AltSbmlFormat.__members__.values()
 
-        convert_entry(args.dir, alt_sbml_formats=alt_sbml_formats)
+        with warnings.catch_warnings():
+            if args.do_not_display_warnings:
+                warnings.simplefilter("ignore", BiomodelsQcWarning)
+                warnings.simplefilter("ignore", BioSimulatorsWarning)
+            convert_entry(args.dir, alt_sbml_formats=alt_sbml_formats)
 
 
 class App(cement.App):

@@ -2,8 +2,6 @@ import enum
 import os
 import yaml
 
-FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
-
 with open(__file__.replace('.py', '.yml'), 'r') as file:
     FIXES = yaml.load(file, Loader=yaml.Loader)
 
@@ -23,7 +21,7 @@ def run(id, working_dir):
 
     Args:
         id (:obj:`str`): id of BioModels entry
-        working_dir (:obj:`str`): directory of entries to change (e.g., ``final``, ``original``)
+        working_dir (:obj:`str`): directory of entries to change
 
     Returns:
         :obj:`list` of :obj:`str`: list of corrected files
@@ -33,7 +31,7 @@ def run(id, working_dir):
         return []
 
     for fix in fixes:
-        filename = os.path.join(working_dir, id, fix['filename'])
+        filename = os.path.join(working_dir, fix['filename'])
 
         if fix['type'] == FixType.replace_text.value:
             with open(filename, 'rb') as file:
@@ -46,7 +44,7 @@ def run(id, working_dir):
                 file.write(contents)
 
         elif fix['type'] == FixType.rename_file.value:
-            os.rename(filename, os.path.join(working_dir, id, fix['new']))
+            os.rename(filename, os.path.join(working_dir, fix['new']))
 
         elif fix['type'] == FixType.remove_file.value:
             os.remove(filename)

@@ -16,6 +16,7 @@ import libsbml
 import lxml.etree
 import re
 import os
+import xmldiff.actions
 import xmldiff.main
 
 __all__ = [
@@ -122,6 +123,8 @@ def are_biopax_files_the_same(filename_a, filename_b):
         :obj:`bool`: whether the files are the same, ignoring the time stamps when they were generated
     """
     diffs = xmldiff.main.diff_files(filename_a, filename_b)
+    diffs = list(filter(lambda diff: not isinstance(diff, xmldiff.actions.MoveNode), diffs))
+
     if not diffs:
         return True
 
@@ -131,8 +134,8 @@ def are_biopax_files_the_same(filename_a, filename_b):
     diff = diffs[0]
     return (
         isinstance(diff, xmldiff.actions.UpdateTextIn)
-        and re.match(r'^/rdf:RDF/bp:pathway/bp:COMMENT\[', diff.node) is not None
-        and re.match(r'^This BioPAX .* file was automatically generated on .* by .*, BioModels.net, EMBL-EBI.$',
+        and re.match(r'^/rdf:RDF/bp:pathway/bp:COMMENT\[', diff.node, re.IGNORECASE) is not None
+        and re.match(r'^This BioPAX .* file was automatically generated on .* by .*, BioModels\.net, EMBL-EBI\.$',
                      diff.text) is not None
     )
 
