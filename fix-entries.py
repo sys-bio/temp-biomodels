@@ -2,6 +2,7 @@
 # master program to fix the entries of BioModels
 
 import decrease_excessive_numbers_of_time_course_steps
+import fix_copasi_algorithms
 import fix_filenames
 import fix_manual_corrections
 import fix_models_non_copasi
@@ -142,6 +143,7 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
+    fix_copasi_algorithms.run(id, temp_entry_dir)
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
     octave_filenames.sort()
