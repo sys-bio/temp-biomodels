@@ -400,6 +400,11 @@ BIOMD0000000645:
               <subTask order="1" task="task3_inner"/>
             </listOfSubTasks>
           </repeatedTask>
+BIOMD0000000661:
+  - filename: 'BIOMD0000000661_url.xml'
+    type: replace_text
+    old: 'bqmodel:unknownQualifier'
+    new: 'bqbiol:hasProperty'
 BIOMD0000000662:
   - filename: 'Moore2004.cps'
     type: replace_text
@@ -450,9 +455,45 @@ BIOMD0000000675:
     type: replace_text
     old: 'target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Swi5&apos;]"'
     new: 'target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Swi5&apos;]"'
+BIOMD0000000682:
+  - filename: 'BIOMD0000000682_url.xml'
+    type: replace_text
+    old: |
+      \t<bqmodel:unknownQualifier>
+      \t<rdf:Bag>
+      \t<rdf:li rdf:resource="http://identifiers.org/go/GO:0008443"/>
+      \t</rdf:Bag>
+      \t</bqmodel:unknownQualifier>
+    new: |
+      \t<bqmodel:isInstanceOf>
+      \t<rdf:Bag>
+      \t<rdf:li rdf:resource="http://identifiers.org/go/GO:0008443"/>
+      \t</rdf:Bag>
+      \t</bqmodel:isInstanceOf>
+  - filename: 'BIOMD0000000682_url.xml'
+    type: replace_text
+    old: |
+      <bqmodel:unknownQualifier>
+      \t<rdf:Bag>
+      \t<rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:26216"/>
+      \t<rdf:li rdf:resource="http://identifiers.org/go/GO:0015269"/>
+      \t<rdf:li rdf:resource="http://identifiers.org/ncit/C48434"/>
+      \t</rdf:Bag>
+      \t</bqmodel:unknownQualifier>
+    new: |
+      <bqmodel:isInstanceOf>
+      \t<rdf:Bag>
+      \t<rdf:li rdf:resource="http://identifiers.org/go/GO:0015269"/>
+      \t</rdf:Bag>
+      \t</bqmodel:isInstanceOf>
 BIOMD0000000683:
   - filename: 'BIOMD0000000683.xpp'
     type: remove_file
+BIOMD0000000700:
+  - filename: 'BIOMD0000000700_url.xml'
+    type: replace_text
+    old: bqmodel:unknownQualifier
+    new: bqbiol:hasProperty
 BIOMD0000000719:
   - filename: 'tsai2014.sedml'
     type: replace_text
@@ -470,10 +511,67 @@ BIOMD0000000723:
   - filename: 'Weis2014-generate_plot.R'
     type: 'rename_file'
     new: 'Weis2014-generate_plot.r'
+BIOMD0000000729:
+  - filename: 'Goldbeter1996.cps'
+    type: replace_text
+    old: |
+      <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about="#Reaction_4">
+          <dcterms:created>
+            <rdf:Description>
+              <dcterms:W3CDTF>2018-12-12T13:17:46Z</dcterms:W3CDTF>
+            </rdf:Description>
+          </dcterms:created>
+          <CopasiMT:unknown rdf:resource="urn:miriam:ncit:C75947" />
+        </rdf:Description>
+      </rdf:RDF>
+    new: |
+      <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about="#Reaction_4">
+          <dcterms:created>
+            <rdf:Description>
+              <dcterms:W3CDTF>2018-12-12T13:17:46Z</dcterms:W3CDTF>
+            </rdf:Description>
+          </dcterms:created>
+          <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C75947" />
+        </rdf:Description>
+      </rdf:RDF>
+  - filename: 'Goldbeter1996.xml'
+    type: replace_text
+    old: |2
+                  <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                    <rdf:Description rdf:about="#COPASI23">
+                      <dcterms:created>
+                        <rdf:Description>
+                          <dcterms:W3CDTF>2018-12-12T13:17:46Z</dcterms:W3CDTF>
+                        </rdf:Description>
+                      </dcterms:created>
+                      <CopasiMT:unknown rdf:resource="urn:miriam:ncit:C75947"/>
+                    </rdf:Description>
+                  </rdf:RDF>
+    new: |2
+                  <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                    <rdf:Description rdf:about="#COPASI23">
+                      <dcterms:created>
+                        <rdf:Description>
+                          <dcterms:W3CDTF>2018-12-12T13:17:46Z</dcterms:W3CDTF>
+                        </rdf:Description>
+                      </dcterms:created>
+                      <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C75947"/>
+                    </rdf:Description>
+                  </rdf:RDF>
 BIOMD0000000736:
   - filename: 'MODEL1605030003.xpp'
     type: remove_file
 BIOMD0000000737:
+  - filename: 'Parmar2017_Deficient_NoTracer.cps'
+    type: replace_text
+    old: '<CopasiMT:unknown rdf:resource="urn:miriam:go:GO:'
+    new: '<CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:'
+  - filename: 'Parmar2017_Deficient_NoTracer.xml'
+    type: replace_text
+    old: '<CopasiMT:unknown rdf:resource="urn:miriam:go:GO:'
+    new: '<CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:'
   - filename: 'MODEL1605030004.xpp'
     type: remove_file
 BIOMD0000000738:

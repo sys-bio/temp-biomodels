@@ -577,10 +577,13 @@ def validate_xpp_file(filename):
                             stderr=subprocess.PIPE,
                             check=False)
     stdout = result.stdout.decode()
-    if result.returncode == 0 and '\n Error ' not in stdout:
-        return [], []
+    if result.returncode == 0:
+        if '\n Error ' in stdout:
+            return [[stdout]], []
+        else:
+            return [], []
     else:
-        return [[stdout]], []
+        return [], [['`{}` could not be validated because XPP failed.'.format(filename), [[stdout]]]]
 
 
 def validate_zip_file(filename):

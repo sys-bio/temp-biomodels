@@ -37,8 +37,10 @@ def run(id, working_dir):
             with open(filename, 'rb') as file:
                 contents = file.read()
 
-            assert fix['old'].encode() in contents, "Text could not be replaced in `{}`\n\n{}".format(filename, fix['old'])
-            contents = contents.replace(fix['old'].encode(), fix['new'].encode())
+            old = fix['old'].replace('\\t', "\t")
+            new = fix['new'].replace('\\t', "\t")
+            assert old.encode() in contents, "Text could not be replaced in `{}`\n\n{}".format(filename, old)
+            contents = contents.replace(old.encode(), new.encode())
 
             with open(filename, 'wb') as file:
                 file.write(contents)

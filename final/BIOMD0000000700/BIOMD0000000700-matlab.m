@@ -17,7 +17,6 @@
 % is http://identifiers.org/biomodels.db/MODEL1703030000
 % is http://identifiers.org/biomodels.db/BIOMD0000000700
 % isDescribedBy http://identifiers.org/pubmed/29463760
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 % is http://identifiers.org/biomodels.db/MODEL1703030000
 % is http://identifiers.org/biomodels.db/BIOMD0000000700
 %
