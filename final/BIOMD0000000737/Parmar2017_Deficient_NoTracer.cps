@@ -1102,7 +1102,7 @@ Reaction scheme where the products are created from the reactants and the change
         <dcterms:W3CDTF>2015-08-14T10:05:11Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:unknown rdf:resource="urn:miriam:go:GO:1903414" />
+    <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:1903414" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -1152,7 +1152,7 @@ Reaction scheme where the products are created from the reactants and the change
         <dcterms:W3CDTF>2015-08-14T10:04:57Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:unknown rdf:resource="urn:miriam:go:GO:1903414" />
+    <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:1903414" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -1417,7 +1417,7 @@ Reaction scheme where the products are created from the reactants and the change
         <dcterms:W3CDTF>2015-08-14T10:05:26Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:unknown rdf:resource="urn:miriam:go:GO:1903988" />
+    <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:1903988" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
