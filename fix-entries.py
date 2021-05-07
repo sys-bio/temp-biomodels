@@ -102,12 +102,6 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     ###################################################
     # recreate files from COPASI, then fix the model sources
     # Collect lists of files
-    sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
-    sbml_filenames.sort()
-
-    remove_non_sbml.run(id, sbml_filenames)
-
-    # SED-ML files: recreate from Copasi, then fix the model sources.
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     copasi_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.cps'), recursive=True)
     sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
@@ -115,6 +109,9 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     copasi_filenames.sort()
     sbml_filenames.sort()
 
+    remove_non_sbml.run(id, sbml_filenames)
+
+    # SED-ML files: recreate from COPASI, then fix the model sources.
     (sbml_msgs, sed_msgs, c_guesses) = recreate_sedml_from_copasi.run(sedml_filenames, copasi_filenames, sbml_filenames, id)
     nc_guesses = fix_models_non_copasi.run(sedml_filenames, sbml_filenames, id)
 
