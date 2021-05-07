@@ -12,7 +12,6 @@ def run(dirname):
             break
 
     if has_non_core_model:
-        print(dirname)
         for filename in itertools.chain(
             glob.glob(os.path.join(dirname, '**', '*-matlab.m'), recursive=True),
             glob.glob(os.path.join(dirname, '**', '*-octave.m'), recursive=True),
