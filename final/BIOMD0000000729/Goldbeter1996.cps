@@ -567,14 +567,14 @@ Reaction scheme where the products are created from the reactants and the change
       </Reaction>
       <Reaction key="Reaction_4" name="Cdc2 kinase inactivation" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_4">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2018-12-12T13:17:46Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C75947" />
+    <CopasiMT:unknown rdf:resource="urn:miriam:ncit:C75947" />
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>

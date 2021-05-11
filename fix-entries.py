@@ -16,11 +16,12 @@ import remove_bad_vcml_files
 import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
+import remove_unused_sedml_elements
 import remove_omex
 import validate_sbml as validate_sbml_module
 
-from biomodels_qc.utils import are_biopax_files_the_same
-from biomodels_qc.warnings import BiomodelsQcWarning
+from biomodels_qc.biomodels_qc.utils import are_biopax_files_the_same
+from biomodels_qc.biomodels_qc.warnings import BiomodelsQcWarning
 from biosimulators_utils.warnings import BioSimulatorsWarning
 
 import argparse
@@ -143,6 +144,8 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
+    remove_unused_sedml_elements.run(id, sedml_filenames)
+
     fix_copasi_algorithms.run(id, temp_entry_dir)
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
@@ -174,8 +177,8 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
         rel_filename = os.path.relpath(temp_filename, temp_entry_dir)
         final_filename = os.path.join(final_entry_dir, rel_filename)
 
-        if os.path.isfile(final_filename) and are_biopax_files_the_same(final_filename, temp_filename):
-            shutil.copyfile(final_filename, temp_filename)
+        # if os.path.isfile(final_filename) and are_biopax_files_the_same(final_filename, temp_filename):
+        #     shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
     # Move temporary directory to final location
@@ -216,11 +219,26 @@ if __name__ == "__main__":
         action='store_true',
     )
 
+    parser.add_argument(
+        '--continue-from', type=str, nargs=1,
+        help='Id of first entry to fix (e.g., `BIOMD0000000234`). Default: BIOMD0000000001.',
+        default=None, dest='first_entry',
+    )
+
     args = parser.parse_args()
     if args.entry_ids:
         ids = args.entry_ids
     else:
         ids = get_entry_ids()[0:args.max_entries]
+    
+    low_ids = []
+    if args.first_entry:
+        for entry in ids:
+            if entry < args.first_entry[0]:
+                low_ids.append(entry)
+    for low_id in low_ids:
+        ids.remove(low_id)
+
     guess_file = open("guesses.csv", "w")
     fix_entries(ids, convert_files=args.convert_files, guess_file=guess_file, validate_sbml=args.validate_sbml,
                 display_warnings=not args.do_not_display_warnings)

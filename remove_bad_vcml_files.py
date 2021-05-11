@@ -1,4 +1,4 @@
-from biomodels_qc.validation import validate_vcml_file
+from biomodels_qc.biomodels_qc.validation import validate_vcml_file
 import os
 
 

@@ -17,24 +17,6 @@
   </listOfSimulations>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
-    <repeatedTask id="task2_inner" range="range1" resetModel="true">
-      <listOfRanges>
-        <vectorRange id="range1">
-          <value> 0 </value>
-          <value> 0.00274 </value>
-        </vectorRange>
-      </listOfRanges>
-      <listOfChanges>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" range="range1">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> range1 </ci>
-          </math>
-        </setValue>
-      </listOfChanges>
-      <listOfSubTasks>
-        <subTask order="1" task="task1"/>
-      </listOfSubTasks>
-    </repeatedTask>
     <repeatedTask id="task2" range="range0" resetModel="true">
       <listOfRanges>
         <vectorRange id="range0">
@@ -46,6 +28,10 @@
           <value> 2.8 </value>
           <value> 3 </value>
         </vectorRange>
+        <vectorRange id="range1">
+          <value> 0 </value>
+          <value> 0.00274 </value>
+        </vectorRange>
       </listOfRanges>
       <listOfChanges>
         <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;R_fixed&apos;]" range="range0">
@@ -53,9 +39,14 @@
             <ci> range0 </ci>
           </math>
         </setValue>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" range="range1">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range1 </ci>
+          </math>
+        </setValue>
       </listOfChanges>
       <listOfSubTasks>
-        <subTask order="1" task="task2_inner"/>
+        <subTask order="1" task="task1"/>
       </listOfSubTasks>
     </repeatedTask>
   </listOfTasks>

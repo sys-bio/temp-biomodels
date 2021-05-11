@@ -361,7 +361,7 @@ def validate_scilab_file(filename):
             * nested :obj:`list` of :obj:`str`: nested list of errors
             * nested :obj:`list` of :obj:`str`: nested list of warnings
     """
-    result = subprocess.run(['scilab', '--parse-file', filename, '-nb', '-nwni'],
+    result = subprocess.run('scilab --parse-file ' + filename + '-nb -nwni', shell=True,
                             check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if result.returncode == 0:
         return [], []
