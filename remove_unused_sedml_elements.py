@@ -96,5 +96,5 @@ def run(id, sedml_filenames):
         doc = libsedml.readSedMLFromFile(sedml_filename)
         changed = remove_duplicate_plots(doc)
         if (changed):
-            # libsedml.writeSedMLToFile(doc, sedml_filename)
+            libsedml.writeSedMLToFile(doc, sedml_filename)
             print(id, os.path.basename(sedml_filename))
