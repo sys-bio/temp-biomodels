@@ -14,24 +14,14 @@
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
-    <steadyState id="steady2">
-      <algorithm kisaoID="KISAO:0000282"/>
-    </steadyState>
   </listOfSimulations>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
-    <task id="task2" modelReference="model" simulationReference="steady2"/>
-    <repeatedTask id="task3" range="range0" resetModel="true">
+    <repeatedTask id="task3_inner" range="range1" resetModel="true">
       <listOfRanges>
-        <uniformRange id="range0" start="0" end="5" numberOfPoints="100" type="linear"/>
         <uniformRange id="range1" start="0" end="10" numberOfPoints="40" type="linear"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> range0 </ci>
-          </math>
-        </setValue>
         <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range1 </ci>
@@ -40,6 +30,21 @@
       </listOfChanges>
       <listOfSubTasks>
         <subTask order="1" task="task2"/>
+      </listOfSubTasks>
+    </repeatedTask>
+    <repeatedTask id="task3" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="0" end="5" numberOfPoints="100" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task3_inner"/>
       </listOfSubTasks>
     </repeatedTask>
   </listOfTasks>
