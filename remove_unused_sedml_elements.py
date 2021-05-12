@@ -53,7 +53,7 @@ def choose_between(plotlist):
                 good.append(plot)
             else:
                 possible.append(plot)
-        print(plot.toSed())
+        # print(plot.toSed())
     if len(good) > 0:
         #If there was a better option, don't use the worse one
         unlikely.extend(possible)
@@ -129,13 +129,68 @@ def remove_unused_datagens(doc):
 
     # write corrected SED-ML
     return changed
-    
+
+def remove_unused_tasks(doc):
+    changed = False
+    used_tasks = set()
+    for datagen in doc.getListOfDataGenerators():
+        for variable in datagen.getListOfVariables():
+            if variable.isSetTaskReference():
+                used_tasks.add(variable.getTaskReference())
+    unused_tasks = set()
+    for task in doc.getListOfTasks():
+        if isinstance(task, libsedml.SedRepeatedTask) and task.getId() in used_tasks:
+            for subtask in task.getListOfSubTasks():
+                used_tasks.add(subtask.getTask())
+    for task in doc.getListOfTasks():
+        tid = task.getId()
+        if tid not in used_tasks:
+            unused_tasks.add(tid)
+    for tid in unused_tasks:
+        doc.removeTask(tid)
+        changed = True
+    return changed
+
+def remove_unused_sims_and_mods(doc):
+    changed = False
+    used_sims = set()
+    used_mods = set()
+    for task in doc.getListOfTasks():
+        try:
+            used_mods.add(task.getModelReference())
+            used_sims.add(task.getSimulationReference())
+        except:
+            pass
+    unused_sims = set()
+    unused_mods = set()
+    for mod in doc.getListOfModels():
+        mid = mod.getId()
+        if mid not in used_mods:
+            unused_mods.add(mid)
+    for sim in doc.getListOfSimulations():
+        sid = sim.getId()
+        if sid not in used_sims:
+            unused_sims.add(sid)
+    for sid in unused_sims:
+        doc.removeSimulation(sid)
+        changed = True
+    for mid in unused_mods:
+        doc.removeModel(mid)
+        changed = True
+    return changed
 
 def run(id, sedml_filenames):
     for sedml_filename in sedml_filenames:
         doc = libsedml.readSedMLFromFile(sedml_filename)
-        changed =             remove_duplicate_plots(doc)
-        changed = changed and remove_unused_datagens(doc)
+        changed = remove_duplicate_plots(doc)
+        changed = remove_unused_datagens(doc)      or changed
+        changed = remove_unused_tasks(doc)         or changed
+        changed = remove_unused_sims_and_mods(doc) or changed
         if (changed):
-            libsedml.writeSedMLToFile(doc, sedml_filename)
-            print(id, os.path.basename(sedml_filename))
+            # print("Modified", id, os.path.basename(sedml_filename))
+            if doc.getNumModels()==0:
+                #Remove the SED-ML file entirely
+                os.remove(sedml_filename)
+                sedml_filenames.remove(sedml_filename)
+            else:
+                libsedml.writeSedMLToFile(doc, sedml_filename)

@@ -14,28 +14,9 @@
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
-    <steadyState id="steady2">
-      <algorithm kisaoID="KISAO:0000282"/>
-    </steadyState>
   </listOfSimulations>
   <listOfTasks>
     <task id="task1" modelReference="model" simulationReference="sim1"/>
-    <task id="task2" modelReference="model" simulationReference="steady2"/>
-    <repeatedTask id="task3" range="range0" resetModel="true">
-      <listOfRanges>
-        <uniformRange id="range0" start="0" end="350" numberOfPoints="100" type="linear"/>
-      </listOfRanges>
-      <listOfChanges>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;S&apos;]" range="range0">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> range0 </ci>
-          </math>
-        </setValue>
-      </listOfChanges>
-      <listOfSubTasks>
-        <subTask order="1" task="task2"/>
-      </listOfSubTasks>
-    </repeatedTask>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time_task1" name="Time">
