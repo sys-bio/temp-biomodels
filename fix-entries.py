@@ -177,8 +177,8 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
         rel_filename = os.path.relpath(temp_filename, temp_entry_dir)
         final_filename = os.path.join(final_entry_dir, rel_filename)
 
-        # if os.path.isfile(final_filename) and are_biopax_files_the_same(final_filename, temp_filename):
-        #     shutil.copyfile(final_filename, temp_filename)
+        if os.path.isfile(final_filename) and are_biopax_files_the_same(final_filename, temp_filename):
+            shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
     # Move temporary directory to final location
