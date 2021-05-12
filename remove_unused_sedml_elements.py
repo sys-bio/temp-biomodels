@@ -91,10 +91,51 @@ def remove_duplicate_plots(doc):
     return changed
 
 
+def remove_unused_datagens(doc):
+    """ Remove any duplicate data generators
+
+    Args:
+        doc (:obj:`libsedml.SedMLDocument`): Document
+    """
+
+    changed = False
+
+    # Collect referenced data generators
+    used_datagens = set()
+    for output in doc.getListOfOutputs():
+        if isinstance(output, libsedml.SedReport):
+            for dataset in output.getListOfDataSets():
+                used_datagens.add(dataset.getDataReference())
+        elif isinstance(output, libsedml.SedPlot2D):
+            for curve in output.getListOfCurves():
+                used_datagens.add(curve.getXDataReference())
+                used_datagens.add(curve.getYDataReference())
+        elif isinstance(output, libsedml.SedSurface):
+            for surface in output.getListOfSurfaces():
+                used_datagens.add(surface.getXDataReference())
+                used_datagens.add(surface.getYDataReference())
+                used_datagens.add(surface.getZDataReference())
+    
+    unused_datagens = []
+    dgs = doc.getListOfDataGenerators()
+    for datagen in dgs:
+        dgid = datagen.getId()
+        if dgid not in used_datagens:
+            unused_datagens.append(dgid)
+    
+    for unused_datagen in unused_datagens:
+        dgs.remove(unused_datagen)
+        changed = True        
+
+    # write corrected SED-ML
+    return changed
+    
+
 def run(id, sedml_filenames):
     for sedml_filename in sedml_filenames:
         doc = libsedml.readSedMLFromFile(sedml_filename)
-        changed = remove_duplicate_plots(doc)
+        changed =             remove_duplicate_plots(doc)
+        changed = changed and remove_unused_datagens(doc)
         if (changed):
             libsedml.writeSedMLToFile(doc, sedml_filename)
             print(id, os.path.basename(sedml_filename))
