@@ -1,4 +1,4 @@
-from biomodels_qc.biomodels_qc.utils import is_sbml_file, does_sbml_file_represent_core_kinetic_model
+from biomodels_qc.utils import is_sbml_file, does_sbml_file_represent_core_kinetic_model
 import glob
 import itertools
 import os

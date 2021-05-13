@@ -1,4 +1,4 @@
-from biomodels_qc.biomodels_qc.validation import validate_scilab_file
+from biomodels_qc.validation import validate_scilab_file
 import os
 
 

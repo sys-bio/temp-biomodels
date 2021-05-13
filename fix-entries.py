@@ -20,8 +20,8 @@ import remove_unused_sedml_elements
 import remove_omex
 import validate_sbml as validate_sbml_module
 
-from biomodels_qc.biomodels_qc.utils import are_biopax_files_the_same
-from biomodels_qc.biomodels_qc.warnings import BiomodelsQcWarning
+from biomodels_qc.utils import are_biopax_files_the_same
+from biomodels_qc.warnings import BiomodelsQcWarning
 from biosimulators_utils.warnings import BioSimulatorsWarning
 
 import argparse
