@@ -9,7 +9,8 @@ Summary of the changes to the content of BioModels
 * SBML files
     * Upgraded several models to L2V4
     * Corrected unknown MIRIAM references in 33 files
-    * Corrected unknown COPASI annotations in 2 files
+    * Corrected unknown COPASI annotations in 4 files
+    * Corrected unknown BioModels annotations in 2 files
     * Fixed incorrect use of SBML L3 layout in L2 model files
     * Corrected list of reactions in layout for BIOMD0000000872
     * Fixed unit definitions
@@ -47,6 +48,7 @@ Summary of the changes to the content of BioModels
     * Fixed variables of data generators with no symbols or targets
     * Fixed nested repeated tasks
     * Removed duplicately defined data generators
+    * Corrected algorithms and algorithm parameters for SED-ML files from COPASI
 
 * OMEX files
     * Replaced file with its content: BIOMD0000000585/Rateitschak2012.omex
@@ -64,9 +66,8 @@ Summary of the changes to the content of BioModels
     * Replaced `*.m` Octave files with `*-matlab.m` and `*-octave.m` files
     * Removed invalid derived URN files
     * Removed invalid derived XPP files
-    * Remove 1 invalid derived VCML file
     * Removed 22 corrupted PNG files
     * Removed MATLAB/Octave, Scilab, XPP files for non-kinetic models
     * Removed 158 bad Octave files
     * Removed 524 bad Scilab files
-    * Removed 399 bad VCML files
+    * Removed 400 bad VCML files
