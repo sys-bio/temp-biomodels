@@ -65,7 +65,7 @@ def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=Fa
     """
     print('Fixing {} entries ...'.format(len(ids)))
     if processes is None:
-        processes = os.cpu_count() - 1
+        processes = os.cpu_count()
     _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files, guess_file_name=guess_file_name,
                                         validate_sbml=validate_sbml, display_warnings=display_warnings)
     with multiprocessing.Pool(processes=processes) as pool:
@@ -210,7 +210,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description='Fix 1 or more entries in BioModels.'
+        description='Fix one or more entries in BioModels.'
     )
     parser.add_argument(
         '--max-entries', type=int, default=None,
