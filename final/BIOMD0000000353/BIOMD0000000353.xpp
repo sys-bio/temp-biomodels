@@ -10,8 +10,6 @@
 #
 # is http://identifiers.org/biomodels.db/MODEL1106030000
 # is http://identifiers.org/biomodels.db/BIOMD0000000353
-# isDescribedBy http://identifiers.org/pubmed/21682905
-# isDerivedFrom http://identifiers.org/pubmed/18581371
 #
 
 # some function definitions that are allowed in SBML but not valid in xpp
@@ -20,24 +18,62 @@ ceil(x)=flr(1+x)
 @delay=50
 
 
+# FunctionDefinition id = Function_for_Maltose_formation_from_Starch, name = Function for Maltose formation from Starch
+Function_(C00208_MW,R02112CS_G2C_KM,R02112CS_Gn_KM,R02112CS_Gn_kcat,R02112CS_Keq,conv_gm_umole,cpd_C00208_CS,cpd_C00369_CS,cpd_C00369db_CS,ec_3_2_1_2_CS,f_G2,f_bamylase)=(R02112CS_Gn_kcat*ec_3_2_1_2_CS*(f_G2*(f_bamylase*cpd_C00369_CS+cpd_C00369db_CS)-(cpd_C00208_CS*C00208_MW)^2/R02112CS_Keq)/(conv_gm_umole*(f_G2*(f_bamylase*cpd_C00369_CS+cpd_C00369db_CS)+R02112CS_Gn_KM*(1+(cpd_C00208_CS*C00208_MW)^2/R02112CS_G2C_KM))))
+
+
+# FunctionDefinition id = Function_for_Maltopentaose_degradation, name = Function for Maltopentaose degradation
+Functio_1(G00343_MW,R02112CS_G5_KM,R02112CS_G5_kcat,conv_gm_umole,cpd_G00343_CS,ec_3_2_1_2_CS)=(R02112CS_G5_kcat*ec_3_2_1_2_CS*cpd_G00343_CS*G00343_MW/(conv_gm_umole*(cpd_G00343_CS*G00343_MW+R02112CS_G5_KM)))
+
+
+# FunctionDefinition id = Function_for_Plastidic_Glucose_transporter, name = Function for Plastidic Glucose transporter
+Functio_2(ChloroplastStroma,TC_2_A_1_1_17_KM,TC_2_A_1_1_17_kcat,cpd_C00031_CS,tc_2_A_1_1_17_CIMS)=(ChloroplastStroma*TC_2_A_1_1_17_kcat*tc_2_A_1_1_17_CIMS*cpd_C00031_CS/(TC_2_A_1_1_17_KM+cpd_C00031_CS))
+
+
+# FunctionDefinition id = Function_for_Cytosolic_glucan_phosphorylase, name = Function for Cytosolic glucan phosphorylase
+Functio_3(R06050CY_AG_KM,R06050CY_G1P_KM,R06050CY_G1P_Ki,R06050CY_GlcAG_KM,R06050CY_GlcAG_Ki,R06050CY_Keq,R06050CY_Pi_KM,R06050CY_kcat,cpd_C00009tot_CY,cpd_C00103tot_CY,cpd_C00569Glc_CY,cpd_C00569_CY,ec_2_4_1_1_CY)=(R06050CY_kcat*ec_2_4_1_1_CY*(cpd_C00569Glc_CY*cpd_C00009tot_CY-cpd_C00103tot_CY*cpd_C00569_CY/R06050CY_Keq)/(R06050CY_GlcAG_Ki*R06050CY_Pi_KM+R06050CY_Pi_KM*cpd_C00569Glc_CY+R06050CY_GlcAG_KM*cpd_C00009tot_CY+cpd_C00569Glc_CY*cpd_C00009tot_CY+R06050CY_GlcAG_Ki*R06050CY_Pi_KM/(R06050CY_G1P_Ki*R06050CY_AG_KM)*(R06050CY_AG_KM*cpd_C00103tot_CY+R06050CY_G1P_KM*cpd_C00569_CY+cpd_C00103tot_CY*cpd_C00569_CY)))
+
+
+# FunctionDefinition id = Function_for_Maltose_exporter, name = Function for Maltose exporter
+Functio_4(ChloroplastStroma,TC_2_A_84_1_2_KM,TC_2_A_84_1_2_kcat,cpd_C00208_CS,tc_2_A_84_1_2_CIMS)=(ChloroplastStroma*TC_2_A_84_1_2_kcat*tc_2_A_84_1_2_CIMS*cpd_C00208_CS/(TC_2_A_84_1_2_KM+cpd_C00208_CS))
+
+
+# FunctionDefinition id = Function_for_Hexokinase, name = Function for Hexokinase
+Functio_5(R00299CY_BPG_Kip,R00299CY_G16P_Kip,R00299CY_G6P_KM,R00299CY_G6P_Ki,R00299CY_G6P_Kip,R00299CY_GSH_Kip,R00299CY_Glc_Ki,R00299CY_MgADP_Ki,R00299CY_MgATP_KM,R00299CY_MgATP_Ki,R00299CY_kfor,R00299CY_krev,cpd_C00002tot_CY,cpd_C00008tot_CY,cpd_C00031_CY,cpd_C00051_CY,cpd_C00092tot_CY,cpd_C00660tot_CY,cpd_C03339tot_CY,ec_2_7_1_1_CY)=(ec_2_7_1_1_CY*(R00299CY_kfor*cpd_C00002tot_CY*cpd_C00031_CY/(R00299CY_Glc_Ki*R00299CY_MgATP_KM)-R00299CY_krev*cpd_C00092tot_CY*cpd_C00008tot_CY/(R00299CY_MgADP_Ki*R00299CY_G6P_KM))/(1+cpd_C00002tot_CY/R00299CY_MgATP_Ki+cpd_C00031_CY/R00299CY_Glc_Ki*(1+cpd_C00092tot_CY/R00299CY_G6P_Kip+cpd_C00660tot_CY/R00299CY_G16P_Kip+cpd_C03339tot_CY/R00299CY_BPG_Kip+cpd_C00051_CY/R00299CY_GSH_Kip)+cpd_C00002tot_CY*cpd_C00031_CY/(R00299CY_Glc_Ki*R00299CY_MgATP_KM)+cpd_C00092tot_CY/R00299CY_G6P_Ki+cpd_C00008tot_CY/R00299CY_MgADP_Ki+cpd_C00092tot_CY*cpd_C00008tot_CY/(R00299CY_MgADP_Ki*R00299CY_G6P_KM)))
+
+
+# FunctionDefinition id = Function_for_DPE1, name = Function for DPE1
+Functio_6(R05196CS_G3_KM,R05196CS_G3_Ki,R05196CS_G5_KM,R05196CS_G5_Ki,R05196CS_Glc_KM,R05196CS_Keq,R05196CS_kcat,cpd_C00031_CS,cpd_C01835_CS,cpd_G00343_CS,ec_2_4_1_25_CS)=(R05196CS_kcat*ec_2_4_1_25_CS*(cpd_C01835_CS^2-cpd_C00031_CS*cpd_G00343_CS/R05196CS_Keq)/(R05196CS_G3_KM*cpd_C01835_CS+cpd_C01835_CS^2+R05196CS_G3_KM*R05196CS_G3_Ki/(R05196CS_Glc_KM*R05196CS_G5_Ki)*(R05196CS_G5_KM*cpd_C00031_CS*(1+cpd_C01835_CS/R05196CS_G3_Ki)+R05196CS_Glc_KM*cpd_G00343_CS*(1+cpd_C01835_CS/R05196CS_G3_Ki)+cpd_C00031_CS*cpd_G00343_CS)))
+
+
+# FunctionDefinition id = Function_for_Maltotriose_formation_from_Starch, name = Function for Maltotriose formation from Starch
+Functio_7(R02112CS_Gn_KM,R02112CS_Gn_kcat,conv_gm_umole,cpd_C00369_CS,cpd_C00369db_CS,ec_3_2_1_2_CS,f_G3,f_bamylase)=(R02112CS_Gn_kcat*ec_3_2_1_2_CS*f_G3*(f_bamylase*cpd_C00369_CS+cpd_C00369db_CS)/(conv_gm_umole*(f_G3*(f_bamylase*cpd_C00369_CS+cpd_C00369db_CS)+R02112CS_Gn_KM)))
+
+
+# FunctionDefinition id = Function_for_DPE2, name = Function for DPE2
+Functio_8(AT2G40840CY_AG_KM,AT2G40840CY_AG_Ki,AT2G40840CY_G2_KM,AT2G40840CY_G2_Ki,AT2G40840CY_GlcAG_KM,AT2G40840CY_GlcAG_Ki,AT2G40840CY_Glc_KM,AT2G40840CY_Keq,AT2G40840CY_kcat,cpd_C00031_CY,cpd_C00208_CY,cpd_C00569Glc_CY,cpd_C00569_CY,ec_2_4_1_25_CY)=(AT2G40840CY_kcat*ec_2_4_1_25_CY*(cpd_C00208_CY*cpd_C00569_CY-cpd_C00031_CY*cpd_C00569Glc_CY/AT2G40840CY_Keq)/(AT2G40840CY_AG_KM*cpd_C00208_CY+AT2G40840CY_G2_KM*cpd_C00569_CY+cpd_C00208_CY*cpd_C00569_CY+AT2G40840CY_G2_KM*AT2G40840CY_AG_Ki/(AT2G40840CY_Glc_KM*AT2G40840CY_GlcAG_Ki)*(AT2G40840CY_GlcAG_KM*cpd_C00031_CY*(1+cpd_C00208_CY/AT2G40840CY_G2_Ki)+AT2G40840CY_Glc_KM*cpd_C00569Glc_CY*(1+cpd_C00569_CY/AT2G40840CY_AG_Ki)+cpd_C00031_CY*cpd_C00569Glc_CY)))
+
+
 # Compartment: id = Cell, name = Cell, constant
 par Cell=3.534E-12
-# Compartment: id = Cytosol, name = Cytosol
-# Warning compartment Cytosol has no rule and is not constant
-# Compartment: id = Chloroplast, name = Chloroplast
-# Warning compartment Chloroplast has no rule and is not constant
+
+# Compartment: id = Cytosol, name = Cytosol, constant
+par Cytosol=1.579698E-12
+
+# Compartment: id = Chloroplast, name = Chloroplast, constant
+par Chloropla=7.068E-13
 
 # Compartment: id = ChloroplastOuterMembrane, name = Chloroplast Outer Membrane, constant
 par Chlorop_1=1000.0
 
 # Compartment: id = ChloroplastIntermembraneSpace, name = Chloroplast Intermembrane Space, constant
-par Chlorop_2=1.0
+par Chlorop_2=7.068E-15
 
 # Compartment: id = ChloroplastInnerMembrane, name = Chloroplast Inner Membrane, constant
 par Chlorop_3=1000.0
 
 # Compartment: id = ChloroplastStroma, name = Chloroplast Stroma, constant
-par Chlorop_4=1.0
+par Chlorop_4=3.534E-13
 
 # Parameter:   id =  C00369_MW, name = Starch Mol. Wt., constant
 par C00369_MW=0.27
@@ -224,205 +260,198 @@ par R00299_13=30.0
 # Parameter:   id =  R00299CY_GSH_Kip, name = Hexokinase Ki(glutathione), constant
 par R00299_14=3000.0
 
+# assignmentRule: variable = cpd_C00369_CS
+cpd_C0036=cpd_C00_1/Chlorop_4*C00369_MW/N_Glc_Sta*Chlorop_4
+aux cpd_C0036=cpd_C0036
+
 # assignmentRule: variable = R00299CY_krev
 R00299C_1=R00299CY_*R00299_10*R00299C_7/(R00299C_2*R00299C_6*R00299C_3)
 aux R00299C_1=R00299C_1
 
-# assignmentRule: variable = cpd_C00369_CS
-cpd_C0036=cpd_C00_1*C00369_MW/N_Glc_Sta
-aux cpd_C0036=cpd_C0036
-
 # rateRule: variable = cpd_C00369db_CS
 init cpd_C00_2=0.0
-dcpd_C00_2/dt=ec_3_2__3*ec_3_2__1*(1-1/(1+exp(-100*(cpd_C00_2/(cpd_C0036*(1-f_bamylas))-0.3)))+1/(1+exp(-100*(cpd_C00_2/(cpd_C0036*(1-f_bamylas))-0.3)))*(1-1.429*(cpd_C00_2/(cpd_C0036*(1-f_bamylas))-0.3)))
+dcpd_C00_2/dt=ec_3_2__3/Chlorop_4*ec_3_2__1*(1-1/(1+exp((-100)*(cpd_C00_2/Chlorop_4/(cpd_C0036/Chlorop_4*(1-f_bamylas))-0.3)))+1/(1+exp((-100)*(cpd_C00_2/Chlorop_4/(cpd_C0036/Chlorop_4*(1-f_bamylas))-0.3)))*(1-1.429*(cpd_C00_2/Chlorop_4/(cpd_C0036/Chlorop_4*(1-f_bamylas))-0.3)))*Chlorop_4
 
 # Reaction: id = rn_R02112CS_G2, name = Maltose formation from Starch
 
-rn_R02112=Chlorop_4*R02112C_4*ec_3_2__2*(f_G2*(f_bamylas*cpd_C0036+cpd_C00_2)-(cpd_C00_3*C00208_MW)^2/R02112C_3)/(conv_gm_u*(f_G2*(f_bamylas*cpd_C0036+cpd_C00_2)+R02112CS_*(1+(cpd_C00_3*C00208_MW)^2/R02112C_2)))
+rn_R02112=Chlorop_4*Function_(C00208_MW, R02112C_2, R02112CS_, R02112C_4, R02112C_3, conv_gm_u, cpd_C00_3/Chlorop_4, cpd_C0036/Chlorop_4, cpd_C00_2/Chlorop_4, ec_3_2__2/Chlorop_4, f_G2, f_bamylas)
 
 # Reaction: id = rn_R02112CS_G3, name = Maltotriose formation from Starch
 
-rn_R021_1=Chlorop_4*R02112C_4*ec_3_2__2*f_G3*(f_bamylas*cpd_C0036+cpd_C00_2)/(conv_gm_u*(f_G3*(f_bamylas*cpd_C0036+cpd_C00_2)+R02112CS_))
+rn_R021_1=Chlorop_4*Functio_7(R02112CS_, R02112C_4, conv_gm_u, cpd_C0036/Chlorop_4, cpd_C00_2/Chlorop_4, ec_3_2__2/Chlorop_4, f_G3, f_bamylas)
 
 # Reaction: id = rn_R02112CS_G5, name = Maltopentaose degradation
 
-rn_R021_2=Chlorop_4*R02112C_5*ec_3_2__2*cpd_G0034*G00343_MW/(conv_gm_u*(cpd_G0034*G00343_MW+R02112C_1))
+rn_R021_2=Chlorop_4*Functio_1(G00343_MW, R02112C_1, R02112C_5, conv_gm_u, cpd_G0034/Chlorop_4, ec_3_2__2/Chlorop_4)
 
 # Reaction: id = tr_TC_2_A_84_1_2, name = Maltose exporter
 
-tr_TC_2_A=Chlorop_4*TC_2_A_84*tc_2_A__3*cpd_C00_3/(TC_2_A__1+cpd_C00_3)
+tr_TC_2_A=Functio_4(Chlorop_4, TC_2_A__1, TC_2_A_84, cpd_C00_3/Chlorop_4, tc_2_A__3/Chlorop_2)
 
 # Reaction: id = tr_TC_2_A_1_1_17, name = Plastidic Glucose transporter
 
-tr_TC_2_1=Chlorop_4*TC_2_A_1_*tc_2_A__4*cpd_C0003/(TC_2_A__2+cpd_C0003)
+tr_TC_2_1=Functio_2(Chlorop_4, TC_2_A__2, TC_2_A_1_, cpd_C0003/Chlorop_4, tc_2_A__4/Chlorop_2)
 
 # Reaction: id = rn_R00299CY, name = Hexokinase
 
-rn_R00299=ec_2_7_1_*Cytosol*(R00299CY_*cpd_C0000*cpd_C00_4/(R00299C_6*R00299C_3)-R00299C_1*cpd_C0009*cpd_C00_6/(R00299_10*R00299C_7))/(1+cpd_C0000/R00299C_4+cpd_C00_4/R00299C_6*(1+cpd_C0009/R00299_11+cpd_C0066/R00299_13+cpd_C0333/R00299_12+cpd_C0005/R00299_14)+cpd_C0000*cpd_C00_4/(R00299C_6*R00299C_3)+cpd_C0009/R00299C_8+cpd_C00_6/R00299_10+cpd_C0009*cpd_C00_6/(R00299_10*R00299C_7))
+rn_R00299=Cytosol*Functio_5(R00299_12, R00299_13, R00299C_7, R00299C_8, R00299_11, R00299_14, R00299C_6, R00299_10, R00299C_3, R00299C_4, R00299CY_, R00299C_1, cpd_C0000/Cytosol, cpd_C00_6/Cytosol, cpd_C00_4/Cytosol, cpd_C0005/Cytosol, cpd_C0009/Cytosol, cpd_C0066/Cytosol, cpd_C0333/Cytosol, ec_2_7_1_/Cytosol)
 
 # Reaction: id = rn_R06050CY, name = Cytosolic glucan phosphorylase
 
-rn_R06050=Cytosol*R06050CY_*ec_2_4__2*(cpd_C00_5*cpd_C00_7-cpd_C0010*cpd_C0056/R06050C_7)/(R06050C_2*R06050C_4+R06050C_4*cpd_C00_5+R06050C_1*cpd_C00_7+cpd_C00_5*cpd_C00_7+R06050C_2*R06050C_4/(R06050C_6*R06050C_3)*(R06050C_3*cpd_C0010+R06050C_5*cpd_C0056+cpd_C0010*cpd_C0056))
+rn_R06050=Cytosol*Functio_3(R06050C_3, R06050C_5, R06050C_6, R06050C_1, R06050C_2, R06050C_7, R06050C_4, R06050CY_, cpd_C00_7/Cytosol, cpd_C0010/Cytosol, cpd_C00_5/Cytosol, cpd_C0056/Cytosol, ec_2_4__2/Cytosol)
 
 # Reaction: id = rn_AT2G40840CY, name = DPE2
 
-rn_AT2G40=Cytosol*AT2G40840*ec_2_4__1*(cpd_C0020*cpd_C0056-cpd_C00_4*cpd_C00_5/AT2G408_1)/(AT2G408_4*cpd_C0020+AT2G408_3*cpd_C0056+cpd_C0020*cpd_C0056+AT2G408_3*AT2G408_8/(AT2G408_2*AT2G408_9)*(AT2G408_5*cpd_C00_4*(1+cpd_C0020/AT2G408_7)+AT2G408_2*cpd_C00_5*(1+cpd_C0056/AT2G408_8)+cpd_C00_4*cpd_C00_5))
+rn_AT2G40=Cytosol*Functio_8(AT2G408_4, AT2G408_8, AT2G408_3, AT2G408_7, AT2G408_5, AT2G408_9, AT2G408_2, AT2G408_1, AT2G40840, cpd_C00_4/Cytosol, cpd_C0020/Cytosol, cpd_C00_5/Cytosol, cpd_C0056/Cytosol, ec_2_4__1/Cytosol)
 
 # Reaction: id = rn_R05196CS, name = DPE1
 
-rn_R05196=Chlorop_4*R05196CS_*ec_2_4_1_*(cpd_C0183^2-cpd_C0003*cpd_G0034/R05196C_1)/(R05196C_2*cpd_C0183+cpd_C0183^2+R05196C_2*R05196C_5/(R05196C_3*R05196C_7)*(R05196C_4*cpd_C0003*(1+cpd_C0183/R05196C_5)+R05196C_3*cpd_G0034*(1+cpd_C0183/R05196C_5)+cpd_C0003*cpd_G0034))
+rn_R05196=Chlorop_4*Functio_6(R05196C_2, R05196C_5, R05196C_4, R05196C_7, R05196C_3, R05196C_1, R05196CS_, cpd_C0003/Chlorop_4, cpd_C0183/Chlorop_4, cpd_G0034/Chlorop_4, ec_2_4_1_/Chlorop_4)
 
-# Species:   id = cpd_C00080_CY, name = H+
-par cpd_C0008=0.1
-aux cpd_C0008=cpd_C0008
-#WARNING speciesID: cpd_C00080_CY, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !
+# Species:   id = cpd_C00080_CY, name = H+, constant
+par cpd_C0008=1.579698E-13
 
-# Species:   id = cpd_C00369_CS, name = Starch, defined in a rule 
 
-# Species:   id = cpd_C00369Glc_CS, name = Starch Glucosyl unit
-par cpd_C00_1=1000.0
-aux cpd_C00_1=cpd_C00_1
-#WARNING speciesID: cpd_C00369Glc_CS, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !
+# Species:   id = cpd_C00369_CS, name = Starch, involved in a rule 
 
-# Species:   id = cpd_C00369db_CS, name = Starch exposed to Beta Amylase due to action of Isoamylase (Starch DB), defined in a rule 
+# Species:   id = cpd_C00369Glc_CS, name = Starch Glucosyl unit, constant
+par cpd_C00_1=3.534E-10
+
+
+# Species:   id = cpd_C00369db_CS, name = Starch exposed to Beta Amylase due to action of Isoamylase (Starch DB), involved in a rule 
 
 # Species:   id = cpd_C00208_CY, name = Maltose, affected by kineticLaw
 
-par cpd_C0020=10.0
+par cpd_C0020=1.579698E-11
 aux cpd_C0020=cpd_C0020
-dcpd_C0020/dt=(1/(Cytosol))*(( 1.0 * tr_TC_2_A) + (-1.0 * rn_AT2G40))
+dcpd_C0020/dt=( 1.0 * tr_TC_2_A) + (-1.0 * rn_AT2G40)
 
 # Species:   id = cpd_C00208_CS, name = Maltose, affected by kineticLaw
 
-par cpd_C00_3=10.0
+par cpd_C00_3=3.534E-12
 aux cpd_C00_3=cpd_C00_3
-dcpd_C00_3/dt=(1/(Chlorop_4))*(( 2923.98 * rn_R02112) + ( 2923.98 * rn_R021_2) + (-1.0 * tr_TC_2_A))
+dcpd_C00_3/dt=( 2923.98 * rn_R02112) + ( 2923.98 * rn_R021_2) + (-1.0 * tr_TC_2_A)
 
 # Species:   id = cpd_C01835_CS, name = Maltotriose, affected by kineticLaw
 
-par cpd_C0183=100.0
+par cpd_C0183=3.534E-11
 aux cpd_C0183=cpd_C0183
-dcpd_C0183/dt=(1/(Chlorop_4))*(( 1984.13 * rn_R021_1) + ( 1984.13 * rn_R021_2) + (-2.0 * rn_R05196))
+dcpd_C0183/dt=( 1984.13 * rn_R021_1) + ( 1984.13 * rn_R021_2) + (-2.0 * rn_R05196)
 
 # Species:   id = cpd_G00343_CS, name = Maltopentaose, affected by kineticLaw
 
-par cpd_G0034=1000.0
+par cpd_G0034=3.534E-10
 aux cpd_G0034=cpd_G0034
-dcpd_G0034/dt=(1/(Chlorop_4))*((-1207.73 * rn_R021_2) + ( 1.0 * rn_R05196))
+dcpd_G0034/dt=(-1207.73 * rn_R021_2) + ( 1.0 * rn_R05196)
 
 # Species:   id = cpd_C00031_CS, name = (D)-Glucose, affected by kineticLaw
 
-par cpd_C0003=10.0
+par cpd_C0003=3.534E-12
 aux cpd_C0003=cpd_C0003
-dcpd_C0003/dt=(1/(Chlorop_4))*((-1.0 * tr_TC_2_1) + ( 1.0 * rn_R05196))
+dcpd_C0003/dt=(-1.0 * tr_TC_2_1) + ( 1.0 * rn_R05196)
 
 # Species:   id = cpd_C00031_CY, name = (D)-Glucose, affected by kineticLaw
 
-par cpd_C00_4=10.0
+par cpd_C00_4=1.579698E-11
 aux cpd_C00_4=cpd_C00_4
-dcpd_C00_4/dt=(1/(Cytosol))*(( 1.0 * tr_TC_2_1) + (-1.0 * rn_R00299) + ( 1.0 * rn_AT2G40))
+dcpd_C00_4/dt=( 1.0 * tr_TC_2_1) + (-1.0 * rn_R00299) + ( 1.0 * rn_AT2G40)
 
 # Species:   id = cpd_C00569_CY, name = Arabinogalactan (AG), affected by kineticLaw
 
-par cpd_C0056=10000.0
+par cpd_C0056=1.579698E-8
 aux cpd_C0056=cpd_C0056
-dcpd_C0056/dt=(1/(Cytosol))*(( 1.0 * rn_R06050) + (-1.0 * rn_AT2G40))
+dcpd_C0056/dt=( 1.0 * rn_R06050) + (-1.0 * rn_AT2G40)
 
 # Species:   id = cpd_C00569Glc_CY, name = Glucosyl Arabinogalactan (GlcAG), affected by kineticLaw
 
-par cpd_C00_5=10000.0
+par cpd_C00_5=1.579698E-8
 aux cpd_C00_5=cpd_C00_5
-dcpd_C00_5/dt=(1/(Cytosol))*((-1.0 * rn_R06050) + ( 1.0 * rn_AT2G40))
+dcpd_C00_5/dt=(-1.0 * rn_R06050) + ( 1.0 * rn_AT2G40)
 
-# Species:   id = cpd_C00002tot_CY, name = ATP pool
-par cpd_C0000=10000.0
-aux cpd_C0000=cpd_C0000
-#WARNING speciesID: cpd_C00002tot_CY, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !
+# Species:   id = cpd_C00002tot_CY, name = ATP pool, constant
+par cpd_C0000=1.579698E-8
 
-# Species:   id = cpd_C00008tot_CY, name = ADP pool
-par cpd_C00_6=10000.0
-aux cpd_C00_6=cpd_C00_6
-#WARNING speciesID: cpd_C00008tot_CY, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !
 
-# Species:   id = cpd_C00009tot_CY, name = Orthophosphate(HPi) pool
-par cpd_C00_7=10000.0
-aux cpd_C00_7=cpd_C00_7
-#WARNING speciesID: cpd_C00009tot_CY, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !
+# Species:   id = cpd_C00008tot_CY, name = ADP pool, constant
+par cpd_C00_6=1.579698E-8
+
+
+# Species:   id = cpd_C00009tot_CY, name = Orthophosphate(HPi) pool, constant
+par cpd_C00_7=1.579698E-8
+
 
 # Species:   id = cpd_C00051_CY, name = Glutathione (reduced)
 # Warning species is not changed by either rules or reactions
 
-par cpd_C0005=1000.0
+par cpd_C0005=1.579698E-9
 aux cpd_C0005=cpd_C0005
 
 # Species:   id = cpd_C00660tot_CY, name = (D)-Glucose-1,6-bisphosphate pool
 # Warning species is not changed by either rules or reactions
 
-par cpd_C0066=10000.0
+par cpd_C0066=1.579698E-8
 aux cpd_C0066=cpd_C0066
 
 # Species:   id = cpd_C03339tot_CY, name = 2,3-Bisphosphoglycerate pool
 # Warning species is not changed by either rules or reactions
 
-par cpd_C0333=10000.0
+par cpd_C0333=1.579698E-8
 aux cpd_C0333=cpd_C0333
 
-# Species:   id = cpd_C00103tot_CY, name = G1P pool
-par cpd_C0010=10000.0
-aux cpd_C0010=cpd_C0010
-#WARNING speciesID: cpd_C00103tot_CY, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !
+# Species:   id = cpd_C00103tot_CY, name = G1P pool, constant
+par cpd_C0010=1.579698E-8
 
-# Species:   id = cpd_C00092tot_CY, name = G6P pool
-par cpd_C0009=10000.0
-aux cpd_C0009=cpd_C0009
-#WARNING speciesID: cpd_C00092tot_CY, constant= false  , boundaryCondition = true but is not involved in assignmentRule, rateRule or events !
+
+# Species:   id = cpd_C00092tot_CY, name = G6P pool, constant
+par cpd_C0009=1.579698E-8
+
 
 # Species:   id = ec_3_2_1_2_CS, name = Beta amylase
 # Warning species is not changed by either rules or reactions
 
-par ec_3_2__2=0.00783
+par ec_3_2__2=2.767122E-15
 aux ec_3_2__2=ec_3_2__2
 
 # Species:   id = ec_3_2_1_68_CS, name = Isoamylase
 # Warning species is not changed by either rules or reactions
 
-par ec_3_2__3=0.0118
+par ec_3_2__3=4.17012E-15
 aux ec_3_2__3=ec_3_2__3
 
 # Species:   id = ec_2_4_1_25_CS, name = Disproportionating enzyme 1(DPE1)
 # Warning species is not changed by either rules or reactions
 
-par ec_2_4_1_=2.0
+par ec_2_4_1_=7.068E-13
 aux ec_2_4_1_=ec_2_4_1_
 
 # Species:   id = ec_2_4_1_25_CY, name = Disproportionating enzyme 2(DPE2)
 # Warning species is not changed by either rules or reactions
 
-par ec_2_4__1=2.0
+par ec_2_4__1=3.159396E-12
 aux ec_2_4__1=ec_2_4__1
 
 # Species:   id = ec_2_4_1_1_CY, name = Cytosolic Glucan phosphorylase
 # Warning species is not changed by either rules or reactions
 
-par ec_2_4__2=2.0
+par ec_2_4__2=3.159396E-12
 aux ec_2_4__2=ec_2_4__2
 
 # Species:   id = ec_2_7_1_1_CY, name = Hexokinase
 # Warning species is not changed by either rules or reactions
 
-par ec_2_7_1_=10.0
+par ec_2_7_1_=1.579698E-11
 aux ec_2_7_1_=ec_2_7_1_
 
 # Species:   id = tc_2_A_84_1_2_CIMS, name = Maltose exporter (MEX)
 # Warning species is not changed by either rules or reactions
 
-par tc_2_A__3=2.0
+par tc_2_A__3=1.4136E-14
 aux tc_2_A__3=tc_2_A__3
 
 # Species:   id = tc_2_A_1_1_17_CIMS, name = Glucose transporter (pGlcT)
 # Warning species is not changed by either rules or reactions
 
-par tc_2_A__4=20.0
+par tc_2_A__4=1.4136E-13
 aux tc_2_A__4=tc_2_A__4
 
 @ meth=cvode, tol=1e-6, atol=1e-8
