@@ -16,6 +16,7 @@ import remove_bad_vcml_files
 import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
+import remove_unused_sedml_elements
 import remove_omex
 import validate_sbml as validate_sbml_module
 
@@ -24,7 +25,9 @@ from biomodels_qc.warnings import BiomodelsQcWarning
 from biosimulators_utils.warnings import BioSimulatorsWarning
 
 import argparse
+import functools
 import glob
+import multiprocessing
 import os
 import shutil
 import sys
@@ -49,36 +52,54 @@ def get_entry_ids():
     return ids
 
 
-def fix_entries(ids, convert_files=False, guess_file=None, validate_sbml=False, display_warnings=True):
+def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True, processes=None):
     """ Fix the entries of BioModels
 
     Args:
-        max_entries (:obj:`int`, optional): maximum number of entries to fix
+        id (:obj:`list` of :obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
+        guess_file_name (:obj:`str`, optional): path to record guesses        
         validate_sbml (:obj:`bool`, optional): validate SBML files
-        display_warnings (:obj:`boo`, optional): whether to display warnings
+        display_warnings (:obj:`bool`, optional): whether to display warnings
+        processes (:obj:`bool`, optional): number of processes to use
     """
     print('Fixing {} entries ...'.format(len(ids)))
-    for i_entry, id in enumerate(ids):
-        print('  Fixing entry {}: {} ... '.format(i_entry + 1, id), end='')
-        sys.stdout.flush()
-
-        with warnings.catch_warnings():
-            if not display_warnings:
-                warnings.simplefilter("ignore", BiomodelsQcWarning)
-                warnings.simplefilter("ignore", BioSimulatorsWarning)
-            fix_entry(id, convert_files=convert_files, guess_file=guess_file, validate_sbml=validate_sbml)
-
-        print('done')
+    if processes is None:
+        processes = os.cpu_count()
+    _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files, guess_file_name=guess_file_name,
+                                        validate_sbml=validate_sbml, display_warnings=display_warnings)
+    with multiprocessing.Pool(processes=processes) as pool:
+        pool.map(_fix_entry_func, ids)
     print('done')
 
 
-def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
+def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True):
     """ Fix an entry of BioModels
 
     Args:
         id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
+        guess_file_name (:obj:`str`, optional): path to record guesses        
+        validate_sbml (:obj:`bool`, optional): validate SBML files
+        display_warnings (:obj:`bool`, optional): whether to display warnings
+    """
+    print('  Fixing entry {} ... '.format(id))
+
+    with warnings.catch_warnings():
+        if not display_warnings:
+            warnings.simplefilter("ignore", BiomodelsQcWarning)
+            warnings.simplefilter("ignore", BioSimulatorsWarning)
+        fix_entry(id, convert_files=convert_files, guess_file_name=guess_file_name, validate_sbml=validate_sbml)
+
+
+def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False):
+    """ Fix an entry of BioModels
+
+    Args:
+        id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
+        convert_files (:obj:`bool`, optional): convert primary files to other formats
+        guess_file_name (:obj:`str`, optional): path to record guesses        
+        validate_sbml (:obj:`bool`, optional): validate SBML files
     """
     if not os.path.isdir(FINAL_ENTRIES_DIR):
         os.makedirs(FINAL_ENTRIES_DIR)
@@ -117,17 +138,18 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     nc_guesses = fix_models_non_copasi.run(sedml_filenames, sbml_filenames, id)
 
     # Write guesses to file for later checking:
-    if guess_file:
-        for guess in c_guesses:
-            for entry in guess:
-                guess_file.write(entry)
-                guess_file.write(",")
-            guess_file.write("\n")
-        for guess in nc_guesses:
-            for entry in guess:
-                guess_file.write(entry)
-                guess_file.write(",")
-            guess_file.write("\n")
+    if guess_file_name:
+        with open(guess_file_name, 'a') as guess_file:
+            for guess in c_guesses:
+                for entry in guess:
+                    guess_file.write(entry)
+                    guess_file.write(",")
+                guess_file.write("\n")
+            for guess in nc_guesses:
+                for entry in guess:
+                    guess_file.write(entry)
+                    guess_file.write(",")
+                guess_file.write("\n")
 
     ###################################################
     # Apply more corrections
@@ -143,6 +165,8 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
     fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
+    remove_unused_sedml_elements.run(id, sedml_filenames)
+
     fix_copasi_algorithms.run(id, temp_entry_dir)
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
@@ -186,7 +210,7 @@ def fix_entry(id, convert_files=False, guess_file=None, validate_sbml=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description='Fix 1 or more entries in BioModels.'
+        description='Fix one or more entries in BioModels.'
     )
     parser.add_argument(
         '--max-entries', type=int, default=None,
@@ -216,15 +240,35 @@ if __name__ == "__main__":
         action='store_true',
     )
 
+    parser.add_argument(
+        '--continue-from', type=str, nargs=1,
+        help='Id of first entry to fix (e.g., `BIOMD0000000234`). Default: BIOMD0000000001.',
+        default=None, dest='first_entry',
+    )
+
+    parser.add_argument(
+        '--processes', type=int,
+        help='Number of processes to use. Default: Number of processors minus 1.',
+        default=None,
+    )
+
     args = parser.parse_args()
     if args.entry_ids:
         ids = args.entry_ids
     else:
         ids = get_entry_ids()[0:args.max_entries]
-    guess_file = open("guesses.csv", "w")
-    fix_entries(ids, convert_files=args.convert_files, guess_file=guess_file, validate_sbml=args.validate_sbml,
-                display_warnings=not args.do_not_display_warnings)
-    guess_file.close()
+
+    low_ids = []
+    if args.first_entry:
+        for entry in ids:
+            if entry < args.first_entry[0]:
+                low_ids.append(entry)
+    for low_id in low_ids:
+        ids.remove(low_id)
+
+    guess_file_name = "guesses.csv"
+    fix_entries(ids, convert_files=args.convert_files, guess_file_name=guess_file_name, validate_sbml=args.validate_sbml,
+                display_warnings=not args.do_not_display_warnings, processes=args.processes)
 
     if args.validate_sbml:
         err_file = open("sbml_validation.csv", "w")

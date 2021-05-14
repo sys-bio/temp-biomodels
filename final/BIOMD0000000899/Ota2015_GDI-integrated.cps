@@ -986,7 +986,7 @@
           </UnsupportedAnnotation>
         </ListOfUnsupportedAnnotations>
       </Metabolite>
-      <Metabolite key="Metabolite_11" name="Effector·GTP-Rho" simulationType="reactions" compartment="Compartment_0" addNoise="false">
+      <Metabolite key="Metabolite_11" name="Effector GTP-Rho" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
 <rdf:RDF
    xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
@@ -1010,7 +1010,7 @@
   <celldesigner:positionToCompartment>inside</celldesigner:positionToCompartment>
   <celldesigner:speciesIdentity>
     <celldesigner:class>COMPLEX</celldesigner:class>
-    <celldesigner:name>Effector·GTP-Rho</celldesigner:name>
+    <celldesigner:name>Effector GTP-Rho</celldesigner:name>
   </celldesigner:speciesIdentity>
 </celldesigner:extension>
           </UnsupportedAnnotation>
@@ -1703,7 +1703,7 @@
           <ModelParameter cn="CN=Root,Model=NoName,Vector=Compartments[default],Vector=Metabolites[Effector]" value="6.022140857e+17" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=NoName,Vector=Compartments[default],Vector=Metabolites[GDI·GDP-Rho]" value="7.8287831141e+17" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=NoName,Vector=Compartments[default],Vector=Metabolites[GDI·GTP-Rho]" value="0" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=NoName,Vector=Compartments[default],Vector=Metabolites[Effector·GTP-Rho]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=NoName,Vector=Compartments[default],Vector=Metabolites[Effector GTP-Rho]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
         </ModelParameterGroup>
@@ -2120,7 +2120,7 @@
       <Parameter name="log X" type="bool" value="0"/>
       <Parameter name="log Y" type="bool" value="0"/>
       <ListOfPlotItems>
-        <PlotItem name="[Effector·GTP-Rho]" type="Curve2D">
+        <PlotItem name="[Effector GTP-Rho]" type="Curve2D">
           <Parameter name="Line type" type="unsignedInteger" value="0"/>
           <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Line width" type="unsignedFloat" value="1"/>
@@ -2129,7 +2129,7 @@
           <Parameter name="Recording Activity" type="string" value="during"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=NoName,Reference=Time"/>
-            <ChannelSpec cn="CN=Root,Model=NoName,Vector=Compartments[default],Vector=Metabolites[Effector·GTP-Rho],Reference=Concentration"/>
+            <ChannelSpec cn="CN=Root,Model=NoName,Vector=Compartments[default],Vector=Metabolites[Effector GTP-Rho],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
       </ListOfPlotItems>
@@ -2629,7 +2629,7 @@
             <Dimensions width="90" height="90"/>
           </BoundingBox>
         </TextGlyph>
-        <TextGlyph key="Layout_57" name="TextGlyph_10" graphicalObject="Layout_14" text="Effector·GTP-Rho">
+        <TextGlyph key="Layout_57" name="TextGlyph_10" graphicalObject="Layout_14" text="Effector GTP-Rho">
           <BoundingBox>
             <Position x="780" y="434"/>
             <Dimensions width="89" height="88"/>

@@ -42,7 +42,7 @@ def convert_entry(dirname, alt_sbml_formats=None):
         alt_sbml_formats (:obj:`list` of :obj:`AltSbmlFormat`, optional): list of formats to convert
             SBML files to
     """
-    alt_sbml_formats = alt_sbml_formats or list(AltSbmlFormat.__members__.values())
+    alt_sbml_formats = alt_sbml_formats or AltSbmlFormat.__members__.values()    
 
     module = globals()
     if not module['_ODE_INTEGRATION_KISAO_TERM_IDS']:
@@ -67,12 +67,14 @@ def convert_entry(dirname, alt_sbml_formats=None):
             pass
 
     for filename in get_smbl_files_for_entry(dirname, include_urn_files=False):
+        alt_sbml_formats_for_file = list(alt_sbml_formats)
+
         if (
             (has_sedml_task and not ode_simulation)
             or not does_sbml_file_represent_core_kinetic_model(filename)
         ):
             for alt_sbml_format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
-                alt_sbml_formats.remove(alt_sbml_format)
+                alt_sbml_formats_for_file.remove(alt_sbml_format)
 
                 if filename.endswith('_url.xml'):
                     old_final_converted_filename = filename[0:-8] + ALT_SBML_FORMAT_DATA[alt_sbml_format]['old_final_extension']
@@ -87,7 +89,7 @@ def convert_entry(dirname, alt_sbml_formats=None):
                 if os.path.isfile(final_converted_filename):
                     os.remove(final_converted_filename)
 
-        for alt_sbml_format in alt_sbml_formats:
+        for alt_sbml_format in alt_sbml_formats_for_file:
             try:
                 format_data = ALT_SBML_FORMAT_DATA[alt_sbml_format]
                 if filename.endswith('_url.xml'):

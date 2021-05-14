@@ -36,11 +36,16 @@ def run(id, working_dir):
         if fix['type'] == FixType.replace_text.value:
             with open(filename, 'rb') as file:
                 contents = file.read()
-
-            old = fix['old'].replace('\\t', "\t")
-            new = fix['new'].replace('\\t', "\t")
-            assert old.encode() in contents, "Text could not be replaced in `{}`\n\n{}".format(filename, old)
-            contents = contents.replace(old.encode(), new.encode())
+            try:
+                old = fix['old'].replace('\\t', "\t")
+                new = fix['new'].replace('\\t', "\t")
+                assert old.encode() in contents, "Text could not be replaced in `{}`\n\n{}".format(filename, old)
+                contents = contents.replace(old.encode(), new.encode())
+            except:
+                old = fix['old'].replace('\\t', "\t").replace('\n', '\r\n')
+                new = fix['new'].replace('\\t', "\t").replace('\n', '\r\n')
+                assert old.encode() in contents, "Text could not be replaced in `{}`\n\n{}".format(filename, old)
+                contents = contents.replace(old.encode(), new.encode())
 
             with open(filename, 'wb') as file:
                 file.write(contents)
