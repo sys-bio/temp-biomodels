@@ -152,7 +152,11 @@ jobs:
         run: npm install -g svglint
 
       - name: Test entries and record the results
-        run: python -m pytest --verbose --junitxml="test-results.xml" tests/
+        run: |
+          python -m pytest \
+            --numprocesses auto \
+            --verbose \
+            --junitxml="test-results.xml" tests/
 
       - name: Summarize test results
         if: success() || failure()
