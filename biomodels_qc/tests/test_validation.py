@@ -26,6 +26,11 @@ class ValidationTestCase(unittest.TestCase):
         self.assertNotEqual(validation.validate_filename(os.path.join('subdir&', 'model1_-.xml')), ([], []))
         self.assertNotEqual(validation.validate_filename(os.path.join('subdir', 'model-α.xml')), ([], []))
 
+        self.assertNotEqual(validation.validate_filename(os.path.join('subdir', 'model.__unknown__')), ([], []))
+        self.assertIn('media type is not known',
+                      flatten_nested_list_of_strings(
+                          validation.validate_filename(os.path.join('subdir', 'model.unknown__'))[0]))
+
     def test_validate_entry(self):
         valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724')
         errors, warnings = validation.validate_entry(valid_dirname)

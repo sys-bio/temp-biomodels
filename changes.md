@@ -71,3 +71,6 @@ Summary of the changes to the content of BioModels
     * Removed 158 bad Octave files
     * Removed 524 bad Scilab files
     * Removed 400 bad VCML files
+    * Removed 399 bad VCML files
+    * Removed 1 Mac OS desktop configuration files
+    * Corrected file extension for 1 PottersWheel file
