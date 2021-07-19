@@ -174,7 +174,7 @@ def remove_unused_sims_and_mods(doc):
         try:
             used_mods.add(task.getModelReference())
             used_sims.add(task.getSimulationReference())
-        except:
+        except Exception:
             pass
     unused_sims = set()
     unused_mods = set()

@@ -30,7 +30,6 @@ import glob
 import multiprocessing
 import os
 import shutil
-import sys
 import tempfile
 import warnings
 
@@ -58,7 +57,7 @@ def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=Fa
     Args:
         id (:obj:`list` of :obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
-        guess_file_name (:obj:`str`, optional): path to record guesses        
+        guess_file_name (:obj:`str`, optional): path to record guesses
         validate_sbml (:obj:`bool`, optional): validate SBML files
         display_warnings (:obj:`bool`, optional): whether to display warnings
         processes (:obj:`bool`, optional): number of processes to use
@@ -79,7 +78,7 @@ def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=Fals
     Args:
         id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
-        guess_file_name (:obj:`str`, optional): path to record guesses        
+        guess_file_name (:obj:`str`, optional): path to record guesses
         validate_sbml (:obj:`bool`, optional): validate SBML files
         display_warnings (:obj:`bool`, optional): whether to display warnings
     """
@@ -98,7 +97,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     Args:
         id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
-        guess_file_name (:obj:`str`, optional): path to record guesses        
+        guess_file_name (:obj:`str`, optional): path to record guesses
         validate_sbml (:obj:`bool`, optional): validate SBML files
     """
     if not os.path.isdir(FINAL_ENTRIES_DIR):

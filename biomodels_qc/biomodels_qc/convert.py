@@ -42,7 +42,7 @@ def convert_entry(dirname, alt_sbml_formats=None):
         alt_sbml_formats (:obj:`list` of :obj:`AltSbmlFormat`, optional): list of formats to convert
             SBML files to
     """
-    alt_sbml_formats = alt_sbml_formats or AltSbmlFormat.__members__.values()    
+    alt_sbml_formats = alt_sbml_formats or AltSbmlFormat.__members__.values()
 
     module = globals()
     if not module['_ODE_INTEGRATION_KISAO_TERM_IDS']:
