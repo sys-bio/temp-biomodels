@@ -1,3 +1,5 @@
+from biosimulators_utils.combine.data_model import CombineArchive, CombineArchiveContent, CombineArchiveContentFormat
+from biosimulators_utils.combine.io import CombineArchiveReader
 from unittest import mock
 import biomodels_qc
 import biomodels_qc.__main__
@@ -9,6 +11,7 @@ import unittest
 
 
 class CliTestCase(unittest.TestCase):
+    BASE_FIXTURE_DIRNAME = os.path.join(os.path.dirname(__file__), 'fixtures')
     VALID_FIXTURE_DIRNAME = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000600')
     INVALID_FIXTURE_DIRNAME = os.path.join(os.path.dirname(__file__), 'fixtures', 'BIOMD0000000693')
 
@@ -103,6 +106,33 @@ class CliTestCase(unittest.TestCase):
             app.run()
 
         self.assertTrue(os.path.isfile(temp_archive_filename))
+
+    def test_build_omex_manifest_with_master(self):
+        entry_dirname = os.path.join(self.BASE_FIXTURE_DIRNAME, 'BIOMD0000000005')
+        manifest_filename = os.path.join(self.temp_dirname, 'manifest.xml')
+
+        with biomodels_qc.__main__.App(argv=[
+            'build-manifest', entry_dirname,
+            manifest_filename,
+            '--master', os.path.join(entry_dirname, 'BIOMD0000000005.sedml'),
+        ]) as app:
+            app.run()
+
+        contents = CombineArchiveReader().read_manifest(manifest_filename)
+        archive = CombineArchive(contents=contents)
+        expected_archive = CombineArchive(contents=[
+            CombineArchiveContent(
+                location='BIOMD0000000005.sedml',
+                format=CombineArchiveContentFormat.SED_ML.value,
+                master=True,
+            ),
+            CombineArchiveContent(
+                location='BIOMD0000000005_url.xml',
+                format=CombineArchiveContentFormat.SBML.value,
+                master=False,
+            ),
+        ])
+        self.assertTrue(archive.is_equal(expected_archive))
 
     def test_convert(self):
         temp_entry_dirname = os.path.join(self.temp_dirname, 'entry')
