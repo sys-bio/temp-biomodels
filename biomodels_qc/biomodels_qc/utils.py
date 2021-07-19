@@ -49,7 +49,7 @@ def get_smbl_files_for_entry(dir, include_urn_files=False):
 
 
 EXTENSION_COMBINE_FORMAT_MAP = {
-    '.cps': CombineArchiveContentFormat.CPS.value,
+    '.cps': CombineArchiveContentFormat.CopasiML.value,
     '.gif': 'http://purl.org/NET/mediatypes/application/gif',
     '.ipynb': 'http://purl.org/NET/mediatypes/application/x-ipynb+json',
     '.jpg': 'http://purl.org/NET/mediatypes/application/jpeg',

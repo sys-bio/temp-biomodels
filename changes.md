@@ -53,7 +53,7 @@ Summary of the changes to the content of BioModels
 * OMEX files
     * Replaced file with its content: BIOMD0000000585/Rateitschak2012.omex
 
-* CPS files
+* CopasiML files
     * Corrected time courses with unusual step numbers and sizes in 36 files
     * Corrected MODEL1305060000_edited
 
