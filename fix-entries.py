@@ -20,8 +20,9 @@ import remove_unused_sedml_elements
 import remove_omex
 import validate_sbml as validate_sbml_module
 
-from biomodels_qc.utils import are_biopax_files_the_same
+from biomodels_qc.utils import are_biopax_files_the_same, build_combine_archive
 from biomodels_qc.warnings import BiomodelsQcWarning
+from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.warnings import BioSimulatorsWarning
 
 import argparse
@@ -199,6 +200,14 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
 
         if os.path.isfile(final_filename) and are_biopax_files_the_same(final_filename, temp_filename):
             shutil.copyfile(final_filename, temp_filename)
+
+    ###################################################
+    # Build manifest
+    manifest_filename = os.path.join(temp_entry_dir, 'manifest.xml')
+    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    sedml_locations = [os.path.relpath(path, temp_entry_dir) for path in sedml_filenames]
+    archive = build_combine_archive(temp_entry_dir, sedml_locations)
+    CombineArchiveWriter().write_manifest(archive.contents, manifest_filename)
 
     ###################################################
     # Move temporary directory to final location
