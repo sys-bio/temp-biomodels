@@ -145,5 +145,5 @@ class CliTestCase(unittest.TestCase):
         temp_entry_dirname = os.path.join(self.temp_dirname, 'entry')
         shutil.copytree(self.VALID_FIXTURE_DIRNAME, temp_entry_dirname)
 
-        with biomodels_qc.__main__.App(argv=['convert', temp_entry_dirname, '--format', 'Matlab']) as app:
+        with biomodels_qc.__main__.App(argv=['convert', temp_entry_dirname, '--format', 'MATLAB']) as app:
             app.run()

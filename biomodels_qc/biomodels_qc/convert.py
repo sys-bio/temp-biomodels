@@ -10,6 +10,8 @@ such as BioPAX, MATLAB/Octave, and XPP.
 from .utils import get_smbl_files_for_entry, are_biopax_files_the_same, does_sbml_file_represent_core_kinetic_model
 from .validation import validate_sbml_file, validate_xpp_file, validate_octave_file
 from .warnings import FileCouldNotBeConvertedWarning
+from biosimulators_utils.omex_meta.data_model import OmexMetaOutputFormat
+from biosimulators_utils.omex_meta.utils import build_omex_meta_file_for_model
 from biosimulators_utils.sedml.data_model import Task
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from kisao import Kisao
@@ -73,7 +75,7 @@ def convert_entry(dirname, alt_sbml_formats=None):
             (has_sedml_task and not ode_simulation)
             or not does_sbml_file_represent_core_kinetic_model(filename)
         ):
-            for alt_sbml_format in [AltSbmlFormat.Matlab, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
+            for alt_sbml_format in [AltSbmlFormat.MATLAB, AltSbmlFormat.Octave, AltSbmlFormat.XPP]:
                 alt_sbml_formats_for_file.remove(alt_sbml_format)
 
                 if filename.endswith('_url.xml'):
@@ -132,44 +134,58 @@ class AltSbmlFormat(str, enum.Enum):
     SBML_URN = 'SBML_URN'
     BioPAX_l2 = 'BioPAX_l2'
     BioPAX_l3 = 'BioPAX_l3'
-    Matlab = 'Matlab'
+    MATLAB = 'MATLAB'
     Octave = 'Octave'
+    OMEX_Metadata = 'OMEX_Metadata'
     XPP = 'XPP'
 
 
 ALT_SBML_FORMAT_DATA = {
     AltSbmlFormat.SBML_URN: {
-        'id': 'URL2URN',
+        'format': AltSbmlFormat.SBML_URN,
+        'sbfc_id': 'URL2URN',
         'init_extension': '-url2urn.xml',
         'old_final_extension': '_urn.xml',
         'final_extension': '_urn.xml',
     },
     AltSbmlFormat.BioPAX_l2: {
-        'id': 'SBML2BioPAX_l2',
+        'format': AltSbmlFormat.BioPAX_l2,
+        'sbfc_id': 'SBML2BioPAX_l2',
         'init_extension': '-biopax2.owl',
         'old_final_extension': '-biopax2.owl',
         'final_extension': '-biopax2.owl',
     },
     AltSbmlFormat.BioPAX_l3: {
-        'id': 'SBML2BioPAX_l3',
+        'format': AltSbmlFormat.BioPAX_l3,
+        'sbfc_id': 'SBML2BioPAX_l3',
         'init_extension': '-biopax3.owl',
         'old_final_extension': '-biopax3.owl',
         'final_extension': '-biopax3.owl',
     },
-    AltSbmlFormat.Matlab: {
-        'id': 'SBML2Matlab',
+    AltSbmlFormat.MATLAB: {
+        'format': AltSbmlFormat.MATLAB,
+        'sbfc_id': 'SBML2Matlab',
         'init_extension': '.m',
         'old_final_extension': '.m',
         'final_extension': '-matlab.m',
     },
     AltSbmlFormat.Octave: {
-        'id': 'SBML2Octave',
+        'format': AltSbmlFormat.Octave,
+        'sbfc_id': 'SBML2Octave',
         'init_extension': '.m',
         'old_final_extension': '.m',
         'final_extension': '-octave.m',
     },
+    AltSbmlFormat.OMEX_Metadata: {
+        'format': AltSbmlFormat.OMEX_Metadata,
+        'sbfc_id': None,
+        'init_extension': '.rdf',
+        'old_final_extension': '.rdf',
+        'final_extension': '.rdf',
+    },
     AltSbmlFormat.XPP: {
-        'id': 'SBML2XPP',
+        'format': AltSbmlFormat.XPP,
+        'sbfc_id': 'SBML2XPP',
         'init_extension': '.xpp',
         'old_final_extension': '.xpp',
         'final_extension': '.xpp',
@@ -183,6 +199,7 @@ def convert_sbml(filename, alt_format, alt_filename):
     * SBML (with URNs)
     * MATLAB
     * Octave
+    * OMEX metadata
     * XPP
 
     Args:
@@ -190,25 +207,32 @@ def convert_sbml(filename, alt_format, alt_filename):
         alt_format (:obj:`AltSbmlFormat`): another format
         alt_filename (:obj:`str`): path to save converted file
     """
-    format_data = ALT_SBML_FORMAT_DATA[alt_format]
+    format_data = ALT_SBML_FORMAT_DATA.get(alt_format, {})
 
-    temp_dir = tempfile.mkdtemp()
-    temp_filename = os.path.join(temp_dir, os.path.basename(filename))
-    shutil.copyfile(filename, temp_filename)
+    if format_data.get('sbfc_id', None):
+        temp_dir = tempfile.mkdtemp()
+        temp_filename = os.path.join(temp_dir, os.path.basename(filename))
+        shutil.copyfile(filename, temp_filename)
 
-    try:
-        run_sbf_converter(temp_filename, format_data['id'])
-    except ValueError:
-        shutil.rmtree(temp_dir)
-        raise
+        try:
+            run_sbf_converter(temp_filename, format_data['sbfc_id'])
+        except ValueError:
+            shutil.rmtree(temp_dir)
+            raise
 
-    init_converted_filename = os.path.splitext(temp_filename)[0] + format_data['init_extension']
-    shutil.move(init_converted_filename, alt_filename)
+        init_converted_filename = os.path.splitext(temp_filename)[0] + format_data['init_extension']
+        shutil.move(init_converted_filename, alt_filename)
 
-    try:
-        _handle_sbf_converter_errors(filename, temp_filename, alt_filename, alt_format)
-    finally:
-        shutil.rmtree(temp_dir)
+        try:
+            _handle_sbf_converter_errors(filename, temp_filename, alt_filename, alt_format)
+        finally:
+            shutil.rmtree(temp_dir)
+
+    elif format_data.get('format', None) == AltSbmlFormat.OMEX_Metadata:
+        build_omex_meta_file_for_model(filename, alt_filename, metadata_format=OmexMetaOutputFormat.rdfxml_abbrev)
+
+    else:
+        raise NotImplementedError('Format `{}` is not supported.'.format(alt_format))
 
 
 def _handle_sbf_converter_errors(filename, temp_filename, alt_filename, alt_format):
