@@ -7,7 +7,6 @@
 """
 
 from biosimulators_utils.combine.data_model import CombineArchive, CombineArchiveContent, CombineArchiveContentFormat
-from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.data_model import Person  # noqa: F401
 import datetime
 import dateutil.tz
@@ -61,7 +60,7 @@ EXTENSION_COMBINE_FORMAT_MAP = {
     '.png': CombineArchiveContentFormat.PNG.value,
     '.py': CombineArchiveContentFormat.Python.value,
     '.r': CombineArchiveContentFormat.R.value,
-    '.r': CombineArchiveContentFormat.R_Project.value,
+    '.rproj': CombineArchiveContentFormat.R_Project.value,
     '.sbml': CombineArchiveContentFormat.SBML.value,
     '.sbproj': CombineArchiveContentFormat.SimBiology_Project.value,
     '.sci': CombineArchiveContentFormat.Scilab.value,
@@ -76,7 +75,7 @@ EXTENSION_COMBINE_FORMAT_MAP = {
 # map from file extensions to COMBINE format specification URLs
 
 
-def build_combine_archive(archive_dirname, master_rel_filenames, archive_filename,
+def build_combine_archive(archive_dirname, master_rel_filenames,
                           description=None, authors=None):
     """ Build a COMBINE/OMEX archive from a directory of files
 
@@ -84,10 +83,11 @@ def build_combine_archive(archive_dirname, master_rel_filenames, archive_filenam
         archive_dirname (:obj:`str`): path to directory with the contents of the archive
         master_rel_filenames (:obj:`list` of :obj:`str`): filename of master file, relative to
             :obj:`archive_dirname`
-        archive_filename (:obj:`str`): path to save the COMBINE/OMEX archive
         description (:obj:`str`, optional): description of the archive
         authors (:obj:`list` of :obj:`Person`, optional): authors of the archive
 
+    Returns:
+        :obj:`CombineArchive`: archive
     """
     now = datetime.datetime.now(tz=dateutil.tz.tzutc()).replace(microsecond=0)
 
@@ -115,7 +115,7 @@ def build_combine_archive(archive_dirname, master_rel_filenames, archive_filenam
             )
         )
 
-    CombineArchiveWriter().run(archive, archive_dirname, archive_filename)
+    return archive
 
 
 def are_biopax_files_the_same(filename_a, filename_b):

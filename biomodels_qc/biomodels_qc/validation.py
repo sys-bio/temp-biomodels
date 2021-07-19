@@ -7,6 +7,7 @@
 """
 
 from .utils import build_combine_archive, EXTENSION_COMBINE_FORMAT_MAP
+from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
@@ -424,7 +425,8 @@ def validate_sedml_file(filename, dirname=None, max_number_of_time_course_steps=
         fid, archive_filename = tempfile.mkstemp()
         os.close(fid)
 
-        build_combine_archive(dirname, [os.path.relpath(filename, dirname)], archive_filename)
+        archive = build_combine_archive(dirname, [os.path.relpath(filename, dirname)])
+        CombineArchiveWriter().run(archive, dirname, archive_filename)
 
         has_capable_simulator = False
         exec_errors = []

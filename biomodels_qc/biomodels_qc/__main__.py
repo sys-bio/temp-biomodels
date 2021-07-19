@@ -10,6 +10,7 @@ from .convert import convert_entry, AltSbmlFormat
 from .utils import build_combine_archive
 from .validation import validate_entry
 from .warnings import BiomodelsQcWarning
+from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.data_model import Person
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 from biosimulators_utils.warnings import BioSimulatorsWarning
@@ -217,8 +218,9 @@ class BuildCombineArchiveController(cement.Controller):
             if args.do_not_display_warnings:
                 warnings.simplefilter("ignore", BiomodelsQcWarning)
                 warnings.simplefilter("ignore", BioSimulatorsWarning)
-            build_combine_archive(args.dir, master_rel_filenames, args.archive,
-                                  description=description, authors=authors)
+            archive = build_combine_archive(args.dir, master_rel_filenames,
+                                            description=description, authors=authors)
+            CombineArchiveWriter().run(archive, args.dir, args.archive)
 
 
 class ConvertEntryProjectController(cement.Controller):
