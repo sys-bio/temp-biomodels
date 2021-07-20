@@ -26,17 +26,22 @@ class ValidationTestCase(unittest.TestCase):
         self.assertNotEqual(validation.validate_filename(os.path.join('subdir&', 'model1_-.xml')), ([], []))
         self.assertNotEqual(validation.validate_filename(os.path.join('subdir', 'model-α.xml')), ([], []))
 
+        self.assertNotEqual(validation.validate_filename(os.path.join('subdir', 'model.__unknown__')), ([], []))
+        self.assertIn('media type is not known',
+                      flatten_nested_list_of_strings(
+                          validation.validate_filename(os.path.join('subdir', 'model.unknown__'))[0]))
+
     def test_validate_entry(self):
         valid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000724')
         errors, warnings = validation.validate_entry(valid_dirname)
         self.assertEqual(errors, [])
         self.assertIn('uses data from repeated tasks', flatten_nested_list_of_strings(warnings))
 
-        with open(os.path.join(self.temp_dirname, 'abc.xyz'), 'w'):
+        with open(os.path.join(self.temp_dirname, 'abc.sbproj'), 'w'):
             pass
         errors, warnings = validation.validate_entry(self.temp_dirname)
         self.assertEqual(errors, [])
-        self.assertIn('not available for `.xyz`', flatten_nested_list_of_strings(warnings))
+        self.assertIn('not available for `.sbproj`', flatten_nested_list_of_strings(warnings))
 
         invalid_dirname = os.path.join(self.FIXTURE_DIRNAME, 'BIOMD0000000693')
         errors, warnings = validation.validate_entry(invalid_dirname)

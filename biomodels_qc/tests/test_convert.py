@@ -42,6 +42,7 @@ class ConvertTestCase(unittest.TestCase):
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000692-octave.m'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000692.xpp'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000692_urn.xml'),
+            os.path.join(self.temp_entry_dirname, 'BIOMD0000000692.rdf'),
         ]))
 
     def test_convert_without_url(self):
@@ -61,6 +62,7 @@ class ConvertTestCase(unittest.TestCase):
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000692-octave.m'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000692.xpp'),
             os.path.join(self.temp_entry_dirname, 'BIOMD0000000692_urn.xml'),
+            os.path.join(self.temp_entry_dirname, 'BIOMD0000000692.rdf'),
         ]))
 
     def test_dont_convert_non_continuous_kinetic_models_to_alt_ode_formats(self):
@@ -124,7 +126,13 @@ class ConvertTestCase(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'The Systems Biology Format Converter failed'):
             convert.convert_sbml(
                 os.path.join(self.temp_entry_dirname, 'empty_file'),
-                convert.AltSbmlFormat.Matlab,
+                convert.AltSbmlFormat.MATLAB,
+                os.path.join(self.temp_entry_dirname, 'not a file 2'))
+
+        with self.assertRaisesRegex(NotImplementedError, 'not supported'):
+            convert.convert_sbml(
+                os.path.join(self.temp_entry_dirname, 'empty_file'),
+                None,
                 os.path.join(self.temp_entry_dirname, 'not a file 2'))
 
     def test_run_sbf_converter(self):
@@ -139,7 +147,7 @@ class ConvertTestCase(unittest.TestCase):
         with open(alt_filename, 'w'):
             pass
 
-        convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+        convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.MATLAB)
 
         self.assertTrue(os.path.isfile(alt_filename))
 
@@ -155,7 +163,7 @@ class ConvertTestCase(unittest.TestCase):
             pass
 
         with self.assertRaises(ValueError):
-            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.MATLAB)
 
         self.assertFalse(os.path.isfile(alt_filename))
         self.assertFalse(os.path.isfile(error_log_filename))
@@ -170,7 +178,7 @@ class ConvertTestCase(unittest.TestCase):
             file.write('#Something went wrong\n')
 
         with self.assertRaises(RuntimeError):
-            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.MATLAB)
 
         self.assertFalse(os.path.isfile(alt_filename))
 
@@ -187,7 +195,7 @@ class ConvertTestCase(unittest.TestCase):
             pass
 
         with self.assertRaises(ValueError):
-            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.Matlab)
+            convert._handle_sbf_converter_errors('original file', temp_filename, alt_filename, convert.AltSbmlFormat.MATLAB)
 
         self.assertFalse(os.path.isfile(alt_filename))
         self.assertFalse(os.path.isfile(error_log_filename))

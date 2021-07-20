@@ -41,7 +41,7 @@ def run(id, working_dir):
                 new = fix['new'].replace('\\t', "\t")
                 assert old.encode() in contents, "Text could not be replaced in `{}`\n\n{}".format(filename, old)
                 contents = contents.replace(old.encode(), new.encode())
-            except:
+            except Exception:
                 old = fix['old'].replace('\\t', "\t").replace('\n', '\r\n')
                 new = fix['new'].replace('\\t', "\t").replace('\n', '\r\n')
                 assert old.encode() in contents, "Text could not be replaced in `{}`\n\n{}".format(filename, old)

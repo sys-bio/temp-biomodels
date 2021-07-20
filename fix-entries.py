@@ -20,8 +20,9 @@ import remove_unused_sedml_elements
 import remove_omex
 import validate_sbml as validate_sbml_module
 
-from biomodels_qc.utils import are_biopax_files_the_same
+from biomodels_qc.utils import are_biopax_files_the_same, build_combine_archive
 from biomodels_qc.warnings import BiomodelsQcWarning
+from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.warnings import BioSimulatorsWarning
 
 import argparse
@@ -30,7 +31,6 @@ import glob
 import multiprocessing
 import os
 import shutil
-import sys
 import tempfile
 import warnings
 
@@ -58,7 +58,7 @@ def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=Fa
     Args:
         id (:obj:`list` of :obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
-        guess_file_name (:obj:`str`, optional): path to record guesses        
+        guess_file_name (:obj:`str`, optional): path to record guesses
         validate_sbml (:obj:`bool`, optional): validate SBML files
         display_warnings (:obj:`bool`, optional): whether to display warnings
         processes (:obj:`bool`, optional): number of processes to use
@@ -79,7 +79,7 @@ def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=Fals
     Args:
         id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
-        guess_file_name (:obj:`str`, optional): path to record guesses        
+        guess_file_name (:obj:`str`, optional): path to record guesses
         validate_sbml (:obj:`bool`, optional): validate SBML files
         display_warnings (:obj:`bool`, optional): whether to display warnings
     """
@@ -98,7 +98,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     Args:
         id (:obj:`str`): id (e.g., ``BIOMD0000000230``)
         convert_files (:obj:`bool`, optional): convert primary files to other formats
-        guess_file_name (:obj:`str`, optional): path to record guesses        
+        guess_file_name (:obj:`str`, optional): path to record guesses
         validate_sbml (:obj:`bool`, optional): validate SBML files
     """
     if not os.path.isdir(FINAL_ENTRIES_DIR):
@@ -200,6 +200,14 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
 
         if os.path.isfile(final_filename) and are_biopax_files_the_same(final_filename, temp_filename):
             shutil.copyfile(final_filename, temp_filename)
+
+    ###################################################
+    # Build manifest
+    manifest_filename = os.path.join(temp_entry_dir, 'manifest.xml')
+    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    sedml_locations = [os.path.relpath(path, temp_entry_dir) for path in sedml_filenames]
+    archive = build_combine_archive(temp_entry_dir, sedml_locations)
+    CombineArchiveWriter().write_manifest(archive.contents, manifest_filename)
 
     ###################################################
     # Move temporary directory to final location

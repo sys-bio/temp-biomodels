@@ -1,5 +1,5 @@
 from biomodels_qc import utils
-from biosimulators_utils.combine.io import CombineArchiveReader
+from biosimulators_utils.combine.io import CombineArchiveReader, CombineArchiveWriter
 import os
 import shutil
 import tempfile
@@ -29,7 +29,8 @@ class UtilsTestCase(unittest.TestCase):
 
     def test_build_combine_archive(self):
         archive_filename = os.path.join(self.temp_dirname, 'archive.omex')
-        utils.build_combine_archive(self.FIXTURE_DIRNAME, ['MODEL7817907010.sedml'], archive_filename)
+        archive = utils.build_combine_archive(self.FIXTURE_DIRNAME, ['MODEL7817907010.sedml'])
+        CombineArchiveWriter().run(archive, self.FIXTURE_DIRNAME, archive_filename)
 
         archive_dirname = os.path.join(self.temp_dirname, 'archive')
         archive = CombineArchiveReader().run(archive_filename, archive_dirname)

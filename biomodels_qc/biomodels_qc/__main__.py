@@ -10,6 +10,7 @@ from .convert import convert_entry, AltSbmlFormat
 from .utils import build_combine_archive
 from .validation import validate_entry
 from .warnings import BiomodelsQcWarning
+from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.data_model import Person
 from biosimulators_utils.utils.core import flatten_nested_list_of_strings
 from biosimulators_utils.warnings import BioSimulatorsWarning
@@ -157,7 +158,7 @@ class BuildCombineArchiveController(cement.Controller):
                 ['archive'],
                 dict(
                     type=str,
-                    help='Path to a save COMBINE/OMEX archive',
+                    help='Path to save COMBINE/OMEX archive',
                 ),
             ),
             (
@@ -213,12 +214,65 @@ class BuildCombineArchiveController(cement.Controller):
             given_name = given_name.strip() or None
             authors.append(Person(family_name=family_name, given_name=given_name))
 
+        archive = build_combine_archive(args.dir, master_rel_filenames,
+                                        description=description, authors=authors)
+
         with warnings.catch_warnings():
             if args.do_not_display_warnings:
                 warnings.simplefilter("ignore", BiomodelsQcWarning)
                 warnings.simplefilter("ignore", BioSimulatorsWarning)
-            build_combine_archive(args.dir, master_rel_filenames, args.archive,
-                                  description=description, authors=authors)
+            CombineArchiveWriter().run(archive, args.dir, args.archive)
+
+
+class BuildOmexManifestController(cement.Controller):
+    """ Controller for building an OMEX manifest file for a directory for an entry of BioModels. """
+
+    class Meta:
+        label = 'build-manifest'
+        stacked_on = 'base'
+        stacked_type = 'nested'
+        help = "Build an OMEX manifest file archive for an entry of BioModels."
+        description = "Build an OMEX manifest file file a directory for an entry of BioModels."
+        arguments = [
+            (
+                ['dir'],
+                dict(
+                    type=str,
+                    help='Path to a directory to build a manifest for',
+                ),
+            ),
+            (
+                ['manifest_filename'],
+                dict(
+                    metavar='manifest-filename',
+                    type=str,
+                    help='Path to save manifest',
+                ),
+            ),
+            (
+                ['--master'],
+                dict(
+                    type=str,
+                    action='append',
+                    default=None,
+                    help='Path to a file that should be marked as `master`. Default: mark all SED-ML files as master.',
+                ),
+            ),
+        ]
+
+    @cement.ex(hide=True)
+    def _default(self):
+        args = self.app.pargs
+
+        if args.master:
+            master_filenames = args.master
+        else:
+            master_filenames = glob.glob(os.path.join(args.dir, '**', '*.sedml'), recursive=True)
+        master_rel_filenames = [os.path.relpath(master_filename, args.dir) for master_filename in master_filenames]
+
+        archive = build_combine_archive(args.dir, master_rel_filenames)
+
+        CombineArchiveWriter().write_manifest(archive.contents, args.manifest_filename)
 
 
 class ConvertEntryProjectController(cement.Controller):
@@ -287,6 +341,7 @@ class App(cement.App):
             BaseController,
             ValidateEntryController,
             BuildCombineArchiveController,
+            BuildOmexManifestController,
             ConvertEntryProjectController,
         ]
 

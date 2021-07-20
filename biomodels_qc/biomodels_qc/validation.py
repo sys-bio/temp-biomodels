@@ -6,7 +6,8 @@
 :License: MIT
 """
 
-from .utils import build_combine_archive
+from .utils import build_combine_archive, EXTENSION_COMBINE_FORMAT_MAP
+from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 from biosimulators_utils.sedml.io import SedmlSimulationReader
 from biosimulators_utils.simulator.exec import exec_sedml_docs_in_archive_with_containerized_simulator
@@ -94,8 +95,18 @@ def validate_filename(filename):
             'Filename `{}` is invalid. Filenames should only contain letters, numbers, underscores, '
             'dashes and periods to separate extensions.'
         ).format(filename)]], []
-    else:
-        return [], []
+
+    if extension not in EXTENSION_COMBINE_FORMAT_MAP:
+        return [
+            [(
+                'Extension `{}` is not supported because its media type is not known. '
+                'A different extension should be chosen, or support for the extension'
+                'should be added to this package. The following extensions are suported:'
+            ).format(extension),
+                [['{}: {}'.format(ext, specs_url)] for ext, specs_url in EXTENSION_COMBINE_FORMAT_MAP.items()]
+            ]], []
+
+    return [], []
 
 
 def validate_combine_archive(filename):
@@ -414,7 +425,8 @@ def validate_sedml_file(filename, dirname=None, max_number_of_time_course_steps=
         fid, archive_filename = tempfile.mkstemp()
         os.close(fid)
 
-        build_combine_archive(dirname, [os.path.relpath(filename, dirname)], archive_filename)
+        archive = build_combine_archive(dirname, [os.path.relpath(filename, dirname)])
+        CombineArchiveWriter().run(archive, dirname, archive_filename)
 
         has_capable_simulator = False
         exec_errors = []

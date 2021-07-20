@@ -53,7 +53,7 @@ Summary of the changes to the content of BioModels
 * OMEX files
     * Replaced file with its content: BIOMD0000000585/Rateitschak2012.omex
 
-* CPS files
+* CopasiML files
     * Corrected time courses with unusual step numbers and sizes in 36 files
     * Corrected MODEL1305060000_edited
 
@@ -71,3 +71,6 @@ Summary of the changes to the content of BioModels
     * Removed 158 bad Octave files
     * Removed 524 bad Scilab files
     * Removed 400 bad VCML files
+    * Removed 399 bad VCML files
+    * Removed 1 Mac OS desktop configuration files
+    * Corrected file extension for 1 PottersWheel file

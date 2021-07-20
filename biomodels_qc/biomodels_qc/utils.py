@@ -7,7 +7,6 @@
 """
 
 from biosimulators_utils.combine.data_model import CombineArchive, CombineArchiveContent, CombineArchiveContentFormat
-from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.data_model import Person  # noqa: F401
 import datetime
 import dateutil.tz
@@ -49,28 +48,34 @@ def get_smbl_files_for_entry(dir, include_urn_files=False):
 
 
 EXTENSION_COMBINE_FORMAT_MAP = {
-    '.cps': CombineArchiveContentFormat.CPS.value,
-    '.gif': 'http://purl.org/NET/mediatypes/application/gif',
-    '.ipynb': 'http://purl.org/NET/mediatypes/application/x-ipynb+json',
-    '.jpg': 'http://purl.org/NET/mediatypes/application/jpeg',
-    '.jpeg': 'http://purl.org/NET/mediatypes/application/jpeg',
-    '.m': 'http://purl.org/NET/mediatypes/text/x-matlab',
-    '.mat': 'http://purl.org/NET/mediatypes/application/x-matlab-data',
-    '.owl': 'http://purl.org/NET/mediatypes/application/rdf+xml',
-    '.pdf': 'http://purl.org/NET/mediatypes/application/pdf',
-    '.png': 'http://purl.org/NET/mediatypes/image/png',
-    '.py': 'http://purl.org/NET/mediatypes/application/x-python-code',
+    '.cps': CombineArchiveContentFormat.CopasiML.value,
+    '.gif': CombineArchiveContentFormat.GIF.value,
+    '.ipynb': CombineArchiveContentFormat.IPython_Notebook.value,
+    '.jpg': CombineArchiveContentFormat.JPEG.value,
+    '.jpeg': CombineArchiveContentFormat.JPEG.value,
+    '.m': CombineArchiveContentFormat.MATLAB.value,
+    '.mat': CombineArchiveContentFormat.MATLAB_DATA.value,
+    '.owl': CombineArchiveContentFormat.OWL.value,
+    '.pdf': CombineArchiveContentFormat.PDF.value,
+    '.png': CombineArchiveContentFormat.PNG.value,
+    '.py': CombineArchiveContentFormat.Python.value,
+    '.r': CombineArchiveContentFormat.R.value,
+    '.rproj': CombineArchiveContentFormat.R_Project.value,
     '.sbml': CombineArchiveContentFormat.SBML.value,
+    '.sbproj': CombineArchiveContentFormat.SimBiology_Project.value,
+    '.sci': CombineArchiveContentFormat.Scilab.value,
     '.sedml': CombineArchiveContentFormat.SED_ML.value,
+    '.svg': CombineArchiveContentFormat.SVG.value,
+    '.txt': CombineArchiveContentFormat.TEXT.value,
     '.vcml': CombineArchiveContentFormat.VCML.value,
     '.xml': CombineArchiveContentFormat.SBML.value,
-    '.xpp': 'http://purl.org/NET/mediatypes/text/plain',
-    '.zip': 'http://purl.org/NET/mediatypes/application/zip',
+    '.xpp': CombineArchiveContentFormat.XPP.value,
+    '.zip': CombineArchiveContentFormat.ZIP.value,
 }
 # map from file extensions to COMBINE format specification URLs
 
 
-def build_combine_archive(archive_dirname, master_rel_filenames, archive_filename,
+def build_combine_archive(archive_dirname, master_rel_filenames,
                           description=None, authors=None):
     """ Build a COMBINE/OMEX archive from a directory of files
 
@@ -78,10 +83,11 @@ def build_combine_archive(archive_dirname, master_rel_filenames, archive_filenam
         archive_dirname (:obj:`str`): path to directory with the contents of the archive
         master_rel_filenames (:obj:`list` of :obj:`str`): filename of master file, relative to
             :obj:`archive_dirname`
-        archive_filename (:obj:`str`): path to save the COMBINE/OMEX archive
         description (:obj:`str`, optional): description of the archive
         authors (:obj:`list` of :obj:`Person`, optional): authors of the archive
 
+    Returns:
+        :obj:`CombineArchive`: archive
     """
     now = datetime.datetime.now(tz=dateutil.tz.tzutc()).replace(microsecond=0)
 
@@ -109,7 +115,7 @@ def build_combine_archive(archive_dirname, master_rel_filenames, archive_filenam
             )
         )
 
-    CombineArchiveWriter().run(archive, archive_dirname, archive_filename)
+    return archive
 
 
 def are_biopax_files_the_same(filename_a, filename_b):
