@@ -89,7 +89,10 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
     Returns:
         :obj:`CombineArchive`: archive
     """
-    now = datetime.datetime.now(tz=dateutil.tz.tzutc()).replace(microsecond=0)
+    if description or authors:
+        now = datetime.datetime.now(tz=dateutil.tz.tzutc()).replace(microsecond=0)
+    else:
+        now = None
 
     archive = CombineArchive(
         description=description,
@@ -110,8 +113,8 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
                 format=format,
                 master=location in master_rel_filenames,
                 authors=[],
-                created=now,
-                updated=now,
+                created=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
+                updated=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
             )
         )
 

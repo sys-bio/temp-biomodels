@@ -29,6 +29,10 @@ class UtilsTestCase(unittest.TestCase):
 
     def test_build_combine_archive(self):
         archive_filename = os.path.join(self.temp_dirname, 'archive.omex')
+        archive = utils.build_combine_archive(self.FIXTURE_DIRNAME, ['MODEL7817907010.sedml'], description='description')
+        CombineArchiveWriter().run(archive, self.FIXTURE_DIRNAME, archive_filename)
+
+        archive_filename = os.path.join(self.temp_dirname, 'archive.omex')
         archive = utils.build_combine_archive(self.FIXTURE_DIRNAME, ['MODEL7817907010.sedml'])
         CombineArchiveWriter().run(archive, self.FIXTURE_DIRNAME, archive_filename)
 
