@@ -65,7 +65,31 @@ RUN apt-get update -y \
 # Install XPP
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        xppaut \
+        wget \
+        make \
+        gcc \
+        libx11-dev \
+        libc6-dev \
+        libx11-6 \
+        libc6 \
+    \
+    && cd /tmp \
+    && wget http://www.math.pitt.edu/~bard/bardware/xppaut_latest.tar.gz \
+    && mkdir xpp \
+    && tar zxvf xppaut_latest.tar.gz --directory xpp \
+    && cd xpp \
+    && make \
+    && make install \
+    \
+    && cd /tmp \
+    && rm xppaut_latest.tar.gz \
+    && rm -r xpp \
+    \
+    && apt-get remove -y \
+        wget \
+        make \
+        gcc \
+        libx11-dev \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
