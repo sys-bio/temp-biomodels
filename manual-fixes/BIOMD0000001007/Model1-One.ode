@@ -1,0 +1,29 @@
+# Tongli Model One
+
+# GK Function
+BB(u,v,q,r)=v-u+v*q+u*r
+GK(u,v,q,r)=2*u*r/(BB(u,v,q,r)+SQRT(BB(u,v,q,r)^2-4*u*r*(v-u)))
+
+# Rate Functions
+Dam = heav(t-Tdam)*max(0,Dam0-krep*(t-Tdam))
+Vd2 = kd2p*(1+Dam)
+Vd53 = kd53p + kd53pp*GK(Mdm2n,Theta,J1/p53,J2/p53)
+
+# ODEs
+dp53/dt = ks53p + ks53pp*Mdm2c^4/(Js53^4+Mdm2c^4) - Vd53*p53
+dMdm2c/dt = ks2p + ks2pp*p53^4/(Js2^4+p53^4) - ki*Mdm2c + ko*Mdm2n - kd2pp*Mdm2c
+dMdm2n/dt = ki*Mdm2c - ko*Mdm2n - Vd2*Mdm2n
+aux DNAdam=Dam/Dam0
+
+# Parameters
+p kd53p=0.27, kd53pp=8.25, Theta=0.83, kd2p=0.05
+p ks53p=0.6, ks53pp=2.56, Js53=0.45, ks2p=0.15
+p ks2pp=4.23, Js2=0.92, ki=0.41, ko=0.05
+p kd2pp=0.79, krep=0.08, J1=0.1, J2=0.1
+p Tdam=10, Dam0=2
+
+#Initial Conditions
+i p53=.186, Mdm2c=.158, Mdm2n=.647
+
+@ Total=100, Nplot=3, YP=DNAdam, YP2=p53, YP3=Mdm2n, Xhi=100, Ylo=0, Yhi=2, Bound=1000
+done
