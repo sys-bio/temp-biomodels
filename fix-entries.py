@@ -17,6 +17,8 @@ import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
 import remove_unused_sedml_elements
+import remove_urn_sbml_files
+import remove_initial_rdf_file
 import remove_omex
 import validate_sbml as validate_sbml_module
 
@@ -101,6 +103,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
         guess_file_name (:obj:`str`, optional): path to record guesses
         validate_sbml (:obj:`bool`, optional): validate SBML files
     """
+    print("Fixing entry", id)
+    
     if not os.path.isdir(FINAL_ENTRIES_DIR):
         os.makedirs(FINAL_ENTRIES_DIR)
 
@@ -127,10 +131,13 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     copasi_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.cps'), recursive=True)
     sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
+    rdf_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.rdf'), recursive=True)
     sedml_filenames.sort()
     copasi_filenames.sort()
     sbml_filenames.sort()
 
+    remove_urn_sbml_files.run(sbml_filenames)
+    remove_initial_rdf_file.run(rdf_filenames)
     remove_non_sbml.run(id, sbml_filenames)
 
     # SED-ML files: recreate from COPASI, then fix the model sources.
@@ -214,6 +221,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     if os.path.isdir(final_entry_dir):
         shutil.rmtree(final_entry_dir)
     shutil.move(temp_entry_dir, final_entry_dir)
+    #os.system("C:/Users/Lucian/Desktop/dos2unix-7.3.4-win32/bin/dos2unix.exe " + final_entry_dir + "/*")
 
 
 if __name__ == "__main__":
