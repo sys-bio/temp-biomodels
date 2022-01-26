@@ -20,6 +20,7 @@ import remove_unused_sedml_elements
 import remove_urn_sbml_files
 import remove_initial_rdf_file
 import remove_omex
+import remove_failed_pdfs
 import validate_sbml as validate_sbml_module
 
 from biomodels_qc.utils import are_biopax_files_the_same, build_combine_archive
@@ -132,12 +133,14 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     copasi_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.cps'), recursive=True)
     sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
     rdf_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.rdf'), recursive=True)
+    pdf_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.pdf'), recursive=True)
     sedml_filenames.sort()
     copasi_filenames.sort()
     sbml_filenames.sort()
 
     remove_urn_sbml_files.run(sbml_filenames)
     remove_initial_rdf_file.run(rdf_filenames)
+    remove_failed_pdfs.run(pdf_filenames)
     remove_non_sbml.run(id, sbml_filenames)
 
     # SED-ML files: recreate from COPASI, then fix the model sources.
@@ -162,8 +165,6 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     # Apply more corrections
     fix_manual_corrections.run(id, temp_entry_dir)
 
-    sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
-    sbml_filenames.sort()
     fix_sbml_validity.run(id, sbml_filenames)
 
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
@@ -205,23 +206,26 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
         rel_filename = os.path.relpath(temp_filename, temp_entry_dir)
         final_filename = os.path.join(final_entry_dir, rel_filename)
 
-        if os.path.isfile(final_filename) and are_biopax_files_the_same(final_filename, temp_filename):
+        #Model 183 takes *forever* to run through the biopax check.
+        if os.path.isfile(final_filename) and (id=='BIOMD0000000183' or are_biopax_files_the_same(final_filename, temp_filename)):
             shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
     # Build manifest
-    manifest_filename = os.path.join(temp_entry_dir, 'manifest.xml')
-    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
-    sedml_locations = [os.path.relpath(path, temp_entry_dir) for path in sedml_filenames]
-    archive = build_combine_archive(temp_entry_dir, sedml_locations)
-    CombineArchiveWriter().write_manifest(archive.contents, manifest_filename)
+    # manifest_filename = os.path.join(temp_entry_dir, 'manifest.xml')
+    # sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    # sedml_locations = [os.path.relpath(path, temp_entry_dir) for path in sedml_filenames]
+    # archive = build_combine_archive(temp_entry_dir, sedml_locations)
+    # CombineArchiveWriter().write_manifest(archive.contents, manifest_filename)
 
     ###################################################
     # Move temporary directory to final location
     if os.path.isdir(final_entry_dir):
         shutil.rmtree(final_entry_dir)
     shutil.move(temp_entry_dir, final_entry_dir)
-    #os.system("C:/Users/Lucian/Desktop/dos2unix-7.3.4-win32/bin/dos2unix.exe " + final_entry_dir + "/*")
+#    command = "C:/Users/Lucian/Desktop/dos2unix-7.3.4-win32/bin/dos2unix.exe " + final_entry_dir + "/*.xml"
+#    print(command)
+#    os.system(command)
 
 
 if __name__ == "__main__":

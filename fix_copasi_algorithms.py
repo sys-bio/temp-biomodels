@@ -111,7 +111,9 @@ def run(id, dirname):
                 algorithm = simulation.getAlgorithm()
                 algorithm.setKisaoID(algorithm_kisao_id)
 
-                assert algorithm.getNumAlgorithmParameters() == 0
+                if algorithm.getNumAlgorithmParameters() > 0:
+                    continue
+                #Otherwise, put in the default parameters.
 
                 parameter_values = copy.copy(DEFAULT_PARAMETERS[algorithm_kisao_id])
                 for parameter_kisao_id, value in ALT_PARAMETERS.get(os.path.join(id, rel_sedml_filename), {}).items():

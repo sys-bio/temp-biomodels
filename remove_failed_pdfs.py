@@ -1,15 +1,17 @@
 import os
+import filecmp
 
 
 def run(filenames):
-    """ Remove the "metadata.rdf" file
+    """ Remove any file that matches "example_failed.pdf"
 
     Args:
         filename (:obj:`list`): list of filenames
     """
     removed = []
     for filename in filenames:
-        if "metadata.rdf" in filename:
+        if filecmp.cmp(filename, "example_failed.pdf"):
+            print("Removing file", filename)
             os.remove(filename)
             removed.append(filename)
     for remove in removed:

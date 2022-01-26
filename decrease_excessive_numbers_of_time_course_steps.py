@@ -12,7 +12,7 @@ def decrease_excessive_numbers_of_time_course_steps(filename, max_number_of_step
 
     changed = False
 
-    # remove repeated tasks with no sub-tasks
+    # Set a maximum number of timecourse steps.
     for sim in doc.getListOfSimulations():
         if isinstance(sim, libsedml.SedUniformTimeCourse):
             if sim.getNumberOfSteps() > max_number_of_steps:
