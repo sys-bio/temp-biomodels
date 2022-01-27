@@ -11,7 +11,6 @@ def run(filenames):
     removed = []
     for filename in filenames:
         if filecmp.cmp(filename, "example_failed.pdf"):
-            print("Removing file", filename)
             os.remove(filename)
             removed.append(filename)
     for remove in removed:

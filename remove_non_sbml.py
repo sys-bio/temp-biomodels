@@ -1,3 +1,4 @@
+import os
 
 # Files that end in '.xml' but aren't SBML:
 REMOVE = ["manifest"]
@@ -17,6 +18,7 @@ def run(id, sbml_filenames):
     for filename in sbml_filenames:
         for word in REMOVE:
             if word in filename:
+                os.remove(filename)
                 remove_list.append(filename)
     for remove in remove_list:
         sbml_filenames.remove(remove)

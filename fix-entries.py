@@ -21,6 +21,7 @@ import remove_urn_sbml_files
 import remove_initial_rdf_file
 import remove_omex
 import remove_failed_pdfs
+import rename_xpp_to_ode
 import validate_sbml as validate_sbml_module
 
 from biomodels_qc.utils import are_biopax_files_the_same, build_combine_archive
@@ -134,6 +135,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
     rdf_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.rdf'), recursive=True)
     pdf_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.pdf'), recursive=True)
+    xpp_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xpp'), recursive=True)
     sedml_filenames.sort()
     copasi_filenames.sort()
     sbml_filenames.sort()
@@ -142,6 +144,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     remove_initial_rdf_file.run(rdf_filenames)
     remove_failed_pdfs.run(pdf_filenames)
     remove_non_sbml.run(id, sbml_filenames)
+    rename_xpp_to_ode.run(xpp_filenames)
 
     # SED-ML files: recreate from COPASI, then fix the model sources.
     (sbml_msgs, sed_msgs, c_guesses) = recreate_sedml_from_copasi.run(sedml_filenames, copasi_filenames, sbml_filenames, id)
@@ -207,7 +210,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
         final_filename = os.path.join(final_entry_dir, rel_filename)
 
         #Model 183 takes *forever* to run through the biopax check.
-        if os.path.isfile(final_filename) and (id=='BIOMD0000000183' or are_biopax_files_the_same(final_filename, temp_filename)):
+        if os.path.isfile(final_filename) and (id=='BIOMD0000000183' or  id=='BIOMD0000000235' or are_biopax_files_the_same(final_filename, temp_filename)):
             shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
