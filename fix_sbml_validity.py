@@ -1,5 +1,6 @@
 import libsbml
-
+import urllib
+from os import replace
 
 def fixNanoMolar(file):
     doc = libsbml.readSBMLFromFile(file)
@@ -56,6 +57,43 @@ particular_fixes = {
     "BIOMD0000000631": fixSBO,
 }
 
+def fixPubmedId(file, pmid, id):
+    if int(id[-5:]) > 1044:
+        raise NotImplementedError("The pubmed ID substitutions have not been checked for biomodels greater than 1044.  Unknown id", pmid, "in biomodel", str(id))
+    pmid2 = ""
+    if pmid == "[PMID]":
+        pmid2 = "24354351"
+    elif "[" in pmid:
+        pmid2 = pmid.replace("[", "")
+        pmid2 = pmid2.replace("]", "")
+    elif "PMID:" in pmid:
+        pmid2 = pmid.replace("PMID:", "")
+    elif pmid == "---":
+        pmid2 = "24005054"
+    else:
+        raise NotImplementedError("Unknown problem pubmed ID", pmid)
+    url = "https://pubmed.ncbi.nlm.nih.gov/" + pmid2
+    try:
+        if urllib.request.urlopen(url).getcode() > 400:
+            raise NotImplementedError("Unknown problem pubmed ID", pmid)
+    except:
+            raise NotImplementedError("Unknown problem pubmed ID", pmid)
+    assert(".xml" in file)
+    tmpname = file.replace(".xml", ".tmp")
+    orig = open(file, "r")
+    new = open(tmpname, "w")
+    for line in orig:
+        if pmid + " " in line:
+            line = line.replace(pmid + " ", pmid2)
+        if pmid in line:
+            line = line.replace(pmid, pmid2)
+        new.write(line)
+    orig.close()
+    new.close()
+    replace(tmpname, file)
+    
+    
+
 
 def run(id, sbml_files):
     """ Fix invalid SBML
@@ -83,3 +121,35 @@ def run(id, sbml_files):
     elif id in particular_fixes:
         for file in sbml_files:
             particular_fixes[id](file)
+    #Now fix annotations:
+    for file in sbml_files:
+        # print(file)
+        f = open(file, "r")
+        bad_pmids = []
+        for line in f:
+            lvec = line.strip().split()
+            for word in lvec:
+                if "identifiers.org" in word:
+                    # print(word)
+                    if "pubmed" in word:
+                        for charstr in word.split('"'):
+                            if "pubmed" in charstr:
+                                charvec = charstr.strip("'>/").split("/")
+                                pmid = charvec[-1]
+                                assert charvec[-2] == "pubmed"
+                                assert charvec[-3] == "identifiers.org"
+                                assert charvec[-4] == ""
+                                assert "http" in charvec[-5]
+                                assert(len(pmid)>0)
+                                url = "https://pubmed.ncbi.nlm.nih.gov/" + pmid
+                                try:
+                                    if urllib.request.urlopen(url).getcode() > 400:
+                                        bad_pmids.append(pmid)
+                                        print("Bad PubMed ID", pmid, "in", file)
+                                except:
+                                        bad_pmids.append(pmid)
+                                        print("Bad PubMed ID", pmid, "in", file)
+        f.close()
+        for bad_pmid in bad_pmids:
+            fixPubmedId(file, bad_pmid, id)
+             
