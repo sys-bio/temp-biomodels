@@ -9,33 +9,33 @@ by Darta Maija Zake, Linda Zaharenko, JanisKurlovics, Vitalijs Komasilovs, Egils
 
 This is a whole-body model representing the pharmacokinetics of metformin in the human body. The model is in the form of Ordinary differential equations and describes metformin concentration in 21 compartments. 
 
-The model consists of 21 compartments (“compartments” in COPASI model) describing various tissues or tissue sub-compartments and body fluids of metformin action (venous and arterial plasma, red blood cells, intestine, kidney, heart, fat, muscle, brain, lungs, stomach, liver, portal vein, remainder, urine and feces). Body weight and the weight of all compartments is expressed as a volume in mL and for the calculations it is assumed that 1mL = 1g. The volumes of most compartments are calculated as a fraction of the body weight/volume, and the fractions are determined from literature data, the volumes of the stomach lumen and intestine lumen are fixed and do not change depending on the body weight.  Similarly, the volume of external urine and feces is set to 1L, but those are “volumeless” compartments as they are only necessary for the calculation of metformin amount, not concentration. 
+The model consists of 21 compartments ('compartments' in COPASI model) describing various tissues or tissue sub-compartments and body fluids of metformin action (venous and arterial plasma, red blood cells, intestine, kidney, heart, fat, muscle, brain, lungs, stomach, liver, portal vein, remainder, urine and feces). Body weight and the weight of all compartments is expressed as a volume in mL and for the calculations it is assumed that 1mL = 1g. The volumes of most compartments are calculated as a fraction of the body weight/volume, and the fractions are determined from literature data, the volumes of the stomach lumen and intestine lumen are fixed and do not change depending on the body weight.  Similarly, the volume of external urine and feces is set to 1L, but those are 'volumeless' compartments as they are only necessary for the calculation of metformin amount, not concentration. 
 
 
-The model consists of 21 species (“species” in COPASI model) that correspond to the metformin concentrations in the 21 compartments. The initial concentrations for all the species are 0 nmol/mL as metformin is not produced in the body and can only be detected after dose administration. 
+The model consists of 21 species ('species' in COPASI model) that correspond to the metformin concentrations in the 21 compartments. The initial concentrations for all the species are 0 nmol/mL as metformin is not produced in the body and can only be detected after dose administration. 
 
 
-The model consists of 35 reactions – they describe the transport processes of metformin in the body. The reactions include local parameters that are involved only in that particular reaction and global parameters – parameters that are used in multiple reactions or are calculated depending on another parameter e.g. scale-up coefficients. 
+The model consists of 35 reactions - they describe the transport processes of metformin in the body. The reactions include local parameters that are involved only in that particular reaction and global parameters - parameters that are used in multiple reactions or are calculated depending on another parameter e.g. scale-up coefficients. 
 
 
-The model consists of 62 global quantities – parameters involved in multiple reactions or necessary for another parameter calculation:
+The model consists of 62 global quantities - parameters involved in multiple reactions or necessary for another parameter calculation:
 
 1.Parameters describing peroral metformin dose (Metformin Dose in Lumen in mg).
 
-2.Parameter describing human physiology – body weight (in mL), cardiac output, blood flow to different compartments described as Q”compartment_name” (for example Qliver describes blood flow to the liver compartment). Qgfr refers to the glomerular filtration rate. 
+2.Parameter describing human physiology - body weight (in mL), cardiac output, blood flow to different compartments described as Q'compartment_name' (for example Qliver describes blood flow to the liver compartment). Qgfr refers to the glomerular filtration rate. 
 
 3.Parameters involved in the scale-up of the model
 •Tissue:plasma partition coefficients (Ktp) that were estimated in the mice model.
-•Kidney coefficient that is used for the scale-up of metformin elimination and is involved in the calculation of the rate parameters in the reactions “13.4. KidneyPlasma -> KidneyTissue” and “13.5. KidneyTissue -> KidneyTubular”. This parameter was determined using parameter estimation. 
+•Kidney coefficient that is used for the scale-up of metformin elimination and is involved in the calculation of the rate parameters in the reactions '13.4. KidneyPlasma -> KidneyTissue' and '13.5. KidneyTissue -> KidneyTubular'. This parameter was determined using parameter estimation. 
 •Intestine coefficient that is involved in the calculation of the intestinal reaction rates of the reactions (03.2. IntestineLumen -> Enterocytes (PMAT OCT3),  03.3. Enterocytes -> IntestineVascular (OCT1), 03.4. IntestineLumen -> IntestineVascular (Saturable), 03.6. IntestineLumen -> Enterocytes (Diffusion) ,  03.7. IntestineLumen -> IntestineVascular (Diffusion)). The parmaeters for these reactions are taken from Proctor publication and the intectine coefficient is used for the scale-up from the cell-culture to the human intestine. 
 
-4.Parameters involved in the calculation of metformin amount in mg, these parameters are named mg”Compartment_name” (for example mgLiver describes the metformin amount in mg in the liver tissues). 
+4.Parameters involved in the calculation of metformin amount in mg, these parameters are named mg'Compartment_name' (for example mgLiver describes the metformin amount in mg in the liver tissues). 
 
 
 
-The time points of dose release are defined as “events” in COPASI and can be changed as necessary. The current model has 14 events and is set for a multiple-dose regimen for 7-day long twice-daily metformin administration. 
+The time points of dose release are defined as 'events' in COPASI and can be changed as necessary. The current model has 14 events and is set for a multiple-dose regimen for 7-day long twice-daily metformin administration. 
 
-Time course simulations can be accessed through the section “Time Course” in this section the time duration and intervals can be changed. When time-course simulations are run three plots are created – Metformin amount in the 21 compartments, metformin concentrations in the compartments and reaction fluxes of all the reactions (see “Output Specifications” -> “Plots” to activate or deactivate plots). The time-course also includes multiple "Sliders" that allow to easily change 3 parameters - "Body Weight", "Cardiac Output", "Metformin Dose in Lumen in mg".</p>
+Time course simulations can be accessed through the section 'Time Course' in this section the time duration and intervals can be changed. When time-course simulations are run three plots are created - Metformin amount in the 21 compartments, metformin concentrations in the compartments and reaction fluxes of all the reactions (see 'Output Specifications' -> 'Plots' to activate or deactivate plots). The time-course also includes multiple "Sliders" that allow to easily change 3 parameters - "Body Weight", "Cardiac Output", "Metformin Dose in Lumen in mg".</p>
   </body>
     </notes>
     <annotation>
