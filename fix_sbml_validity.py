@@ -109,6 +109,8 @@ def fixIdentifiersNS(file, oldns, id):
         newns = "bto"
     elif oldns=="biomodels.sbo":
         newns = "sbo"
+    elif oldns=="doi.org":
+        newns = "doi"
     elif oldns=="psimod" or oldns == "psi-mod" or oldns=="obo.psi-mod":
         newns = "mod"
     elif oldns == "psimi":
