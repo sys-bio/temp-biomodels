@@ -1089,9 +1089,6 @@
       <Metabolite key="Metabolite_6" name="Cdc20T" simulationType="assignment" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
 <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <rdf:Description rdf:about="#Metabolite_6">
-    <CopasiMT:isVersionOf rdf:resource="urn:miriam:unigene:" />
-  </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
         <Expression>
@@ -3383,9 +3380,6 @@
       <Reaction key="Reaction_37" name="activation of Cdh1" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
 <rdf:RDF xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <rdf:Description rdf:about="#Reaction_37">
-    <bqmodel:isInstanceOf rdf:resource="urn:miriam:sbo:" />
-  </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
         <ListOfSubstrates>

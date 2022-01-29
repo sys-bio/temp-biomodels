@@ -135,7 +135,6 @@
   <rdf:Description rdf:about="#Model_1">
     <bqbiol:hasProperty rdf:resource="urn:miriam:mamo:MAMO_0000046"/>
     <bqbiol:hasTaxon rdf:resource="urn:miriam:taxonomy:9606"/>
-    <bqmodel:isInstanceOf rdf:resource="urn:miriam:ncit:"/>
     <dcterms:bibliographicCitation>
       <rdf:Description>
         <CopasiMT:isDescribedBy rdf:resource="urn:miriam:pubmed:23906150"/>
@@ -443,7 +442,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    xmlns:dcterms="http://purl.org/dc/terms/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_2">
-    <bqmodel:isInstanceOf rdf:resource="urn:miriam:go:"/>
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-03-06T16:35:01Z</dcterms:W3CDTF>

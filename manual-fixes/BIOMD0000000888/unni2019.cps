@@ -823,7 +823,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    xmlns:dcterms="http://purl.org/dc/terms/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_3">
-    <bqmodel:isDescribedBy rdf:resource="urn:miriam:ncit:"/>
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2019-12-10T21:36:54Z</dcterms:W3CDTF>

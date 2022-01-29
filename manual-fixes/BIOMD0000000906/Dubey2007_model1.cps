@@ -339,7 +339,6 @@ Keywords: Pathogen; Immune Response; Toxicant; Stability.
    xmlns:dcterms="http://purl.org/dc/terms/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_1">
-    <bqmodel:isDescribedBy rdf:resource="urn:miriam:ncit:"/>
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2019-12-19T11:48:52Z</dcterms:W3CDTF>

@@ -1432,7 +1432,6 @@ g_n*tau_1_alpha_1+H
         <dcterms:W3CDTF>2019-09-12T09:24:08Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:isVersionOf rdf:resource="urn:miriam:ncit:"/>
   </rdf:Description>
 </rdf:RDF>
 
