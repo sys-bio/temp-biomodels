@@ -177,6 +177,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
     remove_unused_sedml_elements.run(id, sedml_filenames)
+    fix_sed_plot_names.run(id, sedml_filenames)
+    # add_universal_output_report.run(sedml_filenames, sbml_filenames)
 
     fix_copasi_algorithms.run(id, temp_entry_dir)
 
