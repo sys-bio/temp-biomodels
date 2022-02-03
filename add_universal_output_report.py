@@ -55,10 +55,9 @@ def getAllIdsAndNamespacesFromSBML(sbml_filename, seddoc):
             right = rxn.getProduct(r)
             if right.isSetConstant() and right.getConstant()==False and right.getId() != "":
                 ret.append((right.getId(), "product", rxn.getId()))
-    sedns = seddoc.getNamespaces()
+    sedns = seddoc.getSedNamespaces()
     sbml_ns = doc.getURI()
-    sedns.add(sbml_ns, "sbml")
-    seddoc.setNamespaces(sedns)
+    sedns.addNamespace(sbml_ns, "sbml")
     return ret
 
 def matchSBMLIds(doc, sbml_filenames):
