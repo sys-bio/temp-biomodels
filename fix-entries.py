@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # master program to fix the entries of BioModels
 
+import add_universal_output_report
 import decrease_excessive_numbers_of_time_course_steps
 import fix_copasi_algorithms
 import fix_filenames
@@ -9,6 +10,7 @@ import fix_models_non_copasi
 import fix_namespaces_in_sedml_doc
 import fix_sbml_validity
 import fix_sedml_extensions
+import fix_sed_plot_names
 import recreate_sedml_from_copasi
 import remove_bad_octave_files
 import remove_bad_scilab_files
@@ -87,7 +89,7 @@ def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=Fals
         validate_sbml (:obj:`bool`, optional): validate SBML files
         display_warnings (:obj:`bool`, optional): whether to display warnings
     """
-    print('  Fixing entry {} ... '.format(id))
+    # print('  Fixing entry {} ... '.format(id))
 
     with warnings.catch_warnings():
         if not display_warnings:
@@ -178,7 +180,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
     remove_unused_sedml_elements.run(id, sedml_filenames)
     fix_sed_plot_names.run(id, sedml_filenames)
-    # add_universal_output_report.run(sedml_filenames, sbml_filenames)
+    add_universal_output_report.run(sedml_filenames, sbml_filenames)
 
     fix_copasi_algorithms.run(id, temp_entry_dir)
 
