@@ -1,12 +1,14 @@
 import libsedml
 import libsbml
 import os
+from biosimulators_utils.model_lang.sbml.utils import get_parameters_variables_outputs_for_simulation
+from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 
 def create_generic_sedml(sedml_filenames, sbml_filenames):
     for sbml_filename in sbml_filenames:
         sedml_filename = sbml_filename.replace(".xml", ".sedml")
         sedml_filenames.append(sedml_filename)
-        doc = libsedml.SedDocument(1,3)
+        doc = libsedml.SedDocument(1,4)
         #Create the model
         rel_filename = os.path.basename(sbml_filename)
         model = doc.createModel()
@@ -79,6 +81,15 @@ def matchSBMLIds(doc, sbml_filenames):
         if target=="":
             continue
         sbmlids = getAllIdsAndNamespacesFromSBML(target, doc)
+        if model.getNumChanges() == 0:
+            #Add default changes
+            (modelchanges, __, __, __) = get_parameters_variables_outputs_for_simulation(target, "urn:sedml:language:sbml", UniformTimeCourseSimulation, validate=False)
+            for modelchange in modelchanges:
+                change = model.createChangeAttribute()
+                change.setId("auto_" + modelchange.id)
+                change.setName(modelchange.name)
+                change.setTarget(modelchange.target)
+                change.setNewValue(modelchange.new_value)
         model_ids.append((model.getId(), sbmlids))
     return model_ids
 
@@ -189,7 +200,7 @@ def addReport(doc, datagen_ids, task_times):
     for taskref in datagen_ids:
         report = doc.createReport()
         report.setId("autogen_report_for_" + taskref)
-        report.setName("Auto-generated report for " + taskref + "including all symbols in SBML with mathematical meaning, both constant and variable.")
+        report.setName("Auto-generated report for " + taskref + ", including all symbols in SBML with mathematical meaning, both constant and variable.")
         time = task_times[taskref]
         dataset = report.createDataSet()
         dataset.setId("autogen_" + taskref + "_time")
