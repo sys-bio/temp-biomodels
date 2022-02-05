@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="MODEL1006230047.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="MODEL1006230047.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Normal_Th_cells&apos;]/@initialConcentration" newValue="3"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pathogen_Virus&apos;]/@initialConcentration" newValue="149"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Single_Infected_Th_Cells&apos;]/@initialConcentration" newValue="6"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recombinant_Virus&apos;]/@initialConcentration" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Double_Infected_Th_Cells&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Plasma&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;d&apos;]/@value" newValue="0.01"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;lamda&apos;]/@value" newValue="2"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value" newValue="0.004"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;a&apos;]/@value" newValue="0.33"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]/@value" newValue="0.004"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;b&apos;]/@value" newValue="2"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]/@value" newValue="50"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;u&apos;]/@value" newValue="2"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;c&apos;]/@value" newValue="2000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;q&apos;]/@value" newValue="2"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="90" numberOfPoints="300">
@@ -67,9 +86,137 @@
         <variable id="p1_Double_Infected_Th_Cells_task1" name="Double_Infected_Th_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Double_Infected_Th_Cells&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_lamda">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_lamda_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_lamda_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;lamda&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_beta">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_beta_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_beta_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_alpha">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_alpha_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_alpha_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_q">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_q_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_q_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;q&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Plasma">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Plasma_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Plasma_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Plasma&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Production_of_Normal_cells">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Production_of_Normal_cells_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Production_of_Normal_cells_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Production_of_Normal_cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Degradation_of_Normal_cells">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Degradation_of_Normal_cells_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Degradation_of_Normal_cells_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Degradation_of_Normal_cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Infection_of_Normal_cells_with_Pathogen">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Infection_of_Normal_cells_with_Pathogen_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Infection_of_Normal_cells_with_Pathogen_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infection_of_Normal_cells_with_Pathogen&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Degradation_of_Single_Infected_Cells">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Degradation_of_Single_Infected_Cells_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Degradation_of_Single_Infected_Cells_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Degradation_of_Single_Infected_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Infection_of_Single_Infeced_Cells_with_Recombinant_Virus">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Infection_of_Single_Infeced_Cells_with_Recombinant_Virus_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Infection_of_Single_Infeced_Cells_with_Recombinant_Virus_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infection_of_Single_Infeced_Cells_with_Recombinant_Virus&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Release_of_Pathogen">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Release_of_Pathogen_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Release_of_Pathogen_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Release_of_Pathogen&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Degradation_of_Double_Infected_Cells">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Degradation_of_Double_Infected_Cells_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Degradation_of_Double_Infected_Cells_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Degradation_of_Double_Infected_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Release_of_Recombinant_Virus">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Release_of_Recombinant_Virus_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Release_of_Recombinant_Virus_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Release_of_Recombinant_Virus&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Degradation_of_Pathogen_Virus">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Degradation_of_Pathogen_Virus_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Degradation_of_Pathogen_Virus_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Degradation_of_Pathogen_Virus&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Degradation_of_Recombinant_Virus">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Degradation_of_Recombinant_Virus_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Degradation_of_Recombinant_Virus_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Degradation_of_Recombinant_Virus&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+    <plot2D id="plot_1_task1" name="Figure 2b">
       <listOfCurves>
         <curve id="p1_curve_1_task1" name="[Pathogen Virus]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Pathogen_Virus_1_task1"/>
         <curve id="p1_curve_2_task1" name="[Recombinant Virus]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Recombinant_Virus_2_task1"/>
@@ -78,5 +225,36 @@
         <curve id="p1_curve_5_task1" name="[Double Infected Th Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Double_Infected_Th_Cells_5_task1"/>
       </listOfCurves>
     </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_Pathogen_Virus" label="Pathogen_Virus" dataReference="Pathogen_Virus_1_task1"/>
+        <dataSet id="autogen_task1_d" label="d" dataReference="Pathogen_Virus_1_task1"/>
+        <dataSet id="autogen_task1_a" label="a" dataReference="Pathogen_Virus_1_task1"/>
+        <dataSet id="autogen_task1_b" label="b" dataReference="Pathogen_Virus_1_task1"/>
+        <dataSet id="autogen_task1_u" label="u" dataReference="Pathogen_Virus_1_task1"/>
+        <dataSet id="autogen_task1_c" label="c" dataReference="Pathogen_Virus_1_task1"/>
+        <dataSet id="autogen_task1_Recombinant_Virus" label="Recombinant_Virus" dataReference="Recombinant_Virus_2_task1"/>
+        <dataSet id="autogen_task1_Normal_Th_cells" label="Normal_Th_cells" dataReference="Normal_Th_cells_3_task1"/>
+        <dataSet id="autogen_task1_Single_Infected_Th_Cells" label="Single_Infected_Th_Cells" dataReference="Single_Infected_Th_Cells_4_task1"/>
+        <dataSet id="autogen_task1_Double_Infected_Th_Cells" label="Double_Infected_Th_Cells" dataReference="Double_Infected_Th_Cells_5_task1"/>
+        <dataSet id="autogen_task1_lamda" label="lamda" dataReference="auto_dg_for_task1_lamda"/>
+        <dataSet id="autogen_task1_beta" label="beta" dataReference="auto_dg_for_task1_beta"/>
+        <dataSet id="autogen_task1_alpha" label="alpha" dataReference="auto_dg_for_task1_alpha"/>
+        <dataSet id="autogen_task1_k" label="k" dataReference="auto_dg_for_task1_k"/>
+        <dataSet id="autogen_task1_q" label="q" dataReference="auto_dg_for_task1_q"/>
+        <dataSet id="autogen_task1_Plasma" label="Plasma" dataReference="auto_dg_for_task1_Plasma"/>
+        <dataSet id="autogen_task1_Production_of_Normal_cells" label="Production_of_Normal_cells" dataReference="auto_dg_for_task1_Production_of_Normal_cells"/>
+        <dataSet id="autogen_task1_Degradation_of_Normal_cells" label="Degradation_of_Normal_cells" dataReference="auto_dg_for_task1_Degradation_of_Normal_cells"/>
+        <dataSet id="autogen_task1_Infection_of_Normal_cells_with_Pathogen" label="Infection_of_Normal_cells_with_Pathogen" dataReference="auto_dg_for_task1_Infection_of_Normal_cells_with_Pathogen"/>
+        <dataSet id="autogen_task1_Degradation_of_Single_Infected_Cells" label="Degradation_of_Single_Infected_Cells" dataReference="auto_dg_for_task1_Degradation_of_Single_Infected_Cells"/>
+        <dataSet id="autogen_task1_Infection_of_Single_Infeced_Cells_with_Recombinant_Virus" label="Infection_of_Single_Infeced_Cells_with_Recombinant_Virus" dataReference="auto_dg_for_task1_Infection_of_Single_Infeced_Cells_with_Recombinant_Virus"/>
+        <dataSet id="autogen_task1_Release_of_Pathogen" label="Release_of_Pathogen" dataReference="auto_dg_for_task1_Release_of_Pathogen"/>
+        <dataSet id="autogen_task1_Degradation_of_Double_Infected_Cells" label="Degradation_of_Double_Infected_Cells" dataReference="auto_dg_for_task1_Degradation_of_Double_Infected_Cells"/>
+        <dataSet id="autogen_task1_Release_of_Recombinant_Virus" label="Release_of_Recombinant_Virus" dataReference="auto_dg_for_task1_Release_of_Recombinant_Virus"/>
+        <dataSet id="autogen_task1_Degradation_of_Pathogen_Virus" label="Degradation_of_Pathogen_Virus" dataReference="auto_dg_for_task1_Degradation_of_Pathogen_Virus"/>
+        <dataSet id="autogen_task1_Degradation_of_Recombinant_Virus" label="Degradation_of_Recombinant_Virus" dataReference="auto_dg_for_task1_Degradation_of_Recombinant_Virus"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>

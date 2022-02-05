@@ -4,6 +4,7 @@ journal.pcbi.100.2815-1.pdf
 Original publication: Rateitschak et al. 2012
 Parameter Identifiability and Sensitivity Analysis Predict Targets for Enhancement of STAT1 Activity in Pancreatic Cancer and Stellate Cells
 
+
 Test_S1.pdf
 Supplementary information for the publication containing the description of the model
 
@@ -30,3 +31,10 @@ SBML file of model for pancreatic stellate cells, IFNGamma = 100ng/ml
 
 PSC_100.sedml
 SED-ML file to reproduce parts of the Fig S1 in the supplementary material. (Model: pancreatic stellate cells, experimental condition: IFNGamma = 100ng/ml)
+
+
+
+
+
+
+

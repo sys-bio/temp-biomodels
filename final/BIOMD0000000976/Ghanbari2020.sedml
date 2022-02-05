@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Ghanbari2020.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="Ghanbari2020.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible&apos;]/@initialConcentration" newValue="7.884121e7"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infected_strong_immune_system&apos;]/@initialConcentration" newValue="5.060400e3"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infected_weak_immune_system&apos;]/@initialConcentration" newValue="4.487600e3"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]/@initialConcentration" newValue="4590"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Iran&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]/@value" newValue="0.55"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_1&apos;]/@value" newValue="0.1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_2&apos;]/@value" newValue="0.061"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau&apos;]/@value" newValue="2.000000e-9"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mu&apos;]/@value" newValue="0.02"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Lockdown_start&apos;]/@value" newValue="19"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Lockdown_end&apos;]/@value" newValue="33"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="93" numberOfPoints="1000">
@@ -43,17 +58,151 @@
         <variable id="p2_Infected_weak_immune_system_task1" name="Infected_weak_immune_system" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infected_weak_immune_system&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Susceptible">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Susceptible_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Susceptible_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Recovered">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Recovered_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Recovered_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_alpha">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_alpha_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_alpha_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_gamma_1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_gamma_1_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_gamma_1_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_gamma_2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_gamma_2_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_gamma_2_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_2&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_tau">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_tau_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_tau_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Lockdown_start">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Lockdown_start_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Lockdown_start_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Lockdown_start&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Lockdown_end">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Lockdown_end_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Lockdown_end_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Lockdown_end&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Iran">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Iran_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Iran_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Iran&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Susceptible_to_Infected_I1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Susceptible_to_Infected_I1_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Susceptible_to_Infected_I1_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Susceptible_to_Infected_I1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Susceptible_to_Infected_I2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Susceptible_to_Infected_I2_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Susceptible_to_Infected_I2_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Susceptible_to_Infected_I2&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Infected_I1_to_Recovered">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Infected_I1_to_Recovered_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Infected_I1_to_Recovered_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infected_I1_to_Recovered&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Infected_I2_to_Recovered">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Infected_I2_to_Recovered_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Infected_I2_to_Recovered_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infected_I2_to_Recovered&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Infected_I2_to_Deceased">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Infected_I2_to_Deceased_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Infected_I2_to_Deceased_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infected_I2_to_Deceased&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
+    <plot2D id="plot_1_task1" name="Figure 2a">
       <listOfCurves>
         <curve id="p1_curve_1_task1" name="[Infected_strong_immune_system]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Infected_strong_immune_system_1_task1"/>
       </listOfCurves>
     </plot2D>
-    <plot2D id="plot_2_task1" name="plot_0">
+    <plot2D id="plot_2_task1" name="Figure 2b">
       <listOfCurves>
         <curve id="p2_curve_1_task1" name="[Infected_weak_immune_system]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Infected_weak_immune_system_1_task1"/>
       </listOfCurves>
     </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_Infected_strong_immune_system" label="Infected_strong_immune_system" dataReference="Infected_strong_immune_system_1_task1"/>
+        <dataSet id="autogen_task1_mu" label="mu" dataReference="Infected_strong_immune_system_1_task1"/>
+        <dataSet id="autogen_task1_Infected_weak_immune_system" label="Infected_weak_immune_system" dataReference="Infected_weak_immune_system_1_task1"/>
+        <dataSet id="autogen_task1_Susceptible" label="Susceptible" dataReference="auto_dg_for_task1_Susceptible"/>
+        <dataSet id="autogen_task1_Recovered" label="Recovered" dataReference="auto_dg_for_task1_Recovered"/>
+        <dataSet id="autogen_task1_alpha" label="alpha" dataReference="auto_dg_for_task1_alpha"/>
+        <dataSet id="autogen_task1_gamma_1" label="gamma_1" dataReference="auto_dg_for_task1_gamma_1"/>
+        <dataSet id="autogen_task1_gamma_2" label="gamma_2" dataReference="auto_dg_for_task1_gamma_2"/>
+        <dataSet id="autogen_task1_tau" label="tau" dataReference="auto_dg_for_task1_tau"/>
+        <dataSet id="autogen_task1_Lockdown_start" label="Lockdown_start" dataReference="auto_dg_for_task1_Lockdown_start"/>
+        <dataSet id="autogen_task1_Lockdown_end" label="Lockdown_end" dataReference="auto_dg_for_task1_Lockdown_end"/>
+        <dataSet id="autogen_task1_Iran" label="Iran" dataReference="auto_dg_for_task1_Iran"/>
+        <dataSet id="autogen_task1_Susceptible_to_Infected_I1" label="Susceptible_to_Infected_I1" dataReference="auto_dg_for_task1_Susceptible_to_Infected_I1"/>
+        <dataSet id="autogen_task1_Susceptible_to_Infected_I2" label="Susceptible_to_Infected_I2" dataReference="auto_dg_for_task1_Susceptible_to_Infected_I2"/>
+        <dataSet id="autogen_task1_Infected_I1_to_Recovered" label="Infected_I1_to_Recovered" dataReference="auto_dg_for_task1_Infected_I1_to_Recovered"/>
+        <dataSet id="autogen_task1_Infected_I2_to_Recovered" label="Infected_I2_to_Recovered" dataReference="auto_dg_for_task1_Infected_I2_to_Recovered"/>
+        <dataSet id="autogen_task1_Infected_I2_to_Deceased" label="Infected_I2_to_Deceased" dataReference="auto_dg_for_task1_Infected_I2_to_Deceased"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>

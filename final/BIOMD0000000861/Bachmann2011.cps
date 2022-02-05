@@ -883,7 +883,6 @@ Reaction scheme where the products are created from the reactants and the change
         <dcterms:W3CDTF>2019-11-14T09:45:20Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:encodes rdf:resource="urn:miriam:ncit:"/>
     <CopasiMT:is rdf:resource="urn:miriam:chebi:CHEBI:33697"/>
   </rdf:Description>
 </rdf:RDF>

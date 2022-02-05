@@ -475,7 +475,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <dcterms:W3CDTF>2020-01-15T15:04:06Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:"/>
   </rdf:Description>
 </rdf:RDF>
 

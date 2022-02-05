@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Mager2005.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="Mager2005.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;C&apos;]/@initialConcentration" newValue="4000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A_T&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]/@initialConcentration" newValue="53"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;RC&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Central&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Peripheral_Tissue&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_el&apos;]/@value" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;V_c&apos;]/@value" newValue="10"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_on&apos;]/@value" newValue="0.1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;K_D&apos;]/@value" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_int&apos;]/@value" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_deg&apos;]/@value" newValue="0.566"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_syn&apos;]/@value" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_off&apos;]/@value" newValue="0.1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_tp&apos;]/@value" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_pt&apos;]/@value" newValue="0"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="24" numberOfPoints="100">
@@ -35,12 +54,253 @@
         <variable id="p1_C_tot_task1" name="C_tot" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;C_tot&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_A_T">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_A_T_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_A_T_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A_T&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_R">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_R_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_R_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_RC">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_RC_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_RC_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;RC&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_el">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_el_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_el_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_el&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_V_c">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_V_c_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_V_c_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;V_c&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_on">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_on_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_on_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_on&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_K_D">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_K_D_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_K_D_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;K_D&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_int">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_int_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_int_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_int&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_deg">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_deg_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_deg_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_deg&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_syn">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_syn_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_syn_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_syn&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_off">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_off_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_off_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_off&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_tp">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_tp_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_tp_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_tp&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_pt">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_pt_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_pt_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_pt&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_C_Concentration">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_C_Concentration_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_C_Concentration_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;C_Concentration&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ModelValue_1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ModelValue_1_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ModelValue_1_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ModelValue_1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Central">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Central_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Central_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Central&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Peripheral_Tissue">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Peripheral_Tissue_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Peripheral_Tissue_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Peripheral_Tissue&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Complex_Formation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Complex_Formation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Complex_Formation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Complex_Formation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Complex_Dissociation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Complex_Dissociation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Complex_Dissociation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Complex_Dissociation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Complex_Internalisation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Complex_Internalisation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Complex_Internalisation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Complex_Internalisation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Drug_Exit_Central">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Drug_Exit_Central_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Drug_Exit_Central_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Drug_Exit_Central&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Drug_Distribution_Tissue_to_Central">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Drug_Distribution_Tissue_to_Central_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Drug_Distribution_Tissue_to_Central_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Drug_Distribution_Tissue_to_Central&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Drug_Distribution_Central_to_Tissue">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Drug_Distribution_Central_to_Tissue_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Drug_Distribution_Central_to_Tissue_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Drug_Distribution_Central_to_Tissue&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Drug_Distribution_Tissue_to_Central_MA">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Drug_Distribution_Tissue_to_Central_MA_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Drug_Distribution_Tissue_to_Central_MA_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Drug_Distribution_Tissue_to_Central_MA&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Receptor_Synthesis">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Receptor_Synthesis_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Receptor_Synthesis_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Receptor_Synthesis&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Receptor_Dergradation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Receptor_Dergradation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Receptor_Dergradation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Receptor_Dergradation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_1_task1" name="Mager2005_Figure_2_A">
+    <plot2D id="plot_1_task1" name="Figure 2a">
       <listOfCurves>
         <curve id="p1_curve_1_task1" name="Values[C_tot]" logX="false" xDataReference="time_task1" logY="true" yDataReference="C_tot_1_task1"/>
       </listOfCurves>
     </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_C" label="C" dataReference="C_tot_1_task1"/>
+        <dataSet id="autogen_task1_C_tot" label="C_tot" dataReference="C_tot_1_task1"/>
+        <dataSet id="autogen_task1_A_T" label="A_T" dataReference="auto_dg_for_task1_A_T"/>
+        <dataSet id="autogen_task1_R" label="R" dataReference="auto_dg_for_task1_R"/>
+        <dataSet id="autogen_task1_RC" label="RC" dataReference="auto_dg_for_task1_RC"/>
+        <dataSet id="autogen_task1_k_el" label="k_el" dataReference="auto_dg_for_task1_k_el"/>
+        <dataSet id="autogen_task1_V_c" label="V_c" dataReference="auto_dg_for_task1_V_c"/>
+        <dataSet id="autogen_task1_k_on" label="k_on" dataReference="auto_dg_for_task1_k_on"/>
+        <dataSet id="autogen_task1_K_D" label="K_D" dataReference="auto_dg_for_task1_K_D"/>
+        <dataSet id="autogen_task1_k_int" label="k_int" dataReference="auto_dg_for_task1_k_int"/>
+        <dataSet id="autogen_task1_k_deg" label="k_deg" dataReference="auto_dg_for_task1_k_deg"/>
+        <dataSet id="autogen_task1_k_syn" label="k_syn" dataReference="auto_dg_for_task1_k_syn"/>
+        <dataSet id="autogen_task1_k_off" label="k_off" dataReference="auto_dg_for_task1_k_off"/>
+        <dataSet id="autogen_task1_k_tp" label="k_tp" dataReference="auto_dg_for_task1_k_tp"/>
+        <dataSet id="autogen_task1_k_pt" label="k_pt" dataReference="auto_dg_for_task1_k_pt"/>
+        <dataSet id="autogen_task1_C_Concentration" label="C_Concentration" dataReference="auto_dg_for_task1_C_Concentration"/>
+        <dataSet id="autogen_task1_ModelValue_1" label="ModelValue_1" dataReference="auto_dg_for_task1_ModelValue_1"/>
+        <dataSet id="autogen_task1_Central" label="Central" dataReference="auto_dg_for_task1_Central"/>
+        <dataSet id="autogen_task1_Peripheral_Tissue" label="Peripheral_Tissue" dataReference="auto_dg_for_task1_Peripheral_Tissue"/>
+        <dataSet id="autogen_task1_Complex_Formation" label="Complex_Formation" dataReference="auto_dg_for_task1_Complex_Formation"/>
+        <dataSet id="autogen_task1_Complex_Dissociation" label="Complex_Dissociation" dataReference="auto_dg_for_task1_Complex_Dissociation"/>
+        <dataSet id="autogen_task1_Complex_Internalisation" label="Complex_Internalisation" dataReference="auto_dg_for_task1_Complex_Internalisation"/>
+        <dataSet id="autogen_task1_Drug_Exit_Central" label="Drug_Exit_Central" dataReference="auto_dg_for_task1_Drug_Exit_Central"/>
+        <dataSet id="autogen_task1_Drug_Distribution_Tissue_to_Central" label="Drug_Distribution_Tissue_to_Central" dataReference="auto_dg_for_task1_Drug_Distribution_Tissue_to_Central"/>
+        <dataSet id="autogen_task1_Drug_Distribution_Central_to_Tissue" label="Drug_Distribution_Central_to_Tissue" dataReference="auto_dg_for_task1_Drug_Distribution_Central_to_Tissue"/>
+        <dataSet id="autogen_task1_Drug_Distribution_Tissue_to_Central_MA" label="Drug_Distribution_Tissue_to_Central_MA" dataReference="auto_dg_for_task1_Drug_Distribution_Tissue_to_Central_MA"/>
+        <dataSet id="autogen_task1_Receptor_Synthesis" label="Receptor_Synthesis" dataReference="auto_dg_for_task1_Receptor_Synthesis"/>
+        <dataSet id="autogen_task1_Receptor_Dergradation" label="Receptor_Dergradation" dataReference="auto_dg_for_task1_Receptor_Dergradation"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>

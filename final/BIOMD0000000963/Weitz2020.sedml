@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Weitz2020.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="Weitz2020.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible&apos;]/@initialConcentration" newValue="0.999"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infected&apos;]/@initialConcentration" newValue="1.000000e-3"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Country&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]/@value" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value" newValue="0.25"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma&apos;]/@value" newValue="0.1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Epidemic_size&apos;]/@value" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Uninfected&apos;]/@value" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infected_to_Recovered&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="0.1"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="200" numberOfPoints="200">
@@ -88,18 +101,166 @@
         <variable id="p2_alpha_task22" name="alpha" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="auto_time_for_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_time_for_task1_var </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_time_for_task1_var" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Susceptible">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Susceptible_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Susceptible_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Recovered">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Recovered_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Recovered_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_beta">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_beta_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_beta_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_gamma">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_gamma_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_gamma_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Country">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Country_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Country_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Country&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Susceptible_to_Infected">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Susceptible_to_Infected_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Susceptible_to_Infected_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Susceptible_to_Infected&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Infected_to_Recovered">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Infected_to_Recovered_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Infected_to_Recovered_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infected_to_Recovered&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Susceptible">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Susceptible_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Susceptible_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Recovered">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Recovered_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Recovered_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_beta">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_beta_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_beta_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_gamma">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_gamma_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_gamma_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Country">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Country_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Country_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Country&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Susceptible_to_Infected">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Susceptible_to_Infected_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Susceptible_to_Infected_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Susceptible_to_Infected&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Infected_to_Recovered">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Infected_to_Recovered_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Infected_to_Recovered_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Infected_to_Recovered&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_3_task2" name="Concentrations, Volumes, and Global Quantity Values">
+    <plot2D id="plot_3_task2" name="Figure 2a">
       <listOfCurves>
         <curve id="p1_curve_1_task2" name="[Infected]" logX="false" xDataReference="time_task2" logY="false" yDataReference="Infected_1_task2"/>
       </listOfCurves>
     </plot2D>
-    <plot2D id="plot_4_task2" name="plot_1">
+    <plot2D id="plot_4_task2" name="Figure 2b">
       <listOfCurves>
         <curve id="p2_curve_1_task2" name="Values[Uninfected]" logX="false" xDataReference="alpha_1_task2" logY="false" yDataReference="Uninfected_1_task2"/>
         <curve id="p2_curve_2_task2" name="Values[Epidemic_size]" logX="false" xDataReference="alpha_2_task2" logY="false" yDataReference="Epidemic_size_2_task2"/>
       </listOfCurves>
     </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="auto_time_for_task1"/>
+        <dataSet id="autogen_task1_Susceptible" label="Susceptible" dataReference="auto_dg_for_task1_Susceptible"/>
+        <dataSet id="autogen_task1_Recovered" label="Recovered" dataReference="auto_dg_for_task1_Recovered"/>
+        <dataSet id="autogen_task1_beta" label="beta" dataReference="auto_dg_for_task1_beta"/>
+        <dataSet id="autogen_task1_gamma" label="gamma" dataReference="auto_dg_for_task1_gamma"/>
+        <dataSet id="autogen_task1_Country" label="Country" dataReference="auto_dg_for_task1_Country"/>
+        <dataSet id="autogen_task1_Susceptible_to_Infected" label="Susceptible_to_Infected" dataReference="auto_dg_for_task1_Susceptible_to_Infected"/>
+        <dataSet id="autogen_task1_Infected_to_Recovered" label="Infected_to_Recovered" dataReference="auto_dg_for_task1_Infected_to_Recovered"/>
+      </listOfDataSets>
+    </report>
+    <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task2_time" label="Time" dataReference="time_task2"/>
+        <dataSet id="autogen_task2_Infected" label="Infected" dataReference="Infected_1_task2"/>
+        <dataSet id="autogen_task2_Uninfected" label="Uninfected" dataReference="Uninfected_1_task2"/>
+        <dataSet id="autogen_task2_alpha" label="alpha" dataReference="alpha_1_task2"/>
+        <dataSet id="autogen_task2_Epidemic_size" label="Epidemic_size" dataReference="Epidemic_size_2_task2"/>
+        <dataSet id="autogen_task2_Susceptible" label="Susceptible" dataReference="auto_dg_for_task2_Susceptible"/>
+        <dataSet id="autogen_task2_Recovered" label="Recovered" dataReference="auto_dg_for_task2_Recovered"/>
+        <dataSet id="autogen_task2_beta" label="beta" dataReference="auto_dg_for_task2_beta"/>
+        <dataSet id="autogen_task2_gamma" label="gamma" dataReference="auto_dg_for_task2_gamma"/>
+        <dataSet id="autogen_task2_Country" label="Country" dataReference="auto_dg_for_task2_Country"/>
+        <dataSet id="autogen_task2_Susceptible_to_Infected" label="Susceptible_to_Infected" dataReference="auto_dg_for_task2_Susceptible_to_Infected"/>
+        <dataSet id="autogen_task2_Infected_to_Recovered" label="Infected_to_Recovered" dataReference="auto_dg_for_task2_Infected_to_Recovered"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Chitnis2008.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="Chitnis2008.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Human&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Mosquito&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Baseline_dummy_variable&apos;]/@value" newValue="0"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="10000" numberOfPoints="1000">
@@ -83,60 +90,332 @@
         <variable id="p4_Susceptible_Mosquito_task1" name="Susceptible_Mosquito" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible_Mosquito&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="Exposed_Human_1_task12" name="[Exposed{Human}]">
+    <dataGenerator id="auto_dg_for_task1_Capital_lambda_h">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p5_Exposed_Human_task1 </ci>
+        <ci> auto_dg_for_task1_Capital_lambda_h_x </ci>
       </math>
       <listOfVariables>
-        <variable id="p5_Exposed_Human_task1" name="Exposed_Human" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Exposed_Human&apos;]" taskReference="task1"/>
+        <variable id="auto_dg_for_task1_Capital_lambda_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Capital_lambda_h&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="Infected_Human_2_task12" name="[Infected{Human}]">
+    <dataGenerator id="auto_dg_for_task1_Psi_h">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p5_Infected_Human_task1 </ci>
+        <ci> auto_dg_for_task1_Psi_h_x </ci>
       </math>
       <listOfVariables>
-        <variable id="p5_Infected_Human_task1" name="Infected_Human" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infected_Human&apos;]" taskReference="task1"/>
+        <variable id="auto_dg_for_task1_Psi_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Psi_h&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="Recovered_3_task12" name="[Recovered]">
+    <dataGenerator id="auto_dg_for_task1_Psi_v">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p5_Recovered_task1 </ci>
+        <ci> auto_dg_for_task1_Psi_v_x </ci>
       </math>
       <listOfVariables>
-        <variable id="p5_Recovered_task1" name="Recovered" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]" taskReference="task1"/>
+        <variable id="auto_dg_for_task1_Psi_v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Psi_v&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="Susceptible_Human_4_task1" name="[Susceptible{Human}]">
+    <dataGenerator id="auto_dg_for_task1_sigma_v">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p5_Susceptible_Human_task1 </ci>
+        <ci> auto_dg_for_task1_sigma_v_x </ci>
       </math>
       <listOfVariables>
-        <variable id="p5_Susceptible_Human_task1" name="Susceptible_Human" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible_Human&apos;]" taskReference="task1"/>
+        <variable id="auto_dg_for_task1_sigma_v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;sigma_v&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="Exposed_Mosquito_1_task12" name="[Exposed{Mosquito}]">
+    <dataGenerator id="auto_dg_for_task1_sigma_h">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p6_Exposed_Mosquito_task1 </ci>
+        <ci> auto_dg_for_task1_sigma_h_x </ci>
       </math>
       <listOfVariables>
-        <variable id="p6_Exposed_Mosquito_task1" name="Exposed_Mosquito" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Exposed_Mosquito&apos;]" taskReference="task1"/>
+        <variable id="auto_dg_for_task1_sigma_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;sigma_h&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="Infected_Mosquito_2_task12" name="[Infected{Mosquito}]">
+    <dataGenerator id="auto_dg_for_task1_Beta_hv">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p6_Infected_Mosquito_task1 </ci>
+        <ci> auto_dg_for_task1_Beta_hv_x </ci>
       </math>
       <listOfVariables>
-        <variable id="p6_Infected_Mosquito_task1" name="Infected_Mosquito" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infected_Mosquito&apos;]" taskReference="task1"/>
+        <variable id="auto_dg_for_task1_Beta_hv_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Beta_hv&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="Susceptible_Mosquito_3_task1" name="[Susceptible{Mosquito}]">
+    <dataGenerator id="auto_dg_for_task1_Beta_vh">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p6_Susceptible_Mosquito_task1 </ci>
+        <ci> auto_dg_for_task1_Beta_vh_x </ci>
       </math>
       <listOfVariables>
-        <variable id="p6_Susceptible_Mosquito_task1" name="Susceptible_Mosquito" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Susceptible_Mosquito&apos;]" taskReference="task1"/>
+        <variable id="auto_dg_for_task1_Beta_vh_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Beta_vh&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Beta_tilde_vh">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Beta_tilde_vh_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Beta_tilde_vh_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Beta_tilde_vh&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_v_h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_v_h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_v_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_v_v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_v_v_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_v_v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_gamma_h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_gamma_h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_gamma_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_delta_h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_delta_h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_delta_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_rho_h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_rho_h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_rho_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho_h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_u_1h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_u_1h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_u_1h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;u_1h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_u_2h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_u_2h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_u_2h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;u_2h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_u_1v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_u_1v_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_u_1v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;u_1v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_u_2v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_u_2v_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_u_2v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;u_2v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_N_h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_N_h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_N_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;N_h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_N_v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_N_v_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_N_v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;N_v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_f_h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_f_h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_f_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;f_h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_f_v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_f_v_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_f_v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;f_v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_lambda_h">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_lambda_h_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_lambda_h_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;lambda_h&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_lambda_v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_lambda_v_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_lambda_v_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;lambda_v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Baseline_dummy_variable">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Baseline_dummy_variable_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Baseline_dummy_variable_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Baseline_dummy_variable&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Immigration">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Immigration_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Immigration_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Immigration&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Birth">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Birth_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Birth_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Birth&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Loss_of_Immunity">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Loss_of_Immunity_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Loss_of_Immunity_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Loss_of_Immunity&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Infection">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Infection_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Infection_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Infection&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Susceptible_natural_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Susceptible_natural_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Susceptible_natural_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Susceptible_natural_death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_disease_progression">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_disease_progression_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_disease_progression_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_disease_progression&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Exposed_natural_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Exposed_natural_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Exposed_natural_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Exposed_natural_death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Recovery">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Recovery_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Recovery_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Recovery&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_disease_induced_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_disease_induced_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_disease_induced_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_disease_induced_death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Infectious_natural_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Infectious_natural_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Infectious_natural_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Infectious_natural_death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Human_Recovered_natural_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Human_Recovered_natural_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Human_Recovered_natural_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Human_Recovered_natural_death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Mosquito_birth">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Mosquito_birth_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Mosquito_birth_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Mosquito_birth&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Mosquito_infection">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Mosquito_infection_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Mosquito_infection_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Mosquito_infection&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Mosquito_Susceptible_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Mosquito_Susceptible_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Mosquito_Susceptible_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Mosquito_Susceptible_death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Mosquito_disease_progression">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Mosquito_disease_progression_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Mosquito_disease_progression_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Mosquito_disease_progression&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Mosquito_Exposed_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Mosquito_Exposed_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Mosquito_Exposed_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Mosquito_Exposed_death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Mosquito_Infected_death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Mosquito_Infected_death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Mosquito_Infected_death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Mosquito_Infected_death&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
   </listOfDataGenerators>
@@ -164,20 +443,60 @@
         <curve id="p4_curve_1_task1" name="[Susceptible{Mosquito}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Susceptible_Mosquito_1_task1"/>
       </listOfCurves>
     </plot2D>
-    <plot2D id="plot_5_task1" name="Figure 3 top">
-      <listOfCurves>
-        <curve id="p5_curve_1_task1" name="[Exposed{Human}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Exposed_Human_1_task12"/>
-        <curve id="p5_curve_2_task1" name="[Infected{Human}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Infected_Human_2_task12"/>
-        <curve id="p5_curve_3_task1" name="[Recovered]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Recovered_3_task12"/>
-        <curve id="p5_curve_4_task1" name="[Susceptible{Human}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Susceptible_Human_4_task1"/>
-      </listOfCurves>
-    </plot2D>
-    <plot2D id="plot_6_task1" name="Figure 3 bottom">
-      <listOfCurves>
-        <curve id="p6_curve_1_task1" name="[Exposed{Mosquito}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Exposed_Mosquito_1_task12"/>
-        <curve id="p6_curve_2_task1" name="[Infected{Mosquito}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Infected_Mosquito_2_task12"/>
-        <curve id="p6_curve_3_task1" name="[Susceptible{Mosquito}]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Susceptible_Mosquito_3_task1"/>
-      </listOfCurves>
-    </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_Exposed_Human" label="Exposed_Human" dataReference="Exposed_Human_1_task1"/>
+        <dataSet id="autogen_task1_Human" label="Human" dataReference="Exposed_Human_1_task1"/>
+        <dataSet id="autogen_task1_Infected_Human" label="Infected_Human" dataReference="Infected_Human_2_task1"/>
+        <dataSet id="autogen_task1_Recovered" label="Recovered" dataReference="Recovered_3_task1"/>
+        <dataSet id="autogen_task1_Susceptible_Human" label="Susceptible_Human" dataReference="Susceptible_Human_1_task1"/>
+        <dataSet id="autogen_task1_Exposed_Mosquito" label="Exposed_Mosquito" dataReference="Exposed_Mosquito_1_task1"/>
+        <dataSet id="autogen_task1_Mosquito" label="Mosquito" dataReference="Exposed_Mosquito_1_task1"/>
+        <dataSet id="autogen_task1_Infected_Mosquito" label="Infected_Mosquito" dataReference="Infected_Mosquito_2_task1"/>
+        <dataSet id="autogen_task1_Susceptible_Mosquito" label="Susceptible_Mosquito" dataReference="Susceptible_Mosquito_1_task1"/>
+        <dataSet id="autogen_task1_Capital_lambda_h" label="Capital_lambda_h" dataReference="auto_dg_for_task1_Capital_lambda_h"/>
+        <dataSet id="autogen_task1_Psi_h" label="Psi_h" dataReference="auto_dg_for_task1_Psi_h"/>
+        <dataSet id="autogen_task1_Psi_v" label="Psi_v" dataReference="auto_dg_for_task1_Psi_v"/>
+        <dataSet id="autogen_task1_sigma_v" label="sigma_v" dataReference="auto_dg_for_task1_sigma_v"/>
+        <dataSet id="autogen_task1_sigma_h" label="sigma_h" dataReference="auto_dg_for_task1_sigma_h"/>
+        <dataSet id="autogen_task1_Beta_hv" label="Beta_hv" dataReference="auto_dg_for_task1_Beta_hv"/>
+        <dataSet id="autogen_task1_Beta_vh" label="Beta_vh" dataReference="auto_dg_for_task1_Beta_vh"/>
+        <dataSet id="autogen_task1_Beta_tilde_vh" label="Beta_tilde_vh" dataReference="auto_dg_for_task1_Beta_tilde_vh"/>
+        <dataSet id="autogen_task1_v_h" label="v_h" dataReference="auto_dg_for_task1_v_h"/>
+        <dataSet id="autogen_task1_v_v" label="v_v" dataReference="auto_dg_for_task1_v_v"/>
+        <dataSet id="autogen_task1_gamma_h" label="gamma_h" dataReference="auto_dg_for_task1_gamma_h"/>
+        <dataSet id="autogen_task1_delta_h" label="delta_h" dataReference="auto_dg_for_task1_delta_h"/>
+        <dataSet id="autogen_task1_rho_h" label="rho_h" dataReference="auto_dg_for_task1_rho_h"/>
+        <dataSet id="autogen_task1_u_1h" label="u_1h" dataReference="auto_dg_for_task1_u_1h"/>
+        <dataSet id="autogen_task1_u_2h" label="u_2h" dataReference="auto_dg_for_task1_u_2h"/>
+        <dataSet id="autogen_task1_u_1v" label="u_1v" dataReference="auto_dg_for_task1_u_1v"/>
+        <dataSet id="autogen_task1_u_2v" label="u_2v" dataReference="auto_dg_for_task1_u_2v"/>
+        <dataSet id="autogen_task1_N_h" label="N_h" dataReference="auto_dg_for_task1_N_h"/>
+        <dataSet id="autogen_task1_N_v" label="N_v" dataReference="auto_dg_for_task1_N_v"/>
+        <dataSet id="autogen_task1_f_h" label="f_h" dataReference="auto_dg_for_task1_f_h"/>
+        <dataSet id="autogen_task1_f_v" label="f_v" dataReference="auto_dg_for_task1_f_v"/>
+        <dataSet id="autogen_task1_lambda_h" label="lambda_h" dataReference="auto_dg_for_task1_lambda_h"/>
+        <dataSet id="autogen_task1_lambda_v" label="lambda_v" dataReference="auto_dg_for_task1_lambda_v"/>
+        <dataSet id="autogen_task1_Baseline_dummy_variable" label="Baseline_dummy_variable" dataReference="auto_dg_for_task1_Baseline_dummy_variable"/>
+        <dataSet id="autogen_task1_Human_Immigration" label="Human_Immigration" dataReference="auto_dg_for_task1_Human_Immigration"/>
+        <dataSet id="autogen_task1_Human_Birth" label="Human_Birth" dataReference="auto_dg_for_task1_Human_Birth"/>
+        <dataSet id="autogen_task1_Human_Loss_of_Immunity" label="Human_Loss_of_Immunity" dataReference="auto_dg_for_task1_Human_Loss_of_Immunity"/>
+        <dataSet id="autogen_task1_Human_Infection" label="Human_Infection" dataReference="auto_dg_for_task1_Human_Infection"/>
+        <dataSet id="autogen_task1_Human_Susceptible_natural_death" label="Human_Susceptible_natural_death" dataReference="auto_dg_for_task1_Human_Susceptible_natural_death"/>
+        <dataSet id="autogen_task1_Human_disease_progression" label="Human_disease_progression" dataReference="auto_dg_for_task1_Human_disease_progression"/>
+        <dataSet id="autogen_task1_Human_Exposed_natural_death" label="Human_Exposed_natural_death" dataReference="auto_dg_for_task1_Human_Exposed_natural_death"/>
+        <dataSet id="autogen_task1_Human_Recovery" label="Human_Recovery" dataReference="auto_dg_for_task1_Human_Recovery"/>
+        <dataSet id="autogen_task1_Human_disease_induced_death" label="Human_disease_induced_death" dataReference="auto_dg_for_task1_Human_disease_induced_death"/>
+        <dataSet id="autogen_task1_Human_Infectious_natural_death" label="Human_Infectious_natural_death" dataReference="auto_dg_for_task1_Human_Infectious_natural_death"/>
+        <dataSet id="autogen_task1_Human_Recovered_natural_death" label="Human_Recovered_natural_death" dataReference="auto_dg_for_task1_Human_Recovered_natural_death"/>
+        <dataSet id="autogen_task1_Mosquito_birth" label="Mosquito_birth" dataReference="auto_dg_for_task1_Mosquito_birth"/>
+        <dataSet id="autogen_task1_Mosquito_infection" label="Mosquito_infection" dataReference="auto_dg_for_task1_Mosquito_infection"/>
+        <dataSet id="autogen_task1_Mosquito_Susceptible_death" label="Mosquito_Susceptible_death" dataReference="auto_dg_for_task1_Mosquito_Susceptible_death"/>
+        <dataSet id="autogen_task1_Mosquito_disease_progression" label="Mosquito_disease_progression" dataReference="auto_dg_for_task1_Mosquito_disease_progression"/>
+        <dataSet id="autogen_task1_Mosquito_Exposed_death" label="Mosquito_Exposed_death" dataReference="auto_dg_for_task1_Mosquito_Exposed_death"/>
+        <dataSet id="autogen_task1_Mosquito_Infected_death" label="Mosquito_Infected_death" dataReference="auto_dg_for_task1_Mosquito_Infected_death"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>

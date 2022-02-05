@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Sotolongo-Costa2003.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="Sotolongo-Costa2003.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x_Malignant_Cells&apos;]/@initialConcentration" newValue="5.3"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;y_Lymphocytes&apos;]/@initialConcentration" newValue="6.7"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;compartment&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]/@value" newValue="2"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]/@value" newValue="0.2"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;sigma&apos;]/@value" newValue="0.25"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000">
@@ -35,12 +44,108 @@
         <variable id="p1_x_Malignant_Cells_task1" name="x_Malignant_Cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x_Malignant_Cells&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_y_Lymphocytes">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_y_Lymphocytes_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_y_Lymphocytes_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;y_Lymphocytes&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_alpha">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_alpha_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_alpha_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_sigma">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_sigma_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_sigma_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;sigma&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_compartment">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_compartment_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_compartment_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;compartment&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Malignant_Cells_Growth">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Malignant_Cells_Growth_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Malignant_Cells_Growth_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Malignant_Cells_Growth&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Malignant_Cells_Death_Lymphocytes">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Malignant_Cells_Death_Lymphocytes_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Malignant_Cells_Death_Lymphocytes_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Malignant_Cells_Death_Lymphocytes&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Lymphocytes_Production">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Lymphocytes_Production_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Lymphocytes_Production_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Lymphocytes_Production&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Lymphocyte_Death">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Lymphocyte_Death_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Lymphocyte_Death_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Lymphocyte_Death&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Lymphocyte_Elimination_Malignant_Cells">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Lymphocyte_Elimination_Malignant_Cells_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Lymphocyte_Elimination_Malignant_Cells_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Lymphocyte_Elimination_Malignant_Cells&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_1_task1" name="Sotolongo-Costa2003_Figure_3_B">
+    <plot2D id="plot_1_task1" name="Figure 3b">
       <listOfCurves>
         <curve id="p1_curve_1_task1" name="[x_Malignant_Cells]" logX="false" xDataReference="time_task1" logY="false" yDataReference="x_Malignant_Cells_1_task1"/>
       </listOfCurves>
     </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_x_Malignant_Cells" label="x_Malignant_Cells" dataReference="x_Malignant_Cells_1_task1"/>
+        <dataSet id="autogen_task1_y_Lymphocytes" label="y_Lymphocytes" dataReference="auto_dg_for_task1_y_Lymphocytes"/>
+        <dataSet id="autogen_task1_alpha" label="alpha" dataReference="auto_dg_for_task1_alpha"/>
+        <dataSet id="autogen_task1_k" label="k" dataReference="auto_dg_for_task1_k"/>
+        <dataSet id="autogen_task1_sigma" label="sigma" dataReference="auto_dg_for_task1_sigma"/>
+        <dataSet id="autogen_task1_compartment" label="compartment" dataReference="auto_dg_for_task1_compartment"/>
+        <dataSet id="autogen_task1_Malignant_Cells_Growth" label="Malignant_Cells_Growth" dataReference="auto_dg_for_task1_Malignant_Cells_Growth"/>
+        <dataSet id="autogen_task1_Malignant_Cells_Death_Lymphocytes" label="Malignant_Cells_Death_Lymphocytes" dataReference="auto_dg_for_task1_Malignant_Cells_Death_Lymphocytes"/>
+        <dataSet id="autogen_task1_Lymphocytes_Production" label="Lymphocytes_Production" dataReference="auto_dg_for_task1_Lymphocytes_Production"/>
+        <dataSet id="autogen_task1_Lymphocyte_Death" label="Lymphocyte_Death" dataReference="auto_dg_for_task1_Lymphocyte_Death"/>
+        <dataSet id="autogen_task1_Lymphocyte_Elimination_Malignant_Cells" label="Lymphocyte_Elimination_Malignant_Cells" dataReference="auto_dg_for_task1_Lymphocyte_Elimination_Malignant_Cells"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>

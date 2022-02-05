@@ -4185,11 +4185,6 @@ expression.      </p>
         <dcterms:W3CDTF>2018-01-31T18:33:59Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:isVersionOf>
-      <rdf:Bag>
-        <rdf:li rdf:resource="urn:miriam:go:" />
-      </rdf:Bag>
-    </CopasiMT:isVersionOf>
   </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>

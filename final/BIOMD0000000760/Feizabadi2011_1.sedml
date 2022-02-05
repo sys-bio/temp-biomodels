@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Feizabadi2011_1.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="Feizabadi2011_1.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;T&apos;]/@initialConcentration" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;N&apos;]/@initialConcentration" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;tumor_microenvironment&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rt&apos;]/@value" newValue="0.3"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;kt&apos;]/@value" newValue="1200000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;b&apos;]/@value" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;r0&apos;]/@value" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;r1&apos;]/@value" newValue="1000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rn&apos;]/@value" newValue="0.4"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;kn&apos;]/@value" newValue="1000000"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]/@value" newValue="0.028"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;t&apos;]/@value" newValue="300000"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="200" numberOfPoints="100">
@@ -51,14 +66,131 @@
         <variable id="p1_t_task1" name="t" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;t&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_rt">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_rt_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_rt_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rt&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_kt">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_kt_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_kt_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;kt&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_r0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_r0_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_r0_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;r0&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_r1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_r1_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_r1_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;r1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_rn">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_rn_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_rn_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rn&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_kn">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_kn_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_kn_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;kn&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_tumor_microenvironment">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_tumor_microenvironment_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_tumor_microenvironment_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;tumor_microenvironment&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_tumor_growth">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_tumor_growth_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_tumor_growth_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;tumor_growth&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_normal_cell_growth">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_normal_cell_growth_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_normal_cell_growth_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;normal_cell_growth&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_tumor_inhibition">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_tumor_inhibition_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_tumor_inhibition_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;tumor_inhibition&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_normal_cell_stimulation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_normal_cell_stimulation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_normal_cell_stimulation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;normal_cell_stimulation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_1_task1" name="Fig1">
+    <plot2D id="plot_1_task1" name="Figure 1">
       <listOfCurves>
         <curve id="p1_curve_1_task1" name="[N]" logX="false" xDataReference="time_task1" logY="false" yDataReference="N_1_task1"/>
         <curve id="p1_curve_2_task1" name="[T]" logX="false" xDataReference="time_task1" logY="false" yDataReference="T_2_task1"/>
         <curve id="p1_curve_3_task1" name="Values[t]" logX="false" xDataReference="time_task1" logY="false" yDataReference="t_3_task1"/>
       </listOfCurves>
     </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_N" label="N" dataReference="N_1_task1"/>
+        <dataSet id="autogen_task1_b" label="b" dataReference="N_1_task1"/>
+        <dataSet id="autogen_task1_t" label="t" dataReference="N_1_task1"/>
+        <dataSet id="autogen_task1_T" label="T" dataReference="T_2_task1"/>
+        <dataSet id="autogen_task1_rt" label="rt" dataReference="auto_dg_for_task1_rt"/>
+        <dataSet id="autogen_task1_kt" label="kt" dataReference="auto_dg_for_task1_kt"/>
+        <dataSet id="autogen_task1_r0" label="r0" dataReference="auto_dg_for_task1_r0"/>
+        <dataSet id="autogen_task1_r1" label="r1" dataReference="auto_dg_for_task1_r1"/>
+        <dataSet id="autogen_task1_rn" label="rn" dataReference="auto_dg_for_task1_rn"/>
+        <dataSet id="autogen_task1_kn" label="kn" dataReference="auto_dg_for_task1_kn"/>
+        <dataSet id="autogen_task1_k" label="k" dataReference="auto_dg_for_task1_k"/>
+        <dataSet id="autogen_task1_tumor_microenvironment" label="tumor_microenvironment" dataReference="auto_dg_for_task1_tumor_microenvironment"/>
+        <dataSet id="autogen_task1_tumor_growth" label="tumor_growth" dataReference="auto_dg_for_task1_tumor_growth"/>
+        <dataSet id="autogen_task1_normal_cell_growth" label="normal_cell_growth" dataReference="auto_dg_for_task1_normal_cell_growth"/>
+        <dataSet id="autogen_task1_tumor_inhibition" label="tumor_inhibition" dataReference="auto_dg_for_task1_tumor_inhibition"/>
+        <dataSet id="autogen_task1_normal_cell_stimulation" label="normal_cell_stimulation" dataReference="auto_dg_for_task1_normal_cell_stimulation"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>

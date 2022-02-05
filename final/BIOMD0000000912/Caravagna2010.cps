@@ -363,7 +363,6 @@ The well-known Kirschner–Panetta model for tumour–immune System interplay [K
         <dcterms:W3CDTF>2020-01-20T09:49:36Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:"/>
   </rdf:Description>
 </rdf:RDF>
 

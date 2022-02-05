@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns:sbml="http://www.sbml.org/sbml/level2/version4" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="simon2019_model2.xml"/>
+    <model id="model" language="urn:sedml:language:sbml" source="simon2019_model2.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100t&apos;]/@initialConcentration" newValue="2.5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p52&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NIK&apos;]/@initialConcentration" newValue="10"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100_NIK&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;compartment&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_mRNA_Expressions&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="0.2"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_processing&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="0.05"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p52_degradation&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="3.800000e-4"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_degradation&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="3.800000e-4"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_NIK_binding&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="0.005"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_NIK_binding&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value" newValue="2.400000e-4"/>
+      </listOfChanges>
+    </model>
   </listOfModels>
   <listOfSimulations>
     <steadyState id="steady2">
@@ -43,12 +58,203 @@
         <variable id="p1_p100_task3" name="p100" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100&apos;]" taskReference="task3"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="auto_time_for_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_time_for_task2_var </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_time_for_task2_var" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_time_for_task3" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_time_for_task3_var </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_time_for_task3_var" symbol="urn:sedml:symbol:time" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_p100t">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_p100t_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_p100t_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100t&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_NIK">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_NIK_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_NIK_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NIK&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_p100_NIK">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_p100_NIK_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_p100_NIK_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100_NIK&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_compartment">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_compartment_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_compartment_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;compartment&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_p100_mRNA_Expressions">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_p100_mRNA_Expressions_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_p100_mRNA_Expressions_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_mRNA_Expressions&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_p100_processing">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_p100_processing_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_p100_processing_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_processing&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_p52_degradation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_p52_degradation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_p52_degradation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p52_degradation&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_p100_degradation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_p100_degradation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_p100_degradation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_degradation&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_p100_NIK_binding">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_p100_NIK_binding_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_p100_NIK_binding_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_NIK_binding&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_p100t">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_p100t_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_p100t_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100t&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_NIK">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_NIK_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_NIK_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NIK&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_p100_NIK">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_p100_NIK_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_p100_NIK_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100_NIK&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_compartment">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_compartment_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_compartment_x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;compartment&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_p100_mRNA_Expressions">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_p100_mRNA_Expressions_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_p100_mRNA_Expressions_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_mRNA_Expressions&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_p100_processing">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_p100_processing_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_p100_processing_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_processing&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_p52_degradation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_p52_degradation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_p52_degradation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p52_degradation&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_p100_degradation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_p100_degradation_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_p100_degradation_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_degradation&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task3_p100_NIK_binding">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task3_p100_NIK_binding_x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task3_p100_NIK_binding_x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;p100_NIK_binding&apos;]" taskReference="task3"/>
+      </listOfVariables>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_2_task3" name="plot">
+    <plot2D id="plot_2_task3" name="Figure 1e">
       <listOfCurves>
         <curve id="p1_curve_1_task3" name="Values[p52_uM]" logX="false" xDataReference="p100_1_task3" logY="false" yDataReference="p52_uM_1_task3"/>
       </listOfCurves>
     </plot2D>
+    <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task2_time" label="Time" dataReference="auto_time_for_task2"/>
+        <dataSet id="autogen_task2_p100t" label="p100t" dataReference="auto_dg_for_task2_p100t"/>
+        <dataSet id="autogen_task2_NIK" label="NIK" dataReference="auto_dg_for_task2_NIK"/>
+        <dataSet id="autogen_task2_p100_NIK" label="p100_NIK" dataReference="auto_dg_for_task2_p100_NIK"/>
+        <dataSet id="autogen_task2_compartment" label="compartment" dataReference="auto_dg_for_task2_compartment"/>
+        <dataSet id="autogen_task2_p100_mRNA_Expressions" label="p100_mRNA_Expressions" dataReference="auto_dg_for_task2_p100_mRNA_Expressions"/>
+        <dataSet id="autogen_task2_p100_processing" label="p100_processing" dataReference="auto_dg_for_task2_p100_processing"/>
+        <dataSet id="autogen_task2_p52_degradation" label="p52_degradation" dataReference="auto_dg_for_task2_p52_degradation"/>
+        <dataSet id="autogen_task2_p100_degradation" label="p100_degradation" dataReference="auto_dg_for_task2_p100_degradation"/>
+        <dataSet id="autogen_task2_p100_NIK_binding" label="p100_NIK_binding" dataReference="auto_dg_for_task2_p100_NIK_binding"/>
+      </listOfDataSets>
+    </report>
+    <report id="autogen_report_for_task3" name="Auto-generated report for task3, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_task3_time" label="Time" dataReference="auto_time_for_task3"/>
+        <dataSet id="autogen_task3_p52" label="p52" dataReference="p52_uM_1_task3"/>
+        <dataSet id="autogen_task3_p52_uM" label="p52_uM" dataReference="p52_uM_1_task3"/>
+        <dataSet id="autogen_task3_p100" label="p100" dataReference="p100_1_task3"/>
+        <dataSet id="autogen_task3_p100t" label="p100t" dataReference="auto_dg_for_task3_p100t"/>
+        <dataSet id="autogen_task3_NIK" label="NIK" dataReference="auto_dg_for_task3_NIK"/>
+        <dataSet id="autogen_task3_p100_NIK" label="p100_NIK" dataReference="auto_dg_for_task3_p100_NIK"/>
+        <dataSet id="autogen_task3_compartment" label="compartment" dataReference="auto_dg_for_task3_compartment"/>
+        <dataSet id="autogen_task3_p100_mRNA_Expressions" label="p100_mRNA_Expressions" dataReference="auto_dg_for_task3_p100_mRNA_Expressions"/>
+        <dataSet id="autogen_task3_p100_processing" label="p100_processing" dataReference="auto_dg_for_task3_p100_processing"/>
+        <dataSet id="autogen_task3_p52_degradation" label="p52_degradation" dataReference="auto_dg_for_task3_p52_degradation"/>
+        <dataSet id="autogen_task3_p100_degradation" label="p100_degradation" dataReference="auto_dg_for_task3_p100_degradation"/>
+        <dataSet id="autogen_task3_p100_NIK_binding" label="p100_NIK_binding" dataReference="auto_dg_for_task3_p100_NIK_binding"/>
+      </listOfDataSets>
+    </report>
   </listOfOutputs>
 </sedML>
