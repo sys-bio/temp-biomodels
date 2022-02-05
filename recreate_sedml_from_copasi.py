@@ -75,8 +75,7 @@ def get_orig(sed_list, copasi_name, new_sedml, id, guesses):
     return ret_file
 
 
-def fix_sed_sbml_target(sedml, sbml, sbml_list, c_file, id, guesses):
-    sed = libsedml.readSedMLFromString(sedml)
+def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
     if (sed.getNumModels() != 1):
         print("Not exactly one SBML model: probable failure to read file.")
         assert(False)
@@ -102,7 +101,7 @@ def fix_sed_sbml_target(sedml, sbml, sbml_list, c_file, id, guesses):
 
     # If the name matches exactly, use that:
     for sbml_file in sbml_list:
-        if sbml_file == c_file.replace("cps", "xml"):
+        if sbml_file == c_file.replace(".cps", ".xml"):
             model.setSource(os.path.basename(sbml_file))
             return libsedml.writeSedMLToString(sed)
 
@@ -123,12 +122,72 @@ def fix_sed_sbml_target(sedml, sbml, sbml_list, c_file, id, guesses):
     model.setSource(os.path.basename(ret_file))
     return libsedml.writeSedMLToString(sed)
 
+def createStyleFrom(sed, plot, p):
+    linetype = 0 #Eventually get from the 'plot' object once Frank tells us how.
+    linethickness = 2 #Also from 'plot'.
+    linesubtype = 0 #Also from 'plot'
+    symboltype = 0 #Also from 'plot'
+    style = sed.createStyle()
+    style.setId("style" + str(p+1))
+    style.setName("Line/marker style " + str(p+1) + " from COPASI.")
+    line = style.createLineStyle()
+    if linetype==1 or linetype==2:
+        line.setStyle(libsedml.SEDML_LINETYPE_NONE)
+    else:
+        line.setThickness(linethickness)
+        if linesubtype==0:
+            line.setType(libsedml.SEDML_LINETYPE_SOLID)
+        elif linesubtype==1:
+            line.setType(libsedml.SEDML_LINETYPE_DOT)
+        elif linesubtype==2:
+            line.setType(libsedml.SEDML_LINETYPE_DASH)
+        elif linesubtype==3:
+            line.setType(libsedml.SEDML_LINETYPE_DASHDOT)
+        elif linesubtype==4:
+            line.setType(libsedml.SEDML_LINETYPE_DASHDOTDOT)
+        else:
+            raise NotImplementedError("Unknown Copasi line type" + str(linesubtype))
+    #Now symbols:
+    if linetype> 0:
+        symbol = style.createMarker()
+        if linesubtype == 1 or symboltype == 2:
+            symbol.setType(libsedml.SEDML_MARKERTYPE_CIRCLE)
+        else:
+            symbol.setType(libsedml.SEDML_MARKERTYPE_XCROSS)
+        if linesubtype == 1:
+            symbol.setSize(1)
+        elif symboltype == 0:
+            symbol.setSize(3)
+        elif symboltype == 1:
+            symbol.setSize(6)
+    name = plot.getObjectName()
+    found = False
+    for o in range(sed.getNumOutputs()):
+        output = sed.getOutput(o)
+        if output.getName() == name:
+            for c in range(output.getNumCurves()):
+                found = True
+                curve = output.getCurve(c)
+                curve.setStyle(style.getId())
+    #assert(found)
+    
+    
+
+def addPlotDetails(sed, dm):
+    if dm.getNumPlotSpecifications() == 0:
+        return
+    pdl = dm.getPlotDefinitionList()
+    for p in range(pdl.size()):
+        plot = pdl.get(p)
+        name = plot.getObjectName()
+        logX = plot.getParameter(0)
+        createStyleFrom(sed, plot, p)
 
 def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     dm = COPASI.CRootContainer.addDatamodel()
     # copasi_sed = direc + "/test_" + c_file
     copasi_sed = c_file
-    copasi_sed = copasi_sed.replace("cps", "sedml")
+    copasi_sed = copasi_sed.replace(".cps", ".sedml")
     # print(copasi_sed)
     # now load a copasi file / import sbml whatever
     result = dm.loadModel(c_file)
@@ -149,8 +208,11 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
         if nac in sedml:
             sedml = sedml.replace(nac, non_ascii_chars[nac])
     guesses = []
-    sedml = fix_sed_sbml_target(sedml, sbml, sbml_filenames, c_file, id, guesses)
+    sed = libsedml.readSedMLFromString(sedml)
+    sed.setVersion(4)
+    fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
+    addPlotDetails(sed, dm)
     if "No plot/report definition" not in sed_msg:
         if len(sedml_filenames) > 0:
             orig_sed = get_orig(sedml_filenames, c_file, sedml, id, guesses)
@@ -158,9 +220,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
             if orig_sed in sedml_filenames:
                 sedml_filenames.remove(orig_sed)
             copasi_sed = orig_sed
-        c_sed_out = open(copasi_sed, "w")
-        c_sed_out.write(sedml)
-        c_sed_out.close()
+        libsedml.writeSedMLToFile(sed, copasi_sed)
     return (sbml_msg, sed_msg, guesses)
 
 
