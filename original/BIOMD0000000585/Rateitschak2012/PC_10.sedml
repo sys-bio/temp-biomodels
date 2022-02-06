@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.16 (Build 104) on 2015-09-22 15:55 with libSBML version 5.11.1. -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="2">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="700" numberOfPoints="70000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfModels>
+	  <model id="model" language="urn:sedml:language:sbml" source="PC_10.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time" name="Time">
+      <listOfVariables>
+        <variable id="var_time" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Stat1Pex_1" name="[STAT1D (observed)]">
+      <listOfVariables>
+        <variable id="p1_Stat1Pex" name="Stat1Pex" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Stat1Pex&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Stat1Pex </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Stat1ex_1" name="[STAT1 (observed)]">
+      <listOfVariables>
+        <variable id="p2_Stat1ex" name="Stat1ex" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Stat1ex&apos;]" taskReference="task1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_Stat1ex </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot1" name="Fig S2 Total STAT1 phophorylation">
+      <listOfCurves>
+        <curve id="p1_curve_1" name="[STAT1D (observed)]" logX="false" logY="false" xDataReference="time" yDataReference="Stat1Pex_1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot2" name="Fig S2 Total STAT1 protein expression ">
+      <listOfCurves>
+        <curve id="p2_curve_1" name="[STAT1 (observed)]" logX="false" logY="false" xDataReference="time" yDataReference="Stat1ex_1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
