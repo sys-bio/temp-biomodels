@@ -187,7 +187,7 @@ def run(id, sbml_files):
     #Now fix annotations:
     for file in sbml_files:
         # print(file)
-        f = open(file, "r")
+        f = open(file, "r", encoding="utf-8")
         bad_pmids = set()
         bad_identifiers_ns = set()
         for line in f:
