@@ -163,6 +163,8 @@ def createStyleFrom(sed, plot, p, prevstyles):
             if linetype=="points" or linetype=="symbols":
                 line.setType(libsedml.SEDML_LINETYPE_NONE)
             else:
+                if "#" in color:
+                    line.setColor(color)
                 line.setThickness(linethickness)
                 if linesubtype=="solid":
                     line.setType(libsedml.SEDML_LINETYPE_SOLID)
@@ -181,6 +183,8 @@ def createStyleFrom(sed, plot, p, prevstyles):
             if linetype == "lines":
                 symbol.setType(libsedml.SEDML_MARKERTYPE_NONE)
             else:
+                if "#" in color:
+                    symbol.setLineColor(color)
                 if linetype == "points" or symboltype == "circle":
                     symbol.setType(libsedml.SEDML_MARKERTYPE_CIRCLE)
                 else:
@@ -191,9 +195,6 @@ def createStyleFrom(sed, plot, p, prevstyles):
                     symbol.setSize(3)
                 elif symboltype == "large_cross":
                     symbol.setSize(6)
-            if "#" in color:
-                line.setColor(color)
-                symbol.setLineColor(color)
         found = False
         for o in range(sed.getNumOutputs()):
             output = sed.getOutput(o)
