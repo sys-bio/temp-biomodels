@@ -142,7 +142,7 @@ def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
     model.setSource(os.path.basename(ret_file))
     return libsedml.writeSedMLToString(sed)
 
-def createStyleFrom(sed, plot, p, prevstyles):
+def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
     plotname = plot['name']
     for curve in plot['curves']:
         curvename = curve['name']
@@ -201,9 +201,9 @@ def createStyleFrom(sed, plot, p, prevstyles):
             try:
                 for c in range(output.getNumCurves()):
                     curve = output.getCurve(c)
-                    if output.getName() == plotname or curve.getName() == curvename:
-                        found = True
+                    if curve.getName() in curvename or (output.getName() == plotname and not curve.isSetStyle()): #
                         curve.setStyle(styleid)
+                        usedstyles.add(styleid)
             except:
                 pass
                     
@@ -217,9 +217,13 @@ def addPlotDetails(sed, dm):
     basico.set_current_model(dm)
     pdl = dm.getPlotDefinitionList()
     prevstyles = {}
+    usedstyles = set()
     for p in range(pdl.size()):
         plot = basico.get_plot_dict(p)
-        createStyleFrom(sed, plot, p, prevstyles)
+        createStyleFrom(sed, plot, p, prevstyles, usedstyles)
+    for style in prevstyles:
+        if prevstyles[style] not in usedstyles:
+            sed.removeStyle(prevstyles[style])
 
 def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     dm = COPASI.CRootContainer.addDatamodel()
