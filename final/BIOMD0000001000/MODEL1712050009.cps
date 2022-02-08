@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.31 (Build 243) (http://www.copasi.org) at 2022-02-04T22:19:24Z -->
+<!-- generated with COPASI 4.29 (Build 228) (http://www.copasi.org) at 2021-02-24T14:23:15Z -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
-<COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="31" versionDevel="243" copasiSourcesModified="0">
+<COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="29" versionDevel="228" copasiSourcesModified="0">
   <ListOfFunctions>
     <Function key="Function_13" name="Mass action (irreversible)" type="MassAction" reversible="false">
       <MiriamAnnotation>
@@ -832,22 +832,26 @@ Reaction scheme where the products are created from the reactants and the change
     <ListOfMetabolites>
       <Metabolite key="Metabolite_0" name="TGFb_TGFR1_surface" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_0">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021" />
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13376" />
+        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021"/>
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13376"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:hasPart>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137" />
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P36897" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137"/>
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P36897"/>
       </rdf:Bag>
     </CopasiMT:hasPart>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[R1_total_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>*(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[index_k_out_1_relative_speed_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R1_C3],Reference=InitialValue>)/(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R1_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>^2+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[index_k_out_1_relative_speed_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R1_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>)
@@ -855,22 +859,26 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_1" name="TGFb_TGFR2_surface" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_1">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021" />
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13376" />
+        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021"/>
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13376"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:hasPart>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137" />
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P37173" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137"/>
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P37173"/>
       </rdf:Bag>
     </CopasiMT:hasPart>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[R2_total_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>*(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[index_k_out_2_relative_speed_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R2_C3],Reference=InitialValue>)/(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R2_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>^2+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[index_k_out_2_relative_speed_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R2_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>)
@@ -878,22 +886,26 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_2" name="TGFb_TGFR1_endo" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_2">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/go/GO:0016197" />
-        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021" />
+        <rdf:li rdf:resource="http://identifiers.org/go/GO:0016197"/>
+        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:hasPart>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137" />
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P36897" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137"/>
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P36897"/>
       </rdf:Bag>
     </CopasiMT:hasPart>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[R1_total_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R1_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>/(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R1_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>^2+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[index_k_out_1_relative_speed_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R1_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R1],Reference=InitialValue>)
@@ -901,22 +913,26 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_3" name="TGFb_TGFR2_endo" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_3">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/go/GO:0016197" />
-        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021" />
+        <rdf:li rdf:resource="http://identifiers.org/go/GO:0016197"/>
+        <rdf:li rdf:resource="http://identifiers.org/go/GO:0070021"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:hasPart>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137" />
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P37173" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137"/>
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P37173"/>
       </rdf:Bag>
     </CopasiMT:hasPart>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[R2_total_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R2_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>/(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R2_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>^2+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[index_k_out_2_relative_speed_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_in_R2_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_R2],Reference=InitialValue>)
@@ -924,15 +940,18 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_4" name="TGFb" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_4">
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P01137"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
       </Metabolite>
       <Metabolite key="Metabolite_5" name="TGFb_In" simulationType="reactions" compartment="Compartment_0" addNoise="false">
@@ -955,20 +974,24 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_6" name="Active_TGFR2" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_6">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C45329" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C45329"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/P37173" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/P37173"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
       </Metabolite>
       <Metabolite key="Metabolite_7" name="Active_Rec" simulationType="reactions" compartment="Compartment_0" addNoise="false">
@@ -1034,39 +1057,47 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_10" name="pSMAD2_c" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_10">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13226" />
-        <rdf:li rdf:resource="http://identifiers.org/pr/PR:000037070" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13226"/>
+        <rdf:li rdf:resource="http://identifiers.org/pr/PR:000037070"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
       </Metabolite>
       <Metabolite key="Metabolite_11" name="SMAD2_c" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_11">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13226" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13226"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_total_C3],Reference=InitialValue>*(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_export_from_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_S2],Reference=InitialValue>)/(2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_import_to_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_export_from_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_S2],Reference=InitialValue>)
@@ -1074,20 +1105,24 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_12" name="SMAD4_c" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_12">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13226" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13226"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q13485" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q13485"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_total_C3],Reference=InitialValue>*(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_export_from_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_S4],Reference=InitialValue>)/(2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_import_to_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_export_from_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_S4],Reference=InitialValue>)
@@ -1135,16 +1170,19 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_15" name="SMAD7_mRNA" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_15">
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/bao/274" />
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/O15105" />
+        <rdf:li rdf:resource="http://identifiers.org/bao/274"/>
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/O15105"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[export_cytoplasm],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[mRNA_prod_C3],Reference=InitialValue>/(2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kmRNAdeg_S7],Reference=InitialValue>*(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[export_cytoplasm],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kmRNA1deg_S7],Reference=InitialValue>))
@@ -1152,15 +1190,18 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_16" name="SMAD7_mRNA1" simulationType="reactions" compartment="Compartment_1" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_16">
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/O15105" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/O15105"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[mRNA_prod_C3],Reference=InitialValue>/(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[export_cytoplasm],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kmRNA1deg_S7],Reference=InitialValue>)
@@ -1168,16 +1209,19 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_17" name="SMAD7" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_17">
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/bao/274" />
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/O15105" />
+        <rdf:li rdf:resource="http://identifiers.org/bao/274"/>
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/O15105"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[export_cytoplasm],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[k_S7_protein_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[mRNA_prod_C3],Reference=InitialValue>/(2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_S7],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kmRNAdeg_S7],Reference=InitialValue>*(&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[export_cytoplasm],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kmRNA1deg_S7],Reference=InitialValue>))
@@ -1185,21 +1229,25 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_18" name="pSMAD2_n" simulationType="reactions" compartment="Compartment_1" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_18">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13197" />
-        <rdf:li rdf:resource="http://identifiers.org/pr/PR:000037070" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13197"/>
+        <rdf:li rdf:resource="http://identifiers.org/pr/PR:000037070"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
       </Metabolite>
       <Metabolite key="Metabolite_19" name="pS2_pS2_S4_n" simulationType="reactions" compartment="Compartment_1" addNoise="false">
@@ -1243,20 +1291,24 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_21" name="SMAD2_n" simulationType="reactions" compartment="Compartment_1" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_21">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13197" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13197"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q15796"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_total_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_import_to_nuc_C3],Reference=InitialValue>/(2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_import_to_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S2_export_from_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_S2],Reference=InitialValue>)
@@ -1264,20 +1316,24 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_22" name="SMAD4_n" simulationType="reactions" compartment="Compartment_1" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_22">
     <bqbiol:hasProperty>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C13197" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C13197"/>
       </rdf:Bag>
     </bqbiol:hasProperty>
     <CopasiMT:is>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q13485" />
+        <rdf:li rdf:resource="http://identifiers.org/uniprot/Q13485"/>
       </rdf:Bag>
     </CopasiMT:is>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <InitialExpression>
           2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_total_C3],Reference=InitialValue>*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_import_to_nuc_C3],Reference=InitialValue>/(2*&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_import_to_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[S4_export_from_nuc_C3],Reference=InitialValue>+&lt;CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Values[kdeg_S4],Reference=InitialValue>)
@@ -1929,15 +1985,18 @@ Reaction scheme where the products are created from the reactants and the change
     <ListOfReactions>
       <Reaction key="Reaction_0" name="reaction1" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_0">
     <CopasiMT:isVersionOf>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/ncit/C20139" />
+        <rdf:li rdf:resource="http://identifiers.org/ncit/C20139"/>
       </rdf:Bag>
     </CopasiMT:isVersionOf>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_4" stoichiometry="1"/>
@@ -1946,8 +2005,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_1" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5375" name="k_medium" value="2e+06"/>
-          <Constant key="Parameter_5374" name="kf_R2_activation" value="4.95559"/>
+          <Constant key="Parameter_5390" name="k_medium" value="2e+06"/>
+          <Constant key="Parameter_5389" name="kf_R2_activation" value="4.95559"/>
         </ListOfConstants>
         <KineticLaw function="Function_52" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -1985,7 +2044,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_4" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5373" name="kf_R2_activation" value="4.95559"/>
+          <Constant key="Parameter_5388" name="kf_R2_activation" value="4.95559"/>
         </ListOfConstants>
         <KineticLaw function="Function_58" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2021,7 +2080,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_1" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5372" name="kf_R2_activation" value="4.95559"/>
+          <Constant key="Parameter_5387" name="kf_R2_activation" value="4.95559"/>
         </ListOfConstants>
         <KineticLaw function="Function_71" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2053,8 +2112,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_6" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5371" name="index_kb_R2" value="8.70499"/>
-          <Constant key="Parameter_5370" name="kf_R2_activation" value="4.95559"/>
+          <Constant key="Parameter_5386" name="index_kb_R2" value="8.70499"/>
+          <Constant key="Parameter_5385" name="kf_R2_activation" value="4.95559"/>
         </ListOfConstants>
         <KineticLaw function="Function_55" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2089,8 +2148,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_6" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5369" name="index_kb_R2" value="8.70499"/>
-          <Constant key="Parameter_5368" name="kf_R2_activation" value="4.95559"/>
+          <Constant key="Parameter_5384" name="index_kb_R2" value="8.70499"/>
+          <Constant key="Parameter_5383" name="kf_R2_activation" value="4.95559"/>
         </ListOfConstants>
         <KineticLaw function="Function_65" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2125,9 +2184,9 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_6" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5367" name="index_kb_R2" value="8.70499"/>
-          <Constant key="Parameter_5366" name="k_medium" value="2e+06"/>
-          <Constant key="Parameter_5365" name="kf_R2_activation" value="4.95559"/>
+          <Constant key="Parameter_5382" name="index_kb_R2" value="8.70499"/>
+          <Constant key="Parameter_5381" name="k_medium" value="2e+06"/>
+          <Constant key="Parameter_5380" name="kf_R2_activation" value="4.95559"/>
         </ListOfConstants>
         <KineticLaw function="Function_60" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2166,7 +2225,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_7" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5689" name="k1" value="4.98549"/>
+          <Constant key="Parameter_5379" name="k1" value="4.98549"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2200,8 +2259,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_6" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5690" name="index_kb_R1" value="1.6129"/>
-          <Constant key="Parameter_5688" name="kf_R1_activation" value="4.98549"/>
+          <Constant key="Parameter_5378" name="index_kb_R1" value="1.6129"/>
+          <Constant key="Parameter_5377" name="kf_R1_activation" value="4.98549"/>
         </ListOfConstants>
         <KineticLaw function="Function_46" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2237,7 +2296,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_5" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5691" name="k1" value="0.00100039"/>
+          <Constant key="Parameter_5376" name="k1" value="0.00100039"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2270,7 +2329,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_5" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5718" name="k1" value="0.0586584"/>
+          <Constant key="Parameter_5375" name="k1" value="0.0586584"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2303,7 +2362,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_3" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5719" name="k1" value="0.720182"/>
+          <Constant key="Parameter_5374" name="k1" value="0.720182"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2332,7 +2391,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_2" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5717" name="k1" value="0.0586584"/>
+          <Constant key="Parameter_5373" name="k1" value="0.0586584"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2361,7 +2420,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_3" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5720" name="k1" value="0.00100039"/>
+          <Constant key="Parameter_5372" name="k1" value="0.00100039"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2394,7 +2453,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_9" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5702" name="k1" value="0.882455"/>
+          <Constant key="Parameter_5371" name="k1" value="0.882455"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2428,8 +2487,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_17" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5703" name="index_seq_kb" value="0.000865132"/>
-          <Constant key="Parameter_5701" name="kf_Seq_S7_Rec" value="0.882455"/>
+          <Constant key="Parameter_5370" name="index_seq_kb" value="0.000865132"/>
+          <Constant key="Parameter_5369" name="kf_Seq_S7_Rec" value="0.882455"/>
         </ListOfConstants>
         <KineticLaw function="Function_45" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2466,8 +2525,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_17" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5704" name="index_induced_ligand_deg" value="2.72107"/>
-          <Constant key="Parameter_5364" name="kin_deg_Ligand" value="0.720182"/>
+          <Constant key="Parameter_5368" name="index_induced_ligand_deg" value="2.72107"/>
+          <Constant key="Parameter_5367" name="kin_deg_Ligand" value="0.720182"/>
         </ListOfConstants>
         <KineticLaw function="Function_49" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2504,8 +2563,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_17" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5363" name="index_induced_R2_deg" value="1.00038"/>
-          <Constant key="Parameter_5362" name="kdeg_R2" value="0.00100039"/>
+          <Constant key="Parameter_5366" name="index_induced_R2_deg" value="1.00038"/>
+          <Constant key="Parameter_5365" name="kdeg_R2" value="0.00100039"/>
         </ListOfConstants>
         <KineticLaw function="Function_73" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2540,7 +2599,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_2" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5361" name="k1" value="0.397836"/>
+          <Constant key="Parameter_5364" name="k1" value="0.397836"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2572,7 +2631,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_3" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5360" name="k1" value="0.396039"/>
+          <Constant key="Parameter_5363" name="k1" value="0.396039"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2604,8 +2663,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_0" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5359" name="index_k_out_1_relative_speed_C3" value="1.13287"/>
-          <Constant key="Parameter_5358" name="k_in_R1_C3" value="0.397836"/>
+          <Constant key="Parameter_5687" name="index_k_out_1_relative_speed_C3" value="1.13287"/>
+          <Constant key="Parameter_5688" name="k_in_R1_C3" value="0.397836"/>
         </ListOfConstants>
         <KineticLaw function="Function_54" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2640,8 +2699,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_1" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5357" name="index_k_out_2_relative_speed_C3" value="0.450697"/>
-          <Constant key="Parameter_5356" name="k_in_R2_C3" value="0.396039"/>
+          <Constant key="Parameter_5686" name="index_k_out_2_relative_speed_C3" value="0.450697"/>
+          <Constant key="Parameter_5689" name="k_in_R2_C3" value="0.396039"/>
         </ListOfConstants>
         <KineticLaw function="Function_72" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2676,8 +2735,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_8" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5355" name="index_active_Rec_internalize_C3" value="1.03791"/>
-          <Constant key="Parameter_5354" name="k_in_R1_C3" value="0.397836"/>
+          <Constant key="Parameter_5716" name="index_active_Rec_internalize_C3" value="1.03791"/>
+          <Constant key="Parameter_5717" name="k_in_R1_C3" value="0.397836"/>
         </ListOfConstants>
         <KineticLaw function="Function_51" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2714,7 +2773,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_5" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5353" name="k1" value="0.0010394"/>
+          <Constant key="Parameter_5715" name="k1" value="0.0010394"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2743,7 +2802,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_5" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5352" name="k1" value="0.720182"/>
+          <Constant key="Parameter_5718" name="k1" value="0.720182"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2772,7 +2831,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_4" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5351" name="k1" value="0.000361896"/>
+          <Constant key="Parameter_5700" name="k1" value="0.000361896"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2807,7 +2866,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_8" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5350" name="k_phosphorylation" value="0.070156"/>
+          <Constant key="Parameter_5701" name="k_phosphorylation" value="0.070156"/>
         </ListOfConstants>
         <KineticLaw function="Function_67" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2843,7 +2902,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_13" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5349" name="k1" value="4.81425"/>
+          <Constant key="Parameter_5699" name="k1" value="4.81425"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2878,7 +2937,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_12" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5657" name="k1" value="1.60773"/>
+          <Constant key="Parameter_5702" name="k1" value="1.60773"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -2911,7 +2970,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_19" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5658" name="k1" value="4.81425"/>
+          <Constant key="Parameter_5362" name="k1" value="4.81425"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -2946,7 +3005,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_22" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5656" name="k1" value="1.60773"/>
+          <Constant key="Parameter_5361" name="k1" value="1.60773"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -2978,8 +3037,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_14" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5659" name="index_kf_homotrimer" value="4.48579"/>
-          <Constant key="Parameter_5348" name="kf_trimmer" value="4.81425"/>
+          <Constant key="Parameter_5360" name="index_kf_homotrimer" value="4.48579"/>
+          <Constant key="Parameter_5359" name="kf_trimmer" value="4.81425"/>
         </ListOfConstants>
         <KineticLaw function="Function_66" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3014,8 +3073,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_10" stoichiometry="3"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5347" name="index_kb_homotrimer" value="0.0163922"/>
-          <Constant key="Parameter_5346" name="kb_trimmer" value="1.60773"/>
+          <Constant key="Parameter_5358" name="index_kb_homotrimer" value="0.0163922"/>
+          <Constant key="Parameter_5357" name="kb_trimmer" value="1.60773"/>
         </ListOfConstants>
         <KineticLaw function="Function_48" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3050,8 +3109,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_20" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5345" name="index_kf_homotrimer" value="4.48579"/>
-          <Constant key="Parameter_5344" name="kf_trimmer" value="4.81425"/>
+          <Constant key="Parameter_5356" name="index_kf_homotrimer" value="4.48579"/>
+          <Constant key="Parameter_5355" name="kf_trimmer" value="4.81425"/>
         </ListOfConstants>
         <KineticLaw function="Function_53" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3086,8 +3145,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_18" stoichiometry="3"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5343" name="index_kb_homotrimer" value="0.0163922"/>
-          <Constant key="Parameter_5342" name="kb_trimmer" value="1.60773"/>
+          <Constant key="Parameter_5354" name="index_kb_homotrimer" value="0.0163922"/>
+          <Constant key="Parameter_5353" name="kb_trimmer" value="1.60773"/>
         </ListOfConstants>
         <KineticLaw function="Function_43" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3122,7 +3181,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_21" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5341" name="S2_import_to_nuc_C3" value="0.248774"/>
+          <Constant key="Parameter_5352" name="S2_import_to_nuc_C3" value="0.248774"/>
         </ListOfConstants>
         <KineticLaw function="Function_61" unitType="Default">
           <ListOfCallParameters>
@@ -3157,7 +3216,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_11" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5340" name="S2_export_from_nuc_C3" value="3.00431"/>
+          <Constant key="Parameter_5351" name="S2_export_from_nuc_C3" value="3.00431"/>
         </ListOfConstants>
         <KineticLaw function="Function_64" unitType="Default">
           <ListOfCallParameters>
@@ -3192,7 +3251,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_22" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5338" name="S4_import_to_nuc_C3" value="0.0730475"/>
+          <Constant key="Parameter_5350" name="S4_import_to_nuc_C3" value="0.0730475"/>
         </ListOfConstants>
         <KineticLaw function="Function_42" unitType="Default">
           <ListOfCallParameters>
@@ -3227,7 +3286,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_12" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5339" name="S4_export_from_nuc_C3" value="0.0984719"/>
+          <Constant key="Parameter_5349" name="S4_export_from_nuc_C3" value="0.0984719"/>
         </ListOfConstants>
         <KineticLaw function="Function_62" unitType="Default">
           <ListOfCallParameters>
@@ -3262,7 +3321,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_18" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5337" name="S2_import_to_nuc_C3" value="0.248774"/>
+          <Constant key="Parameter_5348" name="S2_import_to_nuc_C3" value="0.248774"/>
         </ListOfConstants>
         <KineticLaw function="Function_41" unitType="Default">
           <ListOfCallParameters>
@@ -3297,7 +3356,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_10" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5336" name="S2_export_from_nuc_C3" value="3.00431"/>
+          <Constant key="Parameter_5347" name="S2_export_from_nuc_C3" value="3.00431"/>
         </ListOfConstants>
         <KineticLaw function="Function_47" unitType="Default">
           <ListOfCallParameters>
@@ -3332,7 +3391,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_19" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5335" name="Trimer_import_to_nuc" value="0.144035"/>
+          <Constant key="Parameter_5655" name="Trimer_import_to_nuc" value="0.144035"/>
         </ListOfConstants>
         <KineticLaw function="Function_69" unitType="Default">
           <ListOfCallParameters>
@@ -3367,7 +3426,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_20" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5334" name="Trimer_import_to_nuc" value="0.144035"/>
+          <Constant key="Parameter_5656" name="Trimer_import_to_nuc" value="0.144035"/>
         </ListOfConstants>
         <KineticLaw function="Function_70" unitType="Default">
           <ListOfCallParameters>
@@ -3402,7 +3461,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_21" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5333" name="k1" value="0.0707018"/>
+          <Constant key="Parameter_5654" name="k1" value="0.0707018"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3436,8 +3495,8 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_22" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5332" name="index_trimer_dephos" value="2.61014"/>
-          <Constant key="Parameter_5331" name="k_Dephos_C3" value="0.0707018"/>
+          <Constant key="Parameter_5657" name="index_trimer_dephos" value="2.61014"/>
+          <Constant key="Parameter_5346" name="k_Dephos_C3" value="0.0707018"/>
         </ListOfConstants>
         <KineticLaw function="Function_59" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3469,10 +3528,10 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_11" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5330" name="S2_export_from_nuc_C3" value="3.00431"/>
-          <Constant key="Parameter_5329" name="S2_import_to_nuc_C3" value="0.248774"/>
-          <Constant key="Parameter_5328" name="S2_total_C3" value="1335.78"/>
-          <Constant key="Parameter_5322" name="kdeg_S2" value="0.000514084"/>
+          <Constant key="Parameter_5345" name="S2_export_from_nuc_C3" value="3.00431"/>
+          <Constant key="Parameter_5344" name="S2_import_to_nuc_C3" value="0.248774"/>
+          <Constant key="Parameter_5343" name="S2_total_C3" value="1335.78"/>
+          <Constant key="Parameter_5342" name="kdeg_S2" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_44" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3507,10 +3566,10 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_12" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5321" name="S4_export_from_nuc_C3" value="0.0984719"/>
-          <Constant key="Parameter_5320" name="S4_import_to_nuc_C3" value="0.0730475"/>
-          <Constant key="Parameter_5319" name="S4_total_C3" value="347.506"/>
-          <Constant key="Parameter_5318" name="kdeg_S4" value="0.00480203"/>
+          <Constant key="Parameter_5341" name="S4_export_from_nuc_C3" value="0.0984719"/>
+          <Constant key="Parameter_5340" name="S4_import_to_nuc_C3" value="0.0730475"/>
+          <Constant key="Parameter_5339" name="S4_total_C3" value="347.506"/>
+          <Constant key="Parameter_5338" name="kdeg_S4" value="0.00480203"/>
         </ListOfConstants>
         <KineticLaw function="Function_57" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3545,10 +3604,10 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_0" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5317" name="R1_total_C3" value="69.72"/>
-          <Constant key="Parameter_5316" name="index_k_out_1_relative_speed_C3" value="1.13287"/>
-          <Constant key="Parameter_5315" name="k_in_R1_C3" value="0.397836"/>
-          <Constant key="Parameter_5314" name="kdeg_R1" value="0.0586584"/>
+          <Constant key="Parameter_5337" name="R1_total_C3" value="69.72"/>
+          <Constant key="Parameter_5336" name="index_k_out_1_relative_speed_C3" value="1.13287"/>
+          <Constant key="Parameter_5335" name="k_in_R1_C3" value="0.397836"/>
+          <Constant key="Parameter_5334" name="kdeg_R1" value="0.0586584"/>
         </ListOfConstants>
         <KineticLaw function="Function_40" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3583,10 +3642,10 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_1" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5313" name="R2_total_C3" value="49.1925"/>
-          <Constant key="Parameter_5312" name="index_k_out_2_relative_speed_C3" value="0.450697"/>
-          <Constant key="Parameter_5311" name="k_in_R2_C3" value="0.396039"/>
-          <Constant key="Parameter_5310" name="kdeg_R2" value="0.00100039"/>
+          <Constant key="Parameter_5333" name="R2_total_C3" value="49.1925"/>
+          <Constant key="Parameter_5332" name="index_k_out_2_relative_speed_C3" value="0.450697"/>
+          <Constant key="Parameter_5331" name="k_in_R2_C3" value="0.396039"/>
+          <Constant key="Parameter_5330" name="kdeg_R2" value="0.00100039"/>
         </ListOfConstants>
         <KineticLaw function="Function_56" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3624,12 +3683,12 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_19" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5309" name="DRB" value="1"/>
-          <Constant key="Parameter_5308" name="K_mran" value="223.586"/>
-          <Constant key="Parameter_5307" name="S7KD" value="1"/>
-          <Constant key="Parameter_5306" name="hill_fact1" value="3.9863"/>
-          <Constant key="Parameter_5305" name="k_induced_S7_production_C3" value="2.95109"/>
-          <Constant key="Parameter_5304" name="mRNA_prod_C3" value="0.0239755"/>
+          <Constant key="Parameter_5329" name="DRB" value="1"/>
+          <Constant key="Parameter_5328" name="K_mran" value="223.586"/>
+          <Constant key="Parameter_5327" name="S7KD" value="1"/>
+          <Constant key="Parameter_5326" name="hill_fact1" value="3.9863"/>
+          <Constant key="Parameter_5320" name="k_induced_S7_production_C3" value="2.95109"/>
+          <Constant key="Parameter_5319" name="mRNA_prod_C3" value="0.0239755"/>
         </ListOfConstants>
         <KineticLaw function="Function_50" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3676,7 +3735,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_15" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5303" name="export_cytoplasm" value="0.0304373"/>
+          <Constant key="Parameter_5318" name="export_cytoplasm" value="0.0304373"/>
         </ListOfConstants>
         <KineticLaw function="Function_68" unitType="Default">
           <ListOfCallParameters>
@@ -3711,7 +3770,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_15" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5302" name="k_S7_protein_C3" value="0.12315"/>
+          <Constant key="Parameter_5317" name="k_S7_protein_C3" value="0.12315"/>
         </ListOfConstants>
         <KineticLaw function="Function_63" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3740,7 +3799,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_11" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5301" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5316" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3769,7 +3828,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_21" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5300" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5315" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3798,7 +3857,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_18" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5299" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5314" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3827,7 +3886,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_10" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5298" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5313" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3856,7 +3915,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_12" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5297" name="k1" value="0.00480203"/>
+          <Constant key="Parameter_5312" name="k1" value="0.00480203"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3885,7 +3944,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_22" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5296" name="k1" value="0.00480203"/>
+          <Constant key="Parameter_5311" name="k1" value="0.00480203"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -3918,7 +3977,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_12" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5295" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5310" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3950,7 +4009,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_10" stoichiometry="2"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5294" name="k1" value="0.00480203"/>
+          <Constant key="Parameter_5309" name="k1" value="0.00480203"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -3982,7 +4041,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_10" stoichiometry="2"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5293" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5308" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -4015,7 +4074,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_22" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5292" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5307" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -4047,7 +4106,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_18" stoichiometry="2"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5291" name="k1" value="0.00480203"/>
+          <Constant key="Parameter_5306" name="k1" value="0.00480203"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -4079,7 +4138,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_18" stoichiometry="2"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5290" name="k1" value="0.000514084"/>
+          <Constant key="Parameter_5305" name="k1" value="0.000514084"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -4108,7 +4167,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_16" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5289" name="k1" value="0.00523181"/>
+          <Constant key="Parameter_5304" name="k1" value="0.00523181"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[nuc]">
           <ListOfCallParameters>
@@ -4137,7 +4196,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Substrate metabolite="Metabolite_15" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5288" name="k1" value="0.0990158"/>
+          <Constant key="Parameter_5303" name="k1" value="0.0990158"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -4152,21 +4211,24 @@ Reaction scheme where the products are created from the reactants and the change
       </Reaction>
       <Reaction key="Reaction_65" name="reaction68" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_65">
     <CopasiMT:isVersionOf>
       <rdf:Bag>
-        <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000179" />
+        <rdf:li rdf:resource="http://identifiers.org/sbo/SBO:0000179"/>
       </rdf:Bag>
     </CopasiMT:isVersionOf>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_17" stoichiometry="1"/>
         </ListOfSubstrates>
         <ListOfConstants>
-          <Constant key="Parameter_5287" name="k1" value="0.00102402"/>
+          <Constant key="Parameter_5302" name="k1" value="0.00102402"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Vector=Compartments[cyt]">
           <ListOfCallParameters>
@@ -4187,6 +4249,11 @@ Reaction scheme where the products are created from the reactants and the change
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#ModelParameterSet_1">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2021-02-24T13:55:40Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -5035,7 +5102,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     </InitialState>
   </Model>
   <ListOfTasks>
-    <Task key="Task_17" name="Steady-State" type="steadyState" scheduled="false" updateModel="false">
+    <Task key="Task_15" name="Steady-State" type="steadyState" scheduled="false" updateModel="false">
       <Report reference="Report_11" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="JacobianRequested" type="bool" value="1"/>
@@ -5054,7 +5121,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Target Criterion" type="string" value="Distance and Rate"/>
       </Method>
     </Task>
-    <Task key="Task_18" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
+    <Task key="Task_16" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Report reference="Report_12" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
@@ -5076,7 +5143,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Step Size" type="unsignedFloat" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_19" name="Scan" type="scan" scheduled="false" updateModel="false">
+    <Task key="Task_17" name="Scan" type="scan" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="Subtask" type="unsignedInteger" value="1"/>
         <ParameterGroup name="ScanItems">
@@ -5088,14 +5155,14 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <Method name="Scan Framework" type="ScanFramework">
       </Method>
     </Task>
-    <Task key="Task_20" name="Elementary Flux Modes" type="fluxMode" scheduled="false" updateModel="false">
+    <Task key="Task_18" name="Elementary Flux Modes" type="fluxMode" scheduled="false" updateModel="false">
       <Report reference="Report_13" target="" append="1" confirmOverwrite="1"/>
       <Problem>
       </Problem>
       <Method name="EFM Algorithm" type="EFMAlgorithm">
       </Method>
     </Task>
-    <Task key="Task_21" name="Optimization" type="optimization" scheduled="false" updateModel="false">
+    <Task key="Task_19" name="Optimization" type="optimization" scheduled="false" updateModel="false">
       <Report reference="Report_14" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="Subtask" type="cn" value="CN=Root,Vector=TaskList[Steady-State]"/>
@@ -5117,7 +5184,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Seed" type="unsignedInteger" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_22" name="Parameter Estimation" type="parameterFitting" scheduled="false" updateModel="false">
+    <Task key="Task_20" name="Parameter Estimation" type="parameterFitting" scheduled="false" updateModel="false">
       <Report reference="Report_15" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="Maximize" type="bool" value="0"/>
@@ -5148,10 +5215,10 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Stop after # Stalled Generations" type="unsignedInteger" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_23" name="Metabolic Control Analysis" type="metabolicControlAnalysis" scheduled="false" updateModel="false">
+    <Task key="Task_21" name="Metabolic Control Analysis" type="metabolicControlAnalysis" scheduled="false" updateModel="false">
       <Report reference="Report_16" target="" append="1" confirmOverwrite="1"/>
       <Problem>
-        <Parameter name="Steady-State" type="key" value="Task_17"/>
+        <Parameter name="Steady-State" type="key" value="Task_15"/>
       </Problem>
       <Method name="MCA Method (Reder)" type="MCAMethod(Reder)">
         <Parameter name="Modulation Factor" type="unsignedFloat" value="1.0000000000000001e-09"/>
@@ -5159,7 +5226,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Use Smallbone" type="bool" value="1"/>
       </Method>
     </Task>
-    <Task key="Task_24" name="Lyapunov Exponents" type="lyapunovExponents" scheduled="false" updateModel="false">
+    <Task key="Task_22" name="Lyapunov Exponents" type="lyapunovExponents" scheduled="false" updateModel="false">
       <Report reference="Report_17" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="ExponentNumber" type="unsignedInteger" value="3"/>
@@ -5174,7 +5241,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Steps" type="unsignedInteger" value="10000"/>
       </Method>
     </Task>
-    <Task key="Task_25" name="Time Scale Separation Analysis" type="timeScaleSeparationAnalysis" scheduled="false" updateModel="false">
+    <Task key="Task_23" name="Time Scale Separation Analysis" type="timeScaleSeparationAnalysis" scheduled="false" updateModel="false">
       <Report reference="Report_18" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -5187,7 +5254,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Deuflhard Tolerance" type="unsignedFloat" value="0.0001"/>
       </Method>
     </Task>
-    <Task key="Task_26" name="Sensitivities" type="sensitivities" scheduled="false" updateModel="false">
+    <Task key="Task_24" name="Sensitivities" type="sensitivities" scheduled="false" updateModel="false">
       <Report reference="Report_19" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="SubtaskType" type="unsignedInteger" value="1"/>
@@ -5211,14 +5278,14 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Delta minimum" type="unsignedFloat" value="9.9999999999999998e-13"/>
       </Method>
     </Task>
-    <Task key="Task_27" name="Moieties" type="moieties" scheduled="false" updateModel="false">
+    <Task key="Task_25" name="Moieties" type="moieties" scheduled="false" updateModel="false">
       <Report reference="Report_20" target="" append="1" confirmOverwrite="1"/>
       <Problem>
       </Problem>
       <Method name="Householder Reduction" type="Householder">
       </Method>
     </Task>
-    <Task key="Task_28" name="Cross Section" type="crosssection" scheduled="false" updateModel="false">
+    <Task key="Task_26" name="Cross Section" type="crosssection" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -5254,15 +5321,15 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Step Size" type="unsignedFloat" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_29" name="Linear Noise Approximation" type="linearNoiseApproximation" scheduled="false" updateModel="false">
+    <Task key="Task_27" name="Linear Noise Approximation" type="linearNoiseApproximation" scheduled="false" updateModel="false">
       <Report reference="Report_21" target="" append="1" confirmOverwrite="1"/>
       <Problem>
-        <Parameter name="Steady-State" type="key" value="Task_17"/>
+        <Parameter name="Steady-State" type="key" value="Task_15"/>
       </Problem>
       <Method name="Linear Noise Approximation" type="LinearNoiseApproximation">
       </Method>
     </Task>
-    <Task key="Task_30" name="Time-Course Sensitivities" type="timeSensitivities" scheduled="false" updateModel="false">
+    <Task key="Task_28" name="Time-Course Sensitivities" type="timeSensitivities" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -5443,11 +5510,11 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <Parameter name="log Y" type="bool" value="0"/>
       <ListOfPlotItems>
         <PlotItem name="Values[NUC/CYT SMAD2]|Time" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="3"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
           <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Line width" type="unsignedFloat" value="2"/>
           <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Color" type="string" value="#00BEF0"/>
+          <Parameter name="Color" type="string" value="auto"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Strasen2018 – TGFβ SMAD Signalling Class 3,Reference=Time"/>
@@ -5642,6 +5709,11 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_0">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2021-02-24T13:55:37Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -5655,6 +5727,11 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_4">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2021-02-24T13:55:37Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -5668,6 +5745,11 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_16">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2021-02-24T13:55:37Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -5681,6 +5763,11 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_34">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2021-02-24T13:55:37Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -5694,6 +5781,11 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_64">
+<dcterms:created>
+<rdf:Description>
+<dcterms:W3CDTF>2021-02-24T13:55:37Z</dcterms:W3CDTF>
+</rdf:Description>
+</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
