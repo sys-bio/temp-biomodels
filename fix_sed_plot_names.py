@@ -4,7 +4,7 @@ import csv
 
 table = []
 
-with open('Revised output names.csv') as csvfile:
+with open('Revised output names.csv', encoding="utf-8") as csvfile:
     rev_reader = csv.reader(csvfile)
     for row in rev_reader:
         table.append(row)
