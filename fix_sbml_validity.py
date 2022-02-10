@@ -149,58 +149,60 @@ INVALID_IDENTIFIERS_NAMESPACES = set()
 
 uri_replacements = {
         "bao/274": "bao/0000274",
+        "bind/130661": "ncbiprotein/NP_011952", #cf Gary Bader's lab
+        "bind/50058": "ncbiprotein/NP_010550", #cf Gary Bader's lab
         "brenda/BTO:0000304": "bto/BTO:0000304",
         "bto/00": "bto/BTO:00",
         "bto/BTO:000782" : "bto/BTO:0000782",
         "bto/BTO:35490": "bto/BTO:0035490", #This doesn't seem to exist.
         "bto/BTO::": "bto/BTO:",
+        "cco/CL:": "cco/CCO:",
         "chebi/00": "chebi/CHEBI:00",
+        "chebi/PATO:": "pato/PATO:",
         "doi/doi:%2010.1136/annrheumdis-2014-206295": "doi/doi:10.1136/annrheumdis-2014-206295",
+        "ensembl/ENSG00000049246.14": "ensembl/ENSG00000049246",
+        "ensembl/ENSG00000109819.9": "ensembl/ENSG00000109819",
+        "ensembl/ENSG00000132326.12": "ensembl/ENSG00000132326",
+        "ensembl/ENSG00000179094.16": "ensembl/ENSG00000179094",
         "go/G0": "go/GO",
         "go/GI": "go/GO",
-        "go/SBO:": "sbo/SBO:",
         "go/GO:000821": "go/GO:0000821",
         "go/GO:000828": "go/GO:0000828",
         "go/GO:006470": "go/GO:0006470",
+        "go/SBO:": "sbo/SBO:",
+        "ido/C101887": "ncit/C101887",
+        "ido/C171133": "ncit/C171133",
         "interpro/P36897": "uniprot/P36897",
         "kegg.compound/Cystathionine": "kegg.compound/C02291",
         "kegg.genes/K04459": "kegg.orthology/K04459",
         "kegg.pathway/2353": "kegg.genes/hsa:2353",
         "mamo/MAMO:": "mamo/MAMO_",
         "ncit/GO:": "go/GO:",
-        "ncit/SBO": "sbo/SBO",
         "ncit/NCIT_C449": "ncit/C449",
+        "ncit/SBO": "sbo/SBO",
         "ncit/c128320": "ncit/C128320",
+        "ncit/mTORC2": "ncit/C96315",
+        "neurolex/C25636": "ncit/C25636",
+        "obi/OBA": "obi/OBI",
+        "omit/OMIT_": "omit/OMIT:",
+        "pato/00": "pato/PATO:00",
         "pato/00": "pato/PATO:00",
         "reactome/SBO:0000179": "sbo/SBO:0000179",
         "sbo/000": "sbo/SBO:000",
+        "sbo/GO": "go/GO",
+        "sbo/degradation": "sbo/SBO:0000179",
+        "t3db/SBO:": "sbo/SBO:",
+        "uberon/BTO:0000398": "bto/BTO:0000398",
+        "unigene/P01730": "uniprot/P01730",
+        "unipathway.compound/P07333": "uniprot/P07333",
+        "unipathway.reaction/Q9Z1E3": "uniprot/Q9Z1E3",
         "uniprot.isoform/P": "uniprot/P",
         "uniprot.isoform/Q": "uniprot/Q",
         "uniprot/C21160": "ncit/C21160",
         "uniprot/C94967": "ncit/C94967",
         "uniprot/GO:0005893": "go/GO:0005893",
-        "cco/CL:": "cco/CCO:",
-        "chebi/PATO:": "pato/PATO:",
-        "sbo/degradation": "sbo/SBO:0000179",
-        "obi/OBA": "obi/OBI",
-        "omit/OMIT_": "omit/OMIT:",
-        "sbo/GO": "go/GO",
-        "ncit/mTORC2": "ncit/C96315",
-        "pato/00": "pato/PATO:00",
-        "unipathway.compound/P07333": "uniprot/P07333",
-        "unipathway.reaction/Q9Z1E3": "uniprot/Q9Z1E3",
         "uniprot/PR:000050007": "pr/PR:000050007",
-        "neurolex/C25636": "ncit/C25636",
-        "uberon/BTO:0000398": "bto/BTO:0000398",
-        "unigene/P01730": "uniprot/P01730",
         "unists/P00734": "uniprot/P00734",
-        "ido/C171133": "ncit/C171133",
-        "ido/C101887": "ncit/C101887",
-        "t3db/SBO:": "sbo/SBO:",
-        # "": "",
-#        "bind/"
-#        "bind/133390": "psimi/MI:0314",
-#        "bind/50058": "psimi/MI:0462",
         }
 
 # No good guesses:
@@ -213,13 +215,6 @@ uri_replacements = {
 # http://identifiers.org/ncit/0000621
 # http://identifiers.org/ncit/25559
 # http://identifiers.org/pdb-ccd/26158
-
-
-# I think these should be legal:
-# http://identifiers.org/ensembl/ENSG00000049246.14
-# http://identifiers.org/ensembl/ENSG00000109819.9
-# http://identifiers.org/ensembl/ENSG00000132326.12
-# http://identifiers.org/ensembl/ENSG00000179094.16
 
 def fixURI(uri):
     for old in uri_replacements:
@@ -248,11 +243,11 @@ def retestAllIdentifiersURIs(file):
                                 validate_identifiers_org_uri(charstr)
                             except Exception as e:
                                 bad_uris.append((file, charstr, str(e)))
-                                print(bad_uris[-1])
+                                # print(bad_uris[-1])
     f.close()
     for (file, uri, msg) in bad_uris:
         uri2 = fixURI(uri)
-        print("new version:", uri2)
+        # print("new version:", uri2)
         if uri2 is not None:
             validate_identifiers_org_uri(uri2)
             assert(".xml" in file)
@@ -266,7 +261,7 @@ def retestAllIdentifiersURIs(file):
             orig.close()
             new.close()
             replace(tmpname, file)
-            fixed_uris[uri] = uri2
+            fixed_uris[(file, uri)] = uri2
         else:
             remaining_bad_uris.append((file, uri))
         
@@ -350,3 +345,20 @@ def run(id, sbml_files):
     # print("Invalid identifiers.org namespaces:")
     # print(INVALID_IDENTIFIERS_NAMESPACES)
              
+def writeURIChanges(baduri_filename, changeduri_filename):
+    f = open(baduri_filename, "w")
+    for (fname, uri) in remaining_bad_uris:
+       f.write(fname)
+       f.write(",")
+       f.write(uri)
+       f.write("\n")
+    f.close()
+    f = open(changeduri_filename, "w")
+    for (fname, uri) in fixed_uris:
+       f.write(fname)
+       f.write(",")
+       f.write(uri)
+       f.write(",")
+       f.write(fixed_uris[(fname, uri)])
+       f.write("\n")
+   
