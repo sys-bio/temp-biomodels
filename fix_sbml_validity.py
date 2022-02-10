@@ -1,6 +1,7 @@
 import libsbml
 import urllib
 from os import replace
+from biosimulators_utils.utils.identifiers_org import validate_identifiers_org_uri
 
 def fixNanoMolar(file):
     doc = libsbml.readSBMLFromFile(file)
@@ -66,6 +67,8 @@ def fixPubmedId(file, pmid, id):
     elif "[" in pmid:
         pmid2 = pmid.replace("[", "")
         pmid2 = pmid2.replace("]", "")
+    elif "+" in pmid:
+        pmid2 = pmid.replace("+", "")
     elif "PMID:" in pmid:
         pmid2 = pmid.replace("PMID:", "")
     elif pmid == "---":
@@ -80,8 +83,8 @@ def fixPubmedId(file, pmid, id):
             raise NotImplementedError("Unknown problem pubmed ID", pmid)
     assert(".xml" in file)
     tmpname = file.replace(".xml", ".tmp")
-    orig = open(file, "r")
-    new = open(tmpname, "w")
+    orig = open(file, "r", encoding="utf-8")
+    new = open(tmpname, "w", encoding="utf-8")
     for line in orig:
         if pmid + " " in line:
             line = line.replace(pmid + " ", pmid2)
@@ -116,9 +119,6 @@ def fixIdentifiersNS(file, oldns, id):
     elif oldns == "psimi":
         #https://github.com/identifiers-org/identifiers-org.github.io/issues/190 for adding this.
         return
-    elif oldns == "bind":
-        #??
-        return
     elif oldns == "omim":
         #This looks like it used to be there?  And got dropped?
         #https://github.com/identifiers-org/identifiers-org.github.io/issues/189 for trying to add it back.
@@ -130,11 +130,11 @@ def fixIdentifiersNS(file, oldns, id):
         # raise NotImplementedError("Unknown identifiers wrong ns ", oldns)
         
     assert(newns in VALID_IDENTIFIERS_NAMESPACES or not checkAndAddIdentifiersNamespace(newns))
-
+    
     assert(".xml" in file)
     tmpname = file.replace(".xml", ".tmp")
-    orig = open(file, "r")
-    new = open(tmpname, "w")
+    orig = open(file, "r", encoding="utf-8")
+    new = open(tmpname, "w", encoding="utf-8")
     for line in orig:
         if "identifiers.org/" + oldns in line:
             line = line.replace(oldns, newns)
@@ -146,6 +146,131 @@ def fixIdentifiersNS(file, oldns, id):
 
 VALID_IDENTIFIERS_NAMESPACES = {'ncbiprotein', 'orphanet', 'unists', '3dmet', 'pubchem.compound', 'meddra', 'eco', 'ido', 'uniprot', 'cco', 'reactome', 'arxiv', 'intact', 'mod', 'narcis', 'ensembl', 'mirbase.mature', 'DOI', 'eo', 'taxonomy', 'unipathway.compound', 'sgd', 'hgnc.symbol', 'ec-code', 'chebi', 'pirsf', 'lipidmaps', 'ecogene', 'kegg.reaction', 'mamo', 'isbn', 'panther.pathway', 'biomodels.teddy', 'kegg.drug', 'brenda', 'kegg.orthology', 'obi', 'pr', 'subtiwiki', 'opb', 'modeldb', 'doi', 'pubmed', 'vario', 'uberon', 'GO', 'kegg.compound', 'insdc', 'doid', 'mirbase', 'cas', 'bto', 'ncit', 'mp', 'biomodels.db', 'neurolex', 't3db', 'hp', 'chembl.compound', 'pdb-ccd', 'tcdb', 'cl', 'pw', 'omit', 'unigene', 'ncim', 'envo', 'bao', 'efo', 'pato', 'sbo', 'biomodels.kisao', 'go', 'po', 'kegg.pathway', 'pubchem.substance', 'ncbigene', 'so', 'uniprot.isoform', 'fma', 'kegg.genes', 'icd', 'unipathway.reaction', 'interpro'}
 INVALID_IDENTIFIERS_NAMESPACES = set()
+
+uri_replacements = {
+        "bao/274": "bao/0000274",
+        "brenda/BTO:0000304": "bto/BTO:0000304",
+        "bto/00": "bto/BTO:00",
+        "bto/BTO:000782" : "bto/BTO:0000782",
+        "bto/BTO:35490": "bto/BTO:0035490", #This doesn't seem to exist.
+        "bto/BTO::": "bto/BTO:",
+        "chebi/00": "chebi/CHEBI:00",
+        "doi/doi:%2010.1136/annrheumdis-2014-206295": "doi/doi:10.1136/annrheumdis-2014-206295",
+        "go/G0": "go/GO",
+        "go/GI": "go/GO",
+        "go/SBO:": "sbo/SBO:",
+        "go/GO:000821": "go/GO:0000821",
+        "go/GO:000828": "go/GO:0000828",
+        "go/GO:006470": "go/GO:0006470",
+        "interpro/P36897": "uniprot/P36897",
+        "kegg.compound/Cystathionine": "kegg.compound/C02291",
+        "kegg.genes/K04459": "kegg.orthology/K04459",
+        "kegg.pathway/2353": "kegg.genes/hsa:2353",
+        "mamo/MAMO:": "mamo/MAMO_",
+        "ncit/GO:": "go/GO:",
+        "ncit/SBO": "sbo/SBO",
+        "ncit/NCIT_C449": "ncit/C449",
+        "ncit/c128320": "ncit/C128320",
+        "pato/00": "pato/PATO:00",
+        "reactome/SBO:0000179": "sbo/SBO:0000179",
+        "sbo/000": "sbo/SBO:000",
+        "uniprot.isoform/P": "uniprot/P",
+        "uniprot.isoform/Q": "uniprot/Q",
+        "uniprot/C21160": "ncit/C21160",
+        "uniprot/C94967": "ncit/C94967",
+        "uniprot/GO:0005893": "go/GO:0005893",
+        "cco/CL:": "cco/CCO:",
+        "chebi/PATO:": "pato/PATO:",
+        "sbo/degradation": "sbo/SBO:0000179",
+        "obi/OBA": "obi/OBI",
+        "omit/OMIT_": "omit/OMIT:",
+        "sbo/GO": "go/GO",
+        "ncit/mTORC2": "ncit/C96315",
+        "pato/00": "pato/PATO:00",
+        "unipathway.compound/P07333": "uniprot/P07333",
+        "unipathway.reaction/Q9Z1E3": "uniprot/Q9Z1E3",
+        "uniprot/PR:000050007": "pr/PR:000050007",
+        "neurolex/C25636": "ncit/C25636",
+        "uberon/BTO:0000398": "bto/BTO:0000398",
+        "unigene/P01730": "uniprot/P01730",
+        "unists/P00734": "uniprot/P00734",
+        "ido/C171133": "ncit/C171133",
+        "ido/C101887": "ncit/C101887",
+        "t3db/SBO:": "sbo/SBO:",
+        # "": "",
+#        "bind/"
+#        "bind/133390": "psimi/MI:0314",
+#        "bind/50058": "psimi/MI:0462",
+        }
+
+# No good guesses:
+# http://identifiers.org/ncit/0000511
+# http://identifiers.org/ncit/0000514
+# http://identifiers.org/ncit/0000514
+# http://identifiers.org/ncit/0000597
+# http://identifiers.org/ncit/0000597
+# http://identifiers.org/ncit/0000597
+# http://identifiers.org/ncit/0000621
+# http://identifiers.org/ncit/25559
+# http://identifiers.org/pdb-ccd/26158
+
+
+# I think these should be legal:
+# http://identifiers.org/ensembl/ENSG00000049246.14
+# http://identifiers.org/ensembl/ENSG00000109819.9
+# http://identifiers.org/ensembl/ENSG00000132326.12
+# http://identifiers.org/ensembl/ENSG00000179094.16
+
+def fixURI(uri):
+    for old in uri_replacements:
+        if old in uri:
+            return uri.replace(old, uri_replacements[old])
+    return None
+    
+remaining_bad_uris = []
+fixed_uris = {}
+
+def retestAllIdentifiersURIs(file):
+    bad_uris = []
+    f = open(file, "r", encoding="utf-8")
+    for line in f:
+        if "identifiers.org" in line:
+            lvec = line.strip().split()
+            for word in lvec:
+                if "identifiers.org" in word:
+                    for charstr in word.split('"'):
+                        if "identifiers.org" in charstr:
+                            if "omim" in charstr:
+                                continue
+                            if "psimi" in charstr:
+                                continue
+                            try:
+                                validate_identifiers_org_uri(charstr)
+                            except Exception as e:
+                                bad_uris.append((file, charstr, str(e)))
+                                print(bad_uris[-1])
+    f.close()
+    for (file, uri, msg) in bad_uris:
+        uri2 = fixURI(uri)
+        print("new version:", uri2)
+        if uri2 is not None:
+            validate_identifiers_org_uri(uri2)
+            assert(".xml" in file)
+            tmpname = file.replace(".xml", ".tmp")
+            orig = open(file, "r", encoding="utf-8")
+            new = open(tmpname, "w", encoding="utf-8")
+            for line in orig:
+                if uri in line:
+                    line = line.replace(uri, uri2)
+                new.write(line)
+            orig.close()
+            new.close()
+            replace(tmpname, file)
+            fixed_uris[uri] = uri2
+        else:
+            remaining_bad_uris.append((file, uri))
+        
+
 
 def checkAndAddIdentifiersNamespace(ns):
     url = "https://identifiers.org/" + ns
@@ -211,6 +336,9 @@ def run(id, sbml_files):
                                         try:
                                             if urllib.request.urlopen(url).getcode() > 400:
                                                 bad_pmids.add(pmid)
+                                            elif "+" in pmid:
+                                                #These make valid URLs, but are invalid URIs: they don't fit the pubmed id pattern.
+                                                bad_pmids.add(pmid)
                                         except:
                                                 bad_pmids.add(pmid)
         f.close()
@@ -218,6 +346,7 @@ def run(id, sbml_files):
             fixPubmedId(file, bad_pmid, id)
         for bad_identifiers_ns in bad_identifiers_ns:
             fixIdentifiersNS(file, bad_identifiers_ns, id)
+        retestAllIdentifiersURIs(file)
     # print("Invalid identifiers.org namespaces:")
     # print(INVALID_IDENTIFIERS_NAMESPACES)
              
