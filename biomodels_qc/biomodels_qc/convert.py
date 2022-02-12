@@ -10,7 +10,7 @@ such as BioPAX, MATLAB/Octave, and XPP.
 from .utils import get_smbl_files_for_entry, are_biopax_files_the_same, does_sbml_file_represent_core_kinetic_model
 from .validation import validate_sbml_file, validate_xpp_file, validate_octave_file
 from .warnings import FileCouldNotBeConvertedWarning
-from biosimulators_utils.omex_meta.data_model import OmexMetaOutputFormat
+from biosimulators_utils.omex_meta.data_model import OmexMetadataOutputFormat
 from biosimulators_utils.omex_meta.utils import build_omex_meta_file_for_model
 from biosimulators_utils.sedml.data_model import Task
 from biosimulators_utils.sedml.io import SedmlSimulationReader
@@ -229,7 +229,7 @@ def convert_sbml(filename, alt_format, alt_filename):
             shutil.rmtree(temp_dir)
 
     elif format_data.get('format', None) == AltSbmlFormat.OMEX_Metadata:
-        build_omex_meta_file_for_model(filename, alt_filename, metadata_format=OmexMetaOutputFormat.rdfxml_abbrev)
+        build_omex_meta_file_for_model(filename, alt_filename, metadata_format=OmexMetadataOutputFormat.rdfxml_abbrev)
 
     else:
         raise NotImplementedError('Format `{}` is not supported.'.format(alt_format))
