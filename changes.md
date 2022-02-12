@@ -75,6 +75,9 @@ Summary of the changes to the content of BioModels
     * Corrected time courses with unusual step numbers and sizes in 36 files
     * Corrected `MODEL1305060000_edited`
 
+* Curation notes
+    * Recreated figure for `BIOMD0000000585` at larger, legible size
+
 * Other files
     * Re-generated derived files
         * SBML URN
