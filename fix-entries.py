@@ -185,7 +185,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
 
     fix_copasi_algorithms.run(id, temp_entry_dir)
     
-    fix_bad_images.remove_bad_images()
+    fix_bad_images.remove_bad_images(temp_entry_dir)
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
     octave_filenames.sort()
