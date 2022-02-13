@@ -11,6 +11,7 @@ import fix_namespaces_in_sedml_doc
 import fix_sbml_validity
 import fix_sedml_extensions
 import fix_sed_plot_names
+import fix_bad_images
 import recreate_sedml_from_copasi
 import remove_bad_octave_files
 import remove_bad_scilab_files
@@ -183,6 +184,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     add_universal_output_report.run(sedml_filenames, sbml_filenames)
 
     fix_copasi_algorithms.run(id, temp_entry_dir)
+    
+    fix_bad_images.remove_bad_images()
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
     octave_filenames.sort()
