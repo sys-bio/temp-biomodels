@@ -26,6 +26,4 @@ def remove_bad_images(
                 delete_images(svg_image)
         except:
             delete_images(svg_image)
-            
-remove_bad_images()
     
