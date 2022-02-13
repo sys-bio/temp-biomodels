@@ -25,4 +25,5 @@ def remove_bad_images(
             png_image = re.sub('.svg','.png',svg_image)
             if os.path.exists(png_image):
                 print(f'This PNG image {png_image} is likely corrupted.')
-                os.remove(png_image))
+                os.remove(png_image)
+    
