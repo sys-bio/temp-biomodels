@@ -1,23 +1,12 @@
 from xml.etree import ElementTree as et
-from warnings import warn
 from glob import glob
 import os, re
 
 
 def remove_bad_images(
-        root_path: str = 'final' # The path were the BioModels are stored
+        temp_entry_dir: str = 'final' # The path were the BioModels are stored
         ):
-    for svg_image in glob(os.path.join(root_path,'*/*.svg')):
-        # examine the SVG images
-        try:
-            tree = et.parse(svg_image)
-            root = tree.getroot()   
-            xml_string = et.tostring(root, encoding='unicode')
-        except:
-            warn(f'The {svg_image} SVG image has unexpected content.')
-            continue
-        
-        if re.search("no graph can be automatically generated", xml_string):
+    def delete_images(svg_image):
             print(f'This SVG image {svg_image} is erroneous.')
             os.remove(svg_image)
         
@@ -26,4 +15,17 @@ def remove_bad_images(
             if os.path.exists(png_image):
                 print(f'This PNG image {png_image} is likely corrupted.')
                 os.remove(png_image)
+    
+    # examine all SVG images in BioModels
+    for svg_image in glob(os.path.join(temp_entry_dir,'*/*.svg')):
+        try:
+            tree = et.parse(svg_image)
+            root = tree.getroot()   
+            xml_string = et.tostring(root, encoding='unicode')
+            if re.search("no graph can be automatically generated", xml_string):
+                delete_images(svg_image)
+        except:
+            delete_images(svg_image)
+            
+remove_bad_images()
     
