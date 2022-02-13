@@ -11,8 +11,8 @@ import fix_namespaces_in_sedml_doc
 import fix_sbml_validity
 import fix_sedml_extensions
 import fix_sed_plot_names
-import fix_bad_images
 import recreate_sedml_from_copasi
+import remove_bad_images_created_by_sbfc
 import remove_bad_octave_files
 import remove_bad_scilab_files
 import remove_bad_vcml_files
@@ -109,7 +109,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
         validate_sbml (:obj:`bool`, optional): validate SBML files
     """
     print("Fixing entry", id)
-    
+
     if not os.path.isdir(FINAL_ENTRIES_DIR):
         os.makedirs(FINAL_ENTRIES_DIR)
 
@@ -184,8 +184,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     add_universal_output_report.run(sedml_filenames, sbml_filenames)
 
     fix_copasi_algorithms.run(id, temp_entry_dir)
-    
-    fix_bad_images.remove_bad_images(temp_entry_dir)
+
+    remove_bad_images_created_by_sbfc.run(temp_entry_dir)
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
     octave_filenames.sort()
@@ -216,8 +216,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
         rel_filename = os.path.relpath(temp_filename, temp_entry_dir)
         final_filename = os.path.join(final_entry_dir, rel_filename)
 
-        #Model 183 takes *forever* to run through the biopax check.
-        if os.path.isfile(final_filename) and (id=='BIOMD0000000183' or  id=='BIOMD0000000235' or are_biopax_files_the_same(final_filename, temp_filename)):
+        # Model 183 takes *forever* to run through the biopax check.
+        if os.path.isfile(final_filename) and (id == 'BIOMD0000000183' or id == 'BIOMD0000000235' or are_biopax_files_the_same(final_filename, temp_filename)):
             shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
