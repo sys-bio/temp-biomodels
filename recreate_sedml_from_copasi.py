@@ -151,13 +151,14 @@ def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
         linesubtype = curve['line_subtype']
         symboltype = curve['symbol']
         color = curve['color']
-        styleid = "style" + str(len(prevstyles)+1)
+        styleid = "copasi_style" + str(len(prevstyles)+1)
         if (linetype, linethickness, linesubtype, symboltype, color) in prevstyles:
             styleid = prevstyles[(linetype, linethickness, linesubtype, symboltype, color)]
         else:
             prevstyles[(linetype, linethickness, linesubtype, symboltype, color)] = styleid
             style = sed.createStyle()
             style.setId(styleid)
+            style.setName("Line/marker style " + str(len(prevstyles)) + " from COPASI.")
 
             line = style.createLineStyle()
             if linetype == "points" or linetype == "symbols":
