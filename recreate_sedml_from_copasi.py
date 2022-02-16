@@ -151,7 +151,7 @@ def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
         linesubtype = curve['line_subtype']
         symboltype = curve['symbol']
         color = curve['color']
-        styleid = "style" + str(len(prevstyles)+1)
+        styleid = "copasi_style" + str(len(prevstyles)+1)
         if (linetype, linethickness, linesubtype, symboltype, color) in prevstyles:
             styleid = prevstyles[(linetype, linethickness, linesubtype, symboltype, color)]
         else:
@@ -159,57 +159,62 @@ def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
             style = sed.createStyle()
             style.setId(styleid)
             style.setName("Line/marker style " + str(len(prevstyles)) + " from COPASI.")
+
             line = style.createLineStyle()
-            if linetype=="points" or linetype=="symbols":
+            if linetype == "points" or linetype == "symbols":
                 line.setType(libsedml.SEDML_LINETYPE_NONE)
             else:
                 if "#" in color:
                     line.setColor(color.replace("#", ""))
+
                 line.setThickness(linethickness)
-                if linesubtype=="solid":
+
+                if linesubtype == "solid":
                     line.setType(libsedml.SEDML_LINETYPE_SOLID)
-                elif linesubtype=="dotted":
+                elif linesubtype == "dotted":
                     line.setType(libsedml.SEDML_LINETYPE_DOT)
-                elif linesubtype=="dashed":
+                elif linesubtype == "dashed":
                     line.setType(libsedml.SEDML_LINETYPE_DASH)
-                elif linesubtype=="dot_dash":
+                elif linesubtype == "dot_dash":
                     line.setType(libsedml.SEDML_LINETYPE_DASHDOT)
-                elif linesubtype=="dot_dot_dash":
+                elif linesubtype == "dot_dot_dash":
                     line.setType(libsedml.SEDML_LINETYPE_DASHDOTDOT)
                 else:
-                    raise NotImplementedError("Unknown Copasi line type " + str(linesubtype))
-            #Now symbols:
+                    raise NotImplementedError("Unknown COPASI line type " + str(linesubtype))
+
+            # symbols
             symbol = style.createMarkerStyle()
             if linetype == "lines":
                 symbol.setType(libsedml.SEDML_MARKERTYPE_NONE)
             else:
                 if "#" in color:
-                    symbol.setLineColor(color)
+                    symbol.setLineColor(color.replace('#', ''))
+
                 if linetype == "points" or symboltype == "circle":
                     symbol.setType(libsedml.SEDML_MARKERTYPE_CIRCLE)
                 else:
                     symbol.setType(libsedml.SEDML_MARKERTYPE_XCROSS)
+
                 if linetype == "points":
                     symbol.setSize(1)
+                elif symboltype == "circle":
+                    symbol.setSize(3)
                 elif symboltype == "small_cross":
                     symbol.setSize(3)
                 elif symboltype == "large_cross":
                     symbol.setSize(6)
-        found = False
+
         for o in range(sed.getNumOutputs()):
             output = sed.getOutput(o)
             try:
                 for c in range(output.getNumCurves()):
                     curve = output.getCurve(c)
-                    if curve.getName() in curvename or (output.getName() == plotname and not curve.isSetStyle()): #
+                    if curve.getName() in curvename or (output.getName() == plotname and not curve.isSetStyle()):
                         curve.setStyle(styleid)
                         usedstyles.add(styleid)
             except:
                 pass
-                    
-    # assert(found)
-    
-    
+
 
 def addPlotDetails(sed, dm):
     if dm.getNumPlotSpecifications() == 0:
