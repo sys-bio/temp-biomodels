@@ -71,13 +71,15 @@ def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=Fa
         processes (:obj:`bool`, optional): number of processes to use
     """
     print('Fixing {} entries ...'.format(len(ids)))
-    if processes is None:
-        processes = os.cpu_count()
-    _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files, guess_file_name=guess_file_name,
-                                        validate_sbml=validate_sbml, display_warnings=display_warnings)
-    with multiprocessing.Pool(processes=processes) as pool:
-        pool.map(_fix_entry_func, ids)
-    print('done')
+    # if processes is None:
+    #     processes = os.cpu_count()
+    # _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files, guess_file_name=guess_file_name,
+    #                                     validate_sbml=validate_sbml, display_warnings=display_warnings)
+    # with multiprocessing.Pool(processes=processes) as pool:
+    #     pool.map(_fix_entry_func, ids)
+    # print('done')
+    for id in ids:
+        _fix_entry(id, convert_files, guess_file_name, validate_sbml, display_warnings)
 
 
 def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True):
