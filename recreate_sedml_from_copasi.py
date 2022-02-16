@@ -181,7 +181,7 @@ def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
                 else:
                     raise NotImplementedError("Unknown COPASI line type " + str(linesubtype))
 
-            # symbols:            
+            # symbols
             if linetype != "lines":
                 symbol = style.createMarkerStyle()
 
