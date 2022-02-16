@@ -182,9 +182,10 @@ def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
                     raise NotImplementedError("Unknown COPASI line type " + str(linesubtype))
 
             # symbols
-            if linetype != "lines":
-                symbol = style.createMarkerStyle()
-
+            symbol = style.createMarkerStyle()
+            if linetype == "lines":
+                symbol.setType(libsedml.SEDML_MARKERTYPE_NONE)
+            else:
                 if "#" in color:
                     symbol.setLineColor(color.replace('#', ''))
 
