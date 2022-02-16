@@ -164,7 +164,7 @@ def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
                 line.setType(libsedml.SEDML_LINETYPE_NONE)
             else:
                 if "#" in color:
-                    line.setColor(color)
+                    line.setColor(color.replace("#", ""))
                 line.setThickness(linethickness)
                 if linesubtype=="solid":
                     line.setType(libsedml.SEDML_LINETYPE_SOLID)
