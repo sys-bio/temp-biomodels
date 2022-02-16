@@ -124,9 +124,9 @@ def convert_entry(dirname, alt_sbml_formats=None):
                     warnings.warn(termcolor.colored('`{}` could not be converted to valid XPP file.'.format(filename)),
                                   FileCouldNotBeConvertedWarning)
                     os.remove(alt_filename)
-            except RuntimeError:
+            except RuntimeError as e:
                 warnings.warn(termcolor.colored('`{}` could not be converted. Please check that the file is a valid SBML file.'.format(
-                    filename)), FileCouldNotBeConvertedWarning)
+                    filename) + "\nError from converter: " + str(e)), FileCouldNotBeConvertedWarning)
 
 
 class AltSbmlFormat(str, enum.Enum):
@@ -273,9 +273,12 @@ def run_sbf_converter(filename, format):
         :obj:`ValueError`: if the conversion failed
     """
     if os.name == 'nt':
-        sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.bat'))  # pragma: no cover
+        converter_loc = shutil.which('sbfConverter.bat')
     else:
-        sbf_converter_home = os.path.dirname(shutil.which('sbfConverter.sh'))
+        converter_loc = shutil.which('sbfConverter.sh')
+    if converter_loc == None:
+        raise RuntimeError("Unable to find the Systems Biology Format Converter.")
+    sbf_converter_home = os.path.dirname(converter_loc)  # pragma: no cover
     jar_dirname = os.path.join(sbf_converter_home, 'lib')
     jar_filenames = glob.glob(os.path.join(jar_dirname, '*.jar'))
     jar_filenames.sort()
