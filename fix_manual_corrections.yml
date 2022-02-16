@@ -144,7 +144,7 @@ BIOMD0000000539:
     new: '<Parameter name="StepNumber" type="unsignedInteger" value="1000"/>'
   - filename: 'BIOMD0000000539.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="700.7" numberOfSteps="1001">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="700" numberOfSteps="1001">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="700" numberOfSteps="1000">'
 BIOMD0000000561:
   - filename: 'BIOMD0000000561.png'
@@ -191,217 +191,52 @@ BIOMD0000000585:
 BIOMD0000000637:
   - filename: 'Bush2016-Simplified-Carrousel-model-of-GPCR.sedml'
     type: replace_text
-    old: |2
-          <dataGenerator id="_1_task3">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <ci> p7__task3 </ci>
-            </math>
-            <listOfVariables>
-              <variable id="p7__task3" taskReference="task3"/>
-            </listOfVariables>
-          </dataGenerator>
-    new: ''
+    old: 'taskReference="task3"'
+    new: 'taskReference="task5"'
   - filename: 'Bush2016-Simplified-Carrousel-model-of-GPCR.sedml'
     type: replace_text
-    old: >
-      <dataSet id="ds_4_task3" dataReference="_1_task3"/>
-    new: >
-      <dataSet id="ds_4_task3" label="Gbg" dataReference="Gbg_1_task3"/>
+    old: '_task3'
+    new: '_task5'
+#    reason: 'Copasi now correctly produces nested repeated tasks for parameter scans, but doesn't point its data generators at the outermost task yet.'
 BIOMD0000000638:
   - filename: 'Bush2016-Extended-Carrousel-model-of-GPCR-RGS.sedml'
     type: replace_text
-    old: |2
-          <dataGenerator id="_1_task3">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <ci> p7__task3 </ci>
-            </math>
-            <listOfVariables>
-              <variable id="p7__task3" taskReference="task3"/>
-            </listOfVariables>
-          </dataGenerator>
-    new: |2
-          <dataGenerator id="Gbg_1_task3">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <ci> p7__task3 </ci>
-            </math>
-            <listOfVariables>
-              <variable id="p7__task3" name="Gbg" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Gbg']" taskReference="task3"/>
-            </listOfVariables>
-          </dataGenerator>
+    old: 'taskReference="task3"'
+    new: 'taskReference="task5"'
   - filename: 'Bush2016-Extended-Carrousel-model-of-GPCR-RGS.sedml'
     type: replace_text
-    old: >
-      <dataSet id="ds_4_task3" dataReference="_1_task3"/>
-    new: >
-      <dataSet id="ds_4_task3" label="Gbg" dataReference="Gbg_1_task3"/>
+    old: '_task3'
+    new: '_task5'
+#    reason: 'Copasi now correctly produces nested repeated tasks for parameter scans, but doesn't point its data generators at the outermost task yet.'
 BIOMD0000000643:
   - filename: 'ARPP-16_Layer1_mutualInhibitions.sedml'
     type: replace_text
-    old: |2
-          <repeatedTask id="task3" range="range0" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range0" start="0" end="5" numberOfSteps="100" type="linear"/>
-              <uniformRange id="range1" start="0" end="10" numberOfSteps="40" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2"/>
-            </listOfSubTasks>
-          </repeatedTask>
-    new: |2
-          <repeatedTask id="task3_inner" range="range1" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range1" start="0" end="10" numberOfSteps="40" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2"/>
-            </listOfSubTasks>
-          </repeatedTask>
-          <repeatedTask id="task3" range="range0" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range0" start="0" end="5" numberOfSteps="100" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task3_inner"/>
-            </listOfSubTasks>
-          </repeatedTask>
+    old: 'taskReference="task3"'
+    new: 'taskReference="task4"'
+  - filename: 'ARPP-16_Layer1_mutualInhibitions.sedml'
+    type: replace_text
+    old: '_task3'
+    new: '_task4'
+#    reason: 'Copasi now correctly produces nested repeated tasks for parameter scans, but doesn't point its data generators at the outermost task yet.'
 BIOMD0000000644:
   - filename: 'ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.sedml'
     type: replace_text
-    old: |2
-          <repeatedTask id="task3" range="range0" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range0" start="0" end="5" numberOfSteps="100" type="linear"/>
-              <uniformRange id="range1" start="0" end="10" numberOfSteps="40" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2"/>
-            </listOfSubTasks>
-          </repeatedTask>
-    new: |2
-          <repeatedTask id="task3_inner" range="range1" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range1" start="0" end="10" numberOfSteps="40" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2"/>
-            </listOfSubTasks>
-          </repeatedTask>
-          <repeatedTask id="task3" range="range0" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range0" start="0" end="5" numberOfSteps="100" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task3_inner"/>
-            </listOfSubTasks>
-          </repeatedTask>
+    old: 'taskReference="task3"'
+    new: 'taskReference="task4"'
+  - filename: 'ARPP-16_Layer1and2_mutualInhibitions_PKAinhibitsMAST3.sedml'
+    type: replace_text
+    old: '_task3'
+    new: '_task4'
+#    reason: 'Copasi now correctly produces nested repeated tasks for parameter scans, but doesn't point its data generators at the outermost task yet.'
 BIOMD0000000645:
   - filename: 'ARPP-16_Layer1and2and3_mutualInhibitions_PKAinhibitsMAST3_dominantNegative.sedml'
     type: replace_text
-    old: |2
-          <repeatedTask id="task3" range="range0" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range0" start="0" end="5" numberOfSteps="100" type="linear"/>
-              <uniformRange id="range1" start="0" end="10" numberOfSteps="40" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2"/>
-            </listOfSubTasks>
-          </repeatedTask>
-    new: |2
-          <repeatedTask id="task3_inner" range="range1" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range1" start="0" end="10" numberOfSteps="40" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;A46&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2"/>
-            </listOfSubTasks>
-          </repeatedTask>
-          <repeatedTask id="task3" range="range0" resetModel="true">
-            <listOfRanges>
-              <uniformRange id="range0" start="0" end="5" numberOfSteps="100" type="linear"/>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;cAMP&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task3_inner"/>
-            </listOfSubTasks>
-          </repeatedTask>
+    old: 'taskReference="task3"'
+    new: 'taskReference="task4"'
+  - filename: 'ARPP-16_Layer1and2and3_mutualInhibitions_PKAinhibitsMAST3_dominantNegative.sedml'
+    type: replace_text
+    old: '_task3'
+    new: '_task4'
 BIOMD0000000661:
   - filename: 'BIOMD0000000661_url.xml'
     type: replace_text
@@ -418,7 +253,7 @@ BIOMD0000000662:
     new: '<Parameter name="StepSize" type="float" value="0.2"/>'
   - filename: 'Moore2004.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100.142406" numberOfSteps="702">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100" numberOfSteps="702">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100" numberOfSteps="500">'
 BIOMD0000000675:
   - filename: 'MODEL1006230004.sedml'
@@ -633,7 +468,7 @@ BIOMD0000000753:
     new: '<Parameter name="StepSize" type="float" value="0.25"/>'
   - filename: 'Figueredo2013_1.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100.3333333233" numberOfSteps="301">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100" numberOfSteps="301">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100" numberOfSteps="400">'
 BIOMD0000000757:
   - filename: 'Abernathy2016.cps'
@@ -646,7 +481,7 @@ BIOMD0000000757:
     new: '<Parameter name="StepSize" type="float" value="3.5"/>'
   - filename: 'Abernathy2016.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3502.854812346" numberOfSteps="1227">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3500" numberOfSteps="1227">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3500" numberOfSteps="1000">'
 BIOMD0000000789:
   - filename: 'Jenner2018.cps'
@@ -659,7 +494,7 @@ BIOMD0000000789:
     new: '<Parameter name="StepSize" type="float" value="0.01"/>'
   - filename: 'Jenner2018.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="64.009846152846" numberOfSteps="6501">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="64" numberOfSteps="6501">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="64" numberOfSteps="6400">'
 BIOMD0000000796:
   - filename: 'Yang2012.cps'
@@ -672,7 +507,7 @@ BIOMD0000000796:
     new: '<Parameter name="StepSize" type="float" value="1"/>'
   - filename: 'Yang2012.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="630.000000168" numberOfSteps="583">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="630" numberOfSteps="583">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="630" numberOfSteps="630">'
 BIOMD0000000801:
   - filename: 'Sturrock2015.cps'
@@ -689,7 +524,7 @@ BIOMD0000000801:
     new: '<Parameter name="Duration" type="float" value="3300"/>'
   - filename: 'Sturrock2015.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3285.000000045" numberOfSteps="333">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3285" numberOfSteps="333">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3300" numberOfSteps="330">'
 BIOMD0000000806:
   - filename: 'Macrophages Plasticity b.sedml'
@@ -876,7 +711,7 @@ BIOMD0000000874:
     new: '<Parameter name="Duration" type="float" value="3750"/>'
   - filename: 'Perelson1993.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3675.88652444" numberOfSteps="142">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3650" numberOfSteps="142">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="3750" numberOfSteps="150">'
 BIOMD0000000892:
   - filename: 'Sandip2013.cps'
@@ -889,7 +724,7 @@ BIOMD0000000892:
     new: '<Parameter name="StepSize" type="float" value="0.35"/>'
   - filename: 'Sandip2013.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="35.0000000008" numberOfSteps="152">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="35" numberOfSteps="152">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="35" numberOfSteps="100">'
 BIOMD0000000904:
   - filename: 'Admon2017.cps'
@@ -902,7 +737,7 @@ BIOMD0000000904:
     new: '<Parameter name="StepSize" type="float" value="0.06"/>'
   - filename: 'Admon2017.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="60.000299997" numberOfSteps="200002">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="60" numberOfSteps="200002">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="60" numberOfSteps="1000">'
 BIOMD0000000917:
   - filename: 'Phillips2007.cps'
@@ -915,7 +750,7 @@ BIOMD0000000917:
     new: '<Parameter name="StepSize" type="float" value="0.05"/>'
   - filename: 'Phillips2007.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="72.00000000576" numberOfSteps="1296">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="72" numberOfSteps="1296">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="72" numberOfSteps="1440">'
   - filename: 'Phillips2007.sedml'
     type: replace_text
@@ -942,7 +777,7 @@ BIOMD0000000924:
     new: '<Parameter name="StepSize" type="float" value="0.8"/>'
   - filename: 'Smith2011_V1.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="120.0000000068" numberOfSteps="151">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="120" numberOfSteps="151">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="120" numberOfSteps="150">'
 BIOMD0000000926:
   - filename: 'Rhodes2019-Immune-Mediated theory of Metastasis_V1.cps'
@@ -955,7 +790,7 @@ BIOMD0000000926:
     new: '<Parameter name="StepSize" type="float" value="1e-01"/>'
   - filename: 'Rhodes2019-Immune-Mediated theory of Metastasis_V1.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="400.000069557717" numberOfSteps="5750001">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="400" numberOfSteps="5750001">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="400" numberOfSteps="4000">'
 BIOMD0000000931:
   - filename: 'Voliotis2019.sedml'
@@ -1298,7 +1133,7 @@ BIOMD0000000961:
     new: '<Parameter name="StepSize" type="float" value="1"/>'
   - filename: 'McDougal2017.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="5050.0000001061" numberOfSteps="8081">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="5050" numberOfSteps="8081">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="5050" numberOfSteps="5050">'
 BIOMD0000000967:
   - filename: 'McLean1991.cps'
@@ -1311,7 +1146,7 @@ BIOMD0000000967:
     new: '<Parameter name="StepSize" type="float" value="1"/>'
   - filename: 'McLean1991.sedml'
     type: replace_text
-    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="50.0000000031" numberOfSteps="63">'
+    old: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="50" numberOfSteps="63">'
     new: '<uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="50" numberOfSteps="50">'
 BIOMD0000000977:
   - filename: 'Sarkar2020.cps'
@@ -1329,155 +1164,23 @@ BIOMD0000000977:
 BIOMD0000000979:
   - filename: 'Malkov2020.sedml'
     type: replace_text
-    old: |2
-          <repeatedTask id="task2" range="range0" resetModel="true">
-            <listOfRanges>
-              <vectorRange id="range0">
-                <value> 1.6 </value>
-                <value> 1.8 </value>
-                <value> 2 </value>
-                <value> 2.2 </value>
-                <value> 2.5 </value>
-                <value> 2.8 </value>
-                <value> 3 </value>
-              </vectorRange>
-              <vectorRange id="range1">
-                <value> 0 </value>
-                <value> 0.00274 </value>
-              </vectorRange>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;R_fixed&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task1"/>
-            </listOfSubTasks>
-          </repeatedTask>
-    new: |2
-          <repeatedTask id="task2_inner" range="range1" resetModel="true">
-            <listOfRanges>
-              <vectorRange id="range1">
-                <value> 0 </value>
-                <value> 0.00274 </value>
-              </vectorRange>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task1"/>
-            </listOfSubTasks>
-          </repeatedTask>
-          <repeatedTask id="task2" range="range0" resetModel="true">
-            <listOfRanges>
-              <vectorRange id="range0">
-                <value> 1.6 </value>
-                <value> 1.8 </value>
-                <value> 2 </value>
-                <value> 2.2 </value>
-                <value> 2.5 </value>
-                <value> 2.8 </value>
-                <value> 3 </value>
-              </vectorRange>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;R_fixed&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2_inner"/>
-            </listOfSubTasks>
-          </repeatedTask>
+    old: 'taskReference="task2"'
+    new: 'taskReference="task3"'
+  - filename: 'Malkov2020.sedml'
+    type: replace_text
+    old: '_task2'
+    new: '_task3'
+#    reason: 'Copasi now correctly produces nested repeated tasks for parameter scans, but doesn't point its data generators at the outermost task yet.'
 BIOMD0000000980:
   - filename: 'Malkov2020.sedml'
     type: replace_text
-    old: |2
-          <repeatedTask id="task2" range="range0" resetModel="true">
-            <listOfRanges>
-              <vectorRange id="range0">
-                <value> 0.2 </value>
-                <value> 0.1 </value>
-                <value> 0.05 </value>
-                <value> 0.02 </value>
-                <value> 0.01 </value>
-              </vectorRange>
-              <vectorRange id="range1">
-                <value> 0 </value>
-                <value> 0.00274 </value>
-              </vectorRange>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;eta&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task1"/>
-            </listOfSubTasks>
-          </repeatedTask>
-    new: |2
-          <repeatedTask id="task2_inner" range="range1" resetModel="true">
-            <listOfRanges>
-              <vectorRange id="range1">
-                <value> 0 </value>
-                <value> 0.00274 </value>
-              </vectorRange>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" range="range1">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range1 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task1"/>
-            </listOfSubTasks>
-          </repeatedTask>
-          <repeatedTask id="task2" range="range0" resetModel="true">
-            <listOfRanges>
-              <vectorRange id="range0">
-                <value> 0.2 </value>
-                <value> 0.1 </value>
-                <value> 0.05 </value>
-                <value> 0.02 </value>
-                <value> 0.01 </value>
-              </vectorRange>
-            </listOfRanges>
-            <listOfChanges>
-              <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;eta&apos;]" range="range0">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                  <ci> range0 </ci>
-                </math>
-              </setValue>
-            </listOfChanges>
-            <listOfSubTasks>
-              <subTask order="1" task="task2_inner"/>
-            </listOfSubTasks>
-          </repeatedTask>
+    old: 'taskReference="task2"'
+    new: 'taskReference="task3"'
+  - filename: 'Malkov2020.sedml'
+    type: replace_text
+    old: '_task2'
+    new: '_task3'
+#    reason: 'Copasi now correctly produces nested repeated tasks for parameter scans, but doesn't point its data generators at the outermost task yet.'
 BIOMD0000000983:
   - filename: 'Zongo2020.cps'
     type: replace_text

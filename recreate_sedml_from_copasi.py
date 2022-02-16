@@ -245,6 +245,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     sbml_msg = COPASI.CCopasiMessage.getAllMessageText()
     # Export SEDML.
     sedml = dm.exportSEDMLToString(None, 1, 2)
+    # print("Initial COPASI export:\n", sedml)
     sedml = re.sub(r'on 20.*with', 'with', sedml)
     for nac in non_ascii_chars:
         if nac in sedml:
@@ -252,6 +253,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     guesses = []
     sed = libsedml.readSedMLFromString(sedml)
     sed.setVersion(4)
+    # print("After converting to l1v4:\n", libsedml.writeSedMLToString(sed))
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
     addPlotDetails(sed, dm)
@@ -268,6 +270,12 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
             if "Chitnis2008.sedml" in copasi_sed:
                 #Couldn't fix this in yml because of indenting issues.
                 fixChitnes2008(sed)
+        # sedml = libsedml.writeSedMLToString(sed)
+        # if "numberOfSteps" in sedml:
+        #     print(copasi_sed, "has 'numberOfSteps'")
+        # elif "numberOfPoints" in sedml:
+        #     print(copase_sed, "has 'numberOfPoints'")
+        # print(sedml)
         libsedml.writeSedMLToFile(sed, copasi_sed)
     return (sbml_msg, sed_msg, guesses)
 
