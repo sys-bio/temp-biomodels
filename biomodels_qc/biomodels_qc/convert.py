@@ -125,8 +125,8 @@ def convert_entry(dirname, alt_sbml_formats=None):
                                   FileCouldNotBeConvertedWarning)
                     os.remove(alt_filename)
             except RuntimeError as e:
-                warnings.warn(termcolor.colored('`{}` could not be converted. Please check that the file is a valid SBML file.'.format(
-                    filename) + "\nError from converter: " + str(e)), FileCouldNotBeConvertedWarning)
+                warnings.warn(termcolor.colored('`{}` could not be converted: '.format(
+                    filename) + str(e)), FileCouldNotBeConvertedWarning)
 
 
 class AltSbmlFormat(str, enum.Enum):
