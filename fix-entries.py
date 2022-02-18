@@ -288,7 +288,7 @@ if __name__ == "__main__":
     if args.entry_ids:
         ids = args.entry_ids
     else:
-        ids = get_entry_ids()[640:args.max_entries]
+        ids = get_entry_ids()[0:args.max_entries]
 
     low_ids = []
     if args.first_entry:
