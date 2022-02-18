@@ -79,7 +79,7 @@ def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=Fa
     #     pool.map(_fix_entry_func, ids)
     # print('done')
     for id in ids:
-        _fix_entry(id, convert_files, guess_file_name, validate_sbml, display_warnings)
+        _fix_entry(id, convert_files=convert_files, guess_file_name=guess_file_name, validate_sbml=validate_sbml, display_warnings=display_warnings)
 
 
 def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True):
@@ -288,7 +288,7 @@ if __name__ == "__main__":
     if args.entry_ids:
         ids = args.entry_ids
     else:
-        ids = get_entry_ids()[0:args.max_entries]
+        ids = get_entry_ids()[640:args.max_entries]
 
     low_ids = []
     if args.first_entry:
