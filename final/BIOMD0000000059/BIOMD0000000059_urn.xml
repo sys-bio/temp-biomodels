@@ -1,0 +1,1770 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" metaid="metaid_0000001" version="1">
+  <model name="Fridlyand2003_Calcium_flux" id="Fridlyand2003_Ca_flux_pancreatic_cells" metaid="metaid_0000002">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <p>The model reproduces block A of Fig 5 and also Fig 3 (without the inclusion of Tg action). The model was successfully tested on MathSBML</p>
+        <br />
+        <p>To the extent possible under law, all copyright and related or neighbouring rights to this encoded model have been dedicated to the public domain worldwide. Please refer to 
+        <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Creative Commons CC0">CC0 Public Domain Dedication</a>for more information.</p>
+        <p>In summary, you are entitled to use this encoded model in absolutely any manner you deem suitable, verbatim, or with modification, alone or embedded it in a larger context, redistribute
+        it, commercially or not, in a restricted way or not.</p>
+        <br />
+        <p>To cite BioModels Database, please use: 
+        <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le
+        Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a></p>
+      </body>
+    </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#"
+      xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+        <rdf:Description rdf:about="#metaid_0000002">
+          <dc:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Dharuri</vCard:Family>
+                  <vCard:Given>Harish</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>hdharuri@cds.caltech.edu</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>California Institute of Technology</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+            </rdf:Bag>
+          </dc:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2006-06-20T13:12:19Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2014-05-24T16:27:04Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqmodel:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:biomodels.db:MODEL0928773489" />
+            </rdf:Bag>
+          </bqmodel:is>
+          <bqmodel:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:biomodels.db:BIOMD0000000059" />
+            </rdf:Bag>
+          </bqmodel:is>
+          <bqmodel:isDescribedBy>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:pubmed:12644446" />
+            </rdf:Bag>
+          </bqmodel:isDescribedBy>
+          <bqbiol:hasTaxon>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:taxonomy:10090" />
+            </rdf:Bag>
+          </bqbiol:hasTaxon>
+          <bqbiol:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:kegg.pathway:map04020" />
+            </rdf:Bag>
+          </bqbiol:is>
+          <bqbiol:hasPart>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:go:GO%3A0050848" />
+              <rdf:li rdf:resource="urn:miriam:go:GO%3A0050796" />
+            </rdf:Bag>
+          </bqbiol:hasPart>
+          <bqbiol:occursIn>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:bto:BTO%3A0000783" />
+            </rdf:Bag>
+          </bqbiol:occursIn>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition name="Micromole" id="substance" metaid="metaid_0000159">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326157" kind="mole" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="milliseconds" id="time" metaid="metaid_0000160">
+        <listOfUnits>
+          <unit scale="-3" metaid="_326169" kind="second" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Voltage" id="millivolt" metaid="metaid_0000161">
+        <listOfUnits>
+          <unit scale="-3" metaid="_326181" kind="volt" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Current" id="femtoamperes" metaid="metaid_0000162">
+        <listOfUnits>
+          <unit scale="-15" metaid="_326193" kind="ampere" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Concentration" id="micromole_per_litre" metaid="metaid_0000163">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326205" kind="mole" />
+          <unit metaid="_326217" kind="litre" exponent="-1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Conductance" id="picosiemens" metaid="metaid_0000164">
+        <listOfUnits>
+          <unit scale="-12" metaid="_326229" kind="siemens" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Capacitance" id="femtofarads" metaid="metaid_0000165">
+        <listOfUnits>
+          <unit scale="-15" metaid="_326241" kind="farad" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Time inverse" id="per_millisecond" metaid="metaid_0000166">
+        <listOfUnits>
+          <unit scale="-3" metaid="_326253" kind="second" exponent="-1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Conductance coefficient" id="picosiemens_per_millivolt" metaid="metaid_0000167">
+        <listOfUnits>
+          <unit scale="-12" metaid="_326265" kind="siemens" />
+          <unit scale="-3" metaid="_326277" kind="volt" exponent="-1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="amount per time" id="micromole_per_millisecond" metaid="metaid_1000168">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326289" kind="mole" />
+          <unit scale="-3" metaid="_326301" kind="second" exponent="-1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="concentration per time" id="microM_per_millisecond" metaid="metaid_0000168">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326313" kind="mole" />
+          <unit scale="-3" metaid="_326325" kind="second" exponent="-1" />
+          <unit metaid="_326337" kind="litre" exponent="-1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="volume per time" id="litres_per_millisecond" metaid="metaid_0000169">
+        <listOfUnits>
+          <unit metaid="_326349" kind="litre" />
+          <unit scale="-3" metaid="_326361" kind="second" exponent="-1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="per concentration per time" id="per_microM_per_millisecond" metaid="metaid_0000170">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326373" kind="mole" exponent="-1" />
+          <unit scale="-3" metaid="_326385" kind="second" exponent="-1" />
+          <unit metaid="_326397" kind="litre" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="per concentration cubed per time" id="per_microMcube_per_millisecond" metaid="metaid_0000171">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326409" kind="mole" exponent="-3" />
+          <unit scale="-3" metaid="_326421" kind="second" exponent="-1" />
+          <unit metaid="_326433" kind="litre" exponent="3" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="per Concentration square per time" id="per_microMsquare_per_millisecond" metaid="metaid_0000172">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326445" kind="mole" exponent="-2" />
+          <unit scale="-3" metaid="_326457" kind="second" exponent="-1" />
+          <unit metaid="_326469" kind="litre" exponent="2" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="per concentration" id="per_microM" metaid="metaid_0000173">
+        <listOfUnits>
+          <unit scale="-6" metaid="_326481" kind="mole" exponent="-1" />
+          <unit metaid="_326494" kind="litre" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="Faraday constant" id="fA_msec_per_micromole" metaid="metaid_0000174">
+        <listOfUnits>
+          <unit scale="-15" metaid="_326506" kind="ampere" />
+          <unit scale="-3" metaid="_326518" kind="second" />
+          <unit scale="-6" metaid="_326530" kind="mole" exponent="-1" />
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment name="cytoplasm" id="Cytoplasm" size="7.64E-13" metaid="metaid_0000088">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000088">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005737" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment name="endoplasmic reticulum" id="ER" size="2.8E-13" metaid="metaid_0000175" outside="Cytoplasm">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000175">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005783" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species compartment="Cytoplasm" name="Cytosolic Calcium" id="Ca_cyt" initialConcentration="0.085" metaid="metaid_0000091">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000091">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A29108" />
+                  <rdf:li rdf:resource="urn:miriam:kegg.compound:C00076" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species compartment="ER" name="ER Calcium" id="Ca_er" initialConcentration="22.8" metaid="metaid_0000092">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000092">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A29108" />
+                  <rdf:li rdf:resource="urn:miriam:kegg.compound:C00076" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species compartment="Cytoplasm" name="Cytosolic IP3" id="IP3_cyt" initialConcentration="0.33" metaid="metaid_0000093">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000093">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A16595" />
+                  <rdf:li rdf:resource="urn:miriam:kegg.compound:C01245" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species compartment="Cytoplasm" name="Cytosolic Sodium" id="Na_cyt" initialConcentration="9858" metaid="metaid_0000094">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000094">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A29101" />
+                  <rdf:li rdf:resource="urn:miriam:kegg.compound:C01330" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species compartment="Cytoplasm" name="Cytosolic ATP" id="ATP_cyt" initialConcentration="932.1" metaid="metaid_0000095">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000095">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A15422" />
+                  <rdf:li rdf:resource="urn:miriam:kegg.compound:C00002" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species compartment="Cytoplasm" name="Cytosolic ADP" id="ADP_cyt" initialConcentration="3067.9" metaid="metaid_0000158">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000158">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A16761" />
+                  <rdf:li rdf:resource="urn:miriam:kegg.compound:C00008" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="false" id="n" metaid="metaid_0000153" value="0.00123" />
+      <parameter constant="false" id="V" units="millivolt" metaid="metaid_0000154" value="-60.9" />
+      <parameter constant="false" id="Vca" units="millivolt" metaid="metaid_0000004" value="0" />
+      <parameter id="TV" units="millivolt" metaid="metaid_0000005" value="26.73" />
+      <parameter id="Ca_ec" units="micromole_per_litre" metaid="metaid_0000006" value="2600" />
+      <parameter constant="false" id="Vk" units="millivolt" metaid="metaid_0000007" value="0" />
+      <parameter id="K_ec" units="micromole_per_litre" metaid="metaid_0000008" value="8000" />
+      <parameter id="K_cyt" units="micromole_per_litre" metaid="metaid_0000009" value="132400" />
+      <parameter constant="false" id="Vna" units="millivolt" metaid="metaid_0000010" value="0" />
+      <parameter id="Na_ec" units="micromole_per_litre" metaid="metaid_0000011" value="140000" />
+      <parameter constant="false" id="Vnaca" units="millivolt" metaid="metaid_0000012" value="0" />
+      <parameter constant="false" id="pvca" metaid="metaid_0000013" value="0" />
+      <parameter id="Vcah" units="millivolt" metaid="metaid_0000014" value="-19" />
+      <parameter id="Kcah" units="millivolt" metaid="metaid_0000015" value="9.5" />
+      <parameter constant="false" id="f_CRAN" metaid="metaid_0000016" value="0" />
+      <parameter id="gm_CRAN" units="picosiemens_per_millivolt" metaid="metaid_0000017" value="0.7" />
+      <parameter id="Kcar" units="micromole_per_litre" metaid="metaid_0000018" value="200" />
+      <parameter constant="false" id="p_CRAN" units="millivolt" metaid="metaid_0000019" value="0" />
+      <parameter id="V_CRAN" units="millivolt" metaid="metaid_0000020" value="0" />
+      <parameter constant="false" id="pna" units="dimensionless" metaid="metaid_0000021" value="0" />
+      <parameter constant="false" id="f_5" metaid="metaid_0000022" value="0" />
+      <parameter id="f5_ast" units="per_microM_per_millisecond" metaid="metaid_0000023" value="0.002" />
+      <parameter constant="false" id="b_5" metaid="metaid_0000024" value="0" />
+      <parameter id="b5_ast" units="per_millisecond" metaid="metaid_0000025" value="0.03" />
+      <parameter constant="false" id="F1" metaid="metaid_0000026" value="0" />
+      <parameter id="f_1" units="per_microMcube_per_millisecond" metaid="metaid_0000027" value="2.5E-10" />
+      <parameter constant="false" id="F4" metaid="metaid_0000028" value="0" />
+      <parameter id="f_4" units="per_microMsquare_per_millisecond" metaid="metaid_0000029" value="1.5E-8" />
+      <parameter constant="false" id="F5" metaid="metaid_0000030" value="0" />
+      <parameter constant="false" id="B2" metaid="metaid_0000031" value="0" />
+      <parameter id="b_2" units="per_microM_per_millisecond" metaid="metaid_0000032" value="0.0001" />
+      <parameter constant="false" id="B3" metaid="metaid_0000033" value="0" />
+      <parameter id="b_3" units="per_microMcube_per_millisecond" metaid="metaid_0000034" value="1.72E-17" />
+      <parameter constant="false" id="B4" metaid="metaid_0000035" value="0" />
+      <parameter id="b_4" units="per_microM_per_millisecond" metaid="metaid_0000036" value="0.0002" />
+      <parameter id="P" units="micromole_per_litre" metaid="metaid_0000037" value="4950" />
+      <parameter constant="false" id="B6" metaid="metaid_0000038" value="0" />
+      <parameter id="b_6" units="per_microM_per_millisecond" metaid="metaid_0000039" value="6E-7" />
+      <parameter id="Ksup" units="micromole_per_litre" metaid="metaid_0000040" value="150400" />
+      <parameter constant="false" id="D" metaid="metaid_0000041" value="0" />
+      <parameter id="f_2" units="per_millisecond" metaid="metaid_0000042" value="10" />
+      <parameter id="f_3" units="per_millisecond" metaid="metaid_0000043" value="0.172" />
+      <parameter id="f_6" units="per_millisecond" metaid="metaid_0000044" value="11.5" />
+      <parameter id="b_1" units="per_millisecond" metaid="metaid_0000045" value="100" />
+      <parameter constant="false" id="f_Ca" units="dimensionless" metaid="metaid_0000046" value="0" />
+      <parameter id="Kkca" units="micromole_per_litre" metaid="metaid_0000047" value="0.1" />
+      <parameter constant="false" id="Okatp" units="dimensionless" metaid="metaid_0000048" value="0" />
+      <parameter id="Kdd" units="micromole_per_litre" metaid="metaid_0000049" value="17" />
+      <parameter id="Ktd" units="micromole_per_litre" metaid="metaid_0000050" value="26" />
+      <parameter id="Ktt" units="micromole_per_litre" metaid="metaid_0000051" value="1" />
+      <parameter constant="false" id="n_infinity" units="dimensionless" metaid="metaid_0000052" value="0" />
+      <parameter id="Vn" units="millivolt" metaid="metaid_0000053" value="-14" />
+      <parameter id="Sn" units="millivolt" metaid="metaid_0000054" value="7" />
+      <parameter constant="false" id="tau_n" units="time" metaid="metaid_0000055" value="0" />
+      <parameter id="c" units="time" metaid="metaid_0000056" value="20" />
+      <parameter id="Vtau" units="millivolt" metaid="metaid_0000057" value="-75" />
+      <parameter id="a" units="millivolt" metaid="metaid_0000058" value="65" />
+      <parameter id="b" units="millivolt" metaid="metaid_0000059" value="20" />
+      <parameter constant="false" id="I_Vca" units="femtoamperes" metaid="metaid_0000060" value="0" />
+      <parameter id="gmvca" units="picosiemens" metaid="metaid_0000061" value="770" />
+      <parameter constant="false" id="I_CaPump" units="femtoamperes" metaid="metaid_0000062" value="0" />
+      <parameter id="Pmcap" units="femtoamperes" metaid="metaid_0000063" value="2000" />
+      <parameter id="Kcap" units="micromole_per_litre" metaid="metaid_0000064" value="0.1" />
+      <parameter constant="false" id="I_NaCa" units="femtoamperes" metaid="metaid_0000065" value="0" />
+      <parameter id="gnaca" units="picosiemens" metaid="metaid_0000066" value="271" />
+      <parameter id="Knaca" units="micromole_per_litre" metaid="metaid_0000067" value="0.75" />
+      <parameter constant="false" id="I_CRAN" units="femtoamperes" metaid="metaid_0000068" value="0" />
+      <parameter constant="false" id="I_Na" units="femtoamperes" metaid="metaid_0000069" value="0" />
+      <parameter id="gmna" units="picosiemens" metaid="metaid_0000070" value="1200" />
+      <parameter constant="false" id="I_NaK" units="femtoamperes" metaid="metaid_0000071" value="0" />
+      <parameter id="Pnak" units="femtoamperes" metaid="metaid_0000072" value="600" />
+      <parameter constant="false" id="I_KDr" units="femtoamperes" metaid="metaid_0000073" value="0" />
+      <parameter id="gmKDr" units="picosiemens" metaid="metaid_0000074" value="3000" />
+      <parameter constant="false" id="I_KCa" units="femtoamperes" metaid="metaid_0000075" value="0" />
+      <parameter id="gmkca" units="picosiemens" metaid="metaid_0000076" value="130" />
+      <parameter constant="false" id="I_KATP" units="femtoamperes" metaid="metaid_0000077" value="0" />
+      <parameter id="gmkatp" units="picosiemens" metaid="metaid_0000078" value="24000" />
+      <parameter constant="false" id="Jerp" units="microM_per_millisecond" metaid="metaid_0000079" value="0" />
+      <parameter constant="false" id="Pcaer" units="microM_per_millisecond" metaid="metaid_0000080" value="0.105" />
+      <parameter id="Kcarp" units="micromole_per_litre" metaid="metaid_0000081" value="0.5" />
+      <parameter constant="false" id="O_infinity" units="dimensionless" metaid="metaid_0000082" value="0" />
+      <parameter id="Krca" units="micromole_per_litre" metaid="metaid_0000083" value="0.077" />
+      <parameter id="Kip3" units="micromole_per_litre" metaid="metaid_0000084" value="3.2" />
+      <parameter constant="false" id="Jout" units="micromole_per_millisecond" metaid="metaid_0000085" value="0" />
+      <parameter id="Pleak" units="litres_per_millisecond" metaid="metaid_0000086" value="1E-16" />
+      <parameter id="Pip3" units="litres_per_millisecond" metaid="metaid_0000087" value="1.2E-15" />
+      <parameter id="Cm" units="femtofarads" metaid="metaid_0000155" value="6158" />
+      <parameter id="fi" units="dimensionless" metaid="metaid_0000176" value="0.01" />
+      <parameter name="Faraday's constant" id="F" units="fA_msec_per_micromole" metaid="metaid_0000177" value="9.6485E16" />
+      <parameter id="ksg" units="per_millisecond" metaid="metaid_0000178" value="0.0001" />
+      <parameter id="fer" units="dimensionless" metaid="metaid_0000179" value="0.03" />
+      <parameter name="IP3 production rate constant" id="kip" units="microM_per_millisecond" metaid="metaid_0000180" value="0.0003" />
+      <parameter name="half activation cytosolic Ca" id="Kipca" units="micromole_per_litre" metaid="metaid_0000181" value="0.4" />
+      <parameter name="IP3 degradation rate constant" id="kdip" units="per_millisecond" metaid="metaid_0000182" value="4E-5" />
+      <parameter name="ATP production rate constant" id="kadp" units="per_millisecond" metaid="metaid_0000183" value="0.00037" />
+      <parameter name="Ca dependent ATP consumption" id="katpca" units="per_microM_per_millisecond" metaid="metaid_0000184" value="5E-5" />
+      <parameter name="Rate constant of ATP consumption" id="katp" units="per_millisecond" metaid="metaid_0000185" value="5E-5" />
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="ADP_cyt" metaid="metaid_0000097">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus />
+            <cn type="integer">4000</cn>
+            <ci>ATP_cyt</ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vca" metaid="metaid_0000098">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <apply>
+              <divide />
+              <ci>TV</ci>
+              <cn type="integer">2</cn>
+            </apply>
+            <apply>
+              <ln />
+              <apply>
+                <divide />
+                <ci>Ca_ec</ci>
+                <ci>Ca_cyt</ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vk" metaid="metaid_0000099">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>TV</ci>
+            <apply>
+              <ln />
+              <apply>
+                <divide />
+                <ci>K_ec</ci>
+                <ci>K_cyt</ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vna" metaid="metaid_0000100">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>TV</ci>
+            <apply>
+              <ln />
+              <apply>
+                <divide />
+                <ci>Na_ec</ci>
+                <ci>Na_cyt</ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vnaca" metaid="metaid_0000101">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>TV</ci>
+            <apply>
+              <minus />
+              <apply>
+                <times />
+                <cn type="integer">3</cn>
+                <apply>
+                  <ln />
+                  <apply>
+                    <divide />
+                    <ci>Na_ec</ci>
+                    <ci>Na_cyt</ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <ln />
+                <apply>
+                  <divide />
+                  <ci>Ca_ec</ci>
+                  <ci>Ca_cyt</ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="pvca" metaid="metaid_0000102">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <cn type="integer">1</cn>
+            <apply>
+              <plus />
+              <cn type="integer">1</cn>
+              <apply>
+                <exp />
+                <apply>
+                  <divide />
+                  <apply>
+                    <minus />
+                    <ci>Vcah</ci>
+                    <ci>V</ci>
+                  </apply>
+                  <ci>Kcah</ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="f_CRAN" metaid="metaid_0000103">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <minus />
+              <ci>gm_CRAN</ci>
+            </apply>
+            <apply>
+              <plus />
+              <cn type="integer">1</cn>
+              <apply>
+                <exp />
+                <apply>
+                  <divide />
+                  <apply>
+                    <minus />
+                    <ci>Ca_er</ci>
+                    <ci>Kcar</ci>
+                  </apply>
+                  <cn type="integer">3</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="p_CRAN" metaid="metaid_0000104">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus />
+            <ci>V</ci>
+            <ci>V_CRAN</ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="pna" metaid="metaid_0000105">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <cn type="integer">1</cn>
+            <apply>
+              <plus />
+              <cn type="integer">1</cn>
+              <apply>
+                <exp />
+                <apply>
+                  <divide />
+                  <apply>
+                    <plus />
+                    <cn type="integer">104</cn>
+                    <ci>V</ci>
+                  </apply>
+                  <cn type="integer">8</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="f_5" metaid="metaid_0000106">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>f5_ast</ci>
+            <apply>
+              <exp />
+              <apply>
+                <divide />
+                <ci>V</ci>
+                <apply>
+                  <times />
+                  <cn type="integer">2</cn>
+                  <ci>TV</ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="b_5" metaid="metaid_0000107">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>b5_ast</ci>
+            <apply>
+              <exp />
+              <apply>
+                <divide />
+                <apply>
+                  <minus />
+                  <ci>V</ci>
+                </apply>
+                <apply>
+                  <times />
+                  <cn type="integer">2</cn>
+                  <ci>TV</ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="F1" metaid="metaid_0000108">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>f_1</ci>
+            <apply>
+              <power />
+              <ci>Na_cyt</ci>
+              <cn type="integer">3</cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="F4" metaid="metaid_0000109">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>f_4</ci>
+            <apply>
+              <power />
+              <ci>K_ec</ci>
+              <cn type="integer">2</cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="F5" metaid="metaid_0000110">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>f_5</ci>
+            <ci>ATP_cyt</ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B2" metaid="metaid_0000111">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>b_2</ci>
+            <ci>ADP_cyt</ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B3" metaid="metaid_0000112">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>b_3</ci>
+            <apply>
+              <power />
+              <ci>Na_ec</ci>
+              <cn type="integer">3</cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B4" metaid="metaid_0000113">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>b_4</ci>
+            <ci>P</ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="B6" metaid="metaid_0000114">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>b_6</ci>
+            <apply>
+              <power />
+              <ci>Ksup</ci>
+              <cn type="integer">2</cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="D" metaid="metaid_0000115">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus />
+            <apply>
+              <times />
+              <ci>f_2</ci>
+              <ci>f_3</ci>
+              <ci>F4</ci>
+              <ci>F5</ci>
+              <ci>f_6</ci>
+            </apply>
+            <apply>
+              <times />
+              <ci>b_1</ci>
+              <ci>f_3</ci>
+              <ci>F4</ci>
+              <ci>F5</ci>
+              <ci>f_6</ci>
+            </apply>
+            <apply>
+              <times />
+              <ci>b_1</ci>
+              <ci>B2</ci>
+              <ci>F4</ci>
+              <ci>F5</ci>
+              <ci>f_6</ci>
+            </apply>
+            <apply>
+              <times />
+              <ci>b_1</ci>
+              <ci>B2</ci>
+              <ci>B3</ci>
+              <ci>F5</ci>
+              <ci>f_6</ci>
+            </apply>
+            <apply>
+              <times />
+              <ci>b_1</ci>
+              <ci>B2</ci>
+              <ci>B3</ci>
+              <ci>B4</ci>
+              <ci>f_6</ci>
+            </apply>
+            <apply>
+              <times />
+              <ci>b_1</ci>
+              <ci>B2</ci>
+              <ci>B3</ci>
+              <ci>B4</ci>
+              <ci>b_5</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="f_Ca" metaid="metaid_0000116">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <power />
+              <ci>Ca_cyt</ci>
+              <cn type="integer">4</cn>
+            </apply>
+            <apply>
+              <plus />
+              <apply>
+                <power />
+                <ci>Ca_cyt</ci>
+                <cn type="integer">4</cn>
+              </apply>
+              <apply>
+                <power />
+                <ci>Kkca</ci>
+                <cn type="integer">4</cn>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Okatp" metaid="metaid_0000117">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <plus />
+              <apply>
+                <times />
+                <cn>0.08</cn>
+                <apply>
+                  <plus />
+                  <cn type="integer">1</cn>
+                  <apply>
+                    <times />
+                    <cn>0.33</cn>
+                    <apply>
+                      <divide />
+                      <ci>ADP_cyt</ci>
+                      <ci>Kdd</ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times />
+                <cn>0.89</cn>
+                <apply>
+                  <power />
+                  <apply>
+                    <times />
+                    <cn>0.165</cn>
+                    <apply>
+                      <divide />
+                      <ci>ADP_cyt</ci>
+                      <ci>Kdd</ci>
+                    </apply>
+                  </apply>
+                  <cn type="integer">2</cn>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <times />
+              <apply>
+                <power />
+                <apply>
+                  <plus />
+                  <cn type="integer">1</cn>
+                  <apply>
+                    <times />
+                    <cn>0.165</cn>
+                    <apply>
+                      <divide />
+                      <ci>ADP_cyt</ci>
+                      <ci>Kdd</ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <cn type="integer">2</cn>
+              </apply>
+              <apply>
+                <plus />
+                <cn type="integer">1</cn>
+                <apply>
+                  <times />
+                  <cn>0.135</cn>
+                  <apply>
+                    <divide />
+                    <ci>ADP_cyt</ci>
+                    <ci>Ktd</ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times />
+                  <cn>0.05</cn>
+                  <apply>
+                    <divide />
+                    <ci>ATP_cyt</ci>
+                    <ci>Ktt</ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="n_infinity" metaid="metaid_0000118">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <cn type="integer">1</cn>
+            <apply>
+              <plus />
+              <cn type="integer">1</cn>
+              <apply>
+                <exp />
+                <apply>
+                  <divide />
+                  <apply>
+                    <minus />
+                    <ci>Vn</ci>
+                    <ci>V</ci>
+                  </apply>
+                  <ci>Sn</ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="tau_n" metaid="metaid_0000119">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <ci>c</ci>
+            <apply>
+              <plus />
+              <apply>
+                <exp />
+                <apply>
+                  <divide />
+                  <apply>
+                    <minus />
+                    <ci>V</ci>
+                    <ci>Vtau</ci>
+                  </apply>
+                  <ci>a</ci>
+                </apply>
+              </apply>
+              <apply>
+                <exp />
+                <apply>
+                  <divide />
+                  <apply>
+                    <minus />
+                    <ci>Vtau</ci>
+                    <ci>V</ci>
+                  </apply>
+                  <ci>b</ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_Vca" metaid="metaid_0000120">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>gmvca</ci>
+            <ci>pvca</ci>
+            <apply>
+              <minus />
+              <ci>V</ci>
+              <ci>Vca</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_CaPump" metaid="metaid_0000121">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <times />
+              <ci>Pmcap</ci>
+              <apply>
+                <power />
+                <ci>Ca_cyt</ci>
+                <cn type="integer">2</cn>
+              </apply>
+            </apply>
+            <apply>
+              <plus />
+              <apply>
+                <power />
+                <ci>Kcap</ci>
+                <cn type="integer">2</cn>
+              </apply>
+              <apply>
+                <power />
+                <ci>Ca_cyt</ci>
+                <cn type="integer">2</cn>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_NaCa" metaid="metaid_0000122">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <times />
+              <ci>gnaca</ci>
+              <apply>
+                <power />
+                <ci>Ca_cyt</ci>
+                <cn type="integer">5</cn>
+              </apply>
+              <apply>
+                <minus />
+                <ci>V</ci>
+                <ci>Vnaca</ci>
+              </apply>
+            </apply>
+            <apply>
+              <plus />
+              <apply>
+                <power />
+                <ci>Ca_cyt</ci>
+                <cn type="integer">5</cn>
+              </apply>
+              <apply>
+                <power />
+                <ci>Knaca</ci>
+                <cn type="integer">5</cn>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_CRAN" metaid="metaid_0000123">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>f_CRAN</ci>
+            <ci>p_CRAN</ci>
+            <apply>
+              <minus />
+              <ci>V</ci>
+              <ci>Vna</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_Na" metaid="metaid_0000124">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>gmna</ci>
+            <ci>pna</ci>
+            <apply>
+              <minus />
+              <ci>V</ci>
+              <ci>Vna</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_NaK" metaid="metaid_0000125">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <times />
+              <ci>Pnak</ci>
+              <apply>
+                <minus />
+                <apply>
+                  <times />
+                  <ci>F1</ci>
+                  <ci>f_2</ci>
+                  <ci>f_3</ci>
+                  <ci>F4</ci>
+                  <ci>F5</ci>
+                  <ci>f_6</ci>
+                </apply>
+                <apply>
+                  <times />
+                  <ci>b_1</ci>
+                  <ci>B2</ci>
+                  <ci>B3</ci>
+                  <ci>B4</ci>
+                  <ci>b_5</ci>
+                  <ci>B6</ci>
+                </apply>
+              </apply>
+            </apply>
+            <ci>D</ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_KDr" metaid="metaid_0000126">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>gmKDr</ci>
+            <ci>n</ci>
+            <apply>
+              <minus />
+              <ci>V</ci>
+              <ci>Vk</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_KCa" metaid="metaid_0000127">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>gmkca</ci>
+            <ci>f_Ca</ci>
+            <apply>
+              <minus />
+              <ci>V</ci>
+              <ci>Vk</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="I_KATP" metaid="metaid_0000128">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <ci>gmkatp</ci>
+            <ci>Okatp</ci>
+            <apply>
+              <minus />
+              <ci>V</ci>
+              <ci>Vk</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Jerp" metaid="metaid_0000129">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <times />
+              <ci>Pcaer</ci>
+              <apply>
+                <power />
+                <ci>Ca_cyt</ci>
+                <cn type="integer">2</cn>
+              </apply>
+            </apply>
+            <apply>
+              <plus />
+              <apply>
+                <power />
+                <ci>Ca_cyt</ci>
+                <cn type="integer">2</cn>
+              </apply>
+              <apply>
+                <power />
+                <ci>Kcarp</ci>
+                <cn type="integer">2</cn>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="O_infinity" metaid="metaid_0000130">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <times />
+              <ci>Ca_cyt</ci>
+              <apply>
+                <power />
+                <ci>IP3_cyt</ci>
+                <cn type="integer">3</cn>
+              </apply>
+            </apply>
+            <apply>
+              <times />
+              <apply>
+                <plus />
+                <ci>Ca_cyt</ci>
+                <ci>Krca</ci>
+              </apply>
+              <apply>
+                <plus />
+                <apply>
+                  <power />
+                  <ci>IP3_cyt</ci>
+                  <cn type="integer">3</cn>
+                </apply>
+                <apply>
+                  <power />
+                  <ci>Kip3</ci>
+                  <cn type="integer">3</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Jout" metaid="metaid_0000131">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times />
+            <apply>
+              <plus />
+              <ci>Pleak</ci>
+              <apply>
+                <times />
+                <ci>Pip3</ci>
+                <ci>O_infinity</ci>
+              </apply>
+            </apply>
+            <apply>
+              <minus />
+              <ci>Ca_er</ci>
+              <ci>Ca_cyt</ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <rateRule variable="n" metaid="metaid_0000156">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <minus />
+              <ci>n_infinity</ci>
+              <ci>n</ci>
+            </apply>
+            <ci>tau_n</ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="V" metaid="metaid_0000157">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide />
+            <apply>
+              <minus />
+              <cn type="integer">0</cn>
+              <apply>
+                <plus />
+                <ci>I_Vca</ci>
+                <ci>I_CaPump</ci>
+                <ci>I_NaCa</ci>
+                <ci>I_CRAN</ci>
+                <ci>I_Na</ci>
+                <ci>I_NaK</ci>
+                <ci>I_KDr</ci>
+                <ci>I_KCa</ci>
+                <ci>I_KATP</ci>
+              </apply>
+            </apply>
+            <ci>Cm</ci>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="Calcium_cyt_Ivca" metaid="metaid_0000133" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000133">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005245" />
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference metaid="_326542" species="Ca_cyt" />
+        </listOfProducts>
+        <kineticLaw metaid="_326554">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <times />
+                <ci>fi</ci>
+                <apply>
+                  <minus />
+                  <ci>I_Vca</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times />
+                <cn type="integer">2</cn>
+                <ci>F</ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Calcium_cyt_Inaca" metaid="metaid_0000134" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000134">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005432" />
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference metaid="_326566" species="Ca_cyt" />
+        </listOfProducts>
+        <kineticLaw metaid="_326578">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <times />
+                <ci>fi</ci>
+                <cn type="integer">2</cn>
+                <ci>I_NaCa</ci>
+              </apply>
+              <apply>
+                <times />
+                <cn type="integer">2</cn>
+                <ci>F</ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Calcium_cyt_Icapump" metaid="metaid_0000135" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000135">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ec-code:3.6.3.8" />
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:hasPart>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005388" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005524" />
+                </rdf:Bag>
+              </bqbiol:hasPart>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326590" species="Ca_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326602">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <times />
+                <ci>fi</ci>
+                <cn type="integer">2</cn>
+                <ci>I_CaPump</ci>
+              </apply>
+              <apply>
+                <times />
+                <cn type="integer">2</cn>
+                <ci>F</ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Calcium_cyt_Jerp" metaid="metaid_0000136" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000136">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ec-code:3.6.3.8" />
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:hasPart>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005388" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005524" />
+                </rdf:Bag>
+              </bqbiol:hasPart>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference stoichiometry="0.01" metaid="_326614" species="Ca_cyt" />
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference stoichiometry="0.03" metaid="_326626" species="Ca_er" />
+        </listOfProducts>
+        <kineticLaw metaid="_326638">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>Cytoplasm</ci>
+              <ci>Jerp</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Calcium_cyt_Jout" metaid="metaid_0000137" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000137">
+              <bqbiol:hasPart>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0007204" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005220" />
+                </rdf:Bag>
+              </bqbiol:hasPart>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference stoichiometry="0.03" metaid="_326650" species="Ca_er" />
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference stoichiometry="0.01" metaid="_326662" species="Ca_cyt" />
+        </listOfProducts>
+        <kineticLaw metaid="_326674">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci>Jout</ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Calcium_cyt_sequestration" metaid="metaid_0000138" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000138">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0051208" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326686" species="Ca_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326698">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>Cytoplasm</ci>
+              <ci>ksg</ci>
+              <ci>Ca_cyt</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="IP3_synthesis" metaid="metaid_0000141" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000141">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ec-code:3.1.4.11" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0004435" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference metaid="_326710" species="IP3_cyt" />
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference metaid="_326723" species="Ca_cyt" />
+        </listOfModifiers>
+        <kineticLaw metaid="_326735">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <times />
+                <ci>Cytoplasm</ci>
+                <ci>kip</ci>
+                <apply>
+                  <power />
+                  <ci>Ca_cyt</ci>
+                  <cn type="integer">2</cn>
+                </apply>
+              </apply>
+              <apply>
+                <plus />
+                <apply>
+                  <power />
+                  <ci>Ca_cyt</ci>
+                  <cn type="integer">2</cn>
+                </apply>
+                <apply>
+                  <power />
+                  <ci>Kipca</ci>
+                  <cn type="integer">2</cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="IP3_degradation" metaid="metaid_0000142" reversible="false">
+        <listOfReactants>
+          <speciesReference metaid="_326747" species="IP3_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326759">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>Cytoplasm</ci>
+              <ci>kdip</ci>
+              <ci>IP3_cyt</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Na_Inaca" metaid="metaid_0000143" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000143">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005432" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326771" species="Na_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326783">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <times />
+                <cn type="integer">3</cn>
+                <ci>I_NaCa</ci>
+              </apply>
+              <ci>F</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Na_Inak" metaid="metaid_0000144" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000144">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ec-code:3.6.3.9" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005391" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326795" species="Na_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326807">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <times />
+                <cn type="integer">3</cn>
+                <ci>I_NaK</ci>
+              </apply>
+              <ci>F</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Na_Ina" metaid="metaid_0000145" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000145">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005248" />
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference metaid="_326819" species="Na_cyt" />
+        </listOfProducts>
+        <kineticLaw metaid="_326831">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <minus />
+                <ci>I_Na</ci>
+              </apply>
+              <ci>F</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Na_Icran" metaid="metaid_0000146" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000146">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005227" />
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference metaid="_326843" species="Na_cyt" />
+        </listOfProducts>
+        <kineticLaw metaid="_326855">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <minus />
+                <ci>I_CRAN</ci>
+              </apply>
+              <ci>F</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ATP_production" metaid="metaid_0000147" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000147">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0006754" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference metaid="_326867" species="ATP_cyt" />
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference metaid="_326879" species="ADP_cyt" />
+        </listOfModifiers>
+        <kineticLaw metaid="_326891">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>Cytoplasm</ci>
+              <ci>kadp</ci>
+              <ci>ADP_cyt</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ATP_NaKATPase" metaid="metaid_0000148" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000148">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ec-code:3.6.3.9" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005391" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326903" species="ATP_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326915">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <ci>I_NaK</ci>
+              <ci>F</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ATP_Capump" metaid="metaid_0000149" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000149">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ec-code:3.6.3.8" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005388" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326927" species="ATP_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326939">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <ci>I_CaPump</ci>
+              <ci>F</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ATP_Jerp" metaid="metaid_0000150" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000150">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ec-code:3.6.3.8" />
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0005388" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326951" species="ATP_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_326963">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide />
+              <apply>
+                <times />
+                <ci>Cytoplasm</ci>
+                <ci>Jerp</ci>
+              </apply>
+              <cn type="integer">2</cn>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ATP_Ca_dependent_consumption" metaid="metaid_0000151" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000151">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0030899" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_326975" species="ATP_cyt" />
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference metaid="_326987" species="Ca_cyt" />
+        </listOfModifiers>
+        <kineticLaw metaid="_326999">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>Cytoplasm</ci>
+              <ci>katpca</ci>
+              <ci>Ca_cyt</ci>
+              <ci>ATP_cyt</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ATP_consumption" metaid="metaid_0000152" reversible="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#metaid_0000152">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0006200" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference metaid="_327011" species="ATP_cyt" />
+        </listOfReactants>
+        <kineticLaw metaid="_327023">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>Cytoplasm</ci>
+              <ci>katp</ci>
+              <ci>ATP_cyt</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
