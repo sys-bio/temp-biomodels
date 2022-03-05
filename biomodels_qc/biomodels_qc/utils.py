@@ -55,6 +55,7 @@ EXTENSION_COMBINE_FORMAT_MAP = {
     '.jpeg': CombineArchiveContentFormat.JPEG.value,
     '.m': CombineArchiveContentFormat.MATLAB.value,
     '.mat': CombineArchiveContentFormat.MATLAB_DATA.value,
+    '.ode': CombineArchiveContentFormat.ODE.value,
     '.owl': CombineArchiveContentFormat.OWL.value,
     '.pdf': CombineArchiveContentFormat.PDF.value,
     '.png': CombineArchiveContentFormat.PNG.value,
@@ -69,7 +70,6 @@ EXTENSION_COMBINE_FORMAT_MAP = {
     '.txt': CombineArchiveContentFormat.TEXT.value,
     '.vcml': CombineArchiveContentFormat.VCML.value,
     '.xml': CombineArchiveContentFormat.SBML.value,
-    '.xpp': CombineArchiveContentFormat.XPP.value,
     '.zip': CombineArchiveContentFormat.ZIP.value,
 }
 # map from file extensions to COMBINE format specification URLs

@@ -1,0 +1,94 @@
+name: Continuous integration (temp-biomodels)
+
+on:
+  # push:
+  workflow_dispatch:
+
+jobs:
+  testEntries:
+    name: Test that the entries of BioModels are valid and can be executed successfully
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Setup pip cache
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/Python
+          key: ${{ runner.os }}-pip-${{ hashFiles('tests/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install pip and setuptools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade setuptools
+
+      - name: Install Octave
+        run: |
+          sudo apt update -y
+          sudo apt-get install -y --no-install-recommends octave
+
+      - name: Install Scilab
+        run: sudo apt-get install -y --no-install-recommends scilab
+
+      - name: Install XPP
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends wget make gcc libx11-dev libc6-dev
+
+          cd /tmp
+          wget http://www.math.pitt.edu/~bard/bardware/xppaut_latest.tar.gz
+          mkdir xpp
+          tar zxvf xppaut_latest.tar.gz --directory xpp
+          cd xpp
+          make
+          sudo make install
+
+          cd /tmp
+          rm xppaut_latest.tar.gz
+          rm -r xpp
+
+      - name: Install BioModels QC
+        working-directory: biomodels_qc
+        run: |
+          python -m pip install cython
+          python -m pip install .
+
+      - name: Install requirements
+        run: python -m pip install -r tests/requirements.txt
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+
+      - name: Install requirements
+        run: npm install -g svglint
+
+      - name: Test entries and record the results
+        run: |
+          python -m pytest \
+            --numprocesses auto \
+            --verbose \
+            --junitxml="test-results.xml" tests/
+
+      - name: Summarize test results
+        if: success() || failure()
+        run: python summarize-test-results.py
+
+      - name: Save the test results
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: Test results
+          path: ${{ github.workspace }}/test-results.xml
+          if-no-files-found: warn
