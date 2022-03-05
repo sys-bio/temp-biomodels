@@ -57,7 +57,7 @@ def fixChitnes2012(sed):
             output.getCurve(1).setLogY(True)
 
 def fixChitnes2008(sed):
-    # reason: "Does not reproduce published figure
+    # reason: "Does not reproduce published figure"
     sed.removeOutput("plot_5_task1")
     sed.removeOutput("plot_6_task1")
 
@@ -93,6 +93,15 @@ def get_orig(sed_list, copasi_name, new_sedml, id, guesses):
     # print("The sedml file most similar to the output of " + copasi_name + ": " + ret_file + "\n")
     guesses.append((id, os.path.basename(copasi_name), os.path.basename(ret_file)))
     return ret_file
+
+def fix_kinsol_algorithms(sed):
+    for s in range(sed.getNumSimulations()):
+        sim = sed.getSimulation(s)
+        alg = sim.getAlgorithm()
+        if alg.getKisaoIDasInt() == 282:
+            #No model in biomodels has any algebraic rules, and can thus use 'normal' solutions.  560 is what Copasi uses.
+            alg.setKisaoID(407)
+
 
 
 def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
@@ -258,6 +267,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     guesses = []
     sed = libsedml.readSedMLFromString(sedml)
     sed.setVersion(4)
+    fix_kinsol_algorithms(sed)
     # print("After converting to l1v4:\n", libsedml.writeSedMLToString(sed))
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()

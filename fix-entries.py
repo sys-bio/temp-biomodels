@@ -151,6 +151,18 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     remove_non_sbml.run(id, sbml_filenames)
     rename_xpp_to_ode.run(xpp_filenames)
 
+    ###################################################
+    # Apply manual corrections
+    fix_manual_corrections.run(id, temp_entry_dir)
+
+    # Have to re-check filenames as some of them were renamed.
+    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    copasi_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.cps'), recursive=True)
+    sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
+    sedml_filenames.sort()
+    copasi_filenames.sort()
+    sbml_filenames.sort()
+
     # SED-ML files: recreate from COPASI, then fix the model sources.
     (sbml_msgs, sed_msgs, c_guesses) = recreate_sedml_from_copasi.run(sedml_filenames, copasi_filenames, sbml_filenames, id)
     nc_guesses = fix_models_non_copasi.run(sedml_filenames, sbml_filenames, id)
@@ -169,9 +181,6 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
                     guess_file.write(",")
                 guess_file.write("\n")
 
-    ###################################################
-    # Apply more corrections
-    fix_manual_corrections.run(id, temp_entry_dir)
 
     fix_sbml_validity.run(id, sbml_filenames)
 
