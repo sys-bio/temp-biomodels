@@ -308,6 +308,8 @@ def validate_pdf_file(filename):
     try:
         with open(filename, 'rb') as file:
             PyPDF2.PdfFileReader(file)
+            if "We are sorry" in file:
+                return [f'pdf image {filename} is erroneous.'], []
         return [], []
     except PyPDF2.utils.PdfReadError as exception:
         return [[str(exception)]], []
