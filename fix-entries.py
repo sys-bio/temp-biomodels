@@ -23,6 +23,7 @@ import remove_urn_sbml_files
 import remove_initial_rdf_file
 import remove_omex
 import remove_failed_pdfs
+import rename_sbml_files
 import rename_xpp_to_ode
 import validate_sbml as validate_sbml_module
 
@@ -149,6 +150,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     remove_initial_rdf_file.run(rdf_filenames)
     remove_failed_pdfs.run(pdf_filenames)
     remove_non_sbml.run(id, sbml_filenames)
+    rename_sbml_files.run(id, sbml_filenames)
     rename_xpp_to_ode.run(xpp_filenames)
 
     # SED-ML files: recreate from COPASI, then fix the model sources.
