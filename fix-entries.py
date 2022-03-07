@@ -16,6 +16,7 @@ import remove_bad_images_created_by_sbfc
 import remove_bad_octave_files
 import remove_bad_scilab_files
 import remove_bad_vcml_files
+import remove_bad_pdfs
 import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
@@ -186,6 +187,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     fix_copasi_algorithms.run(id, temp_entry_dir)
 
     remove_bad_images_created_by_sbfc.run(temp_entry_dir)
+    remove_bad_pdfs.run(temp_entry_dir)
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
     octave_filenames.sort()
