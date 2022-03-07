@@ -248,7 +248,7 @@ def _handle_sbf_converter_errors(filename, temp_filename, alt_filename, alt_form
         line = file.readline().decode()
         if line.startswith('####'):
             line = file.readline().decode()
-            if line.startswith('#Something went wrong'):
+            if line.startswith('#Something went wrong') or 'We are sorry' in line:
                 runtime_error = 'sbfConverter failed'
 
     if value_error is not None:
