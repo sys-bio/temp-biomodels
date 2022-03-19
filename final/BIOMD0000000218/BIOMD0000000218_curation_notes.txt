@@ -1,0 +1,59 @@
+This model corresponds to the Mycobacterium tuberculosis model2 (i.e. model with no KDH activity) reported in the publication.Figure 2 (Effect on the
+fluxthrough ICDs and ICLs with varying VfICD1 and VfICD2) of the reference publication is reproduced here. The effect of varying VfICD1 alone and both
+VfICD1 and VfICD2 simultaneously, are illustrated in figures A and B. Figure C denote the effect of varying VfICD1 and VfICD2 simultaneously, with reaction
+ICL1 removed. Figure D denote the effect of varying VfICD1 and VfICD2 simultaneously, with reaction ICL2 removed. The model was simulated and run
+using Copasi v4.5.
+
+To generate Figure 2A, 2B, 2C and 2D the users need to do the following while simulating the model in Copasi.
+
+1. To generate Figure 2A:
+
+        (i)   Assign global parameters jICD and jICL:
+              jICD = (ICD1)Flux + (ICD2)Flux
+              jICL = (ICL1)Flux + (ICL2)Flux
+
+        (ii)  and plot VfICD1 against jICD and jICL.
+
+2. To generate Figure 2B:
+
+        (i)   Assign global parameters jICD and jICL:
+              jICD = (ICD1)Flux + (ICD2)Flux
+              jICL = (ICL1)Flux + (ICL2)Flux
+
+        (ii)  Assign a global (fixed) parameter "f" and
+              assign global parameters V_ICD1 and V_ICD2 as a factor of "f".
+              i.e. V_ICD1 = f * VfICD1(=10.2)
+                   V_ICD2 = f * VfICD2(=9.965)
+
+        (iii) and plot "f" against jICD and jICL.
+
+3. To generate Figure 2C (ICL1 reaction removed):
+
+        (i)   Assign a global parameter jICD
+              jICD = (ICD1)Flux + (ICD2)Flux
+
+        (ii)  Assign a global (fixed) parameter "f" and
+              assign global parameters V_ICD1 and V_ICD2 as a factor of "f".
+              i.e. V_ICD1 = f * VfICD1(=10.2)
+                   V_ICD2 = f * VfICD2(=9.965)
+
+        (iii) and plot "f" against jICD and (ICL2)Flux.
+
+4. To generate Figure 2D (ICL2 reaction removed):
+
+        (i)   Assign a global parameter jICD
+              jICD = (ICD1)Flux + (ICD2)Flux
+
+        (ii)  Assign a global (fixed) parameter "f" and
+              assign global parameters V_ICD1 and  V_ICD2 as a factor of "f".
+              i.e. V_ICD1 = f * VfICD1(=10.2)
+                   V_ICD2 = f * VfICD2(=9.965)
+
+        (iii) and plot "f" against jICD and (ICL1)Flux.
+
+Note:
+
+Though the model can be encoded in SBML, with assignment rules using reaction fluxes (jICD and jICL), the model cannot be imported in Copasi and hence cannot be simulated. Similarly, Copasi allows the
+generation of the above assignments (jICD and jICL), but cannot be exported in SBML format. (Since, object that refers to the "Flux" of Reaction " referenced in a mathematical expression, cannot be expressed in
+SBML. Mathematical Expressions in SBML files can only reference the transient values of compartments, species, global parameters and reaction fluxes. In COPASI references to other objects, e.g. the initial value of a species, are also allowed and these references can not be expressed in an SBML file.).
+So, one needs to do the above to generate the figures.
