@@ -55,6 +55,7 @@ EXTENSION_COMBINE_FORMAT_MAP = {
     '.jpeg': CombineArchiveContentFormat.JPEG.value,
     '.m': CombineArchiveContentFormat.MATLAB.value,
     '.mat': CombineArchiveContentFormat.MATLAB_DATA.value,
+    '.ode': CombineArchiveContentFormat.ODE.value,
     '.owl': CombineArchiveContentFormat.OWL.value,
     '.pdf': CombineArchiveContentFormat.PDF.value,
     '.png': CombineArchiveContentFormat.PNG.value,
@@ -69,7 +70,6 @@ EXTENSION_COMBINE_FORMAT_MAP = {
     '.txt': CombineArchiveContentFormat.TEXT.value,
     '.vcml': CombineArchiveContentFormat.VCML.value,
     '.xml': CombineArchiveContentFormat.SBML.value,
-    '.xpp': CombineArchiveContentFormat.XPP.value,
     '.zip': CombineArchiveContentFormat.ZIP.value,
 }
 # map from file extensions to COMBINE format specification URLs
@@ -95,10 +95,10 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
         now = None
 
     archive = CombineArchive(
-        description=description,
-        authors=authors,
-        created=now,
-        updated=now,
+#        description=description,
+#        authors=authors,
+#        created=now,
+#        updated=now,
     )
 
     filenames = glob.glob(os.path.join(archive_dirname, '**', '*'), recursive=True)
@@ -112,9 +112,9 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
                 location=location,
                 format=format,
                 master=location in master_rel_filenames,
-                authors=[],
-                created=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
-                updated=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
+#                authors=[],
+#                created=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
+#                updated=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
             )
         )
 

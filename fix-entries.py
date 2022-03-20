@@ -7,7 +7,6 @@ import fix_copasi_algorithms
 import fix_filenames
 import fix_manual_corrections
 import fix_models_non_copasi
-import fix_namespaces_in_sedml_doc
 import fix_sbml_validity
 import fix_sedml_extensions
 import fix_sed_plot_names
@@ -25,6 +24,7 @@ import remove_urn_sbml_files
 import remove_initial_rdf_file
 import remove_omex
 import remove_failed_pdfs
+import rename_sbml_files
 import rename_xpp_to_ode
 import validate_sbml as validate_sbml_module
 
@@ -60,7 +60,7 @@ def get_entry_ids():
     return ids
 
 
-def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True, processes=None):
+def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True, processes=None, parallel=False):
     """ Fix the entries of BioModels
 
     Args:
@@ -72,13 +72,16 @@ def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=Fa
         processes (:obj:`bool`, optional): number of processes to use
     """
     print('Fixing {} entries ...'.format(len(ids)))
-    if processes is None:
-        processes = os.cpu_count()
-    _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files, guess_file_name=guess_file_name,
-                                        validate_sbml=validate_sbml, display_warnings=display_warnings)
-    with multiprocessing.Pool(processes=processes) as pool:
-        pool.map(_fix_entry_func, ids)
-    print('done')
+    if parallel:
+        if processes is None:
+            processes = os.cpu_count()
+        _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files, guess_file_name=guess_file_name, validate_sbml=validate_sbml, display_warnings=display_warnings)
+        with multiprocessing.Pool(processes=processes) as pool:
+            pool.map(_fix_entry_func, ids)
+        print('done')
+    else:
+        for id in ids:
+            _fix_entry(id, convert_files=convert_files, guess_file_name=guess_file_name, validate_sbml=validate_sbml, display_warnings=display_warnings)
 
 
 def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True):
@@ -148,6 +151,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     remove_initial_rdf_file.run(rdf_filenames)
     remove_failed_pdfs.run(pdf_filenames)
     remove_non_sbml.run(id, sbml_filenames)
+    rename_sbml_files.run(id, sbml_filenames)
     rename_xpp_to_ode.run(xpp_filenames)
 
     # SED-ML files: recreate from COPASI, then fix the model sources.
@@ -169,15 +173,23 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
                 guess_file.write("\n")
 
     ###################################################
-    # Apply more corrections
+    # Apply manual corrections
     fix_manual_corrections.run(id, temp_entry_dir)
+
+    # Have to re-check filenames as some of them were renamed.
+    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    copasi_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.cps'), recursive=True)
+    sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
+    sedml_filenames.sort()
+    copasi_filenames.sort()
+    sbml_filenames.sort()
+
 
     fix_sbml_validity.run(id, sbml_filenames)
 
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     sedml_filenames.sort()
 
-    fix_namespaces_in_sedml_doc.run(sedml_filenames)
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
     remove_unused_sedml_elements.run(id, sedml_filenames)
@@ -267,6 +279,12 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
+        '--parallel',
+        help='Run entries in parallel.',
+        action='store_true',
+    )
+
+    parser.add_argument(
         '--do-not-display-warnings',
         help='Do not display warnings.',
         action='store_true',
@@ -299,8 +317,9 @@ if __name__ == "__main__":
         ids.remove(low_id)
 
     guess_file_name = "guesses.csv"
-    fix_entries(ids, convert_files=args.convert_files, guess_file_name=guess_file_name, validate_sbml=args.validate_sbml,
-                display_warnings=not args.do_not_display_warnings, processes=args.processes)
+    #args.convert_files = True
+    #args.validate_sbml = True
+    fix_entries(ids, convert_files=args.convert_files, guess_file_name=guess_file_name, validate_sbml=args.validate_sbml, display_warnings=not args.do_not_display_warnings, processes=args.processes, parallel=args.parallel)
 
     if args.validate_sbml:
         err_file = open("sbml_validation.csv", "w")
