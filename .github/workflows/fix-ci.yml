@@ -7,6 +7,9 @@ on:
 jobs:
   fixEntries:
     name: Fix the entries of BioModels and commit to the repository
+    strategy:
+      matrix:
+          job: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -81,7 +84,7 @@ jobs:
         run: python -m pip install -r requirements.txt
 
       - name: Fix entries
-        run: python fix-entries.py --convert-files --validate-sbml
+        run: python fix-entries.py --convert-files --validate-sbml --num-jobs 40 --job ${{ matrix.job }}
 
       - name: Setup Git
         run: |

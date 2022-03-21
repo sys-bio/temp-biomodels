@@ -301,12 +301,26 @@ if __name__ == "__main__":
         help='Number of processes to use. Default: Number of processors minus 1.',
         default=None,
     )
+    
+    parser.add_argument(
+            '--num-jobs',
+            help='Amount of parallelism.',
+            default=1,
+            type=int,
+    )
+    
+    parser.add_argument(
+            '--jobs',
+            help='Index of job within "--num-jobs" to execute',
+            default=0,
+            type=int,
+    )
 
     args = parser.parse_args()
     if args.entry_ids:
         ids = args.entry_ids
     else:
-        ids = get_entry_ids()[0:args.max_entries]
+        ids = get_entry_ids()[args.job:args.num_jobs:min(args.max_entries)]
 
     low_ids = []
     if args.first_entry:
