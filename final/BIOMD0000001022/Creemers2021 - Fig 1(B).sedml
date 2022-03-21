@@ -23,10 +23,11 @@
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="300" numberOfSteps="1000">
       <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter name="absolute tolerance" kisaoID="KISAO_0000211" value="1e-12"/>
-          <algorithmParameter name="integrate reduced model" kisaoID="KISAO_0000216" value="false"/>
-          <algorithmParameter name="maximum number of steps" kisaoID="KISAO_0000415" value="100000"/>
-          <algorithmParameter name="relative tolerance" kisaoID="KISAO_0000209" value="1e-6"/>
+          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -35,18 +36,12 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <repeatedTask id="task2" range="range0" resetModel="true">
       <listOfRanges>
-        <uniformRange id="range0" start="0.5" end="1" numberOfSteps="5" type="linear"/>
-        <uniformRange id="range1" start="0.0005" end="0.001" numberOfSteps="5" type="linear"/>
+        <uniformRange id="range0" start="0.0005" end="0.001" numberOfSteps="5" type="linear"/>
       </listOfRanges>
       <listOfChanges>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho&apos;]" range="range0">
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;xi&apos;]" range="range0">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> range0 </ci>
-          </math>
-        </setValue>
-        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;xi&apos;]" range="range1">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> range1 </ci>
           </math>
         </setValue>
       </listOfChanges>
@@ -348,10 +343,10 @@
   <listOfOutputs>
     <plot2D id="plot_2_task2" name="Concentrations, Volumes, and Global Quantity Values">
       <listOfCurves>
-        <curve id="p1_curve_1_task2" name="[Tumor_cells]" logX="false" style="style1" xDataReference="time_task2" logY="true" yDataReference="T_1_task2"/>
-        <curve id="p1_curve_2_task2" name="[Intratumoral_T_cells]" logX="false" style="style1" xDataReference="time_task2" logY="true" yDataReference="I_2_task2"/>
-        <curve id="p1_curve_3_task2" name="[Specific_T_cells]" logX="false" style="style1" xDataReference="time_task2" logY="true" yDataReference="S_3_task2"/>
-        <curve id="p1_curve_4_task2" name="[Naive_T_cells]" logX="false" style="style1" xDataReference="time_task2" logY="true" yDataReference="N_4_task2"/>
+        <curve id="p1_curve_1_task2" name="[Tumor_cells]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="true" yDataReference="T_1_task2"/>
+        <curve id="p1_curve_2_task2" name="[Intratumoral_T_cells]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="true" yDataReference="I_2_task2"/>
+        <curve id="p1_curve_3_task2" name="[Specific_T_cells]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="true" yDataReference="S_3_task2"/>
+        <curve id="p1_curve_4_task2" name="[Naive_T_cells]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="true" yDataReference="N_4_task2"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
@@ -400,7 +395,7 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="style1" name="Line/marker style 1 from COPASI.">
+    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
       <line type="solid" thickness="1"/>
       <marker type="none"/>
     </style>

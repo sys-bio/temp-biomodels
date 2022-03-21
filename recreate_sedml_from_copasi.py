@@ -57,7 +57,7 @@ def fixChitnes2012(sed):
             output.getCurve(1).setLogY(True)
 
 def fixChitnes2008(sed):
-    # reason: "Does not reproduce published figure
+    # reason: "Does not reproduce published figure"
     sed.removeOutput("plot_5_task1")
     sed.removeOutput("plot_6_task1")
 
@@ -94,6 +94,15 @@ def get_orig(sed_list, copasi_name, new_sedml, id, guesses):
     guesses.append((id, os.path.basename(copasi_name), os.path.basename(ret_file)))
     return ret_file
 
+def fix_kinsol_algorithms(sed):
+    for s in range(sed.getNumSimulations()):
+        sim = sed.getSimulation(s)
+        alg = sim.getAlgorithm()
+        if alg.getKisaoIDasInt() == 282:
+            #No model in biomodels has any algebraic rules, and can thus use 'normal' solutions.  560 is what Copasi uses.
+            alg.setKisaoID(407)
+
+
 
 def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
     if (sed.getNumModels() != 1):
@@ -124,6 +133,9 @@ def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
         if sbml_file == c_file.replace(".cps", ".xml"):
             model.setSource(os.path.basename(sbml_file))
             return libsedml.writeSedMLToString(sed)
+        if sbml_file == c_file.replace(".cps", ".xml").replace("+", "_"):
+            model.setSource(os.path.basename(sbml_file))
+            return libsedml.writeSedMLToString(sed)
 
     # Otherwise, we have to see which one matches the saved SBML file the most closely
     min_diff = len(sbml)
@@ -142,93 +154,95 @@ def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
     model.setSource(os.path.basename(ret_file))
     return libsedml.writeSedMLToString(sed)
 
-def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
-    plotname = plot['name']
-    for curve in plot['curves']:
-        curvename = curve['name']
-        linetype = curve['line_type']
-        linethickness = curve['line_width']
-        linesubtype = curve['line_subtype']
-        symboltype = curve['symbol']
-        color = curve['color']
-        styleid = "copasi_style" + str(len(prevstyles)+1)
-        if (linetype, linethickness, linesubtype, symboltype, color) in prevstyles:
-            styleid = prevstyles[(linetype, linethickness, linesubtype, symboltype, color)]
-        else:
-            prevstyles[(linetype, linethickness, linesubtype, symboltype, color)] = styleid
-            style = sed.createStyle()
-            style.setId(styleid)
-            style.setName("Line/marker style " + str(len(prevstyles)) + " from COPASI.")
+#Copasi v4.35 now produces its own l1v4 styles, so we don't have to recreate them.
 
-            line = style.createLineStyle()
-            if linetype == "points" or linetype == "symbols":
-                line.setType(libsedml.SEDML_LINETYPE_NONE)
-            else:
-                if "#" in color:
-                    line.setColor(color.replace("#", ""))
+# def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
+#     plotname = plot['name']
+#     for curve in plot['curves']:
+#         curvename = curve['name']
+#         linetype = curve['line_type']
+#         linethickness = curve['line_width']
+#         linesubtype = curve['line_subtype']
+#         symboltype = curve['symbol']
+#         color = curve['color']
+#         styleid = "copasi_style" + str(len(prevstyles)+1)
+#         if (linetype, linethickness, linesubtype, symboltype, color) in prevstyles:
+#             styleid = prevstyles[(linetype, linethickness, linesubtype, symboltype, color)]
+#         else:
+#             prevstyles[(linetype, linethickness, linesubtype, symboltype, color)] = styleid
+#             style = sed.createStyle()
+#             style.setId(styleid)
+#             style.setName("Line/marker style " + str(len(prevstyles)) + " from COPASI.")
 
-                line.setThickness(linethickness)
+#             line = style.createLineStyle()
+#             if linetype == "points" or linetype == "symbols":
+#                 line.setType(libsedml.SEDML_LINETYPE_NONE)
+#             else:
+#                 if "#" in color:
+#                     line.setColor(color.replace("#", ""))
 
-                if linesubtype == "solid":
-                    line.setType(libsedml.SEDML_LINETYPE_SOLID)
-                elif linesubtype == "dotted":
-                    line.setType(libsedml.SEDML_LINETYPE_DOT)
-                elif linesubtype == "dashed":
-                    line.setType(libsedml.SEDML_LINETYPE_DASH)
-                elif linesubtype == "dot_dash":
-                    line.setType(libsedml.SEDML_LINETYPE_DASHDOT)
-                elif linesubtype == "dot_dot_dash":
-                    line.setType(libsedml.SEDML_LINETYPE_DASHDOTDOT)
-                else:
-                    raise NotImplementedError("Unknown COPASI line type " + str(linesubtype))
+#                 line.setThickness(linethickness)
 
-            # symbols
-            symbol = style.createMarkerStyle()
-            if linetype == "lines":
-                symbol.setType(libsedml.SEDML_MARKERTYPE_NONE)
-            else:
-                if "#" in color:
-                    symbol.setLineColor(color.replace('#', ''))
+#                 if linesubtype == "solid":
+#                     line.setType(libsedml.SEDML_LINETYPE_SOLID)
+#                 elif linesubtype == "dotted":
+#                     line.setType(libsedml.SEDML_LINETYPE_DOT)
+#                 elif linesubtype == "dashed":
+#                     line.setType(libsedml.SEDML_LINETYPE_DASH)
+#                 elif linesubtype == "dot_dash":
+#                     line.setType(libsedml.SEDML_LINETYPE_DASHDOT)
+#                 elif linesubtype == "dot_dot_dash":
+#                     line.setType(libsedml.SEDML_LINETYPE_DASHDOTDOT)
+#                 else:
+#                     raise NotImplementedError("Unknown COPASI line type " + str(linesubtype))
 
-                if linetype == "points" or symboltype == "circle":
-                    symbol.setType(libsedml.SEDML_MARKERTYPE_CIRCLE)
-                else:
-                    symbol.setType(libsedml.SEDML_MARKERTYPE_XCROSS)
+#             # symbols
+#             symbol = style.createMarkerStyle()
+#             if linetype == "lines":
+#                 symbol.setType(libsedml.SEDML_MARKERTYPE_NONE)
+#             else:
+#                 if "#" in color:
+#                     symbol.setLineColor(color.replace('#', ''))
 
-                if linetype == "points":
-                    symbol.setSize(1)
-                elif symboltype == "circle":
-                    symbol.setSize(3)
-                elif symboltype == "small_cross":
-                    symbol.setSize(3)
-                elif symboltype == "large_cross":
-                    symbol.setSize(6)
+#                 if linetype == "points" or symboltype == "circle":
+#                     symbol.setType(libsedml.SEDML_MARKERTYPE_CIRCLE)
+#                 else:
+#                     symbol.setType(libsedml.SEDML_MARKERTYPE_XCROSS)
 
-        for o in range(sed.getNumOutputs()):
-            output = sed.getOutput(o)
-            try:
-                for c in range(output.getNumCurves()):
-                    curve = output.getCurve(c)
-                    if curve.getName() in curvename or (output.getName() == plotname and not curve.isSetStyle()):
-                        curve.setStyle(styleid)
-                        usedstyles.add(styleid)
-            except:
-                pass
+#                 if linetype == "points":
+#                     symbol.setSize(1)
+#                 elif symboltype == "circle":
+#                     symbol.setSize(3)
+#                 elif symboltype == "small_cross":
+#                     symbol.setSize(3)
+#                 elif symboltype == "large_cross":
+#                     symbol.setSize(6)
+
+#         for o in range(sed.getNumOutputs()):
+#             output = sed.getOutput(o)
+#             try:
+#                 for c in range(output.getNumCurves()):
+#                     curve = output.getCurve(c)
+#                     if curve.getName() in curvename or (output.getName() == plotname and not curve.isSetStyle()):
+#                         curve.setStyle(styleid)
+#                         usedstyles.add(styleid)
+#             except:
+#                 pass
 
 
-def addPlotDetails(sed, dm):
-    if dm.getNumPlotSpecifications() == 0:
-        return
-    basico.set_current_model(dm)
-    pdl = dm.getPlotDefinitionList()
-    prevstyles = {}
-    usedstyles = set()
-    for p in range(pdl.size()):
-        plot = basico.get_plot_dict(p)
-        createStyleFrom(sed, plot, p, prevstyles, usedstyles)
-    for style in prevstyles:
-        if prevstyles[style] not in usedstyles:
-            sed.removeStyle(prevstyles[style])
+# def addPlotDetails(sed, dm):
+#     if dm.getNumPlotSpecifications() == 0:
+#         return
+#     basico.set_current_model(dm)
+#     pdl = dm.getPlotDefinitionList()
+#     prevstyles = {}
+#     usedstyles = set()
+#     for p in range(pdl.size()):
+#         plot = basico.get_plot_dict(p)
+#         createStyleFrom(sed, plot, p, prevstyles, usedstyles)
+#     for style in prevstyles:
+#         if prevstyles[style] not in usedstyles:
+#             sed.removeStyle(prevstyles[style])
 
 def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     dm = COPASI.CRootContainer.addDatamodel()
@@ -249,7 +263,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     sbml = dm.exportSBMLToString(None, 3, 1)
     sbml_msg = COPASI.CCopasiMessage.getAllMessageText()
     # Export SEDML.
-    sedml = dm.exportSEDMLToString(None, 1, 2)
+    sedml = dm.exportSEDMLToString(None, 1, 4)
     # print("Initial COPASI export:\n", sedml)
     sedml = re.sub(r'on 20.*with', 'with', sedml)
     for nac in non_ascii_chars:
@@ -257,11 +271,12 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
             sedml = sedml.replace(nac, non_ascii_chars[nac])
     guesses = []
     sed = libsedml.readSedMLFromString(sedml)
-    sed.setVersion(4)
+    # sed.setVersion(4)
+    fix_kinsol_algorithms(sed)
     # print("After converting to l1v4:\n", libsedml.writeSedMLToString(sed))
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
-    addPlotDetails(sed, dm)
+    # addPlotDetails(sed, dm)
     if "No plot/report definition" not in sed_msg:
         if len(sedml_filenames) > 0:
             orig_sed = get_orig(sedml_filenames, c_file, sedml, id, guesses)

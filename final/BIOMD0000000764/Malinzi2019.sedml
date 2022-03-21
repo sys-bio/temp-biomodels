@@ -19,7 +19,7 @@
         <changeAttribute id="auto_value_parameter_q" name="Value of parameter &quot;q&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;q&apos;]/@value" newValue="5"/>
         <changeAttribute id="auto_value_parameter_lamda" name="Value of parameter &quot;lamda&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;lamda&apos;]/@value" newValue="4.16"/>
         <changeAttribute id="auto_value_parameter_aa" name="Value of parameter &quot;aa&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;aa&apos;]/@value" newValue="0.206"/>
-        <changeAttribute id="auto_value_parameter_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;infected tumor death&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;infected_tumor_death&apos;]/sbml:kineticLaw/sbml:listOfLocalParameters/sbml:localParameter[@id=&apos;k1&apos;]/@value" newValue="1"/>
+        <changeAttribute id="auto_value_parameter_infected_tumor_death_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;infected tumor death&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;infected_tumor_death&apos;]/sbml:kineticLaw/sbml:listOfLocalParameters/sbml:localParameter[@id=&apos;k1&apos;]/@value" newValue="1"/>
       </listOfChanges>
     </model>
   </listOfModels>
@@ -27,10 +27,11 @@
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="5" numberOfSteps="100">
       <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter name="absolute tolerance" kisaoID="KISAO_0000211" value="1e-12"/>
-          <algorithmParameter name="integrate reduced model" kisaoID="KISAO_0000216" value="false"/>
-          <algorithmParameter name="maximum number of steps" kisaoID="KISAO_0000415" value="100000"/>
-          <algorithmParameter name="relative tolerance" kisaoID="KISAO_0000209" value="1e-6"/>
+          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -331,8 +332,8 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 3">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[I]" logX="false" style="style1" xDataReference="time_task1" logY="false" yDataReference="I_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[U]" logX="false" style="style1" xDataReference="time_task1" logY="false" yDataReference="U_2_task1"/>
+        <curve id="p1_curve_1_task1" name="[I]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="I_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[U]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="U_2_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
@@ -380,9 +381,9 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="style1" name="Line/marker style 1 from COPASI.">
-      <line type="solid" color="#0000FF" thickness="1"/>
-      <marker type="circle" lineColor="#0000FF"/>
+    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+      <line type="solid" color="0000FF" thickness="1"/>
+      <marker size="3" type="circle" lineColor="0000FF"/>
     </style>
   </listOfStyles>
 </sedML>

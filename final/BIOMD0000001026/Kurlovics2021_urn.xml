@@ -1,0 +1,689 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:render="http://www.sbml.org/sbml/level3/version1/render/version1" layout:required="false" level="3" render:required="false"
+xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1" version="1">
+  <model areaUnits="area" extentUnits="substance" substanceUnits="substance" metaid="COPASI0"
+  name="Kurlovics2021 - Metformin partitioning between plasma and RBC with independent Kin and Kout coefficients" volumeUnits="volume"
+  id="Kurlovics2021___Metformin_partitioning_between_plasma_and_RBC_with_independent_Kin_and_Kout_coefficients" lengthUnits="length" timeUnits="time">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+This model is a supplementary material of a manuscript
+
+"Diffusion driven metformin exchange transport rates between plasma and red blood cells"
+by Janis Kurlovics, Darta Maija Zake, Linda Zaharenko, Kristaps Berzins, Janis Klovins, Egils Stalidzans
+
+The setting of the model correspond to Fig.2 for the case with a single coefficient for experimental values of average concentration curve. 
+
+Parameter estimation can be executed using experimental data file "average_exp_data.txt".
+
+A=B if metformin concentration is 0 at t=0.
+        </pre>
+      </body>
+    </notes>
+    <annotation>
+      <COPASI xmlns="http://www.copasi.org/static/sbml">
+        <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/"
+        xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+          <rdf:Description rdf:about="#COPASI0">
+            <bqbiol:hasProperty rdf:resource="urn:miriam:chebi:CHEBI:6801" />
+            <bqbiol:hasProperty rdf:resource="urn:miriam:mamo:MAMO:0000046" />
+            <bqbiol:hasTaxon rdf:resource="urn:miriam:taxonomy:9606" />
+            <bqmodel:isInstanceOf rdf:resource="urn:miriam:go:GO:0015893" />
+            <dcterms:bibliographicCitation>
+              <rdf:Description>
+                <CopasiMT:isDescribedBy rdf:resource="urn:miriam:pubmed:34309806" />
+              </rdf:Description>
+            </dcterms:bibliographicCitation>
+            <dcterms:created>
+              <rdf:Description>
+                <dcterms:W3CDTF>2020-11-16T09:49:03Z</dcterms:W3CDTF>
+              </rdf:Description>
+            </dcterms:created>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Klovins</vCard:Family>
+                    <vCard:Given>Janis</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:EMAIL>egils.stalidzans@gmail.com</vCard:EMAIL>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Stalidzans</vCard:Family>
+                    <vCard:Given>Egils</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia; Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:EMAIL>janis.kurlovics@lu.lv</vCard:EMAIL>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Kurlovics</vCard:Family>
+                    <vCard:Given>Janis</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia; Division of Pharmaceutical Chemistry and Technology, University of Helsinki,
+                    Helsinki, Finland</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Zake</vCard:Family>
+                    <vCard:Given>Darta Maija</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia; Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Zaharenko</vCard:Family>
+                    <vCard:Given>Linda</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Berzins</vCard:Family>
+                    <vCard:Given>Kristaps</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia;</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:EMAIL>ktiwari@ebi.ac.uk</vCard:EMAIL>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Tiwari</vCard:Family>
+                    <vCard:Given>Krishna</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+              </rdf:Description>
+            </dcterms:creator>
+            <CopasiMT:isEncodedBy rdf:resource="urn:miriam:biomodels.db:MODEL2103170002" />
+            <CopasiMT:occursIn rdf:resource="urn:miriam:bto:BTO:0000424" />
+          </rdf:Description>
+        </rdf:RDF>
+      </COPASI>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#"
+      xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#COPASI0">
+          <dcterms:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Berzins</vCard:Family>
+                  <vCard:Given>Kristaps</vCard:Given>
+                </vCard:N>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia;</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Tiwari</vCard:Family>
+                  <vCard:Given>Krishna</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>ktiwari@ebi.ac.uk</vCard:EMAIL>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Zake</vCard:Family>
+                  <vCard:Given>Darta Maija</vCard:Given>
+                </vCard:N>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia; Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Kurlovics</vCard:Family>
+                  <vCard:Given>Janis</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>janis.kurlovics@lu.lv</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia; Division of Pharmaceutical Chemistry and Technology, University of Helsinki,
+                  Helsinki, Finland</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Zaharenko</vCard:Family>
+                  <vCard:Given>Linda</vCard:Given>
+                </vCard:N>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Klovins</vCard:Family>
+                  <vCard:Given>Janis</vCard:Given>
+                </vCard:N>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Stalidzans</vCard:Family>
+                  <vCard:Given>Egils</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>egils.stalidzans@gmail.com</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Institute of Microbiology and Biotechnology, University of Latvia, Riga, Latvia; Latvian Biomedical Research and Study Centre, Riga, Latvia</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+            </rdf:Bag>
+          </dcterms:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2020-11-16T09:49:03Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2020-11-16T09:49:03Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqmodel:unknownQualifier>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:biomodels.db:MODEL2103170002" />
+            </rdf:Bag>
+          </bqmodel:unknownQualifier>
+          <bqmodel:unknownQualifier>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:mamo:MAMO_0000046" />
+            </rdf:Bag>
+          </bqmodel:unknownQualifier>
+          <bqmodel:isInstanceOf>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:biomodels.db:MODEL2103170002" />
+              <rdf:li rdf:resource="urn:miriam:bto:BTO%3A0000424" />
+              <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A6801" />
+              <rdf:li rdf:resource="urn:miriam:mamo:MAMO_0000046" />
+              <rdf:li rdf:resource="urn:miriam:taxonomy:9606" />
+              <rdf:li rdf:resource="urn:miriam:go:GO%3A0015893" />
+            </rdf:Bag>
+          </bqmodel:isInstanceOf>
+          <bqmodel:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:biomodels.db:MODEL2103170002" />
+              <rdf:li rdf:resource="urn:miriam:biomodels.db:BIOMD0000001026" />
+            </rdf:Bag>
+          </bqmodel:is>
+          <bqbiol:occursIn>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:bto:BTO%3A0000424" />
+            </rdf:Bag>
+          </bqbiol:occursIn>
+          <bqbiol:hasTaxon>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:taxonomy:9606" />
+            </rdf:Bag>
+          </bqbiol:hasTaxon>
+          <bqbiol:isDescribedBy>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:go:GO%3A0015893" />
+              <rdf:li rdf:resource="urn:miriam:pubmed:34309806" />
+            </rdf:Bag>
+          </bqbiol:isDescribedBy>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:chebi:CHEBI%3A6801" />
+              <rdf:li rdf:resource="urn:miriam:mamo:MAMO_0000046" />
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfFunctionDefinitions>
+      <functionDefinition name="Diffusion to RBC" id="Diffusion_to_RBC" metaid="COPASI13">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI13">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-16T17:51:28Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci>k</ci>
+            </bvar>
+            <bvar>
+              <ci>x</ci>
+            </bvar>
+            <apply>
+              <times />
+              <ci>k</ci>
+              <ci>x</ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition name="substance" id="substance">
+        <listOfUnits>
+          <unit scale="-3" kind="mole" multiplier="1" exponent="1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="length" id="length">
+        <listOfUnits>
+          <unit scale="0" kind="metre" multiplier="1" exponent="1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="area" id="area">
+        <listOfUnits>
+          <unit scale="0" kind="metre" multiplier="1" exponent="2" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="volume" id="volume">
+        <listOfUnits>
+          <unit scale="-3" kind="litre" multiplier="1" exponent="1" />
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="time" id="time">
+        <listOfUnits>
+          <unit scale="2" kind="second" multiplier="3600" exponent="1" />
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment constant="true" size="2198" metaid="COPASI1" name="RBC" id="RBC" units="volume" spatialDimensions="3">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI1">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-16T17:51:19Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+                <CopasiMT:is rdf:resource="urn:miriam:bto:BTO:0000424" />
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#"
+          xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#COPASI1">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:bto:BTO%3A0000424" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" constant="false" substanceUnits="substance" metaid="COPASI2" hasOnlySubstanceUnits="false" compartment="RBC" name="Mrbc" id="Mrbc" initialConcentration="0">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI2">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-16T17:51:19Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+                <CopasiMT:is rdf:resource="urn:miriam:bto:BTO:0000424" />
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#"
+          xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#COPASI2">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:bto:BTO%3A0000424" />
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter name="Mpl" constant="false" id="Mpl" metaid="COPASI3" value="0">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI3">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-16T09:49:17Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="A" constant="true" id="A" metaid="COPASI4" value="1382.06142698431">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI4">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-17T13:03:08Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="B" constant="false" id="B" metaid="COPASI5" value="1382.06142698431">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI5">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-17T13:04:17Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="d" constant="true" id="d" metaid="COPASI6" value="-0.783006790599975">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI6">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-17T13:04:53Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="Kin" constant="true" id="Kin" metaid="COPASI7" value="0.0440064186883752">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI7">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-17T13:13:00Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="c" constant="true" id="c" metaid="COPASI8" value="-0.215608884195034">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI8">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2021-03-17T06:54:48Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="Kout" constant="true" id="Kout" metaid="COPASI9" value="0.0399798384276102">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI9">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2021-03-17T06:55:18Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="Summary flux to RBC" constant="false" id="Summary_flux_to_RBC" metaid="COPASI10" value="0">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI10">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2021-03-17T07:35:46Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </parameter>
+      <parameter name="Initial for A" constant="true" id="ModelValue_1" value="1382.06142698431">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="A" />
+        </annotation>
+      </parameter>
+      <parameter name="Initial for B" constant="true" id="ModelValue_2" value="1382.06142698431">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="B" />
+        </annotation>
+      </parameter>
+      <parameter name="Initial for c" constant="true" id="ModelValue_5" value="-0.215608884195034">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="c" />
+        </annotation>
+      </parameter>
+      <parameter name="Initial for d" constant="true" id="ModelValue_3" value="-0.783006790599975">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="d" />
+        </annotation>
+      </parameter>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="ModelValue_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci>A</ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ModelValue_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci>B</ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ModelValue_5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci>c</ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ModelValue_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci>d</ci>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule variable="B">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci>ModelValue_1</ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Summary_flux_to_RBC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus />
+            <ci>Vin</ci>
+            <ci>Vout</ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Mpl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus />
+            <apply>
+              <times />
+              <ci>ModelValue_1</ci>
+              <apply>
+                <exp />
+                <apply>
+                  <times />
+                  <ci>ModelValue_5</ci>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time">time</csymbol>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <times />
+              <ci>ModelValue_2</ci>
+              <apply>
+                <exp />
+                <apply>
+                  <times />
+                  <ci>ModelValue_3</ci>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time">time</csymbol>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction name="Vout" fast="false" id="Vout" metaid="COPASI11" reversible="false">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI11">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-16T17:48:38Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+                <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0015893" />
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#"
+          xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#COPASI11">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0015893" />
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference stoichiometry="1" constant="true" species="Mrbc" />
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>RBC</ci>
+              <ci>Kout</ci>
+              <ci>Mrbc</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Vin" fast="false" id="Vin" metaid="COPASI12" reversible="false">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI12">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2020-11-16T17:52:54Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+                <CopasiMT:isVersionOf rdf:resource="urn:miriam:go:GO:0015893" />
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#"
+          xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#COPASI12">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:go:GO%3A0015893" />
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference stoichiometry="1" constant="true" species="Mrbc" />
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times />
+              <ci>RBC</ci>
+              <apply>
+                <ci>Diffusion_to_RBC</ci>
+                <ci>Kin</ci>
+                <ci>Mpl</ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
