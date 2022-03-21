@@ -290,7 +290,7 @@ if __name__ == "__main__":
     )
     
     parser.add_argument(
-            '--jobs',
+            '--job',
             help='Index of job within "--num-jobs" to execute',
             default=0,
             type=int,
