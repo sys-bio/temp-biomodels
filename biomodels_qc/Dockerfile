@@ -28,7 +28,7 @@ LABEL \
     maintainer="Center for Reproducible Biomedical Modeling <info@reproduciblebiomodels.org>"
 
 # Install Systems Biology Format Converter (SBFC)
-RUN mkdir /usr/share/man/man1/ \
+RUN mkdir -p /usr/share/man/man1/ \
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
         openjdk-11-jre-headless \
@@ -111,6 +111,11 @@ RUN apt-get update -y \
 
 # Install Cython for better Owlready2 performance
 RUN pip install cython
+
+# fonts for matplotlib
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends libfreetype6 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy code for package into image and install it
 COPY . /root/biomodels_qc
