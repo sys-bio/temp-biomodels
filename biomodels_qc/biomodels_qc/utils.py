@@ -95,10 +95,10 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
         now = None
 
     archive = CombineArchive(
-#        description=description,
-#        authors=authors,
-#        created=now,
-#        updated=now,
+        #        description=description,
+        #        authors=authors,
+        #        created=now,
+        #        updated=now,
     )
 
     filenames = glob.glob(os.path.join(archive_dirname, '**', '*'), recursive=True)
@@ -112,9 +112,9 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
                 location=location,
                 format=format,
                 master=location in master_rel_filenames,
-#                authors=[],
-#                created=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
-#                updated=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
+                #                authors=[],
+                #                created=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
+                #                updated=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
             )
         )
 
