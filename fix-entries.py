@@ -3,7 +3,6 @@
 
 import add_universal_output_report
 import decrease_excessive_numbers_of_time_course_steps
-import get_curation_notes
 import fix_copasi_algorithms
 import fix_filenames
 import fix_manual_corrections
