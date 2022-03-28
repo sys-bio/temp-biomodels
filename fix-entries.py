@@ -75,13 +75,15 @@ def fix_entries(ids, convert_files=False, guess_file_name=None, validate_sbml=Fa
     if parallel:
         if processes is None:
             processes = os.cpu_count()
-        _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files, guess_file_name=guess_file_name, validate_sbml=validate_sbml, display_warnings=display_warnings)
+        _fix_entry_func = functools.partial(_fix_entry, convert_files=convert_files,
+                                            guess_file_name=guess_file_name, validate_sbml=validate_sbml, display_warnings=display_warnings)
         with multiprocessing.Pool(processes=processes) as pool:
             pool.map(_fix_entry_func, ids)
         print('done')
     else:
         for id in ids:
-            _fix_entry(id, convert_files=convert_files, guess_file_name=guess_file_name, validate_sbml=validate_sbml, display_warnings=display_warnings)
+            _fix_entry(id, convert_files=convert_files, guess_file_name=guess_file_name,
+                       validate_sbml=validate_sbml, display_warnings=display_warnings)
 
 
 def _fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False, display_warnings=True):
@@ -302,17 +304,17 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-            '--num-jobs',
-            help='Amount of parallelism.',
-            default=1,
-            type=int,
+        '--num-jobs',
+        help='Amount of parallelism.',
+        default=1,
+        type=int,
     )
 
     parser.add_argument(
-            '--job',
-            help='Index of job within "--num-jobs" to execute',
-            default=0,
-            type=int,
+        '--job',
+        help='Index of job within "--num-jobs" to execute',
+        default=0,
+        type=int,
     )
 
     args = parser.parse_args()
@@ -332,7 +334,8 @@ if __name__ == "__main__":
     guess_file_name = "guesses.csv"
     #args.convert_files = True
     #args.validate_sbml = True
-    fix_entries(ids, convert_files=args.convert_files, guess_file_name=guess_file_name, validate_sbml=args.validate_sbml, display_warnings=not args.do_not_display_warnings, processes=args.processes, parallel=args.parallel)
+    fix_entries(ids, convert_files=args.convert_files, guess_file_name=guess_file_name, validate_sbml=args.validate_sbml,
+                display_warnings=not args.do_not_display_warnings, processes=args.processes, parallel=args.parallel)
 
     if args.validate_sbml:
         err_file = open("sbml_validation.csv", "w")
