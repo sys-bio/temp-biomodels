@@ -3,14 +3,17 @@ from bs4 import BeautifulSoup
 from base64 import b64decode
 from glob import glob
 import requests
-import os, re
+import os
+import re
+
 
 def acquire_notes(directory, div):
     if div.find('div').text is not None:
-        with open(os.path.join(directory, f'{model_id}_curation_notes.txt'), 'w', encoding = 'utf-8') as out:
+        with open(os.path.join(directory, f'{model_id}_curation_notes.txt'), 'w', encoding='utf-8') as out:
             out.write(div.find('div').text.strip())
     else:
         print(directory)
+
 
 def acquire_images(directory, div):
     if div.find('img')['src'] is not None:
@@ -22,7 +25,7 @@ def acquire_images(directory, div):
                 out.write(img_data)
     else:
         print(directory)
-    
+
 
 for model_path in glob(os.path.join('..', 'temp-biomodels', 'final', '*')):
     # acquire the raw HTML
@@ -37,4 +40,4 @@ for model_path in glob(os.path.join('..', 'temp-biomodels', 'final', '*')):
         if div.find('img'):
             acquire_images(model_path, div)
         if div.find('strong'):
-            acquire_notes(model_path, div)    
+            acquire_notes(model_path, div)
