@@ -36,5 +36,5 @@ for model_path in glob(os.path.join('..', 'temp-biomodels', 'final', '*')):
     for div in curation_divs:
         if div.find('img'):
             acquire_images(model_path, div)
-#        if div.find('strong'):
-#            acquire_notes(model_path, div)    
+        if div.find('strong'):
+            acquire_notes(model_path, div)    
