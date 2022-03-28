@@ -184,7 +184,6 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     copasi_filenames.sort()
     sbml_filenames.sort()
 
-
     fix_sbml_validity.run(id, sbml_filenames)
 
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
@@ -301,14 +300,14 @@ if __name__ == "__main__":
         help='Number of processes to use. Default: Number of processors minus 1.',
         default=None,
     )
-    
+
     parser.add_argument(
             '--num-jobs',
             help='Amount of parallelism.',
             default=1,
             type=int,
     )
-    
+
     parser.add_argument(
             '--job',
             help='Index of job within "--num-jobs" to execute',
@@ -320,7 +319,7 @@ if __name__ == "__main__":
     if args.entry_ids:
         ids = args.entry_ids
     else:
-        ids = get_entry_ids()[args.job:args.num_jobs:min(args.max_entries)]
+        ids = get_entry_ids()[args.job:args.num_jobs:args.max_entries]
 
     low_ids = []
     if args.first_entry:
