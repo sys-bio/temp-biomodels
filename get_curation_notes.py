@@ -2,20 +2,20 @@
 from bs4 import BeautifulSoup
 from base64 import b64decode
 from glob import glob
-import requests
 import os
-import re
+import requests
+import warnings
 
 
-def acquire_notes(directory, div):
+def acquire_note(directory, div):
     if div.find('div').text is not None:
         with open(os.path.join(directory, f'{model_id}_curation_notes.txt'), 'w', encoding='utf-8') as out:
             out.write(div.find('div').text.strip())
     else:
-        print(directory)
+        warnings.warn(f'Curation note could not be parsed for {model_id}', UserWarning)
 
 
-def acquire_images(directory, div):
+def acquire_image(directory, div):
     if div.find('img')['src'] is not None:
         for img_file in div.find_all('img'):
             img_format = img_file['src'].partition('/')[2].partition(';')[0]
@@ -24,10 +24,10 @@ def acquire_images(directory, div):
             with open(img_filename, 'wb') as out:
                 out.write(img_data)
     else:
-        print(directory)
+        warnings.warn(f'Curation image could not be found for {model_id}', UserWarning)
 
 
-for model_path in glob(os.path.join('..', 'temp-biomodels', 'final', '*')):
+for model_path in glob(os.path.join('..', 'temp-biomodels', 'manual-fixes', '*')):
     # acquire the raw HTML
     model_id = os.path.basename(model_path)
     url = f'https://www.ebi.ac.uk/biomodels/{model_id}#Curation'
@@ -37,7 +37,7 @@ for model_path in glob(os.path.join('..', 'temp-biomodels', 'final', '*')):
     # acquire and export the curation notes
     curation_divs = soup.find_all(class_='small-12 medium-6 large-6 columns')
     for div in curation_divs:
-        if div.find('img'):
-            acquire_images(model_path, div)
         if div.find('strong'):
-            acquire_notes(model_path, div)
+            acquire_note(model_path, div)
+        if div.find('img'):
+            acquire_image(model_path, div)
