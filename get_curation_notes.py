@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 from base64 import b64decode
 from glob import glob
+import imghdr
 import os
 import requests
 import warnings
@@ -23,6 +24,9 @@ def acquire_image(directory, div):
             img_filename = os.path.join(directory, f'{model_id}_curation_image.{img_format}')
             with open(img_filename, 'wb') as out:
                 out.write(img_data)
+            correct_img_format = imghdr.what(img_filename)
+            if correct_img_format != img_format:
+                os.rename(img_filename, os.path.join(directory, f'{model_id}_curation_image.{correct_img_format}'))
     else:
         warnings.warn(f'Curation image could not be found for {model_id}', UserWarning)
 
