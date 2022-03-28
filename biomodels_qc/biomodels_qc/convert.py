@@ -246,7 +246,11 @@ def _handle_sbf_converter_errors(filename, temp_filename, alt_filename, alt_form
     runtime_error = None
     with open(alt_filename, 'rb') as file:
         for line in file:
-            if b'#Something went wrong' in line or b'We are sorry' in line:
+            if (
+                b'#Something went wrong' in line
+                or b'We are sorry' in line
+                or b'no graph can be automatically generated' in line
+            ):
                 runtime_error = 'sbfConverter failed'
                 break
 
@@ -275,7 +279,7 @@ def run_sbf_converter(filename, format):
         converter_loc = shutil.which('sbfConverter.bat')
     else:
         converter_loc = shutil.which('sbfConverter.sh')
-    if converter_loc == None:
+    if converter_loc is None:
         raise RuntimeError("Unable to find the Systems Biology Format Converter.")
     sbf_converter_home = os.path.dirname(converter_loc)  # pragma: no cover
     jar_dirname = os.path.join(sbf_converter_home, 'lib')
