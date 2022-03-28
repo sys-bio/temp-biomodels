@@ -8,8 +8,6 @@
 
 from biosimulators_utils.combine.data_model import CombineArchive, CombineArchiveContent, CombineArchiveContentFormat
 from biosimulators_utils.data_model import Person  # noqa: F401
-import datetime
-import dateutil.tz
 import glob
 import libsbml
 import lxml.etree
@@ -89,17 +87,7 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
     Returns:
         :obj:`CombineArchive`: archive
     """
-    if description or authors:
-        now = datetime.datetime.now(tz=dateutil.tz.tzutc()).replace(microsecond=0)
-    else:
-        now = None
-
-    archive = CombineArchive(
-#        description=description,
-#        authors=authors,
-#        created=now,
-#        updated=now,
-    )
+    archive = CombineArchive()
 
     filenames = glob.glob(os.path.join(archive_dirname, '**', '*'), recursive=True)
     filenames.sort()
@@ -112,9 +100,6 @@ def build_combine_archive(archive_dirname, master_rel_filenames,
                 location=location,
                 format=format,
                 master=location in master_rel_filenames,
-#                authors=[],
-#                created=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
-#                updated=None,  # not set to None, but libCOMBINE ignores this unless authors is also set
             )
         )
 

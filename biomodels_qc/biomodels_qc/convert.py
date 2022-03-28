@@ -275,7 +275,7 @@ def run_sbf_converter(filename, format):
         converter_loc = shutil.which('sbfConverter.bat')
     else:
         converter_loc = shutil.which('sbfConverter.sh')
-    if converter_loc == None:
+    if converter_loc is None:
         raise RuntimeError("Unable to find the Systems Biology Format Converter.")
     sbf_converter_home = os.path.dirname(converter_loc)  # pragma: no cover
     jar_dirname = os.path.join(sbf_converter_home, 'lib')
