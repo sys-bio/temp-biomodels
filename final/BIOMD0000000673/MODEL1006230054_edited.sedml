@@ -23,13 +23,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1" numberOfSteps="100">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -53,20 +53,20 @@
     </repeatedTask>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="S_1_task2" name="Values[S]">
+    <dataGenerator id="CeA_1_task2" name="Values[CeA].InitialValue">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_S_task2 </ci>
+        <ci> p1_CeA_1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_S_task2" name="S" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;S&apos;]" taskReference="task2"/>
+        <variable id="p1_CeA_1_task2" name="Values[CeA].InitialValue" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;CeA&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="CeA_1_task2" name="CeA">
+    <dataGenerator id="S_1_task2" name="Values[S]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_CeA_task2 </ci>
+        <ci> p1_S_1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_CeA_task2" name="CeA" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;CeA&apos;]" taskReference="task2"/>
+        <variable id="p1_S_1_task2" name="Values[S]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;S&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_time_for_task1" name="Time">
@@ -537,7 +537,7 @@
   <listOfOutputs>
     <plot2D id="plot_2_task2" name="Figure 1">
       <listOfCurves>
-        <curve id="p1_curve_1_task2" name="Values[S]" logX="false" style="copasi_style1" xDataReference="CeA_1_task2" logY="false" yDataReference="S_1_task2"/>
+        <curve id="p1_curve_1_task2" name="Values[S]|Values[CeA].InitialValue" logX="false" style="style1" xDataReference="CeA_1_task2" logY="false" yDataReference="S_1_task2"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
@@ -576,8 +576,8 @@
     <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
         <dataSet id="autogen_task2_time" label="Time" dataReference="auto_time_for_task2"/>
-        <dataSet id="autogen_task2_S" label="S" dataReference="S_1_task2"/>
         <dataSet id="autogen_task2_CeA" label="CeA" dataReference="CeA_1_task2"/>
+        <dataSet id="autogen_task2_S" label="S" dataReference="S_1_task2"/>
         <dataSet id="autogen_task2_S0" label="S0" dataReference="auto_dg_for_task2_S0"/>
         <dataSet id="autogen_task2_alpha" label="alpha" dataReference="auto_dg_for_task2_alpha"/>
         <dataSet id="autogen_task2_MODEL_TIME" label="MODEL_TIME" dataReference="auto_dg_for_task2_MODEL_TIME"/>
@@ -610,9 +610,9 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="none"/>
-      <marker size="1" type="circle"/>
+      <marker size="0.1" type="circle"/>
     </style>
   </listOfStyles>
 </sedML>
