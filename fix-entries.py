@@ -41,6 +41,7 @@ import os
 import shutil
 import tempfile
 import warnings
+import math
 
 MANUALLY_FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'manual-fixes')
 FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
@@ -321,7 +322,14 @@ if __name__ == "__main__":
     if args.entry_ids:
         ids = args.entry_ids
     else:
-        ids = get_entry_ids()[args.job:args.num_jobs:args.max_entries]
+        ids = get_entry_ids()
+        nids = len(ids)
+        if args.max_entries:
+            nids = min(nids, args.max_entries)
+        span = math.ceil(nids/args.num_jobs)
+        init = args.job*span
+        final = min(init + span, nids)
+        ids = ids[init:final]
 
     low_ids = []
     if args.first_entry:
@@ -344,3 +352,8 @@ if __name__ == "__main__":
             err[2] = err[2].replace('"', "'")
             err_file.write(err[0] + "," + err[1] + ',"' + err[2] + '"\n')
         err_file.close()
+    
+    git_add_file = open("git_add.bat", "w")
+    for id in ids:
+        git_add_file.write("git add final/" + id + "\n")
+    git_add_file.close()
