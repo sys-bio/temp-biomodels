@@ -20,13 +20,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="100000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -35,36 +35,36 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="I_1_task1" name="[I]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_I_task1 </ci>
+        <ci> p1_I_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_I_task1" name="I" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;I&apos;]" taskReference="task1"/>
+        <variable id="p1_I_1_task1" name="[I]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;I&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="R_2_task1" name="[R]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_R_task1 </ci>
+        <ci> p1_R_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_R_task1" name="R" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]" taskReference="task1"/>
+        <variable id="p1_R_2_task1" name="[R]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="C_3_task1" name="[C]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_C_task1 </ci>
+        <ci> p1_C_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_C_task1" name="C" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;C&apos;]" taskReference="task1"/>
+        <variable id="p1_C_3_task1" name="[C]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;C&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_a">
@@ -175,14 +175,14 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 3b">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[I]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="true" yDataReference="I_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[R]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="true" yDataReference="R_2_task1"/>
-        <curve id="p1_curve_3_task1" name="[C]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="true" yDataReference="C_3_task1"/>
+        <curve id="p1_curve_1_task1" name="Immune" logX="false" style="style1" xDataReference="_1_task1" logY="true" yDataReference="I_1_task1"/>
+        <curve id="p1_curve_2_task1" name="Resistant" logX="false" style="style2" xDataReference="_1_task1" logY="true" yDataReference="R_2_task1"/>
+        <curve id="p1_curve_3_task1" name="Sensitive" logX="false" style="style3" xDataReference="_1_task1" logY="true" yDataReference="C_3_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_I" label="I" dataReference="I_1_task1"/>
         <dataSet id="autogen_task1_b" label="b" dataReference="I_1_task1"/>
         <dataSet id="autogen_task1_f" label="f" dataReference="I_1_task1"/>
@@ -205,9 +205,14 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
-      <line type="solid" color="0000FF" thickness="4"/>
-      <marker type="none"/>
+    <style id="style1">
+      <line type="solid" color="#0000FF" thickness="4"/>
+    </style>
+    <style id="style2">
+      <line type="solid" color="#F0C800" thickness="4"/>
+    </style>
+    <style id="style3">
+      <line type="solid" color="#FF0000" thickness="4"/>
     </style>
   </listOfStyles>
 </sedML>

@@ -49,13 +49,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="100" numberOfSteps="400">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -64,188 +64,172 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FePlasma__particle_1_task1" name="Values[FePlasma (particle)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FePlasma__particle_task1 </ci>
+        <ci> p1_FePlasma__particle_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FePlasma__particle_task1" name="FePlasma__particle" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;FePlasma__particle&apos;]" taskReference="task1"/>
+        <variable id="p1_FePlasma__particle_1_task1" name="Values[FePlasma (particle)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;FePlasma__particle&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FePlasma_conc_2_task1" name="Values[FePlasma(conc)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FePlasma_conc_task1 </ci>
+        <ci> p1_FePlasma_conc_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FePlasma_conc_task1" name="FePlasma_conc" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;FePlasma_conc&apos;]" taskReference="task1"/>
+        <variable id="p1_FePlasma_conc_2_task1" name="Values[FePlasma(conc)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;FePlasma_conc&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="TfSaturation_3_task1" name="Values[TfSaturation]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_TfSaturation_task1 </ci>
+        <ci> p1_TfSaturation_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_TfSaturation_task1" name="TfSaturation" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;TfSaturation&apos;]" taskReference="task1"/>
+        <variable id="p1_TfSaturation_3_task1" name="Values[TfSaturation]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;TfSaturation&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Fe__conc_4_task1" name="Values[Total_Fe (conc)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Fe__conc_task1 </ci>
+        <ci> p1_Total_Fe__conc_4_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Fe__conc_task1" name="Total_Fe__conc" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Fe__conc&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Fe__conc_4_task1" name="Values[Total_Fe (conc)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Fe__conc&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Fe__g_5_task1" name="Values[Total_Fe (g)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Fe__g_task1 </ci>
+        <ci> p1_Total_Fe__g_5_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Fe__g_task1" name="Total_Fe__g" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Fe__g&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Fe__g_5_task1" name="Values[Total_Fe (g)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Fe__g&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Fe__particle_6_task1" name="Values[Total_Fe (particle)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Fe__particle_task1 </ci>
+        <ci> p1_Total_Fe__particle_6_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Fe__particle_task1" name="Total_Fe__particle" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Fe__particle&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Fe__particle_6_task1" name="Values[Total_Fe (particle)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Fe__particle&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Tf__conc_7_task1" name="Values[Total_Tf (conc)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Tf__conc_task1 </ci>
+        <ci> p1_Total_Tf__conc_7_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Tf__conc_task1" name="Total_Tf__conc" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Tf__conc&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Tf__conc_7_task1" name="Values[Total_Tf (conc)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Tf__conc&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Tf__mg_ml_8_task1" name="Values[Total_Tf (mg/ml)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Tf__mg_ml_task1 </ci>
+        <ci> p1_Total_Tf__mg_ml_8_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Tf__mg_ml_task1" name="Total_Tf__mg_ml" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Tf__mg_ml&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Tf__mg_ml_8_task1" name="Values[Total_Tf (mg/ml)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Tf__mg_ml&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Tf__particle_9_task1" name="Values[Total_Tf (particle)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Tf__particle_task1 </ci>
+        <ci> p1_Total_Tf__particle_9_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Tf__particle_task1" name="Total_Tf__particle" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Tf__particle&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Tf__particle_9_task1" name="Values[Total_Tf (particle)]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Tf__particle&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Fe1Tf_10_task1" name="[Fe1Tf]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Fe1Tf_task1 </ci>
+        <ci> p1_Fe1Tf_10_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Fe1Tf_task1" name="Fe1Tf" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fe1Tf&apos;]" taskReference="task1"/>
+        <variable id="p1_Fe1Tf_10_task1" name="[Fe1Tf]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fe1Tf&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Fe2Tf_11_task1" name="[Fe2Tf]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Fe2Tf_task1 </ci>
+        <ci> p1_Fe2Tf_11_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Fe2Tf_task1" name="Fe2Tf" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fe2Tf&apos;]" taskReference="task1"/>
+        <variable id="p1_Fe2Tf_11_task1" name="[Fe2Tf]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fe2Tf&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FeBM_12_task1" name="[FeBM]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FeBM_task1 </ci>
+        <ci> p1_FeBM_12_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FeBM_task1" name="FeBM" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeBM&apos;]" taskReference="task1"/>
+        <variable id="p1_FeBM_12_task1" name="[FeBM]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeBM&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FeDuo_13_task1" name="[FeDuo]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FeDuo_task1 </ci>
+        <ci> p1_FeDuo_13_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FeDuo_task1" name="FeDuo" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeDuo&apos;]" taskReference="task1"/>
+        <variable id="p1_FeDuo_13_task1" name="[FeDuo]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeDuo&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FeLiver_14_task1" name="[FeLiver]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FeLiver_task1 </ci>
+        <ci> p1_FeLiver_14_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FeLiver_task1" name="FeLiver" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeLiver&apos;]" taskReference="task1"/>
+        <variable id="p1_FeLiver_14_task1" name="[FeLiver]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeLiver&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FeRBC_15_task1" name="[FeRBC]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FeRBC_task1 </ci>
+        <ci> p1_FeRBC_15_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FeRBC_task1" name="FeRBC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeRBC&apos;]" taskReference="task1"/>
+        <variable id="p1_FeRBC_15_task1" name="[FeRBC]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeRBC&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FeRest_16_task1" name="[FeRest]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FeRest_task1 </ci>
+        <ci> p1_FeRest_16_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FeRest_task1" name="FeRest" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeRest&apos;]" taskReference="task1"/>
+        <variable id="p1_FeRest_16_task1" name="[FeRest]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeRest&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="FeSpleen_17_task1" name="[FeSpleen]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_FeSpleen_task1 </ci>
+        <ci> p1_FeSpleen_17_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_FeSpleen_task1" name="FeSpleen" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeSpleen&apos;]" taskReference="task1"/>
+        <variable id="p1_FeSpleen_17_task1" name="[FeSpleen]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;FeSpleen&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Hepcidin_18_task1" name="[Hepcidin]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Hepcidin_task1 </ci>
+        <ci> p1_Hepcidin_18_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Hepcidin_task1" name="Hepcidin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Hepcidin&apos;]" taskReference="task1"/>
+        <variable id="p1_Hepcidin_18_task1" name="[Hepcidin]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Hepcidin&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="NTBI_19_task1" name="[NTBI]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_NTBI_task1 </ci>
+        <ci> p1_NTBI_19_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_NTBI_task1" name="NTBI" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NTBI&apos;]" taskReference="task1"/>
+        <variable id="p1_NTBI_19_task1" name="[NTBI]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NTBI&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Tf_20_task1" name="[Tf]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Tf_task1 </ci>
+        <ci> p1_Tf_20_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Tf_task1" name="Tf" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Tf&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="Total_Fe__g_1_task1" name="Values[Total_Fe (g)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_Total_Fe__g_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p2_Total_Fe__g_task1" name="Total_Fe__g" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Fe__g&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="TfSaturation_1_task1" name="Values[TfSaturation]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_TfSaturation_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p3_TfSaturation_task1" name="TfSaturation" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;TfSaturation&apos;]" taskReference="task1"/>
+        <variable id="p1_Tf_20_task1" name="[Tf]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Tf&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_FeOutside">
@@ -628,41 +612,41 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 3">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[FePlasma (particle)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FePlasma__particle_1_task1"/>
-        <curve id="p1_curve_2_task1" name="Values[FePlasma(conc)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FePlasma_conc_2_task1"/>
-        <curve id="p1_curve_3_task1" name="Values[TfSaturation]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="TfSaturation_3_task1"/>
-        <curve id="p1_curve_4_task1" name="Values[Total_Fe (conc)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Fe__conc_4_task1"/>
-        <curve id="p1_curve_5_task1" name="Values[Total_Fe (g)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Fe__g_5_task1"/>
-        <curve id="p1_curve_6_task1" name="Values[Total_Fe (particle)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Fe__particle_6_task1"/>
-        <curve id="p1_curve_7_task1" name="Values[Total_Tf (conc)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Tf__conc_7_task1"/>
-        <curve id="p1_curve_8_task1" name="Values[Total_Tf (mg/ml)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Tf__mg_ml_8_task1"/>
-        <curve id="p1_curve_9_task1" name="Values[Total_Tf (particle)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Tf__particle_9_task1"/>
-        <curve id="p1_curve_10_task1" name="[Fe1Tf]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Fe1Tf_10_task1"/>
-        <curve id="p1_curve_11_task1" name="[Fe2Tf]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Fe2Tf_11_task1"/>
-        <curve id="p1_curve_12_task1" name="[FeBM]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FeBM_12_task1"/>
-        <curve id="p1_curve_13_task1" name="[FeDuo]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FeDuo_13_task1"/>
-        <curve id="p1_curve_14_task1" name="[FeLiver]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FeLiver_14_task1"/>
-        <curve id="p1_curve_15_task1" name="[FeRBC]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FeRBC_15_task1"/>
-        <curve id="p1_curve_16_task1" name="[FeRest]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FeRest_16_task1"/>
-        <curve id="p1_curve_17_task1" name="[FeSpleen]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="FeSpleen_17_task1"/>
-        <curve id="p1_curve_18_task1" name="[Hepcidin]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Hepcidin_18_task1"/>
-        <curve id="p1_curve_19_task1" name="[NTBI]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="NTBI_19_task1"/>
-        <curve id="p1_curve_20_task1" name="[Tf]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Tf_20_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[FePlasma (particle)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FePlasma__particle_1_task1"/>
+        <curve id="p1_curve_2_task1" name="Values[FePlasma(conc)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FePlasma_conc_2_task1"/>
+        <curve id="p1_curve_3_task1" name="Values[TfSaturation]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="TfSaturation_3_task1"/>
+        <curve id="p1_curve_4_task1" name="Values[Total_Fe (conc)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Fe__conc_4_task1"/>
+        <curve id="p1_curve_5_task1" name="Values[Total_Fe (g)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Fe__g_5_task1"/>
+        <curve id="p1_curve_6_task1" name="Values[Total_Fe (particle)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Fe__particle_6_task1"/>
+        <curve id="p1_curve_7_task1" name="Values[Total_Tf (conc)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Tf__conc_7_task1"/>
+        <curve id="p1_curve_8_task1" name="Values[Total_Tf (mg/ml)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Tf__mg_ml_8_task1"/>
+        <curve id="p1_curve_9_task1" name="Values[Total_Tf (particle)]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Tf__particle_9_task1"/>
+        <curve id="p1_curve_10_task1" name="[Fe1Tf]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Fe1Tf_10_task1"/>
+        <curve id="p1_curve_11_task1" name="[Fe2Tf]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Fe2Tf_11_task1"/>
+        <curve id="p1_curve_12_task1" name="[FeBM]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FeBM_12_task1"/>
+        <curve id="p1_curve_13_task1" name="[FeDuo]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FeDuo_13_task1"/>
+        <curve id="p1_curve_14_task1" name="[FeLiver]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FeLiver_14_task1"/>
+        <curve id="p1_curve_15_task1" name="[FeRBC]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FeRBC_15_task1"/>
+        <curve id="p1_curve_16_task1" name="[FeRest]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FeRest_16_task1"/>
+        <curve id="p1_curve_17_task1" name="[FeSpleen]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="FeSpleen_17_task1"/>
+        <curve id="p1_curve_18_task1" name="[Hepcidin]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Hepcidin_18_task1"/>
+        <curve id="p1_curve_19_task1" name="[NTBI]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="NTBI_19_task1"/>
+        <curve id="p1_curve_20_task1" name="[Tf]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Tf_20_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="Values[Total_Fe (g)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Fe__g_1_task1"/>
+        <curve id="p2_curve_1_task1" name="Values[Total_Fe (g)]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Fe__g_5_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_3_task1">
       <listOfCurves>
-        <curve id="p3_curve_1_task1" name="Values[TfSaturation]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="TfSaturation_1_task1"/>
+        <curve id="p3_curve_1_task1" name="Values[TfSaturation]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="TfSaturation_3_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_FePlasma__particle" label="FePlasma__particle" dataReference="FePlasma__particle_1_task1"/>
         <dataSet id="autogen_task1_Plasma" label="Plasma" dataReference="FePlasma__particle_1_task1"/>
         <dataSet id="autogen_task1_FePlasma_conc" label="FePlasma_conc" dataReference="FePlasma_conc_2_task1"/>
@@ -738,9 +722,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>
