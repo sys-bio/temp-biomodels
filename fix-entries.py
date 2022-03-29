@@ -355,5 +355,5 @@ if __name__ == "__main__":
     
     git_add_file = open("git_add.bat", "w")
     for id in ids:
-        git_add_file.write("git add final/" + id + "\n")
+        git_add_file.write("git add final/" + id + "/\n")
     git_add_file.close()
