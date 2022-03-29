@@ -28,13 +28,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="30" numberOfSteps="100">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="100000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -43,36 +43,36 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Normal_cells_1_task1" name="[Normal_cells]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Normal_cells_task1 </ci>
+        <ci> p1_Normal_cells_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Normal_cells_task1" name="Normal_cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Normal_cells&apos;]" taskReference="task1"/>
+        <variable id="p1_Normal_cells_1_task1" name="[Normal_cells]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Normal_cells&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Tumor_cells_2_task1" name="[Tumor_cells]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Tumor_cells_task1 </ci>
+        <ci> p1_Tumor_cells_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Tumor_cells_task1" name="Tumor_cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Tumor_cells&apos;]" taskReference="task1"/>
+        <variable id="p1_Tumor_cells_2_task1" name="[Tumor_cells]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Tumor_cells&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Immune_cells_3_task1" name="[Immune_cells]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Immune_cells_task1 </ci>
+        <ci> p1_Immune_cells_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Immune_cells_task1" name="Immune_cells" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Immune_cells&apos;]" taskReference="task1"/>
+        <variable id="p1_Immune_cells_3_task1" name="[Immune_cells]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Immune_cells&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_beta_1">
@@ -239,14 +239,14 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Concentrations, Volumes, and Global Quantity Values">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[Normal_cells]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Normal_cells_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[Tumor_cells]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Tumor_cells_2_task1"/>
-        <curve id="p1_curve_3_task1" name="[Immune_cells]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Immune_cells_3_task1"/>
+        <curve id="p1_curve_1_task1" name="[N]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Normal_cells_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[T]" logX="false" style="style2" xDataReference="_1_task1" logY="false" yDataReference="Tumor_cells_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[I]" logX="false" style="style3" xDataReference="_1_task1" logY="false" yDataReference="Immune_cells_3_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_Normal_cells" label="Normal_cells" dataReference="Normal_cells_1_task1"/>
         <dataSet id="autogen_task1_r" label="r" dataReference="Normal_cells_1_task1"/>
         <dataSet id="autogen_task1_m" label="m" dataReference="Normal_cells_1_task1"/>
@@ -277,9 +277,14 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
-      <line type="solid" color="0000FF" thickness="1"/>
-      <marker type="none"/>
+    <style id="style1">
+      <line type="solid" color="#0000FF" thickness="1"/>
+    </style>
+    <style id="style2">
+      <line type="dash" color="#FF0000" thickness="1"/>
+    </style>
+    <style id="style3">
+      <line type="solid" color="#FD8D3C" thickness="1"/>
     </style>
   </listOfStyles>
 </sedML>

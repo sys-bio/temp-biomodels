@@ -50,13 +50,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -65,116 +65,76 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="a_p_1_task1" name="Values[a_p]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_a_p_task1 </ci>
+        <ci> p1_a_p_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_a_p_task1" name="a_p" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;a_p&apos;]" taskReference="task1"/>
+        <variable id="p1_a_p_1_task1" name="Values[a_p]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;a_p&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="l_2_task1" name="Values[l]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_l_task1 </ci>
+        <ci> p1_l_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_l_task1" name="l" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;l&apos;]" taskReference="task1"/>
+        <variable id="p1_l_2_task1" name="Values[l]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;l&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mu_c_3_task1" name="Values[mu_c]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mu_c_task1 </ci>
+        <ci> p1_mu_c_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mu_c_task1" name="mu_c" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mu_c&apos;]" taskReference="task1"/>
+        <variable id="p1_mu_c_3_task1" name="Values[mu_c]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mu_c&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Pancreatic_cancer_cells__C_4_task1" name="[Pancreatic cancer cells (C)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Pancreatic_cancer_cells__C_task1 </ci>
+        <ci> p1_Pancreatic_cancer_cells__C_4_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Pancreatic_cancer_cells__C_task1" name="Pancreatic_cancer_cells__C" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pancreatic_cancer_cells__C&apos;]" taskReference="task1"/>
+        <variable id="p1_Pancreatic_cancer_cells__C_4_task1" name="[Pancreatic cancer cells (C)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pancreatic_cancer_cells__C&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="helper_T_cells__H_5_task1" name="[helper T cells (H)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_helper_T_cells__H_task1 </ci>
+        <ci> p1_helper_T_cells__H_5_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_helper_T_cells__H_task1" name="helper_T_cells__H" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;helper_T_cells__H&apos;]" taskReference="task1"/>
+        <variable id="p1_helper_T_cells__H_5_task1" name="[helper T cells (H)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;helper_T_cells__H&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="NK_cells__N_6_task1" name="[NK cells (N)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_NK_cells__N_task1 </ci>
+        <ci> p1_NK_cells__N_6_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_NK_cells__N_task1" name="NK_cells__N" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NK_cells__N&apos;]" taskReference="task1"/>
+        <variable id="p1_NK_cells__N_6_task1" name="[NK cells (N)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NK_cells__N&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Pancreatic_stellate_cells__P_7_task1" name="[Pancreatic stellate cells (P)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Pancreatic_stellate_cells__P_task1 </ci>
+        <ci> p1_Pancreatic_stellate_cells__P_7_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Pancreatic_stellate_cells__P_task1" name="Pancreatic_stellate_cells__P" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pancreatic_stellate_cells__P&apos;]" taskReference="task1"/>
+        <variable id="p1_Pancreatic_stellate_cells__P_7_task1" name="[Pancreatic stellate cells (P)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pancreatic_stellate_cells__P&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="CD8__T_cells__T_8_task1" name="[CD8+ T cells (T)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_CD8__T_cells__T_task1 </ci>
+        <ci> p1_CD8__T_cells__T_8_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_CD8__T_cells__T_task1" name="CD8__T_cells__T" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CD8__T_cells__T&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="CD8__T_cells__T_1_task1" name="[CD8+ T cells (T)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_CD8__T_cells__T_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p2_CD8__T_cells__T_task1" name="CD8__T_cells__T" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CD8__T_cells__T&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="NK_cells__N_2_task1" name="[NK cells (N)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_NK_cells__N_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p2_NK_cells__N_task1" name="NK_cells__N" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;NK_cells__N&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="Pancreatic_cancer_cells__C_3_task1" name="[Pancreatic cancer cells (C)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_Pancreatic_cancer_cells__C_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p2_Pancreatic_cancer_cells__C_task1" name="Pancreatic_cancer_cells__C" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pancreatic_cancer_cells__C&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="Pancreatic_stellate_cells__P_4_task1" name="[Pancreatic stellate cells (P)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_Pancreatic_stellate_cells__P_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p2_Pancreatic_stellate_cells__P_task1" name="Pancreatic_stellate_cells__P" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Pancreatic_stellate_cells__P&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="helper_T_cells__H_5_task12" name="[helper T cells (H)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_helper_T_cells__H_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p2_helper_T_cells__H_task1" name="helper_T_cells__H" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;helper_T_cells__H&apos;]" taskReference="task1"/>
+        <variable id="p1_CD8__T_cells__T_8_task1" name="[CD8+ T cells (T)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CD8__T_cells__T&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_a_c">
@@ -653,28 +613,28 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 2">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="Values[a_p]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="a_p_1_task1"/>
-        <curve id="p1_curve_2_task1" name="Values[l]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="l_2_task1"/>
-        <curve id="p1_curve_3_task1" name="Values[mu_c]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="mu_c_3_task1"/>
-        <curve id="p1_curve_4_task1" name="[Pancreatic cancer cells (C)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Pancreatic_cancer_cells__C_4_task1"/>
-        <curve id="p1_curve_5_task1" name="[helper T cells (H)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="helper_T_cells__H_5_task1"/>
-        <curve id="p1_curve_6_task1" name="[NK cells (N)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="NK_cells__N_6_task1"/>
-        <curve id="p1_curve_7_task1" name="[Pancreatic stellate cells (P)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Pancreatic_stellate_cells__P_7_task1"/>
-        <curve id="p1_curve_8_task1" name="[CD8+ T cells (T)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="CD8__T_cells__T_8_task1"/>
+        <curve id="p1_curve_1_task1" name="Values[a_p]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="a_p_1_task1"/>
+        <curve id="p1_curve_2_task1" name="Values[l]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="l_2_task1"/>
+        <curve id="p1_curve_3_task1" name="Values[mu_c]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="mu_c_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[C]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Pancreatic_cancer_cells__C_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[H]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="helper_T_cells__H_5_task1"/>
+        <curve id="p1_curve_6_task1" name="[N]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="NK_cells__N_6_task1"/>
+        <curve id="p1_curve_7_task1" name="[P]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Pancreatic_stellate_cells__P_7_task1"/>
+        <curve id="p1_curve_8_task1" name="[T]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="CD8__T_cells__T_8_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1" name="Figure 2">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="[CD8+ T cells (T)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="CD8__T_cells__T_1_task1"/>
-        <curve id="p2_curve_2_task1" name="[NK cells (N)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="NK_cells__N_2_task1"/>
-        <curve id="p2_curve_3_task1" name="[Pancreatic cancer cells (C)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Pancreatic_cancer_cells__C_3_task1"/>
-        <curve id="p2_curve_4_task1" name="[Pancreatic stellate cells (P)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Pancreatic_stellate_cells__P_4_task1"/>
-        <curve id="p2_curve_5_task1" name="[helper T cells (H)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="helper_T_cells__H_5_task12"/>
+        <curve id="p2_curve_1_task1" name="[CD8+ T cells (T)]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="CD8__T_cells__T_8_task1"/>
+        <curve id="p2_curve_2_task1" name="[NK cells (N)]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="NK_cells__N_6_task1"/>
+        <curve id="p2_curve_3_task1" name="[Pancreatic cancer cells (C)]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Pancreatic_cancer_cells__C_4_task1"/>
+        <curve id="p2_curve_4_task1" name="[Pancreatic stellate cells (P)]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Pancreatic_stellate_cells__P_7_task1"/>
+        <curve id="p2_curve_5_task1" name="[helper T cells (H)]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="helper_T_cells__H_5_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_l" label="l" dataReference="a_p_1_task1"/>
         <dataSet id="autogen_task1_s" label="s" dataReference="a_p_1_task1"/>
         <dataSet id="autogen_task1_a_p" label="a_p" dataReference="a_p_1_task1"/>
@@ -748,9 +708,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>
