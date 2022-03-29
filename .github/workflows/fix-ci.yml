@@ -14,9 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
+          submodules: recursive
+
       - name: Install Python
         uses: actions/setup-python@v2
         with:
@@ -75,7 +77,7 @@ jobs:
           rm -r xpp
 
       - name: Install BioModels QC
-        working-directory: biomodels_qc
+        working-directory: biomodels-qc
         run: |
           python -m pip install cython
           python -m pip install .
