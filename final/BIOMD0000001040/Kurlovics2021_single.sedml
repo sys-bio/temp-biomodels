@@ -14,13 +14,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="40" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="100000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -29,52 +29,52 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p2__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p2__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Mpl_1_task1" name="Values[Mpl]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_Mpl_task1 </ci>
+        <ci> p2_Mpl_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2_Mpl_task1" name="Mpl" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Mpl&apos;]" taskReference="task1"/>
+        <variable id="p2_Mpl_1_task1" name="Values[Mpl]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Mpl&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Mrbc_2_task1" name="[Mrbc]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_Mrbc_task1 </ci>
+        <ci> p2_Mrbc_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2_Mrbc_task1" name="Mrbc" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Mrbc&apos;]" taskReference="task1"/>
+        <variable id="p2_Mrbc_2_task1" name="[Mrbc]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Mrbc&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Vin_1_task1" name="(Vin).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_Vin_task1 </ci>
+        <ci> p3_Vin_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_Vin_task1" name="Vin" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Vin&apos;]" taskReference="task1"/>
+        <variable id="p3_Vin_1_task1" name="(Vin).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Vin&apos;]" taskReference="task1" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Vout_2_task1" name="(Vout).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_Vout_task1 </ci>
+        <ci> p3_Vout_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_Vout_task1" name="Vout" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Vout&apos;]" taskReference="task1"/>
+        <variable id="p3_Vout_2_task1" name="(Vout).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Vout&apos;]" taskReference="task1" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Summary_flux_to_RBC_3_task1" name="Values[Summary flux to RBC]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_Summary_flux_to_RBC_task1 </ci>
+        <ci> p3_Summary_flux_to_RBC_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_Summary_flux_to_RBC_task1" name="Summary_flux_to_RBC" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Summary_flux_to_RBC&apos;]" taskReference="task1"/>
+        <variable id="p3_Summary_flux_to_RBC_3_task1" name="Values[Summary flux to RBC]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Summary_flux_to_RBC&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_A">
@@ -127,22 +127,22 @@
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_2_task1" name="Concentrations">
+    <plot2D id="plot_1_task1" name="Concentrations">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="Values[Mpl]" logX="false" style="copasi_style7" xDataReference="time_task1" logY="false" yDataReference="Mpl_1_task1"/>
-        <curve id="p2_curve_2_task1" name="[Mrbc]" logX="false" style="copasi_style7" xDataReference="time_task1" logY="false" yDataReference="Mrbc_2_task1"/>
+        <curve id="p2_curve_1_task1" name="Values[Plasma concentration]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Mpl_1_task1"/>
+        <curve id="p2_curve_2_task1" name="[RBC]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Mrbc_2_task1"/>
       </listOfCurves>
     </plot2D>
-    <plot2D id="plot_3_task1" name="Reaction Fluxes">
+    <plot2D id="plot_2_task1" name="Reaction Fluxes">
       <listOfCurves>
-        <curve id="p3_curve_1_task1" name="(Vin).Flux" logX="false" style="copasi_style7" xDataReference="time_task1" logY="false" yDataReference="Vin_1_task1"/>
-        <curve id="p3_curve_2_task1" name="(Vout).Flux" logX="false" style="copasi_style7" xDataReference="time_task1" logY="false" yDataReference="Vout_2_task1"/>
-        <curve id="p3_curve_3_task1" name="Values[Summary flux to RBC]" logX="false" style="copasi_style7" xDataReference="time_task1" logY="false" yDataReference="Summary_flux_to_RBC_3_task1"/>
+        <curve id="p3_curve_1_task1" name="(Vin).Flux" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Vin_1_task1"/>
+        <curve id="p3_curve_2_task1" name="(Vout).Flux" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Vout_2_task1"/>
+        <curve id="p3_curve_3_task1" name="Values[Summary flux to RBC].Flux" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Summary_flux_to_RBC_3_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_Mpl" label="Mpl" dataReference="Mpl_1_task1"/>
         <dataSet id="autogen_task1_d" label="d" dataReference="Mpl_1_task1"/>
         <dataSet id="autogen_task1_Mrbc" label="Mrbc" dataReference="Mrbc_2_task1"/>
@@ -162,9 +162,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style7" name="Line/marker style 7 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>
