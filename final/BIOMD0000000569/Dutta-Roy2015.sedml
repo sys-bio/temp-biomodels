@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sedML xmlns="http://sed-ml.org/sed-ml/level1/version4" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="4">
   <listOfModels>
-    <model id="BIOMD0000000569_url" language="urn:sedml:language:sbml" source="BIOMD0000000569_url.xml">
+    <model id="model" language="urn:sedml:language:sbml" source="BIOMD0000000569_url.xml">
       <listOfChanges>
         <changeAttribute id="auto_init_conc_species_B0" name="Initial concentration of species &quot;B0&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B0&apos;]/@initialConcentration" newValue="8.302694e-7"/>
         <changeAttribute id="auto_init_conc_species_S0" name="Initial concentration of species &quot;S0&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S0&apos;]/@initialConcentration" newValue="0"/>
@@ -47,187 +47,185 @@
     </model>
   </listOfModels>
   <listOfSimulations>
-    <uniformTimeCourse id="auto_ten_seconds" initialTime="0" outputStartTime="0" outputEndTime="10" numberOfSteps="1000">
-      <algorithm name="CVODE" kisaoID="KISAO_0000560">
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="1e-05" outputEndTime="0.01" numberOfSteps="1000">
+      <algorithm name="Stochastic (Gibson + Bruck)" kisaoID="KISAO_0000027">
         <listOfAlgorithmParameters>
-          <algorithmParameter name="absolute tolerance" kisaoID="KISAO_0000211" value="1e-12"/>
-          <algorithmParameter name="integrate reduced model" kisaoID="KISAO_0000216" value="false"/>
-          <algorithmParameter name="maximum number of steps" kisaoID="KISAO_0000415" value="1000000"/>
-          <algorithmParameter name="relative tolerance" kisaoID="KISAO_0000209" value="1e-6"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="1000000"/>
+          <algorithmParameter name="Random Seed" kisaoID="KISAO:0000488" value="1"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
   </listOfSimulations>
   <listOfTasks>
-    <task id="task1" modelReference="BIOMD0000000569_url" simulationReference="auto_ten_seconds"/>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="auto_time_for_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_time_for_task1_var </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_time_for_task1_var" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_B0">
+    <dataGenerator id="B0_1_task1" name="B0.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_B0_x </ci>
+        <ci> p1_B0_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_B0_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B0&apos;]" taskReference="task1"/>
+        <variable id="p1_B0_1_task1" name="B0.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B0&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_S0">
+    <dataGenerator id="B1_2_task1" name="B1.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_S0_x </ci>
+        <ci> p1_B1_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_S0_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S0&apos;]" taskReference="task1"/>
+        <variable id="p1_B1_2_task1" name="B1.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B1&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_B1">
+    <dataGenerator id="B2_3_task1" name="B2.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_B1_x </ci>
+        <ci> p1_B2_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_B1_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B1&apos;]" taskReference="task1"/>
+        <variable id="p1_B2_3_task1" name="B2.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B2&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_S1">
+    <dataGenerator id="B3_4_task1" name="B3.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_S1_x </ci>
+        <ci> p1_B3_4_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_S1_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task1"/>
+        <variable id="p1_B3_4_task1" name="B3.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B3&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_B2">
+    <dataGenerator id="B4_5_task1" name="B4.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_B2_x </ci>
+        <ci> p1_B4_5_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_B2_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B2&apos;]" taskReference="task1"/>
+        <variable id="p1_B4_5_task1" name="B4.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B4&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_S2">
+    <dataGenerator id="L0_6_task1" name="L0.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_S2_x </ci>
+        <ci> p1_L0_6_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_S2_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S2&apos;]" taskReference="task1"/>
+        <variable id="p1_L0_6_task1" name="L0.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L0&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_B3">
+    <dataGenerator id="L1_7_task1" name="L1.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_B3_x </ci>
+        <ci> p1_L1_7_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_B3_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B3&apos;]" taskReference="task1"/>
+        <variable id="p1_L1_7_task1" name="L1.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L1&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_S3">
+    <dataGenerator id="L2_8_task1" name="L2.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_S3_x </ci>
+        <ci> p1_L2_8_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_S3_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S3&apos;]" taskReference="task1"/>
+        <variable id="p1_L2_8_task1" name="L2.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L2&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_B4">
+    <dataGenerator id="L3_9_task1" name="L3.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_B4_x </ci>
+        <ci> p1_L3_9_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_B4_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;B4&apos;]" taskReference="task1"/>
+        <variable id="p1_L3_9_task1" name="L3.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L3&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_S4">
+    <dataGenerator id="L4_10_task1" name="L4.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_S4_x </ci>
+        <ci> p1_L4_10_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_S4_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S4&apos;]" taskReference="task1"/>
+        <variable id="p1_L4_10_task1" name="L4.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L4&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_M0">
+    <dataGenerator id="M0_11_task1" name="M0.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_M0_x </ci>
+        <ci> p1_M0_11_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_M0_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M0&apos;]" taskReference="task1"/>
+        <variable id="p1_M0_11_task1" name="M0.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M0&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_M1">
+    <dataGenerator id="M1_12_task1" name="M1.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_M1_x </ci>
+        <ci> p1_M1_12_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_M1_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M1&apos;]" taskReference="task1"/>
+        <variable id="p1_M1_12_task1" name="M1.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M1&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_M2">
+    <dataGenerator id="M2_13_task1" name="M2.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_M2_x </ci>
+        <ci> p1_M2_13_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_M2_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M2&apos;]" taskReference="task1"/>
+        <variable id="p1_M2_13_task1" name="M2.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M2&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_M3">
+    <dataGenerator id="M3_14_task1" name="M3.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_M3_x </ci>
+        <ci> p1_M3_14_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_M3_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M3&apos;]" taskReference="task1"/>
+        <variable id="p1_M3_14_task1" name="M3.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M3&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_M4">
+    <dataGenerator id="M4_15_task1" name="M4.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_M4_x </ci>
+        <ci> p1_M4_15_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_M4_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M4&apos;]" taskReference="task1"/>
+        <variable id="p1_M4_15_task1" name="M4.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M4&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_L0">
+    <dataGenerator id="S0_16_task1" name="S0.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_L0_x </ci>
+        <ci> p1_S0_16_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_L0_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L0&apos;]" taskReference="task1"/>
+        <variable id="p1_S0_16_task1" name="S0.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S0&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_L1">
+    <dataGenerator id="S1_17_task1" name="S1.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_L1_x </ci>
+        <ci> p1_S1_17_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_L1_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L1&apos;]" taskReference="task1"/>
+        <variable id="p1_S1_17_task1" name="S1.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S1&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_L2">
+    <dataGenerator id="S2_18_task1" name="S2.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_L2_x </ci>
+        <ci> p1_S2_18_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_L2_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L2&apos;]" taskReference="task1"/>
+        <variable id="p1_S2_18_task1" name="S2.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S2&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_L3">
+    <dataGenerator id="S3_19_task1" name="S3.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_L3_x </ci>
+        <ci> p1_S3_19_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_L3_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L3&apos;]" taskReference="task1"/>
+        <variable id="p1_S3_19_task1" name="S3.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S3&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_L4">
+    <dataGenerator id="S4_20_task1" name="S4.ParticleNumber">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_L4_x </ci>
+        <ci> p1_S4_20_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_dg_for_task1_L4_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;L4&apos;]" taskReference="task1"/>
+        <variable id="p1_S4_20_task1" name="S4.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;S4&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_glu">
@@ -564,14 +562,6 @@
       </math>
       <listOfVariables>
         <variable id="auto_dg_for_task1_MLc_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;MLc&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_p">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_p_x </ci>
-      </math>
-      <listOfVariables>
-        <variable id="auto_dg_for_task1_p_x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;p&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_synapse">
@@ -1080,29 +1070,54 @@
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Population of each conformation and liganded state">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="B0.ParticleNumber" logX="true" style="style1" xDataReference="_1_task1" logY="false" yDataReference="B0_1_task1"/>
+        <curve id="p1_curve_2_task1" name="B1.ParticleNumber" logX="true" style="style2" xDataReference="_1_task1" logY="false" yDataReference="B1_2_task1"/>
+        <curve id="p1_curve_3_task1" name="B2.ParticleNumber" logX="true" style="style3" xDataReference="_1_task1" logY="false" yDataReference="B2_3_task1"/>
+        <curve id="p1_curve_4_task1" name="B3.ParticleNumber" logX="true" style="style4" xDataReference="_1_task1" logY="false" yDataReference="B3_4_task1"/>
+        <curve id="p1_curve_5_task1" name="B4.ParticleNumber" logX="true" style="style5" xDataReference="_1_task1" logY="false" yDataReference="B4_5_task1"/>
+        <curve id="p1_curve_6_task1" name="L0.ParticleNumber" logX="true" style="style6" xDataReference="_1_task1" logY="false" yDataReference="L0_6_task1"/>
+        <curve id="p1_curve_7_task1" name="L1.ParticleNumber" logX="true" style="style7" xDataReference="_1_task1" logY="false" yDataReference="L1_7_task1"/>
+        <curve id="p1_curve_8_task1" name="L2.ParticleNumber" logX="true" style="style8" xDataReference="_1_task1" logY="false" yDataReference="L2_8_task1"/>
+        <curve id="p1_curve_9_task1" name="L3.ParticleNumber" logX="true" style="style9" xDataReference="_1_task1" logY="false" yDataReference="L3_9_task1"/>
+        <curve id="p1_curve_10_task1" name="L4.ParticleNumber" logX="true" style="style10" xDataReference="_1_task1" logY="false" yDataReference="L4_10_task1"/>
+        <curve id="p1_curve_11_task1" name="M0.ParticleNumber" logX="true" style="style11" xDataReference="_1_task1" logY="false" yDataReference="M0_11_task1"/>
+        <curve id="p1_curve_12_task1" name="M1.ParticleNumber" logX="true" style="style12" xDataReference="_1_task1" logY="false" yDataReference="M1_12_task1"/>
+        <curve id="p1_curve_13_task1" name="M2.ParticleNumber" logX="true" style="style13" xDataReference="_1_task1" logY="false" yDataReference="M2_13_task1"/>
+        <curve id="p1_curve_14_task1" name="M3.ParticleNumber" logX="true" style="style14" xDataReference="_1_task1" logY="false" yDataReference="M3_14_task1"/>
+        <curve id="p1_curve_15_task1" name="M4.ParticleNumber" logX="true" style="style15" xDataReference="_1_task1" logY="false" yDataReference="M4_15_task1"/>
+        <curve id="p1_curve_16_task1" name="S0.ParticleNumber" logX="true" style="style16" xDataReference="_1_task1" logY="false" yDataReference="S0_16_task1"/>
+        <curve id="p1_curve_17_task1" name="S1.ParticleNumber" logX="true" style="style17" xDataReference="_1_task1" logY="false" yDataReference="S1_17_task1"/>
+        <curve id="p1_curve_18_task1" name="S2.ParticleNumber" logX="true" style="style18" xDataReference="_1_task1" logY="false" yDataReference="S2_18_task1"/>
+        <curve id="p1_curve_19_task1" name="S3.ParticleNumber" logX="true" style="style19" xDataReference="_1_task1" logY="false" yDataReference="S3_19_task1"/>
+        <curve id="p1_curve_20_task1" name="S4.ParticleNumber" logX="true" style="style20" xDataReference="_1_task1" logY="false" yDataReference="S4_20_task1"/>
+      </listOfCurves>
+    </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="auto_time_for_task1"/>
-        <dataSet id="autogen_task1_B0" label="B0" dataReference="auto_dg_for_task1_B0"/>
-        <dataSet id="autogen_task1_S0" label="S0" dataReference="auto_dg_for_task1_S0"/>
-        <dataSet id="autogen_task1_B1" label="B1" dataReference="auto_dg_for_task1_B1"/>
-        <dataSet id="autogen_task1_S1" label="S1" dataReference="auto_dg_for_task1_S1"/>
-        <dataSet id="autogen_task1_B2" label="B2" dataReference="auto_dg_for_task1_B2"/>
-        <dataSet id="autogen_task1_S2" label="S2" dataReference="auto_dg_for_task1_S2"/>
-        <dataSet id="autogen_task1_B3" label="B3" dataReference="auto_dg_for_task1_B3"/>
-        <dataSet id="autogen_task1_S3" label="S3" dataReference="auto_dg_for_task1_S3"/>
-        <dataSet id="autogen_task1_B4" label="B4" dataReference="auto_dg_for_task1_B4"/>
-        <dataSet id="autogen_task1_S4" label="S4" dataReference="auto_dg_for_task1_S4"/>
-        <dataSet id="autogen_task1_M0" label="M0" dataReference="auto_dg_for_task1_M0"/>
-        <dataSet id="autogen_task1_M1" label="M1" dataReference="auto_dg_for_task1_M1"/>
-        <dataSet id="autogen_task1_M2" label="M2" dataReference="auto_dg_for_task1_M2"/>
-        <dataSet id="autogen_task1_M3" label="M3" dataReference="auto_dg_for_task1_M3"/>
-        <dataSet id="autogen_task1_M4" label="M4" dataReference="auto_dg_for_task1_M4"/>
-        <dataSet id="autogen_task1_L0" label="L0" dataReference="auto_dg_for_task1_L0"/>
-        <dataSet id="autogen_task1_L1" label="L1" dataReference="auto_dg_for_task1_L1"/>
-        <dataSet id="autogen_task1_L2" label="L2" dataReference="auto_dg_for_task1_L2"/>
-        <dataSet id="autogen_task1_L3" label="L3" dataReference="auto_dg_for_task1_L3"/>
-        <dataSet id="autogen_task1_L4" label="L4" dataReference="auto_dg_for_task1_L4"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
+        <dataSet id="autogen_task1_B0" label="B0" dataReference="B0_1_task1"/>
+        <dataSet id="autogen_task1_p" label="p" dataReference="B0_1_task1"/>
+        <dataSet id="autogen_task1_B1" label="B1" dataReference="B1_2_task1"/>
+        <dataSet id="autogen_task1_B2" label="B2" dataReference="B2_3_task1"/>
+        <dataSet id="autogen_task1_B3" label="B3" dataReference="B3_4_task1"/>
+        <dataSet id="autogen_task1_B4" label="B4" dataReference="B4_5_task1"/>
+        <dataSet id="autogen_task1_L0" label="L0" dataReference="L0_6_task1"/>
+        <dataSet id="autogen_task1_L1" label="L1" dataReference="L1_7_task1"/>
+        <dataSet id="autogen_task1_L2" label="L2" dataReference="L2_8_task1"/>
+        <dataSet id="autogen_task1_L3" label="L3" dataReference="L3_9_task1"/>
+        <dataSet id="autogen_task1_L4" label="L4" dataReference="L4_10_task1"/>
+        <dataSet id="autogen_task1_M0" label="M0" dataReference="M0_11_task1"/>
+        <dataSet id="autogen_task1_M1" label="M1" dataReference="M1_12_task1"/>
+        <dataSet id="autogen_task1_M2" label="M2" dataReference="M2_13_task1"/>
+        <dataSet id="autogen_task1_M3" label="M3" dataReference="M3_14_task1"/>
+        <dataSet id="autogen_task1_M4" label="M4" dataReference="M4_15_task1"/>
+        <dataSet id="autogen_task1_S0" label="S0" dataReference="S0_16_task1"/>
+        <dataSet id="autogen_task1_S1" label="S1" dataReference="S1_17_task1"/>
+        <dataSet id="autogen_task1_S2" label="S2" dataReference="S2_18_task1"/>
+        <dataSet id="autogen_task1_S3" label="S3" dataReference="S3_19_task1"/>
+        <dataSet id="autogen_task1_S4" label="S4" dataReference="S4_20_task1"/>
         <dataSet id="autogen_task1_glu" label="glu" dataReference="auto_dg_for_task1_glu"/>
         <dataSet id="autogen_task1_Bkon" label="Bkon" dataReference="auto_dg_for_task1_Bkon"/>
         <dataSet id="autogen_task1_Bkoff" label="Bkoff" dataReference="auto_dg_for_task1_Bkoff"/>
@@ -1145,7 +1160,6 @@
         <dataSet id="autogen_task1_BSc" label="BSc" dataReference="auto_dg_for_task1_BSc"/>
         <dataSet id="autogen_task1_SMc" label="SMc" dataReference="auto_dg_for_task1_SMc"/>
         <dataSet id="autogen_task1_MLc" label="MLc" dataReference="auto_dg_for_task1_MLc"/>
-        <dataSet id="autogen_task1_p" label="p" dataReference="auto_dg_for_task1_p"/>
         <dataSet id="autogen_task1_synapse" label="synapse" dataReference="auto_dg_for_task1_synapse"/>
         <dataSet id="autogen_task1_B0____S0" label="B0____S0" dataReference="auto_dg_for_task1_B0____S0"/>
         <dataSet id="autogen_task1_S0____B0" label="S0____B0" dataReference="auto_dg_for_task1_S0____B0"/>
@@ -1212,4 +1226,66 @@
       </listOfDataSets>
     </report>
   </listOfOutputs>
+  <listOfStyles>
+    <style id="style1">
+      <line type="solid" color="#FF0000" thickness="3"/>
+    </style>
+    <style id="style2">
+      <line type="dash" color="#FF0000" thickness="3"/>
+    </style>
+    <style id="style3">
+      <line type="dashDot" color="#FF0000" thickness="3"/>
+    </style>
+    <style id="style4">
+      <line type="dashDotDot" color="#FF0000" thickness="3"/>
+    </style>
+    <style id="style5">
+      <line type="dot" color="#FF0000" thickness="3"/>
+    </style>
+    <style id="style6">
+      <line type="solid" color="#000000" thickness="3"/>
+    </style>
+    <style id="style7">
+      <line type="dash" color="#000000" thickness="3"/>
+    </style>
+    <style id="style8">
+      <line type="dashDot" color="#000000" thickness="3"/>
+    </style>
+    <style id="style9">
+      <line type="dashDotDot" color="#000000" thickness="3"/>
+    </style>
+    <style id="style10">
+      <line type="dot" color="#000000" thickness="3"/>
+    </style>
+    <style id="style11">
+      <line type="solid" color="#0000FF" thickness="3"/>
+    </style>
+    <style id="style12">
+      <line type="dash" color="#0000FF" thickness="3"/>
+    </style>
+    <style id="style13">
+      <line type="dashDot" color="#0000FF" thickness="3"/>
+    </style>
+    <style id="style14">
+      <line type="dashDotDot" color="#0000FF" thickness="3"/>
+    </style>
+    <style id="style15">
+      <line type="dot" color="#0000FF" thickness="3"/>
+    </style>
+    <style id="style16">
+      <line type="solid" color="#00E600" thickness="3"/>
+    </style>
+    <style id="style17">
+      <line type="dash" color="#00E600" thickness="3"/>
+    </style>
+    <style id="style18">
+      <line type="dashDot" color="#00E600" thickness="3"/>
+    </style>
+    <style id="style19">
+      <line type="dashDotDot" color="#00E600" thickness="3"/>
+    </style>
+    <style id="style20">
+      <line type="dot" color="#00E600" thickness="3"/>
+    </style>
+  </listOfStyles>
 </sedML>
