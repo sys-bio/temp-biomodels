@@ -20,10 +20,6 @@ ceil(x)=flr(1+x)
 @delay=50
 
 
-# FunctionDefinition id = LD
-LD(tod,length)=(ceil(sin(pi*tod/length+0.001)/2))
-
-
 # Compartment: id = compartment, name = compartment, constant
 par compartme=1.0
 
@@ -224,7 +220,7 @@ par dayLength=12.0
 
 # Reaction: id = one11, name = LHY transcription by light activation
 
-one11=compartme*LD(t, dayLength)*q1*cPn
+one11=compartme*ceil(sin(pi*t/dayLength+0.001)/2)*q1*cPn
 
 # Reaction: id = two11, name = Light independent LHY transcription
 # Local Parameter:   id =  Fch_0, name = Fch_0
@@ -278,7 +274,7 @@ three15=compartme*r4*cTn
 
 # Reaction: id = four15, name = Cytoplasmic TOC1 degradation
 
-four15=compartme*((1-LD(t, dayLength))*m5+m6)*cTc/(k5+cTc)
+four15=compartme*((1-ceil(sin(pi*t/dayLength+0.001)/2))*m5+m6)*cTc/(k5+cTc)
 
 # Reaction: id = one16, name = TOC1 movement into nucleus
 
@@ -286,7 +282,7 @@ one16=compartme*r3*cTc
 
 # Reaction: id = three16, name = Nuclear TOC1 degradation
 
-three16=compartme*((1-LD(t, dayLength))*m7+m8)*cTn/(k6+cTn)
+three16=compartme*((1-ceil(sin(pi*t/dayLength+0.001)/2))*m7+m8)*cTn/(k6+cTn)
 
 # Reaction: id = one17, name = Protein X transcription
 
@@ -318,7 +314,7 @@ three19=compartme*m11*cXn/(k9+cXn)
 
 # Reaction: id = one20, name = Protein Y transcription
 
-one20=compartme*(LD(t, dayLength)*q2*cPn+(LD(t, dayLength)*n4+n5)*g5^e/(g5^e+cTn^e))*g6^f/(g6^f+cLn^f)
+one20=compartme*(ceil(sin(pi*t/dayLength+0.001)/2)*q2*cPn+(ceil(sin(pi*t/dayLength+0.001)/2)*n4+n5)*g5^e/(g5^e+cTn^e))*g6^f/(g6^f+cLn^f)
 
 # Reaction: id = two20, name = Protein Y mRNA degradation
 
@@ -346,7 +342,7 @@ three22=compartme*m14*cYn/(k12+cYn)
 
 # Reaction: id = one23, name = Light dependent production of Protein P
 
-one23=compartme*(1-LD(t, dayLength))*p5
+one23=compartme*(1-ceil(sin(pi*t/dayLength+0.001)/2))*p5
 
 # Reaction: id = two23, name = Protein P degradation
 
@@ -354,7 +350,7 @@ two23=compartme*m15*cPn/(k13+cPn)
 
 # Reaction: id = three23, name = Light activated Protein P degradation
 
-three23=compartme*q3*LD(t, dayLength)*cPn
+three23=compartme*q3*ceil(sin(pi*t/dayLength+0.001)/2)*cPn
 
 # Species:   id = cLm, name = LHY mRNA, affected by kineticLaw
 

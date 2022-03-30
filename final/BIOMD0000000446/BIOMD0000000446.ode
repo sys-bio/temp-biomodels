@@ -28,7 +28,9 @@ Gamma(v,u,J,K)=(v-u+v*J+u*K)
 
 
 # FunctionDefinition id = fGK, name = fGK
-# Inconsistent mathML operators in Function Definition, function ignored
+fGK(v,u,J,K,u,J,u,J)=(piecewise(0,(v == 0) && (u == 0),2*u*K/(Gamma(v,K)+(Gamma(v,K)^2-4*(v-u)*u*K)^(0.5))))
+
+
 # Compartment: id = ERlumen, name = ERlumen, constant
 par ERlumen=1.0
 
@@ -259,10 +261,10 @@ par switch=0.0
 par kATF4=0.1
 
 # Parameter:   id =  J, name = J, constant
-par J=0.0010
+par J=0.001
 
 # Parameter:   id =  K, name = K, constant
-par K=0.0010
+par K=0.001
 
 # Parameter:   id =  kfbc, name = kfbc, constant
 par kfbc=10.0
@@ -742,9 +744,9 @@ dBH3BCL2/dt=( 1.0 * rea14) + (-1.0 * rea15) + (-1.0 * rea16)
 
 # Piecewise functions : the mathML piecewise element is transformed into if/then/else expression
 
-piecew1=if (extATT == 1) then (eIF2a/eIF2aT) else (1)
+piecew1=if (extATT  ==  1) then (eIF2a/eIF2aT) else (1)
 
-piecew2=if (switch == 1) then (UFP) else (1)
+piecew2=if (switch  ==  1) then (UFP) else (1)
 
 
 @ meth=cvode, tol=1e-6, atol=1e-8
