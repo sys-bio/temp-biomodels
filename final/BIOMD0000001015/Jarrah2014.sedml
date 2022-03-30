@@ -31,13 +31,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="15" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="100000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -46,140 +46,92 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="C_1_task1" name="[CD8+_cytotoxic_T_lymphocytes_(C)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_C_task1 </ci>
+        <ci> p1_C_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_C_task1" name="C" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;C&apos;]" taskReference="task1"/>
+        <variable id="p1_C_1_task1" name="[CD8+_cytotoxic_T_lymphocytes_(C)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;C&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="D_1_task1" name="[Damaged_fibres_(D)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_D_task1 </ci>
+        <ci> p2_D_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2_D_task1" name="D" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;D&apos;]" taskReference="task1"/>
+        <variable id="p2_D_1_task1" name="[Damaged_fibres_(D)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;D&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="H_1_task1" name="[CD4+_T_Helper_cells_(H)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_H_task1 </ci>
+        <ci> p3_H_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_H_task1" name="H" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H&apos;]" taskReference="task1"/>
+        <variable id="p3_H_1_task1" name="[CD4+_T_Helper_cells_(H)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="M_1_task1" name="[Macrophages_(M)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p4_M_task1 </ci>
+        <ci> p4_M_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p4_M_task1" name="M" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M&apos;]" taskReference="task1"/>
+        <variable id="p4_M_1_task1" name="[Macrophages_(M)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="N_1_task1" name="[Normal_fibres_(N)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p5_N_task1 </ci>
+        <ci> p5_N_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p5_N_task1" name="N" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;N&apos;]" taskReference="task1"/>
+        <variable id="p5_N_1_task1" name="[Normal_fibres_(N)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;N&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="R_1_task1" name="[Regenerative_fibres_(R)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p6_R_task1 </ci>
+        <ci> p6_R_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p6_R_task1" name="R" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="H_1_task12" name="[CD4+_T_Helper_cells_(H)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_H_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p7_H_task1" name="H" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="D_2_task1" name="[Damaged_fibres_(D)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_D_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p7_D_task1" name="D" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;D&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="M_3_task1" name="[Macrophages_(M)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_M_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p7_M_task1" name="M" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;M&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="C_4_task1" name="[CD8+_cytotoxic_T_lymphocytes_(C)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_C_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p7_C_task1" name="C" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;C&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="N_5_task1" name="[Normal_fibres_(N)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_N_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p7_N_task1" name="N" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;N&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="R_6_task1" name="[Regenerative_fibres_(R)]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_R_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p7_R_task1" name="R" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]" taskReference="task1"/>
+        <variable id="p6_R_1_task1" name="[Regenerative_fibres_(R)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="bH_7_task1" name="Values[bH]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_bH_task1 </ci>
+        <ci> p7_bH_7_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p7_bH_task1" name="bH" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;bH&apos;]" taskReference="task1"/>
+        <variable id="p7_bH_7_task1" name="Values[bH]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;bH&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="bC_8_task1" name="Values[bC]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_bC_task1 </ci>
+        <ci> p7_bC_8_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p7_bC_task1" name="bC" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;bC&apos;]" taskReference="task1"/>
+        <variable id="p7_bC_8_task1" name="Values[bC]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;bC&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="bM_9_task1" name="Values[bM]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_bM_task1 </ci>
+        <ci> p7_bM_9_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p7_bM_task1" name="bM" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;bM&apos;]" taskReference="task1"/>
+        <variable id="p7_bM_9_task1" name="Values[bM]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;bM&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="alpha_10_task1" name="Values[alpha]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_alpha_task1 </ci>
+        <ci> p7_alpha_10_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p7_alpha_task1" name="alpha" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]" taskReference="task1"/>
+        <variable id="p7_alpha_10_task1" name="Values[alpha]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_k1">
@@ -378,51 +330,51 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="CD8+ cytotoxic T lymphocytes">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[CD8+_cytotoxic_T_lymphocytes_(C)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="C_1_task1"/>
+        <curve id="p1_curve_1_task1" name="[C]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="C_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1" name="Damaged fibres">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="[Damaged_fibres_(D)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="D_1_task1"/>
+        <curve id="p2_curve_1_task1" name="[D]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="D_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_3_task1" name="CD4+ T Helper Cells">
       <listOfCurves>
-        <curve id="p3_curve_1_task1" name="[CD4+_T_Helper_cells_(H)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="H_1_task1"/>
+        <curve id="p3_curve_1_task1" name="[H]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="H_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_4_task1" name="Macrophages">
       <listOfCurves>
-        <curve id="p4_curve_1_task1" name="[Macrophages_(M)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="M_1_task1"/>
+        <curve id="p4_curve_1_task1" name="[M]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="M_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_5_task1" name="Normal fibres">
       <listOfCurves>
-        <curve id="p5_curve_1_task1" name="[Normal_fibres_(N)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="N_1_task1"/>
+        <curve id="p5_curve_1_task1" name="[N]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="N_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_6_task1" name="Regenerative fibres">
       <listOfCurves>
-        <curve id="p6_curve_1_task1" name="[Regenerative_fibres_(R)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="R_1_task1"/>
+        <curve id="p6_curve_1_task1" name="[R]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="R_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_7_task1" name="Concentrations, Volumes, and Global Quantity Values">
       <listOfCurves>
-        <curve id="p7_curve_1_task1" name="[CD4+_T_Helper_cells_(H)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="H_1_task12"/>
-        <curve id="p7_curve_2_task1" name="[Damaged_fibres_(D)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="D_2_task1"/>
-        <curve id="p7_curve_3_task1" name="[Macrophages_(M)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="M_3_task1"/>
-        <curve id="p7_curve_4_task1" name="[CD8+_cytotoxic_T_lymphocytes_(C)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="C_4_task1"/>
-        <curve id="p7_curve_5_task1" name="[Normal_fibres_(N)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="N_5_task1"/>
-        <curve id="p7_curve_6_task1" name="[Regenerative_fibres_(R)]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="R_6_task1"/>
-        <curve id="p7_curve_7_task1" name="Values[bH]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="bH_7_task1"/>
-        <curve id="p7_curve_8_task1" name="Values[bC]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="bC_8_task1"/>
-        <curve id="p7_curve_9_task1" name="Values[bM]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="bM_9_task1"/>
-        <curve id="p7_curve_10_task1" name="Values[alpha]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="alpha_10_task1"/>
+        <curve id="p7_curve_1_task1" name="[CD4+_T_Helper_cells]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="H_1_task1"/>
+        <curve id="p7_curve_2_task1" name="[Damaged_fibres]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="D_1_task1"/>
+        <curve id="p7_curve_3_task1" name="[Macrophages]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="M_1_task1"/>
+        <curve id="p7_curve_4_task1" name="[CD8+_cytotoxic_T_lymphocytes]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="C_1_task1"/>
+        <curve id="p7_curve_5_task1" name="[Normal_fibres]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="N_1_task1"/>
+        <curve id="p7_curve_6_task1" name="[Regenerative_fibres]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="R_1_task1"/>
+        <curve id="p7_curve_7_task1" name="Values[bH]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="bH_7_task1"/>
+        <curve id="p7_curve_8_task1" name="Values[bC]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="bC_8_task1"/>
+        <curve id="p7_curve_9_task1" name="Values[bM]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="bM_9_task1"/>
+        <curve id="p7_curve_10_task1" name="Values[alpha]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="alpha_10_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_C" label="C" dataReference="C_1_task1"/>
         <dataSet id="autogen_task1_m" label="m" dataReference="C_1_task1"/>
         <dataSet id="autogen_task1_D" label="D" dataReference="D_1_task1"/>
@@ -463,9 +415,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

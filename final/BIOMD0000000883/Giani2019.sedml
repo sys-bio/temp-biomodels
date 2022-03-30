@@ -218,13 +218,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="14400" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -256,20 +256,20 @@
         <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="species_10_1_task2" name="species_10">
+    <dataGenerator id="species_10_1_task2" name="[pERK]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_species_10_task2 </ci>
+        <ci> p2_species_10_1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2_species_10_task2" name="species_10" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;species_10&apos;]" taskReference="task2"/>
+        <variable id="p2_species_10_1_task2" name="[pERK]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;species_10&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="species_10_1_task22" name="[pERK]">
+    <dataGenerator id="_1_task2" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_species_10_task2 </ci>
+        <ci> p1__1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_species_10_task2" name="species_10" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;species_10&apos;]" taskReference="task2"/>
+        <variable id="p1__1_task2" name="Time" symbol="urn:sedml:symbol:time" taskReference="task2" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_time_for_task1" name="Time">
@@ -2834,7 +2834,7 @@
     </report>
     <plot2D id="plot_3_task2" name="Figure 2c">
       <listOfCurves>
-        <curve id="p1_curve_1_task2" name="[pERK]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="species_10_1_task22"/>
+        <curve id="p1_curve_1_task2" name="pERK dynamics" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="species_10_1_task2"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
@@ -3003,7 +3003,7 @@
     </report>
     <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task2_time" label="Time" dataReference="time_task2"/>
+        <dataSet id="autogen_task2_time" label="Time" dataReference="_1_task2"/>
         <dataSet id="autogen_task2_species_1" label="species_1" dataReference="species_10_1_task2"/>
         <dataSet id="autogen_task2_species_10" label="species_10" dataReference="species_10_1_task2"/>
         <dataSet id="autogen_task2_species_0" label="species_0" dataReference="auto_dg_for_task2_species_0"/>
@@ -3169,9 +3169,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="2"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

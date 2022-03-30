@@ -146,13 +146,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="2592000" outputEndTime="2851800" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -161,68 +161,44 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="DNA_double_strand_break_1_task1" name="[DNA_double_strand_break]">
+    <dataGenerator id="time_days_1_task1" name="Values[time_days]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_DNA_double_strand_break_task1 </ci>
+        <ci> p1_time_days_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_DNA_double_strand_break_task1" name="DNA_double_strand_break" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;DNA_double_strand_break&apos;]" taskReference="task1"/>
+        <variable id="p1_time_days_1_task1" name="Values[time_days]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;time_days&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="time_days_1_task1" name="time_days">
+    <dataGenerator id="DNA_double_strand_break_1_task1" name="[DNA_double_strand_break]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_time_days_task1 </ci>
+        <ci> p1_DNA_double_strand_break_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_time_days_task1" name="time_days" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;time_days&apos;]" taskReference="task1"/>
+        <variable id="p1_DNA_double_strand_break_1_task1" name="[DNA_double_strand_break]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;DNA_double_strand_break&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="ATM_phosphorylated_1_task1" name="[ATM_phosphorylated]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_ATM_phosphorylated_task1 </ci>
+        <ci> p2_ATM_phosphorylated_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2_ATM_phosphorylated_task1" name="ATM_phosphorylated" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ATM_phosphorylated&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="time_days_1_task12" name="time_days">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2_time_days_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p2_time_days_task1" name="time_days" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;time_days&apos;]" taskReference="task1"/>
+        <variable id="p2_ATM_phosphorylated_1_task1" name="[ATM_phosphorylated]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;ATM_phosphorylated&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="p53_arrester_1_task1" name="[p53_arrester]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_p53_arrester_task1 </ci>
+        <ci> p3_p53_arrester_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_p53_arrester_task1" name="p53_arrester" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p53_arrester&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="time_days_1_task13" name="time_days">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_time_days_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p3_time_days_task1" name="time_days" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;time_days&apos;]" taskReference="task1"/>
+        <variable id="p3_p53_arrester_1_task1" name="[p53_arrester]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p53_arrester&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="p53_killer_1_task1" name="[p53_killer]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p4_p53_killer_task1 </ci>
+        <ci> p4_p53_killer_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p4_p53_killer_task1" name="p53_killer" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p53_killer&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="time_days_1_task14" name="time_days">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p4_time_days_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p4_time_days_task1" name="time_days" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;time_days&apos;]" taskReference="task1"/>
+        <variable id="p4_p53_killer_1_task1" name="[p53_killer]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p53_killer&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_time_for_task1" name="Time">
@@ -2085,29 +2061,29 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 7">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[DNA_double_strand_break]" logX="false" style="copasi_style1" xDataReference="time_days_1_task1" logY="false" yDataReference="DNA_double_strand_break_1_task1"/>
+        <curve id="p1_curve_1_task1" name="[DNA_double_strand_break]|Values[time_days]" logX="false" style="style1" xDataReference="time_days_1_task1" logY="false" yDataReference="DNA_double_strand_break_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_2_task1" name="Figure 3b">
       <listOfCurves>
-        <curve id="p2_curve_1_task1" name="[ATM_phosphorylated]" logX="false" style="copasi_style1" xDataReference="time_days_1_task12" logY="false" yDataReference="ATM_phosphorylated_1_task1"/>
+        <curve id="p2_curve_1_task1" name="[ATM_phosphorylated]|Values[time_days]" logX="false" style="style1" xDataReference="time_days_1_task1" logY="false" yDataReference="ATM_phosphorylated_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_3_task1" name="Figure 3b">
       <listOfCurves>
-        <curve id="p3_curve_1_task1" name="[p53_arrester]" logX="false" style="copasi_style1" xDataReference="time_days_1_task13" logY="false" yDataReference="p53_arrester_1_task1"/>
+        <curve id="p3_curve_1_task1" name="[p53_arrester]|Values[time_days]" logX="false" style="style1" xDataReference="time_days_1_task1" logY="false" yDataReference="p53_arrester_1_task1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_4_task1" name="Figure 3b">
       <listOfCurves>
-        <curve id="p4_curve_1_task1" name="[p53_killer]" logX="false" style="copasi_style1" xDataReference="time_days_1_task14" logY="false" yDataReference="p53_killer_1_task1"/>
+        <curve id="p4_curve_1_task1" name="[p53_killer]|Values[time_days]" logX="false" style="style1" xDataReference="time_days_1_task1" logY="false" yDataReference="p53_killer_1_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
         <dataSet id="autogen_task1_time" label="Time" dataReference="auto_time_for_task1"/>
-        <dataSet id="autogen_task1_DNA_double_strand_break" label="DNA_double_strand_break" dataReference="DNA_double_strand_break_1_task1"/>
         <dataSet id="autogen_task1_time_days" label="time_days" dataReference="time_days_1_task1"/>
+        <dataSet id="autogen_task1_DNA_double_strand_break" label="DNA_double_strand_break" dataReference="DNA_double_strand_break_1_task1"/>
         <dataSet id="autogen_task1_ATM_phosphorylated" label="ATM_phosphorylated" dataReference="ATM_phosphorylated_1_task1"/>
         <dataSet id="autogen_task1_h" label="h" dataReference="ATM_phosphorylated_1_task1"/>
         <dataSet id="autogen_task1_p53_arrester" label="p53_arrester" dataReference="p53_arrester_1_task1"/>
@@ -2348,9 +2324,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

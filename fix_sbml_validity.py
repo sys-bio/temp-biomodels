@@ -74,7 +74,10 @@ def fixPubmedId(file, pmid, id):
     elif pmid == "---":
         pmid2 = "24005054"
     else:
-        raise NotImplementedError("Unknown problem pubmed ID", pmid)
+        #When running in batch, can fail URL checks for a variety of reasons unrelated to it being wrong.
+        print("Skipping check for PubMed URL", "https://pubmed.ncbi.nlm.nih.gov/" + pmid)
+        return
+        #raise NotImplementedError("Unknown problem pubmed ID", pmid)
     url = "https://pubmed.ncbi.nlm.nih.gov/" + pmid2
     try:
         if urllib.request.urlopen(url).getcode() > 400:

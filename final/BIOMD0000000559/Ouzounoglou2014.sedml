@@ -121,13 +121,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="600000" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -136,36 +136,44 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="s33_1_task1" name="HigherWTasynSPC.ParticleNumber">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_s33_1_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_s33_1_task1" name="HigherWTasynSPC.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s33&apos;]" taskReference="task1" term="KISAO:0000837"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="s51_2_task1" name="Lamp2a.ParticleNumber">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_s51_2_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_s51_2_task1" name="Lamp2a.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s51&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Cytosolic_WTASYN_Dimer_3_task1" name="Values[Total_Cytosolic_WTASYN_Dimer]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Cytosolic_WTASYN_Dimer_task1 </ci>
+        <ci> p1_Total_Cytosolic_WTASYN_Dimer_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Cytosolic_WTASYN_Dimer_task1" name="Total_Cytosolic_WTASYN_Dimer" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Cytosolic_WTASYN_Dimer&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Cytosolic_WTASYN_Dimer_3_task1" name="Values[Total_Cytosolic_WTASYN_Dimer]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Cytosolic_WTASYN_Dimer&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Total_Cytosolic_WTASYN_Oligomers_4_task1" name="Values[Total_Cytosolic_WTASYN_Oligomers]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Total_Cytosolic_WTASYN_Oligomers_task1 </ci>
+        <ci> p1_Total_Cytosolic_WTASYN_Oligomers_4_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Total_Cytosolic_WTASYN_Oligomers_task1" name="Total_Cytosolic_WTASYN_Oligomers" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Cytosolic_WTASYN_Oligomers&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_s51">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_s51_x </ci>
-      </math>
-      <listOfVariables>
-        <variable id="auto_dg_for_task1_s51_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s51&apos;]" taskReference="task1"/>
+        <variable id="p1_Total_Cytosolic_WTASYN_Oligomers_4_task1" name="Values[Total_Cytosolic_WTASYN_Oligomers]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Total_Cytosolic_WTASYN_Oligomers&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_s52">
@@ -592,22 +600,6 @@
         <variable id="auto_dg_for_task1_s2_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s2&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_s3">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_s3_x </ci>
-      </math>
-      <listOfVariables>
-        <variable id="auto_dg_for_task1_s3_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s3&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_s5">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_s5_x </ci>
-      </math>
-      <listOfVariables>
-        <variable id="auto_dg_for_task1_s5_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s5&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_s6">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> auto_dg_for_task1_s6_x </ci>
@@ -734,14 +726,6 @@
       </math>
       <listOfVariables>
         <variable id="auto_dg_for_task1_s32_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s32&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_s33">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_s33_x </ci>
-      </math>
-      <listOfVariables>
-        <variable id="auto_dg_for_task1_s33_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;s33&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_s35">
@@ -2092,16 +2076,21 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 7">
       <listOfCurves>
-        <curve id="p1_curve_3_task1" name="Values[Total_Cytosolic_WTASYN_Dimer]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Cytosolic_WTASYN_Dimer_3_task1"/>
-        <curve id="p1_curve_4_task1" name="Values[Total_Cytosolic_WTASYN_Oligomers]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="Total_Cytosolic_WTASYN_Oligomers_4_task1"/>
+        <curve id="p1_curve_1_task1" name="HigherWTasynSPC.ParticleNumber|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="s33_1_task1"/>
+        <curve id="p1_curve_2_task1" name="Lamp2a.ParticleNumber|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="s51_2_task1"/>
+        <curve id="p1_curve_3_task1" name="Values[Total_Cytosolic_WTASYN_Dimer]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Cytosolic_WTASYN_Dimer_3_task1"/>
+        <curve id="p1_curve_4_task1" name="Values[Total_Cytosolic_WTASYN_Oligomers]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Total_Cytosolic_WTASYN_Oligomers_4_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
+        <dataSet id="autogen_task1_s3" label="s3" dataReference="s33_1_task1"/>
+        <dataSet id="autogen_task1_s33" label="s33" dataReference="s33_1_task1"/>
+        <dataSet id="autogen_task1_s51" label="s51" dataReference="s51_2_task1"/>
+        <dataSet id="autogen_task1_s5" label="s5" dataReference="s51_2_task1"/>
         <dataSet id="autogen_task1_Total_Cytosolic_WTASYN_Dimer" label="Total_Cytosolic_WTASYN_Dimer" dataReference="Total_Cytosolic_WTASYN_Dimer_3_task1"/>
         <dataSet id="autogen_task1_Total_Cytosolic_WTASYN_Oligomers" label="Total_Cytosolic_WTASYN_Oligomers" dataReference="Total_Cytosolic_WTASYN_Oligomers_4_task1"/>
-        <dataSet id="autogen_task1_s51" label="s51" dataReference="auto_dg_for_task1_s51"/>
         <dataSet id="autogen_task1_s52" label="s52" dataReference="auto_dg_for_task1_s52"/>
         <dataSet id="autogen_task1_s53" label="s53" dataReference="auto_dg_for_task1_s53"/>
         <dataSet id="autogen_task1_s78" label="s78" dataReference="auto_dg_for_task1_s78"/>
@@ -2155,8 +2144,6 @@
         <dataSet id="autogen_task1_s527" label="s527" dataReference="auto_dg_for_task1_s527"/>
         <dataSet id="autogen_task1_s1" label="s1" dataReference="auto_dg_for_task1_s1"/>
         <dataSet id="autogen_task1_s2" label="s2" dataReference="auto_dg_for_task1_s2"/>
-        <dataSet id="autogen_task1_s3" label="s3" dataReference="auto_dg_for_task1_s3"/>
-        <dataSet id="autogen_task1_s5" label="s5" dataReference="auto_dg_for_task1_s5"/>
         <dataSet id="autogen_task1_s6" label="s6" dataReference="auto_dg_for_task1_s6"/>
         <dataSet id="autogen_task1_s7" label="s7" dataReference="auto_dg_for_task1_s7"/>
         <dataSet id="autogen_task1_s17" label="s17" dataReference="auto_dg_for_task1_s17"/>
@@ -2173,7 +2160,6 @@
         <dataSet id="autogen_task1_s30" label="s30" dataReference="auto_dg_for_task1_s30"/>
         <dataSet id="autogen_task1_s31" label="s31" dataReference="auto_dg_for_task1_s31"/>
         <dataSet id="autogen_task1_s32" label="s32" dataReference="auto_dg_for_task1_s32"/>
-        <dataSet id="autogen_task1_s33" label="s33" dataReference="auto_dg_for_task1_s33"/>
         <dataSet id="autogen_task1_s35" label="s35" dataReference="auto_dg_for_task1_s35"/>
         <dataSet id="autogen_task1_s200" label="s200" dataReference="auto_dg_for_task1_s200"/>
         <dataSet id="autogen_task1_s381" label="s381" dataReference="auto_dg_for_task1_s381"/>
@@ -2346,9 +2332,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

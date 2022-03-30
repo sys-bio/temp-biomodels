@@ -44,13 +44,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0.0001" outputEndTime="1000" numberOfSteps="100">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="100000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -59,228 +59,124 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="APC_1_task1" name="[APC]">
+    <dataGenerator id="log_time_1_task1" name="Values[log_time]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_APC_task1 </ci>
+        <ci> p1_log_time_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_APC_task1" name="APC" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;APC&apos;]" taskReference="task1"/>
+        <variable id="p1_log_time_1_task1" name="Values[log_time]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="log_time_1_task1" name="log_time">
+    <dataGenerator id="APC_1_task1" name="[APC]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task1 </ci>
+        <ci> p1_APC_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_log_time_task1" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_APC_1_task1" name="[APC]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;APC&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Factor_V_2_task1" name="[Factor V]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Factor_V_task1 </ci>
+        <ci> p1_Factor_V_2_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Factor_V_task1" name="Factor_V" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_V&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_2_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task12 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task12" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Factor_V_2_task1" name="[Factor V]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_V&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Factor_Va_3_task1" name="[Factor Va]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Factor_Va_task1 </ci>
+        <ci> p1_Factor_Va_3_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Factor_Va_task1" name="Factor_Va" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_Va&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_3_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task13 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task13" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Factor_Va_3_task1" name="[Factor Va]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_Va&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Factor_Xa_4_task1" name="[Factor Xa]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Factor_Xa_task1 </ci>
+        <ci> p1_Factor_Xa_4_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Factor_Xa_task1" name="Factor_Xa" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_Xa&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_4_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task14 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task14" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Factor_Xa_4_task1" name="[Factor Xa]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_Xa&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Factor_Xi_5_task1" name="[Factor Xi]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Factor_Xi_task1 </ci>
+        <ci> p1_Factor_Xi_5_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Factor_Xi_task1" name="Factor_Xi" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_Xi&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_5_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task15 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task15" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Factor_Xi_5_task1" name="[Factor Xi]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Factor_Xi&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Fibrin_6_task1" name="[Fibrin]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Fibrin_task1 </ci>
+        <ci> p1_Fibrin_6_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Fibrin_task1" name="Fibrin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fibrin&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_6_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task16 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task16" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Fibrin_6_task1" name="[Fibrin]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fibrin&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Fibrinogen_7_task1" name="[Fibrinogen]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Fibrinogen_task1 </ci>
+        <ci> p1_Fibrinogen_7_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Fibrinogen_task1" name="Fibrinogen" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fibrinogen&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_7_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task17 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task17" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Fibrinogen_7_task1" name="[Fibrinogen]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fibrinogen&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Inactive_Thrombin_8_task1" name="[Inactive Thrombin]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Inactive_Thrombin_task1 </ci>
+        <ci> p1_Inactive_Thrombin_8_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Inactive_Thrombin_task1" name="Inactive_Thrombin" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Inactive_Thrombin&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_8_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task18 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task18" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Inactive_Thrombin_8_task1" name="[Inactive Thrombin]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Inactive_Thrombin&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Inactive_protein_C_9_task1" name="[Inactive protein C]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Inactive_protein_C_task1 </ci>
+        <ci> p1_Inactive_protein_C_9_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Inactive_protein_C_task1" name="Inactive_protein_C" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Inactive_protein_C&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_9_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task19 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task19" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Inactive_protein_C_9_task1" name="[Inactive protein C]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Inactive_protein_C&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Protein_C_10_task1" name="[Protein C]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Protein_C_task1 </ci>
+        <ci> p1_Protein_C_10_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Protein_C_task1" name="Protein_C" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Protein_C&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_10_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task110 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task110" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Protein_C_10_task1" name="[Protein C]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Protein_C&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Prothrombin__II_11_task1" name="[Prothrombin (II)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Prothrombin__II_task1 </ci>
+        <ci> p1_Prothrombin__II_11_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Prothrombin__II_task1" name="Prothrombin__II" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Prothrombin__II&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_11_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task111 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task111" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Prothrombin__II_11_task1" name="[Prothrombin (II)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Prothrombin__II&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Prothrombinase__Va_Xa_12_task1" name="[Prothrombinase (Va:Xa)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Prothrombinase__Va_Xa_task1 </ci>
+        <ci> p1_Prothrombinase__Va_Xa_12_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Prothrombinase__Va_Xa_task1" name="Prothrombinase__Va_Xa" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Prothrombinase__Va_Xa&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_12_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task112 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task112" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Prothrombinase__Va_Xa_12_task1" name="[Prothrombinase (Va:Xa)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Prothrombinase__Va_Xa&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Thrombin__IIa_13_task1" name="[Thrombin (IIa)]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_Thrombin__IIa_task1 </ci>
+        <ci> p1_Thrombin__IIa_13_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_Thrombin__IIa_task1" name="Thrombin__IIa" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Thrombin__IIa&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_13_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task113 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task113" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_Thrombin__IIa_13_task1" name="[Thrombin (IIa)]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Thrombin__IIa&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="VInactive_14_task1" name="[VInactive]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_VInactive_task1 </ci>
+        <ci> p1_VInactive_14_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_VInactive_task1" name="VInactive" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;VInactive&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="log_time_14_task1" name="log_time">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_log_time_task114 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_log_time_task114" name="log_time" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;log_time&apos;]" taskReference="task1"/>
+        <variable id="p1_VInactive_14_task1" name="[VInactive]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;VInactive&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_time_for_task1" name="Time">
@@ -615,27 +511,27 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 4">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[APC]" logX="false" style="copasi_style1" xDataReference="log_time_1_task1" logY="false" yDataReference="APC_1_task1"/>
-        <curve id="p1_curve_2_task1" name="[Factor V]" logX="false" style="copasi_style1" xDataReference="log_time_2_task1" logY="false" yDataReference="Factor_V_2_task1"/>
-        <curve id="p1_curve_3_task1" name="[Factor Va]" logX="false" style="copasi_style1" xDataReference="log_time_3_task1" logY="false" yDataReference="Factor_Va_3_task1"/>
-        <curve id="p1_curve_4_task1" name="[Factor Xa]" logX="false" style="copasi_style1" xDataReference="log_time_4_task1" logY="false" yDataReference="Factor_Xa_4_task1"/>
-        <curve id="p1_curve_5_task1" name="[Factor Xi]" logX="false" style="copasi_style1" xDataReference="log_time_5_task1" logY="false" yDataReference="Factor_Xi_5_task1"/>
-        <curve id="p1_curve_6_task1" name="[Fibrin]" logX="false" style="copasi_style1" xDataReference="log_time_6_task1" logY="false" yDataReference="Fibrin_6_task1"/>
-        <curve id="p1_curve_7_task1" name="[Fibrinogen]" logX="false" style="copasi_style1" xDataReference="log_time_7_task1" logY="false" yDataReference="Fibrinogen_7_task1"/>
-        <curve id="p1_curve_8_task1" name="[Inactive Thrombin]" logX="false" style="copasi_style1" xDataReference="log_time_8_task1" logY="false" yDataReference="Inactive_Thrombin_8_task1"/>
-        <curve id="p1_curve_9_task1" name="[Inactive protein C]" logX="false" style="copasi_style1" xDataReference="log_time_9_task1" logY="false" yDataReference="Inactive_protein_C_9_task1"/>
-        <curve id="p1_curve_10_task1" name="[Protein C]" logX="false" style="copasi_style1" xDataReference="log_time_10_task1" logY="false" yDataReference="Protein_C_10_task1"/>
-        <curve id="p1_curve_11_task1" name="[Prothrombin (II)]" logX="false" style="copasi_style1" xDataReference="log_time_11_task1" logY="false" yDataReference="Prothrombin__II_11_task1"/>
-        <curve id="p1_curve_12_task1" name="[Prothrombinase (Va:Xa)]" logX="false" style="copasi_style1" xDataReference="log_time_12_task1" logY="false" yDataReference="Prothrombinase__Va_Xa_12_task1"/>
-        <curve id="p1_curve_13_task1" name="[Thrombin (IIa)]" logX="false" style="copasi_style1" xDataReference="log_time_13_task1" logY="false" yDataReference="Thrombin__IIa_13_task1"/>
-        <curve id="p1_curve_14_task1" name="[VInactive]" logX="false" style="copasi_style1" xDataReference="log_time_14_task1" logY="false" yDataReference="VInactive_14_task1"/>
+        <curve id="p1_curve_1_task1" name="[APC]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="APC_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Factor V]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Factor_V_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[Factor Va]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Factor_Va_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[Factor Xa]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Factor_Xa_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[Factor Xi]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Factor_Xi_5_task1"/>
+        <curve id="p1_curve_6_task1" name="[Fibrin]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Fibrin_6_task1"/>
+        <curve id="p1_curve_7_task1" name="[Fibrinogen]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Fibrinogen_7_task1"/>
+        <curve id="p1_curve_8_task1" name="[Inactive Thrombin]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Inactive_Thrombin_8_task1"/>
+        <curve id="p1_curve_9_task1" name="[Inactive protein C]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Inactive_protein_C_9_task1"/>
+        <curve id="p1_curve_10_task1" name="[Protein C]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Protein_C_10_task1"/>
+        <curve id="p1_curve_11_task1" name="[Prothrombin (II)]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Prothrombin__II_11_task1"/>
+        <curve id="p1_curve_12_task1" name="[Prothrombinase (Va:Xa)]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Prothrombinase__Va_Xa_12_task1"/>
+        <curve id="p1_curve_13_task1" name="[Thrombin (IIa)]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="Thrombin__IIa_13_task1"/>
+        <curve id="p1_curve_14_task1" name="[VInactive]|Values[log_time]" logX="false" style="style1" xDataReference="log_time_1_task1" logY="false" yDataReference="VInactive_14_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
         <dataSet id="autogen_task1_time" label="Time" dataReference="auto_time_for_task1"/>
-        <dataSet id="autogen_task1_APC" label="APC" dataReference="APC_1_task1"/>
         <dataSet id="autogen_task1_log_time" label="log_time" dataReference="log_time_1_task1"/>
+        <dataSet id="autogen_task1_APC" label="APC" dataReference="APC_1_task1"/>
         <dataSet id="autogen_task1_Factor_V" label="Factor_V" dataReference="Factor_V_2_task1"/>
         <dataSet id="autogen_task1_Factor_Va" label="Factor_Va" dataReference="Factor_Va_3_task1"/>
         <dataSet id="autogen_task1_Factor_Xa" label="Factor_Xa" dataReference="Factor_Xa_4_task1"/>
@@ -693,9 +589,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

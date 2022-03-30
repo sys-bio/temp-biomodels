@@ -24,7 +24,7 @@
   </listOfModels>
   <listOfSimulations>
     <steadyState id="steady2">
-      <algorithm kisaoID="KISAO:0000282"/>
+      <algorithm name="KINSOL" kisaoID="KISAO:0000407"/>
     </steadyState>
   </listOfSimulations>
   <listOfTasks>
@@ -46,36 +46,28 @@
     </repeatedTask>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="IkBd_uM_1_task3" name="Values[IkBd_uM]">
+    <dataGenerator id="p100_1_task3" name="[p100]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_IkBd_uM_task3 </ci>
+        <ci> p1_p100_1_task3 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_IkBd_uM_task3" name="IkBd_uM" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;IkBd_uM&apos;]" taskReference="task3"/>
+        <variable id="p1_p100_1_task3" name="[p100]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100&apos;]" taskReference="task3" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="p100_1_task3" name="p100">
+    <dataGenerator id="IkBd_uM_1_task3" name="Values[IkBd_uM]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_p100_task3 </ci>
+        <ci> p1_IkBd_uM_1_task3 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_p100_task3" name="p100" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100&apos;]" taskReference="task3"/>
+        <variable id="p1_IkBd_uM_1_task3" name="Values[IkBd_uM]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;IkBd_uM&apos;]" taskReference="task3"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="p52_uM_2_task3" name="Values[p52_uM]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_p52_uM_task3 </ci>
+        <ci> p1_p52_uM_2_task3 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_p52_uM_task3" name="p52_uM" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;p52_uM&apos;]" taskReference="task3"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="p100_2_task3" name="p100">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_p100_task32 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_p100_task32" name="p100" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;p100&apos;]" taskReference="task3"/>
+        <variable id="p1_p52_uM_2_task3" name="Values[p52_uM]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;p52_uM&apos;]" taskReference="task3"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_time_for_task2" name="Time">
@@ -258,8 +250,8 @@
   <listOfOutputs>
     <plot2D id="plot_2_task3" name="Figure 1f">
       <listOfCurves>
-        <curve id="p1_curve_1_task3" name="Values[IkBd_uM]" logX="false" style="copasi_style1" xDataReference="p100_1_task3" logY="false" yDataReference="IkBd_uM_1_task3"/>
-        <curve id="p1_curve_2_task3" name="Values[p52_uM]" logX="false" style="copasi_style1" xDataReference="p100_2_task3" logY="false" yDataReference="p52_uM_2_task3"/>
+        <curve id="p1_curve_1_task3" name="Values[IkBd_uM]|[p100]" logX="false" style="style1" xDataReference="p100_1_task3" logY="false" yDataReference="IkBd_uM_1_task3"/>
+        <curve id="p1_curve_2_task3" name="Values[p52_uM]|[p100]" logX="false" style="style1" xDataReference="p100_1_task3" logY="false" yDataReference="p52_uM_2_task3"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
@@ -280,9 +272,9 @@
     <report id="autogen_report_for_task3" name="Auto-generated report for task3, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
         <dataSet id="autogen_task3_time" label="Time" dataReference="auto_time_for_task3"/>
+        <dataSet id="autogen_task3_p100" label="p100" dataReference="p100_1_task3"/>
         <dataSet id="autogen_task3_IkBd" label="IkBd" dataReference="IkBd_uM_1_task3"/>
         <dataSet id="autogen_task3_IkBd_uM" label="IkBd_uM" dataReference="IkBd_uM_1_task3"/>
-        <dataSet id="autogen_task3_p100" label="p100" dataReference="p100_1_task3"/>
         <dataSet id="autogen_task3_p52" label="p52" dataReference="p52_uM_2_task3"/>
         <dataSet id="autogen_task3_p52_uM" label="p52_uM" dataReference="p52_uM_2_task3"/>
         <dataSet id="autogen_task3_p100t" label="p100t" dataReference="auto_dg_for_task3_p100t"/>
@@ -299,9 +291,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

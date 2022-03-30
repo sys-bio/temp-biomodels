@@ -22,13 +22,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="150" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -45,100 +45,84 @@
         <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="z_1_task1" name="z">
+    <dataGenerator id="z_1_task1" name="[BoneMass]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_z_task1 </ci>
+        <ci> p3_z_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_z_task1" name="z" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;z&apos;]" taskReference="task1"/>
+        <variable id="p3_z_1_task1" name="[BoneMass]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;z&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="x2_1_task1" name="x2">
+    <dataGenerator id="x2_1_task1" name="[Osteoblasts]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p5_x2_task1 </ci>
+        <ci> p5_x2_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p5_x2_task1" name="x2" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x2&apos;]" taskReference="task1"/>
+        <variable id="p5_x2_1_task1" name="[Osteoblasts]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x2&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="x1_1_task1" name="x1">
+    <dataGenerator id="x1_1_task1" name="[Osteoclasts]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p7_x1_task1 </ci>
+        <ci> p7_x1_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p7_x1_task1" name="x1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x1&apos;]" taskReference="task1"/>
+        <variable id="p7_x1_1_task1" name="[Osteoclasts]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x1&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="x1_1_task12" name="[Osteoclasts]">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_x1_task1 </ci>
+        <ci> p1__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_x1_task1" name="x1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x1&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="x2_2_task1" name="[Osteoblasts]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_x2_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_x2_task1" name="x2" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;x2&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="z_3_task1" name="[BoneMass]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_z_task1 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p1_z_task1" name="z" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;z&apos;]" taskReference="task1"/>
+        <variable id="p1__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="y1_4_task1" name="Values[y1]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_y1_task1 </ci>
+        <ci> p1_y1_4_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_y1_task1" name="y1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;y1&apos;]" taskReference="task1"/>
+        <variable id="p1_y1_4_task1" name="Values[y1]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;y1&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="y2_5_task1" name="Values[y2]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_y2_task1 </ci>
+        <ci> p1_y2_5_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_y2_task1" name="y2" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;y2&apos;]" taskReference="task1"/>
+        <variable id="p1_y2_5_task1" name="Values[y2]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;y2&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="x1_bar_6_task1" name="Values[x1_bar]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_x1_bar_task1 </ci>
+        <ci> p1_x1_bar_6_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_x1_bar_task1" name="x1_bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;x1_bar&apos;]" taskReference="task1"/>
+        <variable id="p1_x1_bar_6_task1" name="Values[x1_bar]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;x1_bar&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="x2_bar_7_task1" name="Values[x2_bar]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_x2_bar_task1 </ci>
+        <ci> p1_x2_bar_7_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_x2_bar_task1" name="x2_bar" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;x2_bar&apos;]" taskReference="task1"/>
+        <variable id="p1_x2_bar_7_task1" name="Values[x2_bar]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;x2_bar&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="g21_8_task1" name="Values[g21]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_g21_task1 </ci>
+        <ci> p1_g21_8_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_g21_task1" name="g21" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;g21&apos;]" taskReference="task1"/>
+        <variable id="p1_g21_8_task1" name="Values[g21]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;g21&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="gamma_9_task1" name="Values[gamma]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_gamma_task1 </ci>
+        <ci> p1_gamma_9_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_gamma_task1" name="gamma" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma&apos;]" taskReference="task1"/>
+        <variable id="p1_gamma_9_task1" name="Values[gamma]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_alpha1">
@@ -225,7 +209,7 @@
   <listOfOutputs>
     <report id="report_task1" name="Figure 1b (red)">
       <listOfDataSets>
-        <dataSet id="ds_1_task1" label="Time" dataReference="time_task1"/>
+        <dataSet id="ds_1_task1" dataReference="time_task1"/>
         <dataSet id="ds_2_task1" label="z" dataReference="z_1_task1"/>
         <dataSet id="ds_3_task1" label="x2" dataReference="x2_1_task1"/>
         <dataSet id="ds_4_task1" label="x1" dataReference="x1_1_task1"/>
@@ -233,20 +217,20 @@
     </report>
     <plot2D id="plot_2_task1" name="Figure 1b (red)">
       <listOfCurves>
-        <curve id="p1_curve_1_task1" name="[Osteoclasts]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="x1_1_task12"/>
-        <curve id="p1_curve_2_task1" name="[Osteoblasts]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="x2_2_task1"/>
-        <curve id="p1_curve_3_task1" name="[BoneMass]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="z_3_task1"/>
-        <curve id="p1_curve_4_task1" name="Values[y1]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="y1_4_task1"/>
-        <curve id="p1_curve_5_task1" name="Values[y2]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="y2_5_task1"/>
-        <curve id="p1_curve_6_task1" name="Values[x1_bar]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="x1_bar_6_task1"/>
-        <curve id="p1_curve_7_task1" name="Values[x2_bar]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="x2_bar_7_task1"/>
-        <curve id="p1_curve_8_task1" name="Values[g21]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="g21_8_task1"/>
-        <curve id="p1_curve_9_task1" name="Values[gamma]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="gamma_9_task1"/>
+        <curve id="p1_curve_1_task1" name="[Osteoclasts]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="x1_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[Osteoblasts]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="x2_1_task1"/>
+        <curve id="p1_curve_3_task1" name="[BoneMass]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="z_1_task1"/>
+        <curve id="p1_curve_4_task1" name="Values[y1]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="y1_4_task1"/>
+        <curve id="p1_curve_5_task1" name="Values[y2]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="y2_5_task1"/>
+        <curve id="p1_curve_6_task1" name="Values[x1_bar]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="x1_bar_6_task1"/>
+        <curve id="p1_curve_7_task1" name="Values[x2_bar]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="x2_bar_7_task1"/>
+        <curve id="p1_curve_8_task1" name="Values[g21]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="g21_8_task1"/>
+        <curve id="p1_curve_9_task1" name="Values[gamma]" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="gamma_9_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_z" label="z" dataReference="z_1_task1"/>
         <dataSet id="autogen_task1_x2" label="x2" dataReference="x2_1_task1"/>
         <dataSet id="autogen_task1_x1" label="x1" dataReference="x1_1_task1"/>
@@ -270,9 +254,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sedML xmlns="http://sed-ml.org/sed-ml/level1/version4" xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" level="1" version="4">
   <listOfModels>
-    <model id="model" language="urn:sedml:language:sbml" source="Zake2021_Metformin+Mice+IV.xml">
+    <model id="model" language="urn:sedml:language:sbml" source="Zake2021_Metformin_Mice_IV.xml">
       <listOfChanges>
         <changeAttribute id="auto_init_amount_species_mLiver" name="Initial amount of species &quot;mLiver&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mLiver&apos;]/@initialAmount" newValue="0"/>
         <changeAttribute id="auto_init_amount_species_mKidneyPlasma" name="Initial amount of species &quot;mKidneyPlasma&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mKidneyPlasma&apos;]/@initialAmount" newValue="0"/>
@@ -63,13 +63,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0.5" outputEndTime="30" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -93,660 +93,628 @@
     </repeatedTask>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task2" name="Time">
+    <dataGenerator id="_1_task2" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task2 </ci>
+        <ci> p1__1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task2" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+        <variable id="p1__1_task2" name="Time" symbol="urn:sedml:symbol:time" taskReference="task2" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mAdipose_1_task2" name="[mAdipose]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mAdipose_task2 </ci>
+        <ci> p1_mAdipose_1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mAdipose_task2" name="mAdipose" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mAdipose&apos;]" taskReference="task2"/>
+        <variable id="p1_mAdipose_1_task2" name="[mAdipose]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mAdipose&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mBrain_2_task2" name="[mBrain]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mBrain_task2 </ci>
+        <ci> p1_mBrain_2_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mBrain_task2" name="mBrain" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mBrain&apos;]" taskReference="task2"/>
+        <variable id="p1_mBrain_2_task2" name="[mBrain]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mBrain&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mFeces_3_task2" name="[mFeces]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mFeces_task2 </ci>
+        <ci> p1_mFeces_3_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mFeces_task2" name="mFeces" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mFeces&apos;]" taskReference="task2"/>
+        <variable id="p1_mFeces_3_task2" name="[mFeces]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mFeces&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mHeart_4_task2" name="[mHeart]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mHeart_task2 </ci>
+        <ci> p1_mHeart_4_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mHeart_task2" name="mHeart" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mHeart&apos;]" taskReference="task2"/>
+        <variable id="p1_mHeart_4_task2" name="[mHeart]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mHeart&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mIntestineEnterocytes_5_task2" name="[mIntestineEnterocytes]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mIntestineEnterocytes_task2 </ci>
+        <ci> p1_mIntestineEnterocytes_5_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mIntestineEnterocytes_task2" name="mIntestineEnterocytes" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mIntestineEnterocytes&apos;]" taskReference="task2"/>
+        <variable id="p1_mIntestineEnterocytes_5_task2" name="[mIntestineEnterocytes]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mIntestineEnterocytes&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mIntestineLumen_6_task2" name="[mIntestineLumen]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mIntestineLumen_task2 </ci>
+        <ci> p1_mIntestineLumen_6_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mIntestineLumen_task2" name="mIntestineLumen" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mIntestineLumen&apos;]" taskReference="task2"/>
+        <variable id="p1_mIntestineLumen_6_task2" name="[mIntestineLumen]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mIntestineLumen&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mIntestineSum_7_task2" name="Values[mIntestineSum]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mIntestineSum_task2 </ci>
+        <ci> p1_mIntestineSum_7_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mIntestineSum_task2" name="mIntestineSum" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mIntestineSum&apos;]" taskReference="task2"/>
+        <variable id="p1_mIntestineSum_7_task2" name="Values[mIntestineSum]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mIntestineSum&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mIntestineVascular_8_task2" name="[mIntestineVascular]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mIntestineVascular_task2 </ci>
+        <ci> p1_mIntestineVascular_8_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mIntestineVascular_task2" name="mIntestineVascular" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mIntestineVascular&apos;]" taskReference="task2"/>
+        <variable id="p1_mIntestineVascular_8_task2" name="[mIntestineVascular]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mIntestineVascular&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mKidneyPlasma_9_task2" name="[mKidneyPlasma]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mKidneyPlasma_task2 </ci>
+        <ci> p1_mKidneyPlasma_9_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mKidneyPlasma_task2" name="mKidneyPlasma" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mKidneyPlasma&apos;]" taskReference="task2"/>
+        <variable id="p1_mKidneyPlasma_9_task2" name="[mKidneyPlasma]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mKidneyPlasma&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mKidneySum_10_task2" name="Values[mKidneySum]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mKidneySum_task2 </ci>
+        <ci> p1_mKidneySum_10_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mKidneySum_task2" name="mKidneySum" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mKidneySum&apos;]" taskReference="task2"/>
+        <variable id="p1_mKidneySum_10_task2" name="Values[mKidneySum]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mKidneySum&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mKidneyTissue_11_task2" name="[mKidneyTissue]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mKidneyTissue_task2 </ci>
+        <ci> p1_mKidneyTissue_11_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mKidneyTissue_task2" name="mKidneyTissue" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mKidneyTissue&apos;]" taskReference="task2"/>
+        <variable id="p1_mKidneyTissue_11_task2" name="[mKidneyTissue]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mKidneyTissue&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mKidneyTubular_12_task2" name="[mKidneyTubular]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mKidneyTubular_task2 </ci>
+        <ci> p1_mKidneyTubular_12_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mKidneyTubular_task2" name="mKidneyTubular" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mKidneyTubular&apos;]" taskReference="task2"/>
+        <variable id="p1_mKidneyTubular_12_task2" name="[mKidneyTubular]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mKidneyTubular&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mLiver_13_task2" name="[mLiver]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mLiver_task2 </ci>
+        <ci> p1_mLiver_13_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mLiver_task2" name="mLiver" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mLiver&apos;]" taskReference="task2"/>
+        <variable id="p1_mLiver_13_task2" name="[mLiver]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mLiver&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mLung_14_task2" name="[mLung]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mLung_task2 </ci>
+        <ci> p1_mLung_14_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mLung_task2" name="mLung" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mLung&apos;]" taskReference="task2"/>
+        <variable id="p1_mLung_14_task2" name="[mLung]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mLung&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mMuscle_15_task2" name="[mMuscle]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mMuscle_task2 </ci>
+        <ci> p1_mMuscle_15_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mMuscle_task2" name="mMuscle" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mMuscle&apos;]" taskReference="task2"/>
+        <variable id="p1_mMuscle_15_task2" name="[mMuscle]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mMuscle&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mPlasmaArterial_16_task2" name="[mPlasmaArterial]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mPlasmaArterial_task2 </ci>
+        <ci> p1_mPlasmaArterial_16_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mPlasmaArterial_task2" name="mPlasmaArterial" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mPlasmaArterial&apos;]" taskReference="task2"/>
+        <variable id="p1_mPlasmaArterial_16_task2" name="[mPlasmaArterial]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mPlasmaArterial&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mPlasmaVenous_17_task2" name="[mPlasmaVenous]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mPlasmaVenous_task2 </ci>
+        <ci> p1_mPlasmaVenous_17_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mPlasmaVenous_task2" name="mPlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mPlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p1_mPlasmaVenous_17_task2" name="[mPlasmaVenous]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mPlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mPortalVein_18_task2" name="[mPortalVein]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mPortalVein_task2 </ci>
+        <ci> p1_mPortalVein_18_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mPortalVein_task2" name="mPortalVein" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mPortalVein&apos;]" taskReference="task2"/>
+        <variable id="p1_mPortalVein_18_task2" name="[mPortalVein]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mPortalVein&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mRemainder_19_task2" name="[mRemainder]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mRemainder_task2 </ci>
+        <ci> p1_mRemainder_19_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mRemainder_task2" name="mRemainder" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mRemainder&apos;]" taskReference="task2"/>
+        <variable id="p1_mRemainder_19_task2" name="[mRemainder]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mRemainder&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mStomach_20_task2" name="[mStomach]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mStomach_task2 </ci>
+        <ci> p1_mStomach_20_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mStomach_task2" name="mStomach" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mStomach&apos;]" taskReference="task2"/>
+        <variable id="p1_mStomach_20_task2" name="[mStomach]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mStomach&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mStomachLumen_21_task2" name="[mStomachLumen]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mStomachLumen_task2 </ci>
+        <ci> p1_mStomachLumen_21_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mStomachLumen_task2" name="mStomachLumen" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mStomachLumen&apos;]" taskReference="task2"/>
+        <variable id="p1_mStomachLumen_21_task2" name="[mStomachLumen]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mStomachLumen&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mUrine_22_task2" name="[mUrine]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p1_mUrine_task2 </ci>
+        <ci> p1_mUrine_22_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p1_mUrine_task2" name="mUrine" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mUrine&apos;]" taskReference="task2"/>
+        <variable id="p1_mUrine_22_task2" name="[mUrine]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mUrine&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_01__StomachLumen_____IntestineLumen_1_task2" name="(01. StomachLumen  -&gt; IntestineLumen).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__01__StomachLumen_____IntestineLumen_task2 </ci>
+        <ci> p2__01__StomachLumen_____IntestineLumen_1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__01__StomachLumen_____IntestineLumen_task2" name="_01__StomachLumen_____IntestineLumen" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_01__StomachLumen_____IntestineLumen&apos;]" taskReference="task2"/>
+        <variable id="p2__01__StomachLumen_____IntestineLumen_1_task2" name="(01. StomachLumen  -&gt; IntestineLumen).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_01__StomachLumen_____IntestineLumen&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_02__IntestineLumen____Feces_2_task2" name="(02. IntestineLumen -&gt; Feces).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__02__IntestineLumen____Feces_task2 </ci>
+        <ci> p2__02__IntestineLumen____Feces_2_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__02__IntestineLumen____Feces_task2" name="_02__IntestineLumen____Feces" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_02__IntestineLumen____Feces&apos;]" taskReference="task2"/>
+        <variable id="p2__02__IntestineLumen____Feces_2_task2" name="(02. IntestineLumen -&gt; Feces).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_02__IntestineLumen____Feces&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_03_1__PlasmaArterial____IntestineVascular_3_task2" name="(03.1. PlasmaArterial -&gt; IntestineVascular).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__03_1__PlasmaArterial____IntestineVascular_task2 </ci>
+        <ci> p2__03_1__PlasmaArterial____IntestineVascular_3_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__03_1__PlasmaArterial____IntestineVascular_task2" name="_03_1__PlasmaArterial____IntestineVascular" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_1__PlasmaArterial____IntestineVascular&apos;]" taskReference="task2"/>
+        <variable id="p2__03_1__PlasmaArterial____IntestineVascular_3_task2" name="(03.1. PlasmaArterial -&gt; IntestineVascular).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_1__PlasmaArterial____IntestineVascular&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3_4_task2" name="(03.2. IntestineLumen -&gt; IntestineEnterocytes (PMAT OCT3)).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3_task2 </ci>
+        <ci> p2__03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3_4_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3_task2" name="_03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3&apos;]" taskReference="task2"/>
+        <variable id="p2__03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3_4_task2" name="(03.2. IntestineLumen -&gt; IntestineEnterocytes (PMAT OCT3)).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_03_3__IntestineEnterocytes____IntestineVascular__OCT1_5_task2" name="(03.3. IntestineEnterocytes -&gt; IntestineVascular (OCT1)).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__03_3__IntestineEnterocytes____IntestineVascular__OCT1_task2 </ci>
+        <ci> p2__03_3__IntestineEnterocytes____IntestineVascular__OCT1_5_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__03_3__IntestineEnterocytes____IntestineVascular__OCT1_task2" name="_03_3__IntestineEnterocytes____IntestineVascular__OCT1" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_3__IntestineEnterocytes____IntestineVascular__OCT1&apos;]" taskReference="task2"/>
+        <variable id="p2__03_3__IntestineEnterocytes____IntestineVascular__OCT1_5_task2" name="(03.3. IntestineEnterocytes -&gt; IntestineVascular (OCT1)).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_3__IntestineEnterocytes____IntestineVascular__OCT1&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_03_4__IntestineLumen____IntestineVascular__Saturable_6_task2" name="(03.4. IntestineLumen -&gt; IntestineVascular (Saturable)).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__03_4__IntestineLumen____IntestineVascular__Saturable_task2 </ci>
+        <ci> p2__03_4__IntestineLumen____IntestineVascular__Saturable_6_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__03_4__IntestineLumen____IntestineVascular__Saturable_task2" name="_03_4__IntestineLumen____IntestineVascular__Saturable" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_4__IntestineLumen____IntestineVascular__Saturable&apos;]" taskReference="task2"/>
+        <variable id="p2__03_4__IntestineLumen____IntestineVascular__Saturable_6_task2" name="(03.4. IntestineLumen -&gt; IntestineVascular (Saturable)).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_4__IntestineLumen____IntestineVascular__Saturable&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_03_5__IntestineVascular____PortalVein_7_task2" name="(03.5. IntestineVascular -&gt; PortalVein).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__03_5__IntestineVascular____PortalVein_task2 </ci>
+        <ci> p2__03_5__IntestineVascular____PortalVein_7_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__03_5__IntestineVascular____PortalVein_task2" name="_03_5__IntestineVascular____PortalVein" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_5__IntestineVascular____PortalVein&apos;]" taskReference="task2"/>
+        <variable id="p2__03_5__IntestineVascular____PortalVein_7_task2" name="(03.5. IntestineVascular -&gt; PortalVein).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_5__IntestineVascular____PortalVein&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_03_6__IntestineLumen____IntestineEnterocytes__Diffusion_8_task2" name="(03.6. IntestineLumen -&gt; IntestineEnterocytes (Diffusion)).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__03_6__IntestineLumen____IntestineEnterocytes__Diffusion_task2 </ci>
+        <ci> p2__03_6__IntestineLumen____IntestineEnterocytes__Diffusion_8_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__03_6__IntestineLumen____IntestineEnterocytes__Diffusion_task2" name="_03_6__IntestineLumen____IntestineEnterocytes__Diffusion" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_6__IntestineLumen____IntestineEnterocytes__Diffusion&apos;]" taskReference="task2"/>
+        <variable id="p2__03_6__IntestineLumen____IntestineEnterocytes__Diffusion_8_task2" name="(03.6. IntestineLumen -&gt; IntestineEnterocytes (Diffusion)).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_6__IntestineLumen____IntestineEnterocytes__Diffusion&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_03_7__IntestineLumen____IntestineVascular__Diffusion_9_task2" name="(03.7. IntestineLumen -&gt; IntestineVascular (Diffusion)).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__03_7__IntestineLumen____IntestineVascular__Diffusion_task2 </ci>
+        <ci> p2__03_7__IntestineLumen____IntestineVascular__Diffusion_9_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__03_7__IntestineLumen____IntestineVascular__Diffusion_task2" name="_03_7__IntestineLumen____IntestineVascular__Diffusion" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_7__IntestineLumen____IntestineVascular__Diffusion&apos;]" taskReference="task2"/>
+        <variable id="p2__03_7__IntestineLumen____IntestineVascular__Diffusion_9_task2" name="(03.7. IntestineLumen -&gt; IntestineVascular (Diffusion)).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_03_7__IntestineLumen____IntestineVascular__Diffusion&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_04__PlasmaArterial____PortalVein_10_task2" name="(04. PlasmaArterial -&gt; PortalVein).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__04__PlasmaArterial____PortalVein_task2 </ci>
+        <ci> p2__04__PlasmaArterial____PortalVein_10_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__04__PlasmaArterial____PortalVein_task2" name="_04__PlasmaArterial____PortalVein" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_04__PlasmaArterial____PortalVein&apos;]" taskReference="task2"/>
+        <variable id="p2__04__PlasmaArterial____PortalVein_10_task2" name="(04. PlasmaArterial -&gt; PortalVein).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_04__PlasmaArterial____PortalVein&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_05_1__PlasmaArterial____Stomach_11_task2" name="(05.1. PlasmaArterial -&gt; Stomach).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__05_1__PlasmaArterial____Stomach_task2 </ci>
+        <ci> p2__05_1__PlasmaArterial____Stomach_11_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__05_1__PlasmaArterial____Stomach_task2" name="_05_1__PlasmaArterial____Stomach" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_05_1__PlasmaArterial____Stomach&apos;]" taskReference="task2"/>
+        <variable id="p2__05_1__PlasmaArterial____Stomach_11_task2" name="(05.1. PlasmaArterial -&gt; Stomach).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_05_1__PlasmaArterial____Stomach&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_05_2__Stomach____PortalVein_12_task2" name="(05.2. Stomach -&gt; PortalVein).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__05_2__Stomach____PortalVein_task2 </ci>
+        <ci> p2__05_2__Stomach____PortalVein_12_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__05_2__Stomach____PortalVein_task2" name="_05_2__Stomach____PortalVein" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_05_2__Stomach____PortalVein&apos;]" taskReference="task2"/>
+        <variable id="p2__05_2__Stomach____PortalVein_12_task2" name="(05.2. Stomach -&gt; PortalVein).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_05_2__Stomach____PortalVein&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_06_1__PlasmaArterial____Liver_13_task2" name="(06.1. PlasmaArterial -&gt; Liver).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__06_1__PlasmaArterial____Liver_task2 </ci>
+        <ci> p2__06_1__PlasmaArterial____Liver_13_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__06_1__PlasmaArterial____Liver_task2" name="_06_1__PlasmaArterial____Liver" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_06_1__PlasmaArterial____Liver&apos;]" taskReference="task2"/>
+        <variable id="p2__06_1__PlasmaArterial____Liver_13_task2" name="(06.1. PlasmaArterial -&gt; Liver).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_06_1__PlasmaArterial____Liver&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_06_2__PortalVein____Liver_14_task2" name="(06.2. PortalVein -&gt; Liver).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__06_2__PortalVein____Liver_task2 </ci>
+        <ci> p2__06_2__PortalVein____Liver_14_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__06_2__PortalVein____Liver_task2" name="_06_2__PortalVein____Liver" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_06_2__PortalVein____Liver&apos;]" taskReference="task2"/>
+        <variable id="p2__06_2__PortalVein____Liver_14_task2" name="(06.2. PortalVein -&gt; Liver).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_06_2__PortalVein____Liver&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_06_3__Liver____PlasmaVenous_15_task2" name="(06.3. Liver -&gt; PlasmaVenous).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__06_3__Liver____PlasmaVenous_task2 </ci>
+        <ci> p2__06_3__Liver____PlasmaVenous_15_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__06_3__Liver____PlasmaVenous_task2" name="_06_3__Liver____PlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_06_3__Liver____PlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p2__06_3__Liver____PlasmaVenous_15_task2" name="(06.3. Liver -&gt; PlasmaVenous).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_06_3__Liver____PlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_07_1__PlasmaVenous____Lung_16_task2" name="(07.1. PlasmaVenous -&gt; Lung).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__07_1__PlasmaVenous____Lung_task2 </ci>
+        <ci> p2__07_1__PlasmaVenous____Lung_16_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__07_1__PlasmaVenous____Lung_task2" name="_07_1__PlasmaVenous____Lung" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_07_1__PlasmaVenous____Lung&apos;]" taskReference="task2"/>
+        <variable id="p2__07_1__PlasmaVenous____Lung_16_task2" name="(07.1. PlasmaVenous -&gt; Lung).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_07_1__PlasmaVenous____Lung&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_07_2__Lung____PlasmaArterial_17_task2" name="(07.2. Lung -&gt; PlasmaArterial).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__07_2__Lung____PlasmaArterial_task2 </ci>
+        <ci> p2__07_2__Lung____PlasmaArterial_17_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__07_2__Lung____PlasmaArterial_task2" name="_07_2__Lung____PlasmaArterial" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_07_2__Lung____PlasmaArterial&apos;]" taskReference="task2"/>
+        <variable id="p2__07_2__Lung____PlasmaArterial_17_task2" name="(07.2. Lung -&gt; PlasmaArterial).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_07_2__Lung____PlasmaArterial&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_08_1__PlasmaArterial____Brain_18_task2" name="(08.1. PlasmaArterial -&gt; Brain).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__08_1__PlasmaArterial____Brain_task2 </ci>
+        <ci> p2__08_1__PlasmaArterial____Brain_18_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__08_1__PlasmaArterial____Brain_task2" name="_08_1__PlasmaArterial____Brain" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_08_1__PlasmaArterial____Brain&apos;]" taskReference="task2"/>
+        <variable id="p2__08_1__PlasmaArterial____Brain_18_task2" name="(08.1. PlasmaArterial -&gt; Brain).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_08_1__PlasmaArterial____Brain&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_08_2__Brain____PlasmaVenous_19_task2" name="(08.2. Brain -&gt; PlasmaVenous).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__08_2__Brain____PlasmaVenous_task2 </ci>
+        <ci> p2__08_2__Brain____PlasmaVenous_19_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__08_2__Brain____PlasmaVenous_task2" name="_08_2__Brain____PlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_08_2__Brain____PlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p2__08_2__Brain____PlasmaVenous_19_task2" name="(08.2. Brain -&gt; PlasmaVenous).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_08_2__Brain____PlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_09_1__PlasmaArterial____Muscle_20_task2" name="(09.1. PlasmaArterial -&gt; Muscle).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__09_1__PlasmaArterial____Muscle_task2 </ci>
+        <ci> p2__09_1__PlasmaArterial____Muscle_20_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__09_1__PlasmaArterial____Muscle_task2" name="_09_1__PlasmaArterial____Muscle" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_09_1__PlasmaArterial____Muscle&apos;]" taskReference="task2"/>
+        <variable id="p2__09_1__PlasmaArterial____Muscle_20_task2" name="(09.1. PlasmaArterial -&gt; Muscle).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_09_1__PlasmaArterial____Muscle&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_09_2__Muscle____PlasmaVenous_21_task2" name="(09.2. Muscle -&gt; PlasmaVenous).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__09_2__Muscle____PlasmaVenous_task2 </ci>
+        <ci> p2__09_2__Muscle____PlasmaVenous_21_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__09_2__Muscle____PlasmaVenous_task2" name="_09_2__Muscle____PlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_09_2__Muscle____PlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p2__09_2__Muscle____PlasmaVenous_21_task2" name="(09.2. Muscle -&gt; PlasmaVenous).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_09_2__Muscle____PlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_10_1__PlasmaArterial____Adipose_22_task2" name="(10.1. PlasmaArterial -&gt; Adipose).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__10_1__PlasmaArterial____Adipose_task2 </ci>
+        <ci> p2__10_1__PlasmaArterial____Adipose_22_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__10_1__PlasmaArterial____Adipose_task2" name="_10_1__PlasmaArterial____Adipose" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_10_1__PlasmaArterial____Adipose&apos;]" taskReference="task2"/>
+        <variable id="p2__10_1__PlasmaArterial____Adipose_22_task2" name="(10.1. PlasmaArterial -&gt; Adipose).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_10_1__PlasmaArterial____Adipose&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_10_2__Adipose____PlasmaVenous_23_task2" name="(10.2. Adipose -&gt; PlasmaVenous).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__10_2__Adipose____PlasmaVenous_task2 </ci>
+        <ci> p2__10_2__Adipose____PlasmaVenous_23_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__10_2__Adipose____PlasmaVenous_task2" name="_10_2__Adipose____PlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_10_2__Adipose____PlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p2__10_2__Adipose____PlasmaVenous_23_task2" name="(10.2. Adipose -&gt; PlasmaVenous).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_10_2__Adipose____PlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_11_1__PlasmaArterial____Heart_24_task2" name="(11.1. PlasmaArterial -&gt; Heart).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__11_1__PlasmaArterial____Heart_task2 </ci>
+        <ci> p2__11_1__PlasmaArterial____Heart_24_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__11_1__PlasmaArterial____Heart_task2" name="_11_1__PlasmaArterial____Heart" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_11_1__PlasmaArterial____Heart&apos;]" taskReference="task2"/>
+        <variable id="p2__11_1__PlasmaArterial____Heart_24_task2" name="(11.1. PlasmaArterial -&gt; Heart).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_11_1__PlasmaArterial____Heart&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_11_2__Heart____PlasmaVenous_25_task2" name="(11.2. Heart -&gt; PlasmaVenous).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__11_2__Heart____PlasmaVenous_task2 </ci>
+        <ci> p2__11_2__Heart____PlasmaVenous_25_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__11_2__Heart____PlasmaVenous_task2" name="_11_2__Heart____PlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_11_2__Heart____PlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p2__11_2__Heart____PlasmaVenous_25_task2" name="(11.2. Heart -&gt; PlasmaVenous).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_11_2__Heart____PlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_12_1__PlasmaArterial____Remainder_26_task2" name="(12.1. PlasmaArterial -&gt; Remainder).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__12_1__PlasmaArterial____Remainder_task2 </ci>
+        <ci> p2__12_1__PlasmaArterial____Remainder_26_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__12_1__PlasmaArterial____Remainder_task2" name="_12_1__PlasmaArterial____Remainder" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_12_1__PlasmaArterial____Remainder&apos;]" taskReference="task2"/>
+        <variable id="p2__12_1__PlasmaArterial____Remainder_26_task2" name="(12.1. PlasmaArterial -&gt; Remainder).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_12_1__PlasmaArterial____Remainder&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_12_2__Remainder____PlasmaVenous_27_task2" name="(12.2. Remainder -&gt; PlasmaVenous).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__12_2__Remainder____PlasmaVenous_task2 </ci>
+        <ci> p2__12_2__Remainder____PlasmaVenous_27_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__12_2__Remainder____PlasmaVenous_task2" name="_12_2__Remainder____PlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_12_2__Remainder____PlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p2__12_2__Remainder____PlasmaVenous_27_task2" name="(12.2. Remainder -&gt; PlasmaVenous).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_12_2__Remainder____PlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_13_1__PlasmaArterial____KidneyPlasma_28_task2" name="(13.1. PlasmaArterial -&gt; KidneyPlasma).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__13_1__PlasmaArterial____KidneyPlasma_task2 </ci>
+        <ci> p2__13_1__PlasmaArterial____KidneyPlasma_28_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__13_1__PlasmaArterial____KidneyPlasma_task2" name="_13_1__PlasmaArterial____KidneyPlasma" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_1__PlasmaArterial____KidneyPlasma&apos;]" taskReference="task2"/>
+        <variable id="p2__13_1__PlasmaArterial____KidneyPlasma_28_task2" name="(13.1. PlasmaArterial -&gt; KidneyPlasma).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_1__PlasmaArterial____KidneyPlasma&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_13_2__KidneyPlasma____PlasmaVenous_29_task2" name="(13.2. KidneyPlasma -&gt; PlasmaVenous).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__13_2__KidneyPlasma____PlasmaVenous_task2 </ci>
+        <ci> p2__13_2__KidneyPlasma____PlasmaVenous_29_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__13_2__KidneyPlasma____PlasmaVenous_task2" name="_13_2__KidneyPlasma____PlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_2__KidneyPlasma____PlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p2__13_2__KidneyPlasma____PlasmaVenous_29_task2" name="(13.2. KidneyPlasma -&gt; PlasmaVenous).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_2__KidneyPlasma____PlasmaVenous&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_13_3__KidneyPlasma____KidneyTubular_30_task2" name="(13.3. KidneyPlasma -&gt; KidneyTubular).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__13_3__KidneyPlasma____KidneyTubular_task2 </ci>
+        <ci> p2__13_3__KidneyPlasma____KidneyTubular_30_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__13_3__KidneyPlasma____KidneyTubular_task2" name="_13_3__KidneyPlasma____KidneyTubular" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_3__KidneyPlasma____KidneyTubular&apos;]" taskReference="task2"/>
+        <variable id="p2__13_3__KidneyPlasma____KidneyTubular_30_task2" name="(13.3. KidneyPlasma -&gt; KidneyTubular).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_3__KidneyPlasma____KidneyTubular&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_13_4__KidneyPlasma____KidneyTissue_31_task2" name="(13.4. KidneyPlasma -&gt; KidneyTissue).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__13_4__KidneyPlasma____KidneyTissue_task2 </ci>
+        <ci> p2__13_4__KidneyPlasma____KidneyTissue_31_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__13_4__KidneyPlasma____KidneyTissue_task2" name="_13_4__KidneyPlasma____KidneyTissue" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_4__KidneyPlasma____KidneyTissue&apos;]" taskReference="task2"/>
+        <variable id="p2__13_4__KidneyPlasma____KidneyTissue_31_task2" name="(13.4. KidneyPlasma -&gt; KidneyTissue).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_4__KidneyPlasma____KidneyTissue&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_13_5__KidneyTissue____KidneyTubular_32_task2" name="(13.5. KidneyTissue -&gt; KidneyTubular).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__13_5__KidneyTissue____KidneyTubular_task2 </ci>
+        <ci> p2__13_5__KidneyTissue____KidneyTubular_32_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__13_5__KidneyTissue____KidneyTubular_task2" name="_13_5__KidneyTissue____KidneyTubular" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_5__KidneyTissue____KidneyTubular&apos;]" taskReference="task2"/>
+        <variable id="p2__13_5__KidneyTissue____KidneyTubular_32_task2" name="(13.5. KidneyTissue -&gt; KidneyTubular).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_5__KidneyTissue____KidneyTubular&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="_13_6__KidneyTubular____UrineExternal_33_task2" name="(13.6. KidneyTubular -&gt; UrineExternal).Flux">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p2__13_6__KidneyTubular____UrineExternal_task2 </ci>
+        <ci> p2__13_6__KidneyTubular____UrineExternal_33_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p2__13_6__KidneyTubular____UrineExternal_task2" name="_13_6__KidneyTubular____UrineExternal" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_6__KidneyTubular____UrineExternal&apos;]" taskReference="task2"/>
+        <variable id="p2__13_6__KidneyTubular____UrineExternal_33_task2" name="(13.6. KidneyTubular -&gt; UrineExternal).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;_13_6__KidneyTubular____UrineExternal&apos;]" taskReference="task2" term="KISAO:0000639"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgAdipose_1_task2" name="Values[mgAdipose]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgAdipose_task2 </ci>
+        <ci> p3_mgAdipose_1_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgAdipose_task2" name="mgAdipose" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgAdipose&apos;]" taskReference="task2"/>
+        <variable id="p3_mgAdipose_1_task2" name="Values[mgAdipose]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgAdipose&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgBrain_2_task2" name="Values[mgBrain]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgBrain_task2 </ci>
+        <ci> p3_mgBrain_2_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgBrain_task2" name="mgBrain" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgBrain&apos;]" taskReference="task2"/>
+        <variable id="p3_mgBrain_2_task2" name="Values[mgBrain]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgBrain&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgFeces_3_task2" name="Values[mgFeces]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgFeces_task2 </ci>
+        <ci> p3_mgFeces_3_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgFeces_task2" name="mgFeces" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgFeces&apos;]" taskReference="task2"/>
+        <variable id="p3_mgFeces_3_task2" name="Values[mgFeces]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgFeces&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgHeart_4_task2" name="Values[mgHeart]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgHeart_task2 </ci>
+        <ci> p3_mgHeart_4_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgHeart_task2" name="mgHeart" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgHeart&apos;]" taskReference="task2"/>
+        <variable id="p3_mgHeart_4_task2" name="Values[mgHeart]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgHeart&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgIntestineEnterocytes_5_task2" name="Values[mgIntestineEnterocytes]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgIntestineEnterocytes_task2 </ci>
+        <ci> p3_mgIntestineEnterocytes_5_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgIntestineEnterocytes_task2" name="mgIntestineEnterocytes" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineEnterocytes&apos;]" taskReference="task2"/>
+        <variable id="p3_mgIntestineEnterocytes_5_task2" name="Values[mgIntestineEnterocytes]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineEnterocytes&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgIntestineLumen_6_task2" name="Values[mgIntestineLumen]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgIntestineLumen_task2 </ci>
+        <ci> p3_mgIntestineLumen_6_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgIntestineLumen_task2" name="mgIntestineLumen" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineLumen&apos;]" taskReference="task2"/>
+        <variable id="p3_mgIntestineLumen_6_task2" name="Values[mgIntestineLumen]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineLumen&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgIntestineTotal_7_task2" name="Values[mgIntestineTotal]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgIntestineTotal_task2 </ci>
+        <ci> p3_mgIntestineTotal_7_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgIntestineTotal_task2" name="mgIntestineTotal" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineTotal&apos;]" taskReference="task2"/>
+        <variable id="p3_mgIntestineTotal_7_task2" name="Values[mgIntestineTotal]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineTotal&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgIntestineVascular_8_task2" name="Values[mgIntestineVascular]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgIntestineVascular_task2 </ci>
+        <ci> p3_mgIntestineVascular_8_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgIntestineVascular_task2" name="mgIntestineVascular" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineVascular&apos;]" taskReference="task2"/>
+        <variable id="p3_mgIntestineVascular_8_task2" name="Values[mgIntestineVascular]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgIntestineVascular&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgKidneyPlasma_9_task2" name="Values[mgKidneyPlasma]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgKidneyPlasma_task2 </ci>
+        <ci> p3_mgKidneyPlasma_9_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgKidneyPlasma_task2" name="mgKidneyPlasma" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyPlasma&apos;]" taskReference="task2"/>
+        <variable id="p3_mgKidneyPlasma_9_task2" name="Values[mgKidneyPlasma]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyPlasma&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgKidneyTissues_10_task2" name="Values[mgKidneyTissues]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgKidneyTissues_task2 </ci>
+        <ci> p3_mgKidneyTissues_10_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgKidneyTissues_task2" name="mgKidneyTissues" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyTissues&apos;]" taskReference="task2"/>
+        <variable id="p3_mgKidneyTissues_10_task2" name="Values[mgKidneyTissues]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyTissues&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgKidneyTotal_11_task2" name="Values[mgKidneyTotal]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgKidneyTotal_task2 </ci>
+        <ci> p3_mgKidneyTotal_11_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgKidneyTotal_task2" name="mgKidneyTotal" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyTotal&apos;]" taskReference="task2"/>
+        <variable id="p3_mgKidneyTotal_11_task2" name="Values[mgKidneyTotal]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyTotal&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgKidneyTubular_12_task2" name="Values[mgKidneyTubular]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgKidneyTubular_task2 </ci>
+        <ci> p3_mgKidneyTubular_12_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgKidneyTubular_task2" name="mgKidneyTubular" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyTubular&apos;]" taskReference="task2"/>
+        <variable id="p3_mgKidneyTubular_12_task2" name="Values[mgKidneyTubular]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgKidneyTubular&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgLiver_13_task2" name="Values[mgLiver]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgLiver_task2 </ci>
+        <ci> p3_mgLiver_13_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgLiver_task2" name="mgLiver" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgLiver&apos;]" taskReference="task2"/>
+        <variable id="p3_mgLiver_13_task2" name="Values[mgLiver]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgLiver&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgLung_14_task2" name="Values[mgLung]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgLung_task2 </ci>
+        <ci> p3_mgLung_14_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgLung_task2" name="mgLung" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgLung&apos;]" taskReference="task2"/>
+        <variable id="p3_mgLung_14_task2" name="Values[mgLung]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgLung&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgMuscle_15_task2" name="Values[mgMuscle]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgMuscle_task2 </ci>
+        <ci> p3_mgMuscle_15_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgMuscle_task2" name="mgMuscle" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgMuscle&apos;]" taskReference="task2"/>
+        <variable id="p3_mgMuscle_15_task2" name="Values[mgMuscle]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgMuscle&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgPlasmaArterial_16_task2" name="Values[mgPlasmaArterial]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgPlasmaArterial_task2 </ci>
+        <ci> p3_mgPlasmaArterial_16_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgPlasmaArterial_task2" name="mgPlasmaArterial" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgPlasmaArterial&apos;]" taskReference="task2"/>
+        <variable id="p3_mgPlasmaArterial_16_task2" name="Values[mgPlasmaArterial]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgPlasmaArterial&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgPlasmaVenous_17_task2" name="Values[mgPlasmaVenous]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgPlasmaVenous_task2 </ci>
+        <ci> p3_mgPlasmaVenous_17_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgPlasmaVenous_task2" name="mgPlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgPlasmaVenous&apos;]" taskReference="task2"/>
+        <variable id="p3_mgPlasmaVenous_17_task2" name="Values[mgPlasmaVenous]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgPlasmaVenous&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgPortalVein_18_task2" name="Values[mgPortalVein]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgPortalVein_task2 </ci>
+        <ci> p3_mgPortalVein_18_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgPortalVein_task2" name="mgPortalVein" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgPortalVein&apos;]" taskReference="task2"/>
+        <variable id="p3_mgPortalVein_18_task2" name="Values[mgPortalVein]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgPortalVein&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgRemainder_19_task2" name="Values[mgRemainder]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgRemainder_task2 </ci>
+        <ci> p3_mgRemainder_19_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgRemainder_task2" name="mgRemainder" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgRemainder&apos;]" taskReference="task2"/>
+        <variable id="p3_mgRemainder_19_task2" name="Values[mgRemainder]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgRemainder&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgStomach_20_task2" name="Values[mgStomach]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgStomach_task2 </ci>
+        <ci> p3_mgStomach_20_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgStomach_task2" name="mgStomach" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgStomach&apos;]" taskReference="task2"/>
+        <variable id="p3_mgStomach_20_task2" name="Values[mgStomach]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgStomach&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgStomachLumen_21_task2" name="Values[mgStomachLumen]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgStomachLumen_task2 </ci>
+        <ci> p3_mgStomachLumen_21_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgStomachLumen_task2" name="mgStomachLumen" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgStomachLumen&apos;]" taskReference="task2"/>
+        <variable id="p3_mgStomachLumen_21_task2" name="Values[mgStomachLumen]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgStomachLumen&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="mgUrine_22_task2" name="Values[mgUrine]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p3_mgUrine_task2 </ci>
+        <ci> p3_mgUrine_22_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="p3_mgUrine_task2" name="mgUrine" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgUrine&apos;]" taskReference="task2"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="mPlasmaVenous_1_task2" name="[mPlasmaVenous]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p4_mPlasmaVenous_task2 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p4_mPlasmaVenous_task2" name="mPlasmaVenous" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mPlasmaVenous&apos;]" taskReference="task2"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="mIntestineSum_2_task2" name="Values[mIntestineSum]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p4_mIntestineSum_task2 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p4_mIntestineSum_task2" name="mIntestineSum" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mIntestineSum&apos;]" taskReference="task2"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="mLiver_3_task2" name="[mLiver]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p4_mLiver_task2 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p4_mLiver_task2" name="mLiver" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mLiver&apos;]" taskReference="task2"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="mStomach_4_task2" name="[mStomach]">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p4_mStomach_task2 </ci>
-      </math>
-      <listOfVariables>
-        <variable id="p4_mStomach_task2" name="mStomach" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;mStomach&apos;]" taskReference="task2"/>
+        <variable id="p3_mgUrine_22_task2" name="Values[mgUrine]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mgUrine&apos;]" taskReference="task2"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_time_for_task1" name="Time">
@@ -1657,99 +1625,99 @@
   <listOfOutputs>
     <plot2D id="plot_5_task2" name="Concentrations">
       <listOfCurves>
-        <curve id="p1_curve_1_task2" name="[mAdipose]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mAdipose_1_task2"/>
-        <curve id="p1_curve_2_task2" name="[mBrain]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mBrain_2_task2"/>
-        <curve id="p1_curve_3_task2" name="[mFeces]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mFeces_3_task2"/>
-        <curve id="p1_curve_4_task2" name="[mHeart]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mHeart_4_task2"/>
-        <curve id="p1_curve_5_task2" name="[mIntestineEnterocytes]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mIntestineEnterocytes_5_task2"/>
-        <curve id="p1_curve_6_task2" name="[mIntestineLumen]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mIntestineLumen_6_task2"/>
-        <curve id="p1_curve_7_task2" name="Values[mIntestineSum]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mIntestineSum_7_task2"/>
-        <curve id="p1_curve_8_task2" name="[mIntestineVascular]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mIntestineVascular_8_task2"/>
-        <curve id="p1_curve_9_task2" name="[mKidneyPlasma]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mKidneyPlasma_9_task2"/>
-        <curve id="p1_curve_10_task2" name="Values[mKidneySum]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mKidneySum_10_task2"/>
-        <curve id="p1_curve_11_task2" name="[mKidneyTissue]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mKidneyTissue_11_task2"/>
-        <curve id="p1_curve_12_task2" name="[mKidneyTubular]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mKidneyTubular_12_task2"/>
-        <curve id="p1_curve_13_task2" name="[mLiver]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mLiver_13_task2"/>
-        <curve id="p1_curve_14_task2" name="[mLung]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mLung_14_task2"/>
-        <curve id="p1_curve_15_task2" name="[mMuscle]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mMuscle_15_task2"/>
-        <curve id="p1_curve_16_task2" name="[mPlasmaArterial]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mPlasmaArterial_16_task2"/>
-        <curve id="p1_curve_17_task2" name="[mPlasmaVenous]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mPlasmaVenous_17_task2"/>
-        <curve id="p1_curve_18_task2" name="[mPortalVein]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mPortalVein_18_task2"/>
-        <curve id="p1_curve_19_task2" name="[mRemainder]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mRemainder_19_task2"/>
-        <curve id="p1_curve_20_task2" name="[mStomach]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mStomach_20_task2"/>
-        <curve id="p1_curve_21_task2" name="[mStomachLumen]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mStomachLumen_21_task2"/>
-        <curve id="p1_curve_22_task2" name="[mUrine]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mUrine_22_task2"/>
+        <curve id="p1_curve_1_task2" name="mAdipose" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mAdipose_1_task2"/>
+        <curve id="p1_curve_2_task2" name="mBrain" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mBrain_2_task2"/>
+        <curve id="p1_curve_3_task2" name="mFeces" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mFeces_3_task2"/>
+        <curve id="p1_curve_4_task2" name="mHeart" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mHeart_4_task2"/>
+        <curve id="p1_curve_5_task2" name="mIntestineEnterocytes" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mIntestineEnterocytes_5_task2"/>
+        <curve id="p1_curve_6_task2" name="mIntestineLumen" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mIntestineLumen_6_task2"/>
+        <curve id="p1_curve_7_task2" name="mIntestineSum" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mIntestineSum_7_task2"/>
+        <curve id="p1_curve_8_task2" name="mIntestineVascular" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mIntestineVascular_8_task2"/>
+        <curve id="p1_curve_9_task2" name="mKidneyPlasma" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mKidneyPlasma_9_task2"/>
+        <curve id="p1_curve_10_task2" name="mKidneySum" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mKidneySum_10_task2"/>
+        <curve id="p1_curve_11_task2" name="mKidneyTissue" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mKidneyTissue_11_task2"/>
+        <curve id="p1_curve_12_task2" name="mKidneyTubular" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mKidneyTubular_12_task2"/>
+        <curve id="p1_curve_13_task2" name="mLiver" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mLiver_13_task2"/>
+        <curve id="p1_curve_14_task2" name="mLung" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mLung_14_task2"/>
+        <curve id="p1_curve_15_task2" name="mMuscle" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mMuscle_15_task2"/>
+        <curve id="p1_curve_16_task2" name="mPlasmaArterial" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mPlasmaArterial_16_task2"/>
+        <curve id="p1_curve_17_task2" name="mPlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mPlasmaVenous_17_task2"/>
+        <curve id="p1_curve_18_task2" name="mPortalVein" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mPortalVein_18_task2"/>
+        <curve id="p1_curve_19_task2" name="mRemainder" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mRemainder_19_task2"/>
+        <curve id="p1_curve_20_task2" name="mStomach" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mStomach_20_task2"/>
+        <curve id="p1_curve_21_task2" name="mStomachLumen" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mStomachLumen_21_task2"/>
+        <curve id="p1_curve_22_task2" name="mUrine" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mUrine_22_task2"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_6_task2" name="Reaction Fluxes">
       <listOfCurves>
-        <curve id="p2_curve_1_task2" name="(01. StomachLumen  -&gt; IntestineLumen).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_01__StomachLumen_____IntestineLumen_1_task2"/>
-        <curve id="p2_curve_2_task2" name="(02. IntestineLumen -&gt; Feces).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_02__IntestineLumen____Feces_2_task2"/>
-        <curve id="p2_curve_3_task2" name="(03.1. PlasmaArterial -&gt; IntestineVascular).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_03_1__PlasmaArterial____IntestineVascular_3_task2"/>
-        <curve id="p2_curve_4_task2" name="(03.2. IntestineLumen -&gt; IntestineEnterocytes (PMAT OCT3)).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3_4_task2"/>
-        <curve id="p2_curve_5_task2" name="(03.3. IntestineEnterocytes -&gt; IntestineVascular (OCT1)).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_03_3__IntestineEnterocytes____IntestineVascular__OCT1_5_task2"/>
-        <curve id="p2_curve_6_task2" name="(03.4. IntestineLumen -&gt; IntestineVascular (Saturable)).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_03_4__IntestineLumen____IntestineVascular__Saturable_6_task2"/>
-        <curve id="p2_curve_7_task2" name="(03.5. IntestineVascular -&gt; PortalVein).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_03_5__IntestineVascular____PortalVein_7_task2"/>
-        <curve id="p2_curve_8_task2" name="(03.6. IntestineLumen -&gt; IntestineEnterocytes (Diffusion)).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_03_6__IntestineLumen____IntestineEnterocytes__Diffusion_8_task2"/>
-        <curve id="p2_curve_9_task2" name="(03.7. IntestineLumen -&gt; IntestineVascular (Diffusion)).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_03_7__IntestineLumen____IntestineVascular__Diffusion_9_task2"/>
-        <curve id="p2_curve_10_task2" name="(04. PlasmaArterial -&gt; PortalVein).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_04__PlasmaArterial____PortalVein_10_task2"/>
-        <curve id="p2_curve_11_task2" name="(05.1. PlasmaArterial -&gt; Stomach).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_05_1__PlasmaArterial____Stomach_11_task2"/>
-        <curve id="p2_curve_12_task2" name="(05.2. Stomach -&gt; PortalVein).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_05_2__Stomach____PortalVein_12_task2"/>
-        <curve id="p2_curve_13_task2" name="(06.1. PlasmaArterial -&gt; Liver).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_06_1__PlasmaArterial____Liver_13_task2"/>
-        <curve id="p2_curve_14_task2" name="(06.2. PortalVein -&gt; Liver).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_06_2__PortalVein____Liver_14_task2"/>
-        <curve id="p2_curve_15_task2" name="(06.3. Liver -&gt; PlasmaVenous).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_06_3__Liver____PlasmaVenous_15_task2"/>
-        <curve id="p2_curve_16_task2" name="(07.1. PlasmaVenous -&gt; Lung).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_07_1__PlasmaVenous____Lung_16_task2"/>
-        <curve id="p2_curve_17_task2" name="(07.2. Lung -&gt; PlasmaArterial).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_07_2__Lung____PlasmaArterial_17_task2"/>
-        <curve id="p2_curve_18_task2" name="(08.1. PlasmaArterial -&gt; Brain).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_08_1__PlasmaArterial____Brain_18_task2"/>
-        <curve id="p2_curve_19_task2" name="(08.2. Brain -&gt; PlasmaVenous).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_08_2__Brain____PlasmaVenous_19_task2"/>
-        <curve id="p2_curve_20_task2" name="(09.1. PlasmaArterial -&gt; Muscle).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_09_1__PlasmaArterial____Muscle_20_task2"/>
-        <curve id="p2_curve_21_task2" name="(09.2. Muscle -&gt; PlasmaVenous).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_09_2__Muscle____PlasmaVenous_21_task2"/>
-        <curve id="p2_curve_22_task2" name="(10.1. PlasmaArterial -&gt; Adipose).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_10_1__PlasmaArterial____Adipose_22_task2"/>
-        <curve id="p2_curve_23_task2" name="(10.2. Adipose -&gt; PlasmaVenous).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_10_2__Adipose____PlasmaVenous_23_task2"/>
-        <curve id="p2_curve_24_task2" name="(11.1. PlasmaArterial -&gt; Heart).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_11_1__PlasmaArterial____Heart_24_task2"/>
-        <curve id="p2_curve_25_task2" name="(11.2. Heart -&gt; PlasmaVenous).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_11_2__Heart____PlasmaVenous_25_task2"/>
-        <curve id="p2_curve_26_task2" name="(12.1. PlasmaArterial -&gt; Remainder).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_12_1__PlasmaArterial____Remainder_26_task2"/>
-        <curve id="p2_curve_27_task2" name="(12.2. Remainder -&gt; PlasmaVenous).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_12_2__Remainder____PlasmaVenous_27_task2"/>
-        <curve id="p2_curve_28_task2" name="(13.1. PlasmaArterial -&gt; KidneyPlasma).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_13_1__PlasmaArterial____KidneyPlasma_28_task2"/>
-        <curve id="p2_curve_29_task2" name="(13.2. KidneyPlasma -&gt; PlasmaVenous).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_13_2__KidneyPlasma____PlasmaVenous_29_task2"/>
-        <curve id="p2_curve_30_task2" name="(13.3. KidneyPlasma -&gt; KidneyTubular).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_13_3__KidneyPlasma____KidneyTubular_30_task2"/>
-        <curve id="p2_curve_31_task2" name="(13.4. KidneyPlasma -&gt; KidneyTissue).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_13_4__KidneyPlasma____KidneyTissue_31_task2"/>
-        <curve id="p2_curve_32_task2" name="(13.5. KidneyTissue -&gt; KidneyTubular).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_13_5__KidneyTissue____KidneyTubular_32_task2"/>
-        <curve id="p2_curve_33_task2" name="(13.6. KidneyTubular -&gt; UrineExternal).Flux" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="_13_6__KidneyTubular____UrineExternal_33_task2"/>
+        <curve id="p2_curve_1_task2" name="01. StomachLumen  -&gt; IntestineLumen" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_01__StomachLumen_____IntestineLumen_1_task2"/>
+        <curve id="p2_curve_2_task2" name="02. IntestineLumen -&gt; Feces" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_02__IntestineLumen____Feces_2_task2"/>
+        <curve id="p2_curve_3_task2" name="03.1. PlasmaArterial -&gt; IntestineVascular" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_03_1__PlasmaArterial____IntestineVascular_3_task2"/>
+        <curve id="p2_curve_4_task2" name="03.2. IntestineLumen -&gt; IntestineEnterocytes (PMAT OCT3)" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_03_2__IntestineLumen____IntestineEnterocytes__PMAT_OCT3_4_task2"/>
+        <curve id="p2_curve_5_task2" name="03.3. IntestineEnterocytes -&gt; IntestineVascular (OCT1)" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_03_3__IntestineEnterocytes____IntestineVascular__OCT1_5_task2"/>
+        <curve id="p2_curve_6_task2" name="03.4. IntestineLumen -&gt; IntestineVascular (Saturable)" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_03_4__IntestineLumen____IntestineVascular__Saturable_6_task2"/>
+        <curve id="p2_curve_7_task2" name="03.5. IntestineVascular -&gt; PortalVein" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_03_5__IntestineVascular____PortalVein_7_task2"/>
+        <curve id="p2_curve_8_task2" name="03.6. IntestineLumen -&gt; IntestineEnterocytes (Diffusion)" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_03_6__IntestineLumen____IntestineEnterocytes__Diffusion_8_task2"/>
+        <curve id="p2_curve_9_task2" name="03.7. IntestineLumen -&gt; IntestineVascular (Diffusion)" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_03_7__IntestineLumen____IntestineVascular__Diffusion_9_task2"/>
+        <curve id="p2_curve_10_task2" name="04. PlasmaArterial -&gt; PortalVein" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_04__PlasmaArterial____PortalVein_10_task2"/>
+        <curve id="p2_curve_11_task2" name="05.1. PlasmaArterial -&gt; Stomach" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_05_1__PlasmaArterial____Stomach_11_task2"/>
+        <curve id="p2_curve_12_task2" name="05.2. Stomach -&gt; PortalVein" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_05_2__Stomach____PortalVein_12_task2"/>
+        <curve id="p2_curve_13_task2" name="06.1. PlasmaArterial -&gt; Liver" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_06_1__PlasmaArterial____Liver_13_task2"/>
+        <curve id="p2_curve_14_task2" name="06.2. PortalVein -&gt; Liver" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_06_2__PortalVein____Liver_14_task2"/>
+        <curve id="p2_curve_15_task2" name="06.3. Liver -&gt; PlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_06_3__Liver____PlasmaVenous_15_task2"/>
+        <curve id="p2_curve_16_task2" name="07.1. PlasmaVenous -&gt; Lung" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_07_1__PlasmaVenous____Lung_16_task2"/>
+        <curve id="p2_curve_17_task2" name="07.2. Lung -&gt; PlasmaArterial" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_07_2__Lung____PlasmaArterial_17_task2"/>
+        <curve id="p2_curve_18_task2" name="08.1. PlasmaArterial -&gt; Brain" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_08_1__PlasmaArterial____Brain_18_task2"/>
+        <curve id="p2_curve_19_task2" name="08.2. Brain -&gt; PlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_08_2__Brain____PlasmaVenous_19_task2"/>
+        <curve id="p2_curve_20_task2" name="09.1. PlasmaArterial -&gt; Muscle" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_09_1__PlasmaArterial____Muscle_20_task2"/>
+        <curve id="p2_curve_21_task2" name="09.2. Muscle -&gt; PlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_09_2__Muscle____PlasmaVenous_21_task2"/>
+        <curve id="p2_curve_22_task2" name="10.1. PlasmaArterial -&gt; Adipose" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_10_1__PlasmaArterial____Adipose_22_task2"/>
+        <curve id="p2_curve_23_task2" name="10.2. Adipose -&gt; PlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_10_2__Adipose____PlasmaVenous_23_task2"/>
+        <curve id="p2_curve_24_task2" name="11.1. PlasmaArterial -&gt; Heart" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_11_1__PlasmaArterial____Heart_24_task2"/>
+        <curve id="p2_curve_25_task2" name="11.2. Heart -&gt; PlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_11_2__Heart____PlasmaVenous_25_task2"/>
+        <curve id="p2_curve_26_task2" name="12.1. PlasmaArterial -&gt; Remainder" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_12_1__PlasmaArterial____Remainder_26_task2"/>
+        <curve id="p2_curve_27_task2" name="12.2. Remainder -&gt; PlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_12_2__Remainder____PlasmaVenous_27_task2"/>
+        <curve id="p2_curve_28_task2" name="13.1. PlasmaArterial -&gt; KidneyPlasma" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_13_1__PlasmaArterial____KidneyPlasma_28_task2"/>
+        <curve id="p2_curve_29_task2" name="13.2. KidneyPlasma -&gt; PlasmaVenous)" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_13_2__KidneyPlasma____PlasmaVenous_29_task2"/>
+        <curve id="p2_curve_30_task2" name="13.3. KidneyPlasma -&gt; KidneyTubular" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_13_3__KidneyPlasma____KidneyTubular_30_task2"/>
+        <curve id="p2_curve_31_task2" name="13.4. KidneyPlasma -&gt; KidneyTissue" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_13_4__KidneyPlasma____KidneyTissue_31_task2"/>
+        <curve id="p2_curve_32_task2" name="13.5. KidneyTissue -&gt; KidneyTubular" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_13_5__KidneyTissue____KidneyTubular_32_task2"/>
+        <curve id="p2_curve_33_task2" name="13.6. KidneyTubular -&gt; UrineExternal" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="_13_6__KidneyTubular____UrineExternal_33_task2"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_7_task2" name="Amount, mg">
       <listOfCurves>
-        <curve id="p3_curve_1_task2" name="Values[mgAdipose]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgAdipose_1_task2"/>
-        <curve id="p3_curve_2_task2" name="Values[mgBrain]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgBrain_2_task2"/>
-        <curve id="p3_curve_3_task2" name="Values[mgFeces]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgFeces_3_task2"/>
-        <curve id="p3_curve_4_task2" name="Values[mgHeart]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgHeart_4_task2"/>
-        <curve id="p3_curve_5_task2" name="Values[mgIntestineEnterocytes]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgIntestineEnterocytes_5_task2"/>
-        <curve id="p3_curve_6_task2" name="Values[mgIntestineLumen]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgIntestineLumen_6_task2"/>
-        <curve id="p3_curve_7_task2" name="Values[mgIntestineTotal]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgIntestineTotal_7_task2"/>
-        <curve id="p3_curve_8_task2" name="Values[mgIntestineVascular]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgIntestineVascular_8_task2"/>
-        <curve id="p3_curve_9_task2" name="Values[mgKidneyPlasma]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgKidneyPlasma_9_task2"/>
-        <curve id="p3_curve_10_task2" name="Values[mgKidneyTissues]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgKidneyTissues_10_task2"/>
-        <curve id="p3_curve_11_task2" name="Values[mgKidneyTotal]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgKidneyTotal_11_task2"/>
-        <curve id="p3_curve_12_task2" name="Values[mgKidneyTubular]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgKidneyTubular_12_task2"/>
-        <curve id="p3_curve_13_task2" name="Values[mgLiver]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgLiver_13_task2"/>
-        <curve id="p3_curve_14_task2" name="Values[mgLung]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgLung_14_task2"/>
-        <curve id="p3_curve_15_task2" name="Values[mgMuscle]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgMuscle_15_task2"/>
-        <curve id="p3_curve_16_task2" name="Values[mgPlasmaArterial]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgPlasmaArterial_16_task2"/>
-        <curve id="p3_curve_17_task2" name="Values[mgPlasmaVenous]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgPlasmaVenous_17_task2"/>
-        <curve id="p3_curve_18_task2" name="Values[mgPortalVein]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgPortalVein_18_task2"/>
-        <curve id="p3_curve_19_task2" name="Values[mgRemainder]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgRemainder_19_task2"/>
-        <curve id="p3_curve_20_task2" name="Values[mgStomach]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgStomach_20_task2"/>
-        <curve id="p3_curve_21_task2" name="Values[mgStomachLumen]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgStomachLumen_21_task2"/>
-        <curve id="p3_curve_22_task2" name="Values[mgUrine]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mgUrine_22_task2"/>
+        <curve id="p3_curve_1_task2" name="mgAdipose" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgAdipose_1_task2"/>
+        <curve id="p3_curve_2_task2" name="mgBrain" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgBrain_2_task2"/>
+        <curve id="p3_curve_3_task2" name="mgFeces" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgFeces_3_task2"/>
+        <curve id="p3_curve_4_task2" name="mgHeart" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgHeart_4_task2"/>
+        <curve id="p3_curve_5_task2" name="mgIntestineEnterocytes" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgIntestineEnterocytes_5_task2"/>
+        <curve id="p3_curve_6_task2" name="mgIntestineLumen" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgIntestineLumen_6_task2"/>
+        <curve id="p3_curve_7_task2" name="mgIntestineTotal" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgIntestineTotal_7_task2"/>
+        <curve id="p3_curve_8_task2" name="mgIntestineVascular" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgIntestineVascular_8_task2"/>
+        <curve id="p3_curve_9_task2" name="mgKidneyPlasma" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgKidneyPlasma_9_task2"/>
+        <curve id="p3_curve_10_task2" name="mgKidneyTissues" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgKidneyTissues_10_task2"/>
+        <curve id="p3_curve_11_task2" name="mgKidneyTotal" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgKidneyTotal_11_task2"/>
+        <curve id="p3_curve_12_task2" name="mgKidneyTubular" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgKidneyTubular_12_task2"/>
+        <curve id="p3_curve_13_task2" name="mgLiver" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgLiver_13_task2"/>
+        <curve id="p3_curve_14_task2" name="mgLung" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgLung_14_task2"/>
+        <curve id="p3_curve_15_task2" name="mgMuscle" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgMuscle_15_task2"/>
+        <curve id="p3_curve_16_task2" name="mgPlasmaArterial" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgPlasmaArterial_16_task2"/>
+        <curve id="p3_curve_17_task2" name="mgPlasmaVenous" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgPlasmaVenous_17_task2"/>
+        <curve id="p3_curve_18_task2" name="mgPortalVein" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgPortalVein_18_task2"/>
+        <curve id="p3_curve_19_task2" name="mgRemainder" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgRemainder_19_task2"/>
+        <curve id="p3_curve_20_task2" name="mgStomach" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgStomach_20_task2"/>
+        <curve id="p3_curve_21_task2" name="mgStomachLumen" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgStomachLumen_21_task2"/>
+        <curve id="p3_curve_22_task2" name="mgUrine" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mgUrine_22_task2"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="plot_8_task2" name="plot">
       <listOfCurves>
-        <curve id="p4_curve_1_task2" name="[mPlasmaVenous]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mPlasmaVenous_1_task2"/>
-        <curve id="p4_curve_2_task2" name="Values[mIntestineSum]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mIntestineSum_2_task2"/>
-        <curve id="p4_curve_3_task2" name="[mLiver]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mLiver_3_task2"/>
-        <curve id="p4_curve_4_task2" name="[mStomach]" logX="false" style="copasi_style1" xDataReference="time_task2" logY="false" yDataReference="mStomach_4_task2"/>
+        <curve id="p4_curve_1_task2" name="[mPlasmaVenous]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mPlasmaVenous_17_task2"/>
+        <curve id="p4_curve_2_task2" name="Values[mIntestineSum]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mIntestineSum_7_task2"/>
+        <curve id="p4_curve_3_task2" name="[mLiver]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mLiver_13_task2"/>
+        <curve id="p4_curve_4_task2" name="[mStomach]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="mStomach_20_task2"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
@@ -1815,7 +1783,7 @@
     </report>
     <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task2_time" label="Time" dataReference="time_task2"/>
+        <dataSet id="autogen_task2_time" label="Time" dataReference="_1_task2"/>
         <dataSet id="autogen_task2_mAdipose" label="mAdipose" dataReference="mAdipose_1_task2"/>
         <dataSet id="autogen_task2_Adipose" label="Adipose" dataReference="mAdipose_1_task2"/>
         <dataSet id="autogen_task2_mBrain" label="mBrain" dataReference="mBrain_2_task2"/>
@@ -1973,9 +1941,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>

@@ -42,13 +42,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="365" numberOfSteps="1000">
-      <algorithm name="LSODA/LSODAR hybrid method" kisaoID="KISAO_0000560">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
         <listOfAlgorithmParameters>
-          <algorithmParameter kisaoID="KISAO:0000209" value="1e-06"/>
-          <algorithmParameter kisaoID="KISAO:0000211" value="1e-12"/>
-          <algorithmParameter kisaoID="KISAO:0000216" value="0"/>
-          <algorithmParameter kisaoID="KISAO:0000415" value="10000"/>
-          <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -57,20 +57,28 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time_task1" name="Time">
+    <dataGenerator id="_1_task1" name="Time">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> var_time_task1 </ci>
+        <ci> p5__1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+        <variable id="p5__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="dead_corona_perc_0_1_task1" name="[dead_corona_perc]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> p5_dead_corona_perc_0_task1 </ci>
+        <ci> p5_dead_corona_perc_0_1_task1 </ci>
       </math>
       <listOfVariables>
-        <variable id="p5_dead_corona_perc_0_task1" name="dead_corona_perc_0" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;dead_corona_perc_0&apos;]" taskReference="task1"/>
+        <variable id="p5_dead_corona_perc_0_1_task1" name="[dead_corona_perc]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;dead_corona_perc_0&apos;]" taskReference="task1" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="infected_tested_div10_2_task1" name="infected_tested_div10.ParticleNumber">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p5_infected_tested_div10_2_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p5_infected_tested_div10_2_task1" name="infected_tested_div10.ParticleNumber" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;infected_tested_div10&apos;]" taskReference="task1" term="KISAO:0000837"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_infected_nontested_0">
@@ -215,14 +223,6 @@
       </math>
       <listOfVariables>
         <variable id="auto_dg_for_task1_epidemic_extinguished_bool_0_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;epidemic_extinguished_bool_0&apos;]" taskReference="task1"/>
-      </listOfVariables>
-    </dataGenerator>
-    <dataGenerator id="auto_dg_for_task1_infected_tested_div10">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_dg_for_task1_infected_tested_div10_x </ci>
-      </math>
-      <listOfVariables>
-        <variable id="auto_dg_for_task1_infected_tested_div10_x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;infected_tested_div10&apos;]" taskReference="task1"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_Testing_Randome">
@@ -589,13 +589,15 @@
   <listOfOutputs>
     <plot2D id="plot_1_task1" name="Figure 4">
       <listOfCurves>
-        <curve id="p5_curve_1_task1" name="[dead_corona_perc]" logX="false" style="copasi_style1" xDataReference="time_task1" logY="false" yDataReference="dead_corona_perc_0_1_task1"/>
+        <curve id="p5_curve_1_task1" name="[% corona dead]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="dead_corona_perc_0_1_task1"/>
+        <curve id="p5_curve_2_task1" name="infected_tested_div10.ParticleNumber|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="infected_tested_div10_2_task1"/>
       </listOfCurves>
     </plot2D>
     <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_task1_time" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_time" label="Time" dataReference="_1_task1"/>
         <dataSet id="autogen_task1_dead_corona_perc_0" label="dead_corona_perc_0" dataReference="dead_corona_perc_0_1_task1"/>
+        <dataSet id="autogen_task1_infected_tested_div10" label="infected_tested_div10" dataReference="infected_tested_div10_2_task1"/>
         <dataSet id="autogen_task1_infected_nontested_0" label="infected_nontested_0" dataReference="auto_dg_for_task1_infected_nontested_0"/>
         <dataSet id="autogen_task1_infected_tested_0" label="infected_tested_0" dataReference="auto_dg_for_task1_infected_tested_0"/>
         <dataSet id="autogen_task1_uninfected_nontested_0" label="uninfected_nontested_0" dataReference="auto_dg_for_task1_uninfected_nontested_0"/>
@@ -614,7 +616,6 @@
         <dataSet id="autogen_task1_dead_noncorona_perc_0" label="dead_noncorona_perc_0" dataReference="auto_dg_for_task1_dead_noncorona_perc_0"/>
         <dataSet id="autogen_task1_frac_coronaDeadOfAllDead_0" label="frac_coronaDeadOfAllDead_0" dataReference="auto_dg_for_task1_frac_coronaDeadOfAllDead_0"/>
         <dataSet id="autogen_task1_epidemic_extinguished_bool_0" label="epidemic_extinguished_bool_0" dataReference="auto_dg_for_task1_epidemic_extinguished_bool_0"/>
-        <dataSet id="autogen_task1_infected_tested_div10" label="infected_tested_div10" dataReference="auto_dg_for_task1_infected_tested_div10"/>
         <dataSet id="autogen_task1_Testing_Randome" label="Testing_Randome" dataReference="auto_dg_for_task1_Testing_Randome"/>
         <dataSet id="autogen_task1_Total_Infection_coefficient" label="Total_Infection_coefficient" dataReference="auto_dg_for_task1_Total_Infection_coefficient"/>
         <dataSet id="autogen_task1_Normal_death_rate_constant_0" label="Normal_death_rate_constant_0" dataReference="auto_dg_for_task1_Normal_death_rate_constant_0"/>
@@ -664,9 +665,8 @@
     </report>
   </listOfOutputs>
   <listOfStyles>
-    <style id="copasi_style1" name="Line/marker style 1 from COPASI.">
+    <style id="style1">
       <line type="solid" thickness="1"/>
-      <marker type="none"/>
     </style>
   </listOfStyles>
 </sedML>
