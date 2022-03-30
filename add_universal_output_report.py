@@ -14,7 +14,10 @@ def create_generic_sedml(sedml_filenames, sbml_filenames):
         model = doc.createModel()
         model.setLanguage("urn:sedml:language:sbml")
         model.setSource(rel_filename)
-        model.setId(rel_filename.replace(".xml", ""))
+        mid = rel_filename.replace(".xml", "")
+        mid = mid.replace(" ", "_")
+        mid = mid.replace("-", "_")
+        model.setId(mid)
 
         #Create a generic 10-second simulation
         sim = doc.createUniformTimeCourse()
@@ -30,7 +33,7 @@ def create_generic_sedml(sedml_filenames, sbml_filenames):
         #Create a task that merges the two.
         task = doc.createTask()
         task.setId("task1")
-        task.setModelReference(rel_filename.replace(".xml", ""))
+        task.setModelReference(mid)
         task.setSimulationReference(simid)
 
         libsedml.writeSedMLToFile(doc, sedml_filename)
