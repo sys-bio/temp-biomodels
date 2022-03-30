@@ -164,6 +164,18 @@ def fix_color_ids(sed):
             if "#" in color:
                 color = color.replace("#", "")
                 line.setColor(color)
+                
+def fix_dataset_labels(sed):
+    for o in range(sed.getNumOutputs()):
+        output = sed.getOutput(o)
+        try:
+            for ds in range(output.getNumDataSets()):
+                dataset = output.getDataSet(ds)
+                if not dataset.isSetLabel():
+                    dataset.setLabel(dataset.getId())
+        except:
+            pass
+        
 
 #Copasi v4.35 now produces its own l1v4 styles, so we don't have to recreate them.
 
@@ -287,6 +299,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     # print("After converting to l1v4:\n", libsedml.writeSedMLToString(sed))
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
     fix_color_ids(sed)
+    fix_dataset_labels(sed)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
     # addPlotDetails(sed, dm)
     if "No plot/report definition" not in sed_msg:
