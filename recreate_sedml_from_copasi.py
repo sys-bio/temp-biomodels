@@ -154,6 +154,17 @@ def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
     model.setSource(os.path.basename(ret_file))
     return libsedml.writeSedMLToString(sed)
 
+#Remove the '#' that COPASI inserts into the color attribute.
+def fix_color_ids(sed):
+    for s in range(sed.getNumStyles()):
+        style = sed.getStyle(s)
+        line = style.getLineStyle()
+        if line and line.isSetColor():
+            color = line.getColor()
+            if "#" in color:
+                color = color.replace("#", "")
+                line.setColor(color)
+
 #Copasi v4.35 now produces its own l1v4 styles, so we don't have to recreate them.
 
 # def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
@@ -275,6 +286,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     fix_kinsol_algorithms(sed)
     # print("After converting to l1v4:\n", libsedml.writeSedMLToString(sed))
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
+    fix_color_ids(sed)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
     # addPlotDetails(sed, dm)
     if "No plot/report definition" not in sed_msg:
