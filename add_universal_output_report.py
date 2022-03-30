@@ -206,7 +206,7 @@ def addReport(doc, datagen_ids, task_times):
         report.setName("Auto-generated report for " + taskref + ", including all symbols in SBML with mathematical meaning, both constant and variable.")
         time = task_times[taskref]
         dataset = report.createDataSet()
-        dataset.setId("autogen_" + taskref + "_time")
+        dataset.setId("autogen_time_for_" + taskref)
         dataset.setDataReference(time)
         dataset.setLabel("Time")
         for (dgid, sbmlid) in datagen_ids[taskref]:
