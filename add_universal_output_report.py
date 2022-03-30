@@ -191,9 +191,9 @@ def defineDatagenForAllTargets(doc, task_ids):
             datagen = doc.createDataGenerator()
             dgid = "auto_dg_for_" + taskref + "_" + sbmlid[0]
             datagen.setId(dgid)
-            datagen.setMath(libsedml.parseL3Formula(dgid + "_x"))
+            datagen.setMath(libsedml.parseL3Formula(dgid + "__x"))
             var = datagen.createVariable()
-            var.setId(dgid + "_x")
+            var.setId(dgid + "__x")
             var.setTarget(getTargetFor(sbmlid))
             var.setTaskReference(taskref)
             datagen_ids[taskref].append((dgid, sbmlid))
