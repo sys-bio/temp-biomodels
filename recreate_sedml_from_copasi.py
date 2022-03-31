@@ -181,7 +181,18 @@ def fix_dataset_labels(sed):
                     dataset.setLabel(dataset.getId())
         except:
             pass
-        
+
+def fix_uniform_time_course(sed):
+    for o in range(sed.getNumSimulations()):
+        sim = sed.getSimulation(o)
+        try:
+            if sim.isSetOutputStartTime() and sim.isSetInitialTime():
+                init = sim.getInitialTime()
+                out = sim.getOutputStartTime()
+                if init > out:
+                    sim.setOutputStartTime(init)
+        except:
+            pass
 
 #Copasi v4.35 now produces its own l1v4 styles, so we don't have to recreate them.
 
@@ -306,6 +317,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
     fix_color_ids(sed)
     fix_dataset_labels(sed)
+    fix_uniform_time_course(sed)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
     # addPlotDetails(sed, dm)
     if "No plot/report definition" not in sed_msg:
