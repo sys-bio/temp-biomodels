@@ -34,8 +34,6 @@ def acquire_image(directory, div):
 for model_path in glob(os.path.join('manual-fixes', '*')):
     # acquire the raw HTML
     model_id = os.path.basename(model_path)
-    if model_id != 'BIOMD0000000901':
-        continue
     url = f'https://www.ebi.ac.uk/biomodels/{model_id}#Curation'
     response = requests.get(url, headers={'accept': 'application/html'})
     soup = BeautifulSoup(response.text, 'lxml')
