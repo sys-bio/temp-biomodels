@@ -164,6 +164,12 @@ def fix_color_ids(sed):
             if "#" in color:
                 color = color.replace("#", "")
                 line.setColor(color)
+        marker = style.getMarkerStyle()
+        if marker and marker.isSetLineColor():
+            color = marker.getLineColor()
+            if "#" in color:
+                color = color.replace("#", "")
+                marker.setLineColor(color)
                 
 def fix_dataset_labels(sed):
     for o in range(sed.getNumOutputs()):
