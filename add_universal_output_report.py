@@ -17,6 +17,9 @@ def create_generic_sedml(sedml_filenames, sbml_filenames):
         mid = rel_filename.replace(".xml", "")
         mid = mid.replace(" ", "_")
         mid = mid.replace("-", "_")
+        mid1 = mid[0]
+        if mid1.isdigit():
+            mid = "_" + mid
         model.setId(mid)
 
         #Create a generic 10-second simulation
