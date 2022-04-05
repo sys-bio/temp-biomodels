@@ -94,6 +94,16 @@ def get_orig(sed_list, copasi_name, new_sedml, id, guesses):
     guesses.append((id, os.path.basename(copasi_name), os.path.basename(ret_file)))
     return ret_file
 
+def remove_parameter_estimation_detritus(sed, c_file):
+    if "Parmar2017_Deficient_Rich_tracer" in c_file:
+        #Nothing beyond the simulation works; just ditch all of it.
+        while sed.getNumDataGenerators() > 0:
+            sed.removeDataGenerator(0)
+        while sed.getNumOutputs() > 0:
+            sed.removeOutput(0)
+        while sed.getNumStyles() > 0:
+            sed.removeStyle(0)
+
 def fix_kinsol_algorithms(sed):
     for s in range(sed.getNumSimulations()):
         sim = sed.getSimulation(s)
@@ -311,9 +321,8 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
             sedml = sedml.replace(nac, non_ascii_chars[nac])
     guesses = []
     sed = libsedml.readSedMLFromString(sedml)
-    # sed.setVersion(4)
+    remove_parameter_estimation_detritus(sed, c_file)
     fix_kinsol_algorithms(sed)
-    # print("After converting to l1v4:\n", libsedml.writeSedMLToString(sed))
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
     fix_color_ids(sed)
     fix_dataset_labels(sed)

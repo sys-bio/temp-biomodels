@@ -197,6 +197,8 @@ def remove_unused_sims_and_mods(doc):
 
 def run(id, sedml_filenames):
     for sedml_filename in sedml_filenames:
+        if "Parmar2017_Deficient_Rich_tracer" in sedml_filename:
+            continue
         doc = libsedml.readSedMLFromFile(sedml_filename)
         changed = False
         changed = remove_duplicate_plots(doc) or changed
