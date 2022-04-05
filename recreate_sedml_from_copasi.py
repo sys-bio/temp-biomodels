@@ -95,7 +95,7 @@ def get_orig(sed_list, copasi_name, new_sedml, id, guesses):
     return ret_file
 
 def remove_parameter_estimation_detritus(sed, c_file):
-    if "Parmar2017_Deficient_Rich_tracer" in c_file:
+    if "Parmar2017_Deficient_Rich_tracer" in c_file or "Parmar2017_Adequate_tracer" in c_file:
         #Nothing beyond the simulation works; just ditch all of it.
         while sed.getNumDataGenerators() > 0:
             sed.removeDataGenerator(0)
