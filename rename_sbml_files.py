@@ -1,7 +1,8 @@
 import os
 
 # Files that end in '.xml' but aren't SBML:
-RENAME = {"BIOMD0000001027": ("Zake2021_Metformin+Mice+PO.xml", "Zake2021_Metformin_Mice_PO.xml"),
+RENAME = {"BIOMD0000001013": ("Leon-Triana2021 (eqs 1 and 2).xml", "Leon-Triana2021 - eqs 1 and 2.xml"),
+          "BIOMD0000001027": ("Zake2021_Metformin+Mice+PO.xml", "Zake2021_Metformin_Mice_PO.xml"),
           "BIOMD0000001028": ("Zake2021_Metformin+Human+single+PO+dose.xml", "Zake2021_Metformin_Human_single_PO_dose.xml"),
           "BIOMD0000001029": ("Zake2021_Metformin+Human+multiple+PO+dose.xml", "Zake2021_Metformin_Human_multiple_PO_dose.xml"),
           "BIOMD0000001039": ("Zake2021_Metformin+Mice+IV.xml", "Zake2021_Metformin_Mice_IV.xml"),
