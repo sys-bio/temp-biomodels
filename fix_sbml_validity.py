@@ -185,11 +185,17 @@ uri_replacements = {
         "ncit/SBO": "sbo/SBO",
         "ncit/c128320": "ncit/C128320",
         "ncit/mTORC2": "ncit/C96315",
+        "ncit/0000511": "ido/0000511",
+        "ncit/0000514": "ido/0000514",
+        "ncit/0000597": "ido/0000597",
+        "ncit/0000621": "ido/0000621",
+        "ncit/25559": "ncit/C25559",
         "neurolex/C25636": "ncit/C25636",
         "obi/OBA": "obi/OBI",
         "omit/OMIT_": "omit/OMIT:",
         "pato/00": "pato/PATO:00",
         "pato/00": "pato/PATO:00",
+        "pdb-ccd/26158": "chebi/CHEBI:26158",
         "reactome/SBO:0000179": "sbo/SBO:0000179",
         "sbo/000": "sbo/SBO:000",
         "sbo/GO": "go/GO",
@@ -207,17 +213,6 @@ uri_replacements = {
         "uniprot/PR:000050007": "pr/PR:000050007",
         "unists/P00734": "uniprot/P00734",
         }
-
-# No good guesses:
-# http://identifiers.org/ncit/0000511
-# http://identifiers.org/ncit/0000514
-# http://identifiers.org/ncit/0000514
-# http://identifiers.org/ncit/0000597
-# http://identifiers.org/ncit/0000597
-# http://identifiers.org/ncit/0000597
-# http://identifiers.org/ncit/0000621
-# http://identifiers.org/ncit/25559
-# http://identifiers.org/pdb-ccd/26158
 
 def fixURI(uri):
     for old in uri_replacements:
