@@ -165,7 +165,7 @@ def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
     return libsedml.writeSedMLToString(sed)
 
 #Remove the '#' that COPASI inserts into the color attribute.
-def fix_color_ids(sed):
+def fix_color_ids_and_nones(sed):
     for s in range(sed.getNumStyles()):
         style = sed.getStyle(s)
         line = style.getLineStyle()
@@ -180,6 +180,12 @@ def fix_color_ids(sed):
             if "#" in color:
                 color = color.replace("#", "")
                 marker.setLineColor(color)
+        if line and not marker:
+            marker = style.createMarkerStyle()
+            marker.setType("none")
+        if marker and not line:
+            line = style.createLineStyle()
+            line.setType("none")
                 
 def fix_dataset_labels(sed):
     for o in range(sed.getNumOutputs()):
@@ -324,7 +330,7 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     remove_parameter_estimation_detritus(sed, c_file)
     fix_kinsol_algorithms(sed)
     fix_sed_sbml_target(sed, sbml, sbml_filenames, c_file, id, guesses)
-    fix_color_ids(sed)
+    fix_color_ids_and_nones(sed)
     fix_dataset_labels(sed)
     fix_uniform_time_course(sed)
     sed_msg = COPASI.CCopasiMessage.getAllMessageText()
