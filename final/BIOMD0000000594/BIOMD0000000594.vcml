@@ -1,0 +1,1930 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Capuani2015 - Binding of Cbl and Gbr2 to EGFR (Multisite Phosphorylation Model - MPM)">
+      <Model Name="MODEL1505190001">
+         <ModelParameters>
+            <Parameter Name="K45P" Role="user defined" Unit="tbd">(K45 / floc)</Parameter>
+            <Parameter Name="KcgP" Role="user defined" Unit="tbd">(Kcg / floc)</Parameter>
+            <Parameter Name="kptp68" Role="user defined" Unit="tbd">kptp</Parameter>
+            <Parameter Name="kkin" Role="user defined" Unit="tbd">(kkinbase * pow(Ltot,nH) / (pow(Ltot,nH) + pow(xT,nH)))</Parameter>
+            <Parameter Name="kkin68" Role="user defined" Unit="tbd">kkin</Parameter>
+            <Parameter Name="kb45" Role="user defined" Unit="tbd">(ku45 / K45)</Parameter>
+            <Parameter Name="ku45M" Role="user defined" Unit="tbd">ku45</Parameter>
+            <Parameter Name="kb45P" Role="user defined" Unit="tbd">(ku45M / K45P)</Parameter>
+            <Parameter Name="kb68" Role="user defined" Unit="tbd">kb45</Parameter>
+            <Parameter Name="ku68" Role="user defined" Unit="tbd">ku45</Parameter>
+            <Parameter Name="kb68P" Role="user defined" Unit="tbd">kb45P</Parameter>
+            <Parameter Name="ku68M" Role="user defined" Unit="tbd">ku45M</Parameter>
+            <Parameter Name="kbcg" Role="user defined" Unit="tbd">(kucg / Kcg)</Parameter>
+            <Parameter Name="kbcgP" Role="user defined" Unit="tbd">(kucgM / KcgP)</Parameter>
+            <Parameter Name="kucgM" Role="user defined" Unit="tbd">kucg</Parameter>
+            <Parameter Name="Ltot" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="RT" Role="user defined" Unit="tbd">0.833</Parameter>
+            <Parameter Name="CblT" Role="user defined" Unit="tbd">0.01464</Parameter>
+            <Parameter Name="Grb2T" Role="user defined" Unit="tbd">3.32</Parameter>
+            <Parameter Name="kptp" Role="user defined" Unit="tbd">0.016</Parameter>
+            <Parameter Name="kkinbase" Role="user defined" Unit="tbd">0.0759155</Parameter>
+            <Parameter Name="nH" Role="user defined" Unit="tbd">1.13</Parameter>
+            <Parameter Name="xT" Role="user defined" Unit="tbd">4.59181</Parameter>
+            <Parameter Name="K45" Role="user defined" Unit="tbd">0.201361</Parameter>
+            <Parameter Name="Kcg" Role="user defined" Unit="tbd">0.006356</Parameter>
+            <Parameter Name="ku45" Role="user defined" Unit="tbd">0.001011</Parameter>
+            <Parameter Name="kucg" Role="user defined" Unit="tbd">0.309271</Parameter>
+            <Parameter Name="PYMax" Role="user defined" Unit="tbd">2.279493223</Parameter>
+            <Parameter Name="UbMax" Role="user defined" Unit="tbd">0.014306</Parameter>
+            <Parameter Name="floc" Role="user defined" Unit="tbd">20000.0</Parameter>
+            <Parameter Name="CblWT" Role="user defined" Unit="tbd">0.01464</Parameter>
+            <Parameter Name="CblFactor" Role="user defined" Unit="tbd">1.0</Parameter>
+            <Parameter Name="VC_SpConcFactor_mol_litre_1_uM_1" Role="user defined" Unit="mol.litre-1.uM-1">
+               1.0E-6
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="Cbl">
+            <Annotation>Cbl</Annotation>
+         </Compound>
+         <Compound Name="Grb2">
+            <Annotation>Grb2</Annotation>
+         </Compound>
+         <Compound Name="CG">
+            <Annotation>CG</Annotation>
+         </Compound>
+         <Compound Name="Tyr">
+            <Annotation>Tyr</Annotation>
+         </Compound>
+         <Compound Name="Ub">
+            <Annotation>Ub</Annotation>
+         </Compound>
+         <Compound Name="TyrNorm">
+            <Annotation>TyrNorm</Annotation>
+         </Compound>
+         <Compound Name="UbNorm">
+            <Annotation>UbNorm</Annotation>
+         </Compound>
+         <Compound Name="EGFR_00UU">
+            <Annotation>EGFR_00UU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_10UU">
+            <Annotation>EGFR_10UU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_10CU">
+            <Annotation>EGFR_10CU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_10LU">
+            <Annotation>EGFR_10LU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_01UU">
+            <Annotation>EGFR_01UU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_01UG">
+            <Annotation>EGFR_01UG</Annotation>
+         </Compound>
+         <Compound Name="EGFR_01UL">
+            <Annotation>EGFR_01UL</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11UU">
+            <Annotation>EGFR_11UU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11CU">
+            <Annotation>EGFR_11CU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11LU">
+            <Annotation>EGFR_11LU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11UG">
+            <Annotation>EGFR_11UG</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11UL">
+            <Annotation>EGFR_11UL</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11CG">
+            <Annotation>EGFR_11CG</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11CC">
+            <Annotation>EGFR_11CC</Annotation>
+         </Compound>
+         <Compound Name="EGFR_11LG">
+            <Annotation>EGFR_11LG</Annotation>
+         </Compound>
+         <Compound Name="EGFR_02UU">
+            <Annotation>EGFR_02UU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_02UG">
+            <Annotation>EGFR_02UG</Annotation>
+         </Compound>
+         <Compound Name="EGFR_02UL">
+            <Annotation>EGFR_02UL</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12UU">
+            <Annotation>EGFR_12UU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12CU">
+            <Annotation>EGFR_12CU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12LU">
+            <Annotation>EGFR_12LU</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12UG">
+            <Annotation>EGFR_12UG</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12UL">
+            <Annotation>EGFR_12UL</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12CG">
+            <Annotation>EGFR_12CG</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12CC">
+            <Annotation>EGFR_12CC</Annotation>
+         </Compound>
+         <Compound Name="EGFR_12LG">
+            <Annotation>EGFR_12LG</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="Cbl" CompoundRef="Cbl" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Grb2" CompoundRef="Grb2" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="CG" CompoundRef="CG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Tyr" CompoundRef="Tyr" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Ub" CompoundRef="Ub" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="TyrNorm" CompoundRef="TyrNorm" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="UbNorm" CompoundRef="UbNorm" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_00UU" CompoundRef="EGFR_00UU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_10UU" CompoundRef="EGFR_10UU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_10CU" CompoundRef="EGFR_10CU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_10LU" CompoundRef="EGFR_10LU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_01UU" CompoundRef="EGFR_01UU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_01UG" CompoundRef="EGFR_01UG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_01UL" CompoundRef="EGFR_01UL" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11UU" CompoundRef="EGFR_11UU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11CU" CompoundRef="EGFR_11CU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11LU" CompoundRef="EGFR_11LU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11UG" CompoundRef="EGFR_11UG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11UL" CompoundRef="EGFR_11UL" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11CG" CompoundRef="EGFR_11CG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11CC" CompoundRef="EGFR_11CC" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_11LG" CompoundRef="EGFR_11LG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_02UU" CompoundRef="EGFR_02UU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_02UG" CompoundRef="EGFR_02UG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_02UL" CompoundRef="EGFR_02UL" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12UU" CompoundRef="EGFR_12UU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12CU" CompoundRef="EGFR_12CU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12LU" CompoundRef="EGFR_12LU" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12UG" CompoundRef="EGFR_12UG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12UL" CompoundRef="EGFR_12UL" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12CG" CompoundRef="EGFR_12CG" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12CC" CompoundRef="EGFR_12CC" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="EGFR_12LG" CompoundRef="EGFR_12LG" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="r1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_00UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp * EGFR_10UU * EGFR_10UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_10UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_00UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_01UU * EGFR_01UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp * EGFR_11UU * EGFR_11UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_11UU * EGFR_11UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_11CU * EGFR_11CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_11LU * EGFR_11LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r7" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp * EGFR_11UG * EGFR_11UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r8" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp * EGFR_11UL * EGFR_11UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r9" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kptp68 * EGFR_02UU * EGFR_02UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r10" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_02UG * EGFR_02UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r11" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_02UL * EGFR_02UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r12" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp * EGFR_12UU * EGFR_12UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r13" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kptp68 * EGFR_12UU * EGFR_12UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r14" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kptp68 * EGFR_12CU * EGFR_12CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r15" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kptp68 * EGFR_12LU * EGFR_12LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r16" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp * EGFR_12UG * EGFR_12UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r17" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_12UG * EGFR_12UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r18" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp * EGFR_12UL * EGFR_12UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r19" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_12UL * EGFR_12UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r20" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_12CG * EGFR_12CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r21" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_12CC * EGFR_12CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r22" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kptp68 * EGFR_12LG * EGFR_12LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r23" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_00UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin * EGFR_00UU * EGFR_00UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_00UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r24" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_00UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kkin68 * EGFR_00UU * EGFR_00UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_00UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r25" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kkin68 * EGFR_10UU * EGFR_10UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_10UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r26" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_10CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kkin68 * EGFR_10CU * EGFR_10CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_10CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r27" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_10LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kkin68 * EGFR_10LU * EGFR_10LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_10LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r28" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin * EGFR_01UU * EGFR_01UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r29" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_01UU * EGFR_01UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r30" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin * EGFR_01UG * EGFR_01UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r31" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_01UG * EGFR_01UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r32" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin * EGFR_01UL * EGFR_01UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r33" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_01UL * EGFR_01UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r34" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11UU * EGFR_11UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r35" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11CU * EGFR_11CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r36" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11LU * EGFR_11LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r37" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11UG * EGFR_11UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r38" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11UL * EGFR_11UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r39" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11CG * EGFR_11CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r40" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11CC * EGFR_11CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r41" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin68 * EGFR_11LG * EGFR_11LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r42" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin * EGFR_02UU * EGFR_02UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r43" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin * EGFR_02UG * EGFR_02UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r44" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kkin * EGFR_02UL * EGFR_02UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r45" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Cbl * Cbl_ConcFactor * Grb2 * Grb2_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r46" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * CG * CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r47" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * Cbl * Cbl_ConcFactor * EGFR_10UU * EGFR_10UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_10UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r48" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_10CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_10CU * EGFR_10CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_10CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r49" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * CG * CG_ConcFactor * EGFR_10UU * EGFR_10UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_10UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r50" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_10LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_10LU * EGFR_10LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_10LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r51" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_10CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Grb2 * Grb2_ConcFactor * EGFR_10CU * EGFR_10CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_10CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r52" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_10LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_10CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_10LU * EGFR_10LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_10LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r53" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_01UU * EGFR_01UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_01UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r54" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_01UG * EGFR_01UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r55" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb68 * CG * CG_ConcFactor * EGFR_01UU * EGFR_01UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_01UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r56" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_01UL * EGFR_01UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r57" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Cbl * Cbl_ConcFactor * EGFR_01UG * EGFR_01UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_01UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r58" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_01UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_01UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_01UL * EGFR_01UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_01UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r59" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * Cbl * Cbl_ConcFactor * EGFR_11UU * EGFR_11UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r60" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_11CU * EGFR_11CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r61" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * CG * CG_ConcFactor * EGFR_11UU * EGFR_11UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r62" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_11LU * EGFR_11LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r63" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_11UU * EGFR_11UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r64" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_11UG * EGFR_11UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r65" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb68 * CG * CG_ConcFactor * EGFR_11UU * EGFR_11UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r66" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_11UL * EGFR_11UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r67" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Grb2 * Grb2_ConcFactor * EGFR_11CU * EGFR_11CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r68" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_11LU * EGFR_11LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r69" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_11CU * EGFR_11CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r70" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_11CG * EGFR_11CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r71" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_11LU * EGFR_11LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r72" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_11LG * EGFR_11LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r73" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb68P * EGFR_11LU * EGFR_11LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r74" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68M * EGFR_11CC * EGFR_11CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r75" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * Cbl * Cbl_ConcFactor * EGFR_11UG * EGFR_11UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r76" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_11CG * EGFR_11CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r77" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * CG * CG_ConcFactor * EGFR_11UG * EGFR_11UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r78" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_11LG * EGFR_11LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r79" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Cbl * Cbl_ConcFactor * EGFR_11UG * EGFR_11UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r80" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_11UL * EGFR_11UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r81" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45P * EGFR_11UL * EGFR_11UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r82" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45M * EGFR_11CC * EGFR_11CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r83" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcgP * EGFR_11CG * EGFR_11CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r84" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucgM * EGFR_11CC * EGFR_11CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r85" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Grb2 * Grb2_ConcFactor * EGFR_11CG * EGFR_11CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_11CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r86" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_11LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_11CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_11LG * EGFR_11LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_11LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r87" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_02UU * EGFR_02UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_02UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r88" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_02UG * EGFR_02UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r89" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kb68 * CG * CG_ConcFactor * EGFR_02UU * EGFR_02UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_02UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r90" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_02UL * EGFR_02UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r91" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Cbl * Cbl_ConcFactor * EGFR_02UG * EGFR_02UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_02UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r92" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_02UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_02UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_02UL * EGFR_02UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_02UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r93" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * Cbl * Cbl_ConcFactor * EGFR_12UU * EGFR_12UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r94" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_12CU * EGFR_12CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r95" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * CG * CG_ConcFactor * EGFR_12UU * EGFR_12UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r96" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_12LU * EGFR_12LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r97" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_12UU * EGFR_12UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r98" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_12UG * EGFR_12UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r99" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kb68 * CG * CG_ConcFactor * EGFR_12UU * EGFR_12UU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12UU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r100" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_12UL * EGFR_12UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r101" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Grb2 * Grb2_ConcFactor * EGFR_12CU * EGFR_12CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r102" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_12LU * EGFR_12LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r103" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_12CU * EGFR_12CU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12CU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r104" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_12CG * EGFR_12CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r105" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kb68 * Grb2 * Grb2_ConcFactor * EGFR_12LU * EGFR_12LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r106" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68 * EGFR_12LG * EGFR_12LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r107" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(2.0 * sbmlRateFactor * kb68P * EGFR_12LU * EGFR_12LU_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LU_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r108" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LU" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku68M * EGFR_12CC * EGFR_12CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r109" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * Cbl * Cbl_ConcFactor * EGFR_12UG * EGFR_12UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r110" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_12CG * EGFR_12CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r111" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45 * CG * CG_ConcFactor * EGFR_12UG * EGFR_12UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r112" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45 * EGFR_12LG * EGFR_12LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r113" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Cbl * Cbl_ConcFactor * EGFR_12UG * EGFR_12UG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Cbl_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12UG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r114" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cbl" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_12UL * EGFR_12UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r115" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kb45P * EGFR_12UL * EGFR_12UL_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12UL_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r116" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12UL" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * ku45M * EGFR_12CC * EGFR_12CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r117" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcgP * EGFR_12CG * EGFR_12CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r118" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12CC" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucgM * EGFR_12CC * EGFR_12CC_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12CC_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r119" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kbcg * Grb2 * Grb2_ConcFactor * EGFR_12CG * EGFR_12CG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="Grb2_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+               <Parameter Name="EGFR_12CG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="r120" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="EGFR_12LG" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Grb2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="EGFR_12CG" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kucg * EGFR_12LG * EGFR_12LG_ConcFactor / KMOLE)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="uM.um3.mol-1">1.0E21</Parameter>
+               <Parameter Name="EGFR_12LG_ConcFactor" Role="user defined" Unit="mol.litre-1.uM-1">1.0E-6</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="MODEL1505190001_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Cbl" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>28.097533281423697</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Grb2" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>3305388.09753328</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>14611.9024667186</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Tyr" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(1000000.0 * ((EGFR_10UU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_10CU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_10LU * VC_SpConcFactor_mol_litre_1_uM_1) + (2.0 * ((EGFR_11UU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11CU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11LU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11UG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11UL * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11CG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11CC * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11LG * VC_SpConcFactor_mol_litre_1_uM_1))) + (2.0 * ((EGFR_02UU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_02UG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_02UL * VC_SpConcFactor_mol_litre_1_uM_1))) + (3.0 * ((EGFR_12UU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12CU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12LU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12UG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12UL * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12CG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12CC * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12LG * VC_SpConcFactor_mol_litre_1_uM_1))) + (EGFR_01UU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_01UG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_01UL * VC_SpConcFactor_mol_litre_1_uM_1)))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Ub" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(1000000.0 * ((EGFR_11CC * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12CC * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_10CU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11CU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12CU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_10LU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11LU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12LU * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11CG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12CG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_11LG * VC_SpConcFactor_mol_litre_1_uM_1) + (EGFR_12LG * VC_SpConcFactor_mol_litre_1_uM_1)))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="TyrNorm" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(1000000.0 * Tyr * VC_SpConcFactor_mol_litre_1_uM_1 / PYMax)</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="UbNorm" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(1000000.0 * Ub * VC_SpConcFactor_mol_litre_1_uM_1 / (UbMax * CblFactor))</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_00UU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>833000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_10UU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_10CU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_10LU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_01UU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_01UG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_01UL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11UU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11CU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11LU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11UG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11UL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11CG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11CC" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_11LG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_02UU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_02UG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_02UL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12UU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12CU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12LU" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12UG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12UL" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12CG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12CC" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="EGFR_12LG" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="r1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r7" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r8" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r9" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r10" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r11" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r12" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r13" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r14" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r15" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r16" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r17" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r18" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r19" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r20" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r21" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r22" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r23" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r24" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r25" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r26" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r27" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r28" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r29" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r30" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r31" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r32" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r33" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r34" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r35" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r36" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r37" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r38" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r39" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r40" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r41" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r42" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r43" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r44" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r45" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r46" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r47" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r48" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r49" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r50" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r51" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r52" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r53" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r54" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r55" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r56" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r57" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r58" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r59" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r60" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r61" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r62" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r63" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r64" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r65" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r66" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r67" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r68" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r69" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r70" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r71" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r72" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r73" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r74" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r75" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r76" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r77" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r78" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r79" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r80" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r81" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r82" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r83" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r84" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r85" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r86" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r87" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r88" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r89" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r90" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r91" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r92" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r93" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r94" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r95" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r96" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r97" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r98" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r99" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r100" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r101" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r102" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r103" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r104" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r105" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r106" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r107" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r108" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r109" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r110" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r111" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r112" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r113" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r114" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r115" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r116" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r117" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r118" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r119" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="r120" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/_60a7d86d-4dc9-4870-a87c-16c4b84d2564">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:162" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/9606" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0007173" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/bto/BTO:0000567" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL1505190001" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000594" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/26264748" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node14">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">fabrizio.capuani@ifom.eu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node16">
+                                 <vcard:Family>Capuani</vcard:Family>
+                                 <vcard:Given>Fabrizio</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node17">
+                                 <vcard:Orgname>IFOM Firct Institute of Molecular Oncology</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node15">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">a.hume@ed.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node18">
+                                 <vcard:Family>Hume</vcard:Family>
+                                 <vcard:Given>Alastair</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node19">
+                                 <vcard:Orgname>The University of Edinburgh</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2016-02-10T14:07:57Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2016-04-19T21:55:48Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/a8bb6d62-0e04-4f29-9682-295a50250693">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P22681" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P62993" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/aaebc351-2a14-475e-b12f-44456d9dc846">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P00533" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/aee5e96f-e6aa-4c0a-a575-bd8fa4388bb1">
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P62993" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version4/aef1e7fd-f61a-42e5-93d4-5e61e24e46db">
+               <bqbiol:hasVersion xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P22681" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasVersion>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList />
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_9af4d5e5-1d23-4f75-a3ee-e2b3e1aac549" vcid="ReactionStep(r101)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/d0f16480-b9a0-46e0-aa04-5c5b89457fd9" vcid="Species(EGFR_01UG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_9966f43e-2781-48f5-9f66-9f1d52124b9e" vcid="ReactionStep(r96)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_62c89ba9-5687-4d65-ab4e-c0f2e6976969" vcid="ReactionStep(r79)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/aaed6138-cb56-4470-9909-4788b949646b" vcid="ReactionStep(r117)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_24dc23b3-adb7-4c7b-b930-ce6a1f70c11f" vcid="ReactionStep(r98)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7d995311-8ca7-4d30-a5bd-f66fd4544275" vcid="Species(EGFR_10CU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/e30b13cd-255d-4c80-b598-f74705a6b32f" vcid="ReactionStep(r53)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4c13d4b2-371d-4a89-8387-e95d3040829f" vcid="ReactionStep(r115)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4bef9009-ef86-41ec-a5ba-56f8fb3ae684" vcid="ReactionStep(r46)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8ee07aa1-645b-4691-894f-e82343885772" vcid="ReactionStep(r93)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_35ee7795-4e7e-4e04-b6d1-2dffea702ecb" vcid="Species(EGFR_12CU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_27f29f2b-481e-4f79-9949-9413cdc5ed6b" vcid="Species(Tyr)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_75d1b04e-9ab2-4bf0-ae11-4e8afe838910" vcid="ReactionStep(r47)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8f9a1f3c-c7c6-44d5-a871-fc76951c497e" vcid="ReactionStep(r10)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_6ae137b8-2f13-419b-bf7e-e7112954c980" vcid="Species(EGFR_11LU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/af9c5b05-2fed-46ab-a79e-a5b45cfbbe54" vcid="Species(EGFR_02UU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/eb3f75f5-0ac8-4876-ab1c-1d61b38c361e" vcid="ReactionStep(r18)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/aaebc351-2a14-475e-b12f-44456d9dc846" vcid="Species(EGFR_00UU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7988a9ba-8d64-44da-b7e5-1b35a023b6c2" vcid="ReactionStep(r75)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8215ebbe-852b-459f-b345-f81d64f0ae66" vcid="ReactionStep(r114)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_856346dc-8322-40bc-8064-29be22e2784a" vcid="Species(EGFR_10LU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3a053b2f-8c91-47b2-9edf-33cf4dac430a" vcid="ReactionStep(r9)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/a623d6c4-7fc6-4b5d-a0e3-0abd01534f13" vcid="ReactionStep(r109)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_1e660b41-98d4-4fe1-9e10-4ec335a660e9" vcid="ReactionStep(r119)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/d6772519-11fb-4b7f-b54a-70d44512fc33" vcid="Species(EGFR_01UU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_00670ef4-f78d-427f-b389-b8062e01324b" vcid="ReactionStep(r83)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8fdc21b0-2c95-4053-b430-0b2589a9cc0e" vcid="ReactionStep(r50)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4e365aa8-192f-4200-9e3f-10d38847cb66" vcid="ReactionStep(r100)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/f8e59785-3186-4b1d-aa5c-52334c41b652" vcid="ReactionStep(r103)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/e5acebf6-1b99-4b45-9e99-80acfd44a07d" vcid="ReactionStep(r77)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/d185013e-1929-4253-8303-6f20131457d2" vcid="ReactionStep(r49)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_536faee0-78f8-4c0b-99fd-dbedd6c8c8a7" vcid="ReactionStep(r54)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7c89f655-52c4-4d03-808d-d5fe6c7969a3" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7b9ce8af-8ad8-4388-b69a-98b1a8a40969" vcid="ReactionStep(r32)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_9636e9ee-4637-40f6-9013-024bdf46874f" vcid="ReactionStep(r20)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_949967ce-8cb3-4051-be0f-102e70d6dd36" vcid="ReactionStep(r118)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/a6aa39f1-e9bb-46f1-8185-43e618cece8e" vcid="ReactionStep(r43)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_723e9edf-92d1-4868-bd5f-ff4098511110" vcid="Species(EGFR_12CG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_76e8769e-b737-4f27-aeb5-0fd929af20c9" vcid="ReactionStep(r111)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2019c3ef-7749-495c-962f-335ec4f06de7" vcid="ReactionStep(r5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7fec3d2c-1428-4298-ba30-cf3d5a816d9e" vcid="ReactionStep(r51)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8d046c3d-b505-4f29-9981-366d441dc121" vcid="ReactionStep(r38)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_995e50d9-33ef-4899-9de2-1d7e53b4b7e4" vcid="ReactionStep(r29)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0d9ed49e-6550-4461-b83a-5f5bf6df9559" vcid="ReactionStep(r104)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_16516176-45fc-45b6-9db2-3e7cd0dc1f45" vcid="Species(EGFR_11CG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3b0a204d-b74d-4ec4-bc39-d7f4c14a2c04" vcid="ReactionStep(r116)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7388bb9a-0b52-4212-b8c3-b56863613c36" vcid="ReactionStep(r31)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_264192da-1694-4309-952b-53b3bd0a74cc" vcid="ReactionStep(r90)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/b13c3d52-97f7-4b3e-addf-fb5dab475cd4" vcid="ReactionStep(r36)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/cadc624e-2ba6-43f3-a4bc-6ffb94f4ce9d" vcid="ReactionStep(r81)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_5dee428a-f762-4c6e-8dba-4216fcd6ccdf" vcid="ReactionStep(r80)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_9d8b6106-9985-4a6f-9c54-d16e12ac3b61" vcid="ReactionStep(r60)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8de52176-60ee-44b5-a0a8-c6c5dab57258" vcid="ReactionStep(r67)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/cd5522d3-ef34-4503-91e7-f4c0dd8690d6" vcid="ReactionStep(r58)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_537d4958-56a2-4f3e-b963-ea6ea99b0a39" vcid="ReactionStep(r48)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_9e795c8e-36a7-498b-80b1-92b1430dad35" vcid="Species(Ub)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4b76d94e-52df-457c-9e3d-00fce1b7462e" vcid="ReactionStep(r87)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/aee5e96f-e6aa-4c0a-a575-bd8fa4388bb1" vcid="Species(Grb2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_53d65e70-df16-470f-8f7c-653ef3d11ca4" vcid="ReactionStep(r84)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_982f9e17-1ca6-425f-ac0c-5f5772782647" vcid="ReactionStep(r57)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4ee6fdd2-1202-47d8-a627-305ba8c7060f" vcid="ReactionStep(r86)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_91892a57-9e0e-4267-88ad-f2be62355af0" vcid="ReactionStep(r35)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0087a09d-c668-44ce-a1ba-eae769f292a9" vcid="ReactionStep(r52)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0874bcc4-5ed1-49d8-a74c-5ffa5dc77e50" vcid="ReactionStep(r21)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3ec0b3eb-e376-4eed-a820-53ae497c86da" vcid="ReactionStep(r13)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/a0c59cf9-60eb-4522-80c4-3e639747ec7b" vcid="ReactionStep(r78)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_65ca7fad-5b55-4dbf-a414-d3c857c11094" vcid="Species(EGFR_11UG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/f4b3ab3a-8d97-4ca5-a1dd-05f718c9aad7" vcid="ReactionStep(r2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_07d47b21-f9f3-4367-b885-a9ef17933b0c" vcid="ReactionStep(r33)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_33e210c4-67c1-467f-b251-4ecdcc2be4ee" vcid="ReactionStep(r61)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_608c14a0-b7b3-440f-8b4d-5ccfb65f8d14" vcid="ReactionStep(r55)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/fbf8a658-4a3e-4188-9431-2192c968a94d" vcid="Species(EGFR_10UU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2063fdd4-abd9-4744-bea0-b26ed2db4eb5" vcid="ReactionStep(r7)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0cbcae87-6fc1-4ad6-b382-da825ce328aa" vcid="ReactionStep(r108)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/dc9f578e-4ff0-4da4-ac02-c6e194c05692" vcid="ReactionStep(r4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3726df00-6cda-4ea5-b5e0-e9655cc3ff7e" vcid="ReactionStep(r26)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0b636d4a-3c61-42d1-81cb-f84a2d2f4fbc" vcid="Species(EGFR_11CU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_59584e92-a923-4ee4-a7ef-6f282880cad8" vcid="ReactionStep(r69)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0b1ea99b-f4bb-42ea-9678-74e74842a256" vcid="ReactionStep(r1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/d52f9536-534b-448e-bec4-223f6a87a42e" vcid="Species(EGFR_12LG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_5b09a0c3-36f4-4da0-bb10-afe63d81e758" vcid="ReactionStep(r8)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/d2557e49-3ef7-42c5-b321-974bbd4b28de" vcid="ReactionStep(r41)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_1f91a15f-2ec2-4c1f-abc5-f6d32382d12a" vcid="ReactionStep(r106)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_75f351e2-8567-4623-b843-e8e86bd2167c" vcid="ReactionStep(r24)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_52d66685-bdc8-476f-a085-a99d5658b4e0" vcid="Species(EGFR_11UL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0fbe5d49-1f62-4d33-b1ca-fea2c6fee2bb" vcid="ReactionStep(r23)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/b951ceac-e9d8-4c04-a5af-89d469a3b353" vcid="ReactionStep(r94)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_89345de4-38cc-4383-9f40-cc2bba009cdc" vcid="Species(TyrNorm)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/a8bb6d62-0e04-4f29-9682-295a50250693" vcid="Species(CG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7b821433-5000-48ed-b1fb-219273fe51d5" vcid="Species(EGFR_01UL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3554afbf-50f2-49e3-9c98-c01e3693dd47" vcid="Species(EGFR_12CC)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/c2a535f2-ffa5-47a4-b37c-a485c14f20a6" vcid="ReactionStep(r72)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_29c86171-ec81-43ce-9a52-db94d64086d2" vcid="ReactionStep(r14)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_686bd24a-e469-46f0-acfa-6befb1bf094a" vcid="ReactionStep(r62)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7eac71c7-e0bf-4317-87cb-3f2f4eac80f6" vcid="ReactionStep(r25)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/a7bbacc8-016c-4ab1-a450-955169a00b9d" vcid="ReactionStep(r99)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2cdaecbb-6b56-4872-9a22-adebab171249" vcid="ReactionStep(r91)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_612b72b6-0678-478c-8c4a-951c0c6df1d6" vcid="ReactionStep(r85)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_66071896-d1e4-4db7-8fa7-ebbd77ef0b61" vcid="ReactionStep(r40)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/bd9a116e-15ec-4b57-b891-9ee7c4843344" vcid="ReactionStep(r44)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/cc09a597-bb7a-49e7-be6d-9ef2fc07de81" vcid="ReactionStep(r112)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/aaaa06de-cee3-4039-a50c-5f1df5a7e909" vcid="ReactionStep(r22)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/ab7cdbe6-6cfd-4c1c-a78b-eb9c86d6cf52" vcid="ReactionStep(r64)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_46775693-adae-4ef0-862d-eaf89975e067" vcid="ReactionStep(r30)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/ddf8b6bd-5f32-4f99-afc7-de429abf53e5" vcid="ReactionStep(r105)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_46e7d2be-636e-451f-9544-731e90174bcf" vcid="Species(EGFR_12UG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4ffc238a-a6d2-4535-a271-0bb603dc34b0" vcid="ReactionStep(r82)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/b1bffd4f-3475-4aee-8dea-d51e8fae3c14" vcid="ReactionStep(r11)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_885d250b-184f-4e90-929c-b1166cc62403" vcid="Species(EGFR_12UL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_84209cb1-9ad6-4f72-a34f-6e1f0f99a0bc" vcid="ReactionStep(r28)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_38a65db4-1506-48ca-8aae-9c328215ec66" vcid="ReactionStep(r27)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_838ea177-ddb6-4423-8fd1-efa49df8342e" vcid="ReactionStep(r19)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0cf4ef62-c969-4926-bc8e-651f09350fa6" vcid="ReactionStep(r15)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_7a7beb8e-e944-4a59-89ef-e56d980e1758" vcid="Species(UbNorm)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_28713579-f0bf-4f27-b605-283cdbeaebe3" vcid="ReactionStep(r65)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2fa23da0-1533-40a6-8e96-ffe403ecbde1" vcid="ReactionStep(r63)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_3ee487ad-5327-4864-b66a-37191d6f3520" vcid="ReactionStep(r56)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_0fd6cc5b-5c1c-4d9d-aa95-4630f84dd9d5" vcid="ReactionStep(r45)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8aa524f4-ca15-407c-89a6-3696b51f55c8" vcid="ReactionStep(r88)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_70a8726e-2595-41d0-8e8a-6123332eb131" vcid="ReactionStep(r76)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/f2791609-7f10-4364-b4cf-5d974fbd76d9" vcid="ReactionStep(r37)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_58390609-3f15-4110-b01b-eee223295fa1" vcid="ReactionStep(r102)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/c1249a5a-0d7f-4206-b8d2-6f1637c2124c" vcid="ReactionStep(r89)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/c605aafb-a03e-4e3a-b75e-9d7c1958f27a" vcid="ReactionStep(r113)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/d8fbe8ae-850d-4319-aa85-8e3ddbe27a1b" vcid="ReactionStep(r66)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/c4b6d77d-2235-427b-9e0b-18e5bc75b68d" vcid="Species(EGFR_02UG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_397b15f1-96f4-4d31-9c44-c9db658887a8" vcid="ReactionStep(r59)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_8910ba1c-96d9-423b-9e70-d20a869164b7" vcid="ReactionStep(r71)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/aa2efedb-af58-4c45-b719-7646e174ad0e" vcid="ReactionStep(r34)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/a23af3b5-392e-4f66-9eed-e2737ab93fb6" vcid="ReactionStep(r92)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/aef1e7fd-f61a-42e5-93d4-5e61e24e46db" vcid="Species(Cbl)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/f74e0f9d-0a90-4936-917b-43441bd5f1fb" vcid="ReactionStep(r107)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/f0f0b25c-3c46-4235-ae5f-b53c176e1169" vcid="Species(EGFR_12UU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_53b33679-cb46-48f9-9418-4ca175b25a09" vcid="Species(EGFR_11LG)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_71e4478d-ca81-46fe-aac7-04646048cada" vcid="ReactionStep(r70)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/b5576190-0b73-456c-849f-5189c30eadcf" vcid="ReactionStep(r68)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_2b3be333-7223-4390-bb34-7244890ca0c7" vcid="ReactionStep(r17)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_921fa9ce-2269-421a-92b9-7a9346f16da9" vcid="ReactionStep(r6)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/a5d13977-8235-4e54-ae6b-447785906cae" vcid="ReactionStep(r16)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/eabcbcda-b2aa-4463-a898-7ef71e6321d4" vcid="ReactionStep(r39)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_4a9cbc4c-4812-47c3-934a-3c6ede197d5f" vcid="Species(EGFR_11CC)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/c2fb2a9d-8f6a-4d7c-88bd-dad0ea812797" vcid="ReactionStep(r120)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/b7357928-cabc-4d79-825d-abbd11e6d9e1" vcid="ReactionStep(r73)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/c5de79bc-bb77-4f66-8488-779ebe61a516" vcid="ReactionStep(r74)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/e433cd85-2bf1-478a-895a-072828f4662e" vcid="Species(EGFR_12LU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_5fe3b3de-50de-4c6b-9c9c-2ea89daaea3b" vcid="Species(EGFR_11UU)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_98ddf15c-9e95-4e12-9fe3-4995d2a0ef55" vcid="Species(EGFR_02UL)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_6c711e35-7477-4821-8629-c0cffd40297c" vcid="ReactionStep(r42)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_060e7663-9193-4f29-aa73-f604d7072c58" vcid="ReactionStep(r12)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_60a7d86d-4dc9-4870-a87c-16c4b84d2564" vcid="BioModel(Capuani2015 - Binding of Cbl and Gbr2 to EGFR &amp;lpar;Multisite Phosphorylation Model - MPM&amp;rpar;)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_904132db-f663-41d6-96cd-c4d2af3a2654" vcid="ReactionStep(r95)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/_5dad442f-7be6-405e-b219-07885b4f6a6c" vcid="ReactionStep(r3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/cffc6012-52bc-493e-a3d7-2b365b72945e" vcid="ReactionStep(r97)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version4/c51233b6-8e79-42cd-a019-d80ad1d41bb8" vcid="ReactionStep(r110)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+
