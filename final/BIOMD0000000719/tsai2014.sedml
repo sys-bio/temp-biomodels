@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version2" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="2">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Tsai2014.xml">
+      <listOfChanges>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_phosphorylated&apos;]/@initialConcentration" newValue="60"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_unphosphorylated&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Plx1_active&apos;]/@initialConcentration" newValue="0"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;APC_C_active&apos;]/@initialConcentration" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Plx1_total&apos;]/@initialConcentration" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;APC_C_total&apos;]/@initialConcentration" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;nuclear&apos;]/@size" newValue="1"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_synth&apos;]/@value" newValue="1.5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_dest&apos;]/@value" newValue="0.4"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_cdc25&apos;]/@value" newValue="30"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_cdc25&apos;]/@value" newValue="11"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_wee1&apos;]/@value" newValue="35"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_wee1&apos;]/@value" newValue="3.5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_cdk1_on&apos;]/@value" newValue="0.0354"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_cdk1_off&apos;]/@value" newValue="0.0354"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;p&apos;]/@value" newValue="5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_plx&apos;]/@value" newValue="60"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_apc&apos;]/@value" newValue="0.5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_apc&apos;]/@value" newValue="4"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_plx&apos;]/@value" newValue="5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_plxon&apos;]/@value" newValue="1.5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_plx_off&apos;]/@value" newValue="0.125"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_apc_on&apos;]/@value" newValue="1.5"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_apc_off&apos;]/@value" newValue="0.15"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau&apos;]/@value" newValue="4"/>
+      </listOfChanges>
+    </model>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="153.000000036" numberOfPoints="1000">
+      <algorithm kisaoID="KISAO_0000560">
+        <listOfAlgorithmParameters>
+          <algorithmParameter kisaoID="KISAO_0000211" value="1e-12"/>
+          <algorithmParameter kisaoID="KISAO_0000216" value="false"/>
+          <algorithmParameter kisaoID="KISAO_0000415" value="10000"/>
+          <algorithmParameter kisaoID="KISAO_0000209" value="1e-6"/>
+        </listOfAlgorithmParameters>
+      </algorithm>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> var_time_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="var_time_task1" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="r_1_task1" name="Values[r]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_r_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_r_task1" name="r" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;r&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="APC_C_active_2_task1" name="[APC/C active]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_APC_C_active_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_APC_C_active_task1" name="APC_C_active" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;APC_C_active&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cyclin_B1_Cdk1_complex_unphosphorylated_3_task1" name="[Cyclin B1 Cdk1 complex unphosphorylated]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Cyclin_B1_Cdk1_complex_unphosphorylated_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Cyclin_B1_Cdk1_complex_unphosphorylated_task1" name="Cyclin_B1_Cdk1_complex_unphosphorylated" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_unphosphorylated&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cyclin_B1_Cdk1_complex_phosphorylated_4_task1" name="[Cyclin B1 Cdk1 complex phosphorylated]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Cyclin_B1_Cdk1_complex_phosphorylated_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Cyclin_B1_Cdk1_complex_phosphorylated_task1" name="Cyclin_B1_Cdk1_complex_phosphorylated" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_phosphorylated&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cyclin_B1_Cdk1_complex_total_5_task1" name="[Cyclin B1 Cdk1 complex total]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p1_Cyclin_B1_Cdk1_complex_total_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p1_Cyclin_B1_Cdk1_complex_total_task1" name="Cyclin_B1_Cdk1_complex_total" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_total&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cyclin_B1_Cdk1_complex_total_1_task1" name="[Cyclin B1 Cdk1 complex total]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_Cyclin_B1_Cdk1_complex_total_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_Cyclin_B1_Cdk1_complex_total_task1" name="Cyclin_B1_Cdk1_complex_total" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_total&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cyclin_B1_Cdk1_complex_phosphorylated_1_task1" name="[Cyclin B1 Cdk1 complex phosphorylated]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_Cyclin_B1_Cdk1_complex_phosphorylated_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_Cyclin_B1_Cdk1_complex_phosphorylated_task1" name="Cyclin_B1_Cdk1_complex_phosphorylated" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_phosphorylated&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cyclin_B1_Cdk1_complex_unphosphorylated_1_task1" name="[Cyclin B1 Cdk1 complex unphosphorylated]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_Cyclin_B1_Cdk1_complex_unphosphorylated_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_Cyclin_B1_Cdk1_complex_unphosphorylated_task1" name="Cyclin_B1_Cdk1_complex_unphosphorylated" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cyclin_B1_Cdk1_complex_unphosphorylated&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="APC_C_active_1_task1" name="[APC/C active]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p5_APC_C_active_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p5_APC_C_active_task1" name="APC_C_active" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;APC_C_active&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Plx1_active">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Plx1_active__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Plx1_active__x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Plx1_active&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Plx1_total">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Plx1_total__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Plx1_total__x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Plx1_total&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_APC_C_total">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_APC_C_total__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_APC_C_total__x" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;APC_C_total&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_synth">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_synth__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_synth__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_synth&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_dest">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_dest__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_dest__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_dest&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ec50_cdc25">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ec50_cdc25__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ec50_cdc25__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_cdc25&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_n_cdc25">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_n_cdc25__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_n_cdc25__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_cdc25&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ec50_wee1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ec50_wee1__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ec50_wee1__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_wee1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_n_wee1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_n_wee1__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_n_wee1__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_wee1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_cdk1_on">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_cdk1_on__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_cdk1_on__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_cdk1_on&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_cdk1_off">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_cdk1_off__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_cdk1_off__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_cdk1_off&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ec50_plx">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ec50_plx__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ec50_plx__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_plx&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ec50_apc">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ec50_apc__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ec50_apc__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ec50_apc&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_n_apc">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_n_apc__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_n_apc__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_apc&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_n_plx">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_n_plx__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_n_plx__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;n_plx&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_plxon">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_plxon__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_plxon__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_plxon&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_plx_off">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_plx_off__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_plx_off__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_plx_off&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_apc_on">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_apc_on__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_apc_on__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_apc_on&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_k_apc_off">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_k_apc_off__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_k_apc_off__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;k_apc_off&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_tau">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_tau__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_tau__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_nuclear">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_nuclear__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_nuclear__x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;nuclear&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_synthesis">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_synthesis__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_synthesis__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Cyclin_B1_Cdk1_phosphorylated_synthesis&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Cyclin_B1_Cdk1_unphosphorylated_degradation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Cyclin_B1_Cdk1_unphosphorylated_degradation__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Cyclin_B1_Cdk1_unphosphorylated_degradation__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Cyclin_B1_Cdk1_unphosphorylated_degradation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_degradation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_degradation__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_degradation__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Cyclin_B1_Cdk1_phosphorylated_degradation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_dephosphorylation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_dephosphorylation__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_dephosphorylation__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Cyclin_B1_Cdk1_phosphorylated_dephosphorylation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_phosphorylation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_phosphorylation__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_phosphorylation__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Cyclin_B1_Cdk1_phosphorylated_phosphorylation&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Plx1_activation_by_active_Cdk1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Plx1_activation_by_active_Cdk1__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Plx1_activation_by_active_Cdk1__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Plx1_activation_by_active_Cdk1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Plx1_inactivation_after_Cdk1_inactivated">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Plx1_inactivation_after_Cdk1_inactivated__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Plx1_inactivation_after_Cdk1_inactivated__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Plx1_inactivation_after_Cdk1_inactivated&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Activation_of_APC_CCdc20_by_active_Plx1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Activation_of_APC_CCdc20_by_active_Plx1__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Activation_of_APC_CCdc20_by_active_Plx1__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Activation_of_APC_CCdc20_by_active_Plx1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_inactivation_of_APC_CCdc20_after_Plx1_is_inactivated">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_inactivation_of_APC_CCdc20_after_Plx1_is_inactivated__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_inactivation_of_APC_CCdc20_after_Plx1_is_inactivated__x" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;inactivation_of_APC_CCdc20_after_Plx1_is_inactivated&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Figure 5f">
+      <listOfCurves>
+        <curve id="p1_curve_1_task1" name="Values[r]" logX="false" xDataReference="time_task1" logY="false" yDataReference="r_1_task1"/>
+        <curve id="p1_curve_2_task1" name="[APC/C active]" logX="false" xDataReference="time_task1" logY="false" yDataReference="APC_C_active_2_task1"/>
+        <curve id="p1_curve_3_task1" name="[Cyclin B1 Cdk1 complex unphosphorylated]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Cyclin_B1_Cdk1_complex_unphosphorylated_3_task1"/>
+        <curve id="p1_curve_4_task1" name="[Cyclin B1 Cdk1 complex phosphorylated]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Cyclin_B1_Cdk1_complex_phosphorylated_4_task1"/>
+        <curve id="p1_curve_5_task1" name="[Cyclin B1 Cdk1 complex total]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Cyclin_B1_Cdk1_complex_total_5_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="Figure 5f">
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="[Cyclin B1 Cdk1 complex total]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Cyclin_B1_Cdk1_complex_total_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task1" name="Figure 5f">
+      <listOfCurves>
+        <curve id="p3_curve_1_task1" name="[Cyclin B1 Cdk1 complex phosphorylated]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Cyclin_B1_Cdk1_complex_phosphorylated_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_4_task1" name="Figure 5f">
+      <listOfCurves>
+        <curve id="p4_curve_1_task1" name="[Cyclin B1 Cdk1 complex unphosphorylated]" logX="false" xDataReference="time_task1" logY="false" yDataReference="Cyclin_B1_Cdk1_complex_unphosphorylated_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_5_task1" name="Figure 5f">
+      <listOfCurves>
+        <curve id="p5_curve_1_task1" name="[APC/C active]" logX="false" xDataReference="time_task1" logY="false" yDataReference="APC_C_active_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_6_task1" name="Figure 5f">
+      <listOfCurves>
+        <curve id="p6_curve_1_task1" name="Values[r]" logX="false" xDataReference="time_task1" logY="false" yDataReference="r_1_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_time_for_task1" label="Time" dataReference="time_task1"/>
+        <dataSet id="autogen_task1_p" label="p" dataReference="r_1_task1"/>
+        <dataSet id="autogen_task1_r" label="r" dataReference="r_1_task1"/>
+        <dataSet id="autogen_task1_APC_C_active" label="APC_C_active" dataReference="APC_C_active_2_task1"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_complex_unphosphorylated" label="Cyclin_B1_Cdk1_complex_unphosphorylated" dataReference="Cyclin_B1_Cdk1_complex_unphosphorylated_3_task1"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_complex_phosphorylated" label="Cyclin_B1_Cdk1_complex_phosphorylated" dataReference="Cyclin_B1_Cdk1_complex_phosphorylated_4_task1"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_complex_total" label="Cyclin_B1_Cdk1_complex_total" dataReference="Cyclin_B1_Cdk1_complex_total_5_task1"/>
+        <dataSet id="autogen_task1_Plx1_active" label="Plx1_active" dataReference="auto_dg_for_task1_Plx1_active"/>
+        <dataSet id="autogen_task1_Plx1_total" label="Plx1_total" dataReference="auto_dg_for_task1_Plx1_total"/>
+        <dataSet id="autogen_task1_APC_C_total" label="APC_C_total" dataReference="auto_dg_for_task1_APC_C_total"/>
+        <dataSet id="autogen_task1_k_synth" label="k_synth" dataReference="auto_dg_for_task1_k_synth"/>
+        <dataSet id="autogen_task1_k_dest" label="k_dest" dataReference="auto_dg_for_task1_k_dest"/>
+        <dataSet id="autogen_task1_ec50_cdc25" label="ec50_cdc25" dataReference="auto_dg_for_task1_ec50_cdc25"/>
+        <dataSet id="autogen_task1_n_cdc25" label="n_cdc25" dataReference="auto_dg_for_task1_n_cdc25"/>
+        <dataSet id="autogen_task1_ec50_wee1" label="ec50_wee1" dataReference="auto_dg_for_task1_ec50_wee1"/>
+        <dataSet id="autogen_task1_n_wee1" label="n_wee1" dataReference="auto_dg_for_task1_n_wee1"/>
+        <dataSet id="autogen_task1_k_cdk1_on" label="k_cdk1_on" dataReference="auto_dg_for_task1_k_cdk1_on"/>
+        <dataSet id="autogen_task1_k_cdk1_off" label="k_cdk1_off" dataReference="auto_dg_for_task1_k_cdk1_off"/>
+        <dataSet id="autogen_task1_ec50_plx" label="ec50_plx" dataReference="auto_dg_for_task1_ec50_plx"/>
+        <dataSet id="autogen_task1_ec50_apc" label="ec50_apc" dataReference="auto_dg_for_task1_ec50_apc"/>
+        <dataSet id="autogen_task1_n_apc" label="n_apc" dataReference="auto_dg_for_task1_n_apc"/>
+        <dataSet id="autogen_task1_n_plx" label="n_plx" dataReference="auto_dg_for_task1_n_plx"/>
+        <dataSet id="autogen_task1_k_plxon" label="k_plxon" dataReference="auto_dg_for_task1_k_plxon"/>
+        <dataSet id="autogen_task1_k_plx_off" label="k_plx_off" dataReference="auto_dg_for_task1_k_plx_off"/>
+        <dataSet id="autogen_task1_k_apc_on" label="k_apc_on" dataReference="auto_dg_for_task1_k_apc_on"/>
+        <dataSet id="autogen_task1_k_apc_off" label="k_apc_off" dataReference="auto_dg_for_task1_k_apc_off"/>
+        <dataSet id="autogen_task1_tau" label="tau" dataReference="auto_dg_for_task1_tau"/>
+        <dataSet id="autogen_task1_nuclear" label="nuclear" dataReference="auto_dg_for_task1_nuclear"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_phosphorylated_synthesis" label="Cyclin_B1_Cdk1_phosphorylated_synthesis" dataReference="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_synthesis"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_unphosphorylated_degradation" label="Cyclin_B1_Cdk1_unphosphorylated_degradation" dataReference="auto_dg_for_task1_Cyclin_B1_Cdk1_unphosphorylated_degradation"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_phosphorylated_degradation" label="Cyclin_B1_Cdk1_phosphorylated_degradation" dataReference="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_degradation"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_phosphorylated_dephosphorylation" label="Cyclin_B1_Cdk1_phosphorylated_dephosphorylation" dataReference="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_dephosphorylation"/>
+        <dataSet id="autogen_task1_Cyclin_B1_Cdk1_phosphorylated_phosphorylation" label="Cyclin_B1_Cdk1_phosphorylated_phosphorylation" dataReference="auto_dg_for_task1_Cyclin_B1_Cdk1_phosphorylated_phosphorylation"/>
+        <dataSet id="autogen_task1_Plx1_activation_by_active_Cdk1" label="Plx1_activation_by_active_Cdk1" dataReference="auto_dg_for_task1_Plx1_activation_by_active_Cdk1"/>
+        <dataSet id="autogen_task1_Plx1_inactivation_after_Cdk1_inactivated" label="Plx1_inactivation_after_Cdk1_inactivated" dataReference="auto_dg_for_task1_Plx1_inactivation_after_Cdk1_inactivated"/>
+        <dataSet id="autogen_task1_Activation_of_APC_CCdc20_by_active_Plx1" label="Activation_of_APC_CCdc20_by_active_Plx1" dataReference="auto_dg_for_task1_Activation_of_APC_CCdc20_by_active_Plx1"/>
+        <dataSet id="autogen_task1_inactivation_of_APC_CCdc20_after_Plx1_is_inactivated" label="inactivation_of_APC_CCdc20_after_Plx1_is_inactivated" dataReference="auto_dg_for_task1_inactivation_of_APC_CCdc20_after_Plx1_is_inactivated"/>
+      </listOfDataSets>
+    </report>
+  </listOfOutputs>
+</sedML>
