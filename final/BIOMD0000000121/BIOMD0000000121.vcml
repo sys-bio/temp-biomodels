@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Clancy2001_Kchannel">
+      <Model Name="model_0000001">
+         <ModelParameters>
+            <Parameter Name="R" Role="user defined" Unit="tbd">8.314</Parameter>
+            <Parameter Name="F" Role="user defined" Unit="tbd">96.485</Parameter>
+            <Parameter Name="Temp" Role="user defined" Unit="tbd">310.0</Parameter>
+            <Parameter Name="ko" Role="user defined" Unit="tbd">5.4</Parameter>
+            <Parameter Name="ki" Role="user defined" Unit="tbd">140.0</Parameter>
+            <Parameter Name="vhold" Role="user defined" Unit="tbd">-40.0</Parameter>
+            <Parameter Name="vtest" Role="user defined" Unit="tbd">0.0</Parameter>
+            <Parameter Name="vk" Role="user defined" Unit="tbd">(log((ko / ki)) * R * Temp / F)</Parameter>
+            <Parameter Name="Gk" Role="user defined" Unit="tbd">(0.0135 * pow(ko,0.59))</Parameter>
+            <Parameter Name="a" Role="user defined" Unit="tbd">(0.0555 * exp((0.05547153 * (-12.0 + v))))</Parameter>
+            <Parameter Name="b" Role="user defined" Unit="tbd">(0.002357 * exp( - (0.036588 * v)))</Parameter>
+            <Parameter Name="ain" Role="user defined" Unit="tbd">2.172</Parameter>
+            <Parameter Name="bin" Role="user defined" Unit="tbd">1.077</Parameter>
+            <Parameter Name="aa" Role="user defined" Unit="tbd">(0.0655 * exp((0.05547153 * (-36.0 + v))))</Parameter>
+            <Parameter Name="bb" Role="user defined" Unit="tbd">(0.0029357 * exp( - (0.02158 * v)))</Parameter>
+            <Parameter Name="ai" Role="user defined" Unit="tbd">(1.9755 * exp( - (0.02352 * (25.0 + v))) / ko)</Parameter>
+            <Parameter Name="bi" Role="user defined" Unit="tbd">(0.656 * exp((9.42E-4 * v)) * pow((4.5 / ko),0.3))</Parameter>
+            <Parameter Name="u" Role="user defined" Unit="tbd">(ai * bb * aa / (aa * bi))</Parameter>
+            <Parameter Name="v" Role="user defined" Unit="tbd">-40.0</Parameter>
+            <Parameter Name="VC_SpConcFactor_0_001_mole_litre_1_uM_1" Role="user defined" Unit="0.001 mole.litre-1.uM-1">
+               0.001
+               <Annotation>Conversion from VC concentration units to SBML concentration units</Annotation>
+            </Parameter>
+            <Parameter Name="VC_TimeConvFactor" Role="user defined" Unit="1">
+               1000.0
+               <Annotation>Conversion from SBML time units to VC time units</Annotation>
+            </Parameter>
+         </ModelParameters>
+         <Compound Name="c3">
+            <Annotation>c3</Annotation>
+         </Compound>
+         <Compound Name="c2">
+            <Annotation>c2</Annotation>
+         </Compound>
+         <Compound Name="c1">
+            <Annotation>c1</Annotation>
+         </Compound>
+         <Compound Name="o">
+            <Annotation>o</Annotation>
+         </Compound>
+         <Compound Name="i">
+            <Annotation>i</Annotation>
+         </Compound>
+         <Compound Name="ik">
+            <Annotation>ik</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="c3" CompoundRef="c3" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="c2" CompoundRef="c2" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="c1" CompoundRef="c1" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="o" CompoundRef="o" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="i" CompoundRef="i" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="ik" CompoundRef="ik" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="reaction_0000001" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="c3" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="c2" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((a * c3 * c3_ConcFactor) - (b * c2 * c2_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="second.litre.uM.s-1.mole-1">1000000.0</Parameter>
+               <Parameter Name="c3_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="c2_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="reaction_0000002" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="c2" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="c1" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((ain * c2 * c2_ConcFactor) - (bin * c1 * c1_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="second.litre.uM.s-1.mole-1">1000000.0</Parameter>
+               <Parameter Name="c2_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="c1_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="reaction_0000003" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="c1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="o" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((aa * c1 * c1_ConcFactor) - (bb * o * o_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="second.litre.uM.s-1.mole-1">1000000.0</Parameter>
+               <Parameter Name="c1_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="o_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="reaction_0000004" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="o" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="i" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((bi * o * o_ConcFactor) - (ai * i * i_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="second.litre.uM.s-1.mole-1">1000000.0</Parameter>
+               <Parameter Name="o_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="i_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="reaction_0000005" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="c1" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="i" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(((aa * c1 * c1_ConcFactor) - (u * i * i_ConcFactor)) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="second.litre.uM.s-1.mole-1">1000000.0</Parameter>
+               <Parameter Name="c1_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+               <Parameter Name="i_ConcFactor" Role="user defined" Unit="0.001 mole.litre-1.uM-1">0.001</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="model_0000001_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="c3" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>1000.0000000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="c2" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="c1" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="o" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>60.00000000000001</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="i" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="ik" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>(13.500000000000002 * (v - (log((ko / ki)) * R * Temp / F)) * pow(ko,0.59) * o * VC_SpConcFactor_0_001_mole_litre_1_uM_1)</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="reaction_0000001" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_0000002" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_0000003" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_0000004" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="reaction_0000005" ReactionMapping="included" />
+         </ReactionContext>
+         <BioEvents>
+            <BioEvent Name="event_0000001">
+               <Trigger>(((t * VC_TimeConvFactor) &gt; 50.0) &amp;&amp; ((t * VC_TimeConvFactor) &lt;= 300.0))</Trigger>
+               <EventAssignment Variable="v">vtest</EventAssignment>
+            </BioEvent>
+            <BioEvent Name="event_0000002">
+               <Trigger>((t * VC_TimeConvFactor) &gt; 300.0)</Trigger>
+               <EventAssignment Variable="v">vhold</EventAssignment>
+            </BioEvent>
+         </BioEvents>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000002">
+               <bqbiol:hasProperty xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/mamo/MAMO_0000046" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasProperty>
+               <bqbiol:hasTaxon xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/10141" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasTaxon>
+               <bqbiol:hasVersion xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/doid/DOID:0050434" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:hasVersion>
+               <bqbiol:isHomologTo xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/omim/152427" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isHomologTo>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005251" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043266" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0003015" />
+                     </rdf:_3>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL2898180293" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000121" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDerivedFrom xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/7514509" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/7788872" />
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/10318671" />
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/10448858" />
+                     </rdf:_4>
+                  </rdf:Bag>
+               </bqmodel:isDerivedFrom>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/11334834" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node23">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">enuo@caltech.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node24">
+                                 <vcard:Family>He</vcard:Family>
+                                 <vcard:Given>Enuo</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node25">
+                                 <vcard:Orgname>BNMC</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node10">
+                     <dcterms:W3CDTF>2007-06-20T09:51:21Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node11">
+                     <dcterms:W3CDTF>2017-04-27T18:37:54Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000003">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0005623" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000004">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR003967" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0008076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000005">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR003967" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0008076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000006">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR003967" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0008076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000007">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR003967" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0008076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000008">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/interpro/IPR003967" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0008076" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000041">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0015459" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043266" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000042">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0015459" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043266" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000043">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0015459" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043266" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000044">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0015459" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043266" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000045">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0043266" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/go/GO:0015459" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Clancy2001_Kchannel)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>
+                        This model is according to the paper      
+                        <i>Cellular consequences of HEGR mutations in the long QT syndrome: precursors to sudden cardiac death.</i>
+                        
+          The author used Markovian model of cardiac Ikr in the paper.  Figure4B in the paper has been reproduced using CellDesigner3.5.1. The cell is depolarized to the indicated test potential for 250ms (from 50ms to 300ms) from a holding potential of -40mV and then repolarized to -40mV. Change the value for vtest from -30,-20,-10,0,10,20,30,40 for each simulation in order to produce the different cureve in the paper.      
+                     </p>
+                     
+  
+                     <br />
+                     
+  
+                     <p>
+                        To the extent possible under law, all copyright and related or neighbouring rights to this encoded model have been dedicated to the public domain worldwide. Please refer to      
+                        <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Creative Commons CC0">CC0 Public Domain Dedication</a>
+                        
+          for more information.      
+                     </p>
+                     <p>In summary, you are entitled to use this encoded model in absolutely any manner you deem suitable, verbatim, or with modification, alone or embedded it in a larger context, redistribute it, commercially or not, in a restricted way or not.</p>
+                     <br />
+                     <p>
+                        To cite BioModels Database, please use:      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a>
+                        
+
+                     </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000043" vcid="ReactionStep(reaction_0000003)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000048" vcid="Species(ik)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000045" vcid="ReactionStep(reaction_0000005)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000044" vcid="ReactionStep(reaction_0000004)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000007" vcid="Species(o)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000006" vcid="Species(c1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000003" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000008" vcid="Species(i)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000042" vcid="ReactionStep(reaction_0000002)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000002" vcid="BioModel(Clancy2001_Kchannel)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000004" vcid="Species(c3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000005" vcid="Species(c2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000041" vcid="ReactionStep(reaction_0000001)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+
