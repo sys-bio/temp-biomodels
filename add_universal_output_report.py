@@ -89,13 +89,16 @@ def matchSBMLIds(doc, sbml_filenames):
         sbmlids = getAllIdsAndNamespacesFromSBML(target, doc)
         if model.getNumChanges() == 0:
             #Add default changes
-            (modelchanges, __, __, __) = get_parameters_variables_outputs_for_simulation(target, "urn:sedml:language:sbml", UniformTimeCourseSimulation, validate=False)
-            for modelchange in modelchanges:
-                change = model.createChangeAttribute()
-                change.setId("auto_" + modelchange.id)
-                change.setName(modelchange.name)
-                change.setTarget(modelchange.target)
-                change.setNewValue(modelchange.new_value)
+            try:
+                (modelchanges, __, __, __) = get_parameters_variables_outputs_for_simulation(target, "urn:sedml:language:sbml", UniformTimeCourseSimulation, validate=False)
+                for modelchange in modelchanges:
+                    change = model.createChangeAttribute()
+                    change.setId("auto_" + modelchange.id)
+                    change.setName(modelchange.name)
+                    change.setTarget(modelchange.target)
+                    change.setNewValue(modelchange.new_value)
+            except:
+                pass
         model_ids.append((model.getId(), sbmlids))
     return model_ids
 
