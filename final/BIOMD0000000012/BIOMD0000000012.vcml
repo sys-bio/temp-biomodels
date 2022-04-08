@@ -1,0 +1,1150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Elowitz2000 - Repressilator">
+      <Model Name="BIOMD0000000012">
+         <ModelParameters>
+            <Parameter Name="beta" Role="user defined" Unit="tbd">(tau_mRNA / tau_prot)</Parameter>
+            <Parameter Name="alpha0" Role="user defined" Unit="tbd">(a0_tr * eff * tau_prot / (0.6931471805599453 * KM))</Parameter>
+            <Parameter Name="alpha" Role="user defined" Unit="tbd">(a_tr * eff * tau_prot / (0.6931471805599453 * KM))</Parameter>
+            <Parameter Name="eff" Role="user defined" Unit="tbd">20.0</Parameter>
+            <Parameter Name="n" Role="user defined" Unit="tbd">2.0</Parameter>
+            <Parameter Name="KM" Role="user defined" Unit="tbd">40.0</Parameter>
+            <Parameter Name="tau_mRNA" Role="user defined" Unit="tbd">2.0</Parameter>
+            <Parameter Name="tau_prot" Role="user defined" Unit="tbd">10.0</Parameter>
+            <Parameter Name="t_ave" Role="user defined" Unit="tbd">(1.4426950408889634 * tau_mRNA)</Parameter>
+            <Parameter Name="kd_mRNA" Role="user defined" Unit="tbd">(0.6931471805599453 / tau_mRNA)</Parameter>
+            <Parameter Name="kd_prot" Role="user defined" Unit="tbd">(0.6931471805599453 / tau_prot)</Parameter>
+            <Parameter Name="k_tl" Role="user defined" Unit="tbd">(eff / t_ave)</Parameter>
+            <Parameter Name="a_tr" Role="user defined" Unit="tbd">(60.0 * (ps_a - ps_0))</Parameter>
+            <Parameter Name="ps_a" Role="user defined" Unit="tbd">0.5</Parameter>
+            <Parameter Name="ps_0" Role="user defined" Unit="tbd">5.0E-4</Parameter>
+            <Parameter Name="a0_tr" Role="user defined" Unit="tbd">(60.0 * ps_0)</Parameter>
+         </ModelParameters>
+         <Compound Name="PX">
+            <Annotation>PX</Annotation>
+         </Compound>
+         <Compound Name="PY">
+            <Annotation>PY</Annotation>
+         </Compound>
+         <Compound Name="PZ">
+            <Annotation>PZ</Annotation>
+         </Compound>
+         <Compound Name="X">
+            <Annotation>X</Annotation>
+         </Compound>
+         <Compound Name="Y">
+            <Annotation>Y</Annotation>
+         </Compound>
+         <Compound Name="Z">
+            <Annotation>Z</Annotation>
+         </Compound>
+         <Feature Name="cell" />
+         <LocalizedCompound Name="PX" CompoundRef="PX" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="PY" CompoundRef="PY" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="PZ" CompoundRef="PZ" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="X" CompoundRef="X" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Y" CompoundRef="Y" Structure="cell" OverrideName="true" />
+         <LocalizedCompound Name="Z" CompoundRef="Z" Structure="cell" OverrideName="true" />
+         <SimpleReaction Structure="cell" Name="Reaction1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="X" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kd_mRNA * X * X_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="X_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction2" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Y" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kd_mRNA * Y * Y_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="Y_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction3" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Z" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kd_mRNA * Z * Z_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="Z_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction4" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="PX" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="X" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k_tl * X * X_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="X_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction5" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="PY" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Y" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k_tl * Y * Y_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="Y_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction6" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="PZ" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="Z" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * k_tl * Z * Z_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="Z_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction7" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PX" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kd_prot * PX * PX_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="PX_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction8" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PY" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kd_prot * PY * PY_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="PY_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction9" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="PZ" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * kd_prot * PZ * PZ_ConcFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="PZ_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction10" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="X" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PZ" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">((a0_tr + (a_tr * pow(KM,n) / (pow(KM,n) + pow((PZ * PZ_ConcFactor),n)))) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="PZ_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction11" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="Y" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PX" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">((a0_tr + (a_tr * pow(KM,n) / (pow(KM,n) + pow((PX * PX_ConcFactor),n)))) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="PX_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="cell" Name="Reaction12" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Product LocalizedCompoundRef="Z" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="PY" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">((a0_tr + (a_tr * pow(KM,n) / (pow(KM,n) + pow((PY * PY_ConcFactor),n)))) * sbmlRateFactor)</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="60 second.s-1">0.016666666666667</Parameter>
+               <Parameter Name="PY_ConcFactor" Role="user defined" Unit="9.999999999999999E14 um3.litre-1">602.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="cell" Structure="cell" />
+      </Model>
+      <SimulationSpec Name="BIOMD0000000012_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="cell" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PX" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PY" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="PZ" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="X" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Y" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.03322259136212625</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Z" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="Reaction1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction2" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction3" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction4" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction5" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction6" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction7" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction8" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction9" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction10" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction11" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="Reaction12" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/PX">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P03023" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/PY">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04483" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/PZ">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P03034" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_000001">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0040029" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/562" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000012" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL6615351360" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node7">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/10659856" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node8">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node30">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lenov@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node40">
+                                 <vcard:Family>Le Novère</vcard:Family>
+                                 <vcard:Given>Nicolas</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node41">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node31">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">bshapiro@caltech.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node42">
+                                 <vcard:Family>Shapiro</vcard:Family>
+                                 <vcard:Given>Bruce</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node43">
+                                 <vcard:Orgname>Jet Propulsion Laboratory</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:nodeID="node32">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">juty@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node44">
+                                 <vcard:Family>Juty</vcard:Family>
+                                 <vcard:Given>Nick</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node35" />
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_3>
+                     <rdf:_4>
+                        <rdf:Description rdf:nodeID="node33">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lukas@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node36">
+                                 <vcard:Family>Endler</vcard:Family>
+                                 <vcard:Given>Lukas</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node37">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_4>
+                     <rdf:_5>
+                        <rdf:Description rdf:nodeID="node34">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">viji@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node38">
+                                 <vcard:Family>Chelliah</vcard:Family>
+                                 <vcard:Given>Vijayalakshmi</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node39">
+                                 <vcard:Orgname>EMBL-EBI</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_5>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node9">
+                     <dcterms:W3CDTF>2009-01-20T14:03:56Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node10">
+                     <dcterms:W3CDTF>2012-05-15T15:48:26Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_000002">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0005623" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905769">
+               <bqbiol:encodes xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P03023" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:encodes>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:33699" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00046" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905781">
+               <bqbiol:encodes xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P04483" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:encodes>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:33699" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00046" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905802">
+               <bqbiol:encodes xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P03034" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:encodes>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/chebi/CHEBI:33699" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00046" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905823">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006402" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905842">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006402" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905862">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006402" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905882">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905903">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905923">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006412" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905943">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node24">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905962">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node25">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_905982">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node26">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0030163" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_906002">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node27">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006351" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_906022">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node28">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006351" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/version3/_906042">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node29">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0006351" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:nodeID="node35">
+               <vcard:Orgname xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">EMBL-EBI</vcard:Orgname>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Elowitz2000 - Repressilator)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <div class="dc:title">Elowitz2000 - Repressilator</div>
+                     
+    
+                     <div class="dc:description">
+                        
+      
+                        <p>This model describes the deterministic version of the repressilator system.</p>
+                        
+      
+                        <p>The authors of this model (see reference) use three transcriptional repressor systems that are not part of any natural biological clock to build an oscillating network that they called the repressilator. The model system was induced in Escherichia coli.</p>
+                        
+      
+                        <p>In this system, LacI (variable X is the mRNA, variable PX is the protein) inhibits the tetracycline-resistance transposon tetR (Y, PY describe mRNA and protein). Protein tetR inhibits the gene Cl from phage Lambda (Z, PZ: mRNA, protein),and protein Cl inhibits lacI expression. With the appropriate parameter values this system oscillates.</p>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="dc:bibliographicCitation">
+                        
+      
+                        <p>This model is described in the article:</p>
+                        
+      
+                        <div class="bibo:title">
+                           
+        
+                           <a href="http://identifiers.org/pubmed/10659856" title="Access to this publication">A synthetic oscillatory network of transcriptional regulators.</a>
+                           
+      
+                        </div>
+                        
+      
+                        <div class="bibo:authorList">Elowitz MB, Leibler S.</div>
+                        
+      
+                        <div class="bibo:Journal">Nature. 2000 Jan; 403(6767):335-338</div>
+                        
+      
+                        <p>Abstract:</p>
+                        
+      
+                        <div class="bibo:abstract">
+                           
+        
+                           <p>Networks of interacting biomolecules carry out many essential functions in living cells, but the 'design principles' underlying the functioning of such intracellular networks remain poorly understood, despite intensive efforts including quantitative analysis of relatively simple systems. Here we present a complementary approach to this problem: the design and construction of a synthetic network to implement a particular function. We used three transcriptional repressor systems that are not part of any natural biological clock to build an oscillating network, termed the repressilator, in Escherichia coli. The network periodically induces the synthesis of green fluorescent protein as a readout of its state in individual cells. The resulting oscillations, with typical periods of hours, are slower than the cell-division cycle, so the state of the oscillator has to be transmitted from generation to generation. This artificial clock displays noisy behaviour, possibly because of stochastic fluctuations of its components. Such 'rational network design may lead both to the engineering of new cellular behaviours and to an improved understanding of naturally occurring networks.</p>
+                           
+      
+                        </div>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="bm:curation">
+                        
+      
+                        <p>The model is based upon the equations in Box 1 of the paper; however, these equations as printed are dimensionless, and the correct dimensions have been returned to the equations, and the parameters set to reproduce Figure 1C (left).</p>
+                        
+    
+                     </div>
+                     
+    
+                     <div class="bm:modification">
+                        
+      
+                        <p>The original model was generated by B.E. Shapiro using Cellerator version 1.0 update 2.1127 using Mathematica 4.2 for Mac OS X (June 4, 2002), November 27, 2002 12:15:32, using (PowerMac,PowerPC, Mac OS X,MacOSX,Darwin).</p>
+                        
+      
+                        <p>Nicolas Le Novere provided a corrected version generated by SBMLeditor on Sun Aug 20 00:44:05 BST 2006. This removed the EmptySet species. Ran fine on COPASI 4.0 build 18.</p>
+                        
+      
+                        <p>Bruce Shapiro revised the model with SBMLeditor on 23 October 2006 20:39 PST. This defines default units and correct reactions. The original Cellerator reactions while being mathematically correct did not accurately reflect the intent of the authors. The original notes were mostly removed because they were mostly incorrect in the revised version. Tested with MathSBML 2.6.0.</p>
+                        
+      
+                        <p>Nicolas Le Novere changed the volume to 1 cubic micrometre, to allow for stochastic simulation.</p>
+                        
+      
+                        <p>Changed by Lukas Endler to use the average livetime of mRNA instead of its halflife and a corrected value of alpha and alpha0.</p>
+                        
+      
+                        <p>Moreover, the equations used in this model were clarified, cf. below.</p>
+                        
+      
+                        <p>
+                           The equations given in        
+                           <b>box 1</b>
+                           
+            of the original publication are rescaled in three respects (lowercase letters denote the rescaled, uppercase letters the unscaled number of molecules per cell):        
+                        </p>
+                        
+    
+                        <ul>
+                           
+      
+                           <li>
+                              the time is rescaled to the average mRNA lifetime,          
+                              <em>t_ave: τ = t/t_ave</em>
+                              
+  
+                           </li>
+                           
+  
+                           <li>
+                              the mRNA concentration is rescaled to the translation efficiency          
+                              <em>eff: m = M/eff</em>
+                              
+
+                           </li>
+                           <li>
+                              the protein concentration is rescaled to          
+                              <em>Km: p = P/Km</em>
+                              
+
+                           </li>
+                           
+
+                        </ul>
+                        <p>
+                           
+  
+                           <em>α</em>
+                           
+            in the equations should be in units of rescaled proteins per promotor and cell, and        
+                           <em>β</em>
+                           
+            is the ratio of the protein to the mRNA decay rates or the ratio of the mRNA to the protein halflife.        
+                        </p>
+                        <p>
+                           In this version of the model        
+                           <em>α</em>
+                           
+            and        
+                           <em>β</em>
+                           
+            are calculated correspondingly to the article, while        
+                           <em>p</em>
+                           
+            and        
+                           <em>m</em>
+                           
+            where just replaced by        
+                           <em>P/Km</em>
+                           
+            resp.        
+                           <em>M/eff</em>
+                           
+            and all equations multiplied by        
+                           <em>1/t_ave</em>
+                           
+            . Also, to make the equations easier to read, commonly used variables derived from the parameters given in the article by simple rules were introduced.        
+                        </p>
+                        <p>The parameters given in the article were:</p>
+                        <table>
+                           
+  
+                           <tr>
+                              
+    
+                              <td>
+                                 promotor strength (repressed) (            
+                                 <em>tps_repr</em>
+                                 
+                ):            
+                              </td>
+                              
+  
+                              <td>
+                                 5*10            
+                                 <sup>-4</sup>
+                                 
+
+                              </td>
+                              <td>transcripts/(promotor*s)</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 promotor strength (full) (            
+                                 <em>tps_active</em>
+                                 
+                ):            
+                              </td>
+                              <td>0.5</td>
+                              <td>transcripts/(promotor*s)</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 mRNA half life, τ            
+                                 <sub>1/2,mRNA</sub>
+                                 
+                :            
+                              </td>
+                              <td>2</td>
+                              <td>min</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 protein half life, τ            
+                                 <sub>1/2,prot</sub>
+                                 
+                :            
+                              </td>
+                              <td>10</td>
+                              <td>min</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 K            
+                                 <sub>M</sub>
+                                 
+                :            
+                              </td>
+                              <td>40</td>
+                              <td>monomers/cell</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>Hill coefficient n:</td>
+                              
+  
+                              <td>2</td>
+                              
+  
+                              <td />
+                              
+
+                           </tr>
+                           
+
+                        </table>
+                        <p>From these the following constants can be derived:</p>
+                        <table>
+                           
+  
+                           <tr>
+                              
+    
+                              <td>
+                                 average mRNA lifetime (            
+                                 <em>t_ave</em>
+                                 
+                ):            
+                              </td>
+                              
+  
+                              <td>
+                                 
+    
+                                 <em>
+                                    τ              
+                                    <sub>1/2,mRNA</sub>
+                                    
+                  /ln(2)              
+                                 </em>
+                                 
+
+                              </td>
+                              <td>= 2.89 min</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 mRNA decay rate (            
+                                 <em>kd_mRNA</em>
+                                 
+                ):            
+                              </td>
+                              <td>
+                                 
+  
+                                 <em>
+                                    ln(2)/ τ              
+                                    <sub>1/2,mRNA</sub>
+                                    
+
+                                 </em>
+                                 
+
+                              </td>
+                              <td>
+                                 = 0.347 min            
+                                 <sup>-1</sup>
+                                 
+
+                              </td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 protein decay rate (            
+                                 <em>kd_prot</em>
+                                 
+                ):            
+                              </td>
+                              <td>
+                                 
+  
+                                 <em>
+                                    ln(2)/ τ              
+                                    <sub>1/2,prot</sub>
+                                    
+
+                                 </em>
+                                 
+
+                              </td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 transcription rate (            
+                                 <em>a_tr</em>
+                                 
+                ):            
+                              </td>
+                              <td>
+                                 
+  
+                                 <em>tps_active*60</em>
+                                 
+
+                              </td>
+                              <td>= 29.97 transcripts/min</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 transcription rate (repressed) (            
+                                 <em>a0_tr</em>
+                                 
+                ):            
+                              </td>
+                              <td>
+                                 
+  
+                                 <em>tps_repr*60</em>
+                                 
+
+                              </td>
+                              <td>= 0.03 transcripts/min</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 translation rate (            
+                                 <em>k_tl</em>
+                                 
+                ):            
+                              </td>
+                              <td>
+                                 
+  
+                                 <em>eff*kd_mRNA</em>
+                                 
+
+                              </td>
+                              <td>= 6.93 proteins/(mRNA*min)</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>α :</td>
+                              
+  
+                              <td>
+                                 
+    
+                                 <em>
+                                    a_tr*eff*τ              
+                                    <sub>1/2,prot</sub>
+                                    
+                  /(ln(2)*K              
+                                    <sub>M</sub>
+                                    
+                  )              
+                                 </em>
+                                 
+
+                              </td>
+                              <td>= 216.4 proteins/(promotor*cell*Km)</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>
+                                 α            
+                                 <sub>0</sub>
+                                 
+                :            
+                              </td>
+                              <td>
+                                 
+  
+                                 <em>
+                                    a0_tr*eff*τ              
+                                    <sub>1/2,prot</sub>
+                                    
+                  /(ln(2)*K              
+                                    <sub>M</sub>
+                                    
+                  )              
+                                 </em>
+                                 
+
+                              </td>
+                              <td>= 0.2164 proteins/(promotor*cell*Km)</td>
+                              
+
+                           </tr>
+                           <tr>
+                              
+  
+                              <td>β :</td>
+                              
+  
+                              <td>
+                                 
+    
+                                 <em>k_dp/k_dm</em>
+                                 
+  
+                              </td>
+                              
+  
+                              <td>= 0.2</td>
+                              
+
+                           </tr>
+                           
+
+                        </table>
+                        <br />
+                        <p>Annotation by the Kinetic Simulation Algorithm Ontology (KiSAO):</p>
+                        <p>
+                           To reproduce the simulations run published by the authors, the model has to be simulated with any of two different approaches. First, one could use a deterministic method (        
+                           <a href="http://identifiers.org/biomodels.kisao/KISAO_0000035" title="Access to: KISAO_0000035">KISAO_0000035</a>
+                           
+            ) with continuous variables (        
+                           <a href="http://identifiers.org/biomodels.kisao/KISAO_0000018" title="Access to: KISAO_0000018">KISAO_0000018</a>
+                           
+            ). One sample algorithm to use is the CVODE solver (        
+                           <a href="http://identifiers.org/biomodels.kisao/KISAO_0000019" title="Access to: KISAO_0000019">KISAO_0000019</a>
+                           
+            ). Second, one could simulate the system using Gillespie's direct method (        
+                           <a href="http://identifiers.org/biomodels.kisao/KISAO_0000029" title="Access to: KISAO_0000029">KISAO_0000029</a>
+                           
+            ), which is a stochastic method (        
+                           <a href="http://identifiers.org/biomodels.kisao/KISAO_0000036" title="Access to: KISAO_0000036">KISAO_0000036</a>
+                           
+            ) supporting adaptive timesteps (        
+                           <a href="http://identifiers.org/biomodels.kisao/KISAO_0000041" title="Access to: KISAO_0000041">KISAO_0000041</a>
+                           
+            ) and using discrete variables (        
+                           <a href="http://identifiers.org/biomodels.kisao/KISAO_0000016" title="Access to: KISAO_0000016">KISAO_0000016</a>
+                           
+            ).        
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:publisher">
+                        
+  
+                        <p>
+                           This model is hosted on        
+                           <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+                           
+            and identified by:        
+                           <a href="http://identifiers.org/biomodels.db/BIOMD0000000012">BIOMD0000000012</a>
+                           
+            .        
+                        </p>
+                        <p>
+                           To cite BioModels Database, please use:        
+                           <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models</a>
+                           
+            .        
+                        </p>
+                        
+
+                     </div>
+                     <div class="dc:license">
+                        
+  
+                        <p>
+                           To the extent possible under law, all copyright and related or neighbouring rights to this encoded model have been dedicated to the public domain worldwide. Please refer to        
+                           <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0 Public Domain Dedication</a>
+                           
+            for more information.        
+                        </p>
+                        
+
+                     </div>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(PX)">
+               <notes>
+                  
+  
+                  <p xmlns="http://www.w3.org/1999/xhtml">
+        lacI inhibitor</p>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(PZ)">
+               <notes>
+                  
+  
+                  <p xmlns="http://www.w3.org/1999/xhtml">
+        lambda repressor</p>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+            <nonrdfAnnotation vcid="Species(PY)">
+               <notes>
+                  
+  
+                  <p xmlns="http://www.w3.org/1999/xhtml">
+        Tet repressor protein</p>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_906002" vcid="ReactionStep(Reaction10)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_000001" vcid="BioModel(Elowitz2000 - Repressilator)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905943" vcid="ReactionStep(Reaction7)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_906022" vcid="ReactionStep(Reaction11)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905982" vcid="ReactionStep(Reaction9)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905781" vcid="Species(Y)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/PY" vcid="Species(PY)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905962" vcid="ReactionStep(Reaction8)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905802" vcid="Species(Z)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905823" vcid="ReactionStep(Reaction1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905769" vcid="Species(X)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_000002" vcid="Structure(cell)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905842" vcid="ReactionStep(Reaction2)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905903" vcid="ReactionStep(Reaction5)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/PZ" vcid="Species(PZ)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905862" vcid="ReactionStep(Reaction3)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/PX" vcid="Species(PX)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905882" vcid="ReactionStep(Reaction4)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_906042" vcid="ReactionStep(Reaction12)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/version3/_905923" vcid="ReactionStep(Reaction6)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+
