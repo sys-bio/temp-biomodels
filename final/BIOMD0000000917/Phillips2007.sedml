@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version4" xmlns:sbml="http://www.sbml.org/sbml/level2/version4" level="1" version="4">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="MODEL1006230025_urn.xml">
+      <listOfChanges>
+        <changeAttribute id="auto_init_size_compartment_COMpartment" name="Initial size of compartment &quot;COMpartment&quot;" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;COMpartment&apos;]/@size" newValue="1"/>
+        <changeAttribute id="auto_value_parameter_Vv" name="Value of parameter &quot;Vv&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Vv&apos;]/@value" newValue="0"/>
+        <changeAttribute id="auto_value_parameter_tau_v" name="Value of parameter &quot;tau_v&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau_v&apos;]/@value" newValue="10"/>
+        <changeAttribute id="auto_value_parameter_v_vm" name="Value of parameter &quot;v_vm&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vm&apos;]/@value" newValue="-1.9"/>
+        <changeAttribute id="auto_value_parameter_Vao" name="Value of parameter &quot;Vao&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Vao&apos;]/@value" newValue="1"/>
+        <changeAttribute id="auto_value_parameter_Vm" name="Value of parameter &quot;Vm&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Vm&apos;]/@value" newValue="0"/>
+        <changeAttribute id="auto_value_parameter_tau_m" name="Value of parameter &quot;tau_m&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau_m&apos;]/@value" newValue="10"/>
+        <changeAttribute id="auto_value_parameter_v_mv" name="Value of parameter &quot;v_mv&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_mv&apos;]/@value" newValue="-1.9"/>
+        <changeAttribute id="auto_value_parameter_v_maQao" name="Value of parameter &quot;v_maQao&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_maQao&apos;]/@value" newValue="1"/>
+        <changeAttribute id="auto_value_parameter_H" name="Value of parameter &quot;H&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;H&apos;]/@value" newValue="15"/>
+        <changeAttribute id="auto_value_parameter_chi" name="Value of parameter &quot;chi&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;chi&apos;]/@value" newValue="10.8"/>
+        <changeAttribute id="auto_value_parameter_mu" name="Value of parameter &quot;mu&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mu&apos;]/@value" newValue="3.6"/>
+        <changeAttribute id="auto_value_parameter_c0" name="Value of parameter &quot;c0&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;c0&apos;]/@value" newValue="1"/>
+        <changeAttribute id="auto_value_parameter_v_vc" name="Value of parameter &quot;v_vc&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vc&apos;]/@value" newValue="-6.3"/>
+        <changeAttribute id="auto_value_parameter_v_vh" name="Value of parameter &quot;v_vh&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vh&apos;]/@value" newValue="0.19"/>
+        <changeAttribute id="auto_value_parameter_Qmax" name="Value of parameter &quot;Qmax&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qmax&apos;]/@value" newValue="100"/>
+        <changeAttribute id="auto_value_parameter_theta" name="Value of parameter &quot;theta&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;theta&apos;]/@value" newValue="10"/>
+        <changeAttribute id="auto_value_parameter_sigma" name="Value of parameter &quot;sigma&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;sigma&apos;]/@value" newValue="3"/>
+      </listOfChanges>
+    </model>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="72" numberOfSteps="1000">
+      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
+        <listOfAlgorithmParameters>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="100000"/>
+          <algorithmParameter name="Max Internal Step Size" kisaoID="KISAO:0000467" value="0"/>
+        </listOfAlgorithmParameters>
+      </algorithm>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+    <repeatedTask id="task2" range="range0" resetModel="true">
+      <listOfRanges>
+        <uniformRange id="range0" start="9.4" end="12.3" numberOfSteps="2" type="linear"/>
+      </listOfRanges>
+      <listOfChanges>
+        <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;chi&apos;]" range="range0">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> range0 </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task1"/>
+      </listOfSubTasks>
+    </repeatedTask>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="_1_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4__1_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4__1_task2" name="Time" symbol="urn:sedml:symbol:time" taskReference="task2" term="KISAO:0000832"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Monoaminergic__MA__voltage_1_task2" name="[Monoaminergic (MA) voltage]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p4_Monoaminergic__MA__voltage_1_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p4_Monoaminergic__MA__voltage_1_task2" name="[Monoaminergic (MA) voltage]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Vm&apos;]" taskReference="task2" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Ventrolateral_preopticarea__VLPO__voltage_1_task2" name="[Ventrolateral preopticarea (VLPO) voltage]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p5_Ventrolateral_preopticarea__VLPO__voltage_1_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p5_Ventrolateral_preopticarea__VLPO__voltage_1_task2" name="[Ventrolateral preopticarea (VLPO) voltage]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Vv&apos;]" taskReference="task2" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Somnogen_level_H_1_task2" name="[Somnogen level H]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p6_Somnogen_level_H_1_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p6_Somnogen_level_H_1_task2" name="[Somnogen level H]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;H&apos;]" taskReference="task2" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_time_for_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_time_for_task1_var </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_time_for_task1_var" symbol="urn:sedml:symbol:time" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Qv">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Qv__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Qv__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qv&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_tau_v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_tau_v__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_tau_v__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau_v&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_v_vm">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_v_vm__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_v_vm__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vm&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Qa">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Qa__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Qa__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qa&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Va">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Va__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Va__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Va&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Vao">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Vao__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Vao__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Vao&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Qm">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Qm__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Qm__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qm&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_tau_m">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_tau_m__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_tau_m__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau_m&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_v_mv">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_v_mv__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_v_mv__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_mv&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_v_maQao">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_v_maQao__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_v_maQao__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_maQao&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_chi">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_chi__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_chi__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;chi&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_mu">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_mu__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_mu__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mu&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_D">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_D__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_D__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;D&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_C">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_C__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_C__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;C&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_c0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_c0__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_c0__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;c0&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_omega">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_omega__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_omega__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_v_vc">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_v_vc__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_v_vc__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vc&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_v_vh">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_v_vh__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_v_vh__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vh&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Qmax">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Qmax__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Qmax__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qmax&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_theta">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_theta__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_theta__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;theta&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_sigma">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_sigma__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_sigma__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;sigma&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_COMpartment">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_COMpartment__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_COMpartment__x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;COMpartment&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Qv">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Qv__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Qv__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qv&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_tau_v">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_tau_v__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_tau_v__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau_v&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_v_vm">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_v_vm__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_v_vm__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vm&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Qa">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Qa__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Qa__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qa&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Va">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Va__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Va__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Va&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Vao">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Vao__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Vao__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Vao&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Qm">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Qm__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Qm__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qm&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_tau_m">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_tau_m__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_tau_m__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;tau_m&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_v_mv">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_v_mv__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_v_mv__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_mv&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_v_maQao">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_v_maQao__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_v_maQao__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_maQao&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_chi">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_chi__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_chi__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;chi&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_mu">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_mu__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_mu__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;mu&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_D">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_D__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_D__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;D&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_C">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_C__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_C__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;C&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_c0">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_c0__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_c0__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;c0&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_omega">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_omega__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_omega__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;omega&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_v_vc">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_v_vc__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_v_vc__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vc&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_v_vh">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_v_vh__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_v_vh__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;v_vh&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_Qmax">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_Qmax__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_Qmax__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Qmax&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_theta">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_theta__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_theta__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;theta&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_sigma">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_sigma__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_sigma__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;sigma&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task2_COMpartment">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task2_COMpartment__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task2_COMpartment__x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;COMpartment&apos;]" taskReference="task2"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_4_task2" name="Figure 5, Figure 7">
+      <listOfCurves>
+        <curve id="p4_curve_1_task2" name="[Monoaminergic (MA) voltage]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="Monoaminergic__MA__voltage_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_5_task2" name="Figure 5, Figure 7">
+      <listOfCurves>
+        <curve id="p5_curve_1_task2" name="[Ventrolateral preopticarea (VLPO) voltage]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="Ventrolateral_preopticarea__VLPO__voltage_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_6_task2" name="Figure 7h">
+      <listOfCurves>
+        <curve id="p6_curve_1_task2" name="[Somnogen level H]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="Somnogen_level_H_1_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_time_for_task1" label="Time" dataReference="auto_time_for_task1"/>
+        <dataSet id="autogen_task1_Qv" label="Qv" dataReference="auto_dg_for_task1_Qv"/>
+        <dataSet id="autogen_task1_tau_v" label="tau_v" dataReference="auto_dg_for_task1_tau_v"/>
+        <dataSet id="autogen_task1_v_vm" label="v_vm" dataReference="auto_dg_for_task1_v_vm"/>
+        <dataSet id="autogen_task1_Qa" label="Qa" dataReference="auto_dg_for_task1_Qa"/>
+        <dataSet id="autogen_task1_Va" label="Va" dataReference="auto_dg_for_task1_Va"/>
+        <dataSet id="autogen_task1_Vao" label="Vao" dataReference="auto_dg_for_task1_Vao"/>
+        <dataSet id="autogen_task1_Qm" label="Qm" dataReference="auto_dg_for_task1_Qm"/>
+        <dataSet id="autogen_task1_tau_m" label="tau_m" dataReference="auto_dg_for_task1_tau_m"/>
+        <dataSet id="autogen_task1_v_mv" label="v_mv" dataReference="auto_dg_for_task1_v_mv"/>
+        <dataSet id="autogen_task1_v_maQao" label="v_maQao" dataReference="auto_dg_for_task1_v_maQao"/>
+        <dataSet id="autogen_task1_chi" label="chi" dataReference="auto_dg_for_task1_chi"/>
+        <dataSet id="autogen_task1_mu" label="mu" dataReference="auto_dg_for_task1_mu"/>
+        <dataSet id="autogen_task1_D" label="D" dataReference="auto_dg_for_task1_D"/>
+        <dataSet id="autogen_task1_C" label="C" dataReference="auto_dg_for_task1_C"/>
+        <dataSet id="autogen_task1_c0" label="c0" dataReference="auto_dg_for_task1_c0"/>
+        <dataSet id="autogen_task1_omega" label="omega" dataReference="auto_dg_for_task1_omega"/>
+        <dataSet id="autogen_task1_v_vc" label="v_vc" dataReference="auto_dg_for_task1_v_vc"/>
+        <dataSet id="autogen_task1_v_vh" label="v_vh" dataReference="auto_dg_for_task1_v_vh"/>
+        <dataSet id="autogen_task1_Qmax" label="Qmax" dataReference="auto_dg_for_task1_Qmax"/>
+        <dataSet id="autogen_task1_theta" label="theta" dataReference="auto_dg_for_task1_theta"/>
+        <dataSet id="autogen_task1_sigma" label="sigma" dataReference="auto_dg_for_task1_sigma"/>
+        <dataSet id="autogen_task1_COMpartment" label="COMpartment" dataReference="auto_dg_for_task1_COMpartment"/>
+      </listOfDataSets>
+    </report>
+    <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_time_for_task2" label="Time" dataReference="_1_task2"/>
+        <dataSet id="autogen_task2_Vm" label="Vm" dataReference="Monoaminergic__MA__voltage_1_task2"/>
+        <dataSet id="autogen_task2_Vv" label="Vv" dataReference="Ventrolateral_preopticarea__VLPO__voltage_1_task2"/>
+        <dataSet id="autogen_task2_H" label="H" dataReference="Somnogen_level_H_1_task2"/>
+        <dataSet id="autogen_task2_Qv" label="Qv" dataReference="auto_dg_for_task2_Qv"/>
+        <dataSet id="autogen_task2_tau_v" label="tau_v" dataReference="auto_dg_for_task2_tau_v"/>
+        <dataSet id="autogen_task2_v_vm" label="v_vm" dataReference="auto_dg_for_task2_v_vm"/>
+        <dataSet id="autogen_task2_Qa" label="Qa" dataReference="auto_dg_for_task2_Qa"/>
+        <dataSet id="autogen_task2_Va" label="Va" dataReference="auto_dg_for_task2_Va"/>
+        <dataSet id="autogen_task2_Vao" label="Vao" dataReference="auto_dg_for_task2_Vao"/>
+        <dataSet id="autogen_task2_Qm" label="Qm" dataReference="auto_dg_for_task2_Qm"/>
+        <dataSet id="autogen_task2_tau_m" label="tau_m" dataReference="auto_dg_for_task2_tau_m"/>
+        <dataSet id="autogen_task2_v_mv" label="v_mv" dataReference="auto_dg_for_task2_v_mv"/>
+        <dataSet id="autogen_task2_v_maQao" label="v_maQao" dataReference="auto_dg_for_task2_v_maQao"/>
+        <dataSet id="autogen_task2_chi" label="chi" dataReference="auto_dg_for_task2_chi"/>
+        <dataSet id="autogen_task2_mu" label="mu" dataReference="auto_dg_for_task2_mu"/>
+        <dataSet id="autogen_task2_D" label="D" dataReference="auto_dg_for_task2_D"/>
+        <dataSet id="autogen_task2_C" label="C" dataReference="auto_dg_for_task2_C"/>
+        <dataSet id="autogen_task2_c0" label="c0" dataReference="auto_dg_for_task2_c0"/>
+        <dataSet id="autogen_task2_omega" label="omega" dataReference="auto_dg_for_task2_omega"/>
+        <dataSet id="autogen_task2_v_vc" label="v_vc" dataReference="auto_dg_for_task2_v_vc"/>
+        <dataSet id="autogen_task2_v_vh" label="v_vh" dataReference="auto_dg_for_task2_v_vh"/>
+        <dataSet id="autogen_task2_Qmax" label="Qmax" dataReference="auto_dg_for_task2_Qmax"/>
+        <dataSet id="autogen_task2_theta" label="theta" dataReference="auto_dg_for_task2_theta"/>
+        <dataSet id="autogen_task2_sigma" label="sigma" dataReference="auto_dg_for_task2_sigma"/>
+        <dataSet id="autogen_task2_COMpartment" label="COMpartment" dataReference="auto_dg_for_task2_COMpartment"/>
+      </listOfDataSets>
+    </report>
+  </listOfOutputs>
+  <listOfStyles>
+    <style id="style1">
+      <line type="solid" thickness="1"/>
+      <marker type="none"/>
+    </style>
+  </listOfStyles>
+</sedML>
