@@ -1,0 +1,27 @@
+# Tongli Model Three
+
+# GK Function
+BB(u,v,q,r)=v-u+v*q+u*r
+GK(u,v,q,r)=2*u*r/(BB(u,v,q,r)+SQRT(BB(u,v,q,r)^2-4*u*r*(v-u)))
+
+# Rate Functions
+Dam = heav(t-Tdam)*max(0,Dam0-krep*(t-Tdam))
+Vd2 = kd2*(1+Dam)
+Vd53 = kd53p + kd53pp*GK(Mdm2,Theta,J1/p53,J2/p53)
+
+# ODEs
+dp53/dt = ks53 - Vd53*p53
+dMdm2/dt = ks2p + ks2pp*p53 + ks2ppp*Mdm2^4/(Js2^4+Mdm2^4) - Vd2*Mdm2
+aux DNAdam=Dam/Dam0
+
+# Parameters
+p kd53p=0.005, kd53pp=.1, Theta=0.5, kd2=1.4
+p ks53=0.0276, ks2p=0.01, ks2pp=.5, ks2ppp=1, Js2=0.5 
+p krep=0.002, J1=0.1, J2=0.1
+p Tdam=10, Dam0=.07
+
+#Initial Conditions
+i p53=.36, Mdm2=.71
+
+@ Total=100, Nplot=3, YP=DNAdam, YP2=p53, YP3=Mdm2, Xhi=100, Ylo=0, Yhi=1, Bound=1000
+done
