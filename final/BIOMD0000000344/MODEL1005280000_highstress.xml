@@ -1,0 +1,1927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="Hsp70Model" name="Proctor2011_ProteinHomeostasis_HighStress" metaid="model0000">
+    <notes>
+<body xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+      This model is from the article:
+      <br/>
+      <strong> Modelling the Role of the Hsp70/Hsp90 System in the Maintenance of
+ Protein Homeostasis
+</strong>
+      <br/>
+Proctor CJ,  Lorimer IAJ
+      <em>PLoS ONE</em>2011; 6(7): e22038.
+      <a href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone .0022038">doi:10.1371/journal.pone.0022038</a>,
+      <br/>
+      <strong>Abstract:</strong>
+      <br/>
+Neurodegeneration is an age-related disorder which is characterised by the accumu
+lation of aggregated protein and neuronal cell death. There are many different ne
+urodegenerative diseases which are classified according to the specific proteins
+involved and the regions of the brain which are affected. Despite individual diff
+erences, there are common mechanisms at the sub-cellular level leading to loss of
+ protein homeostasis. The two central systems in protein homeostasis are the chap
+erone system, which promotes correct protein folding, and the cellular proteolyti
+c system, which degrades misfolded or damaged proteins. Since these systems and t
+heir interactions are very complex, we use mathematical modelling to aid understa
+nding of the processes involved. The model developed in this study focuses on the
+ role of Hsp70 (IPR00103) and Hsp90 (IPR001404) chaperones in preventing both pro
+tein aggregation and cell death. Simulations were performed under three different
+ conditions: no stress; transient stress due to an increase in reactive oxygen sp
+ecies; and high stress due to sustained increases in reactive oxygen species. The
+ model predicts that protein homeostasis can be maintained during short periods o
+f stress. However, under long periods of stress, the chaperone system becomes ove
+rwhelmed and the probability of cell death pathways being activated increases. Si
+mulations were also run in which cell death mediated by the JNK (P45983) and p38
+(Q16539) pathways was inhibited. The model predicts that inhibiting either or bot
+h of these pathways may delay cell death but does not stop the aggregation proces
+s and that eventually cells die due to aggregated protein inhibiting proteasomal
+function. This problem can be overcome if the sequestration of aggregated protein
+ into inclusion bodies is enhanced. This model predicts responses to reactive oxy
+gen species-mediated stress that are consistent with currently available experime
+ntal data. The model can be used to assess specific interventions to reduce cell
+death due to impaired protein homeostasis.
+</p>
+<p><b>te:</b> </p>
+<p> Simulations were performed under three different conditions: 1) normal condition (no stress), 2) moderate stress due to an increase in reactive oxygen species (ROS) i.e. ROS levels were increased by a factor of 4 at time=4hours for a period of 1 hour (not 2 hours as mentioned in the figure 5 legend of the reference publication. This is a typo in the paper and is clarified by the author) and 3) high stress due to sustained increase in reactive oxygen species (ROS) (here ROS increases with time).</p>
+<p> This model is for highly stressed cells (i.e. high stress condition). The model that corresponds to the normal condition is submitted as a main model in the BioModels Database. </p>
+<p> Supplementary figures S3 (normal condition), S4 (moderate stress condition) and S6 (high stress condition) are reproduced here. </p>
+</body>
+    </notes>
+    <listOfUnitDefinitions>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="item" metaid="unit0000"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="cytosol" size="1" metaid="compartment0000"/>
+      <compartment id="nucleus" size="1" metaid="compartment0001"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="NatP" compartment="cytosol" initialAmount="17600" hasOnlySubstanceUnits="true" metaid="species0000"/>
+      <species id="MisP" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0001"/>
+      <species id="Hsp70" compartment="cytosol" initialAmount="1400" hasOnlySubstanceUnits="true" metaid="species0002"/>
+      <species id="Hsp90" compartment="cytosol" initialAmount="1850" hasOnlySubstanceUnits="true" metaid="species0003"/>
+      <species id="Hsp70_dam" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0004"/>
+      <species id="Hsp90_dam" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0005"/>
+      <species id="Hsp90_Proteasome" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0006"/>
+      <species id="Hsp70_Proteasome" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0007"/>
+      <species id="Hsp70Client" compartment="cytosol" initialAmount="490" hasOnlySubstanceUnits="true" metaid="species0008"/>
+      <species id="Hsp90Client" compartment="cytosol" initialAmount="590" hasOnlySubstanceUnits="true" metaid="species0009"/>
+      <species id="Hsp70_Hsp70Client" compartment="cytosol" initialAmount="10" hasOnlySubstanceUnits="true" metaid="species0010"/>
+      <species id="Hsp90_Hsp90Client" compartment="cytosol" initialAmount="10" hasOnlySubstanceUnits="true" metaid="species0011"/>
+      <species id="Akt" compartment="cytosol" initialAmount="340" hasOnlySubstanceUnits="true" metaid="species0012"/>
+      <species id="Akt_Hsp90" compartment="cytosol" initialAmount="30" hasOnlySubstanceUnits="true" metaid="species0013"/>
+      <species id="CHIP" compartment="cytosol" initialAmount="255" hasOnlySubstanceUnits="true" metaid="species0014"/>
+      <species id="Akt_CHIP_Hsp90" compartment="cytosol" initialAmount="80" hasOnlySubstanceUnits="true" metaid="species0015"/>
+      <species id="Akt_Proteasome" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0016"/>
+      <species id="Hsf1" compartment="cytosol" initialAmount="5" hasOnlySubstanceUnits="true" metaid="species0017"/>
+      <species id="Hsf1_Hsp90" compartment="cytosol" initialAmount="95" hasOnlySubstanceUnits="true" metaid="species0018"/>
+      <species id="Hsp90_MisP" compartment="cytosol" initialAmount="470" hasOnlySubstanceUnits="true" metaid="species0019"/>
+      <species id="Hsp70_MisP" compartment="cytosol" initialAmount="410" hasOnlySubstanceUnits="true" metaid="species0020"/>
+      <species id="Hsf1_Hsf1_Hsf1" compartment="nucleus" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0021"/>
+      <species id="Hsf1_Hsf1_Hsf1_P" compartment="nucleus" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0022"/>
+      <species id="Hsf1_Hsf1" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0023"/>
+      <species id="HSEHsp70" compartment="nucleus" initialAmount="2" hasOnlySubstanceUnits="true" metaid="species0024"/>
+      <species id="HSEHsp90" compartment="nucleus" initialAmount="2" hasOnlySubstanceUnits="true" metaid="species0025"/>
+      <species id="HSEHsp70_Hsf1_Hsf1_Hsf1" compartment="nucleus" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0026"/>
+      <species id="HSEHsp70_Hsf1_Hsf1_Hsf1_P" compartment="nucleus" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0027"/>
+      <species id="HSEHsp90_Hsf1_Hsf1_Hsf1" compartment="nucleus" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0028"/>
+      <species id="HSEHsp90_Hsf1_Hsf1_Hsf1_P" compartment="nucleus" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0029"/>
+      <species id="Jnk" compartment="cytosol" initialAmount="100" hasOnlySubstanceUnits="true" metaid="species0030"/>
+      <species id="Jnk_P" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0031"/>
+      <species id="Ppx" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0032"/>
+      <species id="Mkp1" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0033"/>
+      <species id="Mkp1_P" compartment="cytosol" initialAmount="100" hasOnlySubstanceUnits="true" metaid="species0034"/>
+      <species id="Mkp1_Proteasome" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0035"/>
+      <species id="Hsp70_Ppx" compartment="cytosol" initialAmount="100" hasOnlySubstanceUnits="true" metaid="species0036"/>
+      <species id="Pkc" compartment="cytosol" initialAmount="100" hasOnlySubstanceUnits="true" metaid="species0037"/>
+      <species id="p38" compartment="cytosol" initialAmount="100" hasOnlySubstanceUnits="true" metaid="species0038"/>
+      <species id="p38_P" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0039"/>
+      <species id="Proteasome" compartment="cytosol" initialAmount="500" hasOnlySubstanceUnits="true" metaid="species0040"/>
+      <species id="MisP_Proteasome" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0041"/>
+      <species id="AggP" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0042"/>
+      <species id="SeqAggP" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0043"/>
+      <species id="AggP_Proteasome" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0044"/>
+      <species id="ROS" compartment="cytosol" initialAmount="10" hasOnlySubstanceUnits="true" metaid="species0045"/>
+      <species id="ATP" compartment="cytosol" initialAmount="10000" hasOnlySubstanceUnits="true" boundaryCondition="true" metaid="species0046"/>
+      <species id="ADP" compartment="cytosol" initialAmount="1000" hasOnlySubstanceUnits="true" boundaryCondition="true" metaid="species0047"/>
+      <species id="Source" compartment="cytosol" initialAmount="1" hasOnlySubstanceUnits="true" boundaryCondition="true" metaid="species0048"/>
+      <species id="Sink" compartment="cytosol" initialAmount="1" hasOnlySubstanceUnits="true" boundaryCondition="true" metaid="species0049"/>
+      <species id="p38Death" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0050"/>
+      <species id="JNKDeath" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0051"/>
+      <species id="PIDeath" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0052"/>
+      <species id="CellDeath" compartment="cytosol" initialAmount="0" hasOnlySubstanceUnits="true" metaid="species0053"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="ksynNatP" value="0.042" metaid="parameter0000"/>
+      <parameter id="kmisfold" value="2e-006" metaid="parameter0001"/>
+      <parameter id="kbinMisPProt" value="1e-007" metaid="parameter0002"/>
+      <parameter id="kdegMisP" value="0.01" metaid="parameter0003"/>
+      <parameter id="kagg" value="1e-008" metaid="parameter0004"/>
+      <parameter id="kseqagg" value="7e-007" metaid="parameter0005"/>
+      <parameter id="kbinAggPProt" value="1e-005" metaid="parameter0006"/>
+      <parameter id="kbinHspMisp" value="8e-006" metaid="parameter0007"/>
+      <parameter id="krelHspMisp" value="8e-005" metaid="parameter0008"/>
+      <parameter id="krefold" value="0.00055" metaid="parameter0009"/>
+      <parameter id="kbinHsf1Hsp90" value="0.02" constant="false" metaid="parameter0010"/>
+      <parameter id="krelHsf1Hsp90" value="0.5" metaid="parameter0011"/>
+      <parameter id="kdimerHsf1" value="8e-005" metaid="parameter0012"/>
+      <parameter id="ktrimerHsf1" value="0.01" metaid="parameter0013"/>
+      <parameter id="kdetrimerHsf1" value="0.5" metaid="parameter0014"/>
+      <parameter id="kdedimerHsf1" value="0.5" metaid="parameter0015"/>
+      <parameter id="kbinHSEHsf1" value="0.05" metaid="parameter0016"/>
+      <parameter id="krelHSEHsf1" value="0.08" metaid="parameter0017"/>
+      <parameter id="kupregHsp" value="0.2" metaid="parameter0018"/>
+      <parameter id="kbasalsynHsp70" value="0.008" metaid="parameter0019"/>
+      <parameter id="kbasalsynHsp90" value="0.008" metaid="parameter0020"/>
+      <parameter id="kbinHsp70Prot" value="1.2e-008" metaid="parameter0021"/>
+      <parameter id="kbinHsp90Prot" value="1e-008" metaid="parameter0022"/>
+      <parameter id="kdegHsp70" value="0.01" metaid="parameter0023"/>
+      <parameter id="kdegHsp90" value="0.01" metaid="parameter0024"/>
+      <parameter id="kgenROS" value="0.01" constant="false" metaid="parameter0025"/>
+      <parameter id="kremROS" value="0.001" metaid="parameter0026"/>
+      <parameter id="kbinHsp70client" value="0.0002" metaid="parameter0027"/>
+      <parameter id="krelHsp70client" value="5" metaid="parameter0028"/>
+      <parameter id="kbinHsp90client" value="0.0002" metaid="parameter0029"/>
+      <parameter id="krelHsp90client" value="5" constant="false" metaid="parameter0030"/>
+      <parameter id="kphosJnk" value="0.02" metaid="parameter0031"/>
+      <parameter id="kdephosJnkMkp1" value="0.05" metaid="parameter0032"/>
+      <parameter id="kbinHsp70Ppx" value="0.2" metaid="parameter0033"/>
+      <parameter id="krelHsp70Ppx" value="5" metaid="parameter0034"/>
+      <parameter id="kphosHsf1" value="0.03" metaid="parameter0035"/>
+      <parameter id="kdephosHsf1" value="0.01" metaid="parameter0036"/>
+      <parameter id="kbinHSEPhosTriH" value="0.1" metaid="parameter0037"/>
+      <parameter id="krelHSEPhosTriH" value="0.08" metaid="parameter0038"/>
+      <parameter id="kphosp38" value="0.02" metaid="parameter0039"/>
+      <parameter id="kdephosp38Mkp1" value="0.05" metaid="parameter0040"/>
+      <parameter id="kgenROSAggP" value="1e-006" metaid="parameter0041"/>
+      <parameter id="ksynAkt" value="0.0015" metaid="parameter0042"/>
+      <parameter id="kbinAktHsp90" value="0.00037" metaid="parameter0043"/>
+      <parameter id="krelAktHsp90" value="7" constant="false" metaid="parameter0044"/>
+      <parameter id="kbinAktProt" value="6e-008" metaid="parameter0045"/>
+      <parameter id="krelAktProt" value="1e-008" metaid="parameter0046"/>
+      <parameter id="kdegAkt" value="0.01" metaid="parameter0047"/>
+      <parameter id="kbinCHIP" value="2e-007" metaid="parameter0048"/>
+      <parameter id="krelCHIP" value="1e-008" metaid="parameter0049"/>
+      <parameter id="ksynMkp1" value="1e-005" metaid="parameter0050"/>
+      <parameter id="kbinMkp1Prot" value="9.6e-009" metaid="parameter0051"/>
+      <parameter id="kdegMkp1" value="0.01" metaid="parameter0052"/>
+      <parameter id="kphosMkp1" value="0.02" metaid="parameter0053"/>
+      <parameter id="kdephosMkp1" value="0.001" metaid="parameter0054"/>
+      <parameter id="kgenROSp38" value="0.0001" metaid="parameter0055"/>
+      <parameter id="kdamHsp" value="1e-008" metaid="parameter0056"/>
+      <parameter id="kp38death" value="1.5e-007" metaid="parameter0057"/>
+      <parameter id="kJnkdeath" value="1.5e-007" metaid="parameter0058"/>
+      <parameter id="kPIdeath" value="2e-008" metaid="parameter0059"/>
+      <parameter id="kp38act" value="1" constant="false" metaid="parameter0060"/>
+      <parameter id="kalive" value="1" constant="false" metaid="parameter0061"/>
+      <parameter id="tot_Hsp90" value="0" constant="false" metaid="parameter0062"/>
+      <parameter id="tot_Hsp70" value="0" constant="false" metaid="parameter0063"/>
+      <parameter id="tot_MisP" value="0" constant="false" metaid="parameter0064"/>
+    </listOfParameters>
+    <listOfRules>
+    <assignmentRule metaid="metaid_0000064" variable="tot_Hsp90">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> Hsp90 </ci>
+            <ci> Hsp90_dam </ci>
+            <ci> Hsp90_Proteasome </ci>
+            <ci> Hsp90_Hsp90Client </ci>
+            <ci> Akt_Hsp90 </ci>
+            <ci> Akt_CHIP_Hsp90 </ci>
+            <ci> Hsf1_Hsp90 </ci>
+            <ci> Hsp90_MisP </ci>
+          </apply>
+      </math>
+    </assignmentRule>
+    <assignmentRule metaid="metaid_0100064" variable="tot_Hsp70">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> Hsp70 </ci>
+            <ci> Hsp70_dam </ci>
+            <ci> Hsp70_Proteasome </ci>
+            <ci> Hsp70_Hsp70Client </ci>
+            <ci> Hsp70_MisP </ci>
+            <ci> Hsp70_Ppx </ci>
+          </apply>
+      </math>
+    </assignmentRule>
+    <assignmentRule metaid="metaid_0200064" variable="tot_MisP">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> MisP </ci>
+            <ci> Hsp70_MisP </ci>
+            <ci> Hsp90_MisP </ci>
+          </apply>
+      </math>
+    </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="ProteinSynthesis" reversible="false" metaid="reaction0000">
+        <listOfReactants>
+          <speciesReference species="Source"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NatP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0000">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ksynNatP </ci>
+              <ci> Source </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Misfolding" reversible="false" metaid="reaction0001">
+        <listOfReactants>
+          <speciesReference species="NatP"/>
+          <speciesReference species="ROS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MisP"/>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0001">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kmisfold </ci>
+              <ci> NatP </ci>
+              <ci> ROS </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90MisPBinding" reversible="false" metaid="reaction0002">
+        <listOfReactants>
+          <speciesReference species="MisP"/>
+          <speciesReference species="Hsp90"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90_MisP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0002">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHspMisp </ci>
+              <ci> MisP </ci>
+              <ci> Hsp90 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90unsuccessulRefolding" reversible="false" metaid="reaction0003">
+        <listOfReactants>
+          <speciesReference species="Hsp90_MisP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MisP"/>
+          <speciesReference species="Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0003">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHspMisp </ci>
+              <ci> Hsp90_MisP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90refolding" reversible="false" metaid="reaction0004">
+        <listOfReactants>
+          <speciesReference species="Hsp90_MisP"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="NatP"/>
+          <speciesReference species="ADP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0004">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> krefold </ci>
+                <ci> Hsp90_MisP </ci>
+                <ci> kalive </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 5000 </cn>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70MisPBinding" reversible="false" metaid="reaction0005">
+        <listOfReactants>
+          <speciesReference species="MisP"/>
+          <speciesReference species="Hsp70"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70_MisP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0005">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHspMisp </ci>
+              <ci> MisP </ci>
+              <ci> Hsp70 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70unsuccessulRefolding" reversible="false" metaid="reaction0006">
+        <listOfReactants>
+          <speciesReference species="Hsp70_MisP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MisP"/>
+          <speciesReference species="Hsp70"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0006">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHspMisp </ci>
+              <ci> Hsp70_MisP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70refolding" reversible="false" metaid="reaction0007">
+        <listOfReactants>
+          <speciesReference species="Hsp70_MisP"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70"/>
+          <speciesReference species="NatP"/>
+          <speciesReference species="ADP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0007">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> krefold </ci>
+                <ci> Hsp70_MisP </ci>
+                <ci> kalive </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 5000 </cn>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70ClientBinding" reversible="false" metaid="reaction0008">
+        <listOfReactants>
+          <speciesReference species="Hsp70"/>
+          <speciesReference species="Hsp70Client"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70_Hsp70Client"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0008">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsp70client </ci>
+              <ci> Hsp70 </ci>
+              <ci> Hsp70Client </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70ClientRelease" reversible="false" metaid="reaction0009">
+        <listOfReactants>
+          <speciesReference species="Hsp70_Hsp70Client"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70"/>
+          <speciesReference species="Hsp70Client"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0009">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHsp70client </ci>
+              <ci> Hsp70_Hsp70Client </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90ClientBinding" reversible="false" metaid="reaction0010">
+        <listOfReactants>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="Hsp90Client"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90_Hsp90Client"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0010">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsp90client </ci>
+              <ci> Hsp90 </ci>
+              <ci> Hsp90Client </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90ClientRelease" reversible="false" metaid="reaction0011">
+        <listOfReactants>
+          <speciesReference species="Hsp90_Hsp90Client"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="Hsp90Client"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0011">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHsp90client </ci>
+              <ci> Hsp90_Hsp90Client </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90HSF1Binding" reversible="false" metaid="reaction0012">
+        <listOfReactants>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="Hsf1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1_Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0012">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsf1Hsp90 </ci>
+              <ci> Hsp90 </ci>
+              <ci> Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90HSF1Release" reversible="false" metaid="reaction0013">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsp90"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0013">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHsf1Hsp90 </ci>
+              <ci> Hsf1_Hsp90 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="dimerisation" reversible="false" metaid="reaction0014">
+        <listOfReactants>
+          <speciesReference species="Hsf1" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1_Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0014">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <ci> Hsf1 </ci>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+                <ci> kdimerHsf1 </ci>
+                <ci> kalive </ci>
+                <ci> Hsf1 </ci>
+              </apply>
+              <cn type="integer"> 2 </cn>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="trimerisation" reversible="false" metaid="reaction0015">
+        <listOfReactants>
+          <speciesReference species="Hsf1"/>
+          <speciesReference species="Hsf1_Hsf1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0015">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ktrimerHsf1 </ci>
+              <ci> Hsf1 </ci>
+              <ci> Hsf1_Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="deTrimerisation" reversible="false" metaid="reaction0016">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1"/>
+          <speciesReference species="Hsf1_Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0016">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdetrimerHsf1 </ci>
+              <ci> Hsf1_Hsf1_Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="deDimerisation" reversible="false" metaid="reaction0017">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1" stoichiometry="2"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0017">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdedimerHsf1 </ci>
+              <ci> Hsf1_Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE70TriHBinding" reversible="false" metaid="reaction0018">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+          <speciesReference species="HSEHsp70"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp70_Hsf1_Hsf1_Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0018">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHSEHsf1 </ci>
+              <ci> HSEHsp70 </ci>
+              <ci> Hsf1_Hsf1_Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE70TriHRelease" reversible="false" metaid="reaction0019">
+        <listOfReactants>
+          <speciesReference species="HSEHsp70_Hsf1_Hsf1_Hsf1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp70"/>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0019">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHSEHsf1 </ci>
+              <ci> HSEHsp70_Hsf1_Hsf1_Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE90TriHBinding" reversible="false" metaid="reaction0020">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+          <speciesReference species="HSEHsp90"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp90_Hsf1_Hsf1_Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0020">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHSEHsf1 </ci>
+              <ci> HSEHsp90 </ci>
+              <ci> Hsf1_Hsf1_Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE90TriHRelease" reversible="false" metaid="reaction0021">
+        <listOfReactants>
+          <speciesReference species="HSEHsp90_Hsf1_Hsf1_Hsf1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp90"/>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0021">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHSEHsf1 </ci>
+              <ci> HSEHsp90_Hsf1_Hsf1_Hsf1 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsf1_Hsf1_Hsf1Phosphorylation" reversible="false" metaid="reaction0022">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+          <speciesReference species="Pkc"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="Pkc"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0022">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kphosHsf1 </ci>
+              <ci> Hsf1_Hsf1_Hsf1 </ci>
+              <ci> Pkc </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsf1_Hsf1_Hsf1DePhosphorylation" reversible="false" metaid="reaction0023">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="Hsp70_Ppx"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1_Hsf1_Hsf1"/>
+          <speciesReference species="Hsp70_Ppx"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0023">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdephosHsf1 </ci>
+              <ci> Hsf1_Hsf1_Hsf1_P </ci>
+              <ci> Hsp70_Ppx </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE70PhosTriHBinding" reversible="false" metaid="reaction0024">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="HSEHsp70"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp70_Hsf1_Hsf1_Hsf1_P"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0024">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHSEPhosTriH </ci>
+              <ci> HSEHsp70 </ci>
+              <ci> Hsf1_Hsf1_Hsf1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE70PhosTriHRelease" reversible="false" metaid="reaction0025">
+        <listOfReactants>
+          <speciesReference species="HSEHsp70_Hsf1_Hsf1_Hsf1_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="HSEHsp70"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0025">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHSEPhosTriH </ci>
+              <ci> HSEHsp70_Hsf1_Hsf1_Hsf1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE90PhosTriHBinding" reversible="false" metaid="reaction0026">
+        <listOfReactants>
+          <speciesReference species="Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="HSEHsp90"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp90_Hsf1_Hsf1_Hsf1_P"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0026">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHSEPhosTriH </ci>
+              <ci> HSEHsp90 </ci>
+              <ci> Hsf1_Hsf1_Hsf1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="HSE90PhosTriHRelease" reversible="false" metaid="reaction0027">
+        <listOfReactants>
+          <speciesReference species="HSEHsp90_Hsf1_Hsf1_Hsf1_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="HSEHsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0027">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHSEPhosTriH </ci>
+              <ci> HSEHsp90_Hsf1_Hsf1_Hsf1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90BasalSynthesis" reversible="false" metaid="reaction0028">
+        <listOfReactants>
+          <speciesReference species="Source"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0028">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbasalsynHsp90 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90Upregulation" reversible="false" metaid="reaction0029">
+        <listOfReactants>
+          <speciesReference species="HSEHsp90_Hsf1_Hsf1_Hsf1_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp90_Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0029">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kupregHsp </ci>
+              <ci> HSEHsp90_Hsf1_Hsf1_Hsf1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90ProteasomeBinding" reversible="false" metaid="reaction0030">
+        <listOfReactants>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90_Proteasome"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0030">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsp90Prot </ci>
+              <ci> Hsp90 </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90Degradation" reversible="false" metaid="reaction0031">
+        <listOfReactants>
+          <speciesReference species="Hsp90_Proteasome"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Proteasome"/>
+          <speciesReference species="ADP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0031">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdegHsp90 </ci>
+                <ci> Hsp90_Proteasome </ci>
+                <ci> kalive </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 5000 </cn>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70BasalSynthesis" reversible="false" metaid="reaction0032">
+        <listOfReactants>
+          <speciesReference species="Source"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0032">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbasalsynHsp70 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70Upregulation" reversible="false" metaid="reaction0033">
+        <listOfReactants>
+          <speciesReference species="HSEHsp70_Hsf1_Hsf1_Hsf1_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="HSEHsp70_Hsf1_Hsf1_Hsf1_P"/>
+          <speciesReference species="Hsp70"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0033">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kupregHsp </ci>
+              <ci> HSEHsp70_Hsf1_Hsf1_Hsf1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70ProteasomeBinding" reversible="false" metaid="reaction0034">
+        <listOfReactants>
+          <speciesReference species="Hsp70"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70_Proteasome"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0034">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsp70Prot </ci>
+              <ci> Hsp70 </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70Degradation" reversible="false" metaid="reaction0035">
+        <listOfReactants>
+          <speciesReference species="Hsp70_Proteasome"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Proteasome"/>
+          <speciesReference species="ADP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0035">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdegHsp70 </ci>
+                <ci> Hsp70_Proteasome </ci>
+                <ci> kalive </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 5000 </cn>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="MisPProteasomeBinding1" reversible="false" metaid="reaction0036">
+        <listOfReactants>
+          <speciesReference species="Hsp70_MisP"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MisP_Proteasome"/>
+          <speciesReference species="Hsp70"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0036">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinMisPProt </ci>
+              <ci> Hsp70_MisP </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="MisPProteasomeBinding2" reversible="false" metaid="reaction0037">
+        <listOfReactants>
+          <speciesReference species="Hsp90_MisP"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MisP_Proteasome"/>
+          <speciesReference species="Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0037">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinMisPProt </ci>
+              <ci> Hsp90_MisP </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="MisPDegradation" reversible="false" metaid="reaction0038">
+        <listOfReactants>
+          <speciesReference species="MisP_Proteasome"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Proteasome"/>
+          <speciesReference species="ADP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0038">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdegMisP </ci>
+                <ci> MisP_Proteasome </ci>
+                <ci> kalive </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 5000 </cn>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="radicalFormation" name="radicalFormation" reversible="false" metaid="reaction0039">
+        <listOfReactants>
+          <speciesReference species="Source"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0039">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+	     <apply>
+              <times/>
+              <apply>
+                <plus/>
+                <ci> kgenROS </ci>
+                <apply>
+                  <times/>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> 
+            		time 
+        		</csymbol> 
+                  <apply>
+                    <power/>
+                    <cn type="integer"> 10 </cn>
+                    <cn type="integer"> -6 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Source </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="radicalScavenging" name="radicalScavenging" reversible="false" metaid="reaction0040">
+        <listOfReactants>
+          <speciesReference species="ROS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Sink"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0040">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kremROS </ci>
+              <ci> ROS </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70_PpxBinding" reversible="false" metaid="reaction0041">
+        <listOfReactants>
+          <speciesReference species="Hsp70"/>
+          <speciesReference species="Ppx"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70_Ppx"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0041">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsp70Ppx </ci>
+              <ci> Hsp70 </ci>
+              <ci> Ppx </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70_PPXRelease" reversible="false" metaid="reaction0042">
+        <listOfReactants>
+          <speciesReference species="Hsp70_Ppx"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70"/>
+          <speciesReference species="Ppx"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0042">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelHsp70Ppx </ci>
+              <ci> Hsp70_Ppx </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="JnkPhosphorylation" reversible="false" metaid="reaction0043">
+        <listOfReactants>
+          <speciesReference species="ROS"/>
+          <speciesReference species="Jnk"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ROS"/>
+          <speciesReference species="Jnk_P"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0043">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kphosJnk </ci>
+              <ci> Jnk </ci>
+              <ci> ROS </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="JNKDephosphorylatioByMkp1" reversible="false" metaid="reaction0044">
+        <listOfReactants>
+          <speciesReference species="Jnk_P"/>
+          <speciesReference species="Mkp1_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Jnk"/>
+          <speciesReference species="Mkp1_P"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0044">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdephosJnkMkp1 </ci>
+              <ci> Jnk_P </ci>
+              <ci> Mkp1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="p38Phosphorylation" reversible="false" metaid="reaction0045">
+        <listOfReactants>
+          <speciesReference species="ROS"/>
+          <speciesReference species="p38"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ROS"/>
+          <speciesReference species="p38_P"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0045">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kphosp38 </ci>
+              <ci> ROS </ci>
+              <ci> p38 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="p38DePhosphorylationByMkp1" reversible="false" metaid="reaction0046">
+        <listOfReactants>
+          <speciesReference species="p38_P"/>
+          <speciesReference species="Mkp1_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p38"/>
+          <speciesReference species="Mkp1_P"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0046">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdephosp38Mkp1 </ci>
+              <ci> p38_P </ci>
+              <ci> Mkp1_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Aggregation1" reversible="false" metaid="reaction0047">
+        <listOfReactants>
+          <speciesReference species="MisP" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AggP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0047">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kagg </ci>
+              <ci> MisP </ci>
+              <apply>
+                <minus/>
+                <ci> MisP </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+              <cn> 0.5 </cn>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="SequesteringOfAggregate" reversible="false" metaid="reaction0048">
+        <listOfReactants>
+          <speciesReference species="MisP"/>
+          <speciesReference species="AggP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SeqAggP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0048">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kagg </ci>
+              <ci> MisP </ci>
+              <ci> AggP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="InclusionGrowth" reversible="false" metaid="reaction0049">
+        <listOfReactants>
+          <speciesReference species="SeqAggP"/>
+          <speciesReference species="MisP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SeqAggP" stoichiometry="2"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0049">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kseqagg </ci>
+              <ci> SeqAggP </ci>
+              <ci> MisP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ProteasomeInhibtion" reversible="false" metaid="reaction0050">
+        <listOfReactants>
+          <speciesReference species="AggP"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AggP_Proteasome"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0050">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinAggPProt </ci>
+              <ci> AggP </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ROSgenerationSmallAggP" reversible="false" metaid="reaction0051">
+        <listOfReactants>
+          <speciesReference species="AggP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AggP"/>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0051">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kgenROSAggP </ci>
+              <ci> AggP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ROSgenerationAggPProteasome" reversible="false" metaid="reaction0052">
+        <listOfReactants>
+          <speciesReference species="AggP_Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AggP_Proteasome"/>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0052">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kgenROSAggP </ci>
+              <ci> AggP_Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="AktSynthesis" reversible="false" metaid="reaction0053">
+        <listOfReactants>
+          <speciesReference species="Source"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Akt"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0053">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ksynAkt </ci>
+              <ci> Source </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90AktBinding" reversible="false" metaid="reaction0054">
+        <listOfReactants>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="Akt"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Akt_Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0054">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinAktHsp90 </ci>
+              <ci> Hsp90 </ci>
+              <ci> Akt </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90AktRelease" reversible="false" metaid="reaction0055">
+        <listOfReactants>
+          <speciesReference species="Akt_Hsp90"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Akt"/>
+          <speciesReference species="Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0055">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelAktHsp90 </ci>
+              <ci> Akt_Hsp90 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CHIPbinding" reversible="false" metaid="reaction0056">
+        <listOfReactants>
+          <speciesReference species="CHIP"/>
+          <speciesReference species="Akt_Hsp90"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Akt_CHIP_Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0056">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinCHIP </ci>
+              <ci> CHIP </ci>
+              <ci> Akt_Hsp90 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="CHIPrelease" reversible="false" metaid="reaction0057">
+        <listOfReactants>
+          <speciesReference species="Akt_CHIP_Hsp90"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="CHIP"/>
+          <speciesReference species="Akt_Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0057">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelCHIP </ci>
+              <ci> Akt_CHIP_Hsp90 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="AktProteasomeBinding" reversible="false" metaid="reaction0058">
+        <listOfReactants>
+          <speciesReference species="Akt_CHIP_Hsp90"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Akt_Proteasome"/>
+          <speciesReference species="CHIP"/>
+          <speciesReference species="Hsp90"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0058">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinAktProt </ci>
+              <ci> Akt_CHIP_Hsp90 </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="AktProteasomeRelease" reversible="false" metaid="reaction0059">
+        <listOfReactants>
+          <speciesReference species="Akt_Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Akt"/>
+          <speciesReference species="Proteasome"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0059">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelAktProt </ci>
+              <ci> Akt_Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="AktDegradation" reversible="false" metaid="reaction0060">
+        <listOfReactants>
+          <speciesReference species="Akt_Proteasome"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Proteasome"/>
+          <speciesReference species="ADP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0060">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdegAkt </ci>
+                <ci> Akt_Proteasome </ci>
+                <ci> kalive </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 5000 </cn>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mkp1Synthesis" reversible="false" metaid="reaction0061">
+        <listOfReactants>
+          <speciesReference species="Source"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Mkp1"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0061">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ksynMkp1 </ci>
+              <ci> Source </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mkp1ProteasomeBinding" reversible="false" metaid="reaction0062">
+        <listOfReactants>
+          <speciesReference species="Mkp1"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Mkp1_Proteasome"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0062">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinMkp1Prot </ci>
+              <ci> Mkp1 </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mkp1Degradation" reversible="false" metaid="reaction0063">
+        <listOfReactants>
+          <speciesReference species="Mkp1_Proteasome"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Proteasome"/>
+          <speciesReference species="ADP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0063">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdegMkp1 </ci>
+                <ci> Mkp1_Proteasome </ci>
+                <ci> kalive </ci>
+                <ci> ATP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 5000 </cn>
+                <ci> ATP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mkp1Phosphorylation" reversible="false" metaid="reaction0064">
+        <listOfReactants>
+          <speciesReference species="Mkp1"/>
+          <speciesReference species="Hsp70"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Mkp1_P"/>
+          <speciesReference species="Hsp70"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0064">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kphosMkp1 </ci>
+              <ci> Mkp1 </ci>
+              <ci> Hsp70 </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mkp1Dephosphorylation" reversible="false" metaid="reaction0065">
+        <listOfReactants>
+          <speciesReference species="Mkp1_P"/>
+          <speciesReference species="ROS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Mkp1"/>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0065">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdephosMkp1 </ci>
+              <ci> Mkp1_P </ci>
+              <ci> ROS </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="p38ROSproduction" reversible="false" metaid="reaction0066">
+        <listOfReactants>
+          <speciesReference species="p38_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p38_P"/>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0066">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kgenROSp38 </ci>
+              <ci> p38_P </ci>
+              <ci> kalive </ci>
+              <ci> kp38act </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70Damage" reversible="false" metaid="reaction0067">
+        <listOfReactants>
+          <speciesReference species="Hsp70"/>
+          <speciesReference species="ROS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70_dam"/>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0067">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdamHsp </ci>
+              <ci> Hsp70 </ci>
+              <ci> ROS </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90Damage" reversible="false" metaid="reaction0068">
+        <listOfReactants>
+          <speciesReference species="Hsp90"/>
+          <speciesReference species="ROS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90_dam"/>
+          <speciesReference species="ROS"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0068">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdamHsp </ci>
+              <ci> Hsp90 </ci>
+              <ci> ROS </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70DamProteasomeBinding" reversible="false" metaid="reaction0069">
+        <listOfReactants>
+          <speciesReference species="Hsp70_dam"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp70_Proteasome"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0069">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsp70Prot </ci>
+              <ci> Hsp70_dam </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90DamProteasomeBinding" reversible="false" metaid="reaction0070">
+        <listOfReactants>
+          <speciesReference species="Hsp90_dam"/>
+          <speciesReference species="Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Hsp90_Proteasome"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0070">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinHsp90Prot </ci>
+              <ci> Hsp90_dam </ci>
+              <ci> Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70DamAggregation1" reversible="false" metaid="reaction0071">
+        <listOfReactants>
+          <speciesReference species="Hsp70_dam" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AggP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0071">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kagg </ci>
+              <ci> Hsp70_dam </ci>
+              <apply>
+                <minus/>
+                <ci> Hsp70_dam </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+              <cn> 0.5 </cn>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70DamInclusionFormation" reversible="false" metaid="reaction0072">
+        <listOfReactants>
+          <speciesReference species="Hsp70_dam"/>
+          <speciesReference species="AggP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SeqAggP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0072">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kagg </ci>
+              <ci> Hsp70_dam </ci>
+              <ci> AggP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90DamAggregation" reversible="false" metaid="reaction0073">
+        <listOfReactants>
+          <speciesReference species="Hsp90_dam" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AggP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0073">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kagg </ci>
+              <ci> Hsp90_dam </ci>
+              <apply>
+                <minus/>
+                <ci> Hsp90_dam </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+              <cn> 0.5 </cn>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90DamInclusionFormation" reversible="false" metaid="reaction0074">
+        <listOfReactants>
+          <speciesReference species="Hsp90_dam"/>
+          <speciesReference species="AggP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SeqAggP"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0074">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kagg </ci>
+              <ci> Hsp90_dam </ci>
+              <ci> AggP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp70DamSequestering" reversible="false" metaid="reaction0075">
+        <listOfReactants>
+          <speciesReference species="Hsp70_dam"/>
+          <speciesReference species="SeqAggP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SeqAggP" stoichiometry="2"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0075">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kseqagg </ci>
+              <ci> Hsp70_dam </ci>
+              <ci> SeqAggP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Hsp90DamSequestering" reversible="false" metaid="reaction0076">
+        <listOfReactants>
+          <speciesReference species="Hsp90_dam"/>
+          <speciesReference species="SeqAggP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SeqAggP" stoichiometry="2"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0076">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kseqagg </ci>
+              <ci> Hsp90_dam </ci>
+              <ci> SeqAggP </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="p38CellDeath" reversible="false" metaid="reaction0077">
+        <listOfReactants>
+          <speciesReference species="p38_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p38_P"/>
+          <speciesReference species="p38Death"/>
+          <speciesReference species="CellDeath"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0077">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kp38death </ci>
+              <ci> p38_P </ci>
+              <ci> kalive </ci>
+              <ci> kp38act </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="JnkCellDeath" reversible="false" metaid="reaction0078">
+        <listOfReactants>
+          <speciesReference species="Jnk_P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Jnk_P"/>
+          <speciesReference species="JNKDeath"/>
+          <speciesReference species="CellDeath"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0078">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kJnkdeath </ci>
+              <ci> Jnk_P </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="PICellDeath" reversible="false" metaid="reaction0079">
+        <listOfReactants>
+          <speciesReference species="AggP_Proteasome"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AggP_Proteasome"/>
+          <speciesReference species="PIDeath"/>
+          <speciesReference species="CellDeath"/>
+        </listOfProducts>
+        <kineticLaw metaid="kineticLaw0079">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kPIdeath </ci>
+              <ci> AggP_Proteasome </ci>
+              <ci> kalive </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <listOfEvents>
+      <event id="DeathOfCell">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <geq/>
+              <ci> CellDeath </ci>
+              <cn> 1 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="kalive">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn type="integer"> 0 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  </model>
+</sbml>
