@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This biomodel was generated in VCML Version 0.4-->
+<vcml xmlns="http://sourceforge.net/projects/vcell/vcml" Version="0.4">
+   <BioModel Name="Curien2003_MetThr_synthesis">
+      <Model Name="Curien2003_MetThr_synthesis">
+         <Compound Name="Phser">
+            <Annotation>Phser</Annotation>
+         </Compound>
+         <Compound Name="Thr">
+            <Annotation>Thr</Annotation>
+         </Compound>
+         <Compound Name="Cystathionine">
+            <Annotation>Cystathionine</Annotation>
+         </Compound>
+         <Compound Name="Hser">
+            <Annotation>Hser</Annotation>
+         </Compound>
+         <Compound Name="Phi">
+            <Annotation>Phi</Annotation>
+         </Compound>
+         <Compound Name="Cys">
+            <Annotation>Cys</Annotation>
+         </Compound>
+         <Compound Name="AdoMet">
+            <Annotation>AdoMet</Annotation>
+         </Compound>
+         <Compound Name="CGS">
+            <Annotation>CGS</Annotation>
+         </Compound>
+         <Compound Name="TS">
+            <Annotation>TS</Annotation>
+         </Compound>
+         <Feature Name="compartment" />
+         <LocalizedCompound Name="Phser" CompoundRef="Phser" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Thr" CompoundRef="Thr" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Cystathionine" CompoundRef="Cystathionine" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Hser" CompoundRef="Hser" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Phi" CompoundRef="Phi" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="Cys" CompoundRef="Cys" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="AdoMet" CompoundRef="AdoMet" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="CGS" CompoundRef="CGS" Structure="compartment" OverrideName="true" />
+         <LocalizedCompound Name="TS" CompoundRef="TS" Structure="compartment" OverrideName="true" />
+         <SimpleReaction Structure="compartment" Name="v1" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Hser" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Phser" Stoichiometry="1" />
+            <Kinetics KineticsType="GeneralKinetics">
+               <Parameter Name="J" Role="reaction rate" Unit="uM.s-1">(V0 * sbmlRateFactor)</Parameter>
+               <Parameter Name="V0" Role="user defined" Unit="1.0E-6 mole.litre-1.second-1">1.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.litre.mole-1">1.0</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vCys" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Phser" Stoichiometry="1" />
+            <Reactant LocalizedCompoundRef="Cys" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Cystathionine" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Phi" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="CGS" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * CGS * Phser * kcat2 / (Phser + (KmPHSER * (1.0 + (Phi / Ki2)) / (1.0 + (KmCYS / Cys)))) / (1.0 + (KmCYS / Cys)) / KMOLE)</Parameter>
+               <Parameter Name="KmCYS" Role="user defined" Unit="1.0E-6 mole.litre-1">460.0</Parameter>
+               <Parameter Name="KmPHSER" Role="user defined" Unit="1.0E-6 mole.litre-1">2500.0</Parameter>
+               <Parameter Name="kcat2" Role="user defined" Unit="1.0E-6 mole.litre-1">30.0</Parameter>
+               <Parameter Name="Ki2" Role="user defined" Unit="1.0E-6 mole.litre-1">2000.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <SimpleReaction Structure="compartment" Name="vThr" FluxCarrierValence="0" FluxOption="MolecularOnly">
+            <Reactant LocalizedCompoundRef="Phser" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Thr" Stoichiometry="1" />
+            <Product LocalizedCompoundRef="Phi" Stoichiometry="1" />
+            <Modifier LocalizedCompoundRef="AdoMet" />
+            <Modifier LocalizedCompoundRef="TS" />
+            <Kinetics KineticsType="GeneralLumpedKinetics">
+               <Parameter Name="LumpedJ" Role="lumped reaction rate" Unit="molecules.s-1">(sbmlRateFactor * TS * (5.9E-4 + (0.062 * pow(AdoMet,2.9) / (23170.475005920784 + pow(AdoMet,2.9)))) * Phser / (1.0 + (Phi / Ki3)) / KMOLE)</Parameter>
+               <Parameter Name="Ki3" Role="user defined" Unit="1.0E-6 mole.litre-1">1000.0</Parameter>
+               <Parameter Name="sbmlRateFactor" Role="user defined" Unit="1000000 uM.um3.mole-1">1.0E15</Parameter>
+            </Kinetics>
+         </SimpleReaction>
+         <Diagram Name="compartment" Structure="compartment" />
+      </Model>
+      <SimulationSpec Name="Curien2003_MetThr_synthesis_Compartmental" Stochastic="false" UseConcentration="true">
+         <Geometry Name="Compartmental" Dimension="0">
+            <Extent X="10.0" Y="10.0" Z="10.0" />
+            <Origin X="0.0" Y="0.0" Z="0.0" />
+            <SubVolume Name="Compartment" Handle="0" Type="Compartmental" />
+         </Geometry>
+         <GeometryContext>
+            <FeatureMapping Feature="compartment" GeometryClass="Compartment" SubVolume="Compartment" Size="1.0000000000000001E15">
+               <BoundariesTypes Xm="Flux" Xp="Flux" Ym="Flux" Yp="Flux" Zm="Flux" Zp="Flux" />
+            </FeatureMapping>
+         </GeometryContext>
+         <ReactionContext>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Phser" ForceConstant="false" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Thr" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Cystathionine" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Hser" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>0.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Phi" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>10000.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="Cys" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>15.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="AdoMet" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>20.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="CGS" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>0.7</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <LocalizedCompoundSpec LocalizedCompoundRef="TS" ForceConstant="true" WellMixed="false">
+               <InitialConcentration>5.0</InitialConcentration>
+               <Diffusion>0.0</Diffusion>
+            </LocalizedCompoundSpec>
+            <ReactionSpec ReactionStepRef="v1" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vCys" ReactionMapping="included" />
+            <ReactionSpec ReactionStepRef="vThr" ReactionMapping="included" />
+         </ReactionContext>
+         <MicroscopeMeasurement Name="fluor">
+            <ConvolutionKernel Type="ProjectionZKernel" />
+         </MicroscopeMeasurement>
+      </SimulationSpec>
+      <pathwayModel>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" version="3.0" />
+      </pathwayModel>
+      <relationshipModel>
+         <RMNS version="3.0" />
+      </relationshipModel>
+      <vcmetadata>
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000002">
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node0">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0019283" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0009088" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:hasPart xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node1">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.pathway/map00260" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.pathway/map00271" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:hasPart>
+               <bqbiol:occursIn xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node2">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/taxonomy/3702" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:occursIn>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node3">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/MODEL6624146302" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:is xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node4">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/biomodels.db/BIOMD0000000068" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:is>
+               <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node5">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/pubmed/14622248" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqmodel:isDescribedBy>
+               <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">
+                  <rdf:Bag rdf:nodeID="node6">
+                     <rdf:_1>
+                        <rdf:Description rdf:nodeID="node24">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">jls@sun.ac.za</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node28">
+                                 <vcard:Family>Snoep</vcard:Family>
+                                 <vcard:Given>Jacky L</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node29">
+                                 <vcard:Orgname>Stellenbosh University</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:nodeID="node25">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">hdharuri@cds.caltech.edu</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node30">
+                                 <vcard:Family>Dharuri</vcard:Family>
+                                 <vcard:Given>Harish</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node31">
+                                 <vcard:Orgname>California Institute of Technology</vcard:Orgname>
+                              </rdf:Description>
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_2>
+                     <rdf:_3>
+                        <rdf:Description rdf:nodeID="node26">
+                           <vcard:EMAIL xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">lukas@ebi.ac.uk</vcard:EMAIL>
+                           <vcard:N xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node32">
+                                 <vcard:Family>Endler</vcard:Family>
+                                 <vcard:Given>Lukas</vcard:Given>
+                              </rdf:Description>
+                           </vcard:N>
+                           <vcard:ORG xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                              <rdf:Description rdf:nodeID="node27" />
+                           </vcard:ORG>
+                        </rdf:Description>
+                     </rdf:_3>
+                  </rdf:Bag>
+               </dc:creator>
+               <dcterms:created xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node7">
+                     <dcterms:W3CDTF>2006-08-30T21:46:53Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:created>
+               <dcterms:modified xmlns:dcterms="http://purl.org/dc/terms/">
+                  <rdf:Description rdf:nodeID="node8">
+                     <dcterms:W3CDTF>2012-05-16T10:20:30Z</dcterms:W3CDTF>
+                  </rdf:Description>
+               </dcterms:modified>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000003">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node9">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0005623" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000004">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node10">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:15961" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C01102" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000005">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node11">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:16857" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00188" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000006">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node12">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:17482" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C02291" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000007">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node13">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:15699" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00263" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000008">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node14">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:18367" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00009" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000009">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node15">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:17561" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00097" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000010">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node16">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R01775" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node17">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.7.1.39" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0004413" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000011">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node18">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/2.5.1.48" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0003962" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000012">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node19">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.reaction/R01466" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:is>
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node20">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/ec-code/4.2.3.1" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.go/GO:0004795" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000017">
+               <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node21">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/obo.chebi/CHEBI:15414" />
+                     </rdf:_1>
+                     <rdf:_2>
+                        <rdf:Description rdf:about="http://identifiers.org/kegg.compound/C00019" />
+                     </rdf:_2>
+                  </rdf:Bag>
+               </bqbiol:is>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000018">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node22">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/P55217" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:about="http://www.sbml.org/sbml/level2/metaid_0000019">
+               <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                  <rdf:Bag rdf:nodeID="node23">
+                     <rdf:_1>
+                        <rdf:Description rdf:about="http://identifiers.org/uniprot/Q9S7B5" />
+                     </rdf:_1>
+                  </rdf:Bag>
+               </bqbiol:isVersionOf>
+            </rdf:Description>
+            <rdf:Description rdf:nodeID="node27">
+               <vcard:Orgname xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">EMBL-EBI</vcard:Orgname>
+            </rdf:Description>
+         </rdf:RDF>
+         <nonrdfAnnotationList>
+            <nonrdfAnnotation vcid="BioModel(Curien2003_MetThr_synthesis)">
+               <notes>
+                  
+  
+                  <body xmlns="http://www.w3.org/1999/xhtml">
+                     
+    
+                     <p>
+                        This a model from the article:      
+                        <br />
+                        
+    
+                        <strong>A kinetic model of the branch-point between the methionine and threonine biosynthesis pathways in Arabidopsis thaliana.</strong>
+                        
+    
+                        <br />
+                        
+          Curien G,  Ravanel S, Dumas R      
+                        <em>Eur. J. Biochem.</em>
+                        
+          2003 Dec; Volume: 270 (Issue: 23 )]:4615-27      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/14622248">14622248</a>
+                        
+          ,      
+                        <br />
+                        
+    
+                        <strong>Abstract:</strong>
+                        
+    
+                        <br />
+                        
+          This work proposes a model of the metabolic branch-point between the methionine and threonine biosynthesis pathways in Arabidopsis thaliana which involves kinetic competition for phosphohomoserine between the allosteric enzyme threonine synthase and the two-substrate enzyme cystathionine gamma-synthase. Threonine synthase is activated by S-adenosylmethionine and inhibited by AMP. Cystathionine gamma-synthase condenses phosphohomoserine to cysteine via a ping-pong mechanism. Reactions are irreversible and inhibited by inorganic phosphate. The modelling procedure included an examination of the kinetic links, the determination of the operating conditions in chloroplasts and the establishment of a computer model using the enzyme rate equations. To test the model, the branch-point was reconstituted with purified enzymes. The computer model showed a partial agreement with the in vitro results. The model was subsequently improved and was then found consistent with flux partition in vitro and in vivo. Under near physiological conditions, S-adenosylmethionine, but not AMP, modulates the partition of a steady-state flux of phosphohomoserine. The computer model indicates a high sensitivity of cystathionine flux to enzyme and S-adenosylmethionine concentrations. Cystathionine flux is sensitive to modulation of threonine flux whereas the reverse is not true. The cystathionine gamma-synthase kinetic mechanism favours a low sensitivity of the fluxes to cysteine. Though sensitivity to inorganic phosphate is low, its concentration conditions the dynamics of the system. Threonine synthase and cystathionine gamma-synthase display similar kinetic efficiencies in the metabolic context considered and are first-order for the phosphohomoserine substrate. Under these conditions outflows are coordinated.      
+                     </p>
+                     
+  
+                     <br />
+                     
+  
+                     <p align="left">
+                        
+    
+                        <font face="Arial, Helvetica, sans-serif">
+                           
+      
+                           <b>
+                              
+        
+                              <a href="http://www.sbml.org/">SBML</a>
+                              
+              level 2 code generated for the JWS Online project by Jacky Snoep using          
+                              <a href="http://pysces.sourceforge.net/">PySCeS</a>
+                              
+        
+                              <br />
+                              
+              Run this model online at          
+                              <a href="http://jjj.biochem.sun.ac.za/">http://jjj.biochem.sun.ac.za</a>
+                              
+        
+                              <br />
+                              
+              To cite JWS Online please refer to: Olivier, B.G. and Snoep, J.L. (2004)          
+                              <a href="http://bioinformatics.oupjournals.org/cgi/content/abstract/20/13/2143">Web-based 
+modelling using JWS Online</a>
+                              
+              , Bioinformatics, 20:2143-2144          
+                           </b>
+                           
+    
+                        </font>
+                        
+  
+                     </p>
+                     
+  
+                     <p>
+                        
+    
+                        <u>Biomodels Curation</u>
+                        
+          The model simulates the flux for TS and CGS under conditions given in Table 2 and reproduces the dotted lines given in Table 3 of the paper. There is a typo in the equation for the apparent specificity constant for Phser, Kts (equation13). This was changed after communication with the authors to be: Kts = 5.9E-4+6.2E-2*pow(AdoMet,2.9)/(pow(32,2.9)+pow(AdoMet,2.9)). The model was successfully tested on Jarnac and Copasi. Due to a suggestion from Pedro Mendez the parameter AdoMet, TS and CGS where made constant species.      
+                     </p>
+                     
+  
+                     <p>
+                        This model originates from BioModels Database: A Database of Annotated Published Models (http://www.ebi.ac.uk/biomodels/). It is copyright (c) 2005-2010 The BioModels.net Team.      
+                        <br />
+                        
+          For more information see the      
+                        <a href="http://www.ebi.ac.uk/biomodels/legal.html" target="_blank">terms of use</a>
+                        
+          .      
+                        <br />
+                        
+          To cite BioModels Database, please use:      
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a>
+                        
+
+                     </p>
+                     
+
+                  </body>
+                  
+
+               </notes>
+            </nonrdfAnnotation>
+         </nonrdfAnnotationList>
+         <uriBindingList>
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000005" vcid="Species(Thr)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000012" vcid="ReactionStep(vThr)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000004" vcid="Species(Phser)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000007" vcid="Species(Hser)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000018" vcid="Species(CGS)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000011" vcid="ReactionStep(vCys)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000002" vcid="BioModel(Curien2003_MetThr_synthesis)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000019" vcid="Species(TS)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000017" vcid="Species(AdoMet)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000009" vcid="Species(Cys)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000006" vcid="Species(Cystathionine)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000003" vcid="Structure(compartment)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000010" vcid="ReactionStep(v1)" />
+            <uriBinding uri="http://www.sbml.org/sbml/level2/metaid_0000008" vcid="Species(Phi)" />
+         </uriBindingList>
+      </vcmetadata>
+   </BioModel>
+</vcml>
+
