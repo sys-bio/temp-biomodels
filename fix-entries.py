@@ -215,8 +215,6 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     vcml_filenames.sort()
     remove_bad_vcml_files.run(vcml_filenames)
 
-    remove_converted_files_for_non_kinetic_models.run(temp_entry_dir)
-
     ###################################################
     # Validate SBML files
     if validate_sbml:
@@ -227,6 +225,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     if convert_files:
         from biomodels_qc.convert import convert_entry
         convert_entry(temp_entry_dir)
+
+    remove_converted_files_for_non_kinetic_models.run(temp_entry_dir)
 
     for temp_filename in glob.glob(os.path.join(temp_entry_dir, '**', '*.owl'), recursive=True):
         rel_filename = os.path.relpath(temp_filename, temp_entry_dir)
