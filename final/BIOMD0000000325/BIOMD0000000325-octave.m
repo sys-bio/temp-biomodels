@@ -63,7 +63,7 @@ function xdot=f(x,t)
 % End Octave code
 
 % Compartment: id = cell, name = cell, constant
-	compartment_cell=NaN;
+	compartment_cell=1.0;
 % Parameter:   id =  BR, name = BR
 	global_par_BR=0.005;
 % Parameter:   id =  Rs, name = Rs

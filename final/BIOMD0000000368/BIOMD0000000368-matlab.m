@@ -73,7 +73,7 @@ function xdot=f(t,x)
 % End Octave code
 
 % Compartment: id = compartment_1, name = compartment_1, constant
-	compartment_compartment_1=NaN;
+	compartment_compartment_1=1.0;
 % Parameter:   id =  mu1, name = mu1
 	global_par_mu1=1.0;
 % Parameter:   id =  mu2, name = mu2
