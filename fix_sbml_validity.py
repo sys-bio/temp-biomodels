@@ -119,14 +119,6 @@ def fixIdentifiersNS(file, oldns, id):
         newns = "doi"
     elif oldns=="psimod" or oldns == "psi-mod" or oldns=="obo.psi-mod":
         newns = "mod"
-    elif oldns == "psimi":
-        #https://github.com/identifiers-org/identifiers-org.github.io/issues/190 for adding this.
-        return
-    elif oldns == "omim":
-        #This looks like it used to be there?  And got dropped?
-        #https://github.com/identifiers-org/identifiers-org.github.io/issues/189 for trying to add it back.
-        #However, leave it for now.
-        return
     else:
         INVALID_IDENTIFIERS_NAMESPACES.add(oldns)
         return
@@ -147,7 +139,7 @@ def fixIdentifiersNS(file, oldns, id):
     replace(tmpname, file)
     
 
-VALID_IDENTIFIERS_NAMESPACES = {'ncbiprotein', 'orphanet', 'unists', '3dmet', 'pubchem.compound', 'meddra', 'eco', 'ido', 'uniprot', 'cco', 'reactome', 'arxiv', 'intact', 'mod', 'narcis', 'ensembl', 'mirbase.mature', 'DOI', 'eo', 'taxonomy', 'unipathway.compound', 'sgd', 'hgnc.symbol', 'ec-code', 'chebi', 'pirsf', 'lipidmaps', 'ecogene', 'kegg.reaction', 'mamo', 'isbn', 'panther.pathway', 'biomodels.teddy', 'kegg.drug', 'brenda', 'kegg.orthology', 'obi', 'pr', 'subtiwiki', 'opb', 'modeldb', 'doi', 'pubmed', 'vario', 'uberon', 'GO', 'kegg.compound', 'insdc', 'doid', 'mirbase', 'cas', 'bto', 'ncit', 'mp', 'biomodels.db', 'neurolex', 't3db', 'hp', 'chembl.compound', 'pdb-ccd', 'tcdb', 'cl', 'pw', 'omit', 'unigene', 'ncim', 'envo', 'bao', 'efo', 'pato', 'sbo', 'biomodels.kisao', 'go', 'po', 'kegg.pathway', 'pubchem.substance', 'ncbigene', 'so', 'uniprot.isoform', 'fma', 'kegg.genes', 'icd', 'unipathway.reaction', 'interpro'}
+VALID_IDENTIFIERS_NAMESPACES = {'ncbiprotein', 'orphanet', 'unists', '3dmet', 'pubchem.compound', 'meddra', 'eco', 'ido', 'uniprot', 'cco', 'reactome', 'arxiv', 'intact', 'mod', 'narcis', 'ensembl', 'mirbase.mature', 'DOI', 'eo', 'taxonomy', 'unipathway.compound', 'sgd', 'hgnc.symbol', 'ec-code', 'chebi', 'pirsf', 'lipidmaps', 'ecogene', 'kegg.reaction', 'mamo', 'isbn', 'panther.pathway', 'biomodels.teddy', 'kegg.drug', 'brenda', 'kegg.orthology', 'obi', 'pr', 'subtiwiki', 'opb', 'modeldb', 'doi', 'pubmed', 'vario', 'uberon', 'GO', 'kegg.compound', 'insdc', 'doid', 'mirbase', 'cas', 'bto', 'ncit', 'mp', 'biomodels.db', 'neurolex', 't3db', 'hp', 'chembl.compound', 'pdb-ccd', 'tcdb', 'cl', 'pw', 'omit', 'mim', 'unigene', 'ncim', 'envo', 'bao', 'efo', 'pato', 'sbo', 'biomodels.kisao', 'go', 'po', 'kegg.pathway', 'pubchem.substance', 'ncbigene', 'so', 'uniprot.isoform', 'fma', 'kegg.genes', 'icd', 'unipathway.reaction', 'interpro', 'mi'}
 INVALID_IDENTIFIERS_NAMESPACES = set()
 
 uri_replacements = {
@@ -192,10 +184,12 @@ uri_replacements = {
         "ncit/25559": "ncit/C25559",
         "neurolex/C25636": "ncit/C25636",
         "obi/OBA": "obi/OBI",
+        "omim/": "mim/",
         "omit/OMIT_": "omit/OMIT:",
         "pato/00": "pato/PATO:00",
         "pato/00": "pato/PATO:00",
         "pdb-ccd/26158": "chebi/CHEBI:26158",
+        "psimi/": "mi/",
         "reactome/SBO:0000179": "sbo/SBO:0000179",
         "sbo/000": "sbo/SBO:000",
         "sbo/GO": "go/GO",
@@ -233,10 +227,10 @@ def retestAllIdentifiersURIs(file):
                 if "identifiers.org" in word:
                     for charstr in word.split('"'):
                         if "identifiers.org" in charstr:
-                            if "omim" in charstr:
-                                continue
-                            if "psimi" in charstr:
-                                continue
+#                            if "omim" in charstr:
+#                                continue
+#                            if "psimi" in charstr:
+#                                continue
                             try:
                                 validate_identifiers_org_uri(charstr)
                             except Exception as e:
