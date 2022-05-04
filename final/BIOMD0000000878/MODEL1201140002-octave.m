@@ -60,8 +60,6 @@ function xdot=f(x,t)
 
 % Compartment: id = COMpartment, name = COMpartment, constant
 	compartment_COMpartment=1.0;
-% Parameter:   id =  time_environment, name = time
-	global_par_time_environment=NaN;
 % Parameter:   id =  x, name = x
 % Parameter:   id =  r_1, name = r_1
 	global_par_r_1=0.2;
