@@ -236,7 +236,7 @@ function xdot=f(t,x)
 % Parameter:   id =  c46, name = c46
 	global_par_c46=0.85;
 % Parameter:   id =  clottingTime_s, name = clottingTime [s]
-	global_par_clottingTime_s=NaN;
+	global_par_clottingTime_s=0.0;
 % Parameter:   id =  d_VK, name = d_VK
 	global_par_d_VK=0.2052;
 % assignmentRule: variable = DP
