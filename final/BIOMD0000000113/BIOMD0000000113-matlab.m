@@ -26,7 +26,7 @@ function main()
 	x0(1) = 0.15;
 	x0(2) = 1.6;
 	x0(3) = 1.0;
-	x0(4) = 0;
+	x0(4) = 0.0;
 
 
 % Depending on whether you are using Octave or Matlab,

@@ -27,6 +27,7 @@ import remove_failed_pdfs
 import rename_sbml_files
 import rename_xpp_to_ode
 import validate_sbml as validate_sbml_module
+import create_omex
 
 from biomodels_qc.utils import are_biopax_files_the_same, build_combine_archive
 from biomodels_qc.warnings import BiomodelsQcWarning
@@ -45,6 +46,7 @@ import math
 
 MANUALLY_FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'manual-fixes')
 FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
+OMEX_DIR = os.path.join(os.path.dirname(__file__), 'omex_files')
 
 global_sbml_validation_errors = []
 
@@ -237,12 +239,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
             shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
-    # Build manifest
-    # manifest_filename = os.path.join(temp_entry_dir, 'manifest.xml')
-    # sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
-    # sedml_locations = [os.path.relpath(path, temp_entry_dir) for path in sedml_filenames]
-    # archive = build_combine_archive(temp_entry_dir, sedml_locations)
-    # CombineArchiveWriter().write_manifest(archive.contents, manifest_filename)
+    # Build manifest and create OMEX file
+    create_omex.process(id, temp_entry_dir, OMEX_DIR)
 
     ###################################################
     # Move temporary directory to final location
@@ -357,4 +355,5 @@ if __name__ == "__main__":
     for id in ids:
         git_add_file.write("git add final/" + id + "\n")
         git_add_file.write("git add final/" + id + "/*\n")
+        git_add_file.write("git add omex_files/" + id + ".omex\n")
     git_add_file.close()
