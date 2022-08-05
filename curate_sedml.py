@@ -10,10 +10,14 @@ from biosimulators_utils.combine.io import CombineArchiveWriter
 from biosimulators_utils.combine.io import CombineArchiveReader
 from biomodels_qc.utils import build_combine_archive
 from run_project_on_biosimulations import runProject
+
 import libsedml
 import phrasedml
+import libsbml
+
 import os
 import glob
+import sys
 
 #Fill out this information when you pick a new biomodel:
 this_biomodel = 882
@@ -53,7 +57,21 @@ combine_writer = CombineArchiveWriter()
 sedml_filenames = glob.glob(os.path.join(outdir, '**', '*.sedml'), recursive=True)
 sedml_locations = [os.path.relpath(path, outdir) for path in sedml_filenames]
 archive = build_combine_archive(outdir, sedml_locations)
-combine_writer.run(archive, outdir, "882.omex")
+combine_writer.run(archive, outdir, biomdstr + ".omex")
+
+#View the SBML model in Antimony.
+#Note that this bit of code changes how the model is structured, but will not change the math.  It's just so that it's easier to read.
+
+sbmldoc = libsbml.readSBMLFromString(sbml)
+props = libsbml.ConversionProperties()
+props.addOption("expandFunctionDefinitions", True)
+if sbmldoc.convert(props) != libsbml.LIBSBML_OPERATION_SUCCESS:
+    print("[Error] Conversion failed...")
+    sys.exit(1)
+
+r = te.loads(libsbml.writeSBMLToString(sbmldoc))
+print("Antimony version of SBML model", sbmlfilename, ":\n")
+print(r.getAntimony())
 
 
 #Manipulating the SED-ML
@@ -68,31 +86,19 @@ combine_writer.run(archive, outdir, "882.omex")
 #Convert the string to a libsedml document:
 sed = libsedml.readSedMLFromString(sedml)
 
-#Until I get a new version of phrasedml:
-sed.setVersion(3)
-sed_l1v3str = libsedml.writeSedMLToString(sed);
+#Example manipulation:  remove the 'Removal' curve
+# for o in range(sed.getNumOutputs()):
+#     out = sed.getOutput(o)
+#     if out.getName() == "Figure 3":
+#         removeIndex = -1
+#         for c in range(out.getNumCurves()):
+#             curve = out.getCurve(c)
+#             if curve.getName() == "[Removal]":
+#                 removeIndex = c
+#         out.removeCurve(removeIndex)
 
-phrasedml.setWorkingDirectory(seddir)
-existing_phrasedml = phrasedml.convertString(sed_l1v3str)
-print(existing_phrasedml)
-
-#Now set it back:
-sed = libsedml.readSedMLFromString(sedml)
-
-
-#Get the plot:
-for o in range(sed.getNumOutputs()):
-    out = sed.getOutput(o)
-    if out.getName() == "Figure 3":
-        removeIndex = -1
-        for c in range(out.getNumCurves()):
-            curve = out.getCurve(c)
-            if curve.getName() == "[Removal]":
-                removeIndex = c
-        out.removeCurve(removeIndex)
-
-libsedml.writeSedMLToFile(sed, outdir + 'new_sed.sedml')
-te.sedml.tesedml.executeSEDML(outdir + "new_sed.sedml", workingDir=outdir)
+# libsedml.writeSedMLToFile(sed, outdir + 'new_sed.sedml')
+# te.sedml.tesedml.executeSEDML(outdir + "new_sed.sedml", workingDir=outdir)
 
 
 #Option 3:  Use phraSEDML
@@ -110,6 +116,9 @@ new_phrasedml = '''
 '''
 
 phrasedml.setWorkingDirectory(outdir)
-sed2 = phrasedml.convertString(new_phrasedml)
-te.saveToFile(outdir + 'sed2.sedml', sed2)
-te.sedml.tesedml.executeSEDML(outdir + "sed2.sedml", workingDir=outdir)
+# The following commands only work  with model 882, since the phrasedml refers to that model specifically.
+# It's just here for reference if you need it.
+
+# sed2 = phrasedml.convertString(new_phrasedml)
+# te.saveToFile(outdir + 'sed2.sedml', sed2)
+# te.sedml.tesedml.executeSEDML(outdir + "sed2.sedml", workingDir=outdir)
