@@ -3,24 +3,150 @@
   <listOfModels>
     <model id="BIOMD0000000077_url" language="urn:sedml:language:sbml" source="BIOMD0000000077_url.xml">
       <listOfChanges>
-        <changeAttribute id="auto_init_conc_species_H" name="Initial concentration of species &quot;H&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H&apos;]/@initialConcentration" newValue="1"/>
-        <changeAttribute id="auto_init_conc_species_HR" name="Initial concentration of species &quot;HR&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;HR&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_conc_species_R" name="Initial concentration of species &quot;R&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]/@initialConcentration" newValue="0.01"/>
-        <changeAttribute id="auto_init_conc_species_HRRH" name="Initial concentration of species &quot;HRRH&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;HRRH&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_conc_species_E" name="Initial concentration of species &quot;E&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;E&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_conc_species_GQ" name="Initial concentration of species &quot;GQ&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;GQ&apos;]/@initialConcentration" newValue="0.1"/>
-        <changeAttribute id="auto_init_conc_species_IP3" name="Initial concentration of species &quot;IP3&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;IP3&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_size_compartment_cell" name="Initial size of compartment &quot;cell&quot;" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;cell&apos;]/@size" newValue="1"/>
-        <changeAttribute id="auto_value_parameter_alpha" name="Value of parameter &quot;alpha&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]/@value" newValue="2"/>
-        <changeAttribute id="auto_value_parameter_beta" name="Value of parameter &quot;beta&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value" newValue="4"/>
-        <changeAttribute id="auto_value_parameter_reaction_0_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;H binding to  R&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_0&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="2.5"/>
-        <changeAttribute id="auto_value_parameter_reaction_0_k2" name="Value of parameter &quot;k2&quot; of reaction &quot;H binding to  R&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_0&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value" newValue="5"/>
-        <changeAttribute id="auto_value_parameter_reaction_1_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;HR forming HRRH&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_1&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="2500"/>
-        <changeAttribute id="auto_value_parameter_reaction_1_k2" name="Value of parameter &quot;k2&quot; of reaction &quot;HR forming HRRH&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_1&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value" newValue="5"/>
-        <changeAttribute id="auto_value_parameter_reaction_2_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;G protein react with dimer producing E&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_2&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="4000"/>
-        <changeAttribute id="auto_value_parameter_reaction_2_k2" name="Value of parameter &quot;k2&quot; of reaction &quot;G protein react with dimer producing E&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_2&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value" newValue="200"/>
-        <changeAttribute id="auto_value_parameter_reaction_3_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;IP3 converted into inactive metabolites&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_3&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value" newValue="10"/>
-        <changeAttribute id="auto_value_parameter_reaction_4_k" name="Value of parameter &quot;k&quot; of reaction &quot;Production of IP3&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_4&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]/@value" newValue="20000000"/>
+        <computeChange id="auto_init_conc_species_H" name="Initial concentration of species &quot;H&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_H_is_init_conc_species_H </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_H_is_init_conc_species_H" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;H&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_HR" name="Initial concentration of species &quot;HR&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;HR&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_HR_is_init_conc_species_HR </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_HR_is_init_conc_species_HR" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;HR&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_R" name="Initial concentration of species &quot;R&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_R_is_init_conc_species_R </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_R_is_init_conc_species_R" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;R&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_HRRH" name="Initial concentration of species &quot;HRRH&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;HRRH&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_HRRH_is_init_conc_species_HRRH </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_HRRH_is_init_conc_species_HRRH" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;HRRH&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_E" name="Initial concentration of species &quot;E&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;E&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_E_is_init_conc_species_E </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_E_is_init_conc_species_E" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;E&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_GQ" name="Initial concentration of species &quot;GQ&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;GQ&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_GQ_is_init_conc_species_GQ </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_GQ_is_init_conc_species_GQ" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;GQ&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_IP3" name="Initial concentration of species &quot;IP3&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;IP3&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_IP3_is_init_conc_species_IP3 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_IP3_is_init_conc_species_IP3" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;IP3&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_size_compartment_cell" name="Initial size of compartment &quot;cell&quot;" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;cell&apos;]/@size">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_size_compartment_cell_is_init_size_compartment_cell </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_size_compartment_cell_is_init_size_compartment_cell" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;cell&apos;]/@size"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_alpha" name="Value of parameter &quot;alpha&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_alpha_is_value_parameter_alpha </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_alpha_is_value_parameter_alpha" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;alpha&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_beta" name="Value of parameter &quot;beta&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_beta_is_value_parameter_beta </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_beta_is_value_parameter_beta" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_0_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;H binding to  R&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_0&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_0_k1_is_value_parameter_reaction_0_k1 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_0_k1_is_value_parameter_reaction_0_k1" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_0&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_0_k2" name="Value of parameter &quot;k2&quot; of reaction &quot;H binding to  R&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_0&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_0_k2_is_value_parameter_reaction_0_k2 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_0_k2_is_value_parameter_reaction_0_k2" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_0&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_1_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;HR forming HRRH&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_1&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_1_k1_is_value_parameter_reaction_1_k1 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_1_k1_is_value_parameter_reaction_1_k1" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_1&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_1_k2" name="Value of parameter &quot;k2&quot; of reaction &quot;HR forming HRRH&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_1&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_1_k2_is_value_parameter_reaction_1_k2 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_1_k2_is_value_parameter_reaction_1_k2" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_1&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_2_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;G protein react with dimer producing E&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_2&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_2_k1_is_value_parameter_reaction_2_k1 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_2_k1_is_value_parameter_reaction_2_k1" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_2&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_2_k2" name="Value of parameter &quot;k2&quot; of reaction &quot;G protein react with dimer producing E&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_2&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_2_k2_is_value_parameter_reaction_2_k2 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_2_k2_is_value_parameter_reaction_2_k2" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_2&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k2&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_3_k1" name="Value of parameter &quot;k1&quot; of reaction &quot;IP3 converted into inactive metabolites&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_3&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_3_k1_is_value_parameter_reaction_3_k1 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_3_k1_is_value_parameter_reaction_3_k1" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_3&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k1&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_reaction_4_k" name="Value of parameter &quot;k&quot; of reaction &quot;Production of IP3&quot;" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_4&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_reaction_4_k_is_value_parameter_reaction_4_k </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_reaction_4_k_is_value_parameter_reaction_4_k" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;reaction_4&apos;]/sbml:kineticLaw/sbml:listOfParameters/sbml:parameter[@id=&apos;k&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
       </listOfChanges>
     </model>
   </listOfModels>
