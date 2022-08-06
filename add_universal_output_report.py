@@ -92,11 +92,16 @@ def matchSBMLIds(doc, sbml_filenames):
             try:
                 (modelchanges, __, __, __) = get_parameters_variables_outputs_for_simulation(target, "urn:sedml:language:sbml", UniformTimeCourseSimulation, validate=False)
                 for modelchange in modelchanges:
-                    change = model.createChangeAttribute()
+                    change = model.createComputeChange()
                     change.setId("auto_" + modelchange.id)
                     change.setName(modelchange.name)
                     change.setTarget(modelchange.target)
-                    change.setNewValue(modelchange.new_value)
+                    selfVar = change.createVariable()
+                    selfVarId = modelchange.id + "_is_" + modelchange.id
+                    selfVar.setId(selfVarId)
+                    selfVar.setTarget(modelchange.target);
+                    astn = libsedml.parseL3Formula(selfVarId)
+                    change.setMath(astn)
             except:
                 pass
         model_ids.append((model.getId(), sbmlids))
