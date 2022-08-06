@@ -92,6 +92,9 @@ def matchSBMLIds(doc, sbml_filenames):
             try:
                 (modelchanges, __, __, __) = get_parameters_variables_outputs_for_simulation(target, "urn:sedml:language:sbml", UniformTimeCourseSimulation, validate=False)
                 for modelchange in modelchanges:
+                    #Need to change it to the base element instead of the attribute.
+                    removeloc = modelchange.target.rfind("@")
+                    modelchange.target = modelchange.target[0:removeloc-1]
                     change = model.createComputeChange()
                     change.setId("auto_" + modelchange.id)
                     change.setName(modelchange.name)
