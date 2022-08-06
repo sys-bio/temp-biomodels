@@ -3,27 +3,174 @@
   <listOfModels>
     <model id="model" language="urn:sedml:language:sbml" source="Ndairou2020.xml">
       <listOfChanges>
-        <changeAttribute id="auto_init_conc_species_Exposed" name="Initial concentration of species &quot;Exposed&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Exposed&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_conc_species_Infectious" name="Initial concentration of species &quot;Infectious&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infectious&apos;]/@initialConcentration" newValue="1"/>
-        <changeAttribute id="auto_init_conc_species_Super_spreaders" name="Initial concentration of species &quot;Super_spreaders&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Super_spreaders&apos;]/@initialConcentration" newValue="5"/>
-        <changeAttribute id="auto_init_conc_species_Asymptomatic" name="Initial concentration of species &quot;Asymptomatic&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Asymptomatic&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_conc_species_Hospitalised" name="Initial concentration of species &quot;Hospitalised&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Hospitalised&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_conc_species_Recovered" name="Initial concentration of species &quot;Recovered&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_conc_species_Fatalities" name="Initial concentration of species &quot;Fatalities&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fatalities&apos;]/@initialConcentration" newValue="0"/>
-        <changeAttribute id="auto_init_size_compartment_Wuhan" name="Initial size of compartment &quot;Wuhan&quot;" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Wuhan&apos;]/@size" newValue="1"/>
-        <changeAttribute id="auto_value_parameter_beta" name="Value of parameter &quot;beta&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value" newValue="2.8"/>
-        <changeAttribute id="auto_value_parameter_beta_prime" name="Value of parameter &quot;beta_prime&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta_prime&apos;]/@value" newValue="7.65"/>
-        <changeAttribute id="auto_value_parameter_rho1" name="Value of parameter &quot;rho1&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho1&apos;]/@value" newValue="0.58"/>
-        <changeAttribute id="auto_value_parameter_rho2" name="Value of parameter &quot;rho2&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho2&apos;]/@value" newValue="1.000000e-3"/>
-        <changeAttribute id="auto_value_parameter_l" name="Value of parameter &quot;l&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;l&apos;]/@value" newValue="1.56"/>
-        <changeAttribute id="auto_value_parameter_kappa" name="Value of parameter &quot;kappa&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;kappa&apos;]/@value" newValue="0.25"/>
-        <changeAttribute id="auto_value_parameter_gamma_a" name="Value of parameter &quot;gamma_a&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_a&apos;]/@value" newValue="0.94"/>
-        <changeAttribute id="auto_value_parameter_gamma_i" name="Value of parameter &quot;gamma_i&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_i&apos;]/@value" newValue="0.27"/>
-        <changeAttribute id="auto_value_parameter_gamma_r" name="Value of parameter &quot;gamma_r&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_r&apos;]/@value" newValue="0.5"/>
-        <changeAttribute id="auto_value_parameter_delta_i" name="Value of parameter &quot;delta_i&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_i&apos;]/@value" newValue="0.035"/>
-        <changeAttribute id="auto_value_parameter_delta_p" name="Value of parameter &quot;delta_p&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_p&apos;]/@value" newValue="1"/>
-        <changeAttribute id="auto_value_parameter_delta_h" name="Value of parameter &quot;delta_h&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_h&apos;]/@value" newValue="0.085"/>
-        <changeAttribute id="auto_value_parameter_N" name="Value of parameter &quot;N&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;N&apos;]/@value" newValue="44000"/>
+        <computeChange id="auto_init_conc_species_Exposed" name="Initial concentration of species &quot;Exposed&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Exposed&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_Exposed_is_init_conc_species_Exposed </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_Exposed_is_init_conc_species_Exposed" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Exposed&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_Infectious" name="Initial concentration of species &quot;Infectious&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infectious&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_Infectious_is_init_conc_species_Infectious </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_Infectious_is_init_conc_species_Infectious" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Infectious&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_Super_spreaders" name="Initial concentration of species &quot;Super_spreaders&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Super_spreaders&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_Super_spreaders_is_init_conc_species_Super_spreaders </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_Super_spreaders_is_init_conc_species_Super_spreaders" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Super_spreaders&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_Asymptomatic" name="Initial concentration of species &quot;Asymptomatic&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Asymptomatic&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_Asymptomatic_is_init_conc_species_Asymptomatic </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_Asymptomatic_is_init_conc_species_Asymptomatic" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Asymptomatic&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_Hospitalised" name="Initial concentration of species &quot;Hospitalised&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Hospitalised&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_Hospitalised_is_init_conc_species_Hospitalised </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_Hospitalised_is_init_conc_species_Hospitalised" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Hospitalised&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_Recovered" name="Initial concentration of species &quot;Recovered&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_Recovered_is_init_conc_species_Recovered </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_Recovered_is_init_conc_species_Recovered" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Recovered&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_conc_species_Fatalities" name="Initial concentration of species &quot;Fatalities&quot;" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fatalities&apos;]/@initialConcentration">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_conc_species_Fatalities_is_init_conc_species_Fatalities </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_conc_species_Fatalities_is_init_conc_species_Fatalities" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Fatalities&apos;]/@initialConcentration"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_init_size_compartment_Wuhan" name="Initial size of compartment &quot;Wuhan&quot;" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Wuhan&apos;]/@size">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> init_size_compartment_Wuhan_is_init_size_compartment_Wuhan </ci>
+          </math>
+          <listOfVariables>
+            <variable id="init_size_compartment_Wuhan_is_init_size_compartment_Wuhan" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;Wuhan&apos;]/@size"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_beta" name="Value of parameter &quot;beta&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_beta_is_value_parameter_beta </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_beta_is_value_parameter_beta" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_beta_prime" name="Value of parameter &quot;beta_prime&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta_prime&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_beta_prime_is_value_parameter_beta_prime </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_beta_prime_is_value_parameter_beta_prime" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;beta_prime&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_rho1" name="Value of parameter &quot;rho1&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho1&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_rho1_is_value_parameter_rho1 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_rho1_is_value_parameter_rho1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho1&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_rho2" name="Value of parameter &quot;rho2&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho2&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_rho2_is_value_parameter_rho2 </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_rho2_is_value_parameter_rho2" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;rho2&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_l" name="Value of parameter &quot;l&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;l&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_l_is_value_parameter_l </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_l_is_value_parameter_l" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;l&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_kappa" name="Value of parameter &quot;kappa&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;kappa&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_kappa_is_value_parameter_kappa </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_kappa_is_value_parameter_kappa" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;kappa&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_gamma_a" name="Value of parameter &quot;gamma_a&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_a&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_gamma_a_is_value_parameter_gamma_a </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_gamma_a_is_value_parameter_gamma_a" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_a&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_gamma_i" name="Value of parameter &quot;gamma_i&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_i&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_gamma_i_is_value_parameter_gamma_i </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_gamma_i_is_value_parameter_gamma_i" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_i&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_gamma_r" name="Value of parameter &quot;gamma_r&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_r&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_gamma_r_is_value_parameter_gamma_r </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_gamma_r_is_value_parameter_gamma_r" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;gamma_r&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_delta_i" name="Value of parameter &quot;delta_i&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_i&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_delta_i_is_value_parameter_delta_i </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_delta_i_is_value_parameter_delta_i" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_i&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_delta_p" name="Value of parameter &quot;delta_p&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_p&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_delta_p_is_value_parameter_delta_p </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_delta_p_is_value_parameter_delta_p" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_p&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_delta_h" name="Value of parameter &quot;delta_h&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_h&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_delta_h_is_value_parameter_delta_h </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_delta_h_is_value_parameter_delta_h" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;delta_h&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
+        <computeChange id="auto_value_parameter_N" name="Value of parameter &quot;N&quot;" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;N&apos;]/@value">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> value_parameter_N_is_value_parameter_N </ci>
+          </math>
+          <listOfVariables>
+            <variable id="value_parameter_N_is_value_parameter_N" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;N&apos;]/@value"/>
+          </listOfVariables>
+        </computeChange>
       </listOfChanges>
     </model>
   </listOfModels>
