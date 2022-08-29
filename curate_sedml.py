@@ -38,10 +38,13 @@ runProject("BIOMD000000" + biomdstr)
 
 
 #Using tellurium to run a SED-ML file:
-te.sedml.tesedml.executeSEDML(sedfile, workingDir=seddir)
+if te.__version__ > "2.2.3.1":
+    te.sedml.tesedml.executeSEDML(sedfile, workingDir=seddir, saveOutputs=True, outputDir=outdir)
+else:
+    te.sedml.tesedml.executeSEDML(sedfile, workingDir=seddir)
 
 #Using tellurium to run a Combine Archive:
-te.sedml.tesedml.executeCombineArchive(omexfile)
+te.sedml.tesedml.executeCombineArchive(omexfile, saveOutputs=True, outputDir=outdir)
 
 #Using tellurium to get a file out of a Combine Archive:
 sedml = te.extractFileFromCombineArchive(omexfile, sedfilename)
