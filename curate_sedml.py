@@ -38,7 +38,7 @@ runProject("BIOMD000000" + biomdstr)
 
 
 #Using tellurium to run a SED-ML file:
-if te.__version__ > "2.2.3.1":
+if te.__version__ > "2.2.4":
     te.sedml.tesedml.executeSEDML(sedfile, workingDir=seddir, saveOutputs=True, outputDir=outdir)
 else:
     te.sedml.tesedml.executeSEDML(sedfile, workingDir=seddir)
