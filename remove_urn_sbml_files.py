@@ -16,10 +16,11 @@ def run(filenames):
             if url_version in filenames:
                 os.remove(filename)
                 removed.append(filename)
-            plain_version = filename.replace("_urn", "")
-            if plain_version in filenames:
-                os.remove(filename)
-                removed.append(filename)
+            else:
+                plain_version = filename.replace("_urn", "")
+                if plain_version in filenames:
+                    os.remove(filename)
+                    removed.append(filename)
         if "metadata" in filename:
             removed.append(filename)
     for remove in removed:
