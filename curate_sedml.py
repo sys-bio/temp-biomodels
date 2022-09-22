@@ -32,9 +32,13 @@ omexfile = "omex_files/BIOMD000000" + biomdstr + ".omex"
 
 #Temp dir to store the files as you're working on them (if seddir isn't appropriate):
 outdir = biomdstr + "/"
+try:
+    os.mkdir(outdir)
+except:
+    pass
 
 #Fire things off to Biosimulations:
-runProject("BIOMD000000" + biomdstr)
+#runProject("BIOMD000000" + biomdstr)
 
 
 #Using tellurium to run a SED-ML file:
