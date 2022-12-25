@@ -44,6 +44,14 @@ def fixSBO(file):
     libsbml.writeSBMLToFile(doc, file)
 
 
+def fixHasProperty(file):
+    doc = libsbml.readSBMLFromFile(file)
+    sstr = libsbml.writeSBMLToString(doc)
+    sstr = sstr.replace("bqmodel:hasProperty", "bqbiol:hasProperty")
+    out = open(file, "w", encoding="utf8")
+    out.write(sstr)
+    out.close()
+
 upgrade_to_l2v4 = ["BIOMD0000000051", "BIOMD0000000060", "BIOMD0000000064", "BIOMD0000000096", "BIOMD0000000097",
                    "BIOMD0000000164", "BIOMD0000000200", "BIOMD0000000207", "BIOMD0000000425", "BIOMD0000000437",
                    "BIOMD0000000508", "BIOMD0000000509", "BIOMD0000000584", "BIOMD0000000585", "BIOMD0000000831", ]
@@ -56,6 +64,39 @@ particular_fixes = {
     "BIOMD0000000439": fixNanoMolar,
     "BIOMD0000000479": fixNanoMolar,
     "BIOMD0000000631": fixSBO,
+    "BIOMD0000000647": fixHasProperty,
+    "BIOMD0000000648": fixHasProperty,
+    "BIOMD0000000652": fixHasProperty,
+    "BIOMD0000000653": fixHasProperty,
+    "BIOMD0000000654": fixHasProperty,
+    "BIOMD0000000655": fixHasProperty,
+    "BIOMD0000000656": fixHasProperty,
+    "BIOMD0000000657": fixHasProperty,
+    "BIOMD0000000755": fixHasProperty,
+    "BIOMD0000000953": fixHasProperty,
+    "BIOMD0000000989": fixHasProperty,
+    "BIOMD0000000994": fixHasProperty,
+    "BIOMD0000000995": fixHasProperty,
+    "BIOMD0000000996": fixHasProperty,
+    "BIOMD0000000997": fixHasProperty,
+    "BIOMD0000000998": fixHasProperty,
+    "BIOMD0000000999": fixHasProperty,
+    "BIOMD0000001001": fixHasProperty,
+    "BIOMD0000001002": fixHasProperty,
+    "BIOMD0000001003": fixHasProperty,
+    "BIOMD0000001006": fixHasProperty,
+    "BIOMD0000001007": fixHasProperty,
+    "BIOMD0000001009": fixHasProperty,
+    "BIOMD0000001010": fixHasProperty,
+    "BIOMD0000001019": fixHasProperty,
+    "BIOMD0000001020": fixHasProperty,
+    "BIOMD0000001026": fixHasProperty,
+    "BIOMD0000001027": fixHasProperty,
+    "BIOMD0000001028": fixHasProperty,
+    "BIOMD0000001029": fixHasProperty,
+    "BIOMD0000001039": fixHasProperty,
+    "BIOMD0000001044": fixHasProperty,
+    "BIOMD0000001045": fixHasProperty,
 }
 
 def fixPubmedId(file, pmid, id):
