@@ -1,5 +1,6 @@
 import libsbml
 import urllib
+import pickle
 from os import replace
 from biosimulators_utils.utils.identifiers_org import validate_identifiers_org_uri
 
@@ -342,7 +343,9 @@ def run(id, sbml_files):
         # print(file)
         f = open(file, "r", encoding="utf-8")
         bad_pmids = set()
-        good_pmids = set()
+        gp_file = open("good_pmids.p", "rb")
+        good_pmids = pickle.load(gp_file)
+        gp_file.close()
         bad_identifiers_ns = set()
         for line in f:
             lvec = line.strip().split()
@@ -363,16 +366,19 @@ def run(id, sbml_files):
                                         assert(len(pmid)>0)
                                         url = "https://pubmed.ncbi.nlm.nih.gov/" + pmid
                                         try:
-                                            if urllib.request.urlopen(url).getcode() > 400:
-                                                bad_pmids.add(pmid)
-                                            elif "+" in pmid:
+                                            if "+" in pmid:
                                                 #These make valid URLs, but are invalid URIs: they don't fit the pubmed id pattern.
+                                                bad_pmids.add(pmid)
+                                            elif urllib.request.urlopen(url).getcode() > 400:
                                                 bad_pmids.add(pmid)
                                             else:
                                                 good_pmids.add(pmid)
                                         except:
                                                 bad_pmids.add(pmid)
         f.close()
+        gp_file = open("good_pmids.p", "wb")
+        pickle.dump(good_pmids, gp_file)
+        gp_file.close()
         for bad_pmid in bad_pmids:
             fixPubmedId(file, bad_pmid, id)
         for bad_identifiers_ns in bad_identifiers_ns:
