@@ -20,7 +20,6 @@
 % isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000149
 % isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000033
 % isDerivedFrom http://identifiers.org/biomodels.db/BIOMD0000000623
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 %
 
 
