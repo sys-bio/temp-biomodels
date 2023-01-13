@@ -14,7 +14,6 @@
 %
 % Model name = Strasen2018 - TGFb SMAD Signalling - DRB treatment
 %
-% unknownQualifier http://identifiers.org/biomodels.db/MODEL1712050006
 % isDescribedBy http://identifiers.org/pubmed/29371237
 % is http://identifiers.org/biomodels.db/MODEL1712050006
 % is http://identifiers.org/biomodels.db/BIOMD0000000997

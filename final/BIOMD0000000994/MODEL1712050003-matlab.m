@@ -14,7 +14,6 @@
 %
 % Model name = Strasen2018 - TGFb SMAD Signalling - Restimulation with 5pM TGFb at 3hr
 %
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 % isDescribedBy http://identifiers.org/pubmed/29371237
 % is http://identifiers.org/biomodels.db/MODEL1712050003
 % is http://identifiers.org/biomodels.db/BIOMD0000000994

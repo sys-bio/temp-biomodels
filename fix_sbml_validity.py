@@ -342,6 +342,7 @@ def run(id, sbml_files):
         # print(file)
         f = open(file, "r", encoding="utf-8")
         bad_pmids = set()
+        good_pmids = set()
         bad_identifiers_ns = set()
         for line in f:
             lvec = line.strip().split()
@@ -358,7 +359,7 @@ def run(id, sbml_files):
                                             bad_identifiers_ns.add(charvec[n+1])
                                     assert charvec[n-1] == ""
                                     assert "http" in charvec[n-2]
-                                    if charvec[n+1] == "pubmed":
+                                    if charvec[n+1] == "pubmed" and pmid not in good_pmids and pmid not in bad_pmids:
                                         assert(len(pmid)>0)
                                         url = "https://pubmed.ncbi.nlm.nih.gov/" + pmid
                                         try:
@@ -367,6 +368,8 @@ def run(id, sbml_files):
                                             elif "+" in pmid:
                                                 #These make valid URLs, but are invalid URIs: they don't fit the pubmed id pattern.
                                                 bad_pmids.add(pmid)
+                                            else:
+                                                good_pmids.add(pmid)
                                         except:
                                                 bad_pmids.add(pmid)
         f.close()

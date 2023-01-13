@@ -14,7 +14,6 @@
 %
 % Model name = Zhang2007 - Mechanism of DNA damage response (Model3)
 %
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 % isDescribedBy http://identifiers.org/pubmed/17245126
 % is http://identifiers.org/biomodels.db/MODEL2106230002
 % is http://identifiers.org/biomodels.db/BIOMD0000001010

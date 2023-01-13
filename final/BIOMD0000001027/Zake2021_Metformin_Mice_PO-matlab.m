@@ -15,8 +15,6 @@
 % Model name = Zake2021 - PBPK model of metformin in mice: single dose peroral
 %
 % unknownQualifier http://identifiers.org/biomodels.db/MODEL2103020001
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000203
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 % isDescribedBy http://identifiers.org/pubmed/33826656
 % is http://identifiers.org/biomodels.db/MODEL2103020001
 % is http://identifiers.org/biomodels.db/BIOMD0000001027

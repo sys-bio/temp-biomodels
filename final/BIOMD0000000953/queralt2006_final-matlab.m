@@ -14,7 +14,6 @@
 %
 % Model name = Queralt2006 - Initiation of mitotic exit by downregulation of PP2A in budding yeast
 %
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 % is http://identifiers.org/biomodels.db/MODEL1809060004
 % is http://identifiers.org/biomodels.db/BIOMD0000000953
 %
