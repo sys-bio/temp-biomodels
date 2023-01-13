@@ -14,7 +14,6 @@
 %
 % Model name = Strasen2018 - TGFb SMAD Signalling Class 1
 %
-% unknownQualifier http://identifiers.org/biomodels.db/MODEL1712050007
 % isDescribedBy http://identifiers.org/pubmed/29371237
 % is http://identifiers.org/biomodels.db/MODEL1712050007
 % is http://identifiers.org/biomodels.db/BIOMD0000000998
