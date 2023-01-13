@@ -15,8 +15,6 @@
 % Model name = Zake2021 - PBPK model of metformin in humans, eight PO administrations with 12h interval
 %
 % unknownQualifier http://identifiers.org/biomodels.db/MODEL2103020004
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000203
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 % isDescribedBy http://identifiers.org/pubmed/32826656
 % is http://identifiers.org/biomodels.db/MODEL2103020004
 % is http://identifiers.org/biomodels.db/BIOMD0000001029

@@ -14,8 +14,6 @@
 %
 % Model name = Smith&Moore2004 - The SIR model for the spread of HongKong Flu
 %
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000028
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000046
 % is http://identifiers.org/biomodels.db/MODEL2201270001
 % is http://identifiers.org/biomodels.db/BIOMD0000001045
 %

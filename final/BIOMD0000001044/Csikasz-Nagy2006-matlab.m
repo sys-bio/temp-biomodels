@@ -12,8 +12,11 @@
 %
 
 %
-% Model name = COPASI autolayout
+% Model name = Csikasz-Nagy2006 - Mammalian Cell Cycle model
 %
+% isDescribedBy http://identifiers.org/pubmed/16581849
+% is http://identifiers.org/biomodels.db/MODEL3897771820
+% is http://identifiers.org/biomodels.db/BIOMD0000001044
 %
 
 
