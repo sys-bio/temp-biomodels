@@ -1,0 +1,64 @@
+name: Update the OMEX files.
+
+on:
+  # push:
+  workflow_dispatch:
+
+jobs:
+  fixEntries:
+    name: Fix the entries of BioModels and commit to the repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install BioModels QC
+        working-directory: biomodels-qc
+        run: |
+          python -m pip install cython
+          python -m pip install .
+
+      - name: Install requirements
+        run: python -m pip install -r requirements.txt
+
+      - name: Create omex files
+        run: python create_all_omex.py
+
+      - name: Setup Git
+        run: |
+          git config --global user.email "bot@reproduciblebiomodels.org"
+          git config --global user.name "Center for Reproducible Biomodeling Modeling Bot"
+          git config pull.rebase false
+
+      - id: commit-final-entries
+        name: Commit changes to the fixed entries
+        run: |
+          git stash
+          git pull
+          set +e
+          git stash pop
+          chmod a+x git_add.bat
+          ./git_add.bat
+          git pull
+          git commit -m "Automated update fixed versions of entries"
+          if [[ $? = 0 ]]; then
+            finalEntriesChanged=1
+          else
+            finalEntriesChanged=0
+          fi
+          echo "::set-output name=finalEntriesChanged::$finalEntriesChanged"
+
+      - name: Push the changes to the fixed entries
+        if: steps.commit-final-entries.outputs.finalEntriesChanged == '1'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

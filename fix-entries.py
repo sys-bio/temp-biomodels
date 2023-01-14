@@ -235,7 +235,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
         final_filename = os.path.join(final_entry_dir, rel_filename)
 
         # Model 183 takes *forever* to run through the biopax check.
-        if os.path.isfile(final_filename) and (id == 'BIOMD0000000183' or id == 'BIOMD0000000235' or are_biopax_files_the_same(final_filename, temp_filename)):
+        if os.path.isfile(final_filename) and (id == 'BIOMD0000000183' or id == 'BIOMD0000000235' or id == 'BIOMD0000001046' or are_biopax_files_the_same(final_filename, temp_filename)):
             shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
@@ -355,5 +355,5 @@ if __name__ == "__main__":
     for id in ids:
         git_add_file.write("git add final/" + id + "\n")
         git_add_file.write("git add final/" + id + "/*\n")
-        git_add_file.write("git add omex_files/" + id + ".omex\n")
+    git_add_file.write("git add good_pmids.p\n")
     git_add_file.close()
