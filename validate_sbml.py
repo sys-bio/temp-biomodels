@@ -7,6 +7,9 @@ def run(id, sbml_files, errlist):
     """
     for file in sbml_files:
         doc = libsbml.readSBMLFromFile(file)
+        if doc.getModel().getNumReactions() > 1000:
+            #Don't do unit checking for huge models.
+            doc.setConsistencyChecks(libsbml.LIBSBML_CAT_UNITS_CONSISTENCY, False)
         doc.checkConsistency()
         errlog = doc.getErrorLog()
         for e in range(errlog.getNumErrors()):

@@ -239,6 +239,10 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
             shutil.copyfile(final_filename, temp_filename)
 
     ###################################################
+    # Build manifest and create OMEX file
+    create_omex.process(id, temp_entry_dir, OMEX_DIR, False)
+
+    ###################################################
     # Move temporary directory to final location
     if os.path.isdir(final_entry_dir):
         shutil.rmtree(final_entry_dir)
