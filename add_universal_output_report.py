@@ -93,8 +93,9 @@ def matchSBMLIds(doc, sbml_filenames):
                 (modelchanges, __, __, __) = get_parameters_variables_outputs_for_simulation(target, "urn:sedml:language:sbml", UniformTimeCourseSimulation, validate=False)
                 for modelchange in modelchanges:
                     #Need to change it to the base element instead of the attribute.
-                    removeloc = modelchange.target.rfind("@")
-                    modelchange.target = modelchange.target[0:removeloc-1]
+                    #...except Biosimulations can't handle that, so we have to go with the whole thing after all.
+                    # removeloc = modelchange.target.rfind("@")
+                    # modelchange.target = modelchange.target[0:removeloc-1]
                     change = model.createComputeChange()
                     change.setId("auto_" + modelchange.id)
                     change.setName(modelchange.name)
@@ -102,7 +103,8 @@ def matchSBMLIds(doc, sbml_filenames):
                     selfVar = change.createVariable()
                     selfVarId = modelchange.id + "_is_" + modelchange.id
                     selfVar.setId(selfVarId)
-                    selfVar.setTarget(modelchange.target);
+                    selfVar.setTarget(modelchange.target)
+                    selfVar.setModelReference(model.getId())
                     astn = libsedml.parseL3Formula(selfVarId)
                     change.setMath(astn)
             except:
