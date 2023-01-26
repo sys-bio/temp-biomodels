@@ -61,6 +61,22 @@ make_boundary = {
     "BIOMD0000000344": ("MODEL1005280000_moderatestress.xml", "ROS")
 }
 
+def changeAssignmentRuleToInitialAssignment(file, identifier):
+    doc = libsbml.readSBMLFromFile(file)
+    model = doc.getModel()
+    rule = model.getRule(identifier)
+    asnt = rule.getMath()
+    ia = model.createInitialAssignment()
+    ia.setSymbol(identifier)
+    ia.setMath(asnt)
+    model.removeRule(identifier)
+    libsbml.writeSBMLToFile(doc, file)
+
+
+assignment_rule_to_initial_assignment = {
+    "BIOMD0000000567": ("BIOMD0000000567_url.xml", "A0")
+}
+
 particular_fixes = {
     "BIOMD0000000439": fixNanoMolar,
     "BIOMD0000000479": fixNanoMolar,
@@ -338,6 +354,11 @@ def run(id, sbml_files):
     elif id in particular_fixes:
         for file in sbml_files:
             particular_fixes[id](file)
+    if id in assignment_rule_to_initial_assignment:
+        (cfile, sid) = assignment_rule_to_initial_assignment[id]
+        for file in sbml_files:
+            if cfile in file:
+                changeAssignmentRuleToInitialAssignment(file, sid)
     #Now fix annotations:
     for file in sbml_files:
         # print(file)
