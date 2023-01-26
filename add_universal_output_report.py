@@ -126,6 +126,25 @@ def matchTasks(doc, model_ids):
             task = doc.getTask(t)
             if getModelFromTask(task, doc) == model:
                 task_ids[task.getId()] = sbmlids
+    required_task_ids = set()
+    for dg in range(doc.getNumDataGenerators()):
+        datagen = doc.getDataGenerator(dg)
+        for v in range(datagen.getNumVariables()):
+            var = datagen.getVariable(v)
+            if var.isSetTaskReference():
+                required_task_ids.add(var.getTaskReference())
+    
+    unneeded_task_ids = set()
+    for t in range(doc.getNumTasks()):
+        task = doc.getTask(t)
+        if type(task) == libsedml.SedRepeatedTask:
+            for st in range(task.getNumSubTasks()):
+                st_id = task.getSubTask(st).getTask()
+                if st_id not in required_task_ids:
+                    unneeded_task_ids.add(st_id)
+
+    for taskid in unneeded_task_ids:
+        task_ids.pop(taskid)
     return task_ids
 
 def matchTaskTimes(doc, task_ids):
