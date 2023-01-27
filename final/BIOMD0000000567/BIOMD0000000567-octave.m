@@ -76,10 +76,10 @@ function xdot=f(x,t)
 % Parameter:   id =  k2, name = k2
 	global_par_k2=1.57E-6;
 % Parameter:   id =  A0, name = A0
+% Warning parameter A0 is not constant, it should be controlled by a Rule and/or events
+	global_par_A0=184713.375796178;
 % Parameter:   id =  k2A0, name = k2A0
 	global_par_k2A0=0.29;
-% assignmentRule: variable = A0
-	global_par_A0=global_par_k2A0/global_par_k2;
 % assignmentRule: variable = B
 	x(1)=global_par_A0-(global_par_k1/global_par_k2+global_par_A0)/(1+global_par_k1/(global_par_k2*global_par_A0)*exp((global_par_k1+global_par_k2*global_par_A0)*time));
 
