@@ -366,6 +366,7 @@ def run(id, sbml_files):
         bad_pmids = set()
         gp_file = open("good_pmids.p", "rb")
         good_pmids = pickle.load(gp_file)
+        pmids_changed = False
         gp_file.close()
         bad_identifiers_ns = set()
         for line in f:
@@ -394,12 +395,14 @@ def run(id, sbml_files):
                                                 bad_pmids.add(pmid)
                                             else:
                                                 good_pmids.add(pmid)
+                                                pmids_changed = True
                                         except:
                                                 bad_pmids.add(pmid)
         f.close()
-        gp_file = open("good_pmids.p", "wb")
-        pickle.dump(good_pmids, gp_file)
-        gp_file.close()
+        if pmids_changed:
+            gp_file = open("good_pmids.p", "wb")
+            pickle.dump(good_pmids, gp_file)
+            gp_file.close()
         for bad_pmid in bad_pmids:
             fixPubmedId(file, bad_pmid, id)
         for bad_identifiers_ns in bad_identifiers_ns:
