@@ -146,6 +146,9 @@ def fix_sed_sbml_target(sed, sbml, sbml_list, c_file, id, guesses):
         if sbml_file == c_file.replace(".cps", ".xml").replace("+", "_"):
             model.setSource(os.path.basename(sbml_file))
             return libsedml.writeSedMLToString(sed)
+        if sbml_file.replace(".xml", "") in c_file or c_file.replace(".cps", "") in sbml_file:
+            model.setSource(os.path.basename(sbml_file))
+            return libsedml.writeSedMLToString(sed)
 
     # Otherwise, we have to see which one matches the saved SBML file the most closely
     min_diff = len(sbml)
