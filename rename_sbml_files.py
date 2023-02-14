@@ -8,9 +8,9 @@ RENAME = {"BIOMD0000001013": ("Leon-Triana2021 (eqs 1 and 2).xml", "Leon-Triana2
           "BIOMD0000001039": ("Zake2021_Metformin+Mice+IV.xml", "Zake2021_Metformin_Mice_IV.xml"),
           }
 
-REMOVE = {"BIOMD0000000642": ("MODEL1304190001.xml"),
+REMOVE = {"BIOMD0000000642": ("MODEL1304190001_urn.xml"),
           "BIOMD0000000842": ("MODEL1012080000_url.xml"),
-          "BIOMD0000000917": ("MODEL1006230025.xml"),
+          "BIOMD0000000917": ("MODEL1006230025_urn.xml"),
           }
 
 
