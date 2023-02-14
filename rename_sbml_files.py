@@ -8,6 +8,11 @@ RENAME = {"BIOMD0000001013": ("Leon-Triana2021 (eqs 1 and 2).xml", "Leon-Triana2
           "BIOMD0000001039": ("Zake2021_Metformin+Mice+IV.xml", "Zake2021_Metformin_Mice_IV.xml"),
           }
 
+REMOVE = {"BIOMD0000000642": ("MODEL1304190001.xml"),
+          "BIOMD0000000842": ("MODEL1012080000_url.xml"),
+          "BIOMD0000000917": ("MODEL1006230025.xml"),
+          }
+
 
 def run(id, sbml_filenames):
     """ Rename SBML files with unhelpful names
@@ -15,6 +20,7 @@ def run(id, sbml_filenames):
     * The renaming has to be separate from fix_manual_corrections because the
       SED-ML files are produced first, and set up the 'model' links, which
       need to be the new filenames, not the old.
+    * The same thing goes for SBML files we need to remove.
 
     Args:
         id (:obj:`str`): id of BioModels entry
@@ -32,3 +38,11 @@ def run(id, sbml_filenames):
         for (old, new) in remove_list:
             sbml_filenames.remove(old)
             sbml_filenames.append(new)
+    if id in REMOVE:
+        old = REMOVE[id]
+        for filename in sbml_filenames:
+            if old in filename:
+                os.remove(filename)
+                remove_list.append(filename)
+        for old in remove_list:
+            sbml_filenames.remove(old)
