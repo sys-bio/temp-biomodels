@@ -147,6 +147,22 @@ def matchTasks(doc, model_ids):
         task_ids.pop(taskid)
     return task_ids
 
+def hasTimeCourse(doc, taskid):
+    task = doc.getTask(taskid)
+    if task.getTypeCode() == libsedml.SEDML_TASK_REPEATEDTASK:
+        for st in range(task.getNumSubTasks()):
+            subtask = task.getSubTask(st)
+            if hasTimeCourse(doc, subtask.getTask()):
+                return True
+    elif task.getTypeCode() == libsedml.SEDML_TASK:
+        sim = doc.getSimulation(task.getSimulationReference())
+        if sim.getTypeCode() == libsedml.SEDML_SIMULATION_STEADYSTATE:
+            return False
+        else:
+            #The 'Analysis' type might not have 'time', but enh.
+            return True
+    return False
+
 def matchTaskTimes(doc, task_ids):
     task_times = {}
     for taskref in task_ids:
@@ -161,7 +177,7 @@ def matchTaskTimes(doc, task_ids):
             if var.getTaskReference() == taskref:
                 if var.getSymbol() == "urn:sedml:symbol:time":
                     task_times[taskref] = datagen.getId()
-        if taskref not in task_times:
+        if taskref not in task_times and hasTimeCourse(doc, taskref):
             #Create new datagen for time
             datagen = doc.createDataGenerator()
             datagen.setId("auto_time_for_" + taskref)
@@ -239,11 +255,12 @@ def addReport(doc, datagen_ids, task_times):
         report = doc.createReport()
         report.setId("autogen_report_for_" + taskref)
         report.setName("Auto-generated report for " + taskref + ", including all symbols in SBML with mathematical meaning, both constant and variable.")
-        time = task_times[taskref]
-        dataset = report.createDataSet()
-        dataset.setId("autogen_time_for_" + taskref)
-        dataset.setDataReference(time)
-        dataset.setLabel("Time")
+        if taskref in task_times:
+            time = task_times[taskref]
+            dataset = report.createDataSet()
+            dataset.setId("autogen_time_for_" + taskref)
+            dataset.setDataReference(time)
+            dataset.setLabel("Time")
         for (dgid, sbmlid) in datagen_ids[taskref]:
             dataset = report.createDataSet()
             dataset.setId("autogen_" + taskref + "_" + sbmlid[0])
