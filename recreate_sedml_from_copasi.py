@@ -369,6 +369,8 @@ def run(sedml_filenames, copasi_filenames, sbml_filenames, id):
     guesses = []
     for copasi_filename in copasi_filenames:
         # print(copasi_filename)
+        #Due to a bug in Copasi, need to clear user functions from previous loads:
+        basico.remove_user_defined_functions()
         copasi_basename = os.path.basename(copasi_filename)
         if copasi_basename in bad_copasi_filenames:
             continue

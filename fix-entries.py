@@ -338,9 +338,6 @@ if __name__ == "__main__":
         ids.remove(low_id)
 
     guess_file_name = "guesses.csv"
-    if "BIOMD0000000757" in ids:
-        ids.remove("BIOMD0000000757")
-        ids.append("BIOMD0000000757")
     #args.convert_files = True
     #args.validate_sbml = True
     fix_entries(ids, convert_files=args.convert_files, guess_file_name=guess_file_name, validate_sbml=args.validate_sbml,
