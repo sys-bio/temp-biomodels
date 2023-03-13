@@ -246,6 +246,37 @@ def addReport(doc, datagen_ids, task_times):
             dataset.setLabel(sbmlid[0])
     
 
+def addPlot(doc, datagen_ids, task_times):
+    for out in range(doc.getNumOutputs()):
+        output = doc.getOutput(out)
+        if output.getTypeCode() != libsedml.SEDML_OUTPUT_REPORT:
+            #Don't create a new plot if a plot exists.
+            return
+    for taskref in datagen_ids:
+        if taskref not in task_times:
+            continue
+        plot = doc.createPlot2D()
+        plot.setId("autogen_plot_for_" + taskref)
+        plot.setName("Auto-generated plot for " + taskref + ", including all species.")
+        time = task_times[taskref]
+        xaxis = plot.createXAxis()
+        xaxis.setName("Time")
+        xaxis.setType(libsedml.SEDML_AXISTYPE_LINEAR)
+        yaxis = plot.createYAxis()
+        yaxis.setName("Species")
+        yaxis.setType(libsedml.SEDML_AXISTYPE_LINEAR)
+        for (dgid, sbmlid) in datagen_ids[taskref]:
+            if sbmlid[1] == "species":
+                curve = plot.createCurve()
+                curve.setLogX(False)
+                curve.setLogY(False)
+                curve.setXDataReference(time)
+                curve.setYDataReference(dgid)
+                curve.setId("autogen_curve_" + taskref + "_" + sbmlid[0])
+                #curve.setDataReference(dgid)
+                curve.setName(sbmlid[0])
+    
+
 def run(sedml_filenames, sbml_filenames):
     if len(sedml_filenames) == 0:
         create_generic_sedml(sedml_filenames, sbml_filenames)
@@ -257,5 +288,6 @@ def run(sedml_filenames, sbml_filenames):
         task_times = matchTaskTimes(doc, task_ids)
         datagen_ids = defineDatagenForAllTargets(doc, task_ids)
         addReport(doc, datagen_ids, task_times)
+        addPlot(doc, datagen_ids, task_times)
         
         libsedml.writeSedMLToFile(doc, sedml_filename)
