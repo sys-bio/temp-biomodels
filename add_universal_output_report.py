@@ -203,7 +203,7 @@ def defineDatagenForAllTargets(doc, task_ids):
         target = var.getTarget()
         removeList = []
         for sbmlid in sbmlids:
-            if sbmlid[0] in target:
+            if "@id='" + sbmlid[0] + "'" in target:
                 if sbmlid[1] == "reaction" and ("listOfReactants" in target or "listOfProducts" in target):
                     #It's a link for a speciesReference, not a reaction
                     continue
