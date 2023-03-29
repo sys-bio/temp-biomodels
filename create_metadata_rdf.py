@@ -15,6 +15,33 @@ from biosimulators_utils.omex_meta.data_model import OmexMetadataOutputFormat
 import Bio.Entrez
 Bio.Entrez.email = 'lpsmith@uw.edu'
 
+class NonStandardRef():
+    """ Journal article not from pubmed or doi
+    """
+    citation: str = None
+    uri: str = None
+    title: str = None
+    pubmed_central_id = None
+
+
+    def __init__(self, citation, uri, title):
+        self.citation = citation
+        self.uri = uri
+        self.title = title
+
+    def get_citation(self):
+        return self.citation
+
+    def get_uri(self):
+        return self.uri
+    
+    
+
+no_pubmed_or_doi = {
+    "BIOMD0000000358" : NonStandardRef('Stortelder, Walter JH, Pieter Wilhelm Hemker, and Hendrik Coenraad Hemker. "Mathematical modelling in blood coagulation: simulation and parameter estimation." Modelling, Analysis and Simulation [MAS] R 9720 (1997).', "http://www.narcis.nl/publication/RecordID/oai:cwi.nl:4725", "Mathematical modelling in blood coagulation : simulation and parameter estimation"),
+    "BIOMD0000001045" : NonStandardRef('Smith, David, and Lang Moore. "The SIR model for spread of disease-the differential equation model." Convergence (2004).', "https://www.maa.org/press/periodicals/loci/joma/the-sir-model-for-spread-of-disease-the-differential-equation-model", "The SIR Model for Spread of Disease - The Differential Equation Model"),
+    }
+
 def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, masterIDs):
     doc = libsbml.readSBMLFromFile(filename)
     model = doc.getModel()
@@ -36,7 +63,7 @@ def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, mast
         cvterm = cvterms.get(cv)
         for r in range(cvterm.getNumResources()):
             rURI = cvterm.getResourceURI(r)
-            if "pubmed" in rURI:
+            if "pubmed/" in rURI:
                 pmid = rURI.split("/")[-1]
                 pubmedIDs.add(pmid)
                 if master:
@@ -48,7 +75,7 @@ def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, mast
                     masterIDs.add(rURI[uripos+8:])
 
     
-def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata):
+def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir):
     citations = []
     mastercitations = []
     for pmid in pubmedIDs:
@@ -63,6 +90,10 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata):
         if doiID in masterIDs:
             mastercitations.append(citation)
 
+    if len(citations)==0:
+        citations.append(no_pubmed_or_doi[id])
+        mastercitations.append(no_pubmed_or_doi[id])
+
     for citation in citations:
         cite = {
             "uri": citation.get_uri(),
@@ -75,9 +106,9 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata):
         if citation.pubmed_central_id:
             thumbnails = get_pubmed_central_open_access_graphics(
                 citation.pubmed_central_id,
-                ".",
+                temp_entry_dir,
                 )
-            metadata['thumbnails'] = [os.path.relpath(thumbnail.filename, ".") for thumbnail in thumbnails]
+            metadata['thumbnails'] = [os.path.relpath(thumbnail.filename, temp_entry_dir).replace("\\", "/") for thumbnail in thumbnails]
 
 
 
@@ -98,11 +129,11 @@ def run(id, sbml_filenames, temp_entry_dir, sbml_master):
         if sbml_master in filename:
             master = True
         parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, masterIDs)
-    if len(masterIDs)==0:
+    if len(masterIDs)==0 and not len(pubmedIDs)==0 and not len(doiIDs)==0:
         print("No master SBML file for", id)
         print("Original master sbml file:", sbml_master)
         assert(False) #Need to find new master SBML filename
-    addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata)
+    addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir)
     metadata_filename = os.path.join(temp_entry_dir, 'metadata.rdf')
     config = get_config()
     config.OMEX_METADATA_OUTPUT_FORMAT = OmexMetadataOutputFormat.turtle

@@ -6,6 +6,7 @@ RENAME = {"BIOMD0000001013": ("Leon-Triana2021 (eqs 1 and 2).xml", "Leon-Triana2
           "BIOMD0000001028": ("Zake2021_Metformin+Human+single+PO+dose.xml", "Zake2021_Metformin_Human_single_PO_dose.xml"),
           "BIOMD0000001029": ("Zake2021_Metformin+Human+multiple+PO+dose.xml", "Zake2021_Metformin_Human_multiple_PO_dose.xml"),
           "BIOMD0000001039": ("Zake2021_Metformin+Mice+IV.xml", "Zake2021_Metformin_Mice_IV.xml"),
+          "BIOMD0000000753": ("Figueredo2013:1.xml", "Figueredo2013_1.xml")
           }
 
 REMOVE = {"BIOMD0000000642": ("MODEL1304190001_urn.xml"),
