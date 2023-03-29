@@ -14,7 +14,7 @@ REMOVE = {"BIOMD0000000642": ("MODEL1304190001_urn.xml"),
           }
 
 
-def run(id, sbml_filenames):
+def run(id, sbml_filenames, sbml_master):
     """ Rename SBML files with unhelpful names
 
     * The renaming has to be separate from fix_manual_corrections because the
@@ -30,6 +30,8 @@ def run(id, sbml_filenames):
     remove_list = []
     if id in RENAME:
         (old, new) = RENAME[id]
+        if sbml_master == old:
+            sbml_master = new
         for filename in sbml_filenames:
             if old in filename:
                 newfilename = filename.replace(old, new)
@@ -40,9 +42,12 @@ def run(id, sbml_filenames):
             sbml_filenames.append(new)
     if id in REMOVE:
         old = REMOVE[id]
+        if sbml_master == old:
+            raise NotImplementedError("Need new sbml name for removed file.")
         for filename in sbml_filenames:
             if old in filename:
                 os.remove(filename)
                 remove_list.append(filename)
         for old in remove_list:
             sbml_filenames.remove(old)
+    return sbml_master

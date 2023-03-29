@@ -2,6 +2,8 @@
 # master program to fix the entries of BioModels
 
 import add_universal_output_report
+import create_metadata_rdf
+import create_omex
 import decrease_excessive_numbers_of_time_course_steps
 import fix_copasi_algorithms
 import fix_filenames
@@ -10,6 +12,7 @@ import fix_models_non_copasi
 import fix_sbml_validity
 import fix_sedml_extensions
 import fix_sed_plot_names
+import get_master_file_from_manifest
 import recreate_sedml_from_copasi
 import remove_bad_images_created_by_sbfc
 import remove_bad_octave_files
@@ -27,7 +30,6 @@ import remove_failed_pdfs
 import rename_sbml_files
 import rename_xpp_to_ode
 import validate_sbml as validate_sbml_module
-import create_omex
 
 from biomodels_qc.utils import are_biopax_files_the_same, build_combine_archive
 from biomodels_qc.warnings import BiomodelsQcWarning
@@ -152,11 +154,12 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     copasi_filenames.sort()
     sbml_filenames.sort()
 
+    master_sbml = get_master_file_from_manifest.run(temp_entry_dir)
     remove_urn_sbml_files.run(sbml_filenames)
     remove_initial_rdf_file.run(rdf_filenames)
     remove_failed_pdfs.run(pdf_filenames)
     remove_non_sbml.run(id, sbml_filenames)
-    rename_sbml_files.run(id, sbml_filenames)
+    master_sbml = rename_sbml_files.run(id, sbml_filenames, master_sbml)
     rename_xpp_to_ode.run(xpp_filenames)
 
     # SED-ML files: recreate from COPASI, then fix the model sources.
@@ -225,10 +228,14 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     ###################################################
     # Convert primary files to other formats
     if convert_files:
-        from biomodels_qc.convert import convert_entry
-        convert_entry(temp_entry_dir)
+        from biomodels_qc.convert import convert_entry, AltSbmlFormat
+        alt_sbml_formats = list(AltSbmlFormat.__members__)
+        alt_sbml_formats.remove("OMEX_Metadata")
+        convert_entry(temp_entry_dir, alt_sbml_formats = alt_sbml_formats, omexname = id + ".omex")
 
     remove_converted_files_for_non_kinetic_models.run(temp_entry_dir)
+    
+    create_metadata_rdf.run(id, sbml_filenames, temp_entry_dir, master_sbml)
 
     for temp_filename in glob.glob(os.path.join(temp_entry_dir, '**', '*.owl'), recursive=True):
         rel_filename = os.path.relpath(temp_filename, temp_entry_dir)
