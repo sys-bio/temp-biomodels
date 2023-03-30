@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model metaid="COPASI1" id="Model_1" name="p53">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml"/>
+    </notes>
+    <listOfUnitDefinitions>
+      <unitDefinition id="volume">
+        <listOfUnits>
+          <unit kind="dimensionless"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time">
+        <listOfUnits>
+          <unit kind="second" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="dimensionless"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="compartment_1" name="cell" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="species_1" name="p" compartment="compartment_1" initialConcentration="1" boundaryCondition="true"/>
+      <species id="species_2" name="mm" compartment="compartment_1" initialConcentration="1" boundaryCondition="true"/>
+      <species id="species_3" name="m" compartment="compartment_1" initialConcentration="1" boundaryCondition="true"/>
+      <species id="species_4" name="pm" compartment="compartment_1" initialConcentration="1" boundaryCondition="true"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="parameter_1" name="S" value="1000"/>
+      <parameter id="parameter_2" name="alpha" value="0.1"/>
+      <parameter id="parameter_3" name="k_t" value="0.03"/>
+      <parameter id="parameter_4" name="k_tl" value="1.4"/>
+      <parameter id="parameter_5" name="k_b" value="7200"/>
+      <parameter id="parameter_6" name="k_f" value="5000"/>
+      <parameter id="parameter_7" name="beta" value="0.6"/>
+      <parameter id="parameter_8" name="gamma" value="0.2"/>
+      <parameter id="parameter_9" name="delta" value="11"/>
+    </listOfParameters>
+    <listOfRules>
+      <rateRule variable="species_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <ci> parameter_1 </ci>
+                <apply>
+                  <times/>
+                  <ci> parameter_6 </ci>
+                  <ci> species_1 </ci>
+                  <ci> species_3 </ci>
+                </apply>
+              </apply>
+              <ci> parameter_2 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <apply>
+                <plus/>
+                <ci> parameter_5 </ci>
+                <ci> parameter_8 </ci>
+              </apply>
+              <ci> species_4 </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="species_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> parameter_3 </ci>
+              <apply>
+                <power/>
+                <ci> species_1 </ci>
+                <cn> 2 </cn>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci> parameter_7 </ci>
+              <ci> species_2 </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="species_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <plus/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> parameter_4 </ci>
+                  <ci> species_2 </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> parameter_6 </ci>
+                  <ci> species_1 </ci>
+                  <ci> species_3 </ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <ci> parameter_5 </ci>
+                  <ci> parameter_9 </ci>
+                </apply>
+                <ci> species_4 </ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci> parameter_8 </ci>
+              <ci> species_3 </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="species_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> parameter_6 </ci>
+                <ci> species_1 </ci>
+                <ci> species_3 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <ci> parameter_5 </ci>
+                  <ci> parameter_9 </ci>
+                </apply>
+                <ci> species_4 </ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci> parameter_8 </ci>
+              <ci> species_4 </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+  </model>
+</sbml>

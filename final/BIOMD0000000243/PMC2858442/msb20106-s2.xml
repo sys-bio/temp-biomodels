@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model id="model_8" name="Model of CD95-Induced Caspase and NF-kB Activation (model_8)">
+    <notes>
+      <html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="qrichtext" content="1" /></head><body style="font-size:13pt;font-family:Lucida Grande">
+<p>Leo Neumann, Carina Pforr, Joel Beaudouin, Alexander Golks, Peter H. Krammer, Inna N. Lavrik, Roland Eils.</p>
+<p>German Cancer Research Center (DKFZ)</p>
+<p>http://www.dkfz.de</p>
+</body></html>
+    </notes>
+    <listOfUnitDefinitions>
+      <unitDefinition id="time">
+        <listOfUnits>
+          <unit kind="second" multiplier="60" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="mole" scale="-9" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="default" name="default" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="L" name="L" compartment="default" initialConcentration="1.132200e+02"/>
+      <species id="L:RF" name="L:RF" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="L:RF:C8" name="L:RF:C8" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="L:RF:FL" name="L:RF:FL" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="L:RF:FS" name="L:RF:FS" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="p43/p41" name="p43/p41" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="C3" name="C3" compartment="default" initialConcentration="1.443404e+00"/>
+      <species id="C8" name="C8" compartment="default" initialConcentration="6.447652e+01"/>
+      <species id="C8*" name="C8*" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="C3*" name="C3*" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="p43-FLIP" name="p43-FLIP" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="NF-kB:IkB" name="NF-kB:IkB" compartment="default" initialConcentration="4.739546e+00"/>
+      <species id="NF-kB:IkB:P" name="NF-kB:IkB:P" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="p43-FLIP:IKK*" name="p43-FLIP:IKK*" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="NF-kB*" name="NF-kB*" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="RF" name="RF" compartment="default" initialConcentration="9.126592e+01"/>
+      <species id="FL" name="FL" compartment="default" initialConcentration="7.398562e+00"/>
+      <species id="FS" name="FS" compartment="default" initialConcentration="5.083923e+00"/>
+      <species id="IKK" name="IKK" compartment="default" initialConcentration="5.772825e+00"/>
+      <species id="L:RF:C8:FS" name="L:RF:C8:FS" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="L:RF:FL:FL" name="L:RF:FL:FL" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="L:RF:FL:FS" name="L:RF:FL:FS" compartment="default" initialConcentration="0.000000e+00"/>
+      <species id="L:RF:FS:FS" name="L:RF:FS:FS" compartment="default" initialConcentration="0.000000e+00"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="k1" name="k1" value="1.000000e+00"/>
+      <parameter id="k2" name="k2" value="1.277248e-04"/>
+      <parameter id="k3" name="k3" value="6.693316e-01"/>
+      <parameter id="k4" name="k4" value="1.000000e-05"/>
+      <parameter id="k5" name="k5" value="5.946569e-04"/>
+      <parameter id="k6" name="k6" value="9.999999e-01"/>
+      <parameter id="k7" name="k7" value="8.875063e-01"/>
+      <parameter id="k8" name="k8" value="8.044378e-04"/>
+      <parameter id="k9" name="k9" value="2.249759e-03"/>
+      <parameter id="k10" name="k10" value="1.205258e-01"/>
+      <parameter id="k11" name="k11" value="2.891451e-02"/>
+      <parameter id="k12" name="k12" value="1.502914e-01"/>
+      <parameter id="k13" name="k13" value="7.204261e-04"/>
+      <parameter id="k14" name="k14" value="3.588224e-01"/>
+      <parameter id="k15" name="k15" value="3.684162e+00"/>
+      <parameter id="k16" name="k16" value="2.229912e-02"/>
+      <parameter id="k17" name="k17" value="6.418200e-03"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="reaction_1" name="reaction_1" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L"/>
+          <speciesReference species="RF"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k1 </ci>
+              <ci> L </ci>
+              <ci> RF </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_2" name="reaction_2" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF"/>
+          <speciesReference species="C8"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:C8"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k2 </ci>
+              <ci> L:RF </ci>
+              <ci> C8 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_3" name="reaction_3" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF"/>
+          <speciesReference species="FL"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:FL"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k3 </ci>
+              <ci> L:RF </ci>
+              <ci> FL </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_4" name="reaction_4" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF"/>
+          <speciesReference species="FS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:FS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k4 </ci>
+              <ci> L:RF </ci>
+              <ci> FS </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_5" name="reaction_5" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:C8"/>
+          <speciesReference species="C8"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p43/p41"/>
+          <speciesReference species="p43/p41"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k5 </ci>
+              <ci> L:RF:C8 </ci>
+              <ci> C8 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_6" name="reaction_6" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:C8"/>
+          <speciesReference species="FL"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p43-FLIP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k6 </ci>
+              <ci> L:RF:C8 </ci>
+              <ci> FL </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_7" name="reaction_7" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:C8"/>
+          <speciesReference species="FS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:C8:FS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k7 </ci>
+              <ci> L:RF:C8 </ci>
+              <ci> FS </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_8" name="reaction_8" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:FL"/>
+          <speciesReference species="C8"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p43-FLIP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k5 </ci>
+              <ci> L:RF:FL </ci>
+              <ci> C8 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_9" name="reaction_9" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:FL"/>
+          <speciesReference species="FL"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:FL:FL"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k6 </ci>
+              <ci> L:RF:FL </ci>
+              <ci> FL </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_10" name="reaction_10" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:FL"/>
+          <speciesReference species="FS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:FL:FS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k7 </ci>
+              <ci> L:RF:FL </ci>
+              <ci> FS </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_11" name="reaction_11" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:FS"/>
+          <speciesReference species="C8"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:C8:FS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k5 </ci>
+              <ci> L:RF:FS </ci>
+              <ci> C8 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_12" name="reaction_12" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:FS"/>
+          <speciesReference species="FL"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:FL:FS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k6 </ci>
+              <ci> L:RF:FS </ci>
+              <ci> FL </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_13" name="reaction_13" reversible="false">
+        <listOfReactants>
+          <speciesReference species="L:RF:FS"/>
+          <speciesReference species="FS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="L:RF:FS:FS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k7 </ci>
+              <ci> L:RF:FS </ci>
+              <ci> FS </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_14" name="reaction_14" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p43/p41"/>
+          <speciesReference species="p43/p41"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C8*"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k8 </ci>
+              <ci> p43/p41 </ci>
+              <ci> p43/p41 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_15" name="reaction_15" reversible="false">
+        <listOfReactants>
+          <speciesReference species="C3"/>
+          <speciesReference species="C8*"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C3*"/>
+          <speciesReference species="C8*"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k9 </ci>
+              <ci> C3 </ci>
+              <ci> C8* </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_16" name="reaction_16" reversible="false">
+        <listOfReactants>
+          <speciesReference species="C8"/>
+          <speciesReference species="C3*"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p43/p41"/>
+          <speciesReference species="C3*"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k10 </ci>
+              <ci> C8 </ci>
+              <ci> C3* </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_17" name="reaction_17" reversible="false">
+        <listOfReactants>
+          <speciesReference species="C8*"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k11 </ci>
+              <ci> C8* </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_18" name="reaction_18" reversible="false">
+        <listOfReactants>
+          <speciesReference species="C3*"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k12 </ci>
+              <ci> C3* </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_19" name="reaction_19" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p43-FLIP"/>
+          <speciesReference species="IKK"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p43-FLIP:IKK*"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k13 </ci>
+              <ci> p43-FLIP </ci>
+              <ci> IKK </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_20" name="reaction_20" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NF-kB:IkB"/>
+          <speciesReference species="p43-FLIP:IKK*"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NF-kB:IkB:P"/>
+          <speciesReference species="p43-FLIP:IKK*"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k14 </ci>
+              <ci> NF-kB:IkB </ci>
+              <ci> p43-FLIP:IKK* </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_21" name="reaction_21" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NF-kB:IkB:P"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NF-kB*"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k15 </ci>
+              <ci> NF-kB:IkB:P </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_22" name="reaction_22" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p43-FLIP:IKK*"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k16 </ci>
+              <ci> p43-FLIP:IKK* </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_23" name="reaction_23" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NF-kB*"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> default </ci>
+              <ci> k17 </ci>
+              <ci> NF-kB* </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

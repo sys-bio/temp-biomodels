@@ -1,0 +1,372 @@
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model id="p53_Mdm2_ARF_System">
+    <listOfUnitDefinitions>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="item" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="cell" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Mdm2" compartment="cell" initialAmount="5" hasOnlySubstanceUnits="true"/>
+      <species id="p53" compartment="cell" initialAmount="5" hasOnlySubstanceUnits="true"/>
+      <species id="Mdm2_p53" compartment="cell" initialAmount="95" hasOnlySubstanceUnits="true"/>
+      <species id="Mdm2_mRNA" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="ARF" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="ARF_Mdm2" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="IR" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="damDNA" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="Sink" compartment="cell" initialAmount="1" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="true"/>
+      <species id="Source" compartment="cell" initialAmount="1" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="true"/>
+      <species id="p53deg" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="p53syn" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="mdm2deg" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="mdm2syn" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="Mdm2mRNAdeg" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="Mdm2mRNAsyn" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="totdamDNA" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="totp53" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="totMdm2" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="ksynMdm2" value="0.000495"/>
+      <parameter id="kdegMdm2" value="0.000433"/>
+      <parameter id="ksynp53" value="0.078"/>
+      <parameter id="kdegp53" value="0.000825"/>
+      <parameter id="kbinMdm2p53" value="0.001155"/>
+      <parameter id="krelMdm2p53" value="1.155e-005"/>
+      <parameter id="ksynMdm2mRNA" value="0.0001"/>
+      <parameter id="kdegMdm2mRNA" value="0.0001"/>
+      <parameter id="kbinARFMdm2" value="0.01"/>
+      <parameter id="kdegARFMdm2" value="0.001"/>
+      <parameter id="kdegARF" value="0.0001"/>
+      <parameter id="kactARF" value="3.3e-005"/>
+      <parameter id="kdam" value="0.08"/>
+      <parameter id="krepair" value="2e-005"/>
+      <parameter id="kproteff" value="1"/>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="totp53">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> p53 </ci>
+            <ci> Mdm2_p53 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="totMdm2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> Mdm2 </ci>
+            <ci> Mdm2_p53 </ci>
+            <ci> ARF_Mdm2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="Mdm2Synthesis" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Mdm2_mRNA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Mdm2_mRNA"/>
+          <speciesReference species="Mdm2"/>
+          <speciesReference species="mdm2syn"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ksynMdm2 </ci>
+              <ci> Mdm2_mRNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mdm2mRNASynthesis" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p53"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p53"/>
+          <speciesReference species="Mdm2_mRNA"/>
+          <speciesReference species="Mdm2mRNAsyn"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ksynMdm2mRNA </ci>
+              <ci> p53 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mdm2mRNADegradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Mdm2_mRNA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Sink"/>
+          <speciesReference species="Mdm2mRNAdeg"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdegMdm2mRNA </ci>
+              <ci> Mdm2_mRNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Mdm2Degradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Mdm2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Sink"/>
+          <speciesReference species="mdm2deg"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdegMdm2 </ci>
+              <ci> Mdm2 </ci>
+              <ci> kproteff </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="p53Synthesis" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Source"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p53"/>
+          <speciesReference species="p53syn"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ksynp53 </ci>
+              <ci> Source </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="p53Degradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Mdm2_p53"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Mdm2"/>
+          <speciesReference species="p53deg"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdegp53 </ci>
+              <ci> Mdm2_p53 </ci>
+              <ci> kproteff </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="P53_Mdm2Binding" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p53"/>
+          <speciesReference species="Mdm2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Mdm2_p53"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinMdm2p53 </ci>
+              <ci> p53 </ci>
+              <ci> Mdm2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="P53_Mdm2Release" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Mdm2_p53"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p53"/>
+          <speciesReference species="Mdm2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krelMdm2p53 </ci>
+              <ci> Mdm2_p53 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DNAdamage" reversible="false">
+        <listOfReactants>
+          <speciesReference species="IR"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IR"/>
+          <speciesReference species="damDNA"/>
+          <speciesReference species="totdamDNA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdam </ci>
+              <ci> IR </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DNArepair" reversible="false">
+        <listOfReactants>
+          <speciesReference species="damDNA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Sink"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> krepair </ci>
+              <ci> damDNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ARFactivation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="damDNA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="damDNA"/>
+          <speciesReference species="ARF"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kactARF </ci>
+              <ci> damDNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ARF_Mdm2Binding" reversible="false">
+        <listOfReactants>
+          <speciesReference species="ARF"/>
+          <speciesReference species="Mdm2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ARF_Mdm2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kbinARFMdm2 </ci>
+              <ci> ARF </ci>
+              <ci> Mdm2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ARF_Mdm2Degradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="ARF_Mdm2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ARF"/>
+          <speciesReference species="mdm2deg"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdegARFMdm2 </ci>
+              <ci> ARF_Mdm2 </ci>
+              <ci> kproteff </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ARFDegradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="ARF"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Sink"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kdegARF </ci>
+              <ci> ARF </ci>
+              <ci> kproteff </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <listOfEvents>
+      <event id="stressCell">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <geq/>
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+              <cn> 3600 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="IR">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn> 25 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="stopStress">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <geq/>
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+              <cn> 3660 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="IR">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn> 0 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  </model>
+</sbml>
