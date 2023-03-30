@@ -1,0 +1,550 @@
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.0 20120330//EN" "JATS-archivearticle1.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article"><?properties open_access?><front><journal-meta><journal-id journal-id-type="nlm-ta">PLoS Comput Biol</journal-id><journal-id journal-id-type="iso-abbrev">PLoS Comput. Biol</journal-id><journal-id journal-id-type="publisher-id">pcbi</journal-id><journal-id journal-id-type="publisher-id">plcb</journal-id><journal-id journal-id-type="pmc">ploscomp</journal-id><journal-title-group><journal-title>PLoS Computational Biology</journal-title></journal-title-group><issn pub-type="ppub">1553-734X</issn><issn pub-type="epub">1553-7358</issn><publisher><publisher-name>Public Library of Science</publisher-name><publisher-loc>San Francisco, USA</publisher-loc></publisher></journal-meta><article-meta><article-id pub-id-type="pmid">16261191</article-id><article-id pub-id-type="pmc">1246807</article-id><article-id pub-id-type="doi">10.1371/journal.pcbi.0010046</article-id><article-id pub-id-type="publisher-id">05-PLCB-RA-0122R4</article-id><article-id pub-id-type="sici">plcb-01-05-02</article-id><article-categories><subj-group subj-group-type="heading"><subject>Research Article</subject></subj-group><subj-group subj-group-type="Discipline"><subject>Bioinformatics - Computational Biology</subject><subject>Systems Biology</subject></subj-group><subj-group subj-group-type="System Taxonomy"><subject>Drug Targets</subject><subject>Fba</subject><subject>Gene Essentiality</subject><subject>Pathway Modelling</subject></subj-group></article-categories><title-group><article-title>Flux Balance Analysis of Mycolic Acid Pathway: Targets for Anti-Tubercular Drugs</article-title><alt-title alt-title-type="running-head">FBA of Mycolic Acid Pathway</alt-title></title-group><contrib-group><contrib contrib-type="author"><name><surname>Raman</surname><given-names>Karthik</given-names></name><xref ref-type="aff" rid="aff1"/></contrib><contrib contrib-type="author"><name><surname>Rajagopalan</surname><given-names>Preethi</given-names></name><xref ref-type="aff" rid="aff1"/></contrib><contrib contrib-type="author"><name><surname>Chandra</surname><given-names>Nagasuma</given-names></name><xref ref-type="corresp" rid="cor1">*</xref><xref ref-type="aff" rid="aff1"/></contrib></contrib-group><aff id="aff1">Bioinformatics Centre, Supercomputer Education and Research Centre, Indian Institute of Science, Bangalore, India</aff><contrib-group><contrib contrib-type="editor"><name><surname>Segre</surname><given-names>Daniel</given-names></name><role>Editor</role><xref ref-type="aff" rid="edit1"/></contrib></contrib-group><aff id="edit1">Boston University, United States of America</aff><author-notes><corresp id="cor1">* To whom correspondence should be addressed. E-mail: <email>nchandra@serc.iisc.ernet.in</email></corresp></author-notes><pub-date pub-type="ppub"><month>10</month><year>2005</year></pub-date><pub-date pub-type="epub"><day>14</day><month>10</month><year>2005</year></pub-date><pub-date pub-type="epreprint"><day>4</day><month>8</month><year>2005</year></pub-date><volume>1</volume><issue>5</issue><elocation-id>e46</elocation-id><history><date date-type="received"><day>2</day><month>6</month><year>2005</year></date><date date-type="accepted"><day>31</day><month>8</month><year>2005</year></date></history><permissions><copyright-statement>Copyright: &#x000a9; 2005 Raman et al.</copyright-statement><copyright-year>2005</copyright-year><license xlink:href="http://creativecommons.org/licenses/by/4.0/"><license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are properly credited.</license-p></license></permissions><!--<related-article preprintresearch10.1371/journal.pcbi.0010046.eorsimple>Flux Balance Analysis of Mycolic Acid Pathway: Targets for Anti-Tubercular Drugs</related-article>--><abstract><p>
+<italic>Mycobacterium tuberculosis</italic> is the focus of several investigations for design of newer drugs, as tuberculosis remains a major epidemic despite the availability of several drugs and a vaccine. Mycobacteria owe many of their unique qualities to mycolic acids, which are known to be important for their growth, survival, and pathogenicity. Mycolic acid biosynthesis has therefore been the focus of a number of biochemical and genetic studies. It also turns out to be the pathway inhibited by front-line anti-tubercular drugs such as isoniazid and ethionamide. Recent years have seen the emergence of systems-based methodologies that can be used to study microbial metabolism. Here, we seek to apply insights from flux balance analyses of the mycolic acid pathway (MAP) for the identification of anti-tubercular drug targets. We present a comprehensive model of mycolic acid synthesis in the pathogen <italic>M. tuberculosis</italic> involving 197 metabolites participating in 219 reactions catalysed by 28 proteins. Flux balance analysis (FBA) has been performed on the MAP model, which has provided insights into the metabolic capabilities of the pathway. In silico systematic gene deletions and inhibition of InhA by isoniazid, studied here, provide clues about proteins essential for the pathway and hence lead to a rational identification of possible drug targets. Feasibility studies using sequence analysis of the <italic>M. tuberculosis</italic> H37Rv and human proteomes indicate that, apart from the known InhA, potential targets for anti-tubercular drug design are AccD3, Fas, FabH, Pks13, DesA1/2, and DesA3. Proteins identified as essential by FBA correlate well with those previously identified experimentally through transposon site hybridisation mutagenesis. This study demonstrates the application of FBA for rational identification of potential anti-tubercular drug targets, which can indeed be a general strategy in drug design. The targets, chosen based on the critical points in the pathway, form a ready shortlist for experimental testing.</p></abstract><abstract abstract-type="synopsis"><title>Synopsis</title><sec id="st1"><title/><p>
+<italic>M. tuberculosis,</italic> a deadly human pathogen, owes many of its unique qualities to its thick, waxy coat, containing fatty acids called mycolic acids. Several front-line drugs used for treating tuberculosis indeed inhibit mycolic acid synthesis. Understanding the biochemical pathway that makes these compounds is therefore of great interest. Availability of the genome sequence and various computational methods enable us to study pathways as whole functional units, rather than having to infer from the study of individual proteins. Here, we present a comprehensive identification of the components of the mycolic acid pathway and represent it mathematically based on reaction stoichiometry. Such models are amenable to perturbations and simulations using flux balance analysis, allowing the study of pathways from a metabolic capacity perspective, and yielding information about reaction fluxes. The perturbations studied here are in silico gene knock-outs and drug effects, which led us to identify genes essential to the pathway and hence for survival of the pathogen. The results are in good agreement with essentiality determined through experimental genetics. Such essential genes can be good targets for drug design, especially when they do not have homologues in the human proteome. FBA followed by sequence analyses have resulted in identification of potential anti-tubercular drug targets.</p></sec></abstract><custom-meta-group><custom-meta><meta-name>Citation:</meta-name><meta-value>Raman K, Rajagopalan P, Chandra N (2005) Flux balance analysis of mycolic acid pathway: Targets for anti-tubercular drugs. PLoS Comput Biol 1(5): e46.</meta-value></custom-meta></custom-meta-group></article-meta></front><body><sec id="s1"><title>Introduction</title><p>Genomics is rapidly changing the very foundation of several aspects of drug discovery research, one of them being a systems biology and bioinformatics approach for rational identification of drug targets. It is now possible to carry out a metabolic analysis of a system to gain insights into fundamental molecular mechanisms of several processes such as those that are critical for the survival of the pathogen. Here, we seek to apply such an approach to identify targets for designing anti-tubercular drugs. Despite the availability of several drugs and the Bacillus Calmette-Gu&#x000e9;rin vaccine, tuberculosis remains a major health concern worldwide, warranting identification of new drug targets for the design of more efficacious drugs.</p><p>The mycobacterial cell wall is distinctive and is associated with the pathogenicity of <italic>Mycobacterium tuberculosis</italic> [<xref rid="pcbi-0010046-b01" ref-type="bibr">1</xref>&#x02013;<xref rid="pcbi-0010046-b04" ref-type="bibr">4</xref>]. The three polymers in the cell wall, arabinogalactan-mycolate [<xref rid="pcbi-0010046-b05" ref-type="bibr">5</xref>] covalently linked with peptidoglycan and trehalose dimycolate, provide a thick layer that protects the tubercle bacillus from general antibiotics and the host's immune system [<xref rid="pcbi-0010046-b06" ref-type="bibr">6</xref>]. The synthesis of mycolic acids&#x02014;which are long-chain &#x003b1;-alkyl-&#x003b2;-hydroxy fatty acids, the major constituents of this protective layer&#x02014;has been shown to be critical for the survival of <italic>M. tuberculosis</italic> [<xref rid="pcbi-0010046-b07" ref-type="bibr">7</xref>]. InhA (EC 1.3.1.9, enoyl-[acyl-carrier-protein] reductase), involved in mycolic acid synthesis, also turns out to be the target for front-line anti-tubercular drugs [<xref rid="pcbi-0010046-b08" ref-type="bibr">8</xref>], such as isoniazid [<xref rid="pcbi-0010046-b09" ref-type="bibr">9</xref>] and ethionamide [<xref rid="pcbi-0010046-b10" ref-type="bibr">10</xref>].</p><p>The mycolic acid pathway (MAP) has been of great interest, and a large amount of biochemical and genetic information is available in the literature, in addition to the entire genome sequence of <italic>M. tuberculosis</italic>. It is possible to exploit these large volumes of data to construct an in silico model of the pathway, which can then be simulated and analysed [<xref rid="pcbi-0010046-b11" ref-type="bibr">11</xref>]. Constructing such models forms an important step in understanding the underlying molecular mechanisms of disease, and facilitates rational approaches to drug design. Several computational methods have emerged in recent years to simulate biochemical models, which aid in the systems approach to understanding pathways, processes, and whole-cell metabolism [<xref rid="pcbi-0010046-b12" ref-type="bibr">12</xref>&#x02013;<xref rid="pcbi-0010046-b18" ref-type="bibr">18</xref>]. Flux balance analysis (FBA), a stoichiometric analysis technique, has been applied to study the metabolic capabilities of several systems [<xref rid="pcbi-0010046-b19" ref-type="bibr">19</xref>,<xref rid="pcbi-0010046-b20" ref-type="bibr">20</xref>], which has provided useful insights into cellular behaviour, including response to perturbations such as gene deletions [<xref rid="pcbi-0010046-b21" ref-type="bibr">21</xref>,<xref rid="pcbi-0010046-b22" ref-type="bibr">22</xref>].</p><p>Given the biological importance of mycolic acids, it would be useful to understand the behaviour of the pathway as a whole and of its individual components, both in a normal mycobacterial cell as well as upon perturbations, such as when a drug is acting upon it. We have therefore built a model of the MAP, represented it as a stoichiometric matrix, and performed FBA of this model, to gain insights into the critical steps of the pathway. Further, we have used the knowledge gained from these analyses for rational identification of putative drug targets and estimated their appropriateness by sequence analysis.</p></sec><sec id="s2"><title>Results/Discussion</title><sec id="s2a"><title>Model Description</title><p>The model of the MAP built here (<xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>), containing 219 reactions and 197 metabolites, mediated through 28 proteins (<xref ref-type="table" rid="pcbi-0010046-t001">Table 1</xref>), is according to our knowledge more complete and accurate with annotations from the latest literature than that from any other publicly available resource. The model in Systems Biology Markup Language (SBML) format is available as <xref ref-type="supplementary-material" rid="pcbi-0010046-sd001">Dataset S1</xref>. The list of reactions has also been given in a flat file as <xref ref-type="supplementary-material" rid="pcbi-0010046-sd002">Dataset S2</xref>. The biosynthesis of mycolic acids can be considered as made up of four sub-pathways: (A) production of malonyl CoA, (B) fatty acid synthase-I (FAS-I) pathway, (C) fatty acid synthase-II (FAS-II) pathway, and (D) condensation of FAS-II and FAS-I products into &#x003b1;- (D1), methoxy- (D2), and keto-mycolic acids (D3). FAS-I and FAS-II (B and C sub-pathways) are dependent upon the production of malonyl CoA (produced in A). The products of B and C are then converted into different mycolic acids in D.</p><fig id="pcbi-0010046-g001" position="float"><label>Figure 1</label><caption><title>Schematic Diagram of the MAP in <italic>M. tuberculosis</italic>
+</title><p>(A&#x02013;D) refer to the four sub-pathways (see text). The key metabolites are indicated in larger type. Proteins catalysing each reaction are indicated to the right of the reaction arrows, while the reaction numbers are indicated to the left. Reaction cycles have been indicated as, for instance, 65:6:185 (for <italic>fabG1</italic>), which is to be interpreted as 65, 71, 77, ..., 185. &#x02297; indicates inhibition of InhA by isoniazid and ethionamide in the pathway. The reaction numbers in parentheses indicate reactions for the <italic>trans</italic> forms in (D2) and (D3).</p></caption><graphic xlink:href="pcbi.0010046.g001"/></fig><table-wrap id="pcbi-0010046-t001" content-type="2col" position="float"><label>Table 1</label><caption><p>Table of Proteins and Their Corresponding Genes in MAP and Sources for Inference of Their Reactions</p></caption><graphic xlink:href="pcbi.0010046.t001"/></table-wrap><p>The FAS-I system, present predominantly in eukaryotes, is capable of de novo fatty acid synthesis, whereas the FAS-II system in mycobacteria, although similar to that in other bacteria, elongates the products of FAS-I, resulting in the production of meromycolates, key precursors of mycolic acids [<xref rid="pcbi-0010046-b02" ref-type="bibr">2</xref>]. The basic reactions in FAS-I and FAS-II are a repetition of a cycle of four reactions, each cycle culminating in the extension of the alkyl chain by a two-carbon unit (<xref ref-type="fig" rid="pcbi-0010046-g002">Figure 2</xref>). The FAS-I enzyme is a single polypeptide with multiple domains catalysing a cycle of reactions to generate short-chain acyl CoA esters [<xref rid="pcbi-0010046-b23" ref-type="bibr">23</xref>]. FAS-I exhibits a bimodal product distribution: C<sub>16</sub> to C<sub>18</sub> and C<sub>24</sub> to C<sub>26</sub> acyl CoAs [<xref rid="pcbi-0010046-b24" ref-type="bibr">24</xref>]. These form the substrates for the FAS-II reaction cycle and the polyketide synthase enzyme, respectively. &#x003b2;-ketoacyl-synthase III forms a pivotal link between FAS-I and FAS-II [<xref rid="pcbi-0010046-b25" ref-type="bibr">25</xref>,<xref rid="pcbi-0010046-b26" ref-type="bibr">26</xref>]. The FAS-II system is composed of four enzyme reactions iteratively converting C<sub>16</sub>-acyl CoA to C<sub>58</sub>-acyl-ACP (meromycolate) [<xref rid="pcbi-0010046-b27" ref-type="bibr">27</xref>&#x02013;<xref rid="pcbi-0010046-b31" ref-type="bibr">31</xref>].</p><fig id="pcbi-0010046-g002" position="float"><label>Figure 2</label><caption><title>Flux Distributions Obtained from FBA Using the MAP Model and Objective Function <bold>c</bold>
+<sub>1</sub>
+</title><p>(A) in an unperturbed state, (B) upon deletion of <italic>inhA</italic>, (C) upon deletion of <italic>pcaA,</italic> and (D) upon inhibition of InhA. Insets in (A) and (C) refer to enlarged versions of the indicated portions. Note that the scale for (D) is different. It may be noted that the lines joining the various flux points have been drawn to aid in discerning the flux peaks clearly; the lines as such have no physical significance.</p></caption><graphic xlink:href="pcbi.0010046.g002"/></fig><p>Except for reactions 190&#x02013;192, experimental data clearly indicating the involvement of the appropriate proteins are available in literature. However, clear identification of the proteins referred to as UNK1 and UNK2 is not yet available. Although no explicit experimental evidence is available for reactions 190&#x02013;192, the involvement of <italic>desA1, desA2,</italic> and <italic>desA3</italic> has been suggested based on sequence annotations [<xref rid="pcbi-0010046-b27" ref-type="bibr">27</xref>] and indirect experimental evidence [<xref rid="pcbi-0010046-b32" ref-type="bibr">32</xref>], thus justifying their inclusion in this model. The <italic>cis</italic>-unsaturated meromycolate chain further undergoes cyclo-propanation, processing for keto- and methoxy-mycolic acids [<xref rid="pcbi-0010046-b03" ref-type="bibr">3</xref>,<xref rid="pcbi-0010046-b04" ref-type="bibr">4</xref>,<xref rid="pcbi-0010046-b33" ref-type="bibr">33</xref>&#x02013;<xref rid="pcbi-0010046-b39" ref-type="bibr">39</xref>] and Claisen condensation with the FAS-I product C<sub>24</sub>-acyl CoA [<xref rid="pcbi-0010046-b06" ref-type="bibr">6</xref>,<xref rid="pcbi-0010046-b40" ref-type="bibr">40</xref>], to yield &#x003b1;-, methoxy-, or keto-mycolic acids, as shown in <xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>D.</p><p>Biochemical characterisation of mycolic acids in <italic>M. tuberculosis</italic> H37Rv cell cultures clearly indicate that &#x003b1;-mycolate is the predominant mycolic acid and it comprises as much as 49% of the mycolates in the cell wall, whereas methoxy- and keto-mycolates are present in smaller quantities of 27% and 24%, respectively [<xref rid="pcbi-0010046-b41" ref-type="bibr">41</xref>]. These data have been considered during FBA of the MAP model.</p></sec><sec id="s2b"><title>FBA</title><p>The MAP system outlined here, though involving only 28 proteins, has 197 metabolites participating in 219 reactions with high interconnectivity, and thus benefits from a systematic FBA. The system considered here, though relatively small in comparison to genome-scale metabolic models previously studied by FBA [<xref rid="pcbi-0010046-b19" ref-type="bibr">19</xref>&#x02013;<xref rid="pcbi-0010046-b22" ref-type="bibr">22</xref>], is still complete in its own right (analogous to a separate module) and gives profound insights into mycolic acid metabolism. More importantly, with a single pathway in question, the objective functions for optimisation can be better defined and have specific biological relevance that can be related to experimental data quite readily.</p><p>The stoichiometric matrix for this system is of size 197 &#x000d7; 247. The vector <bold>v</bold> (for details, see <xref ref-type="sec" rid="s3">Materials and Methods</xref>) has 247 fluxes, including 28 exchange fluxes:</p><disp-formula id="pcbi-0010046-e001"><graphic xlink:href="pcbi.0010046.e001.jpg" mimetype="image" position="float"/></disp-formula><p>Objective function: Mycolic acids are known to play a key role in the structural integrity of the mycobacterial cell wall and have been shown to be critical both for growth [<xref rid="pcbi-0010046-b42" ref-type="bibr">42</xref>&#x02013;<xref rid="pcbi-0010046-b44" ref-type="bibr">44</xref>] of the bacillus and its pathogenicity [<xref rid="pcbi-0010046-b01" ref-type="bibr">1</xref>&#x02013;<xref rid="pcbi-0010046-b04" ref-type="bibr">4</xref>] by several experiments. These data imply that the mycobacterial cell would be geared toward optimal production of mycolic acids, in terms of maximal molar yield of the appropriate mycolic acids for a given genotype.</p><p>Given that the cell wall contains different types of mycolates in varying proportions, the optimal production of mycolates can be captured in two different ways: (a) only the most important mycolate is produced, and (b) the known ratios of different mycolates are fixed. We encode these two scenarios as two objective functions, <bold>c</bold>
+<sub>1</sub> and <bold>c</bold>
+<sub>2</sub>, respectively:</p><disp-formula id="pcbi-0010046-e002"><graphic xlink:href="pcbi.0010046.e002.jpg" mimetype="image" position="float"/></disp-formula><p>and</p><disp-formula id="pcbi-0010046-e003"><graphic xlink:href="pcbi.0010046.e003.jpg" mimetype="image" position="float"/></disp-formula><p>where <italic>v</italic>
+<sub>mycolates</sub> represents the flux of a hypothetical reaction:</p><p>0.4926 &#x003b1;-mycolate + 0.2334 <italic>cis</italic>-methoxy-mycolate</p><p>+ 0.0327 <italic>trans</italic>-methoxy-mycolate + 0.2117 <italic>cis</italic>-keto-mycolate</p><p>+ 0.0297 <italic>trans</italic>-keto-mycolate &#x02192; mycolate-biomass.</p><p>The coefficients of the fluxes of &#x003b1;-mycolates, <italic>cis</italic>-methoxy and <italic>trans</italic>-methoxy mycolates, as well as <italic>cis</italic>-keto and <italic>trans</italic>-keto mycolates indicated in the above equations are based on the biochemical data about &#x003b1;-, methoxy-, and keto-mycolates present in the cell wall in the ratio of 1.0:0.54:0.49, with the <italic>cis</italic> forms dominating the <italic>trans</italic> forms of the methoxy- and keto-mycolates, in a ratio of 1:0.14 [<xref rid="pcbi-0010046-b41" ref-type="bibr">41</xref>]. Production of different mycolates follows much of the same pathway but differs only in the end stages (<xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>D), suggesting that they may not all be made simultaneously.</p><p>The objective functions used in previous FBA studies (such as in [<xref rid="pcbi-0010046-b21" ref-type="bibr">21</xref>]) have been capturing the optimal production of the biomass, which implicitly fixes the proportions of the different components of the biomass. The objective function <bold>c</bold>
+<sub>2</sub> captures an analogous scenario, where the total mycolate content can be considered as the biomass. We feel that <bold>c</bold>
+<sub>1</sub> reflects the biological situation more closely than <bold>c</bold>
+<sub>2</sub> for this analysis for the following reasons: (a) it has been reported [<xref rid="pcbi-0010046-b04" ref-type="bibr">4</xref>] that the mycobacterial cell can survive in the absence of one of the mycolate components, which cannot be accounted by <bold>c</bold>
+<sub>2</sub>; (b) the objective function <bold>c</bold>
+<sub>2</sub> directly precludes the possibility of the cell surviving in the absence of even a single mycolic acid; for any genotype, <bold>c</bold>
+<sub>2</sub> necessitates that the mycolates be produced in an all-or-none fashion in the corresponding phenotype. On the other hand, <bold>c</bold>
+<sub>1</sub> favours the production of the most important mycolate that can be produced under the given conditions (i.e., following some gene deletions); and (c) reported biological data [<xref rid="pcbi-0010046-b44" ref-type="bibr">44</xref>] suggest that the three major mycolates are in fact made at different phases of cell growth.</p><p>However, to make the analysis comprehensive, both objective functions have been used independently and the results presented. In the first case, the objective function <bold>c</bold>
+<sub>1</sub> (Equation 2) accounts for the relative importance of the mycolates. The coefficients are indicative of the precise ranking order of the various mycolates, based on cell wall composition. On the other hand, the objective function in the second case, <bold>c</bold>
+<sub>2</sub> (Equation 3), fixes the relative ratios of the mycolates based on the absolute values of the coefficients.</p><p>Once an objective function is fixed, the system translates to solving a linear programming (LP) problem as in Equation 7 (listed in Materials and Methods). The solution of the LP problem, using objective functions <bold>c</bold>
+<sub>1</sub> and <bold>c</bold>
+<sub>2</sub> yields flux distributions specifying the fluxes of all the internal reactions and the exchanges, as shown in <xref ref-type="fig" rid="pcbi-0010046-g002">Figures 2</xref>A and <xref ref-type="fig" rid="pcbi-0010046-g003">3</xref>A, respectively. Both figures indicate two major peaks at reactions 3&#x02013;4 and 63, apart from intense peaks at reactions 220&#x02013;247. The peaks at reactions 3&#x02013;4 and 63 correspond to the production of metabolites BCCP-biotin, malonyl CoA, and malonyl acyl carrier protein. The positive and negative peaks at reactions 220&#x02013;247 correspond to the exchange fluxes originating from external metabolites such as ATP, NADP, NADPH, and CO<sub>2</sub>, indicating their exit from or entry into the MAP system, respectively. A repetitive pattern is observed for reactions 65&#x02013;172, which is comprehensible in view of the cyclic nature of the reactions involved in extension of the carbon chain in FAS-II. Malonyl CoA is an important metabolite, since it is required not only for the formation of C<sub>4</sub>-acyl-ACP, but also for each of the ten steps of chain elongation by the FAS-I system, where the chain length of the fatty acid component of mycolic acid grows from four carbons to 24 carbons (see <xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>). Besides, it is also required for the synthesis of malonyl acyl carrier protein, which in turn is required for chain elongation in each of the 20 chain elongation steps catalysed by the FAS-II system, where the chain length grows from C<sub>16</sub> to C<sub>52</sub>&#x02013;C<sub>58</sub>. The large fluxes seen for reaction 4, which produces malonyl CoA, and reaction 3, which produces BCCP-biotin, an immediate precursor of malonyl CoA, are explained by their high requirement. The exchange fluxes for external metabolites such as ATP, ADP, NADP, and NADPH are also understandably very high, since they are either utilised or produced in large quantities in the pathway.</p><fig id="pcbi-0010046-g003" position="float"><label>Figure 3</label><caption><title>Flux Distributions Obtained from FBA Using the MAP Model and Objective Function <bold>c</bold>
+<sub>2</sub>
+</title><p>(A) in an unperturbed state, (B) upon deletion of <italic>pcaA</italic>. Inset in A refers to an enlarged version of the indicated portion. Note that the scale for (B) is different. It may be noted that the lines joining the various flux points have been drawn to aid in discerning the flux peaks clearly; the lines as such have no physical significance.</p></caption><graphic xlink:href="pcbi.0010046.g003"/></fig><p>While the flux distributions using either objective function are largely similar for the reactions belonging to sub-pathways A, B, and C (see <xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>), significant differences are observed for the fluxes of the reactions producing mycolates and those immediately related to them. With objective function <bold>c</bold>
+<sub>1</sub> (<xref ref-type="fig" rid="pcbi-0010046-g002">Figure 2</xref>A), a small peak at reaction 197 corresponding to &#x003b1;-mycolate is seen, as shown in more detail in the enlarged inset. It should be noted that, in this unperturbed state, the amounts of methoxy- and keto-mycolates produced are negligible, compared with that of &#x003b1;-mycolate. On the other hand, with objective function <bold>c</bold>
+<sub>2</sub>, all the mycolates are produced in the ratio mentioned earlier (<xref ref-type="fig" rid="pcbi-0010046-g003">Figure 3</xref>A, enlarged image in inset), as imposed by the objective function.</p></sec><sec id="s2c"><title>Perturbations</title><sec id="s2c1"><title>Effects of in silico gene deletions, using <bold>c</bold>
+<sub>1</sub>.</title><p>The perturbations carried out on the MAP model using FBA were (a) in silico gene deletions and (b) inhibition by known drugs. Each of the 28 genes and hence its gene product was systematically deleted from the MAP model, one at a time, and its effect on the flux distribution was analysed (<xref ref-type="table" rid="pcbi-0010046-t002">Table 2</xref>). <xref ref-type="fig" rid="pcbi-0010046-g002">Figures 2</xref>B and <xref ref-type="fig" rid="pcbi-0010046-g002">2</xref>C are examples of flux distributions upon deletion of <italic>inhA</italic> and <italic>pcaA</italic>, respectively. Upon deletion of <italic>inhA,</italic> which catalyses every sixth reaction from 69 to 189 (see <xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>C), the fluxes of almost all reactions were seen to be zero, except for reactions 1&#x02013;2 and their corresponding external metabolites. On the other hand, deletion of <italic>pcaA,</italic> which is involved only in the production of &#x003b1;-mycolate (<xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>D1), the flux pattern remained largely unaltered, except for an increase in the flux corresponding to <italic>cis</italic>-methoxy-mycolate (<xref ref-type="fig" rid="pcbi-0010046-g001">Figure 1</xref>D2). A flat flux distribution profile (of near zero) was observed upon deletion of 16 of the genes (and hence their gene products) in the MAP model. In D1, D2, and D3 sub-pathways, genes common to all three, such as <italic>desA1,</italic> fall into this category. On the other hand, genes responsible for the production of one or the other mycolate, such as <italic>pcaA,</italic> involved in D1, when deleted, did not significantly alter the overall flux distribution and are hence classified as non-essential. This is comprehensible, since in these cases, the system is still capable of producing the other two mycolates. Although it has been reported that all three mycolates in appropriate proportions are required for mycobacterial persistence and virulence, growth and survival to varying extents have been observed in the presence of any one component [<xref rid="pcbi-0010046-b04" ref-type="bibr">4</xref>,<xref rid="pcbi-0010046-b45" ref-type="bibr">45</xref>]. Experimental data available for <italic>pcaA</italic> deletion indeed show that the mutant bacilli can grow and survive for limited periods by producing a significant excess of keto-mycolate, to compensate for the absence of &#x003b1;-mycolate. Our results too show a similar compensatory effect upon deletion of <italic>pcaA,</italic> consistent with the experimental results about its non-essentiality [<xref rid="pcbi-0010046-b04" ref-type="bibr">4</xref>,<xref rid="pcbi-0010046-b46" ref-type="bibr">46</xref>]. In our results, however, methoxy- rather than keto-mycolate was produced in excess, because of the incorporation of their relative abundances available in literature [<xref rid="pcbi-0010046-b41" ref-type="bibr">41</xref>] into the objective function. If the proportion of keto-mycolate was higher than that of methoxy-mycolate, then we would have observed a higher proportion of keto- rather than methoxy-mycolate, in our results. However, given the lack of more experimental details on the composition under different conditions, or the exact functional role of each of the mycolates, this difference does not seem too significant, at this stage.</p><table-wrap id="pcbi-0010046-t002" content-type="2col" position="float"><label>Table 2</label><caption><p>Results of In Silico Gene Deletion Studies for the 28 Genes in the MAP Model, Using Objective Functions <bold>c</bold>
+<sub>1</sub> and <bold>c</bold>
+<sub>2</sub>
+</p></caption><graphic xlink:href="pcbi.0010046.t002"/></table-wrap></sec><sec id="s2c2"><title>Effects of in silico gene deletions, using <bold>c</bold>
+<sub>2</sub>.</title><p>Systematic in silico gene deletion studies were carried out using the MAP model and with <bold>c</bold>
+<sub>2</sub> as the objective function. Here too, each of the 28 genes and hence its product was systematically deleted from the MAP model, one at a time, and its effect on the flux distribution was analysed, as presented in <xref ref-type="table" rid="pcbi-0010046-t002">Table 2</xref>. An example where a significant difference was found with respect to the perturbations using <bold>c</bold>
+<sub>1</sub> is illustrated by <italic>pcaA</italic> deletion. Upon deletion of <italic>pcaA,</italic> using <bold>c</bold>
+<sub>2</sub>, almost all of the reaction fluxes were seen to have dropped to zero, except for reactions 1&#x02013;2 and their corresponding external metabolites (<xref ref-type="fig" rid="pcbi-0010046-g003">Figure 3</xref>B). This is in contrast to the corresponding gene deletion, using <bold>c</bold>
+<sub>1</sub>, observed in <xref ref-type="fig" rid="pcbi-0010046-g002">Figure 2</xref>C, where the flux distribution is very similar to that in the unperturbed case. These results suggest <italic>pcaA</italic> to be essential if <bold>c</bold>
+<sub>2</sub> is used, in contrast to the results obtained using <bold>c</bold>
+<sub>1</sub> as well as reported biological data discussed above, indicating <bold>c</bold>
+<sub>1</sub> to be a better objective function. Since the objective function <bold>c</bold>
+<sub>2</sub> demands the production of all mycolates in the appropriate ratio, apart from <italic>pcaA,</italic> five other genes that were non-essential in the analysis using <bold>c</bold>
+<sub>1</sub> were classified as essential.</p><p>Minimisation of metabolic adjustment (MOMA), using the methodology described by Segr&#x000e8; and co-workers [<xref rid="pcbi-0010046-b47" ref-type="bibr">47</xref>], was also carried out for all the gene deletions (using <bold>c</bold>
+<sub>1</sub> and <bold>c</bold>
+<sub>2</sub> as objective functions in separate studies). There were no significant changes in the flux profiles, and hence in the interpretations, as compared with those described above.</p><p>Experimental data from systematic gene deletion studies using the transposon site hybridisation mutagenesis technique are available in the literature [<xref rid="pcbi-0010046-b46" ref-type="bibr">46</xref>]. Comparison of such data for these 28 genes with the results obtained from our FBA study (using both objective functions) is shown in <xref ref-type="table" rid="pcbi-0010046-t002">Table 2</xref>. With <bold>c</bold>
+<sub>1</sub>, a good correlation was observed for 19 genes, no experimental data was available for four genes, and disagreement was seen for only five genes. High correlation with experimentally observed data about the essentiality of individual genes indicates the usefulness of our MAP model and its study using FBA. With <bold>c</bold>
+<sub>2</sub>, a good correlation was observed for 13 genes and disagreement was seen for 11 genes.</p><p>On analysing the results of the gene deletion studies obtained using <bold>c</bold>
+<sub>1</sub> and <bold>c</bold>
+<sub>2</sub>, it is apparent that the objective function <bold>c</bold>
+<sub>1</sub> is able to reflect the biological situation better. <bold>c</bold>
+<sub>2</sub> requires the production of all mycolates in a definite ratio under all conditions, which is not very appropriate, considering the fact that cells can survive even in the absence of one or more mycolates [<xref rid="pcbi-0010046-b04" ref-type="bibr">4</xref>] and that in any state, only a single mycolate is produced in the cell. Hence, for the rest of the analyses, we have restricted the discussion to the gene deletion results obtained using <bold>c</bold>
+<sub>1</sub>.</p><p>The possible reasons for the disagreements (using <bold>c</bold>
+<sub>1</sub>) for <italic>accD3, fabG2, fabH, inhA,</italic> and <italic>desA3</italic> are discussed below. We had identified malonyl CoA as an internal metabolite, in the absence of concrete experimental evidence of its being produced by other reactions in the cell. However, if indeed malonyl CoA is produced by the cell through some other means, then AccD3 would no longer be essential, agreeing with the experimental results. <italic>fabG2</italic> has been reported as essential, while our analysis identified it as non-essential. Clearly, in our model, FabG2 can be substituted for by either FabG1 or FabG4. However, it may be possible that FabG2 could be responsible for catalysing some other critical reaction outside the MAP, which could contribute to its essentiality. <italic>fabH</italic> is a critical gene, whose product catalyses the important step that links FAS-I to FAS-II. Our sequence analysis studies also show that FabH has no homologues in the mycobacterial proteome. It is unclear as to why this is a non-essential gene in experimental studies. Similarly, <italic>inhA,</italic> identified as essential in our analysis but reported as non-essential in the experimental studies using transposon site hybridisation mutagenesis, is a well-known target for drugs such as isoniazid and ethionamide. While that may be the case for the conditions under which the transposon site hybridisation mutagenesis experiment was carried out, it is well-known that inhibition of InhA leads to a significant reduction in the growth of mycobacteria, making its inhibitors as front-line drugs. InhA is also known to be essential for mycolic acid synthesis [<xref rid="pcbi-0010046-b48" ref-type="bibr">48</xref>], which in turn is known to be essential for survival of the pathogen [<xref rid="pcbi-0010046-b07" ref-type="bibr">7</xref>]. In fact, InhA has been shown to be one of the few highly over-expressed proteins inside an infected macrophage [<xref rid="pcbi-0010046-b48" ref-type="bibr">48</xref>]. The topology of the curated reaction network clearly makes InhA an essential gene for the system, which is in agreement with its known role for mycobacterial survival [<xref rid="pcbi-0010046-b48" ref-type="bibr">48</xref>]. Another possibility could be that structural but not sequence homologues of InhA and FabH, which are not yet well-characterised (and hence not a part of our model), may substitute in their absence. <italic>desA3</italic> has been reported as non-essential but was identified as essential from our analysis. It is possible that our model may not have accounted for its exact physiological role, due to lack of information in literature.</p><p>Inhibition studies were carried out for isoniazid, since its inhibition of InhA has been well-characterised in the literature [<xref rid="pcbi-0010046-b09" ref-type="bibr">9</xref>,<xref rid="pcbi-0010046-b10" ref-type="bibr">10</xref>]. Inhibition in the context of FBA is in fact similar to that of deletion studies of the corresponding gene, except that the latter will lead to total inactivation of that gene, whereas inhibition by a drug need not necessarily lead to total inactivation. Just to represent the relative effect upon partial inactivation, we have considered a scenario where isoniazid would inhibit InhA to an extent of 90%. The flux profile shown in <xref ref-type="fig" rid="pcbi-0010046-g002">Figure 2</xref>D indicates much lower fluxes for each of the reactions. Similar results will be obtained for any inhibitor of InhA. Thus, the model and the method, besides being consistent with a requirement of a high percentage of inhibition for an ideal drug, also show their utility in analysing drug action when any quantitative data become available.</p><p>This method also has the potential to consider inhibition at multiple points. For example, isoniazid is thought to act at two points in the pathway (InhA and KasA), although conclusive experimental proof is still awaited [<xref rid="pcbi-0010046-b49" ref-type="bibr">49</xref>]. The FBA study here presents a ready framework to analyse the effects of such drug inhibitions, which would be extremely difficult to judge by an inspection of the reaction map alone.</p><p>While the usefulness of FBA for large systems with high network connectivities and redundancy is well established, its application for specific pathways, which can be considered as simpler systems, has not yet been well explored in the literature. The study reported here illustrates the usefulness of FBA even for individual pathways. The effects of the perturbations to a system even of this size, either at single points or at multiple points, are beyond unambiguous comprehension and thus benefit from systematic studies such as FBA to get meaningful results. Moreover, FBA provides a handle to systematically identify essential genes in the pathway, irrespective of the size of the system, in a systematic, efficient, and much simplified manner. An advantage of considering specific pathways individually is that the objective functions for optimisation can be better defined, with specific biological relevance, to generate hypotheses useful for designing molecular biology studies quite readily. It must be noted that at the present time our understanding of systems, and hence their reconstructions in general, is not sufficient to generate knowledge that can replace biochemical or genetic experiments. However, an in silico framework for predicting gene essentiality, while complementing experimental data where available, has the additional advantage of enabling studies under various environmental conditions such as during low nutrition or upon oxidative stress, or even in the presence of drugs, which are difficult to perform experimentally.</p></sec></sec><sec id="s2d"><title>Identification of Drug Targets</title><p>Those genes that were classified as essential in the above analysis automatically form a first list of putative targets for anti-tubercular drugs, since their total inactivation results in loss of production of mycolic acids and hence the viability or the pathogenicity of the bacillus. However, it was reasoned that an ideal target should be essential not only in terms of the reaction it can catalyse, but also as the only protein coded by the genome that can perform the same task. Moreover, an ideal target should also have no recognisable homologue in the host system, which can in principle compete with the same drug, leading to unintended/adverse effects in the host system. Sequence analysis with the <italic>M. tuberculosis</italic> H37Rv and human proteomes was therefore carried out for each of the identified targets and the results are summarised in <xref ref-type="table" rid="pcbi-0010046-t003">Table 3</xref>.</p><table-wrap id="pcbi-0010046-t003" content-type="1col" position="float"><label>Table 3</label><caption><p>Homologues Present in <italic>M. tuberculosis</italic> and Human Proteomes for Genes Identified As Essential, Based on In Silico Gene Deletion Studies</p></caption><graphic xlink:href="pcbi.0010046.t003"/></table-wrap><p>Of the 16 proteins classified as essential in <xref ref-type="table" rid="pcbi-0010046-t002">Table 2</xref>, no close homologues were observed within the <italic>M. tuberculosis</italic> H37Rv proteome for seven proteins: FabH, AccD3, InhA, FabD, Fas, Pks13, and DesA3. Similarities greater than 50% using the BLOSUM62 substitution matrix with an e-value of less than 0.1 for a length greater than 70% of the query sequence were considered as close homologues (in both proteomes). For identifying more distant/fast-evolving homologues in the human proteome, homologues were identified with a second set of criteria, considering similarities greater than 30% using the BLOSUM62 substitution matrix with an e-value of less than 10<sup>&#x02212;5</sup> for greater than 70% of the query sequence length. None of the seven proteins have close homologues in the human proteome. A distant homologue was identified with the second set of criteria for FabD. Those proteins, which have no other homologues either in the mycobacterial proteome or in the human proteome, are therefore obvious potential drug targets. Proteins lacking homologues with multiple cut-offs can be considered targets with greater confidence. Identification of their presence only in the bacterial cell helps in the process of validation as useful drug targets. Front-line anti-tubercular drugs in current clinical practice, isoniazid and ethionamide, in fact turn out to be inhibitors of InhA [<xref rid="pcbi-0010046-b09" ref-type="bibr">9</xref>,<xref rid="pcbi-0010046-b10" ref-type="bibr">10</xref>], preventing mycolic acid synthesis. Thus, the inhibition of the identified targets, which would all lead to impairment of mycolic acid synthesis, appears to be a promising strategy for designing anti-tubercular agents.</p><p>Besides the seven targets mentioned above, DesA1, DesA2, and FadD32 do not have any close homologues in the human proteome but have homologues in the <italic>M. tuberculosis</italic> H37Rv proteome. Of these, DesA1 and DesA2 are homologues of each other, but it is not clear as yet whether they are required together or if they can substitute for one another. KasA and KasB too are homologues of each other and do not share similarities with any other mycobacterial protein. However, they share considerable sequence similarities with a hypothetical human protein FLJ20604. FadD32 too exhibits distant homology with six other proteins in the human proteome. Such mycobacterial proteins would also be interesting drug targets, provided such homologies are considered during drug design.</p><p>In conclusion, the work presented here provides a framework to rationally identify targets for use in tuberculosis drug design and provides a ready shortlist that can be experimentally tested. This also outlines a general strategy for analysis of microbial metabolism, providing insights into targets for drug design. Systems approaches are being increasingly applied for understanding the metabolic capabilities of organisms, which can be exploited for drug design. A major bottleneck in this process is the accuracy of the model, which requires expert curation of available literature. The MAP model presented here should be of value not only in drug design but also for understanding mycolic acid synthesis in general. The model can also be adapted to perform quantitative simulations when kinetic data become available, and it can be used as a framework for incorporating newer or alternate components when such information becomes available.</p></sec></sec><sec id="s3"><title>Materials and Methods</title><sec id="s3a"><title>Model building.</title><p>Initially, the Kyoto Encyclopedia of Genes and Genomes database was explored to obtain information about various proteins that comprise the MAP in <italic>M. tuberculosis</italic> H37Rv. Information about the FAS-I and FAS-II pathways in <italic>M. tuberculosis</italic> was available in the Kyoto Encyclopedia of Genes and Genomes database [<xref rid="pcbi-0010046-b50" ref-type="bibr">50</xref>], but appeared to be based on pre-genomic annotations and was also incomplete and inconsistent in parts. The BioCyc repository of pathway models [<xref rid="pcbi-0010046-b51" ref-type="bibr">51</xref>], on the other hand, had more recent annotations and provided a basic framework to build the MAP model. It contained information about 11 proteins. However, no explicit data were available about the specific reactions during the fatty acid elongation steps, catalysed by the FAS-I and FAS-II enzyme systems. Further, no information was available for the conversion of the FAS-II products to mycolates. Available literature (detailed in <xref ref-type="table" rid="pcbi-0010046-t001">Table 1</xref>), as well as annotations in the TubercuList (<ext-link ext-link-type="uri" xlink:href="http://genolist.pasteur.fr/TubercuList/">http://genolist.pasteur.fr/TubercuList/</ext-link>) database, were therefore carefully analysed to fill the missing links and obtain a comprehensive model of the MAP, which contained information about 28 proteins, catalysing 219 reactions involving 197 metabolites, thus yielding a detailed pathway landscape. The model was encoded using SBML Level 2 Version 1 [<xref rid="pcbi-0010046-b52" ref-type="bibr">52</xref>].</p><p>The set of reactions in the landscape were then mathematically represented as a stoichiometric matrix, <bold>S</bold>
+<italic><sub>m &#x000d7; n</sub></italic>, with every metabolite being represented by a row (<italic>m</italic> metabolites) and every reaction by a column (<italic>n</italic> reactions). The entries in each column correspond to the stoichiometric coefficients of the metabolites (negative for reactants and positive for products) for each reaction. The <italic>i<sup>th</sup></italic> row of the matrix defines the participation of a particular metabolite across all metabolic reactions, and the <italic>j<sup>th</sup></italic> column provides the stoichiometry of all metabolites in that reaction. Exchange fluxes were considered for metabolites that are typically exchanged with the environment (e.g., ATP, ADP, NAD[P], and NAD[P]H) and those that are not produced by the system, or those that are produced in the system for use in other metabolic pathways. Such metabolites, referred to as external metabolites, will have corresponding exchange fluxes in the pathway. The other metabolites were regarded as internal, which are produced by the system and consumed within the system itself. The external metabolites in the MAP model were identified manually. A list of external metabolites has also been supplied as part of <xref ref-type="supplementary-material" rid="pcbi-0010046-sd002">Dataset S2</xref>.</p></sec><sec id="s3b"><title>FBA.</title><p>FBA [<xref rid="pcbi-0010046-b12" ref-type="bibr">12</xref>,<xref rid="pcbi-0010046-b53" ref-type="bibr">53</xref>,<xref rid="pcbi-0010046-b54" ref-type="bibr">54</xref>] has been shown to be a very useful technique for analysis of metabolic capabilities of cellular systems [<xref rid="pcbi-0010046-b20" ref-type="bibr">20</xref>,<xref rid="pcbi-0010046-b21" ref-type="bibr">21</xref>,<xref rid="pcbi-0010046-b55" ref-type="bibr">55</xref>,<xref rid="pcbi-0010046-b56" ref-type="bibr">56</xref>]. FBA involves carrying out a steady-state analysis, using the stoichiometric matrix for the system in question. The system is assumed to be optimised with respect to functions such as maximisation of biomass production or minimisation of nutrient utilisation, following which it is solved to obtain a steady-state flux distribution. This flux distribution is then used to interpret the metabolic capabilities of the system. The dynamic mass balance of the metabolic system is described using the stoichiometric matrix, relating the flux rates of enzymatic reactions, <bold>v</bold>
+<italic><sub>n</sub></italic>
+<sub> &#x000d7; 1</sub> to time derivatives of metabolite concentrations, <bold>x</bold>
+<italic><sub>m</sub></italic>
+<sub> &#x000d7; 1</sub> as</p><disp-formula id="pcbi-0010046-e004"><graphic xlink:href="pcbi.0010046.e004.jpg" mimetype="image" position="float"/></disp-formula><disp-formula id="pcbi-0010046-e005"><graphic xlink:href="pcbi.0010046.e005.jpg" mimetype="image" position="float"/></disp-formula><p>where <italic>v<sub>i</sub></italic> signifies the internal fluxes, <italic>b<sub>i</sub></italic> represents the exchange fluxes in the system, and <italic>n</italic>
+<sub>ext</sub> is the number of external metabolites in the system. At steady-state,</p><disp-formula id="pcbi-0010046-e006"><graphic xlink:href="pcbi.0010046.e006.jpg" mimetype="image" position="float"/></disp-formula><p>Therefore, the required flux distribution belongs to the null space of <bold>S</bold>. Since <italic>m</italic> &#x0003c; <italic>n</italic>, the system is under-determined and may be solved for <bold>v</bold> fixing an optimisation criterion, following which, the system translates into an LP problem:</p><disp-formula id="pcbi-0010046-e007"><graphic xlink:href="pcbi.0010046.e007.jpg" mimetype="image" position="float"/></disp-formula><p>where <bold>c</bold> represents the objective function composition, in terms of the fluxes. Further, we can constrain:</p><disp-formula id="pcbi-0010046-e008"><graphic xlink:href="pcbi.0010046.e008.jpg" mimetype="image" position="float"/></disp-formula><disp-formula id="pcbi-0010046-e009"><graphic xlink:href="pcbi.0010046.e009.jpg" mimetype="image" position="float"/></disp-formula><p>which necessitates all internal irreversible reactions to have a flux in the positive direction and allows exchange fluxes to be in either direction. Practically, a finite upper bound can be imposed, so that the problem does not become unbounded. This upper bound may also be decided based on the knowledge of cellular physiology. In our analysis, the upper bound was set as unity, which then effectively gives the relative ratios of the reaction fluxes. MATLAB (<ext-link ext-link-type="uri" xlink:href="http://www.mathworks.com/">http://www.mathworks.com/</ext-link>) was used for solving the LP problem. The &#x0201c;linprog&#x0201d; routine from the Optimization Toolbox was used, which uses a large-scale interior point algorithm.</p></sec><sec id="s3c"><title>Perturbations.</title><p>FBA also has the capabilities to address the effect of gene deletions and other types of perturbations on the system. Gene deletion studies were performed by constraining the reaction flux(es) corresponding to the gene(s) (and therefore, of their corresponding proteins[s]), to zero. Effects of inhibitors of particular proteins were also studied in a similar way, by constraining the upper bounds of their fluxes to any defined fraction of the normal flux, corresponding to the extents of inhibition.</p></sec><sec id="s3d"><title>MOMA.</title><p>MOMA [<xref rid="pcbi-0010046-b18" ref-type="bibr">18</xref>,<xref rid="pcbi-0010046-b47" ref-type="bibr">47</xref>] is a technique similar to FBA, particular to the analysis of perturbed systems and has been reported to outperform FBA in certain cases. MOMA circumvents the use of an objective function for optimisation under perturbed conditions and rather solves for a flux distribution closest to the unperturbed system, subject to the new constraints imposed, minimising the metabolic adjustment of the system.</p><p>Analysis of the effects of deletion of individual genes on the flux profiles of the five mycolates provided us a handle to define essential and non-essential genes. Those deletions that resulted in zero or near-zero fluxes of all the mycolates were considered as essential, and the rest were considered as non-essential.</p></sec><sec id="s3e"><title>Feasibility analysis of putative targets.</title><p>Sequence analysis was carried out using BLAST [<xref rid="pcbi-0010046-b57" ref-type="bibr">57</xref>] to adjudge the feasibility of the putative targets identified through FBA. Homologues were searched for within the <italic>M. tuberculosis</italic> H37Rv and human proteomes, using BLOSUM62 substitution matrix. The BLAST outputs were parsed with home-grown scripts using BioPython modules, to identify homologues that satisfied various length and similarity criteria.</p></sec></sec><sec sec-type="supplementary-material" id="s4"><title>Supporting Information</title><supplementary-material content-type="local-data" id="pcbi-0010046-sd001"><label>Dataset S1</label><caption><title>SBML Model of the MAP</title><p>An SBML model for the MAP in <italic>M. tuberculosis</italic>.</p><p>(124 KB XML)</p></caption><media xlink:href="pcbi.0010046.sd001.xml"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi-0010046-sd002"><label>Dataset S2</label><caption><title>Flat File Containing Reactions in the MAP</title><p>A flat file containing all the reactions in the MAP, along with the genes corresponding to proteins that catalyse the reactions. The external metabolites have also been indicated in the file.</p><p>(19 KB TXT)</p></caption><media xlink:href="pcbi.0010046.sd002.txt"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><sec id="s4a"><title>Accession Number</title><p>The SwissPROT/TrEMBL (<ext-link ext-link-type="uri" xlink:href="http://www.ebi.ac.uk/trembl/">http://www.ebi.ac.uk/trembl/</ext-link>) accession number for hypothetical human protein FLJ20604 is Q9NWU1. Gene accession numbers are listed in <xref ref-type="table" rid="pcbi-0010046-t001">Table 1</xref>.</p></sec></sec></body><back><ack><p>Financial support from the computational genomics initiative of the Department of Biotechnology is gratefully acknowledged. Use of facilities at the Interactive Graphics Based Molecular Modeling Facility and Distributed Information Centre (both supported by the Department of Biotechnology) and the facilities at the Supercomputer Education and Research Centre are also gratefully acknowledged.</p></ack><fn-group><fn id="ack1" fn-type="COI-statement"><p>
+<bold>Competing interests.</bold> The authors have declared that no competing interests exist.</p></fn><fn id="ack2" fn-type="con"><p>
+<bold>Author contributions.</bold> KR, PR, and NC conceived and designed the experiments. KR and PR performed the experiments. KR, PR, and NC analysed the data, and wrote the paper.</p></fn><fn fn-type="previously-at"><p>A previous version of this article appeared as an Early Online Release on August 4, 2005 (DOI: <ext-link ext-link-type="doi" xlink:href="10.1371/journal.pcbi.0010046.eor">10.1371/journal.pcbi.0010046.eor</ext-link>).</p></fn></fn-group><glossary><title>Abbreviations</title><def-list><def-item><term>FAS-I</term><def><p>fatty acid synthase-I</p></def></def-item><def-item><term>FAS-II</term><def><p>fatty acid synthase-II</p></def></def-item><def-item><term>FBA</term><def><p>flux balance analysis</p></def></def-item><def-item><term>LP</term><def><p>linear programming</p></def></def-item><def-item><term>MAP</term><def><p>mycolic acid pathway</p></def></def-item><def-item><term>MOMA</term><def><p>minimisation of metabolic adjustment</p></def></def-item><def-item><term>SBML</term><def><p>Systems Biology Markup Language</p></def></def-item></def-list></glossary><ref-list><title>References</title><ref id="pcbi-0010046-b01"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Smith</surname><given-names>I</given-names></name></person-group>
+<year>2003</year>
+<article-title>
+<italic>Mycobacterium tuberculosis</italic>: Pathogenesis and molecular determinants of virulence</article-title>
+<source>Clin Microbiol Rev</source>
+<volume>16</volume>
+<fpage>463</fpage>
+<lpage>496</lpage>
+<pub-id pub-id-type="pmid">12857778</pub-id></element-citation></ref><ref id="pcbi-0010046-b02"><element-citation publication-type="journal">
+<collab>Barry CE III, Lee RE, Mdluli K, Simpson AE, Schroeder BG, et al.</collab>
+<year>1998</year>
+<article-title>Mycolic acids: Structure, biosynthesis and physiological functions</article-title>
+<source>Prog Lipid Res</source>
+<volume>37</volume>
+<fpage>143</fpage>
+<lpage>179</lpage>
+<pub-id pub-id-type="pmid">9829124</pub-id></element-citation></ref><ref id="pcbi-0010046-b03"><element-citation publication-type="journal">
+<collab>Dubnau E, Chan J, Raynaud C, Mohan V, Lan&#x000e9;elle M, et al.</collab>
+<year>2000</year>
+<article-title>Oxygenated mycolic acids are necessary for virulence of <italic>Mycobacterium tuberculosis</italic> in mice</article-title>
+<source>Mol Microbiol</source>
+<volume>36</volume>
+<fpage>630</fpage>
+<lpage>637</lpage>
+<pub-id pub-id-type="pmid">10844652</pub-id></element-citation></ref><ref id="pcbi-0010046-b04"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Glickman</surname><given-names>M</given-names></name><name><surname>Cox</surname><given-names>J</given-names></name><name><surname>Jacobs</surname><given-names>W</given-names></name></person-group>
+<year>2000</year>
+<article-title>A novel mycolic acid cyclopropane synthetase is required for cording, persistence, and virulence of <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Mol Cell</source>
+<volume>5</volume>
+<fpage>717</fpage>
+<lpage>727</lpage>
+<pub-id pub-id-type="pmid">10882107</pub-id></element-citation></ref><ref id="pcbi-0010046-b05"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Crick</surname><given-names>DC</given-names></name><name><surname>Mahapatra</surname><given-names>S</given-names></name><name><surname>Brennan</surname><given-names>PJ</given-names></name></person-group>
+<year>2001</year>
+<article-title>Biosynthesis of the arabinogalactan-peptidoglycan complex of <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Glycobiology</source>
+<volume>11</volume>
+<fpage>107R</fpage>
+<lpage>118R</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b06"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Takayama</surname><given-names>K</given-names></name><name><surname>Wang</surname><given-names>C</given-names></name><name><surname>Besra</surname><given-names>GS</given-names></name></person-group>
+<year>2005</year>
+<article-title>Pathway to synthesis and processing of mycolic acids in <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Clin Microbiol Rev</source>
+<volume>18</volume>
+<fpage>81</fpage>
+<lpage>101</lpage>
+<pub-id pub-id-type="pmid">15653820</pub-id></element-citation></ref><ref id="pcbi-0010046-b07"><element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Draper</surname><given-names>P</given-names></name><name><surname>Daff&#x000e9;</surname><given-names>M</given-names></name></person-group>
+<year>2005</year>
+<article-title>The cell envelope of <italic>Mycobacterium tuberculosis</italic> with special reference to the capsule and outer permeability barrier</article-title>
+<person-group person-group-type="editor"><name><surname>Cole</surname><given-names>ST</given-names></name></person-group>
+<source>Tuberculosis and the tubercle bacillus</source>
+<publisher-loc>Washington, D.C.</publisher-loc>
+<publisher-name>American Society of Microbiology Press</publisher-name>
+<fpage>261</fpage>
+<lpage>273</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b08"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Pasqualoto</surname><given-names>KFM</given-names></name><name><surname>Ferreira</surname><given-names>EI</given-names></name><name><surname>Santos-Filho</surname><given-names>OA</given-names></name><name><surname>Hopfinger</surname><given-names>AJ</given-names></name></person-group>
+<year>2004</year>
+<article-title>Rational design of new antituberculosis agents: Receptor-independent four-dimensional quantitative structure-activity relationship analysis of a set of isoniazid derivatives</article-title>
+<source>J Med Chem</source>
+<volume>47</volume>
+<fpage>3755</fpage>
+<lpage>3764</lpage>
+<pub-id pub-id-type="pmid">15239654</pub-id></element-citation></ref><ref id="pcbi-0010046-b09"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Lei</surname><given-names>B</given-names></name><name><surname>Wei</surname><given-names>C</given-names></name><name><surname>Tu</surname><given-names>S</given-names></name></person-group>
+<year>2000</year>
+<article-title>Action mechanism of antitubercular isoniazid. Activation by <italic>Mycobacterium tuberculosis</italic> KatG, isolation, and characterization of <italic>inhA</italic> inhibitor</article-title>
+<source>J Biol Chem</source>
+<volume>275</volume>
+<fpage>2520</fpage>
+<lpage>2526</lpage>
+<pub-id pub-id-type="pmid">10644708</pub-id></element-citation></ref><ref id="pcbi-0010046-b10"><element-citation publication-type="journal">
+<collab>Banerjee A, Dubnau E, Quemard A, Balasubramanian V, Um K, et al.</collab>
+<year>1994</year>
+<article-title>
+<italic>inhA</italic>, a gene encoding a target for isoniazid and ethionamide in <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Science</source>
+<volume>263</volume>
+<fpage>227</fpage>
+<lpage>230</lpage>
+<pub-id pub-id-type="pmid">8284673</pub-id></element-citation></ref><ref id="pcbi-0010046-b11"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ma</surname><given-names>H</given-names></name><name><surname>Zeng</surname><given-names>AP</given-names></name></person-group>
+<year>2003</year>
+<article-title>Reconstruction of metabolic networks from genome data and analysis of their global structure for various organisms</article-title>
+<source>Bioinformatics</source>
+<volume>19</volume>
+<fpage>270</fpage>
+<lpage>277</lpage>
+<pub-id pub-id-type="pmid">12538249</pub-id></element-citation></ref><ref id="pcbi-0010046-b12"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Bonarius</surname><given-names>HPJ</given-names></name><name><surname>Schmid</surname><given-names>G</given-names></name><name><surname>Tramper</surname><given-names>J</given-names></name></person-group>
+<year>1997</year>
+<article-title>Flux analysis of underdetermined metabolic networks: The quest for the missing constraints</article-title>
+<source>Trends Biotech</source>
+<volume>15</volume>
+<fpage>308</fpage>
+<lpage>314</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b13"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Schuster</surname><given-names>S</given-names></name><name><surname>Dandekar</surname><given-names>T</given-names></name><name><surname>Fell</surname><given-names>DA</given-names></name></person-group>
+<year>1999</year>
+<article-title>Detection of elementary flux modes in biochemical networks: A promising tool for pathway analysis and metabolic engineering</article-title>
+<source>Trends Biotech</source>
+<volume>17</volume>
+<fpage>53</fpage>
+<lpage>60</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b14"><element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Voit</surname><given-names>EO</given-names></name></person-group>
+<year>2000</year>
+<source>Computational analysis of biochemical systems: A practical guide for biochemists and molecular biologists</source>
+<publisher-loc>Cambridge</publisher-loc>
+<publisher-name>Cambridge University Press</publisher-name>
+<size units="page">531</size>
+<comment>p.</comment>
+</element-citation></ref><ref id="pcbi-0010046-b15"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Stelling</surname><given-names>J</given-names></name><name><surname>Klamt</surname><given-names>S</given-names></name><name><surname>Bettenbrock</surname><given-names>K</given-names></name><name><surname>Schuster</surname><given-names>S</given-names></name><name><surname>Gilles</surname><given-names>ED</given-names></name></person-group>
+<year>2002</year>
+<article-title>Metabolic network structure determines key aspects of functionality and regulation</article-title>
+<source>Nature</source>
+<volume>420</volume>
+<fpage>190</fpage>
+<lpage>193</lpage>
+<pub-id pub-id-type="pmid">12432396</pub-id></element-citation></ref><ref id="pcbi-0010046-b16"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Cornish-Bowden</surname><given-names>A</given-names></name><name><surname>Hofmeyr</surname><given-names>JHS</given-names></name></person-group>
+<year>2002</year>
+<article-title>The role of stoichiometric analysis in studies of metabolism: An example</article-title>
+<source>J Theor Biol</source>
+<volume>216</volume>
+<fpage>179</fpage>
+<lpage>191</lpage>
+<pub-id pub-id-type="pmid">12079370</pub-id></element-citation></ref><ref id="pcbi-0010046-b17"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Price</surname><given-names>ND</given-names></name><name><surname>Papin</surname><given-names>JA</given-names></name><name><surname>Schilling</surname><given-names>CH</given-names></name><name><surname>Palsson</surname><given-names>BO</given-names></name></person-group>
+<year>2003</year>
+<article-title>Genome-scale microbial <italic>in silico</italic> models: The constraints-based approach</article-title>
+<source>Trends Biotech</source>
+<volume>21</volume>
+<fpage>162</fpage>
+<lpage>169</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b18"><element-citation publication-type="journal">
+<collab>Segr&#x000e8; D, Zucker J, Katz J, Lin X, D'haeseleer P, et al.</collab>
+<year>2003</year>
+<article-title>From annotated genomes to metabolic flux models and kinetic parameter fitting</article-title>
+<source>OMICS</source>
+<volume>7</volume>
+<fpage>301</fpage>
+<lpage>316</lpage>
+<pub-id pub-id-type="pmid">14583118</pub-id></element-citation></ref><ref id="pcbi-0010046-b19"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Edwards</surname><given-names>JS</given-names></name><name><surname>Palsson</surname><given-names>BO</given-names></name></person-group>
+<year>1999</year>
+<article-title>Systems properties of the <italic>Haemophilus influenzae</italic> Rd metabolic genotype</article-title>
+<source>J Biol Chem</source>
+<volume>274</volume>
+<fpage>17410</fpage>
+<lpage>17416</lpage>
+<pub-id pub-id-type="pmid">10364169</pub-id></element-citation></ref><ref id="pcbi-0010046-b20"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Forster</surname><given-names>J</given-names></name><name><surname>Famili</surname><given-names>I</given-names></name><name><surname>Fu</surname><given-names>P</given-names></name><name><surname>Palsson</surname><given-names>BO</given-names></name><name><surname>Nielsen</surname><given-names>J</given-names></name></person-group>
+<year>2003</year>
+<article-title>Genome-scale reconstruction of the <italic>Saccharomyces cerevisiae</italic> metabolic network</article-title>
+<source>Genome Res</source>
+<volume>13</volume>
+<fpage>244</fpage>
+<lpage>253</lpage>
+<pub-id pub-id-type="pmid">12566402</pub-id></element-citation></ref><ref id="pcbi-0010046-b21"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Edwards</surname><given-names>JS</given-names></name><name><surname>Palsson</surname><given-names>BO</given-names></name></person-group>
+<year>2000</year>
+<article-title>The <italic>Escherichia coli</italic> MG1655 <italic>in silico</italic> metabolic genotype: Its definition, characteristics, and capabilities</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>97</volume>
+<fpage>5528</fpage>
+<lpage>5533</lpage>
+<pub-id pub-id-type="pmid">10805808</pub-id></element-citation></ref><ref id="pcbi-0010046-b22"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Becker</surname><given-names>SA</given-names></name><name><surname>Palsson</surname><given-names>BO</given-names></name></person-group>
+<year>2005</year>
+<article-title>Genome-scale reconstruction of the metabolic network in <italic>Staphylococcus aureus</italic> N315: An initial draft to the two-dimensional annotation</article-title>
+<source>BMC Microbiology</source>
+<volume>5</volume>
+<fpage>8</fpage>
+<pub-id pub-id-type="pmid">15752426</pub-id></element-citation></ref><ref id="pcbi-0010046-b23"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Schweizer</surname><given-names>E</given-names></name><name><surname>Hofmann</surname><given-names>J</given-names></name></person-group>
+<year>2004</year>
+<article-title>Microbial type I fatty acid synthases (FAS): Major players in a network of cellular FAS systems</article-title>
+<source>Microbiol Mol Biol Rev</source>
+<volume>68</volume>
+<fpage>501</fpage>
+<lpage>517</lpage>
+<pub-id pub-id-type="pmid">15353567</pub-id></element-citation></ref><ref id="pcbi-0010046-b24"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kikuchi</surname><given-names>S</given-names></name><name><surname>Rainwater</surname><given-names>DL</given-names></name><name><surname>Kolattukudy</surname><given-names>P</given-names></name></person-group>
+<year>1992</year>
+<article-title>Purification and characterization of an unusually large fatty acid synthase from <italic>Mycobacterium tuberculosis</italic> var. <italic>bovis BCG</italic>
+</article-title>
+<source>Arch Biochem and Biophys</source>
+<volume>295</volume>
+<fpage>318</fpage>
+<lpage>326</lpage>
+<pub-id pub-id-type="pmid">1586161</pub-id></element-citation></ref><ref id="pcbi-0010046-b25"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Choi</surname><given-names>KH</given-names></name><name><surname>Kremer</surname><given-names>L</given-names></name><name><surname>Besra</surname><given-names>GS</given-names></name><name><surname>Rock</surname><given-names>CO</given-names></name></person-group>
+<year>2000</year>
+<article-title>Identification and substrate specificity of &#x003b2;-ketoacyl (acyl carrier protein) synthase III (mtFabH) from <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>J Biol Chem</source>
+<volume>275</volume>
+<fpage>28201</fpage>
+<lpage>28207</lpage>
+<pub-id pub-id-type="pmid">10840036</pub-id></element-citation></ref><ref id="pcbi-0010046-b26"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Scarsdale</surname><given-names>JN</given-names></name><name><surname>Kazanina</surname><given-names>G</given-names></name><name><surname>He</surname><given-names>X</given-names></name><name><surname>Reynolds</surname><given-names>KA</given-names></name><name><surname>Wright</surname><given-names>HT</given-names></name></person-group>
+<year>2001</year>
+<article-title>Crystal structure of the <italic>Mycobacterium tuberculosis</italic> &#x003b2;-ketoacyl-acyl carrier protein synthase III</article-title>
+<source>J Biol Chem</source>
+<volume>276</volume>
+<fpage>20516</fpage>
+<lpage>20522</lpage>
+<pub-id pub-id-type="pmid">11278743</pub-id></element-citation></ref><ref id="pcbi-0010046-b27"><element-citation publication-type="journal">
+<collab>Cole ST, Brosch R, Parkhill J, Garnier T, Churcher C, et al.</collab>
+<year>1998</year>
+<article-title>Deciphering the biology of <italic>Mycobacterium tuberculosis</italic> from the complete genome sequence</article-title>
+<source>Nature</source>
+<volume>393</volume>
+<fpage>537</fpage>
+<lpage>544</lpage>
+<pub-id pub-id-type="pmid">9634230</pub-id></element-citation></ref><ref id="pcbi-0010046-b28"><element-citation publication-type="journal">
+<collab>Kremer L, Dover L, Carr&#x000e8;re S, Nampoothiri K, Lesjean S, et al.</collab>
+<year>2002</year>
+<article-title>Mycolic acid biosynthesis and enzymic characterization of the beta-ketoacyl-ACP synthase A-condensing enzyme from <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Biochem J</source>
+<volume>364</volume>
+<fpage>423</fpage>
+<lpage>430</lpage>
+<pub-id pub-id-type="pmid">12023885</pub-id></element-citation></ref><ref id="pcbi-0010046-b29"><element-citation publication-type="journal">
+<collab>Marrakchi H, Ducasse S, Labesse G, Montrozier H, Margeat E, et al.</collab>
+<year>2002</year>
+<article-title>MabA (FabG1), a <italic>Mycobacterium tuberculosis</italic> protein involved in the long-chain fatty acid elongation system FAS-II</article-title>
+<source>Microbiology</source>
+<volume>148</volume>
+<fpage>951</fpage>
+<lpage>960</lpage>
+<pub-id pub-id-type="pmid">11932442</pub-id></element-citation></ref><ref id="pcbi-0010046-b30"><element-citation publication-type="journal">
+<collab>Qu&#x000e9;mard A, Sacchettini JC, Dessen A, Vilcheze C, Bittman R, et al.</collab>
+<year>1995</year>
+<article-title>Enzymatic characterization of the target for isoniazid in <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Biochemistry</source>
+<volume>34</volume>
+<fpage>8235</fpage>
+<lpage>8241</lpage>
+<pub-id pub-id-type="pmid">7599116</pub-id></element-citation></ref><ref id="pcbi-0010046-b31"><element-citation publication-type="journal">
+<collab>Schaeffer ML, Agnihotri G, Volker C, Kallender H, Brennan PJ, et al.</collab>
+<year>2001</year>
+<article-title>Purification and biochemical characterization of the <italic>Mycobacterium tuberculosis</italic> &#x003b2;-ketoacyl-acyl carrier protein synthases KasA and KasB</article-title>
+<source>J Biol Chem</source>
+<volume>276</volume>
+<fpage>47029</fpage>
+<lpage>47037</lpage>
+<pub-id pub-id-type="pmid">11600501</pub-id></element-citation></ref><ref id="pcbi-0010046-b32"><element-citation publication-type="journal">
+<collab>Phetsuksiri B, Jackson M, Scherman H, McNeil M, Besra GS, et al.</collab>
+<year>2003</year>
+<article-title>Unique mechanism of action of the thiourea drug isoxyl on <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>J Biol Chem</source>
+<volume>278</volume>
+<fpage>53123</fpage>
+<lpage>53130</lpage>
+<pub-id pub-id-type="pmid">14559907</pub-id></element-citation></ref><ref id="pcbi-0010046-b33"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Glickman</surname><given-names>M</given-names></name><name><surname>Cahill</surname><given-names>S</given-names></name><name><surname>Jacobs</surname><given-names>W</given-names></name></person-group>
+<year>2001</year>
+<article-title>The <italic>Mycobacterium tuberculosis cmaA2</italic> gene encodes a mycolic acid trans-cyclopropane synthetase</article-title>
+<source>J Biol Chem</source>
+<volume>276</volume>
+<fpage>2228</fpage>
+<lpage>2233</lpage>
+<pub-id pub-id-type="pmid">11092877</pub-id></element-citation></ref><ref id="pcbi-0010046-b34"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Dinadayala</surname><given-names>P</given-names></name><name><surname>Laval</surname><given-names>F</given-names></name><name><surname>Raynaud</surname><given-names>C</given-names></name><name><surname>Lemassu</surname><given-names>A</given-names></name><name><surname>Laneelle</surname><given-names>M</given-names></name><etal/></person-group>
+<year>2003</year>
+<article-title>Tracking the putative biosynthetic precursors of oxygenated mycolates of <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>J Biol Chem</source>
+<volume>278</volume>
+<fpage>7310</fpage>
+<lpage>7319</lpage>
+<pub-id pub-id-type="pmid">12473649</pub-id></element-citation></ref><ref id="pcbi-0010046-b35"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>George</surname><given-names>K</given-names></name><name><surname>Yuan</surname><given-names>Y</given-names></name><name><surname>Sherman</surname><given-names>D</given-names></name><name><surname>Barry</surname><given-names>C</given-names></name></person-group>
+<year>1995</year>
+<article-title>The biosynthesis of cyclopropanated mycolic acids in <italic>Mycobacterium tuberculosis</italic>. Identification and functional analysis of CMAS-2</article-title>
+<source>J Biol Chem</source>
+<volume>270</volume>
+<fpage>27292</fpage>
+<lpage>27298</lpage>
+<pub-id pub-id-type="pmid">7592990</pub-id></element-citation></ref><ref id="pcbi-0010046-b36"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Glickman</surname><given-names>MS</given-names></name></person-group>
+<year>2003</year>
+<article-title>The <italic>mmaA2</italic> gene of <italic>Mycobacterium tuberculosis</italic> encodes the distal cyclopropane synthase of the &#x003b1;-mycolic acid</article-title>
+<source>J Biol Chem</source>
+<volume>278</volume>
+<fpage>7844</fpage>
+<lpage>7849</lpage>
+<pub-id pub-id-type="pmid">12502719</pub-id></element-citation></ref><ref id="pcbi-0010046-b37"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yuan</surname><given-names>Y</given-names></name><name><surname>Barry</surname><given-names>CE</given-names><suffix>III</suffix></name></person-group>
+<year>1996</year>
+<article-title>A common mechanism for the biosynthesis of methoxy and cyclopropyl mycolic acids in <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>93</volume>
+<fpage>12828</fpage>
+<lpage>12833</lpage>
+<pub-id pub-id-type="pmid">8917504</pub-id></element-citation></ref><ref id="pcbi-0010046-b38"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yuan</surname><given-names>Y</given-names></name><name><surname>Lee</surname><given-names>R</given-names></name><name><surname>Besra</surname><given-names>G</given-names></name><name><surname>Belisle</surname><given-names>J</given-names></name><name><surname>Barry</surname><given-names>C</given-names></name></person-group>
+<year>1995</year>
+<article-title>Identification of a gene involved in the biosynthesis of cyclopropanated mycolic acids in <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>92</volume>
+<fpage>6630</fpage>
+<lpage>6634</lpage>
+<pub-id pub-id-type="pmid">7604045</pub-id></element-citation></ref><ref id="pcbi-0010046-b39"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yuan</surname><given-names>Y</given-names></name><name><surname>Crane</surname><given-names>D</given-names></name><name><surname>Musser</surname><given-names>J</given-names></name><name><surname>Sreevatsan</surname><given-names>S</given-names></name><name><surname>Barry</surname><given-names>C</given-names></name></person-group>
+<year>1997</year>
+<article-title>MMAS-1, the branch point between <italic>cis</italic>- and <italic>trans</italic>-cyclopropane-containing oxygenated mycolates in <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>J Biol Chem</source>
+<volume>272</volume>
+<fpage>10041</fpage>
+<lpage>10049</lpage>
+<pub-id pub-id-type="pmid">9092547</pub-id></element-citation></ref><ref id="pcbi-0010046-b40"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Portevin</surname><given-names>D</given-names></name><name><surname>de Sousa-D'Auria</surname><given-names>C</given-names></name><name><surname>Montrozier</surname><given-names>H</given-names></name><name><surname>Houssin</surname><given-names>C</given-names></name><name><surname>Stella</surname><given-names>A</given-names></name><etal/></person-group>
+<year>2005</year>
+<article-title>The acyl-AMP ligase FadD32 and AccD4-containing acyl-CoA carboxylase are required for the synthesis of mycolic acids and essential for mycobacterial growth</article-title>
+<source>J Biol Chem</source>
+<volume>280</volume>
+<fpage>8862</fpage>
+<lpage>8874</lpage>
+<pub-id pub-id-type="pmid">15632194</pub-id></element-citation></ref><ref id="pcbi-0010046-b41"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Watanabe</surname><given-names>M</given-names></name><name><surname>Aoyagi</surname><given-names>Y</given-names></name><name><surname>Ridell</surname><given-names>M</given-names></name><name><surname>Minnikin</surname><given-names>D</given-names></name></person-group>
+<year>2001</year>
+<article-title>Separation and characterization of individual mycolic acids in representative mycobacteria</article-title>
+<source>Microbiology</source>
+<volume>147</volume>
+<fpage>1825</fpage>
+<lpage>1837</lpage>
+<pub-id pub-id-type="pmid">11429460</pub-id></element-citation></ref><ref id="pcbi-0010046-b42"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Takayama</surname><given-names>K</given-names></name><name><surname>Wang</surname><given-names>L</given-names></name><name><surname>David</surname><given-names>HL</given-names></name></person-group>
+<year>1972</year>
+<article-title>Effect of isoniazid on the <italic>in vivo</italic> mycolic acid synthesis, cell growth, and viability of <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Antimicrob Agents Chemother</source>
+<volume>2</volume>
+<fpage>29</fpage>
+<lpage>35</lpage>
+<pub-id pub-id-type="pmid">4208567</pub-id></element-citation></ref><ref id="pcbi-0010046-b43"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Vilch&#x000e8;ze</surname><given-names>C</given-names></name><name><surname>Morbidoni</surname><given-names>HR</given-names></name><name><surname>Weisbrod</surname><given-names>TR</given-names></name><name><surname>Iwamoto</surname><given-names>H</given-names></name><name><surname>Kuo</surname><given-names>M</given-names></name><etal/></person-group>
+<year>2000</year>
+<article-title>Inactivation of the <italic>inhA</italic>-encoded fatty acid synthase II (FASII) enoyl-acyl carrier protein reductase induces accumulation of the FASI end products and cell lysis of <italic>Mycobacterium smegmatis</italic>
+</article-title>
+<source>J Bacteriol</source>
+<volume>182</volume>
+<fpage>4059</fpage>
+<lpage>4067</lpage>
+<pub-id pub-id-type="pmid">10869086</pub-id></element-citation></ref><ref id="pcbi-0010046-b44"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yuan</surname><given-names>Y</given-names></name><name><surname>Zhu</surname><given-names>Y</given-names></name><name><surname>Crane</surname><given-names>DD</given-names></name><name><surname>Barry</surname><given-names>CE</given-names><suffix>III</suffix></name></person-group>
+<year>1998</year>
+<article-title>The effect of oxygenated mycolic acid composition on cell wall function and macrophage growth in <italic>Mycobacterium tuberculosis</italic>
+</article-title>
+<source>Mol Microbiol</source>
+<volume>29</volume>
+<fpage>1449</fpage>
+<lpage>1458</lpage>
+<pub-id pub-id-type="pmid">9781881</pub-id></element-citation></ref><ref id="pcbi-0010046-b45"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Watanabe</surname><given-names>M</given-names></name><name><surname>Aoyagi</surname><given-names>Y</given-names></name><name><surname>Mitome</surname><given-names>H</given-names></name><name><surname>Fujita</surname><given-names>T</given-names></name><name><surname>Naoki</surname><given-names>H</given-names></name><etal/></person-group>
+<year>2002</year>
+<article-title>Location of functional groups in mycobacterial meromycolate chains; the recognition of new structural principles in mycolic acids</article-title>
+<source>Microbiology</source>
+<volume>148</volume>
+<fpage>1881</fpage>
+<lpage>1902</lpage>
+<pub-id pub-id-type="pmid">12055308</pub-id></element-citation></ref><ref id="pcbi-0010046-b46"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sassetti</surname><given-names>CM</given-names></name><name><surname>Boyd</surname><given-names>DH</given-names></name><name><surname>Rubin</surname><given-names>EJ</given-names></name></person-group>
+<year>2003</year>
+<article-title>Genes required for mycobacterial growth defined by high density mutagenesis</article-title>
+<source>Mol Microbiol</source>
+<volume>48</volume>
+<fpage>77</fpage>
+<lpage>84</lpage>
+<pub-id pub-id-type="pmid">12657046</pub-id></element-citation></ref><ref id="pcbi-0010046-b47"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Segr&#x000e8;</surname><given-names>D</given-names></name><name><surname>Vitkup</surname><given-names>D</given-names></name><name><surname>Church</surname><given-names>GM</given-names></name></person-group>
+<year>2002</year>
+<article-title>Analysis of optimality in natural and perturbed metabolic networks</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>99</volume>
+<fpage>15112</fpage>
+<lpage>15117</lpage>
+<pub-id pub-id-type="pmid">12415116</pub-id></element-citation></ref><ref id="pcbi-0010046-b48"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Monahan</surname><given-names>IM</given-names></name><name><surname>Betts</surname><given-names>J</given-names></name><name><surname>Banerjee</surname><given-names>DK</given-names></name><name><surname>Butcher</surname><given-names>PD</given-names></name></person-group>
+<year>2001</year>
+<article-title>Differential expression of mycobacterial proteins following phagocytosis by macrophages</article-title>
+<source>Microbiology</source>
+<volume>147</volume>
+<fpage>459</fpage>
+<lpage>471</lpage>
+<pub-id pub-id-type="pmid">11158363</pub-id></element-citation></ref><ref id="pcbi-0010046-b49"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Mdluli</surname><given-names>K</given-names></name><name><surname>Slayden</surname><given-names>RA</given-names></name><name><surname>Zhu</surname><given-names>Y</given-names></name><name><surname>Ramaswamy</surname><given-names>S</given-names></name><name><surname>Pan</surname><given-names>X</given-names></name><etal/></person-group>
+<year>1998</year>
+<article-title>Inhibition of a <italic>Mycobacterium tuberculosis</italic> &#x003b2;-ketoacyl ACP synthase by isoniazid</article-title>
+<source>Science</source>
+<volume>280</volume>
+<fpage>1607</fpage>
+<lpage>1610</lpage>
+<pub-id pub-id-type="pmid">9616124</pub-id></element-citation></ref><ref id="pcbi-0010046-b50"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kanehisa</surname><given-names>M</given-names></name><name><surname>Goto</surname><given-names>S</given-names></name><name><surname>Kawashima</surname><given-names>S</given-names></name><name><surname>Okuno</surname><given-names>Y</given-names></name><name><surname>Hattori</surname><given-names>M</given-names></name></person-group>
+<year>2003</year>
+<article-title>The KEGG resource for deciphering the genome</article-title>
+<source>Nucleic Acids Res</source>
+<volume>32</volume>
+<fpage>D277</fpage>
+<lpage>D280</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b51"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Karp</surname><given-names>PD</given-names></name><name><surname>Paley</surname><given-names>S</given-names></name><name><surname>Romero</surname><given-names>P</given-names></name></person-group>
+<year>2002</year>
+<article-title>The pathway tools software</article-title>
+<source>Bioinformatics</source>
+<volume>18</volume>
+<fpage>S1</fpage>
+<lpage>S8</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b52"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Hucka</surname><given-names>M</given-names></name><name><surname>Finney</surname><given-names>A</given-names></name><name><surname>Bornstein</surname><given-names>B</given-names></name><name><surname>Keating</surname><given-names>S</given-names></name><name><surname>Shapiro</surname><given-names>B</given-names></name><etal/></person-group>
+<year>2004</year>
+<article-title>Evolving a lingua franca and associated software infrastructure for computational systems biology: The Systems Biology Markup Language (SBML) project</article-title>
+<source>Syst Biol</source>
+<volume>1</volume>
+<fpage>41</fpage>
+<lpage>53</lpage>
+</element-citation></ref><ref id="pcbi-0010046-b53"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Edwards</surname><given-names>JS</given-names></name><name><surname>Covert</surname><given-names>M</given-names></name><name><surname>Palsson</surname><given-names>BO</given-names></name></person-group>
+<year>2002</year>
+<article-title>Metabolic modelling of microbes: The flux-balance approach</article-title>
+<source>Environ Microbiol</source>
+<volume>4</volume>
+<fpage>133</fpage>
+<lpage>133</lpage>
+<pub-id pub-id-type="pmid">12000313</pub-id></element-citation></ref><ref id="pcbi-0010046-b54"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kauffman</surname><given-names>KJ</given-names></name><name><surname>Prakash</surname><given-names>P</given-names></name><name><surname>Edwards</surname><given-names>JS</given-names></name></person-group>
+<year>2003</year>
+<article-title>Advances in flux balance analysis</article-title>
+<source>Curr Opin Biotech</source>
+<volume>14</volume>
+<fpage>491</fpage>
+<lpage>496</lpage>
+<pub-id pub-id-type="pmid">14580578</pub-id></element-citation></ref><ref id="pcbi-0010046-b55"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Alvarez-Vasquez</surname><given-names>F</given-names></name><name><surname>Sims</surname><given-names>K</given-names></name><name><surname>Cowart</surname><given-names>L</given-names></name><name><surname>Okamoto</surname><given-names>Y</given-names></name><name><surname>Voit</surname><given-names>E</given-names></name><etal/></person-group>
+<year>2005</year>
+<article-title>Simulation and validation of modelled sphingolipid metabolism in <italic>Saccharomyces cerevisiae</italic>
+</article-title>
+<source>Nature</source>
+<volume>433</volume>
+<fpage>425</fpage>
+<lpage>430</lpage>
+<pub-id pub-id-type="pmid">15674294</pub-id></element-citation></ref><ref id="pcbi-0010046-b56"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Edwards</surname><given-names>JS</given-names></name><name><surname>Ibarra</surname><given-names>RU</given-names></name><name><surname>Palsson</surname><given-names>BO</given-names></name></person-group>
+<year>2001</year>
+<article-title>
+<italic>In silico</italic> predictions of <italic>Escherichia coli</italic> metabolic capabilities are consistent with experimental data</article-title>
+<source>Nat Biotechnol</source>
+<volume>19</volume>
+<fpage>125</fpage>
+<lpage>130</lpage>
+<pub-id pub-id-type="pmid">11175725</pub-id></element-citation></ref><ref id="pcbi-0010046-b57"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Altschul</surname><given-names>SF</given-names></name><name><surname>Madden</surname><given-names>TL</given-names></name><name><surname>Sch&#x000e4;ffer</surname><given-names>AA</given-names></name><name><surname>Zhang</surname><given-names>J</given-names></name><name><surname>Zhang</surname><given-names>Z</given-names></name><etal/></person-group>
+<year>1997</year>
+<article-title>Gapped BLAST and PSI-BLAST: A new generation of protein database search programs</article-title>
+<source>Nucleic Acids Res</source>
+<volume>25</volume>
+<fpage>3389</fpage>
+<lpage>3402</lpage>
+<pub-id pub-id-type="pmid">9254694</pub-id></element-citation></ref><ref id="pcbi-0010046-b58"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kremer</surname><given-names>L</given-names></name><name><surname>Nampoothiri</surname><given-names>KM</given-names></name><name><surname>Lesjean</surname><given-names>S</given-names></name><name><surname>Dover</surname><given-names>LG</given-names></name><name><surname>Grahami</surname><given-names>S</given-names></name><etal/></person-group>
+<year>2001</year>
+<article-title>Biochemical characterization of acyl carrier protein (AcpM) and malonyl-CoA:AcpM transacylase (mtFabD), two major components of <italic>Mycobacterium tuberculosis</italic> fatty acid synthase II</article-title>
+<source>J Biol Chem</source>
+<volume>276</volume>
+<fpage>27967</fpage>
+<lpage>27974</lpage>
+<pub-id pub-id-type="pmid">11373295</pub-id></element-citation></ref><ref id="pcbi-0010046-b59"><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Portevin</surname><given-names>D</given-names></name><name><surname>De Sousa-D'Auria</surname><given-names>C</given-names></name><name><surname>Houssin</surname><given-names>C</given-names></name><name><surname>Grimaldi</surname><given-names>C</given-names></name><name><surname>Chami</surname><given-names>M</given-names></name><etal/></person-group>
+<year>2004</year>
+<article-title>A polyketide synthase catalyzes the last condensation step of mycolic acid biosynthesis in mycobacteria and related organisms</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>101</volume>
+<fpage>314</fpage>
+<lpage>319</lpage>
+<pub-id pub-id-type="pmid">14695899</pub-id></element-citation></ref></ref-list></back></article>
