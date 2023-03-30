@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model id="Model_1" name="Rab5-Rab7 anti-phase Cut-Out switch">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml"></body>
+    </notes>
+    <listOfFunctionDefinitions>
+      <functionDefinition id="function_5" name="3 hydrolysis">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> kh </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> kh </ci>
+              <ci> R </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4" name="2 Sigmoid Activation ">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> ke </ci>
+            </bvar>
+            <bvar>
+              <ci> r </ci>
+            </bvar>
+            <bvar>
+              <ci> kg </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <bvar>
+              <ci> kf </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> ke </ci>
+                <ci> r </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <exp/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <minus/>
+                      <ci> kg </ci>
+                      <ci> R </ci>
+                    </apply>
+                    <ci> kf </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_3" name="2 Hills activation">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> r </ci>
+            </bvar>
+            <bvar>
+              <ci> ke </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <bvar>
+              <ci> h </ci>
+            </bvar>
+            <bvar>
+              <ci> kg </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> r </ci>
+                <ci> ke </ci>
+                <apply>
+                  <power/>
+                  <ci> R </ci>
+                  <ci> h </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> kg </ci>
+                <apply>
+                  <power/>
+                  <ci> R </ci>
+                  <ci> h </ci>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_2" name="4 extraction">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> kminus1 </ci>
+            </bvar>
+            <bvar>
+              <ci> r </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> kminus1 </ci>
+              <ci> r </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_1" name="2 Sigmoid Activation 3 (t)">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> r </ci>
+            </bvar>
+            <bvar>
+              <ci> ke </ci>
+            </bvar>
+            <bvar>
+              <ci> t </ci>
+            </bvar>
+            <bvar>
+              <ci> kg </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <bvar>
+              <ci> kf </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> r </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> ke </ci>
+                    <ci> t </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <cn> 100 </cn>
+                    <ci> t </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <exp/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <minus/>
+                      <ci> kg </ci>
+                      <ci> R </ci>
+                    </apply>
+                    <ci> kf </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_0" name="1 recruitment">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> K1 </ci>
+            </bvar>
+            <ci> K1 </ci>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition id="volume">
+        <listOfUnits>
+          <unit kind="litre" scale="-3" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time">
+        <listOfUnits>
+          <unit kind="second" multiplier="60" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="mole" scale="-3" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="compartment_0" name="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="species_0" name="r5" compartment="compartment_0" initialConcentration="1"/>
+      <species id="species_1" name="R5" compartment="compartment_0" initialConcentration="0.001"/>
+      <species id="species_2" name="r7" compartment="compartment_0" initialConcentration="1"/>
+      <species id="species_3" name="R7" compartment="compartment_0" initialConcentration="0.001"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0" name="51 recruitment of Rab5" reversible="false">
+        <listOfProducts>
+          <speciesReference species="species_0"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_0 </ci>
+                <ci> K1 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="K1" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_1" name="525 activation of Rab5 (time)" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_0"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="species_1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="species_1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_1 </ci>
+                <ci> species_0 </ci>
+                <ci> ke </ci>
+                <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+                <ci> kg </ci>
+                <ci> species_1 </ci>
+                <ci> kf </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="ke" value="0.3"/>
+            <parameter id="kg" value="0.1"/>
+            <parameter id="kf" value="2.5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_2" name="54 extraction of Rab5" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_0"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_2 </ci>
+                <ci> kminus1 </ci>
+                <ci> species_0 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kminus1" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_3" name="71 recruitment of Rab7" reversible="false">
+        <listOfProducts>
+          <speciesReference species="species_2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_0 </ci>
+                <ci> K1 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="K1" value="0.483"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_4" name="727 activation of Rab7 by GEF7" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="species_3"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="species_3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_3 </ci>
+                <ci> species_2 </ci>
+                <ci> ke </ci>
+                <ci> species_3 </ci>
+                <ci> h </ci>
+                <ci> kg </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="ke" value="0.21"/>
+            <parameter id="h" value="3"/>
+            <parameter id="kg" value="0.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_5" name="725 activation of Rab7 by GEF5" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="species_3"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="species_1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_4 </ci>
+                <ci> ke </ci>
+                <ci> species_2 </ci>
+                <ci> kg </ci>
+                <ci> species_1 </ci>
+                <ci> kf </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="ke" value="0.021"/>
+            <parameter id="kg" value="1"/>
+            <parameter id="kf" value="3"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_6" name="537 hydrolysis of Rab5 by Rab7" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="species_0"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="species_3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_4 </ci>
+                <ci> ke </ci>
+                <ci> species_1 </ci>
+                <ci> kg </ci>
+                <ci> species_3 </ci>
+                <ci> kf </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="ke" value="0.31"/>
+            <parameter id="kg" value="0.3"/>
+            <parameter id="kf" value="3"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_7" name="74 extraction of rab7" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_2"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_2 </ci>
+                <ci> kminus1 </ci>
+                <ci> species_2 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kminus1" value="0.483"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_8" name="53 hydrolysis of Rab5 (intr.)" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="species_0"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_5 </ci>
+                <ci> kh </ci>
+                <ci> species_1 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kh" value="0.06"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_9" name="73 hydrolysis of Rab7 (intr.)" reversible="false">
+        <listOfReactants>
+          <speciesReference species="species_3"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="species_2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_5 </ci>
+                <ci> kh </ci>
+                <ci> species_3 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kh" value="0.15"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
