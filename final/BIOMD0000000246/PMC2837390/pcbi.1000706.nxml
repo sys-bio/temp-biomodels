@@ -1,0 +1,714 @@
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.0 20120330//EN" "JATS-archivearticle1.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article"><?properties open_access?><front><journal-meta><journal-id journal-id-type="nlm-ta">PLoS Comput Biol</journal-id><journal-id journal-id-type="iso-abbrev">PLoS Comput. Biol</journal-id><journal-id journal-id-type="publisher-id">plos</journal-id><journal-id journal-id-type="pmc">ploscomp</journal-id><journal-title-group><journal-title>PLoS Computational Biology</journal-title></journal-title-group><issn pub-type="ppub">1553-734X</issn><issn pub-type="epub">1553-7358</issn><publisher><publisher-name>Public Library of Science</publisher-name><publisher-loc>San Francisco, USA</publisher-loc></publisher></journal-meta><article-meta><article-id pub-id-type="pmid">20300645</article-id><article-id pub-id-type="pmc">2837390</article-id><article-id pub-id-type="publisher-id">09-PLCB-RA-1175R3</article-id><article-id pub-id-type="doi">10.1371/journal.pcbi.1000706</article-id><article-categories><subj-group subj-group-type="heading"><subject>Research Article</subject></subj-group><subj-group subj-group-type="Discipline"><subject>Computational Biology/Computational Neuroscience</subject><subject>Computational Biology/Systems Biology</subject></subj-group></article-categories><title-group><article-title>A Multiscale Model to Investigate Circadian Rhythmicity of Pacemaker Neurons in the Suprachiasmatic Nucleus</article-title><alt-title alt-title-type="running-head">A Multiscale Approach to Analyze Circadian Rhythms</alt-title></title-group><contrib-group><contrib contrib-type="author"><name><surname>Vasalou</surname><given-names>Christina</given-names></name><xref ref-type="aff" rid="aff1"/></contrib><contrib contrib-type="author"><name><surname>Henson</surname><given-names>Michael A.</given-names></name><xref ref-type="aff" rid="aff1"/><xref ref-type="corresp" rid="cor1">
+<sup>&#x0002a;</sup>
+</xref></contrib></contrib-group><aff id="aff1"><addr-line>Department of Chemical Engineering, University of Massachusetts, Amherst, Massachusetts, United States of America</addr-line></aff><contrib-group><contrib contrib-type="editor"><name><surname>Friston</surname><given-names>Karl J.</given-names></name><role>Editor</role><xref ref-type="aff" rid="edit1"/></contrib></contrib-group><aff id="edit1">University College London, United Kingdom</aff><author-notes><corresp id="cor1">&#x0002a; E-mail: <email>henson@ecs.umass.edu</email></corresp><fn fn-type="con"><p>Conceived and designed the experiments: CV. Performed the experiments: CV. Analyzed the data: CV MAH. Contributed reagents/materials/analysis tools: CV MAH. Wrote the paper: CV MAH.</p></fn></author-notes><pub-date pub-type="collection"><month>3</month><year>2010</year></pub-date><pub-date pub-type="epub"><day>12</day><month>3</month><year>2010</year></pub-date><volume>6</volume><issue>3</issue><elocation-id>e1000706</elocation-id><history><date date-type="received"><day>29</day><month>9</month><year>2009</year></date><date date-type="accepted"><day>5</day><month>2</month><year>2010</year></date></history><permissions><copyright-statement>Vasalou, Henson.</copyright-statement><copyright-year>2010</copyright-year><license xlink:href="http://creativecommons.org/licenses/by/4.0/"><license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are properly credited.</license-p></license></permissions><abstract><p>The suprachiasmatic nucleus (SCN) of the hypothalamus is a multicellular system that drives daily rhythms in mammalian behavior and physiology. Although the gene regulatory network that produces daily oscillations within individual neurons is well characterized, less is known about the electrophysiology of the SCN cells and how firing rate correlates with circadian gene expression. We developed a firing rate code model to incorporate known electrophysiological properties of SCN pacemaker cells, including circadian dependent changes in membrane voltage and ion conductances. Calcium dynamics were included in the model as the putative link between electrical firing and gene expression. Individual ion currents exhibited oscillatory patterns matching experimental data both in current levels and phase relationships. VIP and GABA neurotransmitters, which encode synaptic signals across the SCN, were found to play critical roles in daily oscillations of membrane excitability and gene expression. Blocking various mechanisms of intracellular calcium accumulation by simulated pharmacological agents (nimodipine, IP3- and ryanodine-blockers) reproduced experimentally observed trends in firing rate dynamics and core-clock gene transcription. The intracellular calcium concentration was shown to regulate diverse circadian processes such as firing frequency, gene expression and system periodicity. The model predicted a direct relationship between firing frequency and gene expression amplitudes, demonstrated the importance of intracellular pathways for single cell behavior and provided a novel multiscale framework which captured characteristics of the SCN at both the electrophysiological and gene regulatory levels.</p></abstract><abstract abstract-type="summary"><title>Author Summary</title><p>Circadian rhythms are &#x0223c;24 hour cycles in biochemical, physiological and behavioral processes observed in a diverse range of organisms including <italic>Cyanobacteria</italic>, <italic>Neurospora</italic>, <italic>Drosophila</italic>, mice and humans. In mammals, the dominant circadian pacemaker that drives daily rhythms is located in the suprachiasmatic nucleus (SCN) of the hypothalamus. The SCN is composed of a highly connected network of &#x0223c;20,000 neurons. Within each individual SCN neuron core clock genes and proteins interact through intertwined regulatory loops to generate circadian oscillations on the molecular level. These neurons express daily rhythmicity in their firing frequency and other electrophysiological properties. The mechanisms by which the core clock produces synchronized rhythms in neural firing and gene expression are postulated to involve intracellular calcium, a second messenger that regulates many cellular processes. The interaction between the various clock components however remains unknown. In this paper, we present a single cell model that incorporates the circadian gene regulatory pathway, cellular electrophysiological properties, and cytosolic calcium dynamics. Our results suggest a possible system architecture that accounts for the robustness of the circadian clock at the single cell level. Our simulations predict a dual role for intracellular pathways instigated by intracellular calcium and VIP: maintaining the periodicity and amplitude of the core clock genes as well as the firing frequency oscillations.</p></abstract><counts><page-count count="15"/></counts></article-meta></front><body><sec id="s1"><title>Introduction</title><p>In mammals many physiological and behavioral responses are subject to internal time-keeping mechanisms or biological clocks. Daily rhythms are generated by an internal, self-sustained oscillator located in the suprachiasmatic nucleus (SCN) of the hypothalamus. The SCN produces autonomous 24h cycles in gene expression and firing frequency from the synchronization of multiple individual oscillatory signals across the network <xref rid="pcbi.1000706-Welsh1" ref-type="bibr">[1]</xref>. The single cell gene regulatory mechanism involves a number of interlocking positive and negative feedback loops in which the <italic>Period</italic> (<italic>Per</italic>) gene occupies the central position <xref rid="pcbi.1000706-Reppert1" ref-type="bibr">[2]</xref>. The circadian modulation of neural firing affects a number of electrophysiological properties of the cell membrane which also fluctuate over the course of the day <xref rid="pcbi.1000706-Brown1" ref-type="bibr">[3]</xref>.</p><p>
+<italic>In vitro</italic> studies of SCN slices and cultures have demonstrated diurnal modulation of neural firing <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>, resting potential <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref> and membrane resistance <xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>, as well as daily oscillations in a number of ionic currents that include the fast delayed rectifier potassium <xref rid="pcbi.1000706-Itri1" ref-type="bibr">[7]</xref>, L-type calcium <xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref> and the large-conductance Ca<sup>2&#x0002b;</sup>-activated potassium <xref rid="pcbi.1000706-Meredith1" ref-type="bibr">[8]</xref>,<xref rid="pcbi.1000706-Pitts1" ref-type="bibr">[9]</xref> channels. Although individual SCN neurons contain molecular feedback loops that drive such rhythms, membrane excitability and synaptic transmission also play significant roles in generating daily oscillations. Experimental studies in <italic>Drosophila</italic> have demonstrated the dependence of core clock oscillations on electrical activity, as electrical silencing resulted in abolishment of circadian oscillations of the free-running molecular clock <xref rid="pcbi.1000706-Nitabach1" ref-type="bibr">[10]</xref>. In mammalian organisms a direct association between membrane excitability and core-clock rhythms has also been reported in multiple studies, providing evidence for a positive correlation between <italic>Per</italic> gene transcription and neural spike frequency output <xref rid="pcbi.1000706-Quintero1" ref-type="bibr">[11]</xref>&#x02013;<xref rid="pcbi.1000706-Ehlen2" ref-type="bibr">[13]</xref>. For example, activation of GABA<sub>A</sub> receptors via muscimol enhanced inhibitory postsynaptic currents (IPSCs) leads to lower firing rates <xref rid="pcbi.1000706-Gribkoff1" ref-type="bibr">[14]</xref>,<xref rid="pcbi.1000706-Shirakawa1" ref-type="bibr">[15]</xref> and suppression of <italic>Per1</italic> mRNA <xref rid="pcbi.1000706-Ehlen1" ref-type="bibr">[12]</xref>. Another example involves mice deficient in vasoactive intenstinal peptide (VIP) receptors known to display lower amplitude oscillations of both core clock genes <xref rid="pcbi.1000706-Maywood1" ref-type="bibr">[16]</xref> and neural firing <xref rid="pcbi.1000706-Brown2" ref-type="bibr">[17]</xref>.</p><p>The mechanisms by which the single cells produce synchronized rhythms in neural firing, gene expression and neuropeptide secretion are postulated to involve intracellular second messengers <xref rid="pcbi.1000706-Honma1" ref-type="bibr">[18]</xref>. A candidate second messenger that regulates diverse cellular processes is intracellular calcium. Cytosolic calcium is known to oscillate over the course of the day preceding rhythms in multiple-unit-activity (MUA) recordings by a mean phase of &#x0223c;4.5 hr <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>. Variations in intracellular calcium concentrations have been demonstrated to induce <italic>Per1</italic> gene expression by activating the Ca<sup>2&#x0002b;</sup>/calmodulin dependent kinase, which in turn phosphorylates the cAMP-response-element binding (CREB) protein <xref rid="pcbi.1000706-Tischkau1" ref-type="bibr">[19]</xref>. Reduced Ca<sup>2&#x0002b;</sup>concentrations have been shown to abolish daily <italic>Per1</italic> mRNA oscillations in SCN slices <xref rid="pcbi.1000706-Lundkvist1" ref-type="bibr">[20]</xref>. Cytosolic Ca<sup>2&#x0002b;</sup>rhythms also affect neural firing frequency, as dampening of Ca<sup>2&#x0002b;</sup> oscillations via blockade of calcium release from ryanodine-sensitive pools results in decreased firing activity <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>,<xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>.</p><p>To our knowledge, detailed cell models with molecular descriptions of gene expression and neural firing coupled by intracellular signaling pathways are not currently available for any circadian system. In a recent study (Sim and Forger 2007), a Hodgkin-Huxley type model of SCN neurons was developed and shown to reproduce a significant amount of experimentally observed electrophysiological behavior on a <italic>millisecond timescale</italic>. While this study facilitated the formulation of our electrophysiology model by providing guidelines for the mathematical representation of a number of relevant ionic currents, our modeling study was distinct due to its focus on the <italic>circadian timescale</italic>. In addition to incorporating single-cell electrophysiological properties, our model has accounted for circadian rhythmicity by coupling electrophysiology to daily oscillations in core-clock gene expression and calcium dynamics. The objective of the present study was to model couplings between the circadian gene-regulatory pathway, cellular electrophysiology and cytosolic calcium dynamics to evaluate the role of extracellular synaptic stimuli on firing rate behavior over a circadian timescale. The role of distinct intracellular pathways as well as the directionality of information flow along the network nodes was evaluated by analyzing single cell model behavior following the introduction of various external stimuli. Calcium dynamics, adapted from a published model <xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>, included the contributions of IP3- and ryanodine stores as well as the flux of Ca<sup>2&#x0002b;</sup> in and out of the cell membrane.</p><p>Our model has demonstrated the dependence of membrane excitability on synaptic input conveyed by VIP and GABA, and predicted reduced neural firing and <italic>Per</italic> mRNA oscillation amplitudes as well as shorter circadian periods with reduced cytosolic Ca<sup>2&#x0002b;</sup> concentrations. These results suggest a dual effect of signaling pathways instigated by VIP and calcium that potentially operate as coupling agents between the gene regulatory network and the electrophysiology of SCN neurons.</p></sec><sec id="s2"><title>Results</title><sec id="s2a"><title>Oscillatory Profiles of Individual Cellular Clocks</title><p>In this work we developed a firing rate code model to capture the circadian fluctuations of relevant ion channels as well as 24 hour trends in core-clock gene expression. Individual currents (<italic>I<sub>K</sub></italic>, <italic>I<sub>Na</sub></italic>, <italic>I<sub>Ca</sub></italic>, <italic>I<sub>KCa</sub></italic>, <italic>I<sub>ex</sub></italic> and <italic>I<sub>inhib</sub></italic>) were assumed to interact with the circadian gene regulatory network via signaling pathways that included VIP and Ca<sup>2&#x0002b;</sup> contributions (<xref ref-type="fig" rid="pcbi-1000706-g001">Fig. 1</xref>). Our model produced daily oscillations in constant darkness with 23.6 hour periodicity in the ionic and synaptic currents (<xref ref-type="fig" rid="pcbi-1000706-g002">Figs. 2A&#x02013;2F</xref>), intracellular calcium concentration (<xref ref-type="fig" rid="pcbi-1000706-g002">Fig. 2G</xref>), <italic>Per</italic> mRNA expression (<xref ref-type="fig" rid="pcbi-1000706-g002">Fig. 2H</xref>) and neural firing rate (<xref ref-type="fig" rid="pcbi-1000706-g002">Fig. 2I</xref>). These rhythmic profiles constitute the nominal output of our model and will be referred to as the &#x0201c;control.&#x0201d;</p><fig id="pcbi-1000706-g001" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.g001</object-id><label>Figure 1</label><caption><title>Schematic representation of the SCN neuron model.</title><p>The gene expression model was obtained from a published study by Leloup and Goldbeter (2003), whereas the intracellular calcium model was adapted from Goldbeter et. al (1990). VIP expressed as a function of firing frequency was responsible for the rhythmic release of GABA. Because our model describes a single SCN cell, we assumed that the VIP and GABA concentrations acting on the cell membrane were the same as the released concentrations. In that sense our model assumes autocrine responses. The signaling cascade that activates Per transcription was adapted from To et. al (2007) to include the effects of intracellular calcium. Extracellular post-synaptic currents involve AMPA and NMDA receptors activated in a constant phase relationship to the Na<sup>&#x0002b;</sup> and Ca<sup>2&#x0002b;</sup> concentrations, respectively.</p></caption><graphic xlink:href="pcbi.1000706.g001"/></fig><fig id="pcbi-1000706-g002" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.g002</object-id><label>Figure 2</label><caption><title>Oscillatory profiles of individual cellular clocks.</title><p>Rhythmic profiles of the potassium (A), sodium (B), calcium (C), Ca<sup>2&#x0002b;</sup>-activated potassium (D), excitatory (E) and inhibitory (F) currents. Intracellular calcium (G), Per mRNA (H) and the firing rate (I) also displayed oscillations that peaked during the subjective day. The arrows in <xref ref-type="fig" rid="pcbi-1000706-g002">Fig. 2G</xref> denote CT 1.5, which is the time Ca<sub>in</sub> peaks. The gray and black bars on the top of each figure represent the alternation between the subjective day (gray) and night (black) that compose a 24h circadian cycle in constant darkness.</p></caption><graphic xlink:href="pcbi.1000706.g002"/></fig><p>To calculate the phase relationships of individual rhythmic signals we regarded the cytosolic calcium peak at CT 1.5 <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref> as our reference point and computed the phase differences between the Ca<sup>2&#x0002b;</sup> peak and the peaks of the various rhythmic profiles. This calibration method was used to produce a well tuned model, where circadian components exhibited rhythmic behavior generally matching experimental data both in their relative phase relationships and oscillation peaks as summarized in <xref ref-type="table" rid="pcbi-1000706-t001">Table 1</xref>. The circadian trend of the sodium current remains unknown <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>, but our model predicted circadian oscillations of <italic>I<sub>Na</sub></italic> with a peak during the subjective night at CT 14.3 (<xref ref-type="fig" rid="pcbi-1000706-g002">Fig. 2B</xref>).</p><table-wrap id="pcbi-1000706-t001" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.t001</object-id><label>Table 1</label><caption><title>Circadian phase of SCN model components relative to a calcium peak at CT 1.5.</title></caption><alternatives><graphic id="pcbi-1000706-t001-1" xlink:href="pcbi.1000706.t001"/><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/></colgroup><thead><tr><td align="left" rowspan="1" colspan="1">Rhythmic Output</td><td align="left" rowspan="1" colspan="1">Time of Peak (CT)</td><td align="left" rowspan="1" colspan="1">Time of Peak (CT)</td><td align="left" rowspan="1" colspan="1">Reference</td></tr><tr><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">Model Results</td><td align="left" rowspan="1" colspan="1">Experimental Data</td><td align="left" rowspan="1" colspan="1"/></tr></thead><tbody><tr><td align="left" rowspan="1" colspan="1">Potassium current</td><td align="left" rowspan="1" colspan="1">6.4</td><td align="left" rowspan="1" colspan="1">4&#x02013;6</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Itri1" ref-type="bibr">[7]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">Sodium current</td><td align="left" rowspan="1" colspan="1">14.3</td><td align="left" rowspan="1" colspan="1">&#x02013;</td><td align="left" rowspan="1" colspan="1">None</td></tr><tr><td align="left" rowspan="1" colspan="1">Calcium current</td><td align="left" rowspan="1" colspan="1">8.3</td><td align="left" rowspan="1" colspan="1">4&#x02013;8</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">BK current</td><td align="left" rowspan="1" colspan="1">21</td><td align="left" rowspan="1" colspan="1">20</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Meredith1" ref-type="bibr">[8]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">Inhibitory current</td><td align="left" rowspan="1" colspan="1">18.5</td><td align="left" rowspan="1" colspan="1">11&#x02013;15</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Itri2" ref-type="bibr">[24]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">Excitatory current</td><td align="left" rowspan="1" colspan="1">14.5</td><td align="left" rowspan="1" colspan="1">4&#x02013;10</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Lundkvist2" ref-type="bibr">[42]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">Calcium</td><td align="left" rowspan="1" colspan="1">1.5</td><td align="left" rowspan="1" colspan="1">1.5</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">Per mRNA</td><td align="left" rowspan="1" colspan="1">7.8</td><td align="left" rowspan="1" colspan="1">4&#x02013;8</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Dunlap1" ref-type="bibr">[49]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">Firing rate</td><td align="left" rowspan="1" colspan="1">6.7</td><td align="left" rowspan="1" colspan="1">6.5</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Brown2" ref-type="bibr">[17]</xref>
+</td></tr></tbody></table></alternatives></table-wrap></sec><sec id="s2b"><title>Calcium Dynamics and Circadian Regulation</title><p>The effects on calcium dynamics on circadian behavior was first studied by clamping the membrane voltage at a hyperpolarized level while maintaining constant calcium concentrations. As observed experimentally <xref rid="pcbi.1000706-Brown2" ref-type="bibr">[17]</xref>, the model neuron produced arrhythmic behavior (results not shown). Next we blocked various mechanisms of intracellular calcium accumulation to investigate their effects on firing rate and rhythmic behavior. In an effort to reproduce experimentally observed trends we specifically eliminated IP3-stores, ryanodine stores and L-type Ca<sup>2&#x0002b;</sup> currents. Ikeda et. al (2003) <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref> showed that IP3-stores did not contribute to calcium oscillations and action potential dynamics. In our model, IP3-blockade was simulated by zeroing the rate of calcium release from InsP<sub>3</sub>-sensitive stores (<italic>v<sub>1</sub></italic>) and observed to reproduce this data (results not shown), demonstrating circadian dynamics of <italic>Per</italic> gene expression were not affected by cytosolic calcium stores.</p><p>Ryanodine stores, responsible for Ca<sup>2&#x0002b;</sup> release into the cytosol, are known to play an important role in the 24h oscillations of the intracellular calcium concentration and action potential frequency <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>. Ryanodine blockade was implemented by zeroing the term that accounts for calcium release from the stores into the cytosol (<italic>v<sub>3</sub></italic>). Elimination of this term resulted in a decrease in the peak of the neural firing rate by 13&#x00025; compared to the control during the subjective day (<xref ref-type="fig" rid="pcbi-1000706-g003">Figs. 3A, 3B</xref>), consistent with Ikeda et. al (2003) <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref> who reported a 22&#x000b1;8&#x00025; reduction. Ryanodine blockade had a minimal effect on the firing frequency trough during the subjective night in agreement with experimental findings <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref> (<xref ref-type="fig" rid="pcbi-1000706-g003">Figs. 3A, 3B</xref>). Decreases of 11&#x00025; and 45&#x00025; in the intracellular calcium trough (subjective night) and peak (subjective day), respectively, were observed compared to the control (<xref ref-type="fig" rid="pcbi-1000706-g003">Figs. 3B, 3C</xref>) consistent with Ikeda et. al (2003) <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>.The reduction in intracellular calcium levels had an effect on <italic>I<sub>Ca</sub></italic>, which was predicted to decrease by 20&#x00025; during the subjective day. Furthermore, our simulations produced a 17&#x00025; decrease in the <italic>Per</italic> mRNA amplitude (<xref ref-type="fig" rid="pcbi-1000706-g003">Fig. 3B, 3D</xref>). This trend is consistent with Lundkvist et. al (2005) <xref rid="pcbi.1000706-Lundkvist1" ref-type="bibr">[20]</xref> who demonstrated abolishment of <italic>Per</italic> gene expression rhythms with decreasing intracellular calcium concentrations.</p><fig id="pcbi-1000706-g003" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.g003</object-id><label>Figure 3</label><caption><title>Intracellular calcium dynamics affect the circadian oscillatory behavior.</title><p>Circadian profiles of the firing rate (A), intracellular calcium concentration (C) and <italic>Per</italic> mRNA concentration (D) are shown for the control (black line), ryanodine blockade (red dashed line) and nimodipine application (blue dotted line). B). &#x00025; decrease in the firing rate, <italic>Per</italic> mRNA concentration, Ca<sup>2&#x0002b;</sup> current (<italic>I<sub>Ca</sub></italic>) and cytosolic calcium concentration during the circadian night (green bars) and day (red bars) as a result of ryanodine blockade. E) &#x00025; decrease in the firing rate, <italic>Per</italic> mRNA concentration, Ca<sup>2&#x0002b;</sup> current (<italic>I<sub>Ca</sub></italic>) and Ca<sup>2&#x0002b;</sup> -activated K<sup>&#x0002b;</sup> current (<italic>I<sub>KCa</sub></italic>) during the circadian night (green bars) and day (red bars) as a result of nimodipine application. &#x0002a;&#x0002a; denotes very small changes of the perturbed value compared to the control.</p></caption><graphic xlink:href="pcbi.1000706.g003"/></fig><p>L-type Ca<sup>2&#x0002b;</sup> currents experimentally blocked via nimodipine application have been shown to affect firing rates, but not intracellular calcium levels, within a single cell <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>,<xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>. The effects of nimodipine were implemented by setting the L-type Ca<sup>2&#x0002b;</sup> conductance (<italic>g<sub>Ca</sub></italic>) to zero. Experimental studies involving nimodipine application were carried out over a maximum period of 5 hours <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>, whereas our simulations involved constitutive nimodipine application over the course of the day. Under these conditions the model predicted a slight period decrease of the core-oscillator period to 22.2 h. Simulations of nimodipine application produced a 45&#x00025; decrease in the firing frequency peak compared to the control during the subjective day, while minimal effects were observed on the minimum firing rate during the subjective night (<xref ref-type="fig" rid="pcbi-1000706-g003">Figs. 3A, 3E</xref>) consistent with experimental studies <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>,<xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>,<xref rid="pcbi.1000706-Cloues1" ref-type="bibr">[23]</xref>. Decrease in the intracellular calcium concentration peak by 10&#x00025; was also observed (<xref ref-type="fig" rid="pcbi-1000706-g003">Figs. 3C, 3E</xref>) in agreement with experiments reporting a 4&#x000b1;6&#x00025; reduction <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>. The Ca<sup>2&#x0002b;</sup>-activated potassium current (<italic>I<sub>KCa</sub></italic>) decreased by 23&#x00025; and 38&#x00025; during the subjective day and night, respectively (<xref ref-type="fig" rid="pcbi-1000706-g003">Fig. 3E</xref>), in agreement with the literature where 30&#x02013;50&#x00025; reductions have been reported <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>. The model produced a reduction of the <italic>Per</italic> mRNA amplitude by 30&#x00025; (<xref ref-type="fig" rid="pcbi-1000706-g003">Figs. 3D, 3E</xref>), similar to that reported by Lundkvist et. al (2005) <xref rid="pcbi.1000706-Lundkvist1" ref-type="bibr">[20]</xref>.</p></sec><sec id="s2c"><title>Effect of GABA on Circadian Rhythmicity</title><p>We simulated autocrine response of the GABA neurotransmitter to investigate the role of inhibitory postsynaptic currents (IPSCs) on single cell neural firing and circadian behavior. Our initial objective was to simulate the effects of incrementally decreasing GABA concentrations by imposing step reductions in the mean cytosolic GABA level (Eq. 20). The effect of GABA reduction in our system during the subjective day and night was evaluated by computing the percent changes in firing frequency peak and trough versus the control. IPSC levels exhibited dose dependent reductions (<xref ref-type="fig" rid="pcbi-1000706-g004">Fig. 4A</xref>) leading to increased membrane excitability and therefore increased neural firing rate (<xref ref-type="fig" rid="pcbi-1000706-g004">Fig. 4B, 4E</xref>) as GABA concentrations decreased, in agreement with the literature <xref rid="pcbi.1000706-Shirakawa1" ref-type="bibr">[15]</xref>. Consistent with experimental data by Gribkoff et. al (2003) <xref rid="pcbi.1000706-Gribkoff1" ref-type="bibr">[14]</xref> complete blockade of GABA was seen to increase the firing rate peak and trough by 11&#x00025; and 57&#x00025;, respectively (<xref ref-type="fig" rid="pcbi-1000706-g004">Fig. 4E</xref>).</p><fig id="pcbi-1000706-g004" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.g004</object-id><label>Figure 4</label><caption><title>GABA concentrations affect the circadian oscillatory behavior.</title><p>A). &#x00025; IPSC change during the subjective night (black solid line) and day (red dashed line) as a function of &#x00025; GABA decrease B). &#x00025; firing frequency change during the subjective night (black solid line) and day (red dashed line) as a function of &#x00025; GABA decrease. C) &#x00025; IPSC change during the subjective night (black solid line) and day (red dashed line) as a function of &#x00025; GABA increase. D). &#x00025; firing frequency change during subjective night (black solid line) and day (red dashed line) as a function of &#x00025; GABA increase. E). Circadian profiles of the firing frequency are shown for the control (black line), complete GABA blockade (red dotted line) and maximum GABA application (blue dashed line).</p></caption><graphic xlink:href="pcbi.1000706.g004"/></fig><p>Additional simulations involved incremental increase of the GABA concentration binding to the cell surface, implemented by including an additive term in the mathematical expression of GABA (Eq. 20). Our model produced a gradual increase in IPSC levels accompanied by a dose-dependent decrease in neural firing as increasing GABA concentrations were applied (<xref ref-type="fig" rid="pcbi-1000706-g004">Figs. 4C, 4D</xref>), consistent with experimental findings <xref rid="pcbi.1000706-Gribkoff1" ref-type="bibr">[14]</xref>. GABA application was shown to have a minimal effect on the neural firing rate during the subjective day (less than 2&#x00025;) while significantly decreasing the firing frequency by a maximum of 28&#x00025; during the subjective night (<xref ref-type="fig" rid="pcbi-1000706-g004">Fig 4E</xref>). This dependence of cellular response on the circadian time of GABA administration has also been demonstrated in experimental studies <xref rid="pcbi.1000706-Gribkoff1" ref-type="bibr">[14]</xref>. Our simulations produced reduced firing frequencies during the subjective night comparable to experimental data. The smaller responses produced during the subjective day, however, did not agree with available data <xref rid="pcbi.1000706-Gribkoff1" ref-type="bibr">[14]</xref>.</p></sec><sec id="s2d"><title>Effect of VIP on Circadian Rhythmicity</title><p>We simulated autocrine response of the VIP neurotransmitter to investigate the effects of the VIP signaling pathway on single cell behavior. Initially, we zeroed the VIP concentration responsible for the GABA oscillations (Eq. 20) and CREB activation (Eq. 30). Complete VIP blockade reduced firing rate amplitudes by 66&#x00025; (<xref ref-type="fig" rid="pcbi-1000706-g005">Figs. 5A, 5C</xref>) in agreement with Brown et. al (2007) who reported a 52&#x00025; average reduction <xref rid="pcbi.1000706-Brown2" ref-type="bibr">[17]</xref>. Our simulations showed an acute decrease in <italic>Per</italic> mRNA levels that oscillated with much lower amplitudes compared to the control (73&#x00025; decrease; <xref ref-type="fig" rid="pcbi-1000706-g005">Fig. 5B, 5C</xref>), as observed experimentally by Maywood et. al (2006) <xref rid="pcbi.1000706-Maywood1" ref-type="bibr">[16]</xref>. Because VIP blockade affects GABA release a 57&#x00025; reduction in IPSC amplitude was also observed (<xref ref-type="fig" rid="pcbi-1000706-g005">Fig. 5C</xref>), consistent with data from Itri et. al (2004) <xref rid="pcbi.1000706-Itri2" ref-type="bibr">[24]</xref>. VIP elimination resulted in a period decrease to 22.2 h, consistent with Brown et. al (2007) <xref rid="pcbi.1000706-Brown2" ref-type="bibr">[17]</xref> who measured a 22.9&#x000b1;1.9 h period across VIP<sup>&#x02212;</sup>/<sup>&#x02212;</sup> SCN populations.</p><fig id="pcbi-1000706-g005" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.g005</object-id><label>Figure 5</label><caption><title>Effects of VIP on circadian rhythmicity.</title><p>Circadian profiles of firing rate (A) and <italic>Per</italic> mRNA (B) for the control (black line), VIP blockade (red dashed line) and VIP application (blue dotted line). C) &#x00025; amplitude decrease in firing rate, <italic>Per</italic> mRNA and IPSCs as a result of VIP blockade. D) &#x00025; amplitude increase in firing rate, <italic>Pe</italic>r mRNA and IPSCs as a result of VIP application.</p></caption><graphic xlink:href="pcbi.1000706.g005"/></fig><p>Additional simulations involved increase of the VIP concentration binding to the cell surface to investigate the effects of constitutive VIP application throughout the circadian cycle. Simulation of VIP application was implemented by adding 1nM to the VIP concentration responsible for GABA release (Eq. 20) and CREB activation (Eq. 30), leading to saturation of the VPAC2 receptors. To our knowledge, experimental data on constant VIP administration throughout a 24 hour period are not currently available. Our simulations showed a 25&#x00025; increase in the circadian amplitude of the firing frequency (<xref ref-type="fig" rid="pcbi-1000706-g005">Fig 5A, 5D</xref>). Because <italic>Per</italic> gene expression is the final target of the VIP signaling cascade <xref rid="pcbi.1000706-Obrietan1" ref-type="bibr">[25]</xref>, the imposed VPAC2 receptor saturation resulted in increased <italic>Per</italic> mRNA amplitudes of approximately 54&#x00025; (<xref ref-type="fig" rid="pcbi-1000706-g005">Figs. 5B, 5D</xref>). IPSC amplitudes were observed to increase by 110&#x00025; (<xref ref-type="fig" rid="pcbi-1000706-g005">Figs. 5D</xref>), comparable to experimental studies <xref rid="pcbi.1000706-Itri3" ref-type="bibr">[26]</xref>. The simultaneous increase in neural spiking and IPSCs can be attributed to the dominant effects of <italic>Per</italic> gene dynamics within the network. Constitutive VIP application decreased the predicted period to 22.5h. These model predictions can be tested experimentally by applying constant VIP concentration throughout a 24 hour period while conducting bioluminescence recordings to measure <italic>Per</italic> gene activation and utilizing multielectrode arrays on highly dispersed SCN cultures to measure firing activity of single cells.</p></sec><sec id="s2e"><title>Intracellular Calcium Concentration as the Circadian Coordinator</title><p>We varied the intracellular calcium concentration to investigate its effects on the rhythmic output of the circadian clock. Changes in effective Ca<sup>2&#x0002b;</sup> levels were achieved by scaling the output of Eq. 12, responsible for the circadian evolution of intracellular calcium, by multiplying with a scaling factor ranging from 0.5 to 1.5. Hence mean levels of calcium were varied by &#x000b1;50&#x00025; of their nominal value. Because our model was constructed under the assumption that cytosolic calcium instigates a signaling cascade with <italic>Per</italic> gene transcription as the final product <xref rid="pcbi.1000706-Tischkau1" ref-type="bibr">[19]</xref> incrementally increasing Ca<sup>2&#x0002b;</sup> concentrations had a positive effect on <italic>Per</italic> mRNA amplitudes (<xref ref-type="fig" rid="pcbi-1000706-g006">Figs. 6A, 6C</xref>). A similar trend was observed for neural firing, as increasing intracellular calcium increased firing frequency amplitudes (<xref ref-type="fig" rid="pcbi-1000706-g006">Figs. 6B, 6C</xref>). The calcium concentration also affected the periodicity of the model system. Increased Ca<sup>2&#x0002b;</sup> levels produced longer periods of the core oscillator, reaching a maximum of 25.6h for a 50&#x00025; Ca<sup>2&#x0002b;</sup> increase (<xref ref-type="fig" rid="pcbi-1000706-g006">Fig. 6B</xref>).</p><fig id="pcbi-1000706-g006" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.g006</object-id><label>Figure 6</label><caption><title>Cytosolic calcium levels regulate circadian behavior.</title><p>Circadian profiles of <italic>Per</italic> mRNA (A) and firing rate (B) are shown for the control (black line), 50&#x00025; reduced cytosolic Ca<sup>2&#x0002b;</sup> concentration (red dashed line) and 50&#x00025; increased cytosolic Ca<sup>2&#x0002b;</sup> concentration (blue dotted line) compared to the control. C). <italic>Per</italic> mRNA (red dashed line) and firing rate (black solid line) amplitudes as a function of the cytosolic calcium concentration. D). The period of the core oscillator as a function of the cytosolic calcium concentration. The circles in 6C and 6D represent nominal values of the model.</p></caption><graphic xlink:href="pcbi.1000706.g006"/></fig><p>Our model predictions can be compared with experimental data on SCN explants, which show abolished mean <italic>Per</italic> mRNA rhythms when averaged over the entire population as a function of increasing concentrations of Ca<sup>2&#x0002b;</sup> buffer <xref rid="pcbi.1000706-Lundkvist1" ref-type="bibr">[20]</xref>. Our simulations suggest that the observed elimination of collective <italic>Per</italic> gene expression rhythm across the population can be attributed to reductions in the amplitude of individual <italic>Per</italic> mRNA signals accompanied by a period decrease on the single cell level. This hypothesis requires further experimental studies for validation.</p></sec><sec id="s2f"><title>Correlating Electrophysiology with Gene Expression</title><p>Incrementally increasing current levels were applied on the cell membrane of our neuron model to investigate the effects of extracellular electrical stimuli on single cell behavior. Current application was implemented by including an additive term in the mathematical expression of <italic>I<sup>&#x0002a;</sup></italic> (Eq. 3). As expected, a positive, linear correlation of firing rate with inward current levels (<italic>I</italic>) was observed (<xref ref-type="fig" rid="pcbi-1000706-g007">Fig 7A</xref>). Because VIP is released as a function of firing rate (Eq. 29), VIP concentrations were also seen to increase with electrical stimuli (<xref ref-type="fig" rid="pcbi-1000706-g007">Fig. 7A</xref>). The direct relationship between mean firing rate and mean VIP concentration over the course of a circadian cycle is shown in <xref ref-type="fig" rid="pcbi-1000706-g007">Fig 7B</xref>. Increasing electrical stimuli did not significantly contribute to mean intracellular calcium levels (results not shown). Neural firing was predicted to correlate with core-clock gene transcriptional activity as demonstrated by Quintero et. al (2003) <xref rid="pcbi.1000706-Quintero1" ref-type="bibr">[11]</xref>. Mean <italic>Per</italic> mRNA levels were predicted to increase as a function of the mean neuronal spiking frequency and ultimately obtained their maximum after a threshold in firing rate had been reached (<xref ref-type="fig" rid="pcbi-1000706-g007">Fig 7B</xref>).</p><fig id="pcbi-1000706-g007" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.g007</object-id><label>Figure 7</label><caption><title>Correlating electrophysiology with gene expression.</title><p>A). Mean firing rate (black solid line) and mean VIP concentration (red dashed line) as a function of the applied extracellular current (<italic>I</italic>). B). Mean VIP concentration (red dashed line) and mean <italic>Per</italic> mRNA levels (black solid line) versus the mean firing rate.</p></caption><graphic xlink:href="pcbi.1000706.g007"/></fig><p>Our model demonstrated a positive relationship between electrical firing and core-clock gene activity consistent with the literature <xref rid="pcbi.1000706-Quintero1" ref-type="bibr">[11]</xref>,<xref rid="pcbi.1000706-Ehlen1" ref-type="bibr">[12]</xref>. Simulations of increasing electrical stimuli suggest correlations between <italic>Per</italic> mRNA levels and the firing frequency potentially mediated via a VIP-instigated signaling pathway. Our model postulates an underlying intracellular network where VIP, released due to elevated neuronal spiking, binds on the cell surface initiating a signaling mechanism that leads to <italic>Period</italic> gene activation.</p></sec></sec><sec id="s3"><title>Discussion</title><p>We developed a multiscale mathematical model to investigate the association between the circadian gene regulatory pathway, electrophysiology and cytosolic calcium and to evaluate SCN single cell behavior over a circadian time scale. Initially, we investigated the effects of calcium dynamics on cell behavior by simulating the blockade of L-type Ca<sup>2&#x0002b;</sup> channels, IP3- and ryanodine stores. The model successfully replicated a number of experimental observations. The effect of synaptic input on membrane excitability was explored by assuming autocrine response of the VIP and GABA neurotransmitters. Simulations of variable GABA concentrations and VIP blockade were conducted to compare the model output with experimental data and test model validity. Increasing the GABA concentration was shown to have an inhibitory effect on neural firing, matching experimental data. Several experimental studies have reported excitatory responses in a subset of SCN neurons depending on the circadian timing of GABA administration <xref rid="pcbi.1000706-Albus1" ref-type="bibr">[27]</xref>,<xref rid="pcbi.1000706-Choi1" ref-type="bibr">[28]</xref>. These effects have not been included in the present model but will be considered in our future work. Simulations of VIP blockade produced decreased amplitudes in firing frequency, <italic>Per</italic> mRNA and IPSCs compared to the control, all in agreement with the literature. We further tested the effects of constitutive VIP application, for which experimental data are not currently available. Our model predicted increased amplitudes in <italic>Per</italic> mRNA, firing rate and IPSCs compared to the control as VPAC2 receptors became saturated.</p><p>Our model postulates that calcium plays an important role in the coordination of neural firing and core clock gene expression. To test this hypothesis, we gradually altered the intracellular Ca<sup>2&#x0002b;</sup> concentration and determined the effect on single-cell rhythmic behavior. Amplitude reductions in <italic>Per</italic> mRNA and neural firing accompanied by a period decrease were observed as the cytosolic Ca<sup>2&#x0002b;</sup> concentration was gradually reduced. Experimental data showing the role of cytosolic Ca<sup>2&#x0002b;</sup> on circadian behavior are currently available only for SCN explants <xref rid="pcbi.1000706-Lundkvist1" ref-type="bibr">[20]</xref>. These data showed elimination of the mean <italic>Per</italic> mRNA rhythm, averaged over the entire population, as cytosolic Ca<sup>2&#x0002b;</sup> was gradually buffered. Thus, our simulations suggest that reduction in the amplitude of individual <italic>Per</italic> mRNA signals accompanied by a period decrease and deregulation of the phase relationships between the various circadian components may be manifested experimentally as the elimination of the collective <italic>Per</italic> gene expression rhythm across the population. This hypothesis can be tested experimentally by adding a buffer (e.g. the intracellular chelator BAPTA-AM) to reduce cytosolic Ca<sup>2&#x0002b;</sup> while conducting bioluminescence recordings to measure <italic>Per</italic> gene activity of a single cell and utilizing multielectrode arrays on highly dispersed SCN cultures to measure neural firing activity.</p><p>Our model demonstrated a positive correlation of core-clock gene expression with the neural spike frequency consistent with the literature <xref rid="pcbi.1000706-Quintero1" ref-type="bibr">[11]</xref>,<xref rid="pcbi.1000706-Ehlen1" ref-type="bibr">[12]</xref>. Incrementally increasing electrical stimuli applied on the cell membrane of our neuron model affected the mean levels of the firing rate, <italic>Per</italic> gene expression and VIP release. Furthermore positive relationships between VIP release and core-clock gene transcription with firing rate were observed. We hypothesized an underlying intracellular network where VIP, released due to elevated neuronal spiking, binds on the cell surface initiating a signaling cascade that leads to <italic>Per</italic> gene activation.</p><p>Our single cell model was shown to replicate a number of experimentally observed trends, as well as to provide predictions concerning intracellular couplings. One of the key features of the model is the ability to test effects of blockers, neurotransmitters or extracellular stimuli for prolonged periods of time, which can be challenging in an experimental setup. Long-term application of ryanodine blockers or intracellular calcium buffers (BAPTA-AM), for example, is known to disrupt intracellular Ca<sup>2&#x0002b;</sup> from physiological levels <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>,<xref rid="pcbi.1000706-Lundkvist1" ref-type="bibr">[20]</xref>. A number of vital cell processes depend on calcium activity, rendering the interpretation of such experiments in terms of a single effect on the circadian network difficult. The model may therefore provide predictions that assist in the development of carefully designed experiments to test these hypotheses.</p></sec><sec sec-type="materials|methods" id="s4"><title>Materials and Methods</title><sec id="s4a"><title>Intracellular Oscillator Model</title><p>The core oscillator utilized in our model originates from a previous study <xref rid="pcbi.1000706-Leloup1" ref-type="bibr">[29]</xref> and consists of 16 ordinary differential equations in time that describe intertwined negative and positive regulatory transcriptional loops. Transcription of the <italic>Per</italic> and <italic>Cry</italic> genes is activated by a heterodimer formed from the CLOCK and BMAL1 proteins. This activation is rhythmically suppressed and reestablished by a complex of the PER and CRY proteins, which blocks the activity of CLOCK/BMAL1 dimer and negatively autoregulates transcription of the <italic>Per</italic> and <italic>Cry</italic> genes. Our model did not include the loop involving <italic>Rev-Erb&#x003b1;</italic> since it was not required for sustained circadian oscillations. Nominal parameters values were mostly obtained from the original reference, with the exception of the parameter <italic>k</italic>
+<sub>1</sub> that determines the transport rate of the PER/CRY complex from the cytosol to the nucleus, <italic>K<sub>AP</sub></italic> involved in <italic>Per</italic> activation due to elevated BMAL1 concentrations and <italic>v<sub>sp0</sub></italic> that denotes the basal value of <italic>Per</italic> transcription rate. These values were modified as part of the model tuning process (see <xref ref-type="table" rid="pcbi-1000706-t002">Table 2</xref>).</p><table-wrap id="pcbi-1000706-t002" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.t002</object-id><label>Table 2</label><caption><title>Model parameter values.</title></caption><alternatives><graphic id="pcbi-1000706-t002-2" xlink:href="pcbi.1000706.t002"/><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/></colgroup><thead><tr><td align="left" rowspan="1" colspan="1">Parameter</td><td align="left" rowspan="1" colspan="1">Value</td><td align="left" rowspan="1" colspan="1">Reference</td><td align="left" rowspan="1" colspan="1">Parameter</td><td align="left" rowspan="1" colspan="1">Value</td><td align="left" rowspan="1" colspan="1">Reference</td></tr></thead><tbody><tr><td align="left" rowspan="1" colspan="1">
+<italic>&#x003b8;</italic>
+</td><td align="left" rowspan="1" colspan="1">(20 &#x0002b; V<sub>rest</sub>) mV</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>Cl1</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">15.5 mM</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>E<sub>K</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">&#x02212;97mV</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Bouskila1" ref-type="bibr">[35]</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>Cl2</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">19 mM</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>T</italic>
+</td><td align="left" rowspan="1" colspan="1">37&#x000b0;C</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>Cl1</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">4 nM</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>g<sub>Ko</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">9.7 nS</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>Cl2</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1 nM<sup>&#x02212;0.2</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>gk</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">10 nS</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>n<sub>Cl</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">&#x02212;0.2</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>gk</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">10 nM</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>Cl<sub>ex</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">114.5 mM</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Wagner2" ref-type="bibr">[40]</xref>,<xref rid="pcbi.1000706-Shimura1" ref-type="bibr">[41]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">g<sub>Na</sub>
+</td><td align="left" rowspan="1" colspan="1">36 nS</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>
+</td><td align="left" rowspan="1" colspan="1">v<sub>ex1</sub>
+</td><td align="left" rowspan="1" colspan="1">105 nS</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">E<sub>Na</sub>
+</td><td align="left" rowspan="1" colspan="1">45mV</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>ex1</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">574.05 &#x000b5;A<sup>2.5</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>kk</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">3.3 &#x000b5;M <sup>&#x02212;1</sup> h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>n<sub>ex1</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">2.5</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>kk</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.02 nM <sup>0.1</sup>
+</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>ex2</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">4.4 nS</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>nkk</italic>
+</td><td align="left" rowspan="1" colspan="1">0.1</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>ex2</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1 &#x000b5;M <sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>vo</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.09 &#x000b5;M h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>n<sub>ex2</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">&#x02212;1</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>vo</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">4.5 nM <sup>4.5</sup>
+</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>E<sub>ex</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0 mV</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Gerstner1" ref-type="bibr">[30]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>nvo</italic>
+</td><td align="left" rowspan="1" colspan="1">4.5</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>P<sub>Ca</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.05</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Purves1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000706-Kandel1" ref-type="bibr">[47]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v</italic>
+</td><td align="left" rowspan="1" colspan="1">2</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>P<sub>Na</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.036</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Purves1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000706-Kandel1" ref-type="bibr">[47]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>1</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.0003 &#x000b5;M h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>P<sub>Cl</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.3</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Purves1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000706-Kandel1" ref-type="bibr">[47]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>&#x003b2;<sub>IP3</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.5</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>ex</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1 mM</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Purves1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000706-Kandel1" ref-type="bibr">[47]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>V<sub>M2</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">149.5 &#x000b5;M h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>Na<sub>ex</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">145 mM</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Purves1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000706-Kandel1" ref-type="bibr">[47]</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>2</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">5 &#x000b5;M</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>PK</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1.9</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>n</italic>
+</td><td align="left" rowspan="1" colspan="1">2.2</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>PK</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1 nM<sup>&#x02212;2</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>V<sub>M3</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">400 &#x000b5;M h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>npk</italic>
+</td><td align="left" rowspan="1" colspan="1">&#x02212;2</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>R</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">3 &#x000b5;M</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>V<sub>R</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.41 G&#x003a9;</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>m</italic>
+</td><td align="left" rowspan="1" colspan="1">6</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>R</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">34 mV</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>A</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.67 &#x000b5;M</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>VIP</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.5 nM h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>p</italic>
+</td><td align="left" rowspan="1" colspan="1">4.2</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>VIP</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">15 Hz<sup>1.9</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>k<sub>f</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.001 h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>n<sub>VIP</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1.9</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>Ca<sub>ex</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">5 &#x000b5;M</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>k<sub>dVIP</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.5 nM<sup>0.8</sup> h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>Ca</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">12.3 nS</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>n<sub>dVIP</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.2</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>Ca</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">22 nM<sup>2.2</sup>
+</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>V<sub>MK</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">5 nM h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>n<sub>Ca</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">2.2</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>MK</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">2.9 &#x000b5;M</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>KCa</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">3 nS</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>V<sub>&#x003b2;</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">2 nM h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>KCa</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.16 nM<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>&#x003b2;</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">2</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>n<sub>KCa</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">&#x02212;1</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>C<sub>T</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1.6 nM h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">E<sub>L</sub>
+</td><td align="left" rowspan="1" colspan="1">&#x02212;29 mV</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>c</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.15 nM</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>GABA<sub>o</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.2 nM</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>D</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.08 nM</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>GABA</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">19 nM</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>k<sub>1</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.45 h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Leloup1" ref-type="bibr">[29]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>GABA</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">3 nM</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>K<sub>AP</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">0.6 nM</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Leloup1" ref-type="bibr">[29]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>g<sub>GABA</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">12.3 nS</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Wagner2" ref-type="bibr">[40]</xref>
+</td><td align="left" rowspan="1" colspan="1">
+<italic>v<sub>sp0</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1 nM h<sup>&#x02212;1</sup>
+</td><td align="left" rowspan="1" colspan="1">
+<xref rid="pcbi.1000706-Leloup1" ref-type="bibr">[29]</xref>
+<xref ref-type="table-fn" rid="nt101">&#x0002a;</xref>
+</td></tr><tr><td align="left" rowspan="1" colspan="1">
+<italic>Cl<sub>o</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">1 mM</td><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>C<sub>m</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">5 nF</td><td align="left" rowspan="1" colspan="1"/></tr><tr><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1"/><td align="left" rowspan="1" colspan="1">
+<italic>V<sub>reset</sub></italic>
+</td><td align="left" rowspan="1" colspan="1">(4 &#x0002b; V<sub>rest</sub>) mV</td><td align="left" rowspan="1" colspan="1"/></tr></tbody></table></alternatives><table-wrap-foot><fn id="nt101"><label/><p>&#x0002a;These parameter values were altered from the values in the original references as part of the model tuning process.</p></fn></table-wrap-foot></table-wrap></sec><sec id="s4b"><title>Electrophysiology Model</title><p>In this work we utilized a modified integrate-and-fire model <xref rid="pcbi.1000706-Gerstner1" ref-type="bibr">[30]</xref> that takes into account the contributions of the relevant ion channels and includes the effects of extracellular synaptic stimuli. Following the methodology of Liu and Wang (2001) <xref rid="pcbi.1000706-Liu1" ref-type="bibr">[31]</xref> we constructed a SCN membrane model that included sodium (<italic>I<sub>Na</sub></italic>), potassium (<italic>I<sub>K</sub></italic>), calcium (<italic>I<sub>Ca</sub></italic>) and calcium-activated potassium (<italic>I<sub>KCa</sub></italic>) currents, as proposed by Brown et al (2007) <xref rid="pcbi.1000706-Brown1" ref-type="bibr">[3]</xref>. The contributions of inhibitory and excitatory input signals, known to influence membrane excitability, were also incorporated in our model. Individual ionic and synaptic currents (<italic>I<sub>r</sub></italic>) were modeled as:<disp-formula><graphic xlink:href="pcbi.1000706.e001.jpg" mimetype="image" position="float"/><label>(1)</label></disp-formula>where <italic>V</italic> represents the membrane voltage, <italic>g<sub>r</sub></italic> is the conductance and <italic>E<sub>r</sub></italic> is the reversal potential of current <italic>r</italic>.</p><p>Our single SCN model neuron was described by a modified integrate-and-fire model <xref rid="pcbi.1000706-Liu1" ref-type="bibr">[31]</xref>&#x02013;<xref rid="pcbi.1000706-Burkitt1" ref-type="bibr">[34]</xref>:<disp-formula><graphic xlink:href="pcbi.1000706.e002.jpg" mimetype="image" position="float"/><label>(2)</label></disp-formula>where <italic>C<sub>m</sub></italic> denotes the membrane capacitance and <italic>g<sub>ex</sub></italic>, <italic>g<sub>GABA</sub></italic>, <italic>g<sub>Na</sub></italic>, <italic>g<sub>Ca</sub></italic>, <italic>g<sub>&#x0039a;</sub></italic>, <italic>g<sub>&#x0039a;Ca</sub></italic>, and <italic>g<sub>L</sub></italic> are the conductances for the excitatory, inhibitory, sodium, calcium, potassium, calcium-activated potassium and leakage currents, respectively, and <italic>E<sub>ex</sub></italic>, <italic>E<sub>GABA</sub></italic>, <italic>E<sub>Na</sub></italic>, <italic>E<sub>Ca</sub></italic>, <italic>E<sub>&#x0039a;</sub></italic>, and <italic>E<sub>L</sub></italic> are the corresponding reversal potentials. Activation and inactivation variables associated with the relevant conductances were not included in this model (Eq. 2) as they evolve on the millisecond timescale rather than the circadian timescale considered in the study.</p><p>By defining:<disp-formula><graphic xlink:href="pcbi.1000706.e003.jpg" mimetype="image" position="float"/><label>(3)</label></disp-formula>
+<disp-formula><graphic xlink:href="pcbi.1000706.e004.jpg" mimetype="image" position="float"/><label>(4)</label></disp-formula>
+<disp-formula><graphic xlink:href="pcbi.1000706.e005.jpg" mimetype="image" position="float"/><label>(5)</label></disp-formula>Eq. (2) can be reformulated to yield <xref rid="pcbi.1000706-Gerstner1" ref-type="bibr">[30]</xref>: <disp-formula><graphic xlink:href="pcbi.1000706.e006.jpg" mimetype="image" position="float"/><label>(6)</label></disp-formula>
+</p><p>The integrate-and-fire model does not produce the form and shape of an action potential. Rather neural spikes can be characterized by a &#x0201c;firing time&#x0201d; <italic>t<sub>f</sub></italic>, defined by the criterion:<disp-formula><graphic xlink:href="pcbi.1000706.e007.jpg" mimetype="image" position="float"/><label>(7)</label></disp-formula>where <italic>&#x003b8;</italic> is the firing threshold. Immediately after t<sub>f</sub> the potential is reset to a new value <italic>V<sub>reset</sub></italic>&#x0003c;<italic>&#x003b8;</italic>. To calculate the trajectory of the membrane potential after the occurrence of a spike at time t<sub>f</sub>, Eq. 6 was integrated with the initial condition <italic>V(t<sub>(1)</sub>)&#x0200a;=&#x0200a;V<sub>reset</sub></italic>. Because time variations in <italic>I<sup>&#x0002a;</sup></italic>, <italic>R<sup>&#x0002a;</sup></italic>and <italic>&#x003c4;<sub>m</sub></italic> were much faster than the circadian timescale they were considered constant for each simulated 10 minute time step. Therefore integration of Eq. 6 yields:<disp-formula><graphic xlink:href="pcbi.1000706.e008.jpg" mimetype="image" position="float"/><label>(8)</label></disp-formula>The membrane potential described by Eq. 8 approaches the asymptotic value <italic>V(&#x0221e;)&#x0200a;=&#x0200a;R<sup>&#x0002a;</sup>I<sup>&#x0002a;</sup></italic> as t&#x02192; &#x0221e;. Therefore since R<sup>&#x0002a;</sup>I<sup>&#x0002a;</sup>&#x0003e;<italic>&#x003b8;</italic> the membrane potential reaches the threshold <italic>&#x003b8;</italic> at time t<sub>(2)</sub>:<disp-formula><graphic xlink:href="pcbi.1000706.e009.jpg" mimetype="image" position="float"/><label>(9)</label></disp-formula>The time interval <italic>t<sub>(2)</sub></italic>&#x02212;<italic>t<sub>(1)</sub></italic> constitutes the firing period <italic>T<sup>&#x02032;</sup></italic>. Thus the firing rate (<italic>f<sub>r</sub></italic>) can be calculated as the inverse of <italic>T<sup>&#x02032;</sup></italic>
+<xref rid="pcbi.1000706-Gerstner1" ref-type="bibr">[30]</xref>, yielding the firing rate code model used in this study: <disp-formula><graphic xlink:href="pcbi.1000706.e010.jpg" mimetype="image" position="float"/><label>(10)</label></disp-formula>The firing rate (eq. 10) fluctuates due to circadian variations in conductances and reversal potentials of the various currents, which are included within the terms <italic>I<sup>&#x0002a;</sup></italic>, <italic>R<sup>&#x0002a;</sup></italic> and <italic>&#x003c4;<sub>m</sub></italic> (eqs. 3&#x02013;5).</p><sec id="s4b1"><title>Potassium current</title><p>The model includes the effects of potassium channels, as studied by Bouskila and Dudek <xref rid="pcbi.1000706-Bouskila1" ref-type="bibr">[35]</xref>. The reversal potential of potassium (<italic>E<sub>K</sub></italic>) experimentally determined at room temperature (22&#x000b0;C) <xref rid="pcbi.1000706-Bouskila1" ref-type="bibr">[35]</xref> was adapted for 37&#x000b0;C (body temperature) in all our simulations by multiplying with the body-to-room temperature ratio. This mathematical correction was based upon the Nernst equation, which provides the relation between reversal potential (<italic>E<sub>K</sub></italic>) and temperature <xref rid="pcbi.1000706-Hille1" ref-type="bibr">[36]</xref>. The conductance of potassium channels (<italic>g<sub>K</sub></italic>) was modeled to oscillate in 24 hour cycles and peak during the circadian day as found experimentally <xref rid="pcbi.1000706-Itri1" ref-type="bibr">[7]</xref>. <disp-formula><graphic xlink:href="pcbi.1000706.e011.jpg" mimetype="image" position="float"/><label>(11)</label></disp-formula>where g<sub>Ko</sub> denotes the basal value of potassium conductance, <italic>v<sub>gk</sub></italic> the maximum rate, <italic>K<sub>gk</sub></italic> the saturation constant of potassium channel dynamics and <italic>MP</italic> the <italic>Per</italic> mRNA concentration. Eq. 11 was not intended to imply a mechanistic relationship between <italic>g<sub>K</sub></italic> and <italic>MP</italic> but instead to yield experimentally observed circadian behavior.</p></sec><sec id="s4b2"><title>Sodium current</title><p>Sodium current dynamics were incorporated in our model using data from Jackson et al. <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>. The values of sodium conductance (<italic>g<sub>Na</sub></italic>) and reversal potential (<italic>E<sub>Na</sub></italic>) were obtained from <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref> and were corrected for 37&#x000b0;C as described above.</p></sec><sec id="s4b3"><title>Calcium current</title><p>The model included L-type calcium currents, as studied by Pennartz et al. <xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>. The calcium reversal potential (<italic>E<sub>Ca</sub></italic>), calculated via the Nernst equation, oscillated within a physiological range <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>,<xref rid="pcbi.1000706-Sim1" ref-type="bibr">[37]</xref>. The cytosolic calcium concentration (<italic>Ca</italic>) was modeled to oscillate over a 24 hour period and peak during the subjective day, consistent with findings of Ikeda et al. <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>. The intracellular calcium model utilized was adapted from a previous study <xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref> and included the bidirectional flow of Ca<sup>2&#x0002b;</sup> ions through the cell membrane, as well as the effects of IP3- and ryanodine stores: <disp-formula><graphic xlink:href="pcbi.1000706.e012.jpg" mimetype="image" position="float"/><label>(12)</label></disp-formula>
+<disp-formula><graphic xlink:href="pcbi.1000706.e013.jpg" mimetype="image" position="float"/><label>(13)</label></disp-formula>In these equations <italic>k</italic> represents the efflux of calcium out of the cell and <italic>v<sub>o</sub></italic> is the influx of calcium into the cytosol. These effects have been altered from the original reference <xref rid="pcbi.1000706-Lundkvist1" ref-type="bibr">[20]</xref>, where they were regarded constant, to account for daily variations of Ca<sup>2&#x0002b;</sup> flux through various Ca<sup>2&#x0002b;</sup> ion channels as well as passive transport. The calcium efflux was modeled as:<disp-formula><graphic xlink:href="pcbi.1000706.e014.jpg" mimetype="image" position="float"/><label>(14)</label></disp-formula>where <italic>v<sub>kk</sub></italic> is the maximum rate, <italic>K<sub>kk</sub></italic> is the saturation constant, <italic>nkk</italic> is the cooperativity coefficient of calcium efflux dynamics, and <italic>CC</italic> denotes the cytosolic, unphosphorylated CRY protein concentration. Eq. 14 was not intended to imply a mechanistic relationship between <italic>k</italic> and <italic>CC</italic>, but instead was introduced to yield experimentally observed circadian dependent behavior.</p><p>The calcium influx was modeled as:<disp-formula><graphic xlink:href="pcbi.1000706.e015.jpg" mimetype="image" position="float"/><label>(15)</label></disp-formula>where <italic>v<sub>vo</sub></italic> is the maximum rate, <italic>K<sub>vo</sub></italic> is the saturation constant, <italic>nvo</italic> is the cooperativity coefficient of the calcium influx dynamics, and <italic>BC</italic> denotes the unphosphorylated, cytosolic BMAL1 protein concentration. As before, Eq. 15 was not intended to imply a mechanistic relationship between <italic>v<sub>o</sub></italic> and <italic>BC</italic>. The release of calcium from InsP<sub>3</sub>-sensitive stores was controlled by <italic>v<sub>1</sub></italic> and the <italic>&#x003b2;<sub>IP3</sub></italic>, both of which were regarded constant for our simulations. The rate constant for leaky release of calcium from the ryanodine pool (<italic>k<sub>f</sub></italic>) was also considered constant. Detailed descriptions of <italic>v<sub>2</sub></italic>, the transport of calcium from the cytosol to the ryanodine stores, and <italic>v<sub>3</sub></italic>, the release of calcium from the stores into the cytosol, were obtained from the original reference <xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>:<disp-formula><graphic xlink:href="pcbi.1000706.e016.jpg" mimetype="image" position="float"/><label>(16)</label></disp-formula>
+<disp-formula><graphic xlink:href="pcbi.1000706.e017.jpg" mimetype="image" position="float"/><label>(17)</label></disp-formula>where <italic>V<sub>M2</sub></italic> and <italic>V<sub>M3</sub></italic> denote the maximum rates of Ca<sup>2&#x0002b;</sup> pumping and release from the intracellular store; <italic>K<sub>2</sub></italic>, <italic>K<sub>R</sub></italic> and <italic>K<sub>A</sub></italic> are the threshold constants for pumping, release and activation; <italic>m</italic>, <italic>n</italic>, <italic>p</italic> denote the cooperativity coefficients of these processes. Parameter values utilized in the <italic>v<sub>2</sub></italic> and <italic>v<sub>3</sub></italic> expressions have been altered from the original study as part of the model tuning process (see <xref ref-type="table" rid="pcbi-1000706-t002">Table 2</xref>). The conductance of the Ca<sup>2&#x0002b;</sup> channels (<italic>g<sub>Ca</sub></italic>) was rhythmically altered throughout the circadian cycle and peaked during the subjective day <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>:<disp-formula><graphic xlink:href="pcbi.1000706.e018.jpg" mimetype="image" position="float"/><label>(18)</label></disp-formula>where <italic>v<sub>Ca</sub></italic> is the maximum rate, <italic>K<sub>Ca</sub></italic> the saturation constant of calcium channel dynamics and <italic>nca</italic> the cooperativity coefficient. As before, Eq. 18 was not intended to imply a mechanistic relationship between <italic>g<sub>Ca</sub></italic> and <italic>MP</italic>.</p></sec><sec id="s4b4"><title>Calcium-activated potassium current</title><p>Our model incorporated the effects of large-conductance Ca<sup>2&#x0002b;</sup>-activated potassium (BK) currents as studied by Meredith et al. <xref rid="pcbi.1000706-Meredith1" ref-type="bibr">[8]</xref> and Pitts et al. <xref rid="pcbi.1000706-Pitts1" ref-type="bibr">[9]</xref>. We modeled the conductance of the BK channels (<italic>g<sub>KCa</sub></italic>) to oscillate over the course of the day and to peak during subjective night consistent with Pitts et al. <xref rid="pcbi.1000706-Pitts1" ref-type="bibr">[9]</xref>.<disp-formula><graphic xlink:href="pcbi.1000706.e019.jpg" mimetype="image" position="float"/><label>(19)</label></disp-formula>where <italic>v<sub>KCa</sub></italic> is the maximum rate, <italic>K<sub>KCa</sub></italic> is the saturation constant of Ca<sup>2&#x0002b;</sup>-activated K<sup>&#x0002b;</sup> channel dynamics and <italic>nkca</italic> denotes the cooperativity coefficient. Eq. 19 was not intended to imply a mechanistic relationship between <italic>g<sub>KCa</sub></italic> and <italic>CC</italic>.</p></sec><sec id="s4b5"><title>Leakage current</title><p>Leakage currents have been included in the model to account for the natural permeability of the membrane and the passive transport of ions in and out of the cell. The resting potential (<italic>E<sub>L</sub></italic>) was obtained from Jackson et al. <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref> and corrected for a temperature of 37&#x000b0;C. The conductance was <italic>g<sub>L</sub></italic>&#x0200a;=&#x0200a;1/<italic>R</italic>
+<xref rid="pcbi.1000706-Sim1" ref-type="bibr">[37]</xref>, where <italic>R</italic> denotes the membrane resistance, described in detail below.</p></sec><sec id="s4b6"><title>Inhibitory current</title><p>Our model included the effects of inhibitory postsynaptic currents (IPSCs), conveyed by the GABA neurotransmitter and its GABA<sub>A</sub> receptor. GABA was rhythmically released from the cell as a function of VIP in agreement with the finding of Itri and Colwell <xref rid="pcbi.1000706-Itri2" ref-type="bibr">[24]</xref>,<xref rid="pcbi.1000706-Itri3" ref-type="bibr">[26]</xref>:<disp-formula><graphic xlink:href="pcbi.1000706.e020.jpg" mimetype="image" position="float"/><label>(20)</label></disp-formula>where <italic>GABA<sub>o</sub></italic> denotes the basal value, <italic>v<sub>GABA</sub></italic> the maximum rate and <italic>K<sub>GABA</sub></italic> the saturation constant of GABA oscillations. Because our simulations involved single SCN cells, the GABA concentration binding on the membrane surface of our model neuron was assumed to be equal to the GABA concentration released by the neuron (Eq. 20). In this sense our model has assumed an autocrine response of GABA, selectively activating Cl<sup>&#x02212;</sup> channels on the cell membrane and causing Cl<sup>&#x02212;</sup> influx into the cytosol (<xref ref-type="fig" rid="pcbi-1000706-g001">Fig. 1</xref>). Our model included sustained 24h fluctuations in the intracellular Cl<sup>&#x02212;</sup> concentration (<italic>Cl<sub>in</sub></italic>) that peaked during the subjective day in agreement with Wagner et al. <xref rid="pcbi.1000706-Wagner1" ref-type="bibr">[38]</xref> and were further amplified as a function of GABA:<disp-formula><graphic xlink:href="pcbi.1000706.e021.jpg" mimetype="image" position="float"/><label>(21)</label></disp-formula>where <italic>Cl<sub>o</sub></italic> denotes the basal intracellular Cl<sup>&#x02212;</sup> concentration, <italic>v<sub>C1l</sub></italic> and <italic>K<sub>Cl1</sub></italic> denote the maximum rate and the saturation constant of PER controlled Cl<sup>&#x02212;</sup> release into the cytosol, v<italic><sub>Cl2</sub></italic> and <italic>K<sub>Cl2</sub></italic> denote the maximum rate and the saturation constant of GABA induced Cl<sup>&#x02212;</sup> release into the cytosol, and <italic>n<sub>Cl</sub></italic> represents the cooperativity coefficient. The extracellular Cl<sup>&#x02212;</sup> concentration (<italic>Cl<sub>ex</sub></italic>) was obtained from previous studies <xref rid="pcbi.1000706-Purves1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000706-Wagner2" ref-type="bibr">[40]</xref> to yield inhibitory reversal potentials (<italic>E<sub>GABA</sub></italic>) that oscillated within a physiological range <xref rid="pcbi.1000706-Wagner2" ref-type="bibr">[40]</xref>,<xref rid="pcbi.1000706-Shimura1" ref-type="bibr">[41]</xref>. The value of IPSC conductance (<italic>g<sub>GABA</sub></italic>) was obtained from the literature <xref rid="pcbi.1000706-Wagner2" ref-type="bibr">[40]</xref>.</p></sec><sec id="s4b7"><title>Excitatory current</title><p>The contributions of excitatory postsynaptic currents (EPSCs), typically observed in response to the glutamate neurotransmitter, were incorporated in our model. Glutamate is expressed by the ganglion cells of the retinohypothamalic tract (RHT) that project to the SCN and is also present in all neurons as part of the normal metabolic pool of amino acids, rendering its distinction from the neurotransmitter pool difficult. Circadian variations in EPSCs have been shown within the SCN and have been correlated with diurnal fluctuations in AMPA receptor activation <xref rid="pcbi.1000706-Lundkvist2" ref-type="bibr">[42]</xref>,<xref rid="pcbi.1000706-Michel1" ref-type="bibr">[43]</xref>, i.e periodic Na<sup>&#x0002b;2</sup> influx, as well as NMDA-evoked Ca<sup>2&#x0002b;</sup> transients <xref rid="pcbi.1000706-Colwell1" ref-type="bibr">[44]</xref>,<xref rid="pcbi.1000706-Irwin1" ref-type="bibr">[45]</xref>. Therefore, the conductance of the excitatory current (<italic>g<sub>ex</sub></italic>) was modeled to oscillate in a constant phase relationship to <italic>I<sub>Na</sub></italic> and <italic>Ca</italic>.<disp-formula><graphic xlink:href="pcbi.1000706.e022.jpg" mimetype="image" position="float"/><label>(22)</label></disp-formula>where v<italic><sub>ex1</sub></italic> and <italic>K<sub>ex1</sub></italic> represent the maximum rate and saturation constant of AMPA- induced EPSCs; v<italic><sub>ex2</sub></italic> and <italic>K<sub>ex2</sub></italic> represent the maximum rate and saturation constant of NMDA-induced EPSCs; <italic>n<sub>ex1</sub></italic> and <italic>n<sub>ex2</sub></italic> are cooperativity coefficients. The reversal potential of the excitatory synaptic current (<italic>E<sub>ex</sub></italic>) was assumed to be constant consistent with the literature <xref rid="pcbi.1000706-Gerstner1" ref-type="bibr">[30]</xref>.</p></sec></sec><sec id="s4c"><title>Membrane Properties</title><p>Membrane properties such as the resting potential and resistance display sustained circadian rhythms <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref>,<xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>. Our model included oscillations of the membrane resting potential (<italic>V<sub>rest</sub></italic>) by utilizing a modified version of the Goldman-Hodgkin-Katz equation derived by Piek (1975) <xref rid="pcbi.1000706-Piek1" ref-type="bibr">[46]</xref> that takes into account both monovalent ions and divalent ions, such as Ca<sup>2&#x0002b;</sup>:<disp-formula><graphic xlink:href="pcbi.1000706.e023.jpg" mimetype="image" position="float"/><label>(23)</label></disp-formula>
+<disp-formula><graphic xlink:href="pcbi.1000706.e024.jpg" mimetype="image" position="float"/><label>(24)</label></disp-formula>
+<disp-formula><graphic xlink:href="pcbi.1000706.e025.jpg" mimetype="image" position="float"/><label>(25)</label></disp-formula>
+<disp-formula><graphic xlink:href="pcbi.1000706.e026.jpg" mimetype="image" position="float"/><label>(26)</label></disp-formula>where <italic>R</italic> denotes the gas constant, <italic>F</italic> is the Faraday constant, <italic>P<sub>Ca</sub></italic>, <italic>P<sub>K</sub></italic>, <italic>P<sub>Na</sub></italic>, and <italic>P<sub>Cl</sub></italic> are the membrane permeabilities of Ca<sup>2&#x0002b;</sup>, K<sup>&#x0002b;</sup>, Na<sup>&#x0002b;</sup> and Cl<sup>&#x02212;</sup>, respectively, <italic>K<sub>in</sub></italic> and <italic>Na<sub>in</sub></italic> represent the K<sup>&#x0002b;</sup> and Na<sup>&#x0002b;</sup> concentrations within the cytosol, whereas <italic>K<sub>ex</sub></italic>, Ca<sub>ex</sub> and <italic>Na<sub>ex</sub></italic> are the K<sup>&#x0002b;</sup>, Ca<sup>2&#x0002b;</sup> and Na<sup>&#x0002b;</sup> concentrations in the extracellular space. Values for <italic>P<sub>Ca</sub></italic>, <italic>P<sub>Na</sub></italic>, <italic>P<sub>Cl</sub></italic>, <italic>K<sub>ex</sub></italic>, <italic>Cl<sub>ex</sub></italic> and <italic>Na<sub>ex</sub></italic> were chosen to match experimental measurements from the literature <xref rid="pcbi.1000706-Purves1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000706-Kandel1" ref-type="bibr">[47]</xref>, whereas <italic>K<sub>in</sub></italic> and <italic>Na<sub>in</sub></italic> were computed by inversion of the Nernst equation. <italic>P<sub>K</sub></italic> values were modeled to vary over the course of the day in agreement with Kuhlman et. al. <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref>, who demonstrated circadian rhythmicity in K<sup>&#x0002b;</sup> currents underlying the membrane potential oscillations:<disp-formula><graphic xlink:href="pcbi.1000706.e027.jpg" mimetype="image" position="float"/><label>(27)</label></disp-formula>where <italic>v<sub>PK</sub></italic> is the maximum value, <italic>K<sub>PK</sub></italic> is the saturation constant and <italic>npk</italic> is the cooperativity coefficient of the P<sub>K</sub> oscillations. Eq. 27 was not intended to imply a mechanistic relationship between <italic>P<sub>K</sub></italic> and <italic>BC</italic>.</p><p>We modeled the membrane potential to oscillate over the course of the day and to peak during the subjective day. The membrane resistance (<italic>R</italic>) oscillated in a constant phase relationship with the resting potential and peaked during the subjective day as shown by experimental studies <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref>,<xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>:<disp-formula><graphic xlink:href="pcbi.1000706.e028.jpg" mimetype="image" position="float"/><label>(28)</label></disp-formula>where <italic>V<sub>R</sub></italic> represents the maximum value and <italic>K<sub>R</sub></italic> the saturation constant of the membrane resistance oscillations.</p></sec><sec id="s4d"><title>Intracellular Pathways</title><p>Core clock gene transcription displays self-sustained circadian rhythms that are likely modulated via VIP/VPAC2 activation <xref rid="pcbi.1000706-Obrietan1" ref-type="bibr">[25]</xref> and fluctuations in intracellular calcium dynamics <xref rid="pcbi.1000706-Tischkau1" ref-type="bibr">[19]</xref>(<xref ref-type="fig" rid="pcbi-1000706-g001">Fig. 1</xref>). We utilized a revised signaling transduction mechanism from our previous study <xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref> to capture the effects of these two components on gene regulation. In this study, VIP oscillations were assumed to depend on the neural spike frequency as well as the rate governing the depletion of the neurotransmitter from the synaptic cleft:<disp-formula><graphic xlink:href="pcbi.1000706.e029.jpg" mimetype="image" position="float"/><label>(29)</label></disp-formula>where <italic>v<sub>VIP</sub></italic> is the maximum rate, <italic>K<sub>VIP</sub></italic> the saturation constant and <italic>nVIP</italic> the cooperative coefficient of VIP release, while <italic>k<sub>dVIP</sub></italic> denotes the rate constant and <italic>n<sub>dVIP</sub></italic> the cooperativity coefficient of VIP depletion. The VIP concentration binding on the membrane surface of our model neuron was assumed to be equal to the VIP concentration released by the neuron (Eq. 20), consistent with an autocrine response.</p><p>The intracellular calcium concentration also displayed rhythmic variations over the course of the day (Eqs. 12&#x02013;13). The transduction mechanism involving the VPAC2 receptor and Ca<sup>2&#x0002b;</sup> likely includes the activation of protein kinases, which in turn phosphorylate CREB, leading to core clock gene activation. Protein kinase activity was modeled as: <disp-formula><graphic xlink:href="pcbi.1000706.e030.jpg" mimetype="image" position="float"/><label>(30)</label></disp-formula>where <italic>v<sub>k</sub></italic> is the rate of kinase activity, <italic>V<sub>MK</sub></italic> and <italic>V<sub>&#x003b2;</sub></italic> denote the maximum rates of Ca<sup>2&#x0002b;</sup>- and VIP-induced protein kinase activation, respectively, and <italic>K<sub>MK</sub></italic> and <italic>K<sub>&#x003b2;</sub></italic> represent the saturation constants of Ca<sup>2&#x0002b;</sup>- and VIP-induced protein kinase activation, respectively. Circadian fluctuations in the phosphorylated CREB fraction, as well as the dynamics of the <italic>Per</italic> gene activation, are described in detail in our original study <xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>. Parameter values altered from the original reference are displayed in <xref ref-type="table" rid="pcbi-1000706-t002">Table 2</xref>.</p></sec><sec id="s4e"><title>Simulations and Analysis</title><p>The complete single cell model was formulated within MATLAB (The MathWorks, Natick, MA) and consisted of twenty ordinary differential equations (ODEs). Sixteen ODEs described the circadian evolution of the gene transcriptional loop (for details refer to <xref rid="pcbi.1000706-Leloup1" ref-type="bibr">[29]</xref>), two ODEs described intracellular calcium rhythms (Eqs. 12&#x02013;13 modified from <xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref>), and the remaining two ODEs described the VIP concentration (Eq. 29) and the phosphorylated CREB concentration (for details refer to <xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>). The model was integrated numerically using the differential-algebraic equation solver ode23 with a 10 minute time step to ensure accurate solutions with reasonable computational cost. Nominal parameter values utilized in our model are listed in <xref ref-type="table" rid="pcbi-1000706-t002">Table 2</xref>, with parameters directly obtained from the literature accompanied by the corresponding reference. The tuning of the remaining parameters is discussed in detail below.</p><list list-type="bullet"><list-item><p>Nominal values for the parameters <italic>g<sub>Ko</sub></italic>, v<italic><sub>gk</sub></italic> and <italic>K<sub>gk</sub></italic> utilized in Eq. 11 were selected to produce 24 hour oscillations in <italic>g<sub>K</sub></italic> with a mean value of 11.3nS and a standard deviation of &#x000b1;1.8 nS, matching experimental data <xref rid="pcbi.1000706-Bouskila1" ref-type="bibr">[35]</xref>.</p></list-item><list-item><p>The parameters utilized in the intracellular calcium model, <italic>v<sub>kk</sub></italic>, <italic>K<sub>kk</sub></italic>, <italic>n<sub>kk</sub></italic>, <italic>v<sub>vo</sub></italic>, <italic>K<sub>vo</sub></italic>, <italic>nvo</italic>, <italic>v<sub>1</sub></italic>, <italic>&#x003b2;<sub>IP3</sub></italic>, <italic>k</italic>, <italic>V<sub>M2</sub></italic>, <italic>K<sub>2</sub></italic>, <italic>n</italic>, <italic>V<sub>M3</sub></italic>, <italic>K<sub>R</sub></italic>, <italic>m</italic>, <italic>K<sub>A</sub></italic>, <italic>p</italic> and <italic>k<sub>f</sub></italic>, (Eqs. 12&#x02013;17) were adjusted from values in the original reference <xref rid="pcbi.1000706-Goldbeter1" ref-type="bibr">[21]</xref> to produce &#x0223c;24 hour oscillations in <italic>Ca</italic> that peaked during the subjective day. Intracellular calcium concentrations were predicted to be &#x0223c;100&#x00025; higher during the day compared to the subjective night, consistent with data from Ikeda et al. <xref rid="pcbi.1000706-Ikeda1" ref-type="bibr">[4]</xref>. The extracellular calcium concentration, <italic>Ca<sub>ex</sub></italic>, was set at 5 mM to yield calcium reversal potentials, <italic>E<sub>Ca</sub></italic>, that oscillated in the range of 50&#x02013;70 mV, as shown in the literature <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>,<xref rid="pcbi.1000706-Sim1" ref-type="bibr">[37]</xref>. Parameters used for the calculation of the L-type calcium channel conductance, <italic>g<sub>Ca</sub></italic>, (Eq. 18), including v<italic><sub>Ca</sub></italic>, K<italic><sub>Ca</sub></italic> and n<italic><sub>Ca</sub></italic> were adjusted to produce oscillations in the range of 0.3&#x02264;<italic>g<sub>Ca</sub></italic>&#x02264;1.9 nS as shown experimentally <xref rid="pcbi.1000706-Jackson1" ref-type="bibr">[22]</xref>.</p></list-item><list-item><p>Parameters v<italic><sub>Kca</sub></italic>, <italic>K<sub>KCa</sub></italic> and n<italic><sub>KCa</sub></italic> utilized for the calculation of the BK channel conductance, <italic>g<sub>Kca</sub></italic> (Eq.19), were adjusted to produce oscillations in the range 1.5&#x02264;g<sub>KCa</sub>&#x02264;3.6 nS that peaked during the subjective night, consistent with Pitts et. al <xref rid="pcbi.1000706-Pitts1" ref-type="bibr">[9]</xref>.</p></list-item><list-item><p>The parameters <italic>GABA<sub>o</sub></italic>, <italic>v<sub>GABA</sub></italic>, <italic>K<sub>GABA</sub></italic>, <italic>Cl<sub>o</sub></italic>, <italic>v<sub>C1l</sub></italic>, <italic>K<sub>Cl1</sub></italic>, <italic>v<sub>Cl2</sub></italic> and <italic>K<sub>Cl2</sub></italic> and n<italic><sub>Cl</sub></italic> were utilized for the simulation of IPSC dynamics (Eqs. 20&#x02013;21). Nominal values for these parameters were selected to: a) produce 24 h oscillations in <italic>Cl<sub>in</sub></italic> that ranged from 11 to 19 mM and peaked during the subjective day <xref rid="pcbi.1000706-Shimura1" ref-type="bibr">[41]</xref> and b) generate inhibitory postsynaptic currents that peaked during the subjective night <xref rid="pcbi.1000706-Itri2" ref-type="bibr">[24]</xref>. The extracellular Cl<sup>&#x02212;</sup> concentration was set at <italic>Cl<sub>ex</sub></italic>&#x0200a;=&#x0200a;114.5 mM <xref rid="pcbi.1000706-Wagner2" ref-type="bibr">[40]</xref> to yield inhibitory reversal potentials, <italic>E<sub>GABA</sub></italic>, that oscillated within the range 50&#x02013;70 mV, consistent with the literature <xref rid="pcbi.1000706-Wagner2" ref-type="bibr">[40]</xref>,<xref rid="pcbi.1000706-Shimura1" ref-type="bibr">[41]</xref>.</p></list-item><list-item><p>The parameters v<italic><sub>ex1</sub></italic>, K<italic><sub>ex1</sub></italic>, <italic>n<sub>ex1</sub></italic>, v<italic><sub>ex2</sub></italic>, K<italic><sub>ex2</sub></italic>, and <italic>n<sub>ex2</sub></italic> (Eq. 22) were found to have an effect on the firing frequency, <italic>f<sub>r</sub></italic>. Nominal values for these parameters were chosen to produce <italic>f<sub>r</sub></italic> oscillations within the range 2&#x02264;<italic>f<sub>r</sub></italic>&#x02264;9 Hz that peaked during the circadian day, consistent with experiments <xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>.</p></list-item><list-item><p>Nominal values for parameters v<italic><sub>PK</sub></italic>, <italic>K<sub>PK</sub></italic> and <italic>npk</italic> utilized in Eq. 27 were selected to produce <italic>P<sub>K</sub></italic> oscillations with a mean value of 0.5 and a peak during the subjective night, consistent with Kuhlman et al. <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref>. <italic>P<sub>K</sub></italic> oscillations underlying the rhythm in membrane potential (<italic>V<sub>rest</sub></italic>, Eqs. 23&#x02013;26) <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref>,<xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref> produced values in the range &#x02212;52&#x02264;V<sub>rest</sub>&#x02264;&#x02212;42mV that peaked during the subjective day consistent with the literature <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref>,<xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>.</p></list-item><list-item><p>The parameters <italic>V<sub>R</sub></italic> and <italic>K<sub>R</sub></italic> utilized in Eq. 28 for the computation of the membrane resistance (<italic>R</italic>) were adjusted to produce oscillations in the range 1&#x02264;R&#x02264;2 G&#x003a9; that peaked during the subjective day, as shown by Kuhlman et al. <xref rid="pcbi.1000706-Kuhlman1" ref-type="bibr">[5]</xref>,<xref rid="pcbi.1000706-Pennartz1" ref-type="bibr">[6]</xref>. The membrane capacitance, C<sub>m</sub>, was adjusted to produce firing rate oscillations within a physiological range.</p></list-item></list><p>The initial conditions utilized in simulations of the 20 ordinary differential equations characterizing our model system are listed in <xref ref-type="table" rid="pcbi-1000706-t003">Table 3</xref>. These values were chosen to produce individual rhythmic profiles that oscillated within a reasonable range, consistent with experimental data.</p><table-wrap id="pcbi-1000706-t003" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000706.t003</object-id><label>Table 3</label><caption><title>Initial conditions of the 20 ODEs characterizing the single cell model.</title></caption><alternatives><graphic id="pcbi-1000706-t003-3" xlink:href="pcbi.1000706.t003"/><table frame="hsides" rules="groups"><colgroup span="1"><col align="left" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/></colgroup><tbody><tr><td align="left" rowspan="1" colspan="1">Ca</td><td align="left" rowspan="1" colspan="1">0.10 &#x000b5;M</td><td align="left" rowspan="1" colspan="1">PC<sub>N</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.16 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">Ca<sub>store</sub>
+</td><td align="left" rowspan="1" colspan="1">0.10 &#x000b5;M</td><td align="left" rowspan="1" colspan="1">PC<sub>CP</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.20 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">M<sub>P</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">2.80 nM</td><td align="left" rowspan="1" colspan="1">PC<sub>NP</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.091 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">M<sub>C</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">2.00 nM</td><td align="left" rowspan="1" colspan="1">B<sub>C</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">2.41 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">M<sub>B</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">7.94 nM</td><td align="left" rowspan="1" colspan="1">B<sub>CP</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.48 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">P<sub>C</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.40 nM</td><td align="left" rowspan="1" colspan="1">B<sub>N</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">1.94 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">C<sub>C</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">12.0 nM</td><td align="left" rowspan="1" colspan="1">B<sub>NP</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.32 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">P<sub>CP</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.13 nM</td><td align="left" rowspan="1" colspan="1">I<sub>N</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.05 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">C<sub>CP</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">9.00 nM</td><td align="left" rowspan="1" colspan="1">CB<xref ref-type="table-fn" rid="nt103">&#x0002a;&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">0.12 nM</td></tr><tr><td align="left" rowspan="1" colspan="1">PC<sub>C</sub>
+<xref ref-type="table-fn" rid="nt102">&#x0002a;</xref>
+</td><td align="left" rowspan="1" colspan="1">1.26 nM</td><td align="left" rowspan="1" colspan="1">VIP</td><td align="left" rowspan="1" colspan="1">0.00 nM</td></tr></tbody></table></alternatives><table-wrap-foot><fn id="nt102"><p><bold>&#x0002a;:</bold> These variables are part of the core-oscillator model by Leloup and Goldbeter (2003) <xref rid="pcbi.1000706-Leloup1" ref-type="bibr">[29]</xref>.</p></fn><fn id="nt103"><p><bold>&#x0002a;&#x0002a;:</bold> These variables are part of the VIP signaling model by To et al. (2007) <xref rid="pcbi.1000706-To1" ref-type="bibr">[48]</xref>.</p></fn></table-wrap-foot></table-wrap></sec></sec></body><back><ack><p>We would like to thank Erik Herzog (Washington University, St. Louis) for insightful discussions and helpful suggestions.</p></ack><fn-group><fn fn-type="COI-statement"><p>The authors have declared that no competing interests exist.</p></fn><fn fn-type="financial-disclosure"><p>This work was supported by the National Institute of Health grant GM078993 and the National Science Foundation sponsored Institute for Cellular Engineering IGERT program DGE-0654128. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.</p></fn></fn-group><ref-list><title>References</title><ref id="pcbi.1000706-Welsh1"><label>1</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Welsh</surname><given-names>DK</given-names></name><name><surname>Logothetis</surname><given-names>DE</given-names></name><name><surname>Meister</surname><given-names>M</given-names></name><name><surname>Reppert</surname><given-names>SM</given-names></name></person-group>
+<year>1995</year>
+<article-title>Individual neurons dissociated from rat suprachiasmatic nucleus express independently phased circadian firing rhythms.</article-title>
+<source>Neuron</source>
+<volume>14</volume>
+<fpage>697</fpage>
+<lpage>706</lpage>
+<pub-id pub-id-type="pmid">7718233</pub-id></element-citation></ref><ref id="pcbi.1000706-Reppert1"><label>2</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Reppert</surname><given-names>SM</given-names></name><name><surname>Weaver</surname><given-names>DR</given-names></name></person-group>
+<year>2002</year>
+<article-title>Coordination of circadian timing in mammals.</article-title>
+<source>Nature</source>
+<volume>418</volume>
+<fpage>935</fpage>
+<lpage>941</lpage>
+<pub-id pub-id-type="pmid">12198538</pub-id></element-citation></ref><ref id="pcbi.1000706-Brown1"><label>3</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Brown</surname><given-names>TM</given-names></name><name><surname>Piggins</surname><given-names>HD</given-names></name></person-group>
+<year>2007</year>
+<article-title>Electrophysiology of the suprachiasmatic circadian clock.</article-title>
+<source>Prog Neurobiol</source>
+<volume>82</volume>
+<fpage>229</fpage>
+<lpage>255</lpage>
+<pub-id pub-id-type="pmid">17646042</pub-id></element-citation></ref><ref id="pcbi.1000706-Ikeda1"><label>4</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ikeda</surname><given-names>M</given-names></name><name><surname>Sugiyama</surname><given-names>T</given-names></name><name><surname>Wallace</surname><given-names>CS</given-names></name><name><surname>Gompf</surname><given-names>HS</given-names></name><name><surname>Yoshioka</surname><given-names>T</given-names></name><etal/></person-group>
+<year>2003</year>
+<article-title>Circadian dynamics of cytosolic and nuclear Ca2&#x0002b; in single suprachiasmatic nucleus neurons.</article-title>
+<source>Neuron</source>
+<volume>38</volume>
+<fpage>253</fpage>
+<lpage>263</lpage>
+<pub-id pub-id-type="pmid">12718859</pub-id></element-citation></ref><ref id="pcbi.1000706-Kuhlman1"><label>5</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kuhlman</surname><given-names>SJ</given-names></name><name><surname>McMahon</surname><given-names>DG</given-names></name></person-group>
+<year>2004</year>
+<article-title>Rhythmic regulation of membrane potential and potassium current persists in SCN neurons in the absence of environmental input.</article-title>
+<source>Euro J Neurosci</source>
+<volume>20</volume>
+<fpage>1113</fpage>
+<lpage>1117</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Pennartz1"><label>6</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Pennartz</surname><given-names>CMA</given-names></name><name><surname>de Jeu</surname><given-names>MTG</given-names></name><name><surname>Bos</surname><given-names>NPA</given-names></name><name><surname>Schaap</surname><given-names>J</given-names></name><name><surname>Geurtsen</surname><given-names>AMS</given-names></name></person-group>
+<year>2002</year>
+<article-title>Diurnal modulation of pacemaker potentials and calcium current in the mammalian circadian clock.</article-title>
+<source>Nature</source>
+<volume>416</volume>
+<fpage>286</fpage>
+<lpage>290</lpage>
+<pub-id pub-id-type="pmid">11875398</pub-id></element-citation></ref><ref id="pcbi.1000706-Itri1"><label>7</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Itri</surname><given-names>JN</given-names></name><name><surname>Michel</surname><given-names>S</given-names></name><name><surname>Vansteensel</surname><given-names>MJ</given-names></name><name><surname>Meijer</surname><given-names>JH</given-names></name><name><surname>Colwell</surname><given-names>CS</given-names></name></person-group>
+<year>2005</year>
+<article-title>Fast delayed rectifier potassium current is required for circadian neural activity.</article-title>
+<source>Nat Neurosci</source>
+<volume>8</volume>
+<fpage>650</fpage>
+<lpage>656</lpage>
+<pub-id pub-id-type="pmid">15852012</pub-id></element-citation></ref><ref id="pcbi.1000706-Meredith1"><label>8</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Meredith</surname><given-names>AL</given-names></name><name><surname>Wiler</surname><given-names>SW</given-names></name><name><surname>Miller</surname><given-names>BH</given-names></name><name><surname>Takahashi</surname><given-names>JS</given-names></name><name><surname>Fodor</surname><given-names>AA</given-names></name><etal/></person-group>
+<year>2006</year>
+<article-title>BK calcium-activated potassium channels regulate circadian behavioral rhythms and pacemaker output.</article-title>
+<source>Nat Neurosci</source>
+<volume>9</volume>
+<fpage>1041</fpage>
+<lpage>1049</lpage>
+<pub-id pub-id-type="pmid">16845385</pub-id></element-citation></ref><ref id="pcbi.1000706-Pitts1"><label>9</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Pitts</surname><given-names>GR</given-names></name><name><surname>Ohta</surname><given-names>H</given-names></name><name><surname>McMahon</surname><given-names>DG</given-names></name></person-group>
+<year>2006</year>
+<article-title>Daily rhythmicity of large-conductance Ca2&#x0002b;-activated K&#x0002b; currents in suprachiasmatic nucleus neurons.</article-title>
+<source>Brain Res</source>
+<volume>1071</volume>
+<fpage>54</fpage>
+<lpage>62</lpage>
+<pub-id pub-id-type="pmid">16412396</pub-id></element-citation></ref><ref id="pcbi.1000706-Nitabach1"><label>10</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Nitabach</surname><given-names>MN</given-names></name><name><surname>Blau</surname><given-names>J</given-names></name><name><surname>Holmes</surname><given-names>TC</given-names></name></person-group>
+<year>2002</year>
+<article-title>Electrical silencing of Drosophila pacemaker neurons stops the free-running circadian clock.</article-title>
+<source>Cell</source>
+<volume>109</volume>
+<fpage>485</fpage>
+<lpage>495</lpage>
+<pub-id pub-id-type="pmid">12086605</pub-id></element-citation></ref><ref id="pcbi.1000706-Quintero1"><label>11</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Quintero</surname><given-names>JE</given-names></name><name><surname>Kuhlman</surname><given-names>SJ</given-names></name><name><surname>McMahon</surname><given-names>DG</given-names></name></person-group>
+<year>2003</year>
+<article-title>The biological clock nucleus: A multiphasic oscillator network regulated by light.</article-title>
+<source>J Neurosci</source>
+<volume>23</volume>
+<fpage>8070</fpage>
+<lpage>8076</lpage>
+<pub-id pub-id-type="pmid">12954869</pub-id></element-citation></ref><ref id="pcbi.1000706-Ehlen1"><label>12</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ehlen</surname><given-names>JC</given-names></name><name><surname>Novak</surname><given-names>CM</given-names></name><name><surname>Karom</surname><given-names>MC</given-names></name><name><surname>Gamble</surname><given-names>KL</given-names></name><name><surname>Paul</surname><given-names>KN</given-names></name><etal/></person-group>
+<year>2006</year>
+<article-title>GABA(A) receptor activation suppresses Period 1 mRNA and Period 2 mRNA in the suprachiasmatic nucleus during the mid-subjective day.</article-title>
+<source>Euro J Neurosci</source>
+<volume>23</volume>
+<fpage>3328</fpage>
+<lpage>3336</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Ehlen2"><label>13</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ehlen</surname><given-names>JC</given-names></name><name><surname>Novak</surname><given-names>CM</given-names></name><name><surname>Karom</surname><given-names>MC</given-names></name><name><surname>Gamble</surname><given-names>KL</given-names></name><name><surname>Albers</surname><given-names>HE</given-names></name></person-group>
+<year>2008</year>
+<article-title>Interactions of GABA(A) receptor activation and light on Period mRNA expression in the suprachiasmatic nucleus.</article-title>
+<source>J Biol Rhythm</source>
+<volume>23</volume>
+<fpage>16</fpage>
+<lpage>25</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Gribkoff1"><label>14</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Gribkoff</surname><given-names>VK</given-names></name><name><surname>Pieschl</surname><given-names>RL</given-names></name><name><surname>Dudek</surname><given-names>FE</given-names></name></person-group>
+<year>2003</year>
+<article-title>GABA receptor-mediated inhibition of neuronal activity in rat SCN in vitro: Pharmacology and influence of circadian phase.</article-title>
+<source>J Neurophysiol</source>
+<volume>90</volume>
+<fpage>1438</fpage>
+<lpage>1448</lpage>
+<pub-id pub-id-type="pmid">12750413</pub-id></element-citation></ref><ref id="pcbi.1000706-Shirakawa1"><label>15</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Shirakawa</surname><given-names>T</given-names></name><name><surname>Honma</surname><given-names>S</given-names></name><name><surname>Katsuno</surname><given-names>Y</given-names></name><name><surname>Oguchi</surname><given-names>H</given-names></name><name><surname>Honma</surname><given-names>K</given-names></name></person-group>
+<year>2000</year>
+<article-title>Synchronization of circadian firing rhythms in cultured rat suprachiasmatic neurons.</article-title>
+<source>Euro J Neurosci</source>
+<volume>12</volume>
+<fpage>2833</fpage>
+<lpage>2838</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Maywood1"><label>16</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Maywood</surname><given-names>ES</given-names></name><name><surname>Reddy</surname><given-names>AB</given-names></name><name><surname>Wong</surname><given-names>GKY</given-names></name><name><surname>O'Neill</surname><given-names>JS</given-names></name><name><surname>O'Brien</surname><given-names>JA</given-names></name><etal/></person-group>
+<year>2006</year>
+<article-title>Synchronization and maintenance of timekeeping in suprachiasmatic circadian clock cells by neuropeptidergic signaling.</article-title>
+<source>Curr Biol</source>
+<volume>16</volume>
+<fpage>599</fpage>
+<lpage>605</lpage>
+<pub-id pub-id-type="pmid">16546085</pub-id></element-citation></ref><ref id="pcbi.1000706-Brown2"><label>17</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Brown</surname><given-names>TM</given-names></name><name><surname>Colwell</surname><given-names>CS</given-names></name><name><surname>Waschek</surname><given-names>JA</given-names></name><name><surname>Piggins</surname><given-names>HD</given-names></name></person-group>
+<year>2007</year>
+<article-title>Disrupted neuronal activity rhythms in the suprachiasmatic nuclei of vasoactive intestinal polypeptide-deficient mice.</article-title>
+<source>J Neurophysiol</source>
+<volume>97</volume>
+<fpage>2553</fpage>
+<lpage>2558</lpage>
+<pub-id pub-id-type="pmid">17151217</pub-id></element-citation></ref><ref id="pcbi.1000706-Honma1"><label>18</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Honma</surname><given-names>S</given-names></name><name><surname>Honma</surname><given-names>K</given-names></name></person-group>
+<year>2003</year>
+<article-title>The biological clock: Ca2&#x0002b; links the pendulum to the hands.</article-title>
+<source>Trends Neurosci</source>
+<volume>26</volume>
+<fpage>650</fpage>
+<lpage>653</lpage>
+<pub-id pub-id-type="pmid">14624847</pub-id></element-citation></ref><ref id="pcbi.1000706-Tischkau1"><label>19</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Tischkau</surname><given-names>SA</given-names></name><name><surname>Mitchell</surname><given-names>JW</given-names></name><name><surname>Tyan</surname><given-names>SH</given-names></name><name><surname>Buchanan</surname><given-names>GF</given-names></name><name><surname>Gillette</surname><given-names>MU</given-names></name></person-group>
+<year>2003</year>
+<article-title>Ca2&#x0002b;/cAMP response element-binding protein (CREB)-dependent activation of Per1 is required for light-induced signaling in the Suprachiasmatic nucleus circadian clock.</article-title>
+<source>J Biol Chem</source>
+<volume>278</volume>
+<fpage>718</fpage>
+<lpage>723</lpage>
+<pub-id pub-id-type="pmid">12409294</pub-id></element-citation></ref><ref id="pcbi.1000706-Lundkvist1"><label>20</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Lundkvist</surname><given-names>GB</given-names></name><name><surname>Kwak</surname><given-names>Y</given-names></name><name><surname>Davis</surname><given-names>EK</given-names></name><name><surname>Tei</surname><given-names>H</given-names></name><name><surname>Block</surname><given-names>GD</given-names></name></person-group>
+<year>2005</year>
+<article-title>A calcium flux is required for circadian rhythm generation in mammalian pacemaker neurons.</article-title>
+<source>J Neurosci</source>
+<volume>25</volume>
+<fpage>7682</fpage>
+<lpage>7686</lpage>
+<pub-id pub-id-type="pmid">16107654</pub-id></element-citation></ref><ref id="pcbi.1000706-Goldbeter1"><label>21</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Goldbeter</surname><given-names>A</given-names></name><name><surname>Dupont</surname><given-names>G</given-names></name><name><surname>Berridge</surname><given-names>MJ</given-names></name></person-group>
+<year>1990</year>
+<article-title>Minimal model for signal-induced Ca2&#x0002b; oscillations and for their frequency encoding through protein-phosphorylation.</article-title>
+<source>P Natl Acad Sci USA</source>
+<volume>87</volume>
+<fpage>1461</fpage>
+<lpage>1465</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Jackson1"><label>22</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Jackson</surname><given-names>AC</given-names></name><name><surname>Yao</surname><given-names>GL</given-names></name><name><surname>Bean</surname><given-names>BP</given-names></name></person-group>
+<year>2004</year>
+<article-title>Mechanism of spontaneous firing in dorsomedial suprachiasmatic nucleus neurons.</article-title>
+<source>J Neurosci</source>
+<volume>24</volume>
+<fpage>7985</fpage>
+<lpage>7998</lpage>
+<pub-id pub-id-type="pmid">15371499</pub-id></element-citation></ref><ref id="pcbi.1000706-Cloues1"><label>23</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Cloues</surname><given-names>RK</given-names></name><name><surname>Sather</surname><given-names>WA</given-names></name></person-group>
+<year>2003</year>
+<article-title>Afterhyperpolarization regulates firing rate in neurons of the suprachiasmatic nucleus.</article-title>
+<source>J Neurosci</source>
+<volume>23</volume>
+<fpage>1593</fpage>
+<lpage>1604</lpage>
+<pub-id pub-id-type="pmid">12629163</pub-id></element-citation></ref><ref id="pcbi.1000706-Itri2"><label>24</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Itri</surname><given-names>J</given-names></name><name><surname>Michel</surname><given-names>S</given-names></name><name><surname>Waschek</surname><given-names>JA</given-names></name><name><surname>Colwell</surname><given-names>CS</given-names></name></person-group>
+<year>2004</year>
+<article-title>Circadian rhythm in inhibitory synaptic transmission in the mouse suprachiasmatic nucleus.</article-title>
+<source>J Neurophysi</source>
+<volume>92</volume>
+<fpage>311</fpage>
+<lpage>319</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Obrietan1"><label>25</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Obrietan</surname><given-names>K</given-names></name><name><surname>Impey</surname><given-names>S</given-names></name><name><surname>Smith</surname><given-names>D</given-names></name><name><surname>Athos</surname><given-names>J</given-names></name><name><surname>Storm</surname><given-names>DR</given-names></name></person-group>
+<year>1999</year>
+<article-title>Circadian regulation of cAMP response element-mediated gene expression in the Suprachiasmatic nuclei.</article-title>
+<source>J Biol Chem</source>
+<volume>274</volume>
+<fpage>17748</fpage>
+<lpage>17756</lpage>
+<pub-id pub-id-type="pmid">10364217</pub-id></element-citation></ref><ref id="pcbi.1000706-Itri3"><label>26</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Itri</surname><given-names>J</given-names></name><name><surname>Colwell</surname><given-names>CS</given-names></name></person-group>
+<year>2003</year>
+<article-title>Regulation of inhibitory synaptic transmission by vasoactive intestinal peptide (VIP) in the mouse suprachiasmatic nucleus.</article-title>
+<source>J Neurophysi</source>
+<volume>90</volume>
+<fpage>1589</fpage>
+<lpage>1597</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Albus1"><label>27</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Albus</surname><given-names>H</given-names></name><name><surname>Vansteensel</surname><given-names>MJ</given-names></name><name><surname>Michel</surname><given-names>S</given-names></name><name><surname>Block</surname><given-names>GD</given-names></name><name><surname>Meijer</surname><given-names>JH</given-names></name><etal/></person-group>
+<year>2005</year>
+<article-title>A GABAergic mechanism is necessary for coupling dissociable ventral and dorsal regional oscillators within the circadian clock.</article-title>
+<source>Curr Biol</source>
+<volume>15</volume>
+<fpage>886</fpage>
+<lpage>893</lpage>
+<pub-id pub-id-type="pmid">15916945</pub-id></element-citation></ref><ref id="pcbi.1000706-Choi1"><label>28</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Choi</surname><given-names>HJ</given-names></name><name><surname>Lee</surname><given-names>CJ</given-names></name><name><surname>Schroeder</surname><given-names>A</given-names></name><name><surname>Kim</surname><given-names>YS</given-names></name><name><surname>Jung</surname><given-names>SH</given-names></name><etal/></person-group>
+<year>2008</year>
+<article-title>Excitatory actions of GABA in the suprachiasmatic nucleus.</article-title>
+<source>J Neurosci</source>
+<volume>28</volume>
+<fpage>5450</fpage>
+<lpage>5459</lpage>
+<pub-id pub-id-type="pmid">18495878</pub-id></element-citation></ref><ref id="pcbi.1000706-Leloup1"><label>29</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Leloup</surname><given-names>JC</given-names></name><name><surname>Goldbeter</surname><given-names>A</given-names></name></person-group>
+<year>2003</year>
+<article-title>Toward a detailed computational model for the mammalian circadian clock.</article-title>
+<source>P Natl Acad Sci USA</source>
+<volume>100</volume>
+<fpage>7051</fpage>
+<lpage>7056</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Gerstner1"><label>30</label><element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Gerstner</surname><given-names>W</given-names></name><name><surname>Kistler</surname><given-names>WM</given-names></name></person-group>
+<year>2002</year>
+<source>Spiking Neuron Models: Single Neurons, Populations, Plasticity</source>
+<publisher-name>Cambridge University Press</publisher-name>
+<fpage>93</fpage>
+<lpage>97</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Liu1"><label>31</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Liu</surname><given-names>YH</given-names></name><name><surname>Wang</surname><given-names>XJ</given-names></name></person-group>
+<year>2001</year>
+<article-title>Spike-frequency adaptation of a generalized leaky integrate-and-fire model neuron.</article-title>
+<source>J Comput Neurosci</source>
+<volume>10</volume>
+<fpage>25</fpage>
+<lpage>45</lpage>
+<pub-id pub-id-type="pmid">11316338</pub-id></element-citation></ref><ref id="pcbi.1000706-Hodgkin1"><label>32</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Hodgkin</surname><given-names>AL</given-names></name><name><surname>Huxley</surname><given-names>AF</given-names></name></person-group>
+<year>1952</year>
+<article-title>A quantitative description of membrane current and its application to conduction and excitation in nerve.</article-title>
+<source>J Physiol-London</source>
+<volume>117</volume>
+<fpage>500</fpage>
+<lpage>544</lpage>
+<pub-id pub-id-type="pmid">12991237</pub-id></element-citation></ref><ref id="pcbi.1000706-French1"><label>33</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>French</surname><given-names>DA</given-names></name><name><surname>Gruenstein</surname><given-names>EI</given-names></name></person-group>
+<year>2006</year>
+<article-title>An integrate-and-fire model for synchronized bursting in a network of cultured cortical neurons.</article-title>
+<source>J Comput Neurosci</source>
+<volume>21</volume>
+<fpage>227</fpage>
+<lpage>241</lpage>
+<pub-id pub-id-type="pmid">16951925</pub-id></element-citation></ref><ref id="pcbi.1000706-Burkitt1"><label>34</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Burkitt</surname><given-names>AN</given-names></name></person-group>
+<year>2006</year>
+<article-title>A review of the integrate-and-fire neuron model: II. Inhomogeneous synaptic input and network properties.</article-title>
+<source>Biol Cybern</source>
+<volume>95</volume>
+<fpage>97</fpage>
+<lpage>112</lpage>
+<pub-id pub-id-type="pmid">16821035</pub-id></element-citation></ref><ref id="pcbi.1000706-Bouskila1"><label>35</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Bouskila</surname><given-names>Y</given-names></name><name><surname>Dudek</surname><given-names>FE</given-names></name></person-group>
+<year>1995</year>
+<article-title>A rapidly activating type of outward rectifier K&#x0002b; current and A-current in rat suprachiasmatic nucleus neurons.</article-title>
+<source>J Physiol-London</source>
+<volume>488</volume>
+<fpage>339</fpage>
+<lpage>350</lpage>
+<pub-id pub-id-type="pmid">8568674</pub-id></element-citation></ref><ref id="pcbi.1000706-Hille1"><label>36</label><element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Hille</surname><given-names>B</given-names></name></person-group>
+<year>1992</year>
+<source>Ionic channels of excitable membranes. 2nd ed</source>
+<publisher-loc>Sunderland, Mass</publisher-loc>
+<publisher-name>Sinauer Associates</publisher-name>
+</element-citation></ref><ref id="pcbi.1000706-Sim1"><label>37</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sim</surname><given-names>CK</given-names></name><name><surname>Forger</surname><given-names>DB</given-names></name></person-group>
+<year>2007</year>
+<article-title>Modeling the electrophysiology of Suprachiasmatic nucleus neurons.</article-title>
+<source>J Biol Rhythm</source>
+<volume>22</volume>
+<fpage>445</fpage>
+<lpage>453</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Wagner1"><label>38</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Wagner</surname><given-names>S</given-names></name><name><surname>Castel</surname><given-names>M</given-names></name><name><surname>Gainer</surname><given-names>H</given-names></name><name><surname>Yarom</surname><given-names>Y</given-names></name></person-group>
+<year>1997</year>
+<article-title>GABA in the mammalian suprachiasmatic nucleus and its role in diurnal rhythmicity.</article-title>
+<source>Nature</source>
+<volume>387</volume>
+<fpage>598</fpage>
+<lpage>603</lpage>
+<pub-id pub-id-type="pmid">9177347</pub-id></element-citation></ref><ref id="pcbi.1000706-Purves1"><label>39</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Purves</surname><given-names>D</given-names></name><name><surname>Augustine</surname><given-names>GJ</given-names></name><name><surname>Fitzpatrick</surname><given-names>D</given-names></name><name><surname>Hall</surname><given-names>WC</given-names></name><name><surname>LaMantia</surname><given-names>A</given-names></name><etal/></person-group>
+<year>2008</year>
+<article-title>Neuroscience.</article-title>
+<source>Fourth ed</source>
+<fpage>25</fpage>
+<lpage>39</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Wagner2"><label>40</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Wagner</surname><given-names>S</given-names></name><name><surname>Sagiv</surname><given-names>N</given-names></name><name><surname>Yarom</surname><given-names>Y</given-names></name></person-group>
+<year>2001</year>
+<article-title>GABA-induced current and circadian regulation of chloride in neurones of the rat suprachiasmatic nucleus.</article-title>
+<source>J Physiol-London</source>
+<volume>537</volume>
+<fpage>853</fpage>
+<lpage>869</lpage>
+<pub-id pub-id-type="pmid">11744760</pub-id></element-citation></ref><ref id="pcbi.1000706-Shimura1"><label>41</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Shimura</surname><given-names>M</given-names></name><name><surname>Akaike</surname><given-names>N</given-names></name><name><surname>Harata</surname><given-names>N</given-names></name></person-group>
+<year>2002</year>
+<article-title>Circadian rhythm in intracellular Cl- activity of acutely dissociated neurons of suprachiasmatic nucleus.</article-title>
+<source>Am J Physiol-Cell Ph</source>
+<volume>282</volume>
+<fpage>C366</fpage>
+<lpage>C373</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Lundkvist2"><label>42</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Lundkvist</surname><given-names>GB</given-names></name><name><surname>Kristensson</surname><given-names>K</given-names></name><name><surname>Hill</surname><given-names>RH</given-names></name></person-group>
+<year>2002</year>
+<article-title>The Suprachiasmatic nucleus exhibits diurnal variations in spontaneous excitatory postsynaptic activity.</article-title>
+<source>J Biol Rhythm</source>
+<volume>17</volume>
+<fpage>40</fpage>
+<lpage>51</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Michel1"><label>43</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Michel</surname><given-names>S</given-names></name><name><surname>Itri</surname><given-names>J</given-names></name><name><surname>Colwell</surname><given-names>CS</given-names></name></person-group>
+<year>2002</year>
+<article-title>Excitatory mechanisms in the suprachiasmatic nucleus: The role of AMPA/KA glutamate receptors.</article-title>
+<source>J Neurophysi</source>
+<volume>88</volume>
+<fpage>817</fpage>
+<lpage>828</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Colwell1"><label>44</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Colwell</surname><given-names>CS</given-names></name></person-group>
+<year>2001</year>
+<article-title>NMDA-evoked calcium transients and currents in the suprachiasmatic nucleus: gating by the circadian system.</article-title>
+<source>Euro J Neurosci</source>
+<volume>13</volume>
+<fpage>1420</fpage>
+<lpage>1428</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Irwin1"><label>45</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Irwin</surname><given-names>RP</given-names></name><name><surname>Allen</surname><given-names>CN</given-names></name></person-group>
+<year>2007</year>
+<article-title>Calcium response to retinohypothalamic tract synaptic transmission in Suprachiasmatic nucleus neurons.</article-title>
+<source>J Neurosci</source>
+<volume>27</volume>
+<fpage>11748</fpage>
+<lpage>11757</lpage>
+<pub-id pub-id-type="pmid">17959816</pub-id></element-citation></ref><ref id="pcbi.1000706-Piek1"><label>46</label><element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Piek</surname><given-names>T</given-names></name></person-group>
+<collab>P.N.R U, editor</collab>
+<year>1975</year>
+<article-title>Ionic and electrical properties.</article-title>
+<source>Insect Muscle</source>
+<publisher-loc>London: New York and San Francisco</publisher-loc>
+<publisher-name>Academic Press</publisher-name>
+<fpage>281</fpage>
+<lpage>336</lpage>
+</element-citation></ref><ref id="pcbi.1000706-Kandel1"><label>47</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Kandel</surname><given-names>ER</given-names></name><name><surname>Schwartz</surname><given-names>JH</given-names></name><name><surname>Jessel</surname><given-names>TM</given-names></name></person-group>
+<year>2000</year>
+<article-title>Principles of Neural Science.</article-title>
+<source>Fourth ed</source>
+<fpage>125</fpage>
+<lpage>139</lpage>
+</element-citation></ref><ref id="pcbi.1000706-To1"><label>48</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>To</surname><given-names>TL</given-names></name><name><surname>Henson</surname><given-names>MA</given-names></name><name><surname>Herzog</surname><given-names>ED</given-names></name><name><surname>Doyle</surname><given-names>FJ</given-names></name></person-group>
+<year>2007</year>
+<article-title>A molecular model for intercellular synchronization in the mammalian circadian clock.</article-title>
+<source>Biophys J</source>
+<volume>92</volume>
+<fpage>3792</fpage>
+<lpage>3803</lpage>
+<pub-id pub-id-type="pmid">17369417</pub-id></element-citation></ref><ref id="pcbi.1000706-Dunlap1"><label>49</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Dunlap</surname><given-names>JC</given-names></name></person-group>
+<year>1999</year>
+<article-title>Molecular bases for circadian clocks.</article-title>
+<source>Cell</source>
+<volume>96</volume>
+<fpage>271</fpage>
+<lpage>290</lpage>
+<pub-id pub-id-type="pmid">9988221</pub-id></element-citation></ref></ref-list></back></article>
