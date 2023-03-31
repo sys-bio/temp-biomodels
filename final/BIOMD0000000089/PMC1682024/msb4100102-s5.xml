@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!-- Locke et al (2006) -->
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+	<model name="Locke_et_al_2006_3Loop">
+		<notes>
+			<h1 xmlns="http://www.w3.org/1999/xhtml">
+				SBML model of the interlocked feedback loop network
+			</h1>
+			<p xmlns="http://www.w3.org/1999/xhtml">
+				The model describes the three loop arabidopsis clock mode. It provides initial 
+				conditions, parameter values and rules for the production rates of the 
+				following species: LHY mRNA (cLm), cytoplasmic LHY (cLc), nuclear LHY (cLn),
+				TOC1 mRNA (cTm), cytoplasmic TOC1 (cTc), nuclear TOC1 (cTn),  X mRNA (cXm), 
+				cytoplasmic X (cXc), nuclear X (cXn), Y mRNA (cYm), cytoplasmic Y (cYc), 
+				nuclear Y (cYn), nuclear P (cPn), APRR7/9 mRNA, cytoplasmic APRR7/9, 
+				and nuclear APRR7/9.  The model was validated using the SBML Toolbox for Matlab.
+			</p>
+		</notes>
+		<listOfFunctionDefinitions>
+			<functionDefinition id="LD">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Defines light value depending on time of day
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<lambda>
+						<bvar>
+							<ci>tod</ci>
+						</bvar>
+						<apply>
+							<piecewise>
+								<piece>
+									<ci>Lmin</ci>
+									<apply>
+										<geq/>
+										<ci>tod</ci>
+										<ci>dayLength</ci>
+									</apply>
+								</piece>
+								<otherwise>
+									<ci>Lmax</ci>
+								</otherwise>
+							</piecewise>
+						</apply>
+					</lambda>
+				</math>
+			</functionDefinition>
+		</listOfFunctionDefinitions>
+		<listOfUnitDefinitions>
+			<unitDefinition id="time">
+				<listOfUnits>
+					<unit kind="second" multiplier="3600"/>
+				</listOfUnits>
+			</unitDefinition>
+		</listOfUnitDefinitions>
+		<listOfCompartments>
+			<compartment id="compartment" size="1" />
+		</listOfCompartments>
+		<listOfSpecies>
+			<species id="cLm" compartment="compartment" initialConcentration="0.4625" />
+			<species id="cLc" compartment="compartment" initialConcentration="0.0132" />
+			<species id="cLn" compartment="compartment" initialConcentration="0.0699" />
+			<species id="cTm" compartment="compartment" initialConcentration="0.4303" />
+			<species id="cTc" compartment="compartment" initialConcentration="10.2965" />
+			<species id="cTn" compartment="compartment" initialConcentration="0.5402" />
+			<species id="cXm" compartment="compartment" initialConcentration="0.0957" />
+			<species id="cXc" compartment="compartment" initialConcentration="1.5413" />
+			<species id="cXn" compartment="compartment" initialConcentration="0.4585" />
+			<species id="cYm" compartment="compartment" initialConcentration="0.0303" />
+			<species id="cYc" compartment="compartment" initialConcentration="0.0041" />
+			<species id="cYn" compartment="compartment" initialConcentration="0.0122" />
+			<species id="cPn" compartment="compartment" initialConcentration="0.8476" />
+			<species id="cAm" compartment="compartment" initialConcentration="14.6921" />
+			<species id="cAc" compartment="compartment" initialConcentration="0.7027" />
+			<species id="cAn" compartment="compartment" initialConcentration="0.8648" />
+		</listOfSpecies>
+		<listOfParameters>
+			<parameter id="q1" value="4.1954" />
+			<parameter id="n0" value="0.05" />
+			<parameter id="g0" value="1.0" />
+			<parameter id="alpha" value="4.0" />
+			<parameter id="n1" value="7.8142" />
+			<parameter id="a" value="1.2479" />
+			<parameter id="g1" value="3.1383" />
+			<parameter id="m1" value="1.999" />
+			<parameter id="k1" value="2.392" />
+			<parameter id="p1" value="0.8295" />
+			<parameter id="r1" value="16.8363" />
+			<parameter id="r2" value="0.1687" />
+			<parameter id="m2" value="20.44" />
+			<parameter id="k2" value="1.5644" />
+			<parameter id="m3" value="3.6888" />
+			<parameter id="k3" value="1.2765" />
+			<parameter id="n2" value="3.0087" />
+			<parameter id="b" value="1.0258" />
+			<parameter id="g2" value="0.0368" />
+			<parameter id="g3" value="0.2658" />
+			<parameter id="c" value="1.0258" />
+			<parameter id="m4" value="3.8231" />
+			<parameter id="k4" value="2.5734" />
+			<parameter id="p2" value="4.324" />
+			<parameter id="r3" value="0.3166" />
+			<parameter id="r4" value="2.1509" />
+			<parameter id="m5" value="0.0013" />
+			<parameter id="m6" value="3.1741" />
+			<parameter id="k5" value="2.7454" />
+			<parameter id="m7" value="0.0492" />
+			<parameter id="m8" value="4.0424" />
+			<parameter id="k6" value="0.4033" />
+			<parameter id="n3" value="0.2431" />
+			<parameter id="d" value="1.4422" />
+			<parameter id="g4" value="0.5388" />
+			<parameter id="m9" value="10.1132" />
+			<parameter id="k7" value="6.5585" />
+			<parameter id="p3" value="2.1470" />
+			<parameter id="r5" value="1.0352" />
+			<parameter id="r6" value="3.3017" />
+			<parameter id="m10" value="0.2179" />
+			<parameter id="k8" value="0.6632" />
+			<parameter id="m11" value="3.3442" />
+			<parameter id="k9" value="17.1111" />
+			<parameter id="q2" value="2.4017" />
+			<parameter id="n4" value="0.0857" />
+			<parameter id="n5" value="0.1649" />
+			<parameter id="g5" value="1.178" />
+			<parameter id="g6" value="0.0645" />
+			<parameter id="e" value="3.6064" />
+			<parameter id="f" value="1.0237" />
+			<parameter id="m12" value="4.297" />
+			<parameter id="k10" value="1.7303" />
+			<parameter id="p4" value="0.2485" />
+			<parameter id="r7" value="2.2123" />
+			<parameter id="r8" value="0.2002" />
+			<parameter id="m13" value="0.1347" />
+			<parameter id="k11" value="1.8258" />
+			<parameter id="m14" value="0.6114" />
+			<parameter id="k12" value="1.8066" />
+			<parameter id="p5" value="0.5" />
+			<parameter id="k13" value="1.2" />
+			<parameter id="m15" value="1.2" />
+			<parameter id="q3" value="1.0" />
+			<parameter id="q4" value="2.4514" />
+			<parameter id="g" value="1.0258" />
+			<parameter id="n6" value="8.0706" />
+			<parameter id="g7" value="0.0004" />
+			<parameter id="m16" value="12.2398" />
+			<parameter id="k14" value="10.3617" />
+			<parameter id="p6" value="0.2907" />
+			<parameter id="r9" value="0.2528" />
+			<parameter id="r10" value="0.2212" />
+			<parameter id="m17" value="4.4505" />
+			<parameter id="k15" value="0.0703" />
+			<parameter id="m18" value="0.0156" />
+			<parameter id="k16" value="0.6104" />
+			<parameter id="Lmax" value="1.0" />
+			<parameter id="Lmin" value="0.0" />
+			<parameter id="CP" value="24.0" />
+			<parameter id="dayLength" value="12.0" />
+			<parameter id="timeOfDay" value="0" constant="false" />
+		</listOfParameters>
+		<listOfRules>
+			<rateRule variable="cLm">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of LHY mRNA
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!--((g0 ^ alpha) / (g0^alpha + cAn^alpha)) * (LD * (q1*cPn + n0) + ((n1*cXn^a) / (g1^a + cXn^a) )) - ((m1*cLm) / (k1 + cLm)) -->
+						<minus />
+						<apply> <!--((g0 ^ alpha) / (g0^alpha + cAn^alpha)) * (LD * (q1*cPn + n0) + ((n1*cXn^a) / (g1^a + cXn^a) ))-->
+							<times />
+							<apply><!--((g0 ^ alpha) / (g0^alpha + cAn^alpha))-->
+								<divide />
+								<apply>
+									<power />
+									<ci>g0</ci>
+									<ci>alpha</ci>
+								</apply>
+								<apply>
+									<plus />
+									<apply>
+										<power />
+										<ci>g0</ci>
+										<ci>alpha</ci>
+									</apply>
+									<apply>
+										<power />
+										<ci>cAn</ci>
+										<ci>alpha</ci>
+									</apply>
+								</apply>
+							</apply>
+							<apply><!--(LD * (q1*cPn + n0) + ((n1*cXn^a) / (g1^a + cXn^a) ))-->
+								<plus />
+								<apply><!--LD * (q1*cPn + n0)-->
+									<times />
+									<apply>
+											<ci>LD</ci>
+											<ci>timeOfDay</ci>
+									</apply>
+									<apply>
+										<plus />
+										<apply>
+											<times />
+											<ci>q1</ci>
+											<ci>cPn</ci>
+										</apply>
+										<ci>n0</ci>
+									</apply>
+								</apply>
+								<apply><!--((n1*cXn^a) / (g1^a + cXn^a) )-->
+									<divide />
+									<apply>
+										<times />
+										<ci>n1</ci>
+										<apply>
+											<power />
+											<ci>cXn</ci>
+											<ci>a</ci>
+										</apply>
+									</apply>
+									<apply>
+										<plus />
+										<apply>
+											<power />
+											<ci>g1</ci>
+											<ci>a</ci>
+										</apply>
+										<apply>
+											<power />
+											<ci>cXn</ci>
+											<ci>a</ci>
+										</apply>
+									</apply>
+								</apply>
+							</apply>
+						</apply>
+						<apply> <!-- ((m1*cLm) / (k1 + cLm)) -->
+							<divide />
+							<apply> <!-- m1*cLm-->
+								<times />
+								<ci>m1</ci>
+								<ci>cLm</ci>
+							</apply>
+							<apply> <!-- k1 + cLm-->
+								<plus />
+								<ci>k1</ci>
+								<ci>cLm</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cLc">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of cytoplasmic LHY
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!--p1*cLm - r1*cLc + r2*cLn - ((m2*cLc) / (k2 + cLc)) -->
+						<minus />
+						<apply> <!--p1*cLm - r1*cLc + r2*cLn -->
+							<plus />
+							<apply> <!--p1*cLm - r1*cLc -->
+								<minus />
+								<apply> <!--p1*cLm-->
+									<times />
+									<ci>p1</ci>
+									<ci>cLm</ci>
+								</apply>
+								<apply> <!-- r1*cLc-->
+									<times />
+									<ci>r1</ci>
+									<ci>cLc</ci>
+								</apply>
+							</apply>
+							<apply> <!-- r2*cLn -->
+								<times />
+								<ci>r2</ci>
+								<ci>cLn</ci>
+							</apply>
+						</apply>
+						<apply> <!-- ((m2*cLc) / (k2 + cLc)) -->
+							<divide />
+							<apply> <!-- (m2*cLc) -->
+								<times />
+								<ci>m2</ci>
+								<ci>cLc</ci>
+							</apply>
+							<apply> <!-- (k2 + cLc) -->
+								<plus />
+								<ci>k2</ci>
+								<ci>cLc</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cLn">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of nuclear LHY
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- r1*cLc - r2*cLn - ((m3*cLn) / (k3+cLn))  -->
+						<minus />
+						<apply> <!-- r1*cLc - r2*cLn  -->
+							<minus />
+							<apply> <!-- r1*cLc  -->
+								<times />
+								<ci>r1</ci>
+								<ci>cLc</ci>
+							</apply>
+							<apply> <!-- r2*cLn  -->
+								<times />
+								<ci>r2</ci>
+								<ci>cLn</ci>
+							</apply>
+						</apply>
+						<apply> <!-- ((m3*cLn) / (k3+cLn))  -->
+							<divide />
+							<apply> <!-- ((m3*cLn)  -->
+								<times />
+								<ci>m3</ci>
+								<ci>cLn</ci>
+							</apply>
+							<apply> <!-- (k3+cLn))  -->
+								<plus />
+								<ci>k3</ci>
+								<ci>cLn</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cTm">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of TOC1 mRNA
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- ((n2*cYn^b) / (g2^b + cYn^b)) * (g3^c / (g3^c + cLn^c)) - ((m4*cTm) / (k4 + cTm)) -->
+						<minus />
+						<apply> <!-- ((n2*cYn^b) / (g2^b + cYn^b)) * (g3^c / (g3^c + cLn^c))  -->
+							<times />
+							<apply> <!-- ((n2*cYn^b) / (g2^b + cYn^b))  -->
+								<divide />
+								<apply> <!-- (n2*cYn^b)  -->
+									<times />
+									<ci>n2</ci>
+									<apply>
+										<power />
+										<ci>cYn</ci>
+										<ci>b</ci>
+									</apply>
+								</apply>
+								<apply> <!-- (g2^b + cYn^b)  -->
+									<plus />
+									<apply>
+										<power />
+										<ci>g2</ci>
+										<ci>b</ci>
+									</apply>
+									<apply>
+										<power />
+										<ci>cYn</ci>
+										<ci>b</ci>
+									</apply>
+								</apply>
+							</apply>
+							<apply> <!-- (g3^c / (g3^c + cLn^c))  -->
+								<divide />
+								<apply> <!-- g3^c  -->
+									<power />
+									<ci>g3</ci>
+									<ci>c</ci>
+								</apply>
+								<apply> <!--(g3^c + cLn^c)  -->
+									<plus />
+									<apply>
+										<power />
+										<ci>g3</ci>
+										<ci>c</ci>
+									</apply>
+									<apply>
+										<power />
+										<ci>cLn</ci>
+										<ci>c</ci>
+									</apply>
+								</apply>
+							</apply>
+						</apply>
+						<apply> <!-- ((m4*cTm) / (k4 + cTm)) -->
+							<divide />
+							<apply> <!-- (m4*cTm)  -->
+								<times />
+								<ci>m4</ci>
+								<ci>cTm</ci>
+							</apply>
+							<apply> <!--  (k4 + cTm) -->
+								<plus />
+								<ci>k4</ci>
+								<ci>cTm</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cTc">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of cytoplasmic TOC1
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- p2*cTm - r3*cTc + r4*cTn - ((Lmax - LD)*m5 + m6) * (cTc / (k5 + cTc)) -->
+						<minus />
+						<apply> <!-- p2*cT - r3*cTc + r4*cTn  -->
+							<plus />
+							<apply> <!-- p2*cTm - r3*cTc  -->
+								<minus />
+								<apply>
+									<times />
+									<ci>p2</ci>
+									<ci>cTm</ci>
+								</apply>
+								<apply>
+									<times />
+									<ci>r3</ci>
+									<ci>cTc</ci>
+								</apply>
+							</apply>
+							<apply> <!-- r4*cTn  -->
+								<times />
+								<ci>r4</ci>
+								<ci>cTn</ci>
+							</apply>
+						</apply>
+						<apply> <!-- ((Lmax - LD)*m5 + m6) * (cTc / (k5 + cTc)) -->
+							<times />
+							<apply> <!-- ((Lmax - LD)*m5 + m6)  -->
+								<plus />
+								<apply> <!-- ((Lmax - LD)*m5)  -->
+									<times />
+									<apply>
+										<minus />
+										<ci>Lmax</ci>
+										<apply>
+											<ci>LD</ci>
+											<ci>timeOfDay</ci>
+										</apply>
+									</apply>
+									<ci>m5</ci>
+								</apply>
+								<ci>m6</ci>
+							</apply>
+							<apply> <!-- (cTc / (k5 + cTc)) -->
+								<divide />
+								<ci>cTc</ci>
+								<apply>
+									<plus />
+									<ci>k5</ci>
+									<ci>cTc</ci>
+								</apply>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cTn">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of nuclear TOC1
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- r3*cTc - r4*cTn - ((Lmax - L)*m7 + m8) * (cTn / (k6 + cTn)) -->
+						<minus />
+						<apply> <!-- r3*cTc - r4*cTn  -->
+							<minus />
+							<apply> <!-- r3*cTc  -->
+								<times />
+								<ci>r3</ci>
+								<ci>cTc</ci>
+							</apply>
+							<apply> <!-- r4*cTn  -->
+								<times />
+								<ci>r4</ci>
+								<ci>cTn</ci>
+							</apply>
+						</apply>
+						<apply> <!-- ((Lmax - L)*m7 + m8) * (cTn / (k6 + cTn)) -->
+							<times />
+							<apply> <!-- ((Lmax - L)*m7 + m8) -->
+								<plus />
+								<apply> <!-- (Lmax - L)*m7 -->
+									<times />
+									<apply>
+										<minus />
+										<ci>Lmax</ci>
+										<apply>
+											<ci>LD</ci>
+											<ci>timeOfDay</ci>
+										</apply>
+									</apply>
+									<ci>m7</ci>
+								</apply>
+								<ci>m8</ci>
+							</apply>
+							<apply> <!-- (cTn / (k6 + cTn)) -->
+								<divide />
+								<ci>cTn</ci>
+								<apply>
+									<plus />
+									<ci>k6</ci>
+									<ci>cTn</ci>
+								</apply>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cXm">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of X mRNA
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- ((n3*cTn^d) / (g4^d+cTn^d)) - ((m9*cXm) / (k7+cXm)) -->
+						<minus />
+						<apply> <!-- ((n3*cTn^d) / (g4^d+cTn^d)) -->
+							<divide />
+							<apply> <!-- ((n3*cTn^d)  -->
+								<times />
+								<ci>n3</ci>
+								<apply>
+									<power />
+									<ci>cTn</ci>
+									<ci>d</ci>
+								</apply>
+							</apply>
+							<apply> <!-- (g4^d+cTn^d)) -->
+								<plus />
+								<apply>
+									<power />
+									<ci>g4</ci>
+									<ci>d</ci>
+								</apply>
+								<apply>
+									<power />
+									<ci>cTn</ci>
+									<ci>d</ci>
+								</apply>
+							</apply>
+						</apply>
+						<apply> <!-- ((m9*cXm) / (k7+cXm)) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m9</ci>
+								<ci>cXm</ci>
+							</apply>
+							<apply>
+								<plus />
+								<ci>k7</ci>
+								<ci>cXm</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cXc">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of cytoplasmic X
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- p3*cXm - r5*cXc + r6*cXn - ((m10*cXc) / (k8+cXc)) -->
+						<minus />
+						<apply> <!-- p3*cXm - r5*cXc + r6*cXn -->
+							<plus />
+							<apply> <!-- p3*cXm - r5*cXc -->
+								<minus />
+								<apply> <!-- p3*cXm  -->
+									<times />
+									<ci>p3</ci>
+									<ci>cXm</ci>
+								</apply>
+								<apply> <!--  r5*cXc -->
+									<times />
+									<ci>r5</ci>
+									<ci>cXc</ci>
+								</apply>
+							</apply>
+							<apply> <!-- r6*cXn -->
+								<times />
+								<ci>r6</ci>
+								<ci>cXn</ci>
+							</apply>
+						</apply>
+						<apply> <!--((m10*cXc) / (k8+cXc)) -->
+							<divide />
+							<apply> <!--(m10*cXc) -->
+								<times />
+								<ci>m10</ci>
+								<ci>cXc</ci>
+							</apply>
+							<apply> <!--(k8+cXc) -->
+								<plus />
+								<ci>k8</ci>
+								<ci>cXc</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cXn">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of nuclear X
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- r5*cXc - r6*cXn - ((m11*cXn) / (k9+cXn)) -->
+						<minus />
+						<apply> <!-- r5*cXc - r6*cXn  -->
+							<minus />
+							<apply>
+								<times />
+								<ci>r5</ci>
+								<ci>cXc</ci>
+							</apply>
+							<apply>
+								<times />
+								<ci>r6</ci>
+								<ci>cXn</ci>
+							</apply>
+						</apply>
+						<apply> <!-- ((m11*cXn) / (k9+cXn)) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m11</ci>
+								<ci>cXn</ci>
+							</apply>
+							<apply>
+								<plus/>
+								<ci>k9</ci>
+								<ci>cXn</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cYm">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of Y mRNA
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- (LD*q2*cPn + (((LD*n4 + n5)*g5^e) / (g5^e+cTn^e))) * ( g6^f/ (g6^f + cLn^f)) - ((m12*cYm) / (k10+cYm)) -->
+						<minus />
+						<apply> <!-- (LD*q2*cPn + (((LD*n4 + n5)*g5^e) / (g5^e+cTn^e))) * ( g6^f/ (g6^f + cLn^f))) -->
+							<times />
+							<apply> <!-- (LD*q2*cPn + (((LD*n4 + n5)*g5^e) / (g5^e+cTn^e))) -->
+								<plus />
+								<apply> <!-- LD*q2*cPn +  -->
+									<times />
+									<apply>
+										<times />
+										<apply>
+											<ci>LD</ci>
+											<ci>timeOfDay</ci>
+										</apply>
+										<ci>q2</ci>
+									</apply>
+									<ci>cPn</ci>
+								</apply>
+								<apply> <!-- (((LD*n4 + n5)*g5^e) / (g5^e+cTn^e) -->
+									<divide />
+									<apply> <!-- ((LD*n4 + n5)*g5^e) -->
+										<times />
+										<apply>
+											<plus />
+											<apply>
+												<times />
+												<apply>
+													<ci>LD</ci>
+													<ci>timeOfDay</ci>
+												</apply>
+												<ci>n4</ci>
+											</apply>
+											<ci>n5</ci>
+										</apply>
+										<apply>
+											<power />
+											<ci>g5</ci>
+											<ci>e</ci>
+										</apply>
+									</apply>
+									<apply> <!-- (g5^e+cTn^e) -->
+										<plus />
+										<apply>
+											<power />
+											<ci>g5</ci>
+											<ci>e</ci>
+										</apply>
+										<apply>
+											<power />
+											<ci>cTn</ci>
+											<ci>e</ci>
+										</apply>
+									</apply>
+								</apply>
+							</apply>
+							<apply> <!-- ( g6^f/ (g6^f + cLn^f))) -->
+								<divide />
+								<apply>
+									<power />
+									<ci>g6</ci>
+									<ci>f</ci>
+								</apply>
+								<apply>
+									<plus />
+									<apply>
+										<power />
+										<ci>g6</ci>
+										<ci>f</ci>
+									</apply>
+									<apply>
+										<power />
+										<ci>cLn</ci>
+										<ci>f</ci>
+									</apply>
+								</apply>
+							</apply>
+						</apply>
+						<apply> <!-- (m12*cYm) / (k10+cYm) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m12</ci>
+								<ci>cYm</ci>
+							</apply>
+							<apply>
+								<plus />
+								<ci>k10</ci>
+								<ci>cYm</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cYc">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of cytoplasmic Y
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- p4*cYm - r7*cYc + r8*cYn - ((m13*cYc) / (k11 + cYc)) -->
+						<minus />
+						<apply> <!-- p4*cYm - r7*cYc + r8*cYn  -->
+							<plus />
+							<apply> <!-- p4*cYm - r7*cYc  -->
+								<minus />
+								<apply>
+									<times />
+									<ci>p4</ci>
+									<ci>cYm</ci>
+								</apply>
+								<apply>
+									<times />
+									<ci>r7</ci>
+									<ci>cYc</ci>
+								</apply>
+							</apply>
+							<apply> <!-- r8*cYn  -->
+								<times />
+								<ci>r8</ci>
+								<ci>cYn</ci>
+							</apply>
+						</apply>
+						<apply> <!-- ((m13*cYc) / (k11 + cYc)) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m13</ci>
+								<ci>cYc</ci>
+							</apply>
+							<apply>
+								<plus />
+								<ci>k11</ci>
+								<ci>cYc</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cYn">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of nuclear Y
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- r7*cYc - r8*cYn - ((m14*cYn) / (k12 + cYn)) -->
+						<minus />
+						<apply> <!-- r7*cYc - r8*cYn -->
+							<minus />
+							<apply>
+								<times />
+								<ci>r7</ci>
+								<ci>cYc</ci>
+							</apply>
+							<apply>
+								<times />
+								<ci>r8</ci>
+								<ci>cYn</ci>
+							</apply>
+						</apply>
+						<apply> <!-- ((m14*cYn) / (k12 + cYn)) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m14</ci>
+								<ci>cYn</ci>
+							</apply>
+							<apply>
+								<plus />
+								<ci>k12</ci>
+								<ci>cYn</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cPn">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of nuclear P
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- (Lmax - LD)*p5 - ((m15*cPn) / (k13+cPn)) - q3*LD*cPn -->
+						<minus />
+						<apply> <!-- (Lmax - LD)*p5 - ((m15*cPn) / (k13+cPn)) -->
+							<minus />
+							<apply> <!-- (Lmax - LD)*p5 - -->
+								<times />
+								<apply>
+									<minus />
+									<ci>Lmax</ci>
+									<apply>
+										<ci>LD</ci>
+										<ci>timeOfDay</ci>
+									</apply>
+								</apply>
+								<ci>p5</ci>
+							</apply>
+							<apply> <!-- ((m15*cPn) / (k13+cPn)) -->
+								<divide />
+								<apply>
+									<times />
+									<ci>m15</ci>
+									<ci>cPn</ci>
+								</apply>
+								<apply>
+									<plus />
+									<ci>k13</ci>
+									<ci>cPn</ci>
+								</apply>
+							</apply>
+						</apply>
+						<apply> <!-- q3*LD*cPn -->
+							<times />
+							<apply>
+								<times />
+								<ci>q3</ci>
+								<apply>
+									<ci>LD</ci>
+									<ci>timeOfDay</ci>
+								</apply>
+							</apply>
+							<ci>cPn</ci>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cAm">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of APRR7/9 mRNA
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- LD * q4 * cPn + ((n6 * cLn^g) / (g7^g + cLn^g)) - ((m16 * cAm) / (k14 + cAm)) -->
+						<minus />
+						<apply><!-- LD * q4 * cPn + ((n6 * cLn^g) / (g7^g + cLn^g)) -->
+							<plus />
+							<apply><!-- LD * q4 * cPn  -->
+								<times />
+								<apply>
+									<ci>LD</ci>
+									<ci>timeOfDay</ci>
+								</apply>
+								<apply>
+									<times />
+									<ci>q4</ci>
+									<ci>cPn</ci>
+								</apply>
+							</apply>
+							<apply><!-- ((n6 * cLn^g) / (g7^g + cLn^g)) -->
+								<divide />
+								<apply>
+									<times />
+									<ci>n6</ci>
+									<apply>
+										<power />
+										<ci>cLn</ci>
+										<ci>g</ci>
+									</apply>
+								</apply>
+								<apply>
+									<plus />
+									<apply>
+										<power />
+										<ci>g7</ci>
+										<ci>g</ci>
+									</apply>
+									<apply>
+										<power />
+										<ci>cLn</ci>
+										<ci>g</ci>
+									</apply>
+								</apply>
+							</apply>
+						</apply>
+						<apply><!-- ((m16 * cAm) / (k14 + cAm)) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m16</ci>
+								<ci>cAm</ci>
+							</apply>
+							<apply>
+								<plus />
+								<ci>k14</ci>
+								<ci>cAm</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cAc">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of cytoplasmic APRR7/9
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- p6 * cAm - r9 * cAc + r10 * cAn - ((m17 * cAc) / (k15 + cAc)) -->
+						<minus />
+						<apply><!-- p6 * cAm - r9 * cAc + r10 * cAn  -->
+							<plus />
+							<apply><!-- p6 * cAm - r9 * cAc -->
+								<minus />
+								<apply>
+									<times />
+									<ci>p6</ci>
+									<ci>cAm</ci>
+								</apply>
+								<apply>
+									<times />
+									<ci>r9</ci>
+									<ci>cAc</ci>
+								</apply>
+							</apply>
+							<apply><!-- r10 * cAn  -->
+								<times />
+								<ci>r10</ci>
+								<ci>cAn</ci>
+							</apply>
+						</apply>
+						<apply><!-- ((m17 * cAc) / (k15 + cAc)) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m17</ci>
+								<ci>cAc</ci>
+							</apply>
+							<apply>
+								<plus />
+								<ci>k15</ci>
+								<ci>cAc</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>
+			<rateRule variable="cAn">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Rate of production of nuclear APRR7/9
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<apply> <!-- r9 * cAc - r10 * cAn - ((m18 * cAn) / (k16 + cAn)) -->
+						<minus />
+						<apply><!-- r9 * cAc - r10 * cAn  -->
+							<minus />
+							<apply>
+								<times />
+								<ci>r9</ci>
+								<ci>cAc</ci>
+							</apply>
+							<apply>
+								<times />
+								<ci>r10</ci>
+								<ci>cAn</ci>
+							</apply>
+						</apply>
+						<apply><!--((m18 * cAn) / (k16 + cAn)) -->
+							<divide />
+							<apply>
+								<times />
+								<ci>m18</ci>
+								<ci>cAn</ci>
+							</apply>
+							<apply>
+								<plus />
+								<ci>k16</ci>
+								<ci>cAn</ci>
+							</apply>
+						</apply>
+					</apply>
+				</math>
+			</rateRule>		
+			<rateRule variable="timeOfDay">
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						Flow of time
+					</p>
+				</notes>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<cn>1</cn>
+				</math>
+			</rateRule>
+		</listOfRules>
+		<listOfEvents>
+			<event>
+				<notes>
+					<p xmlns="http://www.w3.org/1999/xhtml">
+						If time of day reaches end of day, set back to zero
+					</p>
+				</notes>
+				<trigger>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<apply>
+							<geq/>
+							<ci>timeOfDay</ci>
+							<ci>CP</ci>
+						</apply>
+					</math>
+				</trigger>
+				<listOfEventAssignments>
+					<eventAssignment variable="timeOfDay">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<cn>0</cn>
+						</math>
+					</eventAssignment>
+				</listOfEventAssignments>
+			</event>
+		</listOfEvents>
+	</model>
+</sbml>
