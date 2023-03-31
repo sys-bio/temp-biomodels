@@ -1,0 +1,54 @@
+@prefix bqmodel: <http://biomodels.net/model-qualifiers/> .
+@prefix collex: <http://www.collex.org/schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix prism: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://omex-library.org/BIOMD0000000619.omex> bqmodel:isDescribedBy <local:00001>,
+        <local:00002> ;
+    prism:keyword "Biomodels" ;
+    dc:description """<body xmlns="http://www.w3.org/1999/xhtml">
+  <h1>Basic PBPK (Physiologically Based PharmacoKinetic) model of Acetaminophen.</h1>
+  <p>This is a basic model of Acetaminophen (APAP, Paracetamol) pharmacokinetics in humans. Many of the model parameters 
+            (compartment volumes, volumetric flow rates, etc.) are scaled allometrically based on the body weight (BW) raised to the
+			3/4 power. Because of that, the assigned values of many of the parameters are recalculated at run time and are different 
+			than the default values for the particular entity (e.g., the volume of a compartment and the volumetric flow rate between compartments).</p>
+  <p>APAP dose is initially given in grams (APAP_Dose_gram), which is converted to moles via the APAP molecular weight (APAP_MW).
+			APAP quantities throughout the rest of the models are given in moles.</p>
+  <p>The base parameters are for a 70Kg human and a pharmacological oral dose of 1.4 gram of APAP. Metabolism is modelled as a single ODE in the liver compartment and the metabolite does not leave that compartment.</p>
+  <p>This model is loosely based on the model of Wambaugh and Shaw (PLoS Comput Biol. 2010 Apr 22;6(4):e1000756. doi: 10.1371/journal.pcbi.1000756. Pubmed ID: PMID- 20421935) with the following changes:</p>
+  <ol>
+    <li>The lung lumen compartment was omitted.</li>
+    <li>A kidney compartment was added.</li>
+    <li>Glomerular Filtration is from the kidney compartment.</li>
+    <li>The APAP dose was changed to 1.4g.</li>
+    <li>The gut adsorption rate constant (KGutabs),  tissue partition coefficients and liver metabolism rate constant (CLmetabolism) were fit using the human        <i>in vivo</i>
+            data of Critchley (Critchley, J. A., Critchley, L. A. H., Anderson, P. J., and Tomlinson, B. 2005  Journal of clinical pharmacy and therapeutics, 30(2), 179-184).        </li>
+    <li>
+      <b>To model the extensive re-adsorption of APAP from the kidney tubules back into the blood the QGfr value is modified. This was done by 
+				changing the scaling parameter QGFR_ref value from 0.31 to 0.039, resulting in a decrease in the QGfr value of 8 fold (from 7.2 L/hr to 0.91 L/hr).</b>
+    </li>
+  </ol>
+  <p>The parameters in this file are the      <b>REFSIM</b>
+          parameters from our publication.      </p>
+</body>""" ;
+    dc:title "Simulating microdosimetry in a virtual hepatic lobule" ;
+    collex:thumbnail <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g001.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g002.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g003.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g004.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g005.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g006.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g007.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g008.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g009.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g010.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g011.jpg>,
+        <http://omex-library.org/BIOMD0000000619.omex/PMC2858695/pcbi.1000756.g012.jpg> .
+
+<local:00001> rdfs:label "James P. Sluka, Xiao Fu, Maciej Swat, Julio M. Belmonte, Alin Cosmanescu, Sherry G. Clendenon, John F. Wambaugh & James A. Glazier. A Liver-Centric Multiscale Modeling Framework for Xenobiotics. PLOS ONE 11, 9 (2016)." ;
+    dc:identifier <http://identifiers.org/doi/10.1371/journal.pone.0162428> .
+
+<local:00002> rdfs:label "John Wambaugh & Imran Shah. Simulating microdosimetry in a virtual hepatic lobule. PLoS Computational Biology 6, 4 (2010)." ;
+    dc:identifier <http://identifiers.org/doi/10.1371/journal.pcbi.1000756> .
+
