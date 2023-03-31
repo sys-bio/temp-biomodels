@@ -1,0 +1,114 @@
+##################################################################
+#
+# Multisite Phosphorylation Model (MPM)
+# This file is a Supplementary material to the Manuscript
+# Capuani F, Conte A, Argenzio E, Marchetti L, Priami C,
+# Polo S, Di Fiore PP, Sigismund S, Ciliberto A.
+# "Quantitative analysis reveals how EGFR activation and downregulation are coupled in normal but not in cancer cells"
+# Published by Nature Communications (2015).
+#
+# The model presented here is described in Supplementary note 1,
+# subsection "Minimal model for EGFR phosphorylation (MPM)" of the cited manuscript.
+#
+# Species description
+# ri, i=1, ..., 9 represents an EGFR with i out of 9 phosphorylated tyrosines
+# sj, j=1, ..., 3 represents an EGFR with i out of 3 phosphorylated tyrosines
+#
+# ai*kkin (qj*kin) represents the rate of addition of 1 phosphoryl group 
+# to an EGFR having already i (j) of the 9 (3) phosphorylated tyrosines.
+# In the text it is represented as k with a tilde (Supplementary note 1, Eqs. (1) and (2)).
+#
+# bi*kptp (pj*kptp) represent the rate of substraction of 1 phosphoryl group 
+# to an EGFR having already i (j) of the 9 (3) phosphorylated tyrosines 
+#
+# pY9 (pY3) is the total phosphorylation of the EGFR with 9 (3) tyrosines. 
+# pY9_norm (pY3_norm) is the phosphorylation per tyrosine.
+#
+##########################################################################
+
+
+
+# pTYr9(3) contains the total phosphorylation for an EGFR receptor possessing 9 (3) signaling tyrosines
+pTyr9=r1+2*r2+3*r3+4*r4+5*r5+6*r6+7*r7+8*r8+9*r9
+pTyr3=s1+2*s2+3*s3
+
+# Tyr9(3) is pTyr9(3) normalized to 1
+Tyr9=pTyr9/9
+Tyr3=pTyr3/3
+
+# Ratio of phosphorylation between the 9 Tyr and the 3 Tyr models
+TyrRatio=Tyr9/Tyr3
+
+# kkin is computed as a function of  kptp and of Kph (see Supplementary note 1, Eq. (3) )
+actHill=Ltot^nH/(Ltot^nH+xT^nH)
+kkin=kkinbase*actHill
+
+# Auxiliary
+aux TyrRatio=TyrRatio
+aux Tyr9=Tyr9
+aux Tyr3=Tyr3
+
+
+# ODEs for an MPM with n=9
+r0' = -a0*kkin*r0 + b1*kptp*r1
+r1' = -a1*kkin*r1 + a0*kkin*r0 -b1*kptp*r1 + b2*kptp*r2
+r2' = -a2*kkin*r2 + a1*kkin*r1 -b2*kptp*r2 + b3*kptp*r3
+r3' = -a3*kkin*r3 + a2*kkin*r2 -b3*kptp*r3 + b4*kptp*r4
+r4' = -a4*kkin*r4 + a3*kkin*r3 -b4*kptp*r4 + b5*kptp*r5
+r5' = -a5*kkin*r5 + a4*kkin*r4 -b5*kptp*r5 + b6*kptp*r6
+r6' = -a6*kkin*r6 + a5*kkin*r5 -b6*kptp*r6 + b7*kptp*r7
+r7' = -a7*kkin*r7 + a6*kkin*r6 -b7*kptp*r7 + b8*kptp*r8
+r8' = -a8*kkin*r8 + a7*kkin*r7 -b8*kptp*r8 + b9*kptp*r9
+r9' =  a8*kkin*r8 - b9*kptp*r9
+
+# ODEs for an MPM with n=3
+s0' = -q0*kkin*s0 +p1*kptp*s1
+s1' = -q1*kkin*s1+q0*kkin*s0 -p1*kptp*s1 + p2*kptp*s2
+s2' = -q2*kkin*s2+q1*kkin*s1 -p2*kptp*s2 + p3*kptp*s3
+s3' = q2*kkin*s2 -p3*kptp*s3
+
+
+# Initial conditions
+init r0=1
+init s0=1
+
+# Parameters
+param Ltot=100
+param nH=1.34
+param xT=1.5
+param kptp=3.7e-7
+#param log vary kkinbase=1e-2 1e3 2
+param kkinbase=8.69432e-3
+
+# Rate constant coefficients for FREE kinase (a's and q's correspond to MPM with n=9 and n=3, respectively)
+# and for FREE phosphatases (b's and p's corresponds to n 9 and 3, respectively.
+# See Table in Text S1 for parameters corresponding to the other scenarios. 
+# Briefly, to set either enzyme to the saturated regime, we must set all coefficients to 1. 
+p a0=9, a1=8, a2=7, a3=6, a4=5, a5=4, a6=3, a7=2, a8=1
+p q0=3, q1=2, q2=1
+
+p b9=9, b8=8, b7=7, b6=6, b5=5, b4=4, b3=3, b2=2, b1=1
+p p1=1, p2=2, p3=3
+
+########################################################
+# INTEGRATOR SETTINGS AND DONE
+########################################################
+@ TOTAL=120
+@ dt=0.0001
+@ transient=0
+@ METH=cvode,atol=3e-14,toler=3e-14
+@ maxstorage=20000
+
+@ BOUND=10000
+
+@ NPLOTS=6
+
+@ xp1=t, yp1=TyrRatio
+@ xp2=t, yp2=TyrRatio
+
+@ xp3=t, yp3=s0
+@ xp4=t, yp4=s1
+@ xp5=t, yp5=s2
+@ xp6=t, yp6=s3
+
+done

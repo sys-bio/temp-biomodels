@@ -1,0 +1,1662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml level="2" version="4" xmlns="http://www.sbml.org/sbml/level2/version4">
+	<model metaid="Bulik2016BMCBiology" id="Bulik2016BMCBiology" name="Bulik2016BMCBiology">
+		<listOfUnitDefinitions>
+		
+        <unitDefinition id="mM">
+            <listOfUnits>
+                <unit kind="metre" exponent="-3" multiplier="1"/>
+                <unit kind="mole" exponent="1" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="V">
+            <listOfUnits>
+                <unit kind="volt" exponent="1" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="K">
+            <listOfUnits>
+                <unit kind="kelvin" exponent="1" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="J_per_V_per_mol">
+            <listOfUnits>
+                <unit kind="joule" exponent="1" multiplier="1"/>
+                <unit kind="volt" exponent="-1" multiplier="1"/>
+                <unit kind="mole" exponent="-1" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="J_per_K_per_mol">
+            <listOfUnits>
+                <unit kind="joule" exponent="1" multiplier="1"/>
+                <unit kind="kelvin" exponent="-1" multiplier="1"/>
+                <unit kind="mole" exponent="-1" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="per_h">
+            <listOfUnits>
+                <unit kind="second" exponent="-1" multiplier="3600"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="mM_per_h">
+            <listOfUnits>
+                <unit kind="metre" exponent="-3" multiplier="1"/>
+                <unit kind="mole" exponent="1" multiplier="1"/>
+                <unit kind="second" exponent="-1" multiplier="3600"/>         
+			</listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="per_h_per_mMmM">
+            <listOfUnits>
+                <unit kind="second" exponent="-1" multiplier="3600"/>
+                <unit kind="metre" exponent="6" multiplier="1"/>
+                <unit kind="mole" exponent="-2" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="per_h_per_mM">
+            <listOfUnits>
+                <unit kind="second" exponent="-1" multiplier="3600"/>
+                <unit kind="metre" exponent="3" multiplier="1"/>
+                <unit kind="mole" exponent="-1" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="per_mM">
+            <listOfUnits>
+                <unit kind="metre" exponent="3" multiplier="1"/>
+                <unit kind="mole" exponent="-1" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        <unitDefinition id="per_mMmM">
+            <listOfUnits>
+                <unit kind="metre" exponent="6" multiplier="1"/>
+                <unit kind="mole" exponent="-2" multiplier="1"/>
+            </listOfUnits>
+        </unitDefinition>
+        </listOfUnitDefinitions>
+
+
+		<listOfCompartments>
+			<compartment id="ext" size="1.0"/>
+			<compartment id="cyto" size="1.0"/>
+			<compartment id="er" size="1.0"/>
+			<compartment id="mito" size="1.0"/>
+		</listOfCompartments>
+		
+		
+		<listOfSpecies>
+			
+			<species compartment="ext" id="glc_ext" initialConcentration="4.0"/>
+			<species compartment="ext" id="lac_ext" initialConcentration="1.0"/>
+			<!-- glc_ext and lac_ext are generally set from extern client-->
+
+			<species compartment="cyto" id="glc" initialConcentration="4.922562219644058e+000"/>
+			<species compartment="cyto" id="glc6p" initialConcentration="1.899298977596333e-001"/>
+			<species compartment="cyto" id="glc1p" initialConcentration="1.172406776294030e-002"/>
+			<species compartment="cyto" id="udpglc" initialConcentration="3.407242128925398e-001"/>
+			<species compartment="cyto" id="glyglc" initialConcentration="1.763325903468017e+001"/>
+			<species compartment="cyto" id="fru6p" initialConcentration="5.697904580022656e-002"/>
+			<species compartment="cyto" id="fru16bp" initialConcentration="8.081718274191619e-004"/>
+			<species compartment="cyto" id="fru26bp" initialConcentration="5.402140883459445e-004"/>
+			<species compartment="cyto" id="gap" initialConcentration="1.907054665408826e-003"/>
+			<species compartment="cyto" id="dhap" initialConcentration="4.195909254970221e-002"/>
+			<species compartment="cyto" id="bpg13" initialConcentration="1.088056699711026e-003"/>
+			<species compartment="cyto" id="pg3" initialConcentration="3.063934738582155e-001"/>
+			<species compartment="cyto" id="pg2" initialConcentration="2.937617292396704e-002"/>
+			<species compartment="cyto" id="pep" initialConcentration="4.993950723122332e-002"/>
+			<species compartment="cyto" id="pyr" initialConcentration="8.521491794299423e-002"/>
+			<species compartment="cyto" id="oa" initialConcentration="2.439632560923582e-002"/>
+			<species compartment="cyto" id="lac" initialConcentration="6.787717562008555e-001"/>
+			<species compartment="cyto" id="mal" initialConcentration="7.196566147020171e-001"/>
+			<species compartment="cyto" id="cit" initialConcentration="0.75"/>
+			<species compartment="cyto" id="h" initialConcentration="1e-4"/>
+
+			<species compartment="mito" id="co2_mito" initialConcentration="5.0"/>
+			<species compartment="mito" id="oa_mito" initialConcentration="4.647311941222113e-004"/>
+			<species compartment="mito" id="pep_mito" initialConcentration="1.111919308775811e-004"/>
+			<species compartment="mito" id="pyr_mito" initialConcentration="1.322282382557262e-001"/>
+			<species compartment="mito" id="mal_mito" initialConcentration="1.303593617188049e+000"/>
+			<species compartment="mito" id="p_mito" initialConcentration="8.0"/>
+			<species compartment="mito" id="h_mito" initialConcentration="6.0e-5"/>
+
+			<species compartment="er" id="glc_er" initialConcentration="4.922562246387376e+000"/>
+			<species compartment="er" id="glc6p_er" initialConcentration="1.899298936087751e-001"/>
+
+			<species compartment="cyto" id="atp" initialConcentration="3.25"/>
+			<species compartment="cyto" id="adp" initialConcentration="0.5"/>
+			<species compartment="cyto" id="amp" initialConcentration="0.16"/>
+			<species compartment="cyto" id="utp" initialConcentration="7.447012162263190e-001"/>
+			<species compartment="cyto" id="udp" initialConcentration="1.145705845404142e-001"/>
+			<species compartment="cyto" id="gtp" initialConcentration="6.933393863144720e-001"/>
+			<species compartment="cyto" id="gdp" initialConcentration="1.066676136804438e-001"/>
+			<species compartment="cyto" id="pp" initialConcentration="0.008"/>
+			<species compartment="cyto" id="p" initialConcentration="5.0"/>
+			<species compartment="cyto" id="p_er" initialConcentration="5.0"/>
+			<species compartment="cyto" id="co2" initialConcentration="5.0"/>
+			<species compartment="cyto" id="nad" initialConcentration="1.13"/>
+			<species compartment="cyto" id="nadh" initialConcentration="0.001"/>
+
+			<species compartment="mito" id="atp_mito" initialConcentration="17.5"/>
+			<species compartment="mito" id="adp_mito" initialConcentration="7.5"/>
+			<species compartment="mito" id="gtp_mito" initialConcentration="5.599957094783788e-001"/>
+			<species compartment="mito" id="gdp_mito" initialConcentration="2.400042905182234e-001"/>
+			<species compartment="mito" id="nadh_mito" initialConcentration="0.004"/>
+			<species compartment="mito" id="nad_mito" initialConcentration="0.046"/>
+		</listOfSpecies>
+ 
+		<listOfParameters>
+			<parameter id="Vmm" value="-0.155" units="V"/>
+			<parameter id="ONE" value="1.0" units="dimensionless"/>
+			<parameter id="O5" value="0.5" units="dimensionless"/>
+			<parameter id="M1" value="-1.0" units="dimensionless"/>
+			<parameter id="O1" value="0.1" units="dimensionless"/>
+			
+			<parameter id="F" value="96490" units="J/V/mol"/>
+			<parameter id="R" value="8.3" units="J/K/mol"/>
+			<parameter id="T" value="293" units="K"/>
+
+
+
+			<parameter id="vmax_ald" value="7.78e8" units="per_h"/>
+			<parameter id="keq_ald" value="0.099" units="mM"/>
+			<parameter id="km_fru16bp_ald" value="0.004" units="mM"/>
+			<parameter id="km_gap_ald" value="0.48" units="mM"/>
+			<parameter id="km_dhap_ald" value="0.38" units="mM"/>
+
+			<parameter id="vmax_en" value="1.94e10" units="per_h"/>
+			<parameter id="keq_en" value="1.7" units="dimensionless"/>
+			<parameter id="km_pg2_en" value="0.14" units="mM"/>
+			<parameter id="km_pep_en" value="0.31" units="mM"/>
+
+			<parameter id="vmax_fbp1" value="2.92e4" units="mM_per_h"/>
+			<parameter id="km_fru16bp_fbp1_native" value="0.0029" units="mM"/>
+			<parameter id="ki_fru26bp_fbp1" value="0.00113" units="mM"/>
+			<parameter id="n_fbp1" value="1.26" units="dimensionless"/>
+			<parameter id="ki_amp_fbp1" value="0.023" units="mM"/>
+			<parameter id="n_amp_fbp1" value="2.43" units="dimensionless"/>
+			<parameter id="km_fru16bp_fbp1_phospho" value="0.0019" units="mM"/>
+
+			<parameter id="vmax_gapdh" value="2.92e8" units="per_h_per_mMmM"/>
+			<parameter id="keq_gapdh" value="1e-4" units="per_mM"/>
+			<parameter id="km_nad_gapdh" value="0.010" units="mM"/>
+			<parameter id="km_gap_gapdh" value="0.035" units="yyy"/>
+			<parameter id="km_p_gapdh" value="3.8" units="mM"/>
+			<parameter id="km_nadh_gapdh" value="0.006" units="mM"/>
+			<parameter id="km_bpg13_gapdh" value="0.01" units="mM"/>
+
+			<parameter id="v0_gk" value="1.05e4" units="mM_per_h"/>
+			<parameter id="n_gk" value="1.5" units="dimensionless"/>
+			<parameter id="ka_glc_gk" value="15.9" units="mM"/>
+			<parameter id="f_gk" value="0.75" units="dimensionless"/>
+			<parameter id="ki_fru6p_gk" value="0.005" units="mM"/>
+			<parameter id="n2_gk" value="3.7" units="dimensionless"/>
+			<parameter id="km_glc_gk" value="9.0" units="mM"/>
+			<parameter id="km_atp_gk" value="0.55" units="mM"/>
+
+			<parameter id="vmax_glct_er" value="1.94e10" units="per_h"/>
+			<parameter id="km_glc_glct_er" value="1.37" units="mM"/>
+			<parameter id="km_glc_er_glct" value="1.22" units="mM"/>
+
+			<parameter id="vmax_glut2" value="9.09e1" units="per_h"/>
+			<parameter id="km_glc_ext_glut2" value="17.3" units="mM"/>
+			<parameter id="km_glc_glut2" value="17.3" units="mM"/>
+
+			<parameter id="v0_gp" value="1.29e2" units="mM_per_h"/>
+			<parameter id="store" value="300" units="mM"/>
+			<parameter id="keq_gp" value="0.21" units="per_mM"/>
+			<parameter id="km_glyglc_gp_native" value="2.5" units="mM"/>
+			<parameter id="km_p_gp_native" value="500" units="mM"/>
+			<parameter id="ka_amp_gp_native" value="0.36" units="mM"/>
+			<parameter id="ka_amp_glc1p_gp" value="0.5" units="mM"/>
+			<parameter id="k0_glc1p_gp" value="250" units="mM"/>
+
+			<parameter id="km_glyglc_gp_phospho" value="1.8" units="mM"/>
+			<parameter id="km_p_gp_phospho" value="2.1" units="mM"/>
+			<parameter id="km_glc1p_gp_phospho" value="0.7" units="mM"/>
+			<parameter id="ka_amp_gp_phospho" value="0.017" units="mM"/>
+
+			<parameter id="vmax_g6p_er" value="4.57e2" units="mM_per_h"/>
+			<parameter id="km_glc6p_er_g6p_er" value="1.84" units="mM"/>
+
+			<parameter id="vmax_gpi" value="1.07e9" units="per_h"/>
+			<parameter id="keq_gpi" value="0.3" units="dimensionless"/>
+			<parameter id="km_glc6p_gpi" value="0.055" units="mM"/>
+			<parameter id="km_fru6p_gpi" value="0.12" units="mM"/>
+
+			<parameter id="vmax_g1pi" value="7.78e7" units="per_h"/>
+			<parameter id="keq_g1pi" value="16.2" units="dimensionless"/>
+			<parameter id="km_glc6p_g1pi" value="0.045" units="mM"/>
+			<parameter id="km_glc1p_g1pi" value="0.67" units="mM"/>
+
+			<parameter id="vmax_g6pt_er" value="1.94e10" units="per_h"/>
+			<parameter id="km_glc6p_g6pt_er" value="1.12" units="mM"/>
+			<parameter id="km_glc6p_er_g6pt_er" value="1.12" units="mM"/>
+
+			<parameter id="v0_gs" value="1.16e2" units="mM_per_h"/>
+			<parameter id="kb_udpglc_gs_native" value="0.2" units="mM"/>
+			<parameter id="k0_udpglc_gs_native" value="1.4" units="mM"/>
+			<parameter id="ka_glc6p_gs_native" value="0.007" units="mM"/>
+
+			<parameter id="kb_udpglc_gs_phospho" value="0.3" units="mM"/>
+			<parameter id="k0_udpglc_gs_phospho" value="32" units="mM"/>
+			<parameter id="ka_glc6p_gs_phospho" value="0.09" units="mM"/>
+
+			<parameter id="vmax_lact" value="5.83e2" units="per_h"/>
+			<parameter id="km_lac_lact" value="2.42" units="mM"/>
+			<parameter id="km_lac_ext_lact" value="2.42" units="mM"/>
+
+			<parameter id="vmax_ldh" value="1.56e11" units="per_h_per_mM"/>
+			<parameter id="keq_ldh" value="9000" units="dimensionless"/>
+			<parameter id="km_lac_ldh" value="36" units="mM"/>
+			<parameter id="km_nad_ldh" value="0.11" units="mM"/>
+			<parameter id="km_pyr_ldh" value="0.15" units="mM"/>
+			<parameter id="km_nadh_ldh" value="0.015" units="mM"/>
+
+			<parameter id="km_p_mito_malt" value="1.41" units="mM"/>
+			<parameter id="km_mal_malt" value="0.49" units="mM"/>
+			<parameter id="km_p_malt" value="1.41" units="mM"/>
+			<parameter id="km_mal_mito_malt" value="0.49" units="mM"/>
+			<parameter id="vmax_malt" value="1.94e3" units="per_h_per_mM"/>
+
+			<parameter id="km_oa_mdh" value="0.088" units="mM"/>
+			<parameter id="km_nadh_mdh" value="0.026" units="mM"/>
+			<parameter id="km_nad_mdh" value="0.114" units="mM"/>
+			<parameter id="km_mal_mdh" value="1.1" units="mM"/>
+			<parameter id="keq_mdh" value="3e-5" units="dimensionless"/>
+			<parameter id="vmax_mdh" value="1.94e9" units="per_h_per_mM"/>
+
+			<parameter id="km_oa_mito_mdh_mito" value="0.017" units="mM"/>
+			<parameter id="km_nadh_mito_mdh_mito" value="0.044" units="mM"/>
+			<parameter id="km_nad_mito_mdh_mito" value="0.06" units="mM"/>
+			<parameter id="km_mal_mito_mdh_mito" value="0.33" units="mM"/>
+			<parameter id="keq_mdh_mito" value="3.1e-5" units="dimensionless"/>
+			<parameter id="vmax_mdh_mito" value="6.97e11" units="per_h_per_mM"/>
+
+			<parameter id="vmax_ndk_gtp" value="1.94e11" units="per_h_per_mM"/>
+			<parameter id="keq_ndk" value="1" units="dimensionless"/>
+			<parameter id="km_atp_ndk" value="1.33" units="mM"/>
+			<parameter id="km_gdp_ndk" value="3.1e-2" units="mM"/>
+			<parameter id="km_adp_ndk" value="4.2e-2" units="mM"/>
+			<parameter id="km_gtp_ndk" value="0.15" units="mM"/>
+
+			<parameter id="vmax_ndk_utp" value="1.94e7" units="per_h_per_mM"/>
+			<parameter id="km_udp_ndk" value="0.19" units="mM"/>
+			<parameter id="km_utp_ndk" value="16" units="mM"/>
+
+			<parameter id="vmax_ndk_gtp_mito" value="1.94e7" units="per_h_per_mM"/>
+			<parameter id="km_atp_mito_ndk" value="1.66" units="mM"/>
+			<parameter id="km_gdp_mito_ndk" value="0.036" units="mM"/>
+			<parameter id="km_adp_mito_ndk" value="0.073" units="mM"/>
+			<parameter id="km_gtp_mito_ndk" value="0.15" units="mM"/>
+
+			<parameter id="vmax_PC" value="3.59e3" units="mM_per_h"/>
+			<parameter id="keq_pc" value="6.55" units="dimensionless"/>
+			<parameter id="km_atp_mito_pc" value="0.14" units="mM"/>
+			<parameter id="km_pyr_mito_pc" value="0.33" units="mM"/>
+			<parameter id="km_co2_mito_pc" value="4.2" units="mM"/>
+
+			<parameter id="vmax_pepck" value="1.0e6" units="per_h_per_mM"/>
+			<parameter id="keq_pepck" value="110" units="mM"/>
+			<parameter id="km_oa_pepck" value="0.024" units="mM"/>
+			<parameter id="km_gtp_pepck" value="0.021" units="mM"/>
+			<parameter id="km_pep_pepck" value="0.4" units="mM"/>
+			<parameter id="km_gdp_pepck" value="0.02" units="mM"/>
+			<parameter id="km_co2_pepck" value="1.194" units="mM"/>
+
+			<parameter id="vmax_pepck_mito" value="1.41e6" units="per_h_per_mM"/>
+			<parameter id="keq_pepck_mito" value="160" units="mM"/>
+			<parameter id="km_oa_mito_pepck_mito" value="0.0085" units="mM"/>
+			<parameter id="km_gtp_mito_pepck_mito" value="0.022" units="mM"/>
+			<parameter id="km_pep_mito_pepck_mito" value="0.4" units="mM"/>
+			<parameter id="km_gdp_mito_pepck_mito" value="0.02" units="mM"/>
+			<parameter id="km_co2_mito_pepck_mito" value="1.06" units="mM"/>
+
+			<parameter id="vmax_pept" value="1.94e5" units="per_h"/>
+			<parameter id="km_pep_pept" value="0.1" units="mM"/>
+			<parameter id="km_pep_mito_pept" value="0.1" units="mM"/>
+
+			<parameter id="vmax_pfk1" value="7.68e4" units="mM_per_h"/>
+			<parameter id="ni_pfk1" value="4" units="dimensionless"/>
+
+			<parameter id="ka_fru26bp_pfk1_km_atp" value="0.0027" units="mM"/>
+			<parameter id="k0_atp_pfk1_km_atp" value="0.2" units="mM"/>
+
+			<parameter id="ki0_atp_pfk1" value="0.7" units="mM"/>
+			<parameter id="f_fru26bp_pfk1_ki_atp" value="9" units="dimensionless"/>
+			<parameter id="ka_fru26bp_pfk1_ki_atp" value="0.54" units="mM"/>
+
+			<parameter id="k0_fru6p_pfk1_km_fru6p" value="1.14" units="mM"/>
+			<parameter id="ki_atp_pfk1_km_fru6p" value="0.6" units="mM"/>
+			<parameter id="ki_cit_pfk1_km_fru6p" value="3.27" units="mM"/>
+			<parameter id="f_amp_pfk1_km_fru6p" value="0.77" units="dimensionless"/>
+			<parameter id="n_amp_pfk1_km_fru6p" value="1.84" units="dimensionless"/>
+			<parameter id="ka_amp_pfk1_km_fru6p" value="0.1" units="mM"/>
+			<parameter id="f_p_pfk1_km_fru6p" value="0.85" units="dimensionless"/>
+			<parameter id="ka_p_pfk1_km_fru6p" value="0.69" units="mM"/>
+			<parameter id="f_fru26bp_pfk1_km_fru6p" value="0.92" units="dimensionless"/>
+			<parameter id="n_fru26bp_pfk1_km_fru6p" value="1.2" units="dimensionless"/>
+			<parameter id="ka_fru26bp_pfk1_km_fru6p" value="0.0045" units="mM"/>
+
+			<parameter id="n0_pfk1_n_fru6p" value="3.67" units="dimensionless"/>
+			<parameter id="n_atp_pfk1_n_fru6p" value="1.59" units="dimensionless"/>
+			<parameter id="ki_atp_pfk1_n_fru6p" value="0.13" units="mM"/>
+			<parameter id="f_amp_pfk1_n_fru6p" value="0.4" units="dimensionless"/>
+			<parameter id="n_amp_pfk1_n_fru6p" value="2.22" units="dimensionless"/>
+			<parameter id="ka_amp_pfk1_n_fru6p" value="0.086" units="mM"/>
+			<parameter id="f_cit_pfk1_n_fru6p" value="0.1" units="dimensionless"/>
+			<parameter id="n_cit_pfk1_n_fru6p" value="4" units="dimensionless"/>
+			<parameter id="ki_cit_pfk1_n_fru6p" value="0.18" units="mM"/>
+			<parameter id="f_p_pfk1_n_fru6p" value="0.28" units="dimensionless"/>
+			<parameter id="n_p_pfk1_n_fru6p" value="4" units="dimensionless"/>
+			<parameter id="ka_p_pfk1_n_fru6p" value="0.53" units="mM"/>
+			<parameter id="f_fru26bp_pfk1_n_fru6p" value="0.37" units="dimensionless"/>
+			<parameter id="n_fru26bp_pfk1_n_fru6p" value="4" units="dimensionless"/>
+			<parameter id="ka_fru26bp_pfk1_n_fru6p" value="0.0021" units="mM"/>
+
+			<parameter id="vmax_pfk2" value="1.51e2" units="mM_per_h"/>
+			<parameter id="n_fru6p_pfk2_native" value="1.3" units="dimensionless"/>
+			<parameter id="km_fru6p_pfk2_native" value="0.015" units="mM"/>
+			<parameter id="km_atp_pfk2_native" value="0.25" units="mM"/>
+			<parameter id="n0_pfk2" value="0.85" units="dimensionless"/>
+			<parameter id="ki_pep_pfk2" value="0.25" units="mM"/>
+			<parameter id="n_fru6p_pfk2_phospho" value="2" units="dimensionless"/>
+			<parameter id="km_fru6p_pfk2_phospho" value="0.05" units="mM"/>
+			<parameter id="km_atp_pfk2_phospho" value="0.5" units="mM"/>
+
+			<parameter id="vmax_fbp2" value="5.49e2" units="mM_per_h"/>
+			<parameter id="km_fru26bp_fbp2_native" value="0.01" units="mM"/>
+			<parameter id="ki_fru6p_fbp2_native" value="0.0035" units="mM"/>
+			<parameter id="f_fbp2_phospho" value="1.0" units="dimensionless"/>
+			<parameter id="km_fru26bp_fbp2_phospho" value="0.0005" units="mM"/>
+			<parameter id="ki_fru6p_fbp2_phospho" value="0.01" units="mM"/>
+
+			<parameter id="vmax_pgk" value="1.94e10" units="per_h_per_mM"/>
+			<parameter id="keq_pgk" value="1830" units="dimensionless"/>
+			<parameter id="km_adp_pgk" value="0.35" units="mM"/>
+			<parameter id="km_bpg13_pgk" value="0.0022" units="mM"/>
+			<parameter id="km_atp_pgk" value="0.24" units="mM"/>
+			<parameter id="km_pg3_pgk" value="1.65" units="mM"/>
+
+			<parameter id="vmax_pgm" value="1.94e10" units="per_h"/>
+			<parameter id="keq_pgm" value="0.096" units="dimensionless"/>
+			<parameter id="km_pg3_pgm" value="0.52" units="mM"/>
+			<parameter id="km_pg2_pgm" value="0.24" units="mM"/>
+
+			<parameter id="vmax_pk" value="1.28e4" units="mM_per_h"/>
+			<parameter id="km_pep_pk_native" value="0.13" units="mM"/>
+			<parameter id="ki_atp_pk_native" value="1.0" units="mM"/>
+			<parameter id="ka_fru16bp_pk_native" value="0.0078" units="mM"/>
+			<parameter id="km_adp_pk_native" value="0.25" units="mM"/>
+			<parameter id="km_pep_pk_phospho" value="5.8" units="mM"/>
+			<parameter id="ki_atp_pk_phospho" value="0.32" units="mM"/>
+			<parameter id="ka_fru16bp_pk_phospho" value="0.0095" units="mM"/>
+			<parameter id="km_adp_pk_phospho" value="0.33" units="mM"/>
+			<parameter id="n_pk_phospho" value="2.9" units="dimensionless"/>
+
+			<parameter id="vmax_pyrmalt" value="1.94e4" units="per_h_per_mM"/>
+			<parameter id="km_mal_mito_pyrmalt" value="0.7" units="mM"/>
+			<parameter id="km_pyr_pyrmalt" value="0.84" units="mM"/>
+			<parameter id="km_mal_pyrmalt" value="0.7" units="mM"/>
+			<parameter id="km_pyr_mito_pyrmalt" value="0.84" units="mM"/>
+
+			<parameter id="vmax_pyrt" value="1.94e8" units="per_h_per_mM"/>
+			<parameter id="km_pyr_pyrt" value="0.15" units="mM"/>
+			<parameter id="km_pyr_mito_pyrt" value="0.15" units="mM"/>
+
+			<parameter id="vmax_tpi" value="1.94e8" units="per_h"/>
+			<parameter id="keq_tpi" value="0.04545" units="dimensionless"/>
+			<parameter id="km_dhap_tpi" value="0.59" units="mM"/>
+			<parameter id="km_gap_tpi" value="0.415" units="mM"/>
+
+			<parameter id="vmax_ugt" value="7.78e9" units="per_h_per_mM"/>
+			<parameter id="keq_ugt" value="0.3122" units="dimensionless"/>
+			<parameter id="km_utp_ugt" value="0.2" units="mM"/>
+			<parameter id="km_glc1p_ugt" value="0.055" units="mM"/>
+			<parameter id="km_udpglc_ugt" value="0.06" units="mM"/>
+			<parameter id="km_pp_ugt" value="0.084" units="mM"/>
+
+			<parameter id="ins0" value="3.10e-6" units="mM"/> 
+			<parameter id="n_ins" value="5.7" units="dimensionless"/>  
+			<parameter id="km_glc_ext_ins" value="7.7" units="mM"/> 
+
+			<parameter id="glucagon0" value="5.06e-7" units="mM"/> 
+			<parameter id="n_glucagon" value="5.65" units="dimensionless"/> 
+			<parameter id="km_glc_ext_glucagon" value="4.7" units="mM"/> 
+			<parameter id="glucagonb" value="4.0e-8" units="mM"/> 
+
+			<parameter id="n_ins_gamma" value="1.75" units="dimensionless"/> 
+			<parameter id="km_ins_gamma" value="7.0e-7" units="mM"/> 
+			<parameter id="n_glucagon_gamma" value="3.6" units="dimensionless"/> 
+			<parameter id="km_glucagon_gamma" value="8.0e-8" units="mM"/>
+			
+			<parameter id="ins" units="mM" constant="false"/>
+			<parameter id="glucagon" units="mM" constant="false"/>
+			<parameter id="gamma" units="dimensionless" constant="false"/>
+			<parameter id="gamma_fbp1" units="dimensionless" constant="false"/>
+			<parameter id="gamma_gp" units="dimensionless" constant="false"/>
+			<parameter id="gamma_gs" units="dimensionless" constant="false"/>
+			<parameter id="gamma_pfk2" units="dimensionless" constant="false"/>
+			<parameter id="gamma_fbp2" units="dimensionless" constant="false"/>
+			<parameter id="gamma_pk" units="dimensionless" constant="false"/>
+			
+			<parameter id="v_ALD" units="mM_per_h" constant="false"/>
+			<parameter id="v_EN" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_fbp1_native" units="dimensionless" constant="false"/>
+			<parameter id="v_fbp1_phospho" units="dimensionless" constant="false"/>
+			<parameter id="v_FBP1" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_GAPDH" units="mM_per_h" constant="false"/>
+			
+			<parameter id="vmax_gk" units="mM_per_h" constant="false"/>
+			<parameter id="v_GK" units="dimensionless" constant="false"/>
+			
+			<parameter id="v_GLUT2" units="mM_per_h" constant="false"/>
+			<parameter id="v_GLCT_ER" units="mM_per_h" constant="false"/>
+
+			<parameter id="vmax_gp" units="mM_per_h" constant="false"/>
+			<parameter id="vmax_gp_native" units="per_mMmM" constant="false"/>
+			<parameter id="km_glc1p_gp_native" units="mM" constant="false"/>
+			<parameter id="vmax_gp_phospho" units="per_mMmM" constant="false"/>
+			<parameter id="v_gp_native" units="dimensionless" constant="false"/>
+			<parameter id="v_gp_phospho" units="dimensionless" constant="false"/>
+			<parameter id="v_GP" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_G6P_ER" units="mM_per_h" constant="false"/>
+			<parameter id="v_GPI" units="mM_per_h" constant="false"/>
+			<parameter id="v_G1PI" units="mM_per_h" constant="false"/>
+			<parameter id="v_G6PT_ER" units="mM_per_h" constant="false"/>
+			
+			<parameter id="vmax_gs" units="mM_per_h" constant="false"/>
+			<parameter id="km_udpglc_gs_native" units="mM" constant="false"/>
+			<parameter id="km_udpglc_gs_phospho" units="mM" constant="false"/>
+			<parameter id="v_gs_native" units="dimensionless" constant="false"/>
+			<parameter id="v_gs_phospho" units="dimensionless" constant="false"/>
+			<parameter id="v_GS" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_LACT" units="mM_per_h" constant="false"/>
+			<parameter id="v_LDH" units="mM_per_h" constant="false"/>
+			<parameter id="v_MALT" units="mM_per_h" constant="false"/>
+			<parameter id="v_MDH" units="mM_per_h" constant="false"/>
+			<parameter id="v_MDH_mito" units="mM_per_h" constant="false"/>
+			<parameter id="v_NDK_GTP" units="mM_per_h" constant="false"/>
+			<parameter id="v_NDK_UTP" units="mM_per_h" constant="false"/>
+			<parameter id="v_NDK_GTP_mito" units="mM_per_h" constant="false"/>
+			<parameter id="v_PC" units="mM_per_h" constant="false"/>
+			<parameter id="v_PEPCK" units="mM_per_h" constant="false"/>
+			<parameter id="v_PEPCK_mito" units="mM_per_h" constant="false"/>
+
+			<parameter id="keq_pept" units="dimensionless" constant="false"/>
+			<parameter id="v_PEPT" units="mM_per_h" constant="false"/>
+			
+			<parameter id="km_atp_pfk1" units="mM" constant="false"/>
+			<parameter id="ki_atp_pfk1" units="mM" constant="false"/>
+			<parameter id="km_fru6p_pfk1" units="mM" constant="false"/>
+			<parameter id="n_fru6p_pfk1" units="dimensionless" constant="false"/>
+			<parameter id="v_PFK1" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_pfk2_native" units="mM_per_h" constant="false"/>
+			<parameter id="v_pfk2_phospho" units="mM_per_h" constant="false"/>
+			<parameter id="v_PFK2" units="mM_per_h" constant="false"/>
+			<parameter id="v_fbp2_native" units="mM_per_h" constant="false"/>
+			<parameter id="v_fbp2_phospho" units="mM_per_h" constant="false"/>
+			<parameter id="v_FBP2" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_PGK" units="mM_per_h" constant="false"/>
+			<parameter id="v_PGM" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_pk_native" units="dimensionless" constant="false"/>
+			<parameter id="v_pk_phospho" units="dimensionless" constant="false"/>
+			<parameter id="v_PK" units="mM_per_h" constant="false"/>
+			
+			<parameter id="v_PyrMalT" units="mM_per_h" constant="false"/>
+			<parameter id="v_PyrT" units="mM_per_h" constant="false"/>
+			<parameter id="v_TPI" units="mM_per_h" constant="false"/>
+			<parameter id="v_UGT" units="mM_per_h" constant="false"/>
+			
+			</listOfParameters>
+
+		
+		<listOfRules>
+
+	<assignmentRule variable="ins">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/><ci> ins0 </ci> 
+				<apply> <divide/><apply> <power/> <ci> glc_ext </ci> <ci> n_ins </ci>   </apply>
+					<apply> <plus/> <apply> <power/> <ci> glc_ext </ci> <ci> n_ins </ci>   </apply><apply> <power/> <ci> km_glc_ext_ins </ci> <ci> n_ins </ci>   </apply>   </apply>  </apply>   </apply>  
+		</math>
+	</assignmentRule>
+		
+		<assignmentRule variable="glucagon">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <plus/><apply> <times/> <ci> glucagon0 </ci> 
+				<apply> <minus/> <ci> ONE </ci> <apply> <divide/> <apply> <power/> <ci> glc_ext </ci> <ci> n_glucagon </ci>   </apply> 
+					<apply> <plus/> <apply> <power/>  <ci> glc_ext </ci> <ci> n_glucagon </ci>  </apply><apply> <power/> <ci> km_glc_ext_glucagon </ci> <ci> n_glucagon </ci>   </apply>   </apply> </apply> </apply> </apply>
+				<ci> glucagonb </ci>  </apply>  
+		</math>
+	</assignmentRule>	
+		
+		<assignmentRule variable="gamma">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> O5 </ci> <apply> <plus/> <ci> ONE </ci><apply> <minus/>
+					<apply> <divide/> <apply> <power/> <ci> glucagon </ci> <ci> n_glucagon_gamma </ci>   </apply> <apply> <plus/><apply> <power/> <ci> glucagon </ci> <ci> n_glucagon_gamma </ci>   </apply><apply> <power/> <ci> km_glucagon_gamma </ci> <ci> n_glucagon_gamma </ci>   </apply>    </apply></apply>
+					<apply> <divide/> <apply> <power/> <ci> ins </ci> <ci> n_ins_gamma </ci>   </apply> <apply> <plus/><apply> <power/> <ci> ins </ci> <ci> n_ins_gamma </ci>   </apply><apply> <power/> <ci> km_ins_gamma </ci> <ci> n_ins_gamma </ci>   </apply>    </apply></apply>
+					</apply></apply> </apply>  
+		</math>
+	</assignmentRule>
+		
+		<assignmentRule variable="gamma_fbp1">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> gamma </ci>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="gamma_gp">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> gamma </ci>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="gamma_gs">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> gamma </ci>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="gamma_pfk2">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> gamma </ci>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="gamma_fbp2">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> gamma </ci>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="gamma_pk">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> gamma </ci>  
+		</math>
+	</assignmentRule>
+	
+	<assignmentRule variable="v_ALD">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_ald </ci>
+				<apply> <divide/> 
+					<apply> <minus/> <ci> fru16bp </ci> <apply> <divide/> <apply> <times/> <ci> gap </ci> <ci> dhap </ci>  </apply> <ci> keq_ald </ci> </apply> </apply>
+					<apply> <minus/>
+						<apply> <plus/>
+							<apply> <plus/>
+								<ci> ONE </ci>
+								<apply> <divide/> <ci> fru16bp </ci> <ci> km_fru16bp_ald </ci> </apply></apply>
+							<apply> <times/>
+								<apply> <plus/><ci> ONE </ci>  <apply> <divide/> <ci> gap </ci> <ci> km_gap_ald </ci> </apply>  </apply>
+								<apply> <plus/><ci> ONE </ci>  <apply> <divide/> <ci> dhap </ci> <ci> km_dhap_ald </ci> </apply>  </apply>   </apply></apply> 
+						<ci> ONE </ci> </apply> </apply></apply>  
+		</math>
+	</assignmentRule>
+
+	
+	<assignmentRule variable="v_EN">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_en </ci> 
+				<apply> <divide/>
+					<apply> <minus/> <ci> pg2 </ci> <apply> <divide/> <ci> pep </ci><ci> keq_en </ci> </apply> </apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> pg2 </ci><ci> km_pg2_en </ci> </apply><apply> <divide/> <ci> pep </ci><ci> km_pep_en </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_fbp1_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <divide/> <apply> <divide/> <ci> fru16bp </ci> <apply> <plus/> <ci> fru16bp </ci><ci> km_fru16bp_fbp1_native </ci>   </apply> </apply> 
+				<apply> <times/> <apply> <plus/><ci> ONE </ci> <apply> <power/> <apply> <divide/> <ci> fru26bp </ci><ci> ki_fru26bp_fbp1 </ci> </apply>  <ci> n_fbp1 </ci></apply>   </apply> <apply> 
+					<plus/><ci> ONE </ci><apply> <power/> <apply> <divide/><ci> amp </ci><ci> ki_amp_fbp1 </ci>  </apply>  <ci> n_amp_fbp1 </ci></apply>    </apply> </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_fbp1_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <divide/> 
+				<apply> <divide/> <ci> fru16bp </ci> <apply> <plus/> <ci> fru16bp </ci><ci> km_fru16bp_fbp1_phospho </ci>   </apply> </apply> 
+				<apply> <times/> <apply> <plus/><ci> ONE </ci> <apply> <power/> <apply> <divide/> <ci> fru26bp </ci><ci> ki_fru26bp_fbp1 </ci> </apply>  <ci> n_fbp1 </ci></apply>   </apply> <apply> 
+					<plus/><ci> ONE </ci><apply> <power/> <apply> <divide/><ci> amp </ci><ci> ki_amp_fbp1 </ci>  </apply>  <ci> n_amp_fbp1 </ci></apply>    </apply> </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_FBP1">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_fbp1 </ci> <apply> <plus/>  <apply> <times/> <apply> <minus/> <ci> ONE </ci> <ci> gamma_fbp1 </ci> </apply> <ci> v_fbp1_native </ci> </apply><apply> <times/> <ci> gamma_fbp1 </ci><ci> v_fbp1_phospho </ci>  </apply>  </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_GAPDH">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_gapdh </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> nad </ci><ci> gap </ci><ci> p </ci>  </apply> 
+						<apply> <times/> <ci> bpg13 </ci> <apply> <divide/> <ci> nadh </ci><ci> keq_gapdh </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> nad </ci><ci> km_nad_gapdh </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> gap </ci><ci> km_gap_gapdh </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> p </ci>  <ci> km_p_gapdh </ci> </apply>   </apply>  </apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> nadh </ci><ci> km_nadh_gapdh </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> bpg13 </ci><ci> km_bpg13_gapdh </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="vmax_gk">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> v0_gk </ci> 
+				<apply> <divide/> <apply> <power/> <ci> glc </ci><ci> n2_gk </ci>  </apply> <apply> <plus/> <apply> <power/> <ci> glc </ci><ci> n2_gk </ci>  </apply><apply> <power/> <ci> ka_glc_gk </ci><ci> n2_gk </ci> </apply>   </apply> </apply> 
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> f_gk </ci> <apply> <divide/> <ci> fru6p </ci> <apply> <plus/>  <ci> fru6p </ci><ci> ki_fru6p_gk </ci>  </apply> </apply> </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_GK">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_gk </ci>
+				<apply> <divide/> <ci> atp </ci> <apply> <plus/>  <ci> atp </ci><ci> km_atp_gk </ci>  </apply></apply>
+				<apply> <divide/> <apply> <power/> <ci> glc </ci><ci> n_gk </ci>  </apply> <apply> <plus/> <apply> <power/> <ci> glc </ci><ci> n_gk </ci>  </apply><apply> <power/> <ci> km_glc_gk </ci><ci> n_gk </ci>  </apply>   </apply> </apply></apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_GLUT2">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_glut2 </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> glc_ext </ci><ci> glc </ci> </apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> glc_ext </ci><ci> km_glc_ext_glut2 </ci> </apply><apply> <divide/> <ci> glc </ci><ci> km_glc_glut2 </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_GLCT_ER">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_glct_er </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> glc </ci><ci> glc_er </ci> </apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> glc </ci><ci> km_glc_glct_er </ci> </apply><apply> <divide/> <ci> glc_er </ci><ci> km_glc_er_glct </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="vmax_gp">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> v0_gp </ci> <apply> <divide/> <ci> glyglc </ci><ci> store </ci> </apply> </apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="vmax_gp_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <divide/> <apply> <divide/> <ci> amp </ci><apply> <plus/> <ci> amp </ci><ci> ka_amp_gp_native </ci>   </apply> </apply> <apply> <times/>  <ci> km_glyglc_gp_native </ci><ci> km_p_gp_native </ci> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="km_glc1p_gp_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> k0_glc1p_gp </ci> <apply> <minus/> <ci> ONE </ci> <apply> <divide/> <ci> amp </ci> <apply> <plus/> <ci> amp </ci><ci> ka_amp_glc1p_gp </ci> </apply></apply> </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="vmax_gp_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <divide/> <apply> <divide/> <ci> amp </ci><apply> <plus/> <ci> amp </ci><ci> ka_amp_gp_phospho </ci>   </apply> </apply> <apply> <times/>  <ci> km_glyglc_gp_phospho </ci><ci> km_p_gp_phospho </ci> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_gp_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/><ci> vmax_gp_native </ci>
+				<apply> <divide/> 
+					<apply> <minus/>  <apply> <times/> <ci> glyglc </ci><ci> p </ci>  </apply> <apply> <divide/> <ci> glc1p </ci><ci> keq_gp </ci> </apply></apply>
+					<apply> <minus/>  <apply> <plus/>
+						<apply> <times/> <apply> <plus/> <ci> ONE </ci><apply> <divide/> <ci> glyglc </ci><ci> km_glyglc_gp_native </ci> </apply>   </apply><apply> <plus/> <ci> ONE </ci><apply> <divide/> <ci> p </ci><ci> km_p_gp_native </ci> </apply>   </apply>  </apply>
+						<apply> <plus/><ci> ONE </ci><apply> <divide/> <ci> glc1p </ci><ci> km_glc1p_gp_native </ci> </apply>    </apply>
+						</apply> <ci> ONE </ci> </apply></apply>   </apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_gp_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/><ci> vmax_gp_phospho </ci>
+				<apply> <divide/> 
+					<apply> <minus/>  <apply> <times/> <ci> glyglc </ci><ci> p </ci>  </apply> <apply> <divide/> <ci> glc1p </ci><ci> keq_gp </ci> </apply></apply>
+					<apply> <minus/>  <apply> <plus/>
+						<apply> <times/> <apply> <plus/> <ci> ONE </ci><apply> <divide/> <ci> glyglc </ci><ci> km_glyglc_gp_phospho </ci> </apply>   </apply><apply> <plus/> <ci> ONE </ci><apply> <divide/> <ci> p </ci><ci> km_p_gp_phospho </ci> </apply>   </apply>  </apply>
+						<apply> <plus/><ci> ONE </ci><apply> <divide/> <ci> glc1p </ci><ci> km_glc1p_gp_phospho </ci> </apply>    </apply>
+						</apply> <ci> ONE </ci> </apply></apply>   </apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_GP">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_gp </ci> <apply> <plus/>  <apply> <times/> <apply> <minus/> <ci> ONE </ci> <ci> gamma_gp </ci> </apply> <ci> v_gp_native </ci> </apply><apply> <times/> <ci> gamma_gp </ci><ci> v_gp_phospho </ci>  </apply>  </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_G6P_ER">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_g6p_er </ci><apply> <divide/> <ci> glc6p_er </ci> <apply> <plus/>  <ci> glc6p_er </ci><ci> km_glc6p_er_g6p_er </ci>  </apply></apply></apply>
+		</math>
+	</assignmentRule>	
+	<assignmentRule variable="v_GPI">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_gpi </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> glc6p </ci><apply><divide/><ci> fru6p </ci><ci> keq_gpi </ci> </apply></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> glc6p </ci><ci> km_glc6p_gpi </ci> </apply><apply> <divide/> <ci> fru6p </ci><ci> km_fru6p_gpi </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_G1PI">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_g1pi </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> glc1p </ci><apply><divide/><ci> glc6p </ci><ci> keq_g1pi </ci> </apply></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> glc6p </ci><ci> km_glc6p_g1pi </ci> </apply><apply> <divide/> <ci> glc1p </ci><ci> km_glc1p_g1pi </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_G6PT_ER">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_g6pt_er </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> glc6p </ci><ci> glc6p_er </ci></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> glc6p </ci><ci> km_glc6p_g6pt_er </ci> </apply><apply> <divide/> <ci> glc6p_er </ci><ci> km_glc6p_er_g6pt_er </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="vmax_gs">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> v0_gs </ci> <apply> <divide/> <apply> <minus/> <ci> store </ci><ci> glyglc </ci>  </apply> 
+				<apply> <plus/> <apply> <minus/>  <ci> store </ci><ci> glyglc </ci> </apply> <apply> <times/> <ci> store </ci><ci> O1</ci>  </apply>  </apply></apply>
+	 </apply>
+	  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="km_udpglc_gs_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <plus/> <ci> kb_udpglc_gs_native </ci>  <apply> <times/> <ci> k0_udpglc_gs_native </ci> 
+				<apply> <minus/> <ci> ONE </ci> <apply> <divide/> <ci> glc6p </ci> <apply> <plus/> <ci> glc6p </ci><ci> ka_glc6p_gs_native </ci>   </apply> </apply> </apply>  </apply> </apply>  
+		</math>
+	</assignmentRule>	
+	<assignmentRule variable="km_udpglc_gs_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <plus/> <ci> kb_udpglc_gs_phospho </ci>  <apply> <times/> <ci> k0_udpglc_gs_phospho </ci> 
+				<apply> <minus/> <ci> ONE </ci> <apply> <divide/> <ci> glc6p </ci> <apply> <plus/> <ci> glc6p </ci><ci> ka_glc6p_gs_phospho </ci>   </apply> </apply> </apply>  </apply> </apply>  
+		</math>
+	</assignmentRule>	
+	<assignmentRule variable="v_gs_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <divide/> <ci> udpglc </ci> <apply> <plus/> <ci> udpglc </ci><ci> km_udpglc_gs_native </ci>   </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_gs_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <divide/> <ci> udpglc </ci> <apply> <plus/> <ci> udpglc </ci><ci> km_udpglc_gs_phospho </ci>   </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_GS">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_gs </ci> <apply> <plus/>  <apply> <times/> <apply> <minus/> <ci> ONE </ci> <ci> gamma_gs </ci> </apply> <ci> v_gs_native </ci> </apply><apply> <times/> <ci> gamma_gs </ci><ci> v_gs_phospho </ci>  </apply>  </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_LACT">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_lact </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> lac_ext </ci><ci> lac </ci></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> lac </ci><ci> km_lac_lact </ci> </apply><apply> <divide/> <ci> lac_ext </ci><ci> km_lac_ext_lact </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_LDH">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_ldh </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> pyr </ci><ci> nadh </ci>  </apply> 
+						<apply> <times/> <ci> lac </ci> <apply> <divide/> <ci> nad </ci><ci> keq_ldh </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> nadh </ci><ci> km_nadh_ldh </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> pyr </ci><ci> km_pyr_ldh </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> nad </ci><ci> km_nad_ldh </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> lac </ci><ci> km_lac_ldh </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_MALT">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_malt </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> mal_mito </ci><ci> p </ci>  </apply> 
+						<apply> <times/> <ci> mal </ci>  <ci> p_mito </ci> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> mal_mito </ci><ci> km_mal_mito_malt </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> p </ci><ci> km_p_malt </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> mal </ci><ci> km_mal_malt </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> p_mito </ci><ci> km_p_mito_malt </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_MDH">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_mdh </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> mal </ci><ci> nad </ci>  </apply> 
+						<apply> <times/> <ci> oa </ci> <apply> <divide/> <ci> nadh </ci><ci> keq_mdh </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> mal </ci><ci> km_mal_mdh </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> nad </ci><ci> km_nad_mdh </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> nadh </ci><ci> km_nadh_mdh </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> oa </ci><ci> km_oa_mdh </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_MDH_mito">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_mdh_mito </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> mal_mito </ci><ci> nad_mito </ci>  </apply> 
+						<apply> <times/> <ci> oa_mito </ci> <apply> <divide/> <ci> nadh_mito </ci><ci> keq_mdh_mito </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> mal_mito </ci><ci> km_mal_mito_mdh_mito </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> nad_mito </ci><ci> km_nad_mito_mdh_mito </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> nadh_mito </ci><ci> km_nadh_mito_mdh_mito </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> oa_mito </ci><ci> km_oa_mito_mdh_mito </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_NDK_GTP">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_ndk_gtp </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> atp </ci><ci> gdp </ci>  </apply> 
+						<apply> <times/> <ci> gtp </ci> <apply> <divide/> <ci> adp </ci><ci> keq_ndk </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> atp </ci><ci> km_atp_ndk </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> gdp </ci><ci> km_gdp_ndk </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> adp </ci><ci> km_adp_ndk </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> gtp </ci><ci> km_gtp_ndk </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_NDK_UTP">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_ndk_utp </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> atp </ci><ci> udp </ci>  </apply> 
+						<apply> <times/> <ci> utp </ci> <apply> <divide/> <ci> adp </ci><ci> keq_ndk </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> atp </ci><ci> km_atp_ndk </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> udp </ci><ci> km_udp_ndk </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> adp </ci><ci> km_adp_ndk </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> utp </ci><ci> km_utp_ndk </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_NDK_GTP_mito">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_ndk_gtp_mito </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> atp_mito </ci><ci> gdp_mito </ci>  </apply> 
+						<apply> <times/> <ci> gtp_mito </ci> <apply> <divide/> <ci> adp_mito </ci><ci> keq_ndk </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> atp_mito </ci><ci> km_atp_mito_ndk </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> gdp_mito </ci><ci> km_gdp_mito_ndk </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> adp_mito </ci><ci> km_adp_mito_ndk </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> gtp_mito </ci><ci> km_gtp_mito_ndk </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PC">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_PC </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> atp_mito </ci><ci> pyr_mito </ci><ci> co2_mito </ci>  </apply> 
+						<apply> <times/> <ci> oa_mito </ci><ci> adp_mito </ci> <apply> <divide/> <ci> p_mito </ci><ci> keq_pc </ci> </apply> </apply>  </apply>
+					<apply> <times/> 
+						<apply> <plus/> <ci> atp_mito </ci><ci> km_atp_mito_pc </ci>   </apply>
+						<apply> <plus/> <ci> pyr_mito </ci><ci> km_pyr_mito_pc </ci>   </apply>
+						<apply> <plus/> <ci> co2_mito </ci><ci> km_co2_mito_pc </ci>   </apply>  </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PEPCK">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_pepck </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> oa </ci><ci> gtp </ci>  </apply> 
+						<apply> <times/> <ci> pep </ci><ci> gdp </ci> <apply> <divide/> <ci> co2 </ci><ci> keq_pepck </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> oa </ci><ci> km_oa_pepck </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> gtp </ci><ci> km_gtp_pepck </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> pep </ci><ci> km_pep_pepck </ci> </apply>   </apply>
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> gdp </ci><ci> km_gdp_pepck </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> co2 </ci><ci> km_co2_pepck </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PEPCK_mito">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_pepck_mito </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> oa_mito </ci><ci> gtp_mito </ci>  </apply> 
+						<apply> <times/> <ci> pep_mito </ci><ci> gdp_mito </ci> <apply> <divide/> <ci> co2_mito </ci><ci> keq_pepck_mito </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> oa_mito </ci><ci> km_oa_mito_pepck_mito </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> gtp_mito </ci><ci> km_gtp_mito_pepck_mito </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> pep_mito </ci><ci> km_pep_mito_pepck_mito </ci> </apply>   </apply>
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> gdp_mito </ci><ci> km_gdp_mito_pepck_mito </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> co2_mito </ci><ci> km_co2_mito_pepck_mito </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="keq_pept">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <exp/> <apply> <times/><ci> M1 </ci> <apply> <divide/> <apply> <times/><ci> Vmm </ci> <ci> F </ci>    </apply><apply> <times/> <ci> R </ci> <ci> T </ci>   </apply> </apply>  </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PEPT">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_pept </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> pep_mito </ci><apply><divide/><ci> pep </ci><ci> keq_pept </ci> </apply></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> pep </ci><ci> km_pep_pept </ci> </apply><apply> <divide/> <ci> pep_mito </ci><ci> km_pep_mito_pept </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="km_atp_pfk1">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> k0_atp_pfk1_km_atp </ci>
+				 <apply> <divide/> <ci> fru26bp </ci> <apply> <plus/> <ci> fru26bp </ci><ci> ka_fru26bp_pfk1_km_atp </ci>   </apply></apply></apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="ki_atp_pfk1">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> ki0_atp_pfk1 </ci> 
+				<apply> <plus/><ci> ONE </ci> <apply> <times/> <ci> f_fru26bp_pfk1_ki_atp </ci>
+						<apply> <divide/><ci> fru26bp </ci> <apply> <plus/> <ci> fru26bp </ci><ci> ka_fru26bp_pfk1_ki_atp </ci>   </apply> </apply> </apply>   </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="km_fru6p_pfk1">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> k0_fru6p_pfk1_km_fru6p </ci>
+				<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> atp </ci><ci> ki_atp_pfk1_km_fru6p </ci> </apply>  </apply>
+				<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> cit </ci><ci> ki_cit_pfk1_km_fru6p </ci> </apply>  </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> f_amp_pfk1_km_fru6p </ci> <apply> <divide/> <apply> <power/> <ci> amp </ci><ci> n_amp_pfk1_km_fru6p </ci>  </apply> <apply> <plus/> <apply> <power/> <ci> amp </ci><ci> n_amp_pfk1_km_fru6p </ci>  </apply><apply> <power/> <ci> ka_amp_pfk1_km_fru6p </ci><ci> n_amp_pfk1_km_fru6p </ci>  </apply>   </apply></apply> </apply> </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> f_p_pfk1_km_fru6p </ci> <apply> <divide/> <ci> p </ci> <apply> <plus/> <ci> p </ci><ci> ka_p_pfk1_km_fru6p </ci>   </apply></apply> </apply> </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> f_fru26bp_pfk1_km_fru6p </ci> <apply> <divide/> <apply> <power/> <ci> fru26bp </ci><ci> n_fru26bp_pfk1_km_fru6p </ci>  </apply> <apply> <plus/> <apply> <power/>  <ci> fru26bp </ci><ci> n_fru26bp_pfk1_km_fru6p </ci> </apply><apply> <power/> <ci> ka_fru26bp_pfk1_km_fru6p </ci><ci> n_fru26bp_pfk1_km_fru6p </ci>  </apply>   </apply></apply> </apply> </apply>
+				</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="n_fru6p_pfk1">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>
+				<apply> <plus/> <ci> n0_pfk1_n_fru6p </ci> <apply> <divide/> <apply> <power/> <ci> atp </ci><ci> n_atp_pfk1_n_fru6p </ci>  </apply>
+						<apply> <plus/> <apply> <power/> <ci> atp </ci><ci> n_atp_pfk1_n_fru6p </ci>  </apply><apply> <power/>  <ci> ki_atp_pfk1_n_fru6p </ci><ci> n_atp_pfk1_n_fru6p </ci> </apply>   </apply> </apply>  </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> f_amp_pfk1_n_fru6p </ci><apply> <divide/> <apply> <power/> <ci> amp </ci><ci> n_amp_pfk1_n_fru6p </ci>  </apply>
+						<apply> <plus/> <apply> <power/> <ci> amp   </ci><ci>n_amp_pfk1_n_fru6p </ci> </apply><apply> <power/>  <ci> ka_amp_pfk1_n_fru6p </ci><ci> n_amp_pfk1_n_fru6p </ci> </apply>   </apply> </apply>  </apply> </apply>
+				<apply> <plus/> <ci>  ONE </ci> <apply> <times/> <ci> f_cit_pfk1_n_fru6p </ci><apply> <divide/> <apply> <power/> <ci> cit </ci><ci> n_cit_pfk1_n_fru6p </ci>  </apply>
+						<apply> <plus/> <apply> <power/> <ci> cit </ci><ci> n_cit_pfk1_n_fru6p </ci>  </apply><apply> <power/>  <ci> ki_cit_pfk1_n_fru6p </ci><ci> n_cit_pfk1_n_fru6p </ci> </apply>   </apply> </apply>  </apply>  </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> f_p_pfk1_n_fru6p </ci><apply> <divide/> <apply> <power/> <ci> p </ci><ci> n_p_pfk1_n_fru6p </ci>  </apply>
+						<apply> <plus/> <apply> <power/> <ci> p </ci><ci> n_p_pfk1_n_fru6p </ci>  </apply><apply> <power/>  <ci> ka_p_pfk1_n_fru6p </ci><ci> n_p_pfk1_n_fru6p </ci> </apply>   </apply> </apply>  </apply> </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> f_fru26bp_pfk1_n_fru6p </ci><apply> <divide/> <apply> <power/> <ci> fru26bp </ci><ci> n_fru26bp_pfk1_n_fru6p </ci>  </apply>
+						<apply> <plus/> <apply> <power/> <ci> fru26bp </ci><ci> n_fru26bp_pfk1_n_fru6p </ci>  </apply><apply> <power/>  <ci> ka_fru26bp_pfk1_n_fru6p </ci><ci> n_fru26bp_pfk1_n_fru6p </ci> </apply>   </apply> </apply>  </apply> </apply>
+				</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PFK1">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/><ci> vmax_pfk1 </ci>
+				<apply> <divide/> <ci> atp </ci> <apply> <plus/> <ci> atp </ci><ci> km_atp_pfk1 </ci>   </apply></apply>
+				<apply> <minus/> <ci> ONE </ci><apply> <divide/> <apply> <power/> <ci> atp </ci><ci> ni_pfk1 </ci>  </apply> 
+					<apply> <plus/> <apply> <power/> <ci> atp </ci><ci> ni_pfk1 </ci>  </apply> <apply> <power/> <ci> ki_atp_pfk1 </ci><ci> ni_pfk1 </ci>  </apply>  </apply></apply> </apply>
+				<apply> <divide/> <apply> <power/> <ci> fru6p </ci><ci> n_fru6p_pfk1 </ci>  </apply>
+					<apply> <plus/> <apply> <power/> <ci> fru6p </ci><ci> n_fru6p_pfk1 </ci>  </apply> <apply> <power/> <ci> km_fru6p_pfk1 </ci><ci> n_fru6p_pfk1 </ci>  </apply>  </apply></apply></apply>
+	  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_pfk2_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>
+				<apply> <divide/> <apply> <power/> <ci> fru6p </ci><ci> n_fru6p_pfk2_native </ci>  </apply> <apply> <plus/> <apply> <power/> <ci> fru6p </ci><ci> n_fru6p_pfk2_native </ci>  </apply><apply> <power/> <ci> km_fru6p_pfk2_native </ci><ci> n_fru6p_pfk2_native </ci>  </apply>   </apply> </apply>
+				<apply> <divide/> <ci> atp </ci> <apply> <plus/> <ci> atp </ci><ci> km_atp_pfk2_native </ci>   </apply> </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> n0_pfk2 </ci> <apply> <divide/><ci> pep </ci> <apply> <plus/> <ci> pep </ci><ci> ki_pep_pfk2 </ci>   </apply> </apply> </apply> </apply></apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_pfk2_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+		<apply> <times/>
+				<apply> <divide/> <apply> <power/> <ci> fru6p </ci><ci> n_fru6p_pfk2_phospho </ci>  </apply> <apply> <plus/> <apply> <power/> <ci> fru6p </ci><ci> n_fru6p_pfk2_phospho </ci>  </apply><apply> <power/> <ci> km_fru6p_pfk2_phospho </ci><ci> n_fru6p_pfk2_phospho </ci>  </apply>   </apply> </apply>
+				<apply> <divide/> <ci> atp </ci> <apply> <plus/> <ci> atp </ci><ci> km_atp_pfk2_phospho </ci>   </apply> </apply>
+				<apply> <minus/> <ci> ONE </ci> <apply> <times/> <ci> n0_pfk2 </ci> <apply> <divide/><ci> pep </ci> <apply> <plus/> <ci> pep </ci><ci> ki_pep_pfk2 </ci>   </apply> </apply> </apply> </apply></apply>            
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PFK2">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_pfk2 </ci> <apply> <plus/>  <apply> <times/> <apply> <minus/> <ci> ONE </ci> <ci> gamma_pfk2 </ci> </apply> <ci> v_pfk2_native </ci> </apply><apply> <times/> <ci> gamma_pfk2 </ci><ci> v_pfk2_phospho </ci>  </apply>  </apply>  </apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_fbp2_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <divide/> <apply> <divide/> <ci> fru26bp </ci> <apply> <plus/> <ci> fru26bp </ci><ci> km_fru26bp_fbp2_native </ci>   </apply></apply><apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> fru6p </ci><ci> ki_fru6p_fbp2_native </ci> </apply>   </apply> </apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_fbp2_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> f_fbp2_phospho </ci><apply> <divide/> <apply> <divide/> <ci> fru26bp </ci> <apply> <plus/> <ci> fru26bp </ci><ci> km_fru26bp_fbp2_phospho </ci>   </apply></apply><apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> fru6p </ci><ci> ki_fru6p_fbp2_phospho </ci> </apply>   </apply> </apply>  </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_FBP2">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_fbp2 </ci> <apply> <plus/>  <apply> <times/> <apply> <minus/> <ci> ONE </ci> <ci> gamma_fbp2 </ci> </apply> <ci> v_fbp2_native </ci> </apply><apply> <times/> <ci> gamma_fbp2 </ci><ci> v_fbp2_phospho </ci>  </apply>  </apply>  </apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PGK">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_pgk </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> adp </ci><ci> bpg13 </ci>  </apply> 
+						<apply> <times/> <ci> atp </ci> <apply> <divide/> <ci> pg3 </ci><ci> keq_pgk </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> adp </ci><ci> km_adp_pgk </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> bpg13 </ci><ci> km_bpg13_pgk </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> atp </ci><ci> km_atp_pgk </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> pg3 </ci><ci> km_pg3_pgk </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PGM">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_pgm </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> pg3 </ci><apply><divide/><ci> pg2 </ci><ci> keq_pgm </ci> </apply></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> pg3 </ci><ci> km_pg3_pgm </ci> </apply><apply> <divide/> <ci> pg2 </ci><ci> km_pg2_pgm </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_pk_native">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> 
+				<apply> <divide/><ci> pep </ci> 
+					<apply> <plus/> <ci> pep </ci> <apply> <times/> <ci> km_pep_pk_native </ci> 
+															<apply> <plus/><ci> ONE </ci><apply> <divide/> <ci> atp </ci><ci> ki_atp_pk_native </ci> </apply>    </apply> 
+															<apply> <minus/><ci> ONE </ci> <apply> <divide/> <ci> fru16bp </ci><apply> <plus/>  <ci> fru16bp </ci><ci> ka_fru16bp_pk_native </ci>  </apply> </apply>  </apply> </apply></apply> </apply>
+				<apply> <divide/> <ci> adp </ci>  <apply> <plus/> <ci> adp </ci><ci> km_adp_pk_native </ci>   </apply> </apply></apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_pk_phospho">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> 
+				<apply> <divide/>
+					<apply> <power/> 
+						<ci> pep </ci> 
+						<ci> n_pk_phospho </ci> 
+					</apply>
+					<apply> <plus/>
+						<apply> <power/>
+							<ci> pep </ci> 
+							<ci> n_pk_phospho </ci> 
+						</apply>
+						<apply> <power/>
+							<apply> <times/> 
+								<ci> km_pep_pk_phospho </ci> 
+								<apply> <plus/>
+									<ci> ONE </ci>
+									<apply> <divide/> 
+										<ci> atp </ci>
+										<ci> ki_atp_pk_phospho </ci> 
+									</apply>
+								</apply> 
+								<apply> <minus/>
+									<ci> ONE </ci>
+									<apply> <divide/>
+										<ci> fru16bp </ci>
+										<apply> <plus/>
+											<ci> fru16bp </ci>
+											<ci> ka_fru16bp_pk_phospho </ci> 
+										</apply> 
+									</apply>  
+								</apply>
+							</apply>
+							<ci> n_pk_phospho </ci>
+						</apply>
+					</apply> 
+				</apply>
+				<apply> <divide/>
+					<ci> adp </ci>
+					<apply> <plus/> 
+						<ci> adp </ci>
+						<ci> km_adp_pk_phospho </ci>
+					</apply> 
+				</apply>
+			</apply>  
+			  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PK">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_pk </ci> <apply> <plus/>  <apply> <times/> <apply> <minus/> <ci> ONE </ci> <ci> gamma_pk </ci> </apply> <ci> v_pk_native </ci> </apply><apply> <times/> <ci> gamma_pk </ci><ci> v_pk_phospho </ci>  </apply>  </apply>  </apply>
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PyrMalT">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_pyrmalt </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> mal_mito </ci><ci> pyr </ci>  </apply> 
+						<apply> <times/> <ci> mal </ci>  <ci> pyr_mito </ci> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> mal_mito </ci><ci> km_mal_mito_pyrmalt </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> pyr </ci><ci> km_pyr_pyrmalt </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> mal </ci><ci> km_mal_pyrmalt </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> pyr_mito </ci><ci> km_pyr_mito_pyrmalt </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_PyrT">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_pyrt </ci> 
+				<apply> <divide/> <apply> <minus/>  <apply> <times/> <ci> pyr </ci><ci> h </ci> </apply><apply> <times/> <ci> pyr_mito </ci> <ci> h_mito </ci> </apply></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> pyr </ci><ci> km_pyr_pyrt </ci> </apply><apply> <divide/> <ci> pyr_mito </ci><ci> km_pyr_mito_pyrt </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_TPI">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/> <ci> vmax_tpi </ci> 
+				<apply> <divide/> <apply> <minus/>  <ci> dhap </ci><apply><divide/><ci> gap </ci><ci> keq_tpi </ci> </apply></apply> 
+					<apply> <plus/> <ci> ONE </ci> <apply> <divide/> <ci> dhap </ci><ci> km_dhap_tpi </ci> </apply><apply> <divide/> <ci> gap </ci><ci> km_gap_tpi </ci> </apply>  </apply> </apply> </apply>  
+		</math>
+	</assignmentRule>
+	<assignmentRule variable="v_UGT">	
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<apply> <times/>  <ci> vmax_ugt </ci>
+				<apply> <divide/> 
+					<apply> <minus/> 
+						<apply> <times/> <ci> utp </ci><ci> glc1p </ci>  </apply> 
+						<apply> <times/> <ci> udpglc </ci> <apply> <divide/> <ci> pp </ci><ci> keq_ugt </ci> </apply> </apply>  </apply>
+					<apply> <minus/> <apply> <plus/>  
+						<apply> <times/> 
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> utp </ci><ci> km_utp_ugt </ci> </apply>  </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> glc1p </ci><ci> km_glc1p_ugt </ci> </apply>   </apply></apply>
+						<apply> <times/> 
+							<apply>	<plus/><ci> ONE </ci> <apply> <divide/> <ci> udpglc </ci><ci> km_udpglc_ugt </ci> </apply>   </apply>
+							<apply> <plus/><ci> ONE </ci> <apply> <divide/> <ci> pp </ci><ci> km_pp_ugt </ci> </apply>   </apply>  </apply>  </apply>
+					<ci> ONE </ci> </apply></apply>		</apply>  
+		</math>
+	</assignmentRule>
+
+	
+		</listOfRules>
+
+
+		
+		<listOfReactions>
+			<reaction id="ALD">
+				<listOfReactants>
+					<speciesReference species="fru16bp" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="gap" stoichiometry="1"/>
+					<speciesReference species="dhap" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_ALD </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="EN">
+				<listOfReactants>
+					<speciesReference species="pg2" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pep" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_EN </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="FBP1">
+				<listOfReactants>
+					<speciesReference species="fru16bp" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="fru6p" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_FBP1 </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="GAPDH">
+				<listOfReactants>
+					<speciesReference species="gap" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="bpg13" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_GAPDH </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="GK">
+				<listOfReactants>
+					<speciesReference species="glc" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glc6p" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_GK </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="GLCT_ER">
+				<listOfReactants>
+					<speciesReference species="glc" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glc_er" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_GLCT_ER </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="GLUT2">
+				<listOfReactants>
+					<!-- <speciesReference species="glc_ext" stoichiometry="1"  /> -->
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glc" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_GLUT2 </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="GP">
+				<listOfReactants>
+					<speciesReference species="glyglc" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glc1p" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_GP </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="G6P_ER">
+				<listOfReactants>
+					<speciesReference species="glc6p_er" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glc_er" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_G6P_ER </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="GPI">
+				<listOfReactants>
+					<speciesReference species="glc6p" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="fru6p" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_GPI </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="G1PI">
+				<listOfReactants>
+					<speciesReference species="glc1p" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glc6p" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_G1PI </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="G6PT_ER">
+				<listOfReactants>
+					<speciesReference species="glc6p" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glc6p_er" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_G6PT_ER </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="GS">
+				<listOfReactants>
+					<speciesReference species="udpglc" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="glyglc" stoichiometry="1"/>
+					<speciesReference species="udp" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_GS </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="LACT">
+				<listOfReactants>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="lac" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_LACT </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="LDH">
+				<listOfReactants>
+					<speciesReference species="pyr" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="lac" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_LDH </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="MALT">
+				<listOfReactants>
+					<speciesReference species="mal_mito" stoichiometry="6"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="mal" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_MALT </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="MDH">
+				<listOfReactants>
+					<speciesReference species="mal" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="oa" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_MDH </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="MDH_mito">
+				<listOfReactants>
+					<speciesReference species="mal_mito" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="oa_mito" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_MDH_mito </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="NDK_GTP">
+				<listOfReactants>
+					<speciesReference species="gdp" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="gtp" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_NDK_GTP </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="NDK_UTP">
+				<listOfReactants>
+					<speciesReference species="udp" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="utp" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_NDK_UTP </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="NDK_GTP_mito">
+				<listOfReactants>
+					<speciesReference species="gdp_mito" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="gtp_mito" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_NDK_GTP_mito </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PC">
+				<listOfReactants>
+					<speciesReference species="pyr_mito" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="oa_mito" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PC </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PEPCK">
+				<listOfReactants>
+					<speciesReference species="oa" stoichiometry="1"/>
+					<speciesReference species="gtp" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pep" stoichiometry="1"/>
+					<speciesReference species="gdp" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PEPCK </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PEPCK_mito">
+				<listOfReactants>
+					<speciesReference species="oa_mito" stoichiometry="1"/>
+					<speciesReference species="gtp_mito" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pep_mito" stoichiometry="1"/>
+					<speciesReference species="gdp_mito" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PEPCK_mito </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PEPT">
+				<listOfReactants>
+					<speciesReference species="pep_mito" stoichiometry="6"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pep" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PEPT </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			
+			<reaction id="PFK1">
+				<listOfReactants>
+					<speciesReference species="fru6p" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="fru16bp" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PFK1 </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			
+			<reaction id="PFK2">
+				<listOfReactants>
+					<speciesReference species="fru6p" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="fru26bp" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PFK2 </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="FBP2">
+				<listOfReactants>
+					<speciesReference species="fru26bp" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="fru6p" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_FBP2 </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PGK">
+				<listOfReactants>
+					<speciesReference species="bpg13" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pg3" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PGK </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PGM">
+				<listOfReactants>
+					<speciesReference species="pg3" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pg2" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PGM </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PK">
+				<listOfReactants>
+					<speciesReference species="pep" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pyr" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PK </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PyrMalT">
+				<listOfReactants>
+					<speciesReference species="mal_mito" stoichiometry="6"/>
+					<speciesReference species="pyr" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pyr_mito" stoichiometry="6"/>
+					<speciesReference species="mal" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PyrMalT </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="PyrT">
+				<listOfReactants>
+					<speciesReference species="pyr" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="pyr_mito" stoichiometry="6"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_PyrT </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="TPI">
+				<listOfReactants>
+					<speciesReference species="dhap" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="gap" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_TPI </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+			<reaction id="UGT">
+				<listOfReactants>
+					<speciesReference species="utp" stoichiometry="1"/>
+					<speciesReference species="glc1p" stoichiometry="1"/>
+				</listOfReactants>
+				<listOfProducts>
+					<speciesReference species="udpglc" stoichiometry="1"/>
+				</listOfProducts>
+				<kineticLaw>
+					<math xmlns="http://www.w3.org/1998/Math/MathML">
+						<ci> v_UGT </ci>
+					</math>
+				</kineticLaw>
+			</reaction>
+		</listOfReactions>
+		
+		</model>
+</sbml>
