@@ -1,0 +1,561 @@
+<!DOCTYPE article
+PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD with MathML3 v1.2 20190208//EN" "JATS-archivearticle1-mathml3.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article"><?properties open_access?><front><journal-meta><journal-id journal-id-type="nlm-ta">Sci Rep</journal-id><journal-id journal-id-type="iso-abbrev">Sci Rep</journal-id><journal-title-group><journal-title>Scientific Reports</journal-title></journal-title-group><issn pub-type="epub">2045-2322</issn><publisher><publisher-name>Nature Publishing Group UK</publisher-name><publisher-loc>London</publisher-loc></publisher></journal-meta><article-meta><article-id pub-id-type="pmid">33303925</article-id><article-id pub-id-type="pmc">7730396</article-id><article-id pub-id-type="publisher-id">78739</article-id><article-id pub-id-type="doi">10.1038/s41598-020-78739-8</article-id><article-categories><subj-group subj-group-type="heading"><subject>Article</subject></subj-group></article-categories><title-group><article-title>Tracking the early depleting transmission dynamics of COVID-19 with a time-varying SIR model</article-title></title-group><contrib-group><contrib contrib-type="author" corresp="yes"><name><surname>Law</surname><given-names>Kian Boon</given-names></name><address><email>kblaw@crc.gov.my</email></address><xref ref-type="aff" rid="Aff1">1</xref></contrib><contrib contrib-type="author"><name><surname>Peariasamy</surname><given-names>Kalaiarasu M.</given-names></name><xref ref-type="aff" rid="Aff1">1</xref></contrib><contrib contrib-type="author"><name><surname>Gill</surname><given-names>Balvinder Singh</given-names></name><xref ref-type="aff" rid="Aff2">2</xref></contrib><contrib contrib-type="author"><name><surname>Singh</surname><given-names>Sarbhan</given-names></name><xref ref-type="aff" rid="Aff2">2</xref></contrib><contrib contrib-type="author"><name><surname>Sundram</surname><given-names>Bala Murali</given-names></name><xref ref-type="aff" rid="Aff2">2</xref></contrib><contrib contrib-type="author"><name><surname>Rajendran</surname><given-names>Kamesh</given-names></name><xref ref-type="aff" rid="Aff2">2</xref></contrib><contrib contrib-type="author"><name><surname>Dass</surname><given-names>Sarat Chandra</given-names></name><xref ref-type="aff" rid="Aff3">3</xref></contrib><contrib contrib-type="author"><name><surname>Lee</surname><given-names>Yi Lin</given-names></name><xref ref-type="aff" rid="Aff1">1</xref></contrib><contrib contrib-type="author"><name><surname>Goh</surname><given-names>Pik Pin</given-names></name><xref ref-type="aff" rid="Aff1">1</xref></contrib><contrib contrib-type="author"><name><surname>Ibrahim</surname><given-names>Hishamshah</given-names></name><xref ref-type="aff" rid="Aff4">4</xref></contrib><contrib contrib-type="author"><name><surname>Abdullah</surname><given-names>Noor Hisham</given-names></name><xref ref-type="aff" rid="Aff4">4</xref></contrib><aff id="Aff1"><label>1</label><institution-wrap><institution-id institution-id-type="GRID">grid.415759.b</institution-id><institution-id institution-id-type="ISNI">0000 0001 0690 5255</institution-id><institution>Institute for Clinical Research, </institution><institution>Ministry of Health Malaysia, </institution></institution-wrap>Setia Alam, Malaysia </aff><aff id="Aff2"><label>2</label><institution-wrap><institution-id institution-id-type="GRID">grid.415759.b</institution-id><institution-id institution-id-type="ISNI">0000 0001 0690 5255</institution-id><institution>Institute for Medical Research, </institution><institution>Ministry of Health Malaysia, </institution></institution-wrap>Kuala Lumpur, Malaysia </aff><aff id="Aff3"><label>3</label><institution-wrap><institution-id institution-id-type="GRID">grid.472615.3</institution-id><institution-id institution-id-type="ISNI">0000 0004 4684 7370</institution-id><institution>Heriot-Watt University Malaysia, </institution></institution-wrap>Putrajaya, Malaysia </aff><aff id="Aff4"><label>4</label><institution-wrap><institution-id institution-id-type="GRID">grid.415759.b</institution-id><institution-id institution-id-type="ISNI">0000 0001 0690 5255</institution-id><institution>Ministry of Health Malaysia, </institution></institution-wrap>Putrajaya, Malaysia </aff></contrib-group><pub-date pub-type="epub"><day>10</day><month>12</month><year>2020</year></pub-date><pub-date pub-type="pmc-release"><day>10</day><month>12</month><year>2020</year></pub-date><pub-date pub-type="collection"><year>2020</year></pub-date><volume>10</volume><elocation-id>21721</elocation-id><history><date date-type="received"><day>29</day><month>6</month><year>2020</year></date><date date-type="accepted"><day>25</day><month>11</month><year>2020</year></date></history><permissions><copyright-statement>&#x000a9; The Author(s) 2020</copyright-statement><license license-type="OpenAccess"><license-p><bold>Open Access</bold> This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article's Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article's Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link>.</license-p></license></permissions><abstract id="Abs1"><p id="Par1">The susceptible-infectious-removed (SIR) model offers the simplest framework to study transmission dynamics of COVID-19, however, it does not factor in its early depleting trend observed during a lockdown. We modified the SIR model to specifically simulate the early depleting transmission dynamics of COVID-19 to better predict its temporal trend in Malaysia. The classical SIR model was fitted to observed total (I total), active (I) and removed (R) cases of COVID-19 before lockdown to estimate the basic reproduction number. Next, the model was modified with a partial time-varying force of infection, given by a proportionally depleting transmission coefficient, <inline-formula id="IEq1"><alternatives><tex-math id="M1">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t}$$\end{document}</tex-math><mml:math id="M2"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq1.gif"/></alternatives></inline-formula> and a fractional term, <italic>z</italic>. The modified SIR model was then fitted to observed data over 6&#x000a0;weeks during the lockdown. Model fitting and projection were validated using the mean absolute percent error (MAPE). The transmission dynamics of COVID-19 was interrupted immediately by the lockdown. The modified SIR model projected the depleting temporal trends with lowest MAPE for I total, followed by I, I daily and R. During lockdown, the dynamics of COVID-19 depleted at a rate of 4.7% each day with a decreased capacity of 40%. For 7-day and 14-day projections, the modified SIR model accurately predicted I total, I and R. The depleting transmission dynamics for COVID-19 during lockdown can be accurately captured by time-varying SIR model. Projection generated based on observed data is useful for future planning and control of COVID-19.</p></abstract><kwd-group kwd-group-type="npg-subject"><title>Subject terms</title><kwd>Infectious diseases</kwd><kwd>Epidemiology</kwd><kwd>Public health</kwd></kwd-group><custom-meta-group><custom-meta><meta-name>issue-copyright-statement</meta-name><meta-value>&#x000a9; The Author(s) 2020</meta-value></custom-meta></custom-meta-group></article-meta></front><body><sec id="Sec1"><title>Introduction</title><p id="Par2">Compartmental mathematical models are critical for understanding the transmission dynamics of the Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2). These models are used to evaluate the impact of lockdown measures and various public health interventions during the COVID-19 pandemic<sup><xref ref-type="bibr" rid="CR1">1</xref>&#x02013;<xref ref-type="bibr" rid="CR7">7</xref></sup>. The susceptible-infectious-removed (SIR) model is the simplest compartmental model used to describe the epidemic pattern of an infectious disease. It functions on the principle that individuals can be classified by their epidemiological status, based on their ability to host and transmit a pathogen. Most compartmental models assume that the number of cases increases exponentially until the epidemic can no longer be sustained due to the reduced number of susceptible individuals. This process continues until the number of infections drop, eventually leading to the extinction of an epidemic<sup><xref ref-type="bibr" rid="CR8">8</xref></sup>.</p><p id="Par3">In COVID-19 pandemic, the inadequacy of effective pharmaceutical remedies forced many countries to impose various public health interventions to flatten the epidemic curve. These measures included public lockdown, physical distancing, prohibition of gathering and schools closure to reduce the contact rate between individuals<sup><xref ref-type="bibr" rid="CR9">9</xref></sup>. Other interventions such as contact tracing and quarantine were implemented to prevent the occurrence of transmission by isolating infected individuals before they could develop infectiousness<sup><xref ref-type="bibr" rid="CR10">10</xref></sup>. However, the utility of any one intervention alone is likely to be limited, requiring multiple interventions to be combined to have a substantial impact on the dynamics of transmission<sup><xref ref-type="bibr" rid="CR11">11</xref></sup>. Many countries also authorized legislative lockdown or movement control to optimize public response and compliance to those interventions.</p><p id="Par4">In China, the epidemic growth of COVID-19 was successfully flattened within three months by strictly enforced movement restrictions and lockdown. The early extinction of COVID-19 was achieved with a high degree of compliance to the public health interventions<sup><xref ref-type="bibr" rid="CR12">12</xref></sup>. In like manner, Malaysia first implemented a 3-week nationwide lockdown or Movement Control Order (MCO) beginning 18 March 2020. Thereafter, in response to the continuous growth of COVID-19 in the country, the MCO was extended twice until 12 May 2020. Malaysia further enforced the MCO for the fourth time until 9 June 2020; a total MCO duration of 12&#x000a0;weeks.</p><p id="Par5">The aim of this study was to develop and validate a modified SIR compartmental model that factored in the early depleting transmission dynamics of COVID-19 and compare model predictions to observed COVID-19 cases during the lockdown period in Malaysia.</p></sec><sec id="Sec2"><title>Methods</title><sec id="Sec3"><title>Model structure</title><p id="Par6">In countries affected by the COVID-19 pandemic, the SIR model provided the simplest framework that matched the reporting structure with the least underlying assumptions. Figure&#x000a0;<xref rid="Fig1" ref-type="fig">1</xref>A shows the compartmental structure of a classical SIR model, with three state variables: S for susceptible, I for infectious and R for removed, and two transition rates: (1) Force of infection, <inline-formula id="IEq2"><alternatives><tex-math id="M3">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta {\text{I}}/{\text{N}}$$\end{document}</tex-math><mml:math id="M4"><mml:mrow><mml:mi>&#x003b2;</mml:mi><mml:mtext>I</mml:mtext><mml:mo stretchy="false">/</mml:mo><mml:mtext>N</mml:mtext></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq2.gif"/></alternatives></inline-formula> that controls the transition of individuals from S to I and (2) Removed rate, <inline-formula id="IEq3"><alternatives><tex-math id="M5">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\delta$$\end{document}</tex-math><mml:math id="M6"><mml:mi>&#x003b4;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq3.gif"/></alternatives></inline-formula> that controls the transition of individuals from I to R, respectively. The <italic>&#x003b4;</italic> is the reciprocal of the infectious period and N is the sum of all three state variables. The force of infection is the rate at which individuals acquire an infection, which relies on the transmission coefficient, <inline-formula id="IEq4"><alternatives><tex-math id="M7">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta$$\end{document}</tex-math><mml:math id="M8"><mml:mi>&#x003b2;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq4.gif"/></alternatives></inline-formula> and the fraction of infectious individuals, <inline-formula id="IEq5"><alternatives><tex-math id="M9">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$${\text{I}}/{\text{N}}$$\end{document}</tex-math><mml:math id="M10"><mml:mrow><mml:mtext>I</mml:mtext><mml:mo stretchy="false">/</mml:mo><mml:mtext>N</mml:mtext></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq5.gif"/></alternatives></inline-formula>. The model assumes that the entire population remains equally susceptible during infection. As infected individuals were being isolated immediately once detected, we attributed the transition of individuals from compartment S to I to the transmission period and the transition of individuals from compartment I to R to isolation period or admission period.<fig id="Fig1"><label>Figure 1</label><caption><p>The compartmental structure of the classical SIR model and modified SIR model.</p></caption><graphic xlink:href="41598_2020_78739_Fig1_HTML" id="MO1"/></fig></p><p id="Par7">The reproduction number, <inline-formula id="IEq6"><alternatives><tex-math id="M11">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}$$\end{document}</tex-math><mml:math id="M12"><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq6.gif"/></alternatives></inline-formula> is defined as the average number of secondary cases generated by an index case in a large entirely susceptible population. The basic reproduction number, <inline-formula id="IEq7"><alternatives><tex-math id="M13">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M14"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq7.gif"/></alternatives></inline-formula> is estimated at the beginning of an outbreak when there is no population immunity or any deliberate intervention in disease transmission<sup><xref ref-type="bibr" rid="CR13">13</xref></sup>. The <inline-formula id="IEq8"><alternatives><tex-math id="M15">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M16"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq8.gif"/></alternatives></inline-formula> is a valuable concept to determine if an emerging infectious disease can spread in a population. When <inline-formula id="IEq9"><alternatives><tex-math id="M17">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M18"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq9.gif"/></alternatives></inline-formula>&#x02009;&#x0003e;&#x02009;1, an outbreak is expected to continue in the population. In this study, using the classical SIR model, the <inline-formula id="IEq10"><alternatives><tex-math id="M19">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M20"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq10.gif"/></alternatives></inline-formula> was calculated by <inline-formula id="IEq11"><alternatives><tex-math id="M21">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta$$\end{document}</tex-math><mml:math id="M22"><mml:mi>&#x003b2;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq11.gif"/></alternatives></inline-formula>&#x02009;&#x000d7;&#x02009;transmission period whilst the effective reproduction number, <inline-formula id="IEq12"><alternatives><tex-math id="M23">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{t}$$\end{document}</tex-math><mml:math id="M24"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq12.gif"/></alternatives></inline-formula> was estimated at the current state of the population.</p><p id="Par8">Studies show that the <inline-formula id="IEq13"><alternatives><tex-math id="M25">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{t}$$\end{document}</tex-math><mml:math id="M26"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq13.gif"/></alternatives></inline-formula> of COVID-19 gradually decreases over time, as a result of enforced lockdown and public health interventions<sup><xref ref-type="bibr" rid="CR4">4</xref>,<xref ref-type="bibr" rid="CR13">13</xref>,<xref ref-type="bibr" rid="CR14">14</xref></sup>. To overcome the limitation of the classical SIR model in capturing the early reducing trend of COVID-19, a partial time-varying force of infection was incorporated into the SIR model. Figure&#x000a0;<xref rid="Fig1" ref-type="fig">1</xref>B presents the modified SIR model with a partial time-varying force of infection, given by <inline-formula id="IEq14"><alternatives><tex-math id="M27">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$z\beta_{t} I/N$$\end{document}</tex-math><mml:math id="M28"><mml:mrow><mml:mi>z</mml:mi><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mi>I</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mi>N</mml:mi></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq14.gif"/></alternatives></inline-formula>, where <inline-formula id="IEq15"><alternatives><tex-math id="M29">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$z\beta_{t}$$\end{document}</tex-math><mml:math id="M30"><mml:mrow><mml:mi>z</mml:mi><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq15.gif"/></alternatives></inline-formula> is the partial transmission coefficient at time <italic>t</italic>. The fractional term, <inline-formula id="IEq16"><alternatives><tex-math id="M31">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$z$$\end{document}</tex-math><mml:math id="M32"><mml:mi>z</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq16.gif"/></alternatives></inline-formula> allows the transmission dynamics to decrease with the number of infected individuals who can spread the coronavirus. A power decay log function representing gradually depleting <inline-formula id="IEq17"><alternatives><tex-math id="M33">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t}$$\end{document}</tex-math><mml:math id="M34"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq17.gif"/></alternatives></inline-formula> over time <inline-formula id="IEq18"><alternatives><tex-math id="M35">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$t$$\end{document}</tex-math><mml:math id="M36"><mml:mi>t</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq18.gif"/></alternatives></inline-formula> is given by,<disp-formula id="Equ1"><label>1</label><alternatives><tex-math id="M37">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$ \beta_{t} = \beta_{t = 0} (1 - p)^{t} , $$\end{document}</tex-math><mml:math id="M38" display="block"><mml:mrow><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>t</mml:mi></mml:msup><mml:mo>,</mml:mo></mml:mrow></mml:math><graphic xlink:href="41598_2020_78739_Article_Equ1.gif" position="anchor"/></alternatives></disp-formula>where <inline-formula id="IEq19"><alternatives><tex-math id="M39">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$p$$\end{document}</tex-math><mml:math id="M40"><mml:mi>p</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq19.gif"/></alternatives></inline-formula> is the proportion of depletion between 0 and 1.</p><p id="Par9">By incorporating the derivative of function (<xref rid="Equ1" ref-type="">1</xref>) into ordinary differential equations (ODEs) as shown in Fig.&#x000a0;<xref rid="Fig1" ref-type="fig">1</xref>B, the early depleting transmission dynamics of COVID-19 can be simulated.</p><p id="Par10">The modified SIR model enables the outcome of lockdowns and public health interventions to be explicitly quantified by <italic>p</italic> and <italic>z</italic>. For instance, a larger value of <inline-formula id="IEq20"><alternatives><tex-math id="M41">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$p$$\end{document}</tex-math><mml:math id="M42"><mml:mi>p</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq20.gif"/></alternatives></inline-formula> signifies a more effective intervention in reducing contact rates and <inline-formula id="IEq21"><alternatives><tex-math id="M43">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t}$$\end{document}</tex-math><mml:math id="M44"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq21.gif"/></alternatives></inline-formula> over time, whilst the value of z signifies the effectiveness of an intervention in preventing infected individuals from spreading the coronavirus. Figure&#x000a0;<xref rid="Fig2" ref-type="fig">2</xref> illustrates the observed <inline-formula id="IEq22"><alternatives><tex-math id="M45">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t}$$\end{document}</tex-math><mml:math id="M46"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq22.gif"/></alternatives></inline-formula> at <inline-formula id="IEq23"><alternatives><tex-math id="M47">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$p$$\end{document}</tex-math><mml:math id="M48"><mml:mi>p</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq23.gif"/></alternatives></inline-formula>&#x02009;=&#x02009;0.2 (20%), which is depleting faster than <inline-formula id="IEq24"><alternatives><tex-math id="M49">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$p$$\end{document}</tex-math><mml:math id="M50"><mml:mi>p</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq24.gif"/></alternatives></inline-formula>&#x02009;=&#x02009;0.1 (10%). The <inline-formula id="IEq25"><alternatives><tex-math id="M51">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{t}$$\end{document}</tex-math><mml:math id="M52"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq25.gif"/></alternatives></inline-formula> can be estimated by <inline-formula id="IEq26"><alternatives><tex-math id="M53">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$z\beta_{t}$$\end{document}</tex-math><mml:math id="M54"><mml:mrow><mml:mi>z</mml:mi><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq26.gif"/></alternatives></inline-formula>&#x02009;&#x000d7;&#x02009;transmission period during the lockdown period.<fig id="Fig2"><label>Figure 2</label><caption><p>Graph of <inline-formula id="IEq58"><alternatives><tex-math id="M55">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{{\text{t}}}$$\end{document}</tex-math><mml:math id="M56"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mtext>t</mml:mtext></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq58.gif"/></alternatives></inline-formula> vs t, for two different values of p, illustrating the rate of depletion. The <inline-formula id="IEq59"><alternatives><tex-math id="M57">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{{{\text{t}} = 0}}$$\end{document}</tex-math><mml:math id="M58"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mrow><mml:mtext>t</mml:mtext><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq59.gif"/></alternatives></inline-formula> is set at 0.5 (arbitrary).</p></caption><graphic xlink:href="41598_2020_78739_Fig2_HTML" id="MO2"/></fig></p></sec><sec id="Sec4"><title>Data sources</title><p id="Par11">The first wave of COVID-19 in Malaysia occurred between 25 January and 26 February 2020, involving only 22 individuals with 20 of them being oversea travelers. The second wave of COVID-19 emerged exponentially following a large religious gathering held in Sri Petaling, Kuala Lumpur between 27 February and 1 March 2020. The massive gathering involved more than 16,000 attendees, including many foreign nationals from countries with COVID-19 outbreak<sup><xref ref-type="bibr" rid="CR15">15</xref></sup>. As of 26 April 2020, 2130 (37%) among 5780 confirmed cases were related to the Sri Petaling cluster<sup><xref ref-type="bibr" rid="CR16">16</xref>,<xref ref-type="bibr" rid="CR17">17</xref></sup>. The Ministry of Health (MOH) Malaysia reports on a daily basis the number of cumulative total cases, cumulative active cases, newly confirmed cases, recovered and death cases for COVID-19<sup><xref ref-type="bibr" rid="CR18">18</xref></sup>. For this modeling, we denoted daily confirmed cases as I daily, cumulative total cases as I total, cumulative active cases as I and cumulative removed cases as R. Removed cases comprised of both recovered and death cases. The first day of Sri Petaling gathering (27 February 2020) was denoted as the start date of the second wave outbreak.</p></sec><sec id="Sec5"><title>The reporting structure of COVID-19 in Malaysia</title><p id="Par12">All cases of COVID-19 were confirmed by real-time reverse transcriptase-polymerase chain reaction (RT-PCR) assays. Once confirmed, an infected individual was isolated immediately for treatment until recovery or death. Active cases were infected individuals who were still under treatment, whilst recovered cases were individuals who had been tested negative for COVID-19 by two RT-PCRs 24&#x000a0;hours apart. For this modeling, recovered individuals were assumed immune to re-infection.</p><p id="Par13">Figure&#x000a0;<xref rid="Fig3" ref-type="fig">3</xref> shows various phases of the infection period for COVID-19. The infection period comprised of a non-infective and infective state and can be further divided into incubation, transmission and isolation period. The incubation period was the duration taken from being exposed to and infected by the coronavirus to the onset of symptoms. The incubation period for COVID-19 varies from 2 to 10&#x000a0;days on average<sup><xref ref-type="bibr" rid="CR19">19</xref></sup>. The transmission period was the duration taken from the onset of symptoms until being isolated. Infected individuals are often asymptomatic and non-infective during the incubation period. However, pre-symptomatic transmission up to 3&#x000a0;days has been reported in several studies<sup><xref ref-type="bibr" rid="CR20">20</xref>&#x02013;<xref ref-type="bibr" rid="CR22">22</xref></sup>. Hence, the transmission period might be longer, given the development of infectiousness before infected individuals could manifest symptoms<sup><xref ref-type="bibr" rid="CR23">23</xref></sup>. The isolation period was the duration taken from isolation (admission) until recovery or death.<fig id="Fig3"><label>Figure 3</label><caption><p>The phases of infection period for COVID-19.</p></caption><graphic xlink:href="41598_2020_78739_Fig3_HTML" id="MO3"/></fig></p></sec><sec id="Sec6"><title>Model fitting, projection and validation</title><p id="Par14">Model fitting, projection and validation were performed in two stages. Firstly, the classical SIR model was fitted to observed cases of I and R between 27 February and 17 March 2020 to estimate the <inline-formula id="IEq27"><alternatives><tex-math id="M59">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta$$\end{document}</tex-math><mml:math id="M60"><mml:mi>&#x003b2;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq27.gif"/></alternatives></inline-formula> and <inline-formula id="IEq28"><alternatives><tex-math id="M61">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M62"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq28.gif"/></alternatives></inline-formula> for COVID-19 in Malaysia. The compartment S took the initial value of 32.68 million, the population size of Malaysia in 2019<sup><xref ref-type="bibr" rid="CR24">24</xref></sup>. The compartment <inline-formula id="IEq29"><alternatives><tex-math id="M63">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$${\text{I}}$$\end{document}</tex-math><mml:math id="M64"><mml:mtext>I</mml:mtext></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq29.gif"/></alternatives></inline-formula> and R took the initial values of 1 and 22 based on the observed number of cases reported on 27 February 2020.</p><p id="Par15">Next, the modified SIR model was fitted to observed cases of I total, I and R in three sequences between 18 March and 28 April 2020 as follows:<list list-type="alpha-lower"><list-item><p id="Par16">The first sequence involved observed cases from 18 March until 31 March 2020 (14 data points), with 7-day and 14-day projections, up to 14 April 2020.</p></list-item><list-item><p id="Par17">The second sequence involved observed cases from 18 March until 14 April 2020 (28 data points), with 7-day and 14-day projections, up to 28 April 2020.</p></list-item><list-item><p id="Par18">The third sequence involved observed cases from 18 March until 28 April 2020 (42 data points), with 7-day and 14-day projections, up to 12 May 2020.</p></list-item></list></p><p id="Par19">The initial value for S remained. Then I total, I and R took the initial values of 790, 728 and 62, respectively, based on the observed number of cases reported on 18 March 2020. The <inline-formula id="IEq30"><alternatives><tex-math id="M65">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t = 0}$$\end{document}</tex-math><mml:math id="M66"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq30.gif"/></alternatives></inline-formula> took the initial value estimated in the first stage.</p><p id="Par20">Among all the state variables, I daily received the most attention from the public and was also the trickiest to predict. In this study, we tried to reproduce the temporal trend of I daily from the fitted I total with backward calculation. Comparison between projected cases and observed cases for I daily was performed using 5&#x000a0;days moving average (5 MA). As observed cases for I daily presented very high variation, high error in both model fitting and projection were expected.</p><p id="Par21">The performance of the modified SIR model was evaluated using percent error (PE) and mean absolute percent error (MAPE). The MAPE which was given by <inline-formula id="IEq31"><alternatives><tex-math id="M67">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\frac{1}{n}\sum \left( {\frac{{\left| {{\text{Predicted}} - {\text{Observed}}} \right|}}{{{\text{Observed}}}}} \right) \times 100\%$$\end{document}</tex-math><mml:math id="M68"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>n</mml:mi></mml:mfrac><mml:mo>&#x02211;</mml:mo><mml:mfenced close=")" open="("><mml:mfrac><mml:mfenced close="|" open="|"><mml:mrow><mml:mtext>Predicted</mml:mtext><mml:mo>-</mml:mo><mml:mtext>Observed</mml:mtext></mml:mrow></mml:mfenced><mml:mtext>Observed</mml:mtext></mml:mfrac></mml:mfenced><mml:mo>&#x000d7;</mml:mo><mml:mn>100</mml:mn><mml:mo>%</mml:mo></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq31.gif"/></alternatives></inline-formula>, with a low value indicating high accuracy and vice versa. The PE is calculated by (<inline-formula id="IEq32"><alternatives><tex-math id="M69">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\frac{{{\text{Predicted}} - {\text{Observed}}}}{{{\text{Observed}}}}$$\end{document}</tex-math><mml:math id="M70"><mml:mfrac><mml:mrow><mml:mtext>Predicted</mml:mtext><mml:mo>-</mml:mo><mml:mtext>Observed</mml:mtext></mml:mrow><mml:mtext>Observed</mml:mtext></mml:mfrac></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq32.gif"/></alternatives></inline-formula>)&#x02009;&#x000d7;&#x02009;100%, with a positive value exhibiting overestimation and vice versa.</p><p id="Par22">Model fitting was performed with least square and Markov Chain Monte Carlo methods, using the &#x0201c;shiny&#x0201d; modeling interface built and published by The Imperial College London (<ext-link ext-link-type="uri" xlink:href="https://shiny.dide.imperial.ac.uk/infectiousdiseasemodels-2019/flu/">https://shiny.dide.imperial.ac.uk/infectiousdiseasemodels-2019/flu/</ext-link>). Built into the interface was an R-package called &#x0201c;odin&#x0201d; which operated a high-level language for describing and implementing ODEs. The actual solution of ODEs was processed with the &#x0201c;deSolve&#x0201d; package. Data was compiled and organized in Microsoft Excel 2019. Graphics were also produced using Microsoft Excel 2019.</p></sec><sec id="Sec300"><title>Ethics requirement</title><p>The study was registered with National Medical Research Register. No ethics approval was required.</p></sec></sec><sec id="Sec7"><title>Results</title><p id="Par23">Our modified SIR model outperformed the classical SIR model in tracking the infected population under lockdown circumstances. Some key features contributed to differences between the two models, regarding predictions of early disease depletion, transition of susceptible individuals to infected ones, the rate of infection spreading and effectiveness of model parameterization. Table <xref rid="Tab1" ref-type="table">1</xref> summarizes the differences between the modified and classical SIR models in capturing the early depleting trend of COVID-19 during the lockdown period.<table-wrap id="Tab1"><label>Table 1</label><caption><p>Differences between the modified and classical SIR model.</p></caption><table frame="hsides" rules="groups"><thead><tr><th align="left">No</th><th align="left">Modified SIR model</th><th align="left">Classical SIR model</th></tr></thead><tbody><tr><td align="left">1</td><td align="left">Early depletion of infection occurs due to strictly enforced lockdown and movement restrictions</td><td align="left">Depletion of infection occurs due to continuously depleting susceptible until the epidemic can no longer be sustained</td></tr><tr><td align="left">2</td><td align="left">Transition of individuals from S to I is controlled by <inline-formula id="IEq42"><alternatives><tex-math id="M71">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$z\beta_{t} {\text{I}}/{\text{N}}$$\end{document}</tex-math><mml:math id="M72"><mml:mrow><mml:mi>z</mml:mi><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mtext>I</mml:mtext><mml:mo stretchy="false">/</mml:mo><mml:mtext>N</mml:mtext></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq42.gif"/></alternatives></inline-formula>. Transition of individuals from I to R is controlled by <italic>&#x003b4;</italic>, where <inline-formula id="IEq43"><alternatives><tex-math id="M73">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\delta = \frac{1}{{\text{isolation period}}}$$\end{document}</tex-math><mml:math id="M74"><mml:mrow><mml:mi>&#x003b4;</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mtext>isolation period</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq43.gif"/></alternatives></inline-formula></td><td align="left">Transition of individuals from S to I is controlled by <inline-formula id="IEq44"><alternatives><tex-math id="M75">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta {\text{I}}/{\text{N}}$$\end{document}</tex-math><mml:math id="M76"><mml:mrow><mml:mi>&#x003b2;</mml:mi><mml:mtext>I</mml:mtext><mml:mo stretchy="false">/</mml:mo><mml:mtext>N</mml:mtext></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq44.gif"/></alternatives></inline-formula>. Transition of individuals from I to R is controlled by <italic>&#x003b4;</italic>, where <inline-formula id="IEq45"><alternatives><tex-math id="M77">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\delta = \frac{1}{{\text{isolation period}}}$$\end{document}</tex-math><mml:math id="M78"><mml:mrow><mml:mi>&#x003b4;</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mtext>isolation period</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq45.gif"/></alternatives></inline-formula></td></tr><tr><td align="left">3</td><td align="left">The <inline-formula id="IEq46"><alternatives><tex-math id="M79">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{t}$$\end{document}</tex-math><mml:math id="M80"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq46.gif"/></alternatives></inline-formula> is given by <inline-formula id="IEq47"><alternatives><tex-math id="M81">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$z\beta_{t} \times {\text{transmission period}}$$\end{document}</tex-math><mml:math id="M82"><mml:mrow><mml:mi>z</mml:mi><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo>&#x000d7;</mml:mo><mml:mrow><mml:mtext>transmission period</mml:mtext></mml:mrow></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq47.gif"/></alternatives></inline-formula></td><td align="left">The <inline-formula id="IEq48"><alternatives><tex-math id="M83">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M84"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq48.gif"/></alternatives></inline-formula> is given by <inline-formula id="IEq49"><alternatives><tex-math id="M85">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta \times {\text{transmission period}}$$\end{document}</tex-math><mml:math id="M86"><mml:mrow><mml:mi>&#x003b2;</mml:mi><mml:mo>&#x000d7;</mml:mo><mml:mrow><mml:mtext>transmission period</mml:mtext></mml:mrow></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq49.gif"/></alternatives></inline-formula></td></tr><tr><td align="left">4</td><td align="left">The transmission coefficient, <inline-formula id="IEq50"><alternatives><tex-math id="M87">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t} $$\end{document}</tex-math><mml:math id="M88"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq50.gif"/></alternatives></inline-formula> is given by an exponential decay log function, <inline-formula id="IEq51"><alternatives><tex-math id="M89">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t = 0} (1 - p)^{t}$$\end{document}</tex-math><mml:math id="M90"><mml:mrow><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>t</mml:mi></mml:msup></mml:mrow></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq51.gif"/></alternatives></inline-formula>, which allows <inline-formula id="IEq52"><alternatives><tex-math id="M91">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t}$$\end{document}</tex-math><mml:math id="M92"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq52.gif"/></alternatives></inline-formula> to gradually decrease over time <italic>t</italic> with a fixed proportion of depletion, <italic>p</italic></td><td align="left">The transmission coefficient, <inline-formula id="IEq53"><alternatives><tex-math id="M93">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta$$\end{document}</tex-math><mml:math id="M94"><mml:mi>&#x003b2;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq53.gif"/></alternatives></inline-formula> is a fixed parameter</td></tr><tr><td align="left">5</td><td align="left">The transmission dynamics operate partially with fractional term, <inline-formula id="IEq54"><alternatives><tex-math id="M95">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$z$$\end{document}</tex-math><mml:math id="M96"><mml:mi>z</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq54.gif"/></alternatives></inline-formula></td><td align="left">The transmission dynamics operate fully</td></tr><tr><td align="left">6</td><td align="left">Parameterization of <italic>z</italic>, <italic>p</italic> and <inline-formula id="IEq55"><alternatives><tex-math id="M97">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\delta$$\end{document}</tex-math><mml:math id="M98"><mml:mi>&#x003b4;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq55.gif"/></alternatives></inline-formula> can be done by fitting model to observed cases of COVID-19 during lockdown</td><td align="left">Parameterization of <inline-formula id="IEq56"><alternatives><tex-math id="M99">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta$$\end{document}</tex-math><mml:math id="M100"><mml:mi>&#x003b2;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq56.gif"/></alternatives></inline-formula> and <inline-formula id="IEq57"><alternatives><tex-math id="M101">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\delta$$\end{document}</tex-math><mml:math id="M102"><mml:mi>&#x003b4;</mml:mi></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq57.gif"/></alternatives></inline-formula> can be done by fitting model to observed cases of COVID-19 before lockdown</td></tr></tbody></table></table-wrap></p><p id="Par24">The transmission, as effective reproduction number <inline-formula id="IEq33"><alternatives><tex-math id="M103">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\left( {\hat{R}_{t} } \right)$$\end{document}</tex-math><mml:math id="M104"><mml:mfenced close=")" open="("><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mi>t</mml:mi></mml:msub></mml:mfenced></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq33.gif"/></alternatives></inline-formula>, decreased substantially after the lockdown (Fig.&#x000a0;<xref rid="Fig4" ref-type="fig">4</xref>). Estimates of the classical SIR model placed <inline-formula id="IEq34"><alternatives><tex-math id="M105">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M106"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq34.gif"/></alternatives></inline-formula> between 2.26 and 3.50, based on different transmission periods (5.5&#x02013;8.5&#x000a0;days). On the other hand, the modified SIR model estimated the <inline-formula id="IEq35"><alternatives><tex-math id="M107">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{t}$$\end{document}</tex-math><mml:math id="M108"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq35.gif"/></alternatives></inline-formula> to gradually decrease over time during the lockdown period towards values between 0.92 and 1.42, two to three times lower than the classical SIR model.<fig id="Fig4"><label>Figure 4</label><caption><p>Estimated <inline-formula id="IEq60"><alternatives><tex-math id="M109">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$${\hat{\text{R}}}_{0}$$\end{document}</tex-math><mml:math id="M110"><mml:msub><mml:mover accent="true"><mml:mtext>R</mml:mtext><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq60.gif"/></alternatives></inline-formula> prior to lockdown and <inline-formula id="IEq61"><alternatives><tex-math id="M111">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$${\hat{\text{R}}}_{{\text{t}}}$$\end{document}</tex-math><mml:math id="M112"><mml:msub><mml:mover accent="true"><mml:mtext>R</mml:mtext><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mtext>t</mml:mtext></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq61.gif"/></alternatives></inline-formula> during lockdown.</p></caption><graphic xlink:href="41598_2020_78739_Fig4_HTML" id="MO4"/></fig></p><p id="Par25">The transmission of coronavirus most likely occurred during a period from few days before onset of symptoms and admission or isolation as summarized in Table <xref rid="Tab2" ref-type="table">2</xref>. The observed period from the onset of symptoms to admission among 86 patients was 5.5&#x000a0;days (95% CI 4.6&#x02013;6.3&#x000a0;days). Hence, the transmission period could vary from 5.5 to 8.5&#x000a0;days, given that infected individuals could have developed infectiousness and transmitted the coronavirus up to 3&#x000a0;days prior to onset of symptoms<sup><xref ref-type="bibr" rid="CR23">23</xref></sup>.<table-wrap id="Tab2"><label>Table 2</label><caption><p>Means of observed disease periods and 95% confidence interval (CI) for 156 COVID-19 patients.</p></caption><table frame="hsides" rules="groups"><thead><tr><th align="left" rowspan="2">Variables</th><th align="left" colspan="2">Onset of symptoms to discharge, days</th><th align="left" colspan="2">Onset of symptoms to admission, days</th><th align="left" colspan="2">Admission to discharge, days</th></tr><tr><th align="left">n</th><th align="left">Mean [95% CI]</th><th align="left">n</th><th align="left">Mean [95% CI]</th><th align="left">n</th><th align="left">Mean [95% CI]</th></tr></thead><tbody><tr><td align="left">Overall</td><td align="left">90</td><td char="&#x02013;" align="char">17.6 [16.4&#x02013;18.8]</td><td align="left">86</td><td char="&#x02013;" align="char">5.5 [4.6&#x02013;6.3]</td><td char="," align="char">156</td><td char="&#x02013;" align="char">11.5 [10.6&#x02013;12.3]</td></tr><tr><td align="left" colspan="7"><bold>Gender</bold></td></tr><tr><td align="left">Female</td><td align="left">20</td><td char="&#x02013;" align="char">16.4 [14.3&#x02013;18.5]</td><td align="left">17</td><td char="&#x02013;" align="char">5.9 [3.9&#x02013;7.9]</td><td char="," align="char">37</td><td char="&#x02013;" align="char">10.5 [8.9&#x02013;12.2]</td></tr><tr><td align="left">Male</td><td align="left">70</td><td char="&#x02013;" align="char">18.0 [16.5&#x02013;19.4]</td><td align="left">69</td><td char="&#x02013;" align="char">5.4 [4.4&#x02013;6.3]</td><td char="," align="char">119</td><td char="&#x02013;" align="char">11.8 [10.8&#x02013;12.8]</td></tr><tr><td align="left" colspan="7"><bold>Status</bold></td></tr><tr><td align="left">Recovered</td><td align="left">66</td><td char="&#x02013;" align="char">19.3 [18.1&#x02013;20.6]</td><td align="left">66</td><td char="&#x02013;" align="char">5.4 [4.3&#x02013;6.4]</td><td char="," align="char">86</td><td char="&#x02013;" align="char">13.9 [13.2&#x02013;14.6]</td></tr><tr><td align="left">Death</td><td align="left">24</td><td char="&#x02013;" align="char">12.9 [10.8&#x02013;14.9]</td><td align="left">20</td><td char="&#x02013;" align="char">5.9 [4.4&#x02013;7.4]</td><td char="," align="char">70</td><td char="&#x02013;" align="char">8.5 [7.1&#x02013;9.9]</td></tr></tbody></table><table-wrap-foot><p><italic>n </italic>sample size, <italic>CI </italic>confidence interval.</p><p>Data source: Crisis Preparedness and Response Centre, MOH Malaysia (As of 14 April 2020).</p></table-wrap-foot></table-wrap></p><sec id="Sec8"><title>Transmission dynamics of COVID-19 before lockdown</title><p id="Par26">The growth rate on the number of infected cases fell immediately after the lockdown (Fig.&#x000a0;<xref rid="Fig5" ref-type="fig">5</xref>). Before lockdown, a sudden surge in I daily caused an exponential increase observed in both I total and I, which warranted the government to implement a lockdown in the country. Daily moving averages on infected population showed similar results for 3&#x000a0;days and 5&#x000a0;days (Fig.&#x000a0;<xref rid="Fig5" ref-type="fig">5</xref>A). With Movement Control Order (MCO), the epidemic curve of I daily was flattened before end of March 2020. A week later, the epidemic curve of I was flattened as the R started to surpass the decreasing I daily, as shown in Fig.&#x000a0;<xref rid="Fig5" ref-type="fig">5</xref>B.<fig id="Fig5"><label>Figure 5</label><caption><p>Transmission dynamics of COVID-19 in Malaysia before and during lockdown, fitted with classical and modified SIR models. Parts <bold>(A)</bold> to <bold>(I)</bold> represent observed daily and cumulative cases of COVID-19 cases in Malaysia, fitted classical SIR and modified models, projections and percent errors (PE) over time. (<bold>A</bold>) Observed I daily cases, smoothened with 3 MA and 5 MA before and after movement control order (MCO). (<bold>B</bold>) Observed I total, I and R cases over time before and after the MCO. (<bold>C</bold>) Fitted classical SIR model to observed cases of I and R from 27 February to 17 March 2020 before lockdown. (<bold>D</bold>) Fitting and projection up to 14 April 2020. (<bold>E</bold>) Fitting and projection up to 28 April 2020. (<bold>F</bold>) Fitting and projection up to 12 May 2020. (<bold>G</bold>) PE of fitting and projection up to 14 April 2020. (<bold>H</bold>) PE of fitting and projection up to 28 April 2020. (<bold>I</bold>) PE of fitting and projection up to 12 May 2020.</p></caption><graphic xlink:href="41598_2020_78739_Fig5_HTML" id="MO5"/></fig></p><p id="Par27">The classical SIR model was successfully fitted to both observed cases of I and R between 27 February and 17 March 2020, with an estimated <italic>&#x003b2;</italic> of 0.4114 (Fig.&#x000a0;<xref rid="Fig5" ref-type="fig">5</xref>C). The fitted model showed that the initial dynamics of transmission mainly depended on the high infection rate, and not much affected by the low removing rate. The difference between the projected cases and observed cases for I uncovered an early reducing trend in COVID-19 during the MCO, which could no longer be predicted by the classical SIR model. The estimated <inline-formula id="IEq36"><alternatives><tex-math id="M113">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M114"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq36.gif"/></alternatives></inline-formula> values were in line with values reported in other countries, such as South Korea and Italy, through mathematical modelling. The <inline-formula id="IEq37"><alternatives><tex-math id="M115">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M116"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq37.gif"/></alternatives></inline-formula> for South Korea was estimated at 2.6 (95% CI 2.3&#x02013;2.9) and 3.2 (95% CI 2.9&#x02013;3.5) with transmission starting dates on 31 January and 5 February 2020. The <inline-formula id="IEq38"><alternatives><tex-math id="M117">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M118"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq38.gif"/></alternatives></inline-formula> for Italy was estimated at 2.6 (95% CI 2.3&#x02013;2.9) and 3.3 (95% CI 3.0&#x02013;3.6) with the transmission starting dates on 5 February and 10 February 2020<sup><xref ref-type="bibr" rid="CR5">5</xref></sup>.</p></sec><sec id="Sec9"><title>Early depleting transmission dynamics of COVID-19 during the lockdown</title><p id="Par28">The modified SIR model adjusted well to observed cases for I total, I and R in all three sequences, and reproduced the correct temporal patterns for all compartments, especially with 28 and 42 data points (Fig.&#x000a0;<xref rid="Fig5" ref-type="fig">5</xref>D&#x02013;F). This showed that the modified SIR model had overcome the limitation of the classical SIR model in predicting the early depleting trend of COVID-19 under a public lockdown situation.</p><p id="Par29">Overestimation was found in R in all three sequences during fitting, leading to underestimated R in projection. The overestimation in R during fitting did not affect the accuracy in projection. Nonetheless, underestimation was found in I during fitting, leading to overestimated I in projection. Graphs of percent error (PE) over time showed consistently reliable fitting and projection, in particular sequences with 28 and 42 data points (Fig.&#x000a0;<xref rid="Fig5" ref-type="fig">5</xref>G&#x02013;I).</p><p id="Par30">The highest model accuracy expressed as lowest mean average percent error (MAPE) was achieved for I total (MAPE 0.97&#x02013;2.13%), followed by I (MAPE 2.25&#x02013;8.85%), I daily (MAPE 4.86&#x02013;9.78%) and R (MAPE 12.30&#x02013;40.61%), respectively. In both 7-day and 14-day projections, the lowest MAPE was achieved for I total (MAPE 1.24&#x02013;5.58%), followed by I (MAPE 2.16&#x02013;13.62%), R (MAPE 1.52&#x02013;20.6%) and I daily (MAPE 30.99&#x02013;50.29%), respectively. The projection accuracy improved slightly without imported cases (ICs), as shown in Table <xref rid="Tab3" ref-type="table">3</xref>.<table-wrap id="Tab3"><label>Table 3</label><caption><p>Summary of estimated values for parameters p, z and &#x003b4; in all three sequences and MAPE for model fitting, 7-day and 14-day projections, with inclusion and exclusion of imported cases (ICs).</p></caption><table frame="hsides" rules="groups"><thead><tr><th align="left" rowspan="2">Periods<break/>&#x000a0;State variables</th><th align="left" rowspan="2">Data points</th><th align="left" colspan="3">Parameter estimates</th><th align="left" colspan="2">Fitting MAPE (%)</th><th align="left" colspan="2">7-day projection MAPE (%)</th><th align="left" colspan="2">14-day projection MAPE (%)</th></tr><tr><th align="left"><italic>z</italic></th><th align="left"><italic>p</italic></th><th align="left"><italic>&#x003b4;</italic></th><th align="left">Mean</th><th align="left">(Min&#x02013;max)</th><th align="left">Mean</th><th align="left">(Min&#x02013;max)</th><th align="left">Mean</th><th align="left">(Min&#x02013;max)</th></tr></thead><tbody><tr><td align="left"><bold>18 Mar&#x02013;31 Mar 2020</bold></td><td align="left">14</td><td align="left">0.4374</td><td align="left">0.0784</td><td align="left">0.025</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/></tr><tr><td align="left" colspan="11">Including ICs</td></tr><tr><td align="left">&#x000a0;I total</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">2.13</td><td align="left">(0.31&#x02013;5.35)</td><td align="left">5.58</td><td align="left">(0.09&#x02013;9.67)</td><td align="left">9.8</td><td align="left">(0.09&#x02013;18.33)</td></tr><tr><td align="left">&#x000a0;I</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">2.25</td><td align="left">(0.03&#x02013;5.19)</td><td align="left">2.16</td><td align="left">(0.76&#x02013;3.71)</td><td align="left">4.14</td><td align="left">(0.76&#x02013;8.38)</td></tr><tr><td align="left">&#x000a0;I daily&#x02013;5 MA</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">4.86</td><td align="left">(0.22&#x02013;11.62)</td><td align="left">30.99</td><td align="left">(21.96&#x02013;36.17)</td><td align="left">38.05</td><td align="left">(21.96&#x02013;57.35)</td></tr><tr><td align="left">&#x000a0;R</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">12.30</td><td align="left">(3.28&#x02013;28.44)</td><td align="left">20.6</td><td align="left">(11.58&#x02013;29.66)</td><td align="left">29.5</td><td align="left">(11.58&#x02013;43.64)</td></tr><tr><td align="left">Excluding ICs</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/></tr><tr><td align="left">&#x000a0;I total</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">4.05</td><td align="left">(0.60&#x02013;7.33)</td><td align="left">7.7</td><td align="left">(0.60&#x02013;15.50)</td></tr><tr><td align="left">&#x000a0;I</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">3.53</td><td align="left">(0.44&#x02013;6.94)</td><td align="left">8.1</td><td align="left">(0.44&#x02013;16.38)</td></tr><tr><td align="left">&#x000a0;I daily&#x02013;5 MA</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">25.38</td><td align="left">(16.42&#x02013;31.60)</td><td align="left">33.08</td><td align="left">(16.42&#x02013;54.94)</td></tr><tr><td align="left"><bold>18 Mar</bold>&#x02013;<bold>14 April 2020</bold></td><td align="left">28</td><td align="left">0.3914</td><td align="left">0.0450</td><td align="left">0.042</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/></tr><tr><td align="left" colspan="11">Including ICs</td></tr><tr><td align="left">&#x000a0;I total</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">0.97</td><td align="left">(0.02&#x02013;4.08)</td><td align="left">1.24</td><td align="left">(0.19&#x02013;2.78)</td><td align="left">2.42</td><td align="left">(0.19&#x02013;4.42)</td></tr><tr><td align="left">&#x000a0;I</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">8.68</td><td align="left">(0.27&#x02013;17.96)</td><td align="left">13.62</td><td align="left">(6.84&#x02013;18.56)</td><td align="left">16.86</td><td align="left">(6.84&#x02013;22.87)</td></tr><tr><td align="left">&#x000a0;I daily&#x02013;5 MA</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">5.54</td><td align="left">(0.16&#x02013;16.06)</td><td align="left">35.79</td><td align="left">(3.03&#x02013;61.74)</td><td align="left">31.69</td><td align="left">(3.03&#x02013;61.74)</td></tr><tr><td align="left">&#x000a0;R</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">40.61</td><td align="left">(0.02&#x02013;100.67)</td><td align="left">7.62</td><td align="left">(5.74&#x02013;9.21)</td><td align="left">6.01</td><td align="left">(3.26&#x02013;9.21)</td></tr><tr><td align="left" colspan="11">Excluding ICs</td></tr><tr><td align="left">&#x000a0;I total</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">1.91</td><td align="left">(0.36&#x02013;4.56)</td><td align="left">3.96</td><td align="left">(0.36&#x02013;7.22)</td></tr><tr><td align="left">&#x000a0;I</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">15.79</td><td align="left">(6.98&#x02013;23.08)</td><td align="left">22.52</td><td align="left">(6.98&#x02013;34.88)</td></tr><tr><td align="left">&#x000a0;I daily&#x02013;5 MA</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">71.28</td><td align="left">(7.57&#x02013;136.71)</td><td align="left">66.70</td><td align="left">(7.57&#x02013;136.71)</td></tr><tr><td align="left"><bold>18 Mar</bold>&#x02013;<bold>28 April 2020</bold></td><td align="left">42</td><td align="left">0.4047</td><td align="left">0.0466</td><td align="left">0.050</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left"/></tr><tr><td align="left" colspan="11">Including ICs</td></tr><tr><td align="left">&#x000a0;I total</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">1.07</td><td align="left">(0&#x02013;3.43)</td><td align="left">1.85</td><td align="left">(0.11&#x02013;3.57)</td><td align="left">3.58</td><td align="left">(0.11&#x02013;6.65)</td></tr><tr><td align="left">&#x000a0;I</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">8.85</td><td align="left">(0.96&#x02013;17.36)</td><td align="left">5.51</td><td align="left">(0.22&#x02013;9.38)</td><td align="left">8.78</td><td align="left">(0.22&#x02013;16.45)</td></tr><tr><td align="left">&#x000a0;I daily&#x02013;5 MA</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">9.78</td><td align="left">(0.26&#x02013;42.70)</td><td align="left">50.29</td><td align="left">(25.54&#x02013;58.64)</td><td align="left">53.96</td><td align="left">(25.54&#x02013;67.06)</td></tr><tr><td align="left">&#x000a0;R</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">31.50</td><td align="left">(0.54&#x02013;108.92)</td><td align="left">1.52</td><td align="left">(0.80&#x02013;2.09)</td><td align="left">2.40</td><td align="left">(0.80&#x02013;4.67)</td></tr><tr><td align="left" colspan="11">Excluding ICs</td></tr><tr><td align="left">&#x000a0;I total</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">0.90</td><td align="left">(0.18&#x02013;1.53)</td><td align="left">1.71</td><td align="left">(0.18&#x02013;3.81)</td></tr><tr><td align="left">&#x000a0;I</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">5.23</td><td align="left">(0.97&#x02013;10.62)</td><td align="left">3.79</td><td align="left">(0.22&#x02013;10.62)</td></tr><tr><td align="left">&#x000a0;I daily&#x02013;5 MA</td><td align="left"/><td align="left"/><td align="left"/><td align="left"/><td align="left">&#x02013;</td><td align="left">&#x02013;</td><td align="left">35.10</td><td align="left">(11.03&#x02013;48.37)</td><td align="left">44.44</td><td align="left">(11.03&#x02013;64.71)</td></tr></tbody></table><table-wrap-foot><p><italic>MAPE </italic>mean absolute percent error, <italic>ICs </italic>imported cases, <italic>I total </italic>cumulative total cases, <italic>I </italic>cumulative active cases, <italic>I daily </italic>daily confirmed cases, <italic>R </italic>cumulative removed cases (recovered&#x02009;+&#x02009;death), <italic>min </italic>minimum, <italic>max </italic>maximum, <italic>MA </italic>moving average, <italic>z </italic>fractional term, <italic>p </italic>proportion of depletion, <italic>&#x003b4; </italic>removed rate.</p></table-wrap-foot></table-wrap></p><p id="Par31">The modified SIR model successfully captured the I daily temporal trend (Fig.&#x000a0;<xref rid="Fig6" ref-type="fig">6</xref>A&#x02013;C). Due to the high variation, high MAPE was found in projection even with comparatively low MAPE in model fitting (Fig.&#x000a0;<xref rid="Fig6" ref-type="fig">6</xref>D&#x02013;F). Overall, the projection improved when fitted on more data points for I total, I and R (Fig.&#x000a0;<xref rid="Fig7" ref-type="fig">7</xref>).<fig id="Fig6"><label>Figure 6</label><caption><p>Temporal trend of daily confirmed COVID-19 cases in Malaysia. Part <bold>(A)</bold> to <bold>(F)</bold> present temporal trend of daily I for COVID-19 and associated percent error (PE) over time in Malaysia. (<bold>A</bold>) Fitting up to 31 March 2020, with projection up to 14 April 2020. (<bold>B</bold>) Fitting up to 14 April 2020, with projection up to 28 April 2020. (<bold>C</bold>) Fitting up to 28 April 2020, with projection up to 12 May 2020. (<bold>D</bold>) PE of fitted model from 18 to 31 March 2020, with projection up to 14 April 2020. (<bold>E</bold>) PE of fitted model from 18 March to 14 April 2020, with projection up to 28 April 2020. (<bold>F</bold>) PE of fitted model from 18 March to 28 April 2020, with projection up to 12 May 2020.</p></caption><graphic xlink:href="41598_2020_78739_Fig6_HTML" id="MO6"/></fig><fig id="Fig7"><label>Figure 7</label><caption><p>The impact of data points on MAPE of model fitting and projection. Part (<bold>A</bold>) to (<bold>D</bold>) present MAPE of model fitting and projection with 14, 28 and 42 data points for I total, I, R and I daily, with and without imported cases (ICs).</p></caption><graphic xlink:href="41598_2020_78739_Fig7_HTML" id="MO7"/></fig></p></sec></sec><sec id="Sec10"><title>Discussion</title><p id="Par32">In general, compartmental models assume that the epidemic growth of an infectious disease is limited by the proportion of susceptible individuals<sup><xref ref-type="bibr" rid="CR8">8</xref></sup>, and therefore may fail to predict the early depleting trend observed in COVID-19. Instead, the modified SIR model factors in changes in host behaviour and interaction, such as reduced contact rate, and can provide a better prediction for COVID-19 especially under a public lockdown situation with high degree of compliance as observed in Malaysia. The objective of predicting the early depleting transmission dynamics of COVID-19 is achieved by using a time-varying exponential decay log function for <inline-formula id="IEq39"><alternatives><tex-math id="M119">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\beta_{t}$$\end{document}</tex-math><mml:math id="M120"><mml:msub><mml:mi>&#x003b2;</mml:mi><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq39.gif"/></alternatives></inline-formula> with a fractional term, z. This signifies the importance of incorporating valid principles in modeling for COVID-19.</p><p id="Par33">To match the reporting structure of COVID-19 in Malaysia, we maintained the three compartmental structure and minimal underlying model assumptions. This increased the usability of the modeling findings, especially for stakeholders with limited understanding about mathematical models. The predictions of the modified model were used by the Ministry of Health Malaysia periodically to assess the requirement to extend the movement control order (MCO) and balance with opening of economic sectors during the MCO. The temporal trend of daily confirmed cases was useful to inform the public on the importance of maintaining physical distancing and good personal hygiene to prevent the spread of COVID-19<sup><xref ref-type="bibr" rid="CR18">18</xref></sup>.</p><p id="Par34">As of 11 May 2020, the total number of confirmed COVID-19 cases in Malaysia reached 6726, with 3821 (56.8%) cases being patients under investigation and their close contacts, 2345 (34.8%) cases from the Sri Petaling cluster, 353 (5.2%) cases from quarantine center (imported cases) and 207 (3.1%) cases from active surveillance<sup><xref ref-type="bibr" rid="CR18">18</xref></sup>. The data showed that public health interventions such as contact tracing and quarantine measures effectively detected and isolated a significant proportion of infected individuals before they could spread the virus to others. This justified the use of a fractional term to adjust the overall transmission dynamics of COVID-19 during the lockdown period.</p><p id="Par35">The difference between the estimated <inline-formula id="IEq40"><alternatives><tex-math id="M121">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{0}$$\end{document}</tex-math><mml:math id="M122"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq40.gif"/></alternatives></inline-formula> and initial values of <inline-formula id="IEq41"><alternatives><tex-math id="M123">\documentclass[12pt]{minimal}
+				\usepackage{amsmath}
+				\usepackage{wasysym} 
+				\usepackage{amsfonts} 
+				\usepackage{amssymb} 
+				\usepackage{amsbsy}
+				\usepackage{mathrsfs}
+				\usepackage{upgreek}
+				\setlength{\oddsidemargin}{-69pt}
+				\begin{document}$$\hat{R}_{t}$$\end{document}</tex-math><mml:math id="M124"><mml:msub><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo stretchy="false">^</mml:mo></mml:mover><mml:mi>t</mml:mi></mml:msub></mml:math><inline-graphic xlink:href="41598_2020_78739_Article_IEq41.gif"/></alternatives></inline-formula> signifies a prompt interruption or breaking in the transmission dynamics of COVID-19, a consequence of lockdown and movement restriction. Although nationwide lockdown and movement restriction are associated with a huge socio-economic burden, the observed instant decline in the transmission dynamics of COVID-19 give credence to the need for such drastic intervention to break the spread of COVID-19.</p><p id="Par36">At first, the modified SIR model approximates the transmission dynamics of COVID-19 depleting at a higher rate of 7.8% (<italic>p</italic>&#x02009;=&#x02009;0.078) per day but then decelerating to 4.7% (<italic>p</italic>&#x02009;=&#x02009;0.047) per day eventually. The change in the proportion of depletion might be related to reduced compliance, especially in physical distancing during the lockdown. Also, the model shows that the transmission dynamics of COVID-19 might occur at a decreased capacity of about 40% (<italic>z</italic>: 0.3914&#x02013;0.4313) during the lockdown period. The high MAPE in model fitting for compartment R could be caused by the use of a fixed parameter <italic>&#x003b4;</italic> for the transition of individuals from compartment I to R, which is rigid in describing the inconsistent removed rate or isolation period over time. Nevertheless, the modified SIR model performed well in projecting the number of R cases over time with increased data points.</p><p id="Par37">The high MAPE in projection for I daily is expected because of the underlying variation of daily confirmed cases. Projection of I daily is crucial as daily confirmed cases receive more attention from the public and stakeholders than other state variables. Besides, it is also a more sensitive indicator of a rebound in transmission and public adherence to control measures. The projected temporal trends are useful in decision making for extending or lifting of lockdown.</p><p id="Par38">Our study highlights a few valuable features of the modified SIR model in capturing the depleting trend of COVID-19 as a result of lockdown and combined public health interventions. The model also produces realistic projection based on observed data, especially for I total, I and R state variables. The modified SIR model quantifies the transmission dynamics of COVID-19 with a fixed proportion of depletion per day, and in addition provides an intuitive parameter for comparing the impact of different public health strategies. Initial forecasts of the modified SIR model were informative, but less precise as the projections had limited data points. However, over time, the accuracy of the modified SIR model improved significantly with more data points being available for curve adjusting.</p><p id="Par39">There are several limitations to the modified model. First, the modified SIR model is as good as the observed data captured and reported, not beyond. Its performance can be affected by reporting issues such as change of reporting structure and definition, testing backlog, inconsistent screening rate or yield and others. Second, projection based on observed data is valid only if the past conditions are followed without substantial changes. Refitting using most recent cases and time points might be appropriate if substantial changes are found.</p></sec><sec id="Sec11"><title>Conclusion</title><p id="Par40">Our results show that lockdown and movement restriction are effective. They serve as the prerequisite to the early depletion of COVID-19, which can be accurately predicted by the SIR model modified with a partial time-varying force of infection. The time-varying SIR model helps to quantify the impact and effectiveness of lockdown and public health measures against the COVID-19, and are useful in the planning for the control of COVID-19 pandemic.</p></sec></body><back><fn-group><fn><p><bold>Publisher's note</bold></p><p>Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.</p></fn></fn-group><ack><title>Acknowledgements</title><p>We would like to thank the Crisis Preparedness and Response Centre, Disease Control Division, of MOH Malaysia for providing relevant data required in this study. We would like to thank the Director General of Health Malaysia for his permission to publish this article.</p></ack><notes notes-type="author-contribution"><title>Author contributions</title><p>K.B.L., K.M.P., and P.P.G. conceived and planned the study. K.B.L., B.S.G., S.S., B.M.S., K.R. contributed to the design of the mathematical model and interpretation of findings. P.P.G., H.I., N.H.A. supervised the implementation of the project and the utilization of the findings to support the control of pandemic. Data analysis was led by K.B.L. and Y.L.L. K.B.L., K.M.P., K.B.L., B.S.G., S.S., B.M.S., K.R., Y.L.L. contributed to this manuscript. All authors contributed to the interpretation of the findings and approved the final version for publication.</p></notes><notes notes-type="funding-information"><title>Funding</title><p>No funding source.</p></notes><notes id="FPar1" notes-type="COI-statement"><title>Competing interests</title><p id="Par42">The authors declare no competing interests.</p></notes><ref-list id="Bib1"><title>References</title><ref id="CR1"><label>1.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Thomas</surname><given-names>DM</given-names></name><name><surname>Sturdivant</surname><given-names>R</given-names></name><name><surname>Dhurandhar</surname><given-names>NV</given-names></name><name><surname>Debroy</surname><given-names>S</given-names></name><name><surname>Clark</surname><given-names>N</given-names></name></person-group><article-title>A primer on COVID-19 mathematical models</article-title><source>Obesity</source><year>2020</year><volume>28</volume><fpage>1375</fpage><lpage>1377</lpage><pub-id pub-id-type="doi">10.1002/oby.22881</pub-id><pub-id pub-id-type="pmid">32386464</pub-id></element-citation></ref><ref id="CR2"><label>2.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Li</surname><given-names>Q</given-names></name><etal/></person-group><article-title>Early transmission dynamics in Wuhan, China, of novel coronavirus-infected pneumonia</article-title><source>N. Engl. J. Med.</source><year>2020</year><volume>382</volume><fpage>1199</fpage><lpage>1207</lpage><pub-id pub-id-type="doi">10.1056/NEJMoa2001316</pub-id><pub-id pub-id-type="pmid">31995857</pub-id></element-citation></ref><ref id="CR3"><label>3.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wu</surname><given-names>JT</given-names></name><name><surname>Leung</surname><given-names>K</given-names></name><name><surname>Leung</surname><given-names>GM</given-names></name></person-group><article-title>Nowcasting and forecasting the potential domestic and international spread of the 2019-nCoV outbreak originating in Wuhan, China: a modelling study</article-title><source>Lancet</source><year>2020</year><volume>395</volume><fpage>689</fpage><lpage>697</lpage><pub-id pub-id-type="doi">10.1016/S0140-6736(20)30260-9</pub-id><pub-id pub-id-type="pmid">32014114</pub-id></element-citation></ref><ref id="CR4"><label>4.</label><mixed-citation publication-type="other">Hwang, J., Park, H., Kim, S-H., Jung, J. &#x00026; Kim, N. Basic and effective reproduction numbers of COVID-19 cases in South Korea excluding Sincheonji cases. Preprint at <ext-link ext-link-type="uri" xlink:href="https://www.medrxiv.org/content/10.1101/2020.03.19.20039347v2">https://www.medrxiv.org/content/10.1101/2020.03.19.20039347v2</ext-link> (2020).</mixed-citation></ref><ref id="CR5"><label>5.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Zhuang</surname><given-names>Z</given-names></name><etal/></person-group><article-title>Preliminary estimating the reproduction number of the coronavirus disease (COVID-19) outbreak in Republic of Korea and Italy by 5 March 2020</article-title><source>Int. J. Infect. Dis.</source><year>2020</year><volume>95</volume><fpage>308</fpage><lpage>310</lpage><pub-id pub-id-type="doi">10.1016/j.ijid.2020.04.044</pub-id><pub-id pub-id-type="pmid">32334115</pub-id></element-citation></ref><ref id="CR6"><label>6.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Zhao</surname><given-names>S</given-names></name><etal/></person-group><article-title>Preliminary estimation of the basic reproduction number of novel coronavirus (2019-nCoV) in China, from 2019 to 2020: a data-driven analysis in the early phase of the outbreak</article-title><source>Int. J. Infect. Dis.</source><year>2020</year><volume>92</volume><fpage>214</fpage><lpage>217</lpage><pub-id pub-id-type="doi">10.1016/j.ijid.2020.01.050</pub-id><pub-id pub-id-type="pmid">32007643</pub-id></element-citation></ref><ref id="CR7"><label>7.</label><mixed-citation publication-type="other">Salim, N. <italic>et al</italic>. COVID-19 epidemic in Malaysia: Impact of lock-down on infection dynamics. Preprint at <ext-link ext-link-type="uri" xlink:href="https://www.medrxiv.org/content/10.1101/2020.04.08.20057463v1">https://www.medrxiv.org/content/10.1101/2020.04.08.20057463v1</ext-link> (2020).</mixed-citation></ref><ref id="CR8"><label>8.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Keeling</surname><given-names>MJ</given-names></name><name><surname>Danon</surname><given-names>L</given-names></name></person-group><article-title>Mathematical modelling of infectious diseases</article-title><source>Br. Med. Bull.</source><year>2009</year><volume>92</volume><fpage>33</fpage><lpage>42</lpage><pub-id pub-id-type="doi">10.1093/bmb/ldp038</pub-id><pub-id pub-id-type="pmid">19855103</pub-id></element-citation></ref><ref id="CR9"><label>9.</label><mixed-citation publication-type="other">Mellan, T. A. <italic>et al</italic>. Estimating COVID-19 cases and reproduction number in Brazil. Imperial College London. 10.25561/78872 (2020).</mixed-citation></ref><ref id="CR10"><label>10.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Hellewell</surname><given-names>J</given-names></name><etal/></person-group><article-title>Feasibility of controlling COVID-19 outbreaks by isolation of cases and contacts</article-title><source>Lancet Glob. Health.</source><year>2020</year><volume>8</volume><fpage>e488</fpage><lpage>e496</lpage><pub-id pub-id-type="doi">10.1016/S2214-109X(20)30074-7</pub-id><pub-id pub-id-type="pmid">32119825</pub-id></element-citation></ref><ref id="CR11"><label>11.</label><mixed-citation publication-type="other">Ferguson, N. M. <italic>et al</italic>. Impact of non-pharmaceutical interventions (NPIs) to reduce COVID-19 mortality and healthcare demand. Imperial College London. 10.25561/77482 (2020).</mixed-citation></ref><ref id="CR12"><label>12.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Maier</surname><given-names>BF</given-names></name><name><surname>Brockmann</surname><given-names>D</given-names></name></person-group><article-title>Effective containment explains subexponential growth in recent confirmed COVID-19 cases in China</article-title><source>Science</source><year>2020</year><volume>368</volume><fpage>742</fpage><lpage>746</lpage><pub-id pub-id-type="doi">10.1126/science.abb4557</pub-id><pub-id pub-id-type="pmid">32269067</pub-id></element-citation></ref><ref id="CR13"><label>13.</label><mixed-citation publication-type="other">Becker, N. G. <italic>et al</italic>. Using mathematical models to assess responses to an outbreak of an emerged viral respiratory disease. Final report to the Australian Government Department of Health and Ageing. <ext-link ext-link-type="uri" xlink:href="https://www1.health.gov.au/internet/publications/publishing.nsf/Content/mathematical-models">https://www1.health.gov.au/internet/publications/publishing.nsf/Content/mathematical-models</ext-link> (2006).</mixed-citation></ref><ref id="CR14"><label>14.</label><mixed-citation publication-type="other">Report of the WHO-China Joint Mission on Coronavirus Disease 2019 (COVID-19). <ext-link ext-link-type="uri" xlink:href="https://www.who.int/publications-detail-redirect/report-of-the-who-china-joint-mission-on-coronavirus-disease-2019-(covid-19">https://www.who.int/publications-detail-redirect/report-of-the-who-china-joint-mission-on-coronavirus-disease-2019-(covid-19</ext-link>) (2020).</mixed-citation></ref><ref id="CR15"><label>15.</label><mixed-citation publication-type="other">Babulal, V. &#x00026; Othman, N. Z. Sri Petaling Tabligh gathering remains Msia&#x02019;s largest Covid-19 cluster. <italic>New Straits Times.</italic><ext-link ext-link-type="uri" xlink:href="https://www.nst.com.my/news/nation/2020/04/583127/sri-petaling-tabligh-gathering-remains-msias-largest-covid-19-cluster">https://www.nst.com.my/news/nation/2020/04/583127/sri-petaling-tabligh-gathering-remains-msias-largest-covid-19-cluster</ext-link> (2020).</mixed-citation></ref><ref id="CR16"><label>16.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Ebrahim</surname><given-names>SH</given-names></name><name><surname>Memish</surname><given-names>ZA</given-names></name></person-group><article-title>Saudi Arabia&#x02019;s drastic measures to curb the COVID-19 outbreak: temporary suspension of the Umrah pilgrimage</article-title><source>J. Travel Med.</source><year>2020</year><pub-id pub-id-type="doi">10.1093/jtm/taaa029</pub-id><pub-id pub-id-type="pmid">33184626</pub-id></element-citation></ref><ref id="CR17"><label>17.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Che Mat</surname><given-names>NF</given-names></name><name><surname>Edinur</surname><given-names>HA</given-names></name><name><surname>Abdul Razab</surname><given-names>MKA</given-names></name><name><surname>Safuan</surname><given-names>S</given-names></name></person-group><article-title>A single mass gathering resulted in massive transmission of COVID-19 infections in Malaysia with further international spread</article-title><source>J. Travel Med.</source><year>2020</year><pub-id pub-id-type="doi">10.1093/jtm/taaa059</pub-id><pub-id pub-id-type="pmid">32307549</pub-id></element-citation></ref><ref id="CR18"><label>18.</label><mixed-citation publication-type="other">Current situation of COVID-19 pandemic in Malaysia. Ministry of Health Malaysia. <ext-link ext-link-type="uri" xlink:href="https://covid-19.moh.gov.my">https://covid-19.moh.gov.my</ext-link>.</mixed-citation></ref><ref id="CR19"><label>19.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Backer</surname><given-names>JA</given-names></name><name><surname>Klinkenberg</surname><given-names>D</given-names></name><name><surname>Wallinga</surname><given-names>J</given-names></name></person-group><article-title>Incubation period of 2019 novel coronavirus (2019-nCoV) infections among travellers from Wuhan, China, 20&#x02013;28 January 2020</article-title><source>Euro Surveill.</source><year>2020</year><volume>25</volume><issue>5</issue><fpage>2000062</fpage><pub-id pub-id-type="doi">10.2807/1560-7917.ES.2020.25.5.2000062</pub-id></element-citation></ref><ref id="CR20"><label>20.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Yu</surname><given-names>P</given-names></name><name><surname>Zhu</surname><given-names>J</given-names></name><name><surname>Zhang</surname><given-names>Z</given-names></name><name><surname>Han</surname><given-names>Y</given-names></name></person-group><article-title>A familial cluster of infection associated with the 2019 novel coronavirus indicating potential person-to-person transmission during the incubation period</article-title><source>J. Infect. Dis.</source><year>2020</year><volume>221</volume><fpage>1757</fpage><lpage>1761</lpage><pub-id pub-id-type="doi">10.1093/infdis/jiaa077</pub-id><pub-id pub-id-type="pmid">32067043</pub-id></element-citation></ref><ref id="CR21"><label>21.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wei</surname><given-names>WE</given-names></name><etal/></person-group><article-title>Presymptomatic transmission of SARS-CoV-2&#x02014;Singapore, January 23&#x02013;March 16, 2020</article-title><source>MMWR Morb. Mortal. Wkly. Rep.</source><year>2020</year><volume>2020</volume><issue>69</issue><fpage>411</fpage><lpage>415</lpage><pub-id pub-id-type="doi">10.15585/mmwr.mm6914e1</pub-id></element-citation></ref><ref id="CR22"><label>22.</label><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Kimball</surname><given-names>A</given-names></name><etal/></person-group><article-title>Asymptomatic and presymptomatic SARS-CoV-2 infections in residents of a long-term care skilled nursing facility&#x02014;King County, Washington, March 2020</article-title><source>MMWR Morb. Mortal. Wkly. Rep.</source><year>2020</year><volume>2020</volume><issue>69</issue><fpage>377</fpage><lpage>381</lpage><pub-id pub-id-type="doi">10.15585/mmwr.mm6913e1</pub-id></element-citation></ref><ref id="CR23"><label>23.</label><mixed-citation publication-type="other">Coronavirus disease 2019 (COVID-19): Situation Report-73. World Health Organization. <ext-link ext-link-type="uri" xlink:href="https://apps.who.int/iris/handle/10665/331686">https://apps.who.int/iris/handle/10665/331686</ext-link> (2020).</mixed-citation></ref><ref id="CR24"><label>24.</label><mixed-citation publication-type="other">Demographic Statistics Fourth Quarter 2019, Malaysia. Department of Statistics Malaysia. <ext-link ext-link-type="uri" xlink:href="https://www.dosm.gov.my/v1/index.php?r=column/pdfPrev&#x00026;id=UDc0eVJ4WEJiYmw0Rmt5cjYvWHFkdz09">https://www.dosm.gov.my/v1/index.php?r=column/pdfPrev&#x00026;id=UDc0eVJ4WEJiYmw0Rmt5cjYvWHFkdz09</ext-link> (2020).</mixed-citation></ref></ref-list></back></article>
