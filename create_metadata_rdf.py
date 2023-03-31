@@ -14,6 +14,7 @@ from biosimulators_utils.omex_meta.io import BiosimulationsOmexMetaWriter
 from biosimulators_utils.omex_meta.data_model import OmexMetadataOutputFormat
 import Bio.Entrez
 Bio.Entrez.email = 'lpsmith@uw.edu'
+import operator, glob
 
 class NonStandardRef():
     """ Journal article not from pubmed or doi
@@ -78,7 +79,6 @@ def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, mast
                 if master:
                     masterIDs.add(rURI[uripos+8:])
 
-    
 def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir):
     citations = []
     mastercitations = []
@@ -93,6 +93,8 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
         citations.append(citation)
         if doiID in masterIDs:
             mastercitations.append(citation)
+            
+    sorted(citations, key=lambda x : x.get_citation())
 
     if len(citations)==0:
         citations.append(no_pubmed_or_doi[id])
@@ -112,6 +114,10 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
                 citation.pubmed_central_id,
                 temp_entry_dir,
                 )
+            fileList = glob.glob(temp_entry_dir + '/*.tar.gz')
+            # Iterate over the list of filepaths & remove each file.
+            for filePath in fileList:
+                os.remove(filePath)
             metadata['thumbnails'] = [os.path.relpath(thumbnail.filename, temp_entry_dir).replace("\\", "/") for thumbnail in thumbnails]
 
 
