@@ -16,7 +16,7 @@
 %
 % is http://identifiers.org/biomodels.db/MODEL1305280001
 % is http://identifiers.org/biomodels.db/BIOMD0000000504
-% isDescribedBy http://identifiers.org/pubmed/24285357
+% isDescribedBy http://identifiers.org/pubmed/24757149
 %
 
 

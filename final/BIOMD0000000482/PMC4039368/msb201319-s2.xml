@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" xmlns:html="http://www.w3.org/1999/xhtml" level="2" version="1">
+  <annotation>
+Created by The MathWorks, Inc. SimBiology tool, Version 4.0
+</annotation>
+  <model id="mw8c99a1b8_7e4b_44ba_b37d_3b40d5ac6f93" name="Insulin-dependentGlucoseMetabolismModel">
+    <annotation></annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition id="MWDERIVEDUNIT_nanomole__litre" name="nanomole/litre">
+        <listOfUnits>
+          <unit kind="metre" exponent="-3" multiplier="1" offset="0"/>
+          <unit kind="mole" multiplier="1" offset="0"/>
+          <unit kind="dimensionless" multiplier="1e-006" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" name="default" size="1"/>
+      <compartment id="mw2d669d57_ffcd_43b6_8d1d_1660cb9b84e3" name="Vex" size="0.004" units="litre" outside="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5">
+        <annotation></annotation>
+      </compartment>
+      <compartment id="mw8c0742d1_4514_4181_ad21_178d9cdabb99" name="Vin" size="2.64e-005" units="litre" outside="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="GP" name="GP" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0.4726">
+        <annotation></annotation>
+      </species>
+      <species id="pGP" name="pGP" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0.1723">
+        <annotation></annotation>
+      </species>
+      <species id="mRNA" name="mRNA" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="2.905">
+        <annotation></annotation>
+      </species>
+      <species id="PEPCK" name="PEPCK" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0.7686">
+        <annotation></annotation>
+      </species>
+      <species id="IRS" name="IRS" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="888.77">
+        <annotation></annotation>
+      </species>
+      <species id="p1IRS" name="p1IRS" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0">
+        <annotation></annotation>
+      </species>
+      <species id="p2IRS" name="p2IRS" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0">
+        <annotation></annotation>
+      </species>
+      <species id="p1p2IRS" name="p1p2IRS" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0">
+        <annotation></annotation>
+      </species>
+      <species id="Akt" name="Akt" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="1.1182">
+        <annotation></annotation>
+      </species>
+      <species id="pAkt" name="pAkt" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0">
+        <annotation></annotation>
+      </species>
+      <species id="mTOR" name="mTOR" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="880.25">
+        <annotation></annotation>
+      </species>
+      <species id="pmTOR" name="pmTOR" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0">
+        <annotation></annotation>
+      </species>
+      <species id="Foxo" name="Foxo" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="1.069e-005">
+        <annotation></annotation>
+      </species>
+      <species id="pFoxo" name="pFoxo" compartment="mwc8c046e2_efb0_4e6f_8b26_e0ebadd37ee5" initialAmount="0">
+        <annotation></annotation>
+      </species>
+      <species id="PYRout" name="PYRout" compartment="mw2d669d57_ffcd_43b6_8d1d_1660cb9b84e3" initialAmount="137.5">
+        <annotation></annotation>
+      </species>
+      <species id="mw9cf88b89_bbf0_49af_9e70_4dc3d50b8c5f" name="GLCex" compartment="mw2d669d57_ffcd_43b6_8d1d_1660cb9b84e3" initialAmount="114.9"/>
+      <species id="mwfe210d9a_b251_458d_8b7d_b2ded06b4e95" name="F16P" compartment="mw8c0742d1_4514_4181_ad21_178d9cdabb99" initialAmount="9.571"/>
+      <species id="mw11921081_8ae4_48fa_beb3_3e83e265d023" name="PYRin" compartment="mw8c0742d1_4514_4181_ad21_178d9cdabb99" initialAmount="0.9872"/>
+      <species id="mw342ccac3_fec1_44ec_b9be_52aadf7a1ea2" name="LAC" compartment="mw8c0742d1_4514_4181_ad21_178d9cdabb99" initialAmount="1001"/>
+      <species id="mw6ca98bdb_64dc_4306_af11_f7d0bf36990e" name="OAA" compartment="mw8c0742d1_4514_4181_ad21_178d9cdabb99" initialAmount="0.0022"/>
+      <species id="mw2f9fbfac_2cee_40bc_8156_516315b95857" name="GLY" compartment="mw8c0742d1_4514_4181_ad21_178d9cdabb99" initialAmount="4.8248"/>
+      <species id="mw055ac51d_41de_4785_9f64_aafba9957347" name="G1P" compartment="mw8c0742d1_4514_4181_ad21_178d9cdabb99" initialAmount="5.303"/>
+      <species id="mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d" name="G6P" compartment="mw8c0742d1_4514_4181_ad21_178d9cdabb99" initialAmount="0.5188"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="V1" name="V1" value="8.97"/>
+      <parameter id="K1" name="K1" value="0.0451"/>
+      <parameter id="V2_G6P" name="V2_G6P" value="7.71"/>
+      <parameter id="K2_G6P" name="K2_G6P" value="925"/>
+      <parameter id="V2_F16P" name="V2_F16P" value="0.0839"/>
+      <parameter id="K2_F16P" name="K2_F16P" value="0.597"/>
+      <parameter id="V3" name="V3" value="0.00229"/>
+      <parameter id="K3" name="K3" value="2.92"/>
+      <parameter id="V6" name="V6" value="0.00247"/>
+      <parameter id="K6" name="K6" value="0.996"/>
+      <parameter id="V7" name="V7" value="2.84e-005"/>
+      <parameter id="K7" name="K7" value="8.43"/>
+      <parameter id="V4_PYR" name="V4_PYR" value="23.6"/>
+      <parameter id="K4_PYR" name="K4_PYR" value="56.4"/>
+      <parameter id="V4_LAC" name="V4_LAC" value="1.2e-006"/>
+      <parameter id="K4_LAC" name="K4_LAC" value="0.0154"/>
+      <parameter id="V8_G6P" name="V8_G6P" value="2.02e-005"/>
+      <parameter id="K8_G6P" name="K8_G6P" value="0.791"/>
+      <parameter id="V8_G1P" name="V8_G1P" value="0.04"/>
+      <parameter id="K8_G1P" name="K8_G1P" value="69.8"/>
+      <parameter id="V5" name="V5" value="0.00112"/>
+      <parameter id="K5" name="K5" value="0.228"/>
+      <parameter id="V9_G1P" name="V9_G1P" value="0.488"/>
+      <parameter id="K9_G1P" name="K9_G1P" value="2.69"/>
+      <parameter id="V9_GLY" name="V9_GLY" value="1.02e-006"/>
+      <parameter id="K9_GLY" name="K9_GLY" value="0.000623"/>
+      <parameter id="k3" name="k3" value="112.76"/>
+      <parameter id="k4" name="k4" value="1.9448"/>
+      <parameter id="s1" name="s1" value="1.722"/>
+      <parameter id="s2" name="s4" value="214.7"/>
+      <parameter id="s3" name="s2" value="46.54"/>
+      <parameter id="s4" name="s3" value="1.19"/>
+      <parameter id="k1_PEPCK" name="k1_PEPCK" value="0.12225"/>
+      <parameter id="k2_PEPCK" name="k2_PEPCK" value="0.0045985"/>
+      <parameter id="k3_PEPCK" name="k3_PEPCK" value="486.28"/>
+      <parameter id="k4_PEPCK" name="k4_PEPCK" value="0.0046101"/>
+      <parameter id="k5_PEPCK" name="k5_PEPCK" value="0.00010958"/>
+      <parameter id="k6_PEPCK" name="k6_PEPCK" value="0.0018592"/>
+      <parameter id="param1" name="param1" value="5.5702"/>
+      <parameter id="param2" name="param2" value="2.3969"/>
+      <parameter id="param3" name="param3" value="0.020934"/>
+      <parameter id="param4" name="param4" value="1.214e-005"/>
+      <parameter id="param5" name="param5" value="0.2751"/>
+      <parameter id="param6" name="param6" value="0.0072509"/>
+      <parameter id="param7" name="param7" value="758.12"/>
+      <parameter id="param8" name="param8" value="0.91758"/>
+      <parameter id="param9" name="param9" value="0.041292"/>
+      <parameter id="param10" name="param10" value="0.00013032"/>
+      <parameter id="param11" name="param11" value="0.000192"/>
+      <parameter id="param12" name="param12" value="0.029311"/>
+      <parameter id="param13" name="param13" value="4.4307e-005"/>
+      <parameter id="param14" name="param14" value="0.35211"/>
+      <parameter id="param15" name="param15" value="3.1385e-005"/>
+      <parameter id="param16" name="param16" value="0.0095934"/>
+      <parameter id="proIRS" name="proIRS" value="888.77"/>
+      <parameter id="insulin" name="insulin" value="100" units="MWDERIVEDUNIT_nanomole__litre"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="v1" name="v1" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="mw9cf88b89_bbf0_49af_9e70_4dc3d50b8c5f"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> V1 </ci>
+                  <apply>
+                    <divide/>
+                    <ci> mw9cf88b89_bbf0_49af_9e70_4dc3d50b8c5f </ci>
+                    <ci> K1 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> V1 </ci>
+                  <apply>
+                    <divide/>
+                    <ci> mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d </ci>
+                    <ci> K1 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> mw9cf88b89_bbf0_49af_9e70_4dc3d50b8c5f </ci>
+                  <ci> K1 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d </ci>
+                  <ci> K1 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v2" name="v2" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="pAkt"/>
+          <speciesReference species="mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pAkt"/>
+          <speciesReference species="mwfe210d9a_b251_458d_8b7d_b2ded06b4e95"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <times/>
+                        <ci> s1 </ci>
+                        <ci> pAkt </ci>
+                      </apply>
+                    </apply>
+                    <ci> V2_G6P </ci>
+                    <ci> mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d </ci>
+                  </apply>
+                  <ci> K2_G6P </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> V2_F16P </ci>
+                    <ci> mwfe210d9a_b251_458d_8b7d_b2ded06b4e95 </ci>
+                  </apply>
+                  <ci> K2_F16P </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d </ci>
+                  <ci> K2_G6P </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> mwfe210d9a_b251_458d_8b7d_b2ded06b4e95 </ci>
+                  <ci> K2_F16P </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v3" name="v3" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="mwfe210d9a_b251_458d_8b7d_b2ded06b4e95"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw11921081_8ae4_48fa_beb3_3e83e265d023"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V3 </ci>
+                <ci> mwfe210d9a_b251_458d_8b7d_b2ded06b4e95 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K3 </ci>
+                <ci> mwfe210d9a_b251_458d_8b7d_b2ded06b4e95 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v4" name="v4" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="mw11921081_8ae4_48fa_beb3_3e83e265d023"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw342ccac3_fec1_44ec_b9be_52aadf7a1ea2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> V4_PYR </ci>
+                    <ci> mw11921081_8ae4_48fa_beb3_3e83e265d023 </ci>
+                  </apply>
+                  <ci> K4_PYR </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> V4_LAC </ci>
+                    <ci> mw342ccac3_fec1_44ec_b9be_52aadf7a1ea2 </ci>
+                  </apply>
+                  <ci> K4_LAC </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> mw11921081_8ae4_48fa_beb3_3e83e265d023 </ci>
+                  <ci> K4_PYR </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> mw342ccac3_fec1_44ec_b9be_52aadf7a1ea2 </ci>
+                  <ci> K4_LAC </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v5" name="v5" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="PYRout"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw11921081_8ae4_48fa_beb3_3e83e265d023"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> V5 </ci>
+                    <ci> PYRout </ci>
+                  </apply>
+                  <ci> K5 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> V5 </ci>
+                    <ci> mw11921081_8ae4_48fa_beb3_3e83e265d023 </ci>
+                  </apply>
+                  <ci> K5 </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> PYRout </ci>
+                  <ci> K5 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> mw11921081_8ae4_48fa_beb3_3e83e265d023 </ci>
+                  <ci> K5 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v6" name="v6" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="mw11921081_8ae4_48fa_beb3_3e83e265d023"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw6ca98bdb_64dc_4306_af11_f7d0bf36990e"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V6 </ci>
+                <ci> mw11921081_8ae4_48fa_beb3_3e83e265d023 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K6 </ci>
+                <ci> mw11921081_8ae4_48fa_beb3_3e83e265d023 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v7" name="v7" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="PEPCK"/>
+          <speciesReference species="mw6ca98bdb_64dc_4306_af11_f7d0bf36990e"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PEPCK"/>
+          <speciesReference species="mwfe210d9a_b251_458d_8b7d_b2ded06b4e95"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <times/>
+                    <ci> s3 </ci>
+                    <ci> PEPCK </ci>
+                  </apply>
+                </apply>
+                <ci> V7 </ci>
+                <ci> mw6ca98bdb_64dc_4306_af11_f7d0bf36990e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K7 </ci>
+                <ci> mw6ca98bdb_64dc_4306_af11_f7d0bf36990e </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v8" name="v8" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="pAkt"/>
+          <speciesReference species="mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pAkt"/>
+          <speciesReference species="mw055ac51d_41de_4785_9f64_aafba9957347"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <times/>
+                        <ci> s4 </ci>
+                        <ci> pAkt </ci>
+                      </apply>
+                    </apply>
+                    <ci> V8_G6P </ci>
+                    <ci> mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d </ci>
+                  </apply>
+                  <ci> K8_G6P </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> V8_G1P </ci>
+                    <ci> mw055ac51d_41de_4785_9f64_aafba9957347 </ci>
+                  </apply>
+                  <ci> K8_G1P </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d </ci>
+                  <ci> K8_G6P </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> mw055ac51d_41de_4785_9f64_aafba9957347 </ci>
+                  <ci> K8_G1P </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v9" name="v9" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="pGP"/>
+          <speciesReference species="mw055ac51d_41de_4785_9f64_aafba9957347"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pGP"/>
+          <speciesReference species="mw2f9fbfac_2cee_40bc_8156_516315b95857"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> V9_G1P </ci>
+                    <ci> mw055ac51d_41de_4785_9f64_aafba9957347 </ci>
+                  </apply>
+                  <ci> K9_G1P </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <times/>
+                        <ci> s2 </ci>
+                        <ci> pGP </ci>
+                      </apply>
+                    </apply>
+                    <ci> V9_GLY </ci>
+                    <ci> mw2f9fbfac_2cee_40bc_8156_516315b95857 </ci>
+                  </apply>
+                  <ci> K9_GLY </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> mw055ac51d_41de_4785_9f64_aafba9957347 </ci>
+                  <ci> K9_G1P </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> mw2f9fbfac_2cee_40bc_8156_516315b95857 </ci>
+                  <ci> K9_GLY </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="metabolicENZ" name="metabolicENZ1" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="pGP"/>
+          <speciesReference species="mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GP"/>
+          <speciesReference species="mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> pGP </ci>
+              <ci> mwa3d293ae_bb43_4d9b_8ee8_fa5c334aec3d </ci>
+              <ci> k4 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction1" name="reaction1" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfProducts>
+          <speciesReference species="IRS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <ci> proIRS </ci>
+                <ci> IRS </ci>
+              </apply>
+              <ci> param1 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction2" name="reaction2" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="IRS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p1IRS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> IRS </ci>
+                <ci> insulin </ci>
+                <ci> param2 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> p1IRS </ci>
+                <ci> param3 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction3" name="reaction3" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="p1IRS"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p1IRS </ci>
+              <ci> param4 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction4" name="reaction4" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="p1IRS"/>
+          <speciesReference species="pmTOR"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p1p2IRS"/>
+          <speciesReference species="pmTOR"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p1IRS </ci>
+              <ci> pmTOR </ci>
+              <ci> param5 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction5" name="reaction5" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="p1p2IRS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p1IRS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p1p2IRS </ci>
+              <ci> param6 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction6" name="reaction6" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="IRS"/>
+          <speciesReference species="pmTOR"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p2IRS"/>
+          <speciesReference species="pmTOR"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> IRS </ci>
+              <ci> pmTOR </ci>
+              <ci> param7 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction7" name="reaction7" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="p2IRS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IRS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p2IRS </ci>
+              <ci> param8 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction8" name="reaction8" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="p2IRS"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p2IRS </ci>
+              <ci> param9 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction9" name="reaction9" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="p2IRS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p1p2IRS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> p2IRS </ci>
+                <ci> insulin </ci>
+                <ci> param10 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> p1p2IRS </ci>
+                <ci> param11 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction10" name="reaction10" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="p1p2IRS"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p1p2IRS </ci>
+              <ci> param12 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction11" name="reaction11" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="Akt"/>
+          <speciesReference species="p1IRS"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pAkt"/>
+          <speciesReference species="p1IRS"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p1IRS </ci>
+              <ci> Akt </ci>
+              <ci> param13 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction12" name="reaction12" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="pAkt"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Akt"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> pAkt </ci>
+              <ci> param14 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction13" name="reaction13" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="mTOR"/>
+          <speciesReference species="pAkt"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pmTOR"/>
+          <speciesReference species="pAkt"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> mTOR </ci>
+              <ci> pAkt </ci>
+              <ci> param15 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction14" name="reaction14" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="pmTOR"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mTOR"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> pmTOR </ci>
+              <ci> param16 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction15" name="reaction15" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="Foxo"/>
+          <speciesReference species="pAkt"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pFoxo"/>
+          <speciesReference species="pAkt"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> pAkt </ci>
+              <ci> Foxo </ci>
+              <ci> k1_PEPCK </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reactionPEP1" name="reactionPEP1" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="Foxo"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mRNA"/>
+          <speciesReference species="Foxo"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> Foxo </ci>
+                <ci> k3_PEPCK </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> mRNA </ci>
+                <ci> k4_PEPCK </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reactionPEP2" name="reactionPEP2" reversible="false" fast="false">
+        <annotation></annotation>
+        <listOfReactants>
+          <speciesReference species="mRNA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PEPCK"/>
+          <speciesReference species="mRNA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> k5_PEPCK </ci>
+                <ci> mRNA </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k6_PEPCK </ci>
+                <ci> PEPCK </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mw7c079c91_51e3_4732_8dca_23fb3cd716a7" name="reaction16" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="pFoxo"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Foxo"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> pFoxo </ci>
+              <ci> k2_PEPCK </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mwfc720c89_b1b3_416a_8958_e9d0aff9f4a6" name="metabolicENZ2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pGP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> GP </ci>
+              <ci> k3 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
