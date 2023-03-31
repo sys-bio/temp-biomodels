@@ -1,0 +1,149 @@
+********** MODEL NAME
+Budding yeast size control - Inhibitor dilution
+
+********** MODEL NOTES
+This model is decribed in the article:
+Dilution and titration of cell-cycle regulators may control cell size in budding yeast
+Frank S. Heldt, Reece Lunstone, John J. Tyson, Bela Novak
+
+Abstract:
+The size of a cell sets the scale for all biochemical processes within it, thereby affecting cellular fitness and survival. Hence, cell size needs to be kept within certain limits and relatively constant over multiple generations. However, how cells measure their size and use this information to regulate growth and division remains controversial. Here, we present two mechanistic mathematical models of the budding yeast (S. cerevisiae) cell cycle to investigate competing hypotheses on size control: inhibitor dilution and titration of nuclear sites. Our results suggest that an inhibitor-dilution mechanism, in which cell growth dilutes the transcriptional inhibitor Whi5 against the constant activator Cln3, can facilitate size homeostasis. This is achieved by utilising a positive feedback loop to establish a fixed size threshold for the START transition, which efficiently couples cell growth to cell cycle progression. Yet, we show that inhibitor dilution cannot reproduce the size of mutants that alter the cell’s overall ploidy and WHI5 gene copy number. By contrast, size control through titration of Cln3 against a constant number of genomic binding sites for the transcription factor SBF recapitulates both size homeostasis and the size of these mutant strains. Moreover, this model produces an imperfect ‘sizer’ behaviour in G1 and a ‘timer’ in S/G2/M, which combine to yield an ‘adder’ over the whole cell cycle; an observation recently made in experiments. Hence, our model connects these phenomenological data with the molecular details of the cell cycle, providing a systems-level perspective of budding yeast size control.
+
+This model simulates cell size control in budding yeast based on the inhibitor-dilution hypothesis. It follows daughter cells after division.
+
+********** MODEL STATES
+d/dt(mV) = rSyVo*Grm
+d/dt(dV) = rSyVo*Grd
+
+d/dt(TM)   = rSyTm + kDsGiTm*GITM + kDsGdTm*GDTM - (kAsGiTm/tV*GI + kAsGdTm/tV*GD)*TM
+d/dt(GITM) = kAsGiTm/tV*TM*GI - kDsGiTm*GITM
+d/dt(GDTM) = kAsGdTm/tV*TM*GD - kDsGdTm*GDTM
+
+d/dt(CLN3) = rSyCln3 - kDeCln3*CLN3
+d/dt(CLN)  = rSyCln  - kDeCln *CLN
+d/dt(CLB)  = rSyClb  - rDeClb *CLB
+
+d/dt(WHI)    = - rPhWhi*WHI + kDpWhi*WHIp   - kAsWhiSbf/tV*SBF*WHI + kDsWhiSbf*WHISBF
+d/dt(WHIp)   =   rPhWhi*WHI - kDpWhi*WHIp   + rPhWhi*WHISBF
+d/dt(SBF)    =   rSySbf     + rPhWhi*WHISBF - kAsWhiSbf/tV*SBF*WHI + kDsWhiSbf*WHISBF
+d/dt(WHISBF) =              - rPhWhi*WHISBF + kAsWhiSbf/tV*SBF*WHI - kDsWhiSbf*WHISBF
+
+d/dt(SBFp) = rPhSbf*SBFu - kDpSbf*SBFp
+
+d/dt(WHIn) = rSyWhi*Grd
+
+d/dt(CDHi) = rSyCdh - rAcCdh*(CDHi/tV/(jCdh+CDHi/tV)) + rInCdh*(CDHa/tV/(jCdh+CDHa/tV))
+d/dt(CDHa) =          rAcCdh*(CDHi/tV/(jCdh+CDHi/tV)) - rInCdh*(CDHa/tV/(jCdh+CDHa/tV))
+d/dt(CDCi) = rSyCdc - rAcCdc*(CDCi/tV/(jCdc+CDCi/tV)) + rInCdc*(CDCa/tV/(jCdc+CDCa/tV))
+d/dt(CDCa) =          rAcCdc*(CDCi/tV/(jCdc+CDCi/tV)) - rInCdc*(CDCa/tV/(jCdc+CDCa/tV))
+
+mV(0) = 1.6
+
+GITM(0) = 1
+GDTM(0) = 80
+
+CLN3(0)   = 1.6
+WHI(0)    = 1.6
+WHIp(0)   = 1.3
+WHISBF(0) = 1.6
+
+CDHa(0) = 1.6
+CDCi(0) = 1.6
+
+********** MODEL PARAMETERS
+GDt = 500           %molecules  total number of size-dependent genes
+
+GCN = 1             %molecules  gene copy number (of all genes except Whi5 and Cln3)
+GWt = 1             %molecules  copy number of Whi5 gene (corresponds to total number of size-independent genes, GIt)
+GCt = 1             %molecules  copy number of Cln3 gene
+
+StartThr   = 0.3    %AU/AV  Cln1/2 threshold for Start transition
+MitosisThr = 0.2    %AU/AV  Cln1/2 + Clb1/2 threshold for cell division
+Grm = 1             %-  binary variable (1 - if mother cell growths)
+Grd = 0             %-  binary variable (1 - if daughter cell growths)
+
+kSyVo = 0.042       %AV/(molecule*min)  cell volume growth
+kSyTm = 2.1         %1/min  synthesis of transcription machinery
+
+kAsGiTm = 10        %AV/(molecule*min)  association of size-independent genes and transcription machinery
+kAsGdTm = 1         %AV/(molecule*min)  association of size-dependent   genes and transcription machinery
+kDsGiTm = 0.1       %1/min  dissociation of size-independent genes and transcription machinery
+kDsGdTm = 1         %1/min  dissociation of size-dependent   genes and transcription machinery
+
+kSyCln3 = 10        %AU/(molecule*min)  Cln3 synthesis
+kDeCln3 = 1         %1/min  Cln3 degradation
+kSyCln  = 8         %AU/(molecule*min)  Cln1/2 synthesis
+kDeCln  = 1         %1/min  constitutive Cln1/2 degradation
+
+kSyClb    = 0.01 	%AU/(molecule*min)  constitutive Clb1/2 synthesis
+kSyClbClb = 0.3     %AU/(molecule*min)  Clb1/2-dependent Clb1/2 synthesis
+jSyClb    = 0.3     %AU/AV  Michaelis-Menten constant for Clb1/2 synthesis
+kDeClb    = 0.01    %1/min  constitutive Clb1/2 degradation
+kDeClbCdh = 2       %AV/(AU*min)  Cdh1-dependent Clb1/2 degradation
+
+kSyWhi     = 0.016  %AU/(molecule*min)  Whi5 synthesis
+kPhWhiCln3 = 0.3  	%AV/(AU*min)  Cln3-dependent Whi5 phosphorylation
+kPhWhiCln  = 4      %AV/(AU*min)  Cln1/2-dependent Whi5 phosphorylation
+kPhWhiClb  = 20     %AV/(AU*min)  Clb1/2-dependent Whi5 phosphorylation
+kDpWhi     = 1      %1/min  dephosphorylation of Whi5
+
+kAsWhiSbf = 100     %AV/(AU*min)  association of Whi5 and SBF
+kDsWhiSbf = 0.01    %1/min  dissociation of Whi5:SBF complexes
+
+kPhSbfClb = 5       %AV/(AU*min)  Clb1/2-dependent SBF phosphorylation
+kDpSbf    = 0.2     %1/min  SBF dephosphorylation
+
+kAcCdh    = 0.01    %AU/(AV*min)  constitutive Cdh1 activation
+kAcCdhCdc = 2       %1/min  Cdc20-dependent Cdh1 activation
+kInCdhCln = 0.125   %1/min  Cln1/2-dependent Cdh1 inactivation
+kInCdhClb = 2       %1/min  Clb1/2-dependent Cdh1 inactivation
+jCdh      = 0.001	%AU/AV  Michaelis-Menten constant for Cdh1 (in-)activation
+
+kAcCdcClb = 0.5     %1/min  Clb1/2-dependent Cdc20 activation
+kInCdc    = 0.25	%AU/(AV*min)  Cdc20 inactivation
+jCdc      = 0.001	%AU/AV  Michaelis-Menten constant for Cdc20 (in-)activation
+
+********** MODEL VARIABLES
+tV = mV + dV                %AV  total cell volume (including mother and daughter cell)
+rV = dV/tV                  %-  ratio of daughter to total cell volume
+
+GIt = GWt                   %molecules  total number of size-independent genes
+GI  = GIt - GITM        	%molecules  number of free size-independent genes
+GD  = GDt        - GDTM     %molecules  number of free size-dependent genes
+TMt = TM  + GITM + GDTM     %molecules  total amount of transcription machinery
+
+SBFt = SBF  + WHISBF                %AU  total amount of SBF
+SBFu = SBFt - SBFp                  %AU  total unphosphorylated SBF
+WHIt = WHI  + WHISBF + WHIp + WHIn  %AU  total Whi5
+
+********** MODEL REACTIONS
+rSyVo = kSyVo*GDTM*(GCN/GDt)        %AV/min  cell volume growth
+rSyTm = kSyTm*GDTM*(GCN/GDt)        %molecules/min  synthesis of transcription machinery
+
+rSyWhi  = kSyWhi *GITM*(GWt/GIt)                        %AU/min  synthesis of Whi5
+rSyCln3 = kSyCln3*GDTM*(GCt/GDt)                        %AU/min  synthesis of Cln3
+rSyCln  = kSyCln *GDTM*(GCN/GDt)*(SBF/SBFt)*(SBFu/SBFt)	%AU/min  synthesis of Cln1/2
+
+rSySbf = kSyVo*GDTM*(GCN/GDt)       %AU/min  synthesis of SBF
+rSyCdh = kSyVo*GDTM*(GCN/GDt)       %AU/min  synthesis of Cdh1
+rSyCdc = kSyVo*GDTM*(GCN/GDt)       %AU/min  synthesis of Cdc20
+
+rSyClb = (kSyClb + kSyClbClb*CLB /tV / (jSyClb + CLB/tV))*GDTM*(GCN/GDt)    %AU/min  Clb1/2 synthesis
+rDeClb = (kDeClb + kDeClbCdh*CDHa/tV)                                       %1/min   Clb1/2 degradation
+
+rPhWhi = (kPhWhiCln3*CLN3 + kPhWhiCln*CLN + kPhWhiClb*CLB)/tV   %1/min  Whi5 phosphorylation
+rPhSbf =  kPhSbfClb*CLB/tV                                      %1/min  SBF  phosphorylation
+
+rAcCdc = kAcCdcClb*CLB                      %AU/min  Cdc20 activation
+rAcCdh = kAcCdh*tV     + kAcCdhCdc*CDCa     %AU/min  Cdh1  activation
+rInCdc = kInCdc*tV                          %AU/min  Cdc20 inactivation
+rInCdh = kInCdhCln*CLN + kInCdhClb*CLB      %AU/min  Cdh1  inactivation
+
+********** MODEL FUNCTIONS
+
+
+********** MODEL EVENTS
+Start    = ge(CLN/tV,        StartThr),   Grm, 0, Grd, 1, GDt, GDt*2, GCN, GCN*2, GWt, GWt*2, GCt, GCt*2
+Division = le(CLN/tV+CLB/tV, MitosisThr), Grm, 1, Grd, 0, GDt, GDt/2, GCN, GCN/2, GWt, GWt/2, GCt, GCt/2, mV, dV, dV, 0, TM, TM*rV, GITM, GITM*rV, GDTM, GDTM*rV, CLN3, CLN3*rV, CLN, CLN*rV, CLB, CLB*rV, WHI, WHI*rV+WHIn, WHIn, 0, WHIp, WHIp*rV, SBF, SBF*rV, SBFp, SBFp*rV, WHISBF, WHISBF*rV, CDHi, CDHi*rV, CDHa, CDHa*rV, CDCi, CDCi*rV, CDCa, CDCa*rV
+
+********** MODEL MATLAB FUNCTIONS

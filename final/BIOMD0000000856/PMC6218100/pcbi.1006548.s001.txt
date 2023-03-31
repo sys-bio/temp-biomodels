@@ -1,0 +1,89 @@
+********** MODEL NAME
+Budding yeast size control - Gene expression
+
+********** MODEL NOTES
+This model is decribed in the article:
+Dilution and titration of cell-cycle regulators may control cell size in budding yeast
+Frank S. Heldt, Reece Lunstone, John J. Tyson, Bela Novak
+
+Abstract:
+The size of a cell sets the scale for all biochemical processes within it, thereby affecting cellular fitness and survival. Hence, cell size needs to be kept within certain limits and relatively constant over multiple generations. However, how cells measure their size and use this information to regulate growth and division remains controversial. Here, we present two mechanistic mathematical models of the budding yeast (S. cerevisiae) cell cycle to investigate competing hypotheses on size control: inhibitor dilution and titration of nuclear sites. Our results suggest that an inhibitor-dilution mechanism, in which cell growth dilutes the transcriptional inhibitor Whi5 against the constant activator Cln3, can facilitate size homeostasis. This is achieved by utilising a positive feedback loop to establish a fixed size threshold for the START transition, which efficiently couples cell growth to cell cycle progression. Yet, we show that inhibitor dilution cannot reproduce the size of mutants that alter the cell’s overall ploidy and WHI5 gene copy number. By contrast, size control through titration of Cln3 against a constant number of genomic binding sites for the transcription factor SBF recapitulates both size homeostasis and the size of these mutant strains. Moreover, this model produces an imperfect ‘sizer’ behaviour in G1 and a ‘timer’ in S/G2/M, which combine to yield an ‘adder’ over the whole cell cycle; an observation recently made in experiments. Hence, our model connects these phenomenological data with the molecular details of the cell cycle, providing a systems-level perspective of budding yeast size control.
+
+This model simulates the expression of cell size-dependent and -independent proteins from their respective genes.
+
+********** MODEL STATES
+d/dt(V) = rSyVo
+
+d/dt(TM)   = rSyTm + kDsGiTm*GITM + kDsGdTm*GDTM - (kAsGiTm/V*GI + kAsGdTm/V*GD)*TM
+d/dt(GITM) = kAsGiTm/V*TM*GI - kDsGiTm*GITM
+d/dt(GDTM) = kAsGdTm/V*TM*GD - kDsGdTm*GDTM
+
+d/dt(Pi) = rSyPi - kDeP*Pi
+d/dt(Pd) = rSyPd - kDeP*Pd
+
+V(0)  = 0.5
+TM(0) = 0
+
+GITM(0) = .84
+GDTM(0) = 25
+
+Pi(0) = .5
+Pd(0) = .5
+
+********** MODEL PARAMETERS
+d/dt(V) = rSyVo
+
+d/dt(TM)   = rSyTm + kDsGiTm*GITM + kDsGdTm*GDTM - (kAsGiTm/V*GI + kAsGdTm/V*GD)*TM
+d/dt(GITM) = kAsGiTm/V*TM*GI - kDsGiTm*GITM
+d/dt(GDTM) = kAsGdTm/V*TM*GD - kDsGdTm*GDTM
+
+d/dt(Pi) = rSyPi - kDeP*Pi
+d/dt(Pd) = rSyPd - kDeP*Pd
+
+V(0)  = 0.5
+TM(0) = 0
+
+GITM(0) = .84
+GDTM(0) = 24
+
+Pi(0) = .5
+Pd(0) = .5
+
+********** MODEL PARAMETERS
+GIt = 1             %molecules  total number of size-independent genes
+GDt = 500           %molecules  total number of size-dependent genes
+
+GCN = 1             %molecules  gene copy number
+CPI = 1             %molecules  copy number of the gene encoding Pi
+CPD = 1             %molecules  copy number of the gene encoding Pd
+
+kSyVo = 0.042       %AV/(molecule*min)  cell volume growth
+kSyTm = 2.1         %1/min  synthesis of transcription machinery
+
+kAsGiTm = 10        %AV/(molecule*min)  association of size-independent genes and transcription machinery
+kAsGdTm = 1         %AV/(molecule*min)  association of size-dependent   genes and transcription machinery
+kDsGiTm = 0.1       %1/min  dissociation of size-independent genes and transcription machinery
+kDsGdTm = 1         %1/min  dissociation of size-dependent   genes and transcription machinery
+
+kSyPi = .58         %AU/(molecule*min)  synthesis of size-independent protein (combined transcription and translation)
+kSyPd = 10          %AU/(molecule*min)  synthesis of size-dependent   protein (combined transcription and translation)
+kDeP  = 1           %1/min  degradation rate of proteins
+
+********** MODEL VARIABLES
+TMt = TM  + GITM + GDTM     %molecules  total amount of transcription machinery
+
+GI  = GIt - GITM        	%molecules  number of free size-independent genes
+GD  = GDt        - GDTM     %molecules  number of free size-dependent genes
+
+********** MODEL REACTIONS
+rSyVo = kSyVo*GDTM*(GCN/GDt)	%AV/min  cell volume growth
+rSyTm = kSyTm*GDTM*(GCN/GDt)	%molecules/min  synthesis of transcription machinery
+
+rSyPi = kSyPi*GITM*(CPI/GIt)    %AU/min  synthesis of size-independent protein
+rSyPd = kSyPd*GDTM*(CPD/GDt)    %AU/min  synthesis of size-dependent protein
+
+********** MODEL FUNCTIONS
+
+********** MODEL EVENTS
+
+********** MODEL MATLAB FUNCTIONS
