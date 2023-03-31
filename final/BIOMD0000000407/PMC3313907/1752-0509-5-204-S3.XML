@@ -1,0 +1,2451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml level="2" version="1" xmlns="http://www.sbml.org/sbml/level2">
+  <model id="Schliemann2011_TNF_ProAntiApoptosis"
+	name="Schliemann2011_TNF_ProAntiApoptosis">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <center>
+          <p>SBML model generated from Matlab system description
+            on 12-July-2011 21:08:15 by 
+            exportSBML Copyright Eric Bullinger 2007-2011</p>
+        </center>
+      </body>
+    </notes>
+
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:dc="http://purl.org/dc/elements/1.1/"
+               xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+        <rdf:Description rdf:about="my_metaid">
+          <dc:creator rdf:parseType="Resource">
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Given>Monica</vCard:Given>
+                  <vCard:Family>Schliemann</vCard:Family>
+                </vCard:N>
+                <vCard:ORG>
+                  <vCard:Orgname>Universitaet Magdeburg</vCard:Orgname>
+                </vCard:ORG>
+                <vCard:EMAIL>monica.schliemann@systems-biology.eu</vCard:EMAIL>
+              </rdf:li>
+            </rdf:Bag>
+          </dc:creator>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+   <listOfUnitDefinitions>
+      <unitDefinition id="a_mole">
+        <listOfUnits>
+          <unit kind="mole" scale="-18"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_second">
+        <listOfUnits>
+          <unit kind="second" exponent="-1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="pl">
+        <listOfUnits>
+          <unit kind="litre" scale="-12"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="a_mole_per_second">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-18"/>
+          <unit kind="second" exponent="-1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_a_mole_per_second">
+        <listOfUnits>
+          <unit kind="mole" exponent="-1" scale="-18"/>
+          <unit kind="second" exponent="-1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_a_mole_squared_per_second">
+        <listOfUnits>
+          <unit kind="mole" exponent="-2" scale="-18"/>
+          <unit kind="second" exponent="-1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+
+    <listOfCompartments>
+      <compartment id="cytoplasm" size="3.2" units="pl" />
+      <compartment id="extracellular" size="1344" units="pl" />
+      <compartment id="nucleus" size="1.056" units="pl" />
+    </listOfCompartments>
+
+    <listOfSpecies>
+      <species metaid="_1" id="TNFR_E" name="TNFR_E" compartment="extracellular" initialAmount="0.005" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_1">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_2" id="TNF_E" name="TNF_E" compartment="extracellular" initialAmount="0.2688" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_2">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_3" id="TNF_TNFR_E" name="TNF:TNFR_E" compartment="extracellular" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_3">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_4" id="TNFR" name="TNFR" compartment="cytoplasm" initialAmount="0.00028" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_4">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_5" id="RIP" name="RIP" compartment="cytoplasm" initialAmount="0.20256" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_5">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13546"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_6" id="TRADD" name="TRADD" compartment="cytoplasm" initialAmount="0.29344" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_6">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_7" id="TRAF2" name="TRAF2" compartment="cytoplasm" initialAmount="0.33056" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_7">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q12933"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_8" id="FADD" name="FADD" compartment="cytoplasm" initialAmount="0.30944" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_8">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_9" id="TNF_TNFR_TRADD" name="TNF:TNFR:TRADD" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_9">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_10" id="TNFRC1" name="TNFRC1" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_10">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q12933"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13546"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_11" id="TNFRCint1" name="TNFRCint1" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_11">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q12933"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13546"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_12" id="TNFRCint2" name="TNFRCint2" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_12">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_13" id="TNFRCint3" name="TNFRCint3" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_13">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_14" id="TNFRC2" name="TNFRC2" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_14">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_15" id="FLIP" name="FLIP" compartment="cytoplasm" initialAmount="0.0320472" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_15">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15519"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_16" id="TNFRC2_FLIP" name="TNFRC2:FLIP" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_16">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15519"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_17" id="TNFRC2_pCasp8" name="TNFRC2:pCasp8" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_17">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_18" id="TNFRC2_FLIP_FLIP" name="TNFRC2:FLIP:FLIP" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_18">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15519"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15519"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_19" id="TNFRC2_pCasp8_pCasp8" name="TNFRC2:pCasp8:pCasp8" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_19">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_20" id="TNFRC2_FLIP_pCasp8" name="TNFRC2:FLIP:pCasp8" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_20">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15519"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_21" id="TNFRC2_FLIP_pCasp8_RIP_TRAF2" name="TNFRC2:FLIP:pCasp8:RIP:TRAF2" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_21">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19438"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P01375"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q15628"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13158"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15519"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q13546"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q12933"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_22" id="IKK" name="IKK" compartment="cytoplasm" initialAmount="0.64" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_22">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15111"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_23" id="IKKa" name="IKKa" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_23">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:O15111"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_24" id="A20" name="A20" compartment="cytoplasm" initialAmount="0.104434" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_24">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P21580"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_25" id="NFkB" name="NFkB" compartment="cytoplasm" initialAmount="0.000115365" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_25">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19838"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_26" id="IkBa" name="IkBa" compartment="cytoplasm" initialAmount="0.00101518" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_26">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P25963"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_27" id="IkBa_NFkB" name="IkBa:NFkB" compartment="cytoplasm" initialAmount="0.0151032" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_27">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P25963"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19838"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_28" id="PIkBa" name="PIkBa" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_28">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P25963"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_29" id="NFkB_N" name="NFkB_N" compartment="nucleus" initialAmount="0.000691431" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_29">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19838"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_30" id="IkBa_N" name="IkBa_N" compartment="nucleus" initialAmount="0.0013839" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_30">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P25963"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_31" id="IkBa_NFkB_N" name="IkBa:NFkB_N" compartment="nucleus" initialAmount="9.00189e-005" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_31">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P25963"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P19838"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_32" id="A20_mRNA" name="A20_mRNA" compartment="nucleus" initialAmount="5.56657e-005" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_32">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ensembl:Homo_sapiens/Transcript/Summary?t=ENST00000237289;"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_33" id="IkBa_mRNA" name="IkBa_mRNA" compartment="nucleus" initialAmount="5.31517e-005" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_33">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ensembl:Homo_sapiens/Transcript/Summary?t=ENST00000216797;"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_34" id="XIAP_mRNA" name="XIAP_mRNA" compartment="nucleus" initialAmount="0.000219646" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_34">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ensembl:Homo_sapiens/Transcript/Summary?t=ENST00000371199;"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_35" id="FLIP_mRNA" name="FLIP_mRNA" compartment="nucleus" initialAmount="0.000139056" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_35">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:ensembl:Homo_sapiens/Transcript/Summary?t=ENST00000309955;"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_36" id="BAR" name="BAR" compartment="cytoplasm" initialAmount="0.28789" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_36">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q9NZS9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_37" id="XIAP" name="XIAP" compartment="cytoplasm" initialAmount="7.83371" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_37">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P98170"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_38" id="pCasp8" name="pCasp8" compartment="cytoplasm" initialAmount="3.2" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_38">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_39" id="pCasp3" name="pCasp3" compartment="cytoplasm" initialAmount="0.8" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_39">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P42574"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_40" id="pCasp6" name="pCasp6" compartment="cytoplasm" initialAmount="0.064" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_40">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P55212"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_41" id="Casp8" name="Casp8" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_41">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_42" id="Casp3" name="Casp3" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_42">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P42574"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_43" id="Casp6" name="Casp6" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_43">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P55212"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_44" id="BAR_Casp8" name="BAR:Casp8" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_44">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q9NZS9"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:Q14790"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_45" id="XIAP_Casp3" name="XIAP:Casp3" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_45">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P98170"/>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P42574"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_46" id="PARP" name="PARP" compartment="cytoplasm" initialAmount="1.66667" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_46">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P09874"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_47" id="cPARP" name="cPARP" compartment="cytoplasm" initialAmount="0" substanceUnits="a_mole" hasOnlySubstanceUnits="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_47">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:uniprot:P09874"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+
+    <listOfReactions>
+      <reaction id = "J1" name = "TNFR transport into membrane" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFR" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFR_E" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_1 </ci>
+              <ci> TNFR </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_1" name = "TNFR transport into membrane ka" value = "0.001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J2" name = "TNFR production" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "TNFR" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <ci> ka_2 </ci>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_2" name = "TNFR production ka" value = "2.8e-007" units = "a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J3" name = "TNFR degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFR_E" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_3 </ci>
+              <ci> TNFR_E </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_3" name = "TNFR degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J4" name = "RIP turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "RIP" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_4 </ci>
+                <apply><times/>
+                  <ci> kd_4 </ci>
+                  <ci> RIP </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_4" name = "RIP turnover ka" value = "2.0256e-005" units = "a_mole_per_second"/>
+            <parameter id = "kd_4" name = "RIP turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J5" name = "TRADD turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "TRADD" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_5 </ci>
+                <apply><times/>
+                  <ci> kd_5 </ci>
+                  <ci> TRADD </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_5" name = "TRADD turnover ka" value = "2.9344e-005" units = "a_mole_per_second"/>
+            <parameter id = "kd_5" name = "TRADD turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J6" name = "TRAF2 turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "TRAF2" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_6 </ci>
+                <apply><times/>
+                  <ci> kd_6 </ci>
+                  <ci> TRAF2 </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_6" name = "TRAF2 turnover ka" value = "3.3056e-005" units = "a_mole_per_second"/>
+            <parameter id = "kd_6" name = "TRAF2 turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J7" name = "FADD turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "FADD" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_7 </ci>
+                <apply><times/>
+                  <ci> kd_7 </ci>
+                  <ci> FADD </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_7" name = "FADD turnover ka" value = "3.0944e-005" units = "a_mole_per_second"/>
+            <parameter id = "kd_7" name = "FADD turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J8" name = "TNF~TNFR degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNF_TNFR_E" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_8 </ci>
+              <ci> TNF_TNFR_E </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_8" name = "TNF~TNFR degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J9" name = "TNF:TNFR:TRADD degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNF_TNFR_TRADD" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_9 </ci>
+              <ci> TNF_TNFR_TRADD </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_9" name = "TNF:TNFR:TRADD degradation ka" value = "0.02352" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J10" name = "TNFR Complex1 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC1" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_10 </ci>
+              <ci> TNFRC1 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_10" name = "TNFR Complex1 degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J11" name = "TNFR Complex2 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_11 </ci>
+              <ci> TNFRC2 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_11" name = "TNFR Complex2 degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J12" name = "TNFR Complex2~FLIP degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_FLIP" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_12 </ci>
+              <ci> TNFRC2_FLIP </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_12" name = "TNFR Complex2~FLIP degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J13" name = "TNFR Complex2~FLIP~FLIP degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_FLIP_FLIP" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_13 </ci>
+              <ci> TNFRC2_FLIP_FLIP </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_13" name = "TNFR Complex2~FLIP~FLIP degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J14" name = "TNFR Complex2~Procaspase-8 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_14 </ci>
+              <ci> TNFRC2_pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_14" name = "TNFR Complex2~Procaspase-8 degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J15" name = "TNFR Complex2~Procaspase-8~Procaspase-8 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_pCasp8_pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_15 </ci>
+              <ci> TNFRC2_pCasp8_pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_15" name = "TNFR Complex2~Procaspase-8~Procaspase-8 degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J16" name = "TNFR Complex2~FLIP~Procaspase-8 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_FLIP_pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_16 </ci>
+              <ci> TNFRC2_FLIP_pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_16" name = "TNFR Complex2~FLIP~Procaspase-8 degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J17" name = "TNFR Complex2~FLIP~Procaspase-8~RIP~TRAF2 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_FLIP_pCasp8_RIP_TRAF2" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_17 </ci>
+              <ci> TNFRC2_FLIP_pCasp8_RIP_TRAF2 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_17" name = "TNFR Complex2~FLIP~Procaspase-8~RIP~TRAF2 degradation ka" value = "5.6e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J18" name = "TNF~TNFR binding and release" reversible = "true">
+        <listOfReactants>
+          <speciesReference species = "TNFR_E" stoichiometry = "1"/>
+          <speciesReference species = "TNF_E" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNF_TNFR_E" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <apply><times/>
+                <ci> ka_18 </ci>
+                <ci> TNFR_E </ci>
+                <ci> TNF_E </ci>
+              </apply>
+                <apply><times/>
+                  <ci> kd_18 </ci>
+                  <ci> TNF_TNFR_E </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_18" name = "TNF~TNFR binding and release ka" value = "0.00953471" units = "per_a_mole_per_second"/>
+            <parameter id = "kd_18" name = "TNF~TNFR binding and release kd" value = "6.60377e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J19" name = "TNF~TNFR~TRADD building" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNF_TNFR_E" stoichiometry = "1"/>
+          <speciesReference species = "TRADD" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNF_TNFR_TRADD" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_19 </ci>
+              <ci> TNF_TNFR_E </ci>
+              <ci> TRADD </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_19" name = "TNF~TNFR~TRADD building ka" value = "0.00427827" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J20" name = "TNFR Complex1 building" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "RIP" stoichiometry = "1"/>
+          <speciesReference species = "TRAF2" stoichiometry = "1"/>
+          <speciesReference species = "TNF_TNFR_TRADD" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC1" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_20 </ci>
+              <ci> RIP </ci>
+              <ci> TRAF2 </ci>
+              <ci> TNF_TNFR_TRADD </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_20" name = "TNFR Complex1 building ka" value = "0.0976562" units = "per_a_mole_squared_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J21" name = "Receptor internalisation step1" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC1" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRCint1" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_21 </ci>
+              <ci> TNFRC1 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_21" name = "Receptor internalisation step1 ka" value = "0.001135" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J22" name = "Receptor internalisation step2" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRCint1" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "RIP" stoichiometry = "1"/>
+            <speciesReference species = "TRAF2" stoichiometry = "1"/>
+            <speciesReference species = "TNFRCint2" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_22 </ci>
+              <ci> TNFRCint1 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_22" name = "Receptor internalisation step2 ka" value = "0.001135" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J23" name = "Receptor internalisation step3" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "FADD" stoichiometry = "2"/>
+          <speciesReference species = "TNFRCint2" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRCint3" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_23 </ci>
+              <apply><power/>
+                <ci> FADD </ci>
+                <cn> 2 </cn>
+              </apply>
+              <ci> TNFRCint2 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_23" name = "Receptor internalisation step3 ka" value = "0.0118534" units = "per_a_mole_squared_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J24" name = "Receptor internalisation step4" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRCint3" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_24 </ci>
+              <ci> TNFRCint3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_24" name = "Receptor internalisation step4 ka" value = "0.1135" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J25" name = "FLIP recruitment to TNFR Complex2" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2" stoichiometry = "1"/>
+          <speciesReference species = "FLIP" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2_FLIP" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_25 </ci>
+              <ci> TNFRC2 </ci>
+              <ci> FLIP </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_25" name = "FLIP recruitment to TNFR Complex2 ka" value = "0.3125" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J26" name = "FLIP recruitment to TNFR Complex2~FLIP" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "FLIP" stoichiometry = "1"/>
+          <speciesReference species = "TNFRC2_FLIP" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2_FLIP_FLIP" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_26 </ci>
+              <ci> FLIP </ci>
+              <ci> TNFRC2_FLIP </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_26" name = "FLIP recruitment to TNFR Complex2~FLIP ka" value = "0.3125" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J27" name = "Procaspase-8 recruitment to TNFR Complex2" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2" stoichiometry = "1"/>
+          <speciesReference species = "pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2_pCasp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_27 </ci>
+              <ci> TNFRC2 </ci>
+              <ci> pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_27" name = "Procaspase-8 recruitment to TNFR Complex2 ka" value = "0.03125" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J28" name = "Procaspase-8 recruitment to TNFR Complex2~Procaspase-8" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_pCasp8" stoichiometry = "1"/>
+          <speciesReference species = "pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2_pCasp8_pCasp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_28 </ci>
+              <ci> TNFRC2_pCasp8 </ci>
+              <ci> pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_28" name = "Procaspase-8 recruitment to TNFR Complex2~Procaspase-8 ka" value = "0.03125" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J29" name = "Caspase-8 activation by TNFR Complex2" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_pCasp8_pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2" stoichiometry = "1"/>
+            <speciesReference species = "Casp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_29 </ci>
+              <ci> TNFRC2_pCasp8_pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_29" name = "Caspase-8 activation by TNFR Complex2 ka" value = "0.45" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J30" name = "FLIP recruitment to TNFR Complex2~Procaspase-8" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "FLIP" stoichiometry = "1"/>
+          <speciesReference species = "TNFRC2_pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2_FLIP_pCasp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_30 </ci>
+              <ci> FLIP </ci>
+              <ci> TNFRC2_pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_30" name = "FLIP recruitment to TNFR Complex2~Procaspase-8 ka" value = "0.3125" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J31" name = "Procaspase-8 recruitment to TNFR Complex2~FLIP" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_FLIP" stoichiometry = "1"/>
+          <speciesReference species = "pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2_FLIP_pCasp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_31 </ci>
+              <ci> TNFRC2_FLIP </ci>
+              <ci> pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_31" name = "Procaspase-8 recruitment to TNFR Complex2~FLIP ka" value = "0.3125" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J32" name = "Caspase-8 activation by TNFR Complex2~FLIP~Procaspase-8" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC2_FLIP_pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2" stoichiometry = "1"/>
+            <speciesReference species = "Casp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_32 </ci>
+              <ci> TNFRC2_FLIP_pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_32" name = "Caspase-8 activation by TNFR Complex2~FLIP~Procaspase-8 ka" value = "0.3" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J33" name = "RIP~TRAF2 recruitment at TNFR Complex2~FLIP~Procaspase-8" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "RIP" stoichiometry = "1"/>
+          <speciesReference species = "TRAF2" stoichiometry = "1"/>
+          <speciesReference species = "TNFRC2_FLIP_pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TNFRC2_FLIP_pCasp8_RIP_TRAF2" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_33 </ci>
+              <ci> RIP </ci>
+              <ci> TRAF2 </ci>
+              <ci> TNFRC2_FLIP_pCasp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_33" name = "RIP~TRAF2 recruitment at TNFR Complex2~FLIP~Procaspase-8 ka" value = "0.00976562" units = "per_a_mole_squared_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J34" name = "IKK activation by TNFR Complex2~FLIP~Procaspase-8~RIP~TRAF2" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IKK" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "IKKa" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "TNFRC2_FLIP_pCasp8_RIP_TRAF2" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_34 </ci>
+              <ci> TNFRC2_FLIP_pCasp8_RIP_TRAF2 </ci>
+              <ci> IKK </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_34" name = "IKK activation by TNFR Complex2~FLIP~Procaspase-8~RIP~TRAF2 ka" value = "0.03125" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J35" name = "IKK turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "IKK" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_35 </ci>
+                <apply><times/>
+                  <ci> kd_35 </ci>
+                  <ci> IKK </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_35" name = "IKK turnover ka" value = "6.4e-005" units = "a_mole_per_second"/>
+            <parameter id = "kd_35" name = "IKK turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J36" name = "NF-kappaB turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "NFkB" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_36 </ci>
+                <apply><times/>
+                  <ci> kd_36 </ci>
+                  <ci> NFkB </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_36" name = "NF-kappaB turnover ka" value = "1.6e-006" units = "a_mole_per_second"/>
+            <parameter id = "kd_36" name = "NF-kappaB turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J37" name = "FLIP turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "FLIP" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_37 </ci>
+                <apply><times/>
+                  <ci> kd_37 </ci>
+                  <ci> FLIP </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_37" name = "FLIP turnover ka" value = "2.24902e-006" units = "a_mole_per_second"/>
+            <parameter id = "kd_37" name = "FLIP turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J38" name = "XIAP turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "XIAP" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_38 </ci>
+                <apply><times/>
+                  <ci> kd_38 </ci>
+                  <ci> XIAP </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_38" name = "XIAP turnover ka" value = "0.000772256" units = "a_mole_per_second"/>
+            <parameter id = "kd_38" name = "XIAP turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J39" name = "A20 turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "A20" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_39 </ci>
+                <apply><times/>
+                  <ci> kd_39 </ci>
+                  <ci> A20 </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_39" name = "A20 turnover ka" value = "9.6e-006" units = "a_mole_per_second"/>
+            <parameter id = "kd_39" name = "A20 turnover kd" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J40" name = "IKK* degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IKKa" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_40 </ci>
+              <ci> IKKa </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_40" name = "IKK* degradation ka" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J41" name = "IkappaBalpha~NF-kappaB complex degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IkBa_NFkB" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_41 </ci>
+              <ci> IkBa_NFkB </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_41" name = "IkappaBalpha~NF-kappaB complex degradation ka" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J42" name = "nuclear NF-kappaB degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "NFkB_N" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_42 </ci>
+              <ci> NFkB_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_42" name = "nuclear NF-kappaB degradation ka" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J43" name = "IkappaBalpha-mRNA degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IkBa_mRNA" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_43 </ci>
+              <ci> IkBa_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_43" name = "IkappaBalpha-mRNA degradation ka" value = "0.000394201" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J44" name = "IkappaBalpha degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IkBa" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_44 </ci>
+              <ci> IkBa </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_44" name = "IkappaBalpha degradation ka" value = "0.00154022" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J45" name = "free nuclear IkappaBalpha degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IkBa_N" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_45 </ci>
+              <ci> IkBa_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_45" name = "free nuclear IkappaBalpha degradation ka" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J46" name = "nuclear IkappaBalpha~NF-kappaB complex degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IkBa_NFkB_N" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_46 </ci>
+              <ci> IkBa_NFkB_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_46" name = "nuclear IkappaBalpha~NF-kappaB complex degradation ka" value = "0.0001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J47" name = "P-IkappaBa degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "PIkBa" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_47 </ci>
+              <ci> PIkBa </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_47" name = "P-IkappaBa degradation ka" value = "0.0115517" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J48" name = "A20-mRNA degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "A20_mRNA" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_48 </ci>
+              <ci> A20_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_48" name = "A20-mRNA degradation ka" value = "0.000470498" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J49" name = "XIAP-mRNA degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "XIAP_mRNA" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_49 </ci>
+              <ci> XIAP_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_49" name = "XIAP-mRNA degradation ka" value = "0.000104931" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J50" name = "FLIP-mRNA degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "FLIP_mRNA" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_50 </ci>
+              <ci> FLIP_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_50" name = "FLIP-mRNA degradation ka" value = "0.000165744" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J51" name = "IKK activation by TNFR Complex1" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IKK" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "IKKa" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "TNFRC1" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_51 </ci>
+              <ci> TNFRC1 </ci>
+              <ci> IKK </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_51" name = "IKK activation by TNFR Complex1 ka" value = "93.75" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J52" name = "IKK* inactivation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IKKa" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "IKK" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_52 </ci>
+              <ci> IKKa </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_52" name = "IKK* inactivation ka" value = "0.1" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J53" name = "TNFR Complex1 inactivation by A20" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "TNFRC1" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "TRAF2" stoichiometry = "1"/>
+            <speciesReference species = "TNF_TNFR_TRADD" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "A20" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_53 </ci>
+              <ci> TNFRC1 </ci>
+              <ci> A20 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_53" name = "TNFR Complex1 inactivation by A20 ka" value = "0.00625" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J54" name = "IkappaBalpha NF-kappaB association" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "NFkB" stoichiometry = "1"/>
+          <speciesReference species = "IkBa" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "IkBa_NFkB" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_54 </ci>
+              <ci> NFkB </ci>
+              <ci> IkBa </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_54" name = "IkappaBalpha NF-kappaB association ka" value = "1.25" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J55" name = "release and degradation of bound IkappaBalpha" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IkBa_NFkB" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "NFkB" stoichiometry = "1"/>
+            <speciesReference species = "PIkBa" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "IKKa" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_55 </ci>
+              <ci> IKKa </ci>
+              <ci> IkBa_NFkB </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_55" name = "release and degradation of bound IkappaBalpha ka" value = "0.104167" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J56" name = "NF-kappaB nuclear translocation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "NFkB" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "NFkB_N" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_56 </ci>
+              <ci> NFkB </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_56" name = "NF-kappaB nuclear translocation ka" value = "0.0125" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J57" name = "IkappaBalpha-mRNA transcription" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "IkBa_mRNA" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "NFkB_N" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_57 </ci>
+              <ci> NFkB_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_57" name = "IkappaBalpha-mRNA transcription ka" value = "3.0303e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J58" name = "IkappaBalpha translation" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "IkBa" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "IkBa_mRNA" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_58 </ci>
+              <ci> IkBa_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_58" name = "IkappaBalpha translation ka" value = "0.0606061" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J59" name = "IkappaBalpha nuclear translocation" reversible = "true">
+        <listOfReactants>
+          <speciesReference species = "IkBa" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "IkBa_N" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <apply><times/>
+                <ci> ka_59 </ci>
+                <ci> IkBa </ci>
+              </apply>
+                <apply><times/>
+                  <ci> kd_59 </ci>
+                  <ci> IkBa_N </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_59" name = "IkappaBalpha nuclear translocation ka" value = "0.005" units = "per_second"/>
+            <parameter id = "kd_59" name = "IkappaBalpha nuclear translocation kd" value = "0.00257576" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J60" name = "IkappaBalpha binding NF-kappaB in nucleus" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "NFkB_N" stoichiometry = "1"/>
+          <speciesReference species = "IkBa_N" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "IkBa_NFkB_N" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_60 </ci>
+              <ci> NFkB_N </ci>
+              <ci> IkBa_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_60" name = "IkappaBalpha binding NF-kappaB in nucleus ka" value = "1.4348" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J61" name = "IkappaBalpha_NF-kappaB N-C export" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "IkBa_NFkB_N" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "IkBa_NFkB" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_61 </ci>
+              <ci> IkBa_NFkB_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_61" name = "IkappaBalpha_NF-kappaB N-C export ka" value = "0.0151515" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J62" name = "A20-mRNA transcription" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "A20_mRNA" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "NFkB_N" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_62 </ci>
+              <ci> NFkB_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_62" name = "A20-mRNA transcription ka" value = "3.78788e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J63" name = "A20 translation" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "A20" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "A20_mRNA" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_63 </ci>
+              <ci> A20_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_63" name = "A20 translation ka" value = "0.0151515" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J64" name = "XIAP-mRNA transcription" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "XIAP_mRNA" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "NFkB_N" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_64 </ci>
+              <ci> NFkB_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_64" name = "XIAP-mRNA transcription ka" value = "3.33333e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J65" name = "XIAP translation" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "XIAP" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "XIAP_mRNA" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_65 </ci>
+              <ci> XIAP_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_65" name = "XIAP translation ka" value = "0.0506061" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J66" name = "FLIP-mRNA transcription" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "FLIP_mRNA" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "NFkB_N" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_66 </ci>
+              <ci> NFkB_N </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_66" name = "FLIP-mRNA transcription ka" value = "3.33333e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J67" name = "FLIP translation" reversible = "false">
+        <listOfProducts>
+            <speciesReference species = "FLIP" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "FLIP_mRNA" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_67 </ci>
+              <ci> FLIP_mRNA </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_67" name = "FLIP translation ka" value = "0.00687273" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J68" name = "Procaspase-8 turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "pCasp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_68 </ci>
+                <apply><times/>
+                  <ci> kd_68 </ci>
+                  <ci> pCasp8 </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_68" name = "Procaspase-8 turnover ka" value = "0.000197531" units = "a_mole_per_second"/>
+            <parameter id = "kd_68" name = "Procaspase-8 turnover kd" value = "6.17284e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J69" name = "Procaspase-3 turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "pCasp3" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_69 </ci>
+                <apply><times/>
+                  <ci> kd_69 </ci>
+                  <ci> pCasp3 </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_69" name = "Procaspase-3 turnover ka" value = "4.93827e-005" units = "a_mole_per_second"/>
+            <parameter id = "kd_69" name = "Procaspase-3 turnover kd" value = "6.17284e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J70" name = "Procaspase-6 turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "pCasp6" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_70 </ci>
+                <apply><times/>
+                  <ci> kd_70 </ci>
+                  <ci> pCasp6 </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_70" name = "Procaspase-6 turnover ka" value = "3.95062e-006" units = "a_mole_per_second"/>
+            <parameter id = "kd_70" name = "Procaspase-6 turnover kd" value = "6.17284e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J71" name = "Caspase-8 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "Casp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_71 </ci>
+              <ci> Casp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_71" name = "Caspase-8 degradation ka" value = "5.78704e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J72" name = "Caspase-3 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "Casp3" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_72 </ci>
+              <ci> Casp3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_72" name = "Caspase-3 degradation ka" value = "5.78704e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J73" name = "Caspase-6 degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "Casp6" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_73 </ci>
+              <ci> Casp6 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_73" name = "Caspase-6 degradation ka" value = "5.78704e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J74" name = "XIAP~Caspase-3 complex degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "XIAP_Casp3" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_74 </ci>
+              <ci> XIAP_Casp3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_74" name = "XIAP~Caspase-3 complex degradation ka" value = "5.78704e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J75" name = "BAR turnover" reversible = "true">
+        <listOfProducts>
+            <speciesReference species = "BAR" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <ci> ka_75 </ci>
+                <apply><times/>
+                  <ci> kd_75 </ci>
+                  <ci> BAR </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_75" name = "BAR turnover ka" value = "1.66603e-006" units = "a_mole_per_second"/>
+            <parameter id = "kd_75" name = "BAR turnover kd" value = "5.78704e-006" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J76" name = "BAR~Caspase-8 complex degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "BAR_Casp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_76 </ci>
+              <ci> BAR_Casp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_76" name = "BAR~Caspase-8 complex degradation ka" value = "5.78704e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J77" name = "PARP turnover" reversible = "true">
+        <listOfReactants>
+          <speciesReference species = "PARP" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <apply><times/>
+                <ci> ka_77 </ci>
+                <ci> PARP </ci>
+              </apply>
+              <ci> kd_77 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_77" name = "PARP turnover ka" value = "5.78704e-006" units = "per_second"/>
+            <parameter id = "kd_77" name = "PARP turnover kd" value = "9.64506e-006" units = "a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J78" name = "CPARP degradation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "cPARP" stoichiometry = "1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_78 </ci>
+              <ci> cPARP </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_78" name = "CPARP degradation ka" value = "5.78704e-006" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J79" name = "Caspase-3 activation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "pCasp3" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "Casp3" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "Casp8" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_79 </ci>
+              <ci> pCasp3 </ci>
+              <ci> Casp8 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_79" name = "Caspase-3 activation ka" value = "0.015625" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J80" name = "Caspase-6 activation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "pCasp6" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "Casp6" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "Casp3" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_80 </ci>
+              <ci> pCasp6 </ci>
+              <ci> Casp3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_80" name = "Caspase-6 activation ka" value = "0.009375" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J81" name = "Caspase-8 activation" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "pCasp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "Casp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "Casp6" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_81 </ci>
+              <ci> pCasp8 </ci>
+              <ci> Casp6 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_81" name = "Caspase-8 activation ka" value = "0.0015625" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J82" name = "XIAP~Caspase-3 complex formation" reversible = "true">
+        <listOfReactants>
+          <speciesReference species = "XIAP" stoichiometry = "1"/>
+          <speciesReference species = "Casp3" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "XIAP_Casp3" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <apply><times/>
+                <ci> ka_82 </ci>
+                <ci> XIAP </ci>
+                <ci> Casp3 </ci>
+              </apply>
+                <apply><times/>
+                  <ci> kd_82 </ci>
+                  <ci> XIAP_Casp3 </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_82" name = "XIAP~Caspase-3 complex formation ka" value = "0.625" units = "per_a_mole_per_second"/>
+            <parameter id = "kd_82" name = "XIAP~Caspase-3 complex formation kd" value = "0.001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J83" name = "XIAP degradation due to Caspase-3" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "XIAP" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "Casp3" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_83 </ci>
+              <ci> XIAP </ci>
+              <ci> Casp3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_83" name = "XIAP degradation due to Caspase-3 ka" value = "1.875" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J84" name = "XIAP~Caspase-3 complex breakup" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "XIAP_Casp3" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "XIAP" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_84 </ci>
+              <ci> XIAP_Casp3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_84" name = "XIAP~Caspase-3 complex breakup ka" value = "5e-005" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J85" name = "negative feedback loop Caspase-3 on TNFR Complex1" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "RIP" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "Casp3" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_85 </ci>
+              <ci> RIP </ci>
+              <ci> Casp3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_85" name = "negative feedback loop Caspase-3 on TNFR Complex1 ka" value = "0.15625" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J86" name = "FLIP degradation by Caspase-3" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "FLIP" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "Casp3" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_86 </ci>
+              <ci> FLIP </ci>
+              <ci> Casp3 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_86" name = "FLIP degradation by Caspase-3 ka" value = "0.15625" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J87" name = "PARP cleavage as Casp3 substrate" reversible = "false">
+        <listOfReactants>
+          <speciesReference species = "PARP" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "cPARP" stoichiometry = "1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species = "Casp3" />
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><times/>
+              <ci> ka_87 </ci>
+              <ci> Casp3 </ci>
+              <ci> PARP </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id = "ka_87" name = "PARP cleavage as Casp3 substrate ka" value = "0.1875" units = "per_a_mole_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id = "J88" name = "BAR~Caspase-8 complex formation" reversible = "true">
+        <listOfReactants>
+          <speciesReference species = "BAR" stoichiometry = "1"/>
+          <speciesReference species = "Casp8" stoichiometry = "1"/>
+        </listOfReactants>
+        <listOfProducts>
+            <speciesReference species = "BAR_Casp8" stoichiometry = "1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns = "http://www.w3.org/1998/Math/MathML">
+            <apply><minus/>
+              <apply><times/>
+                <ci> ka_88 </ci>
+                <ci> BAR </ci>
+                <ci> Casp8 </ci>
+              </apply>
+                <apply><times/>
+                  <ci> kd_88 </ci>
+                  <ci> BAR_Casp8 </ci>
+                </apply>
+              </apply>
+            </math>
+          <listOfParameters>
+            <parameter id = "ka_88" name = "BAR~Caspase-8 complex formation ka" value = "0.520833" units = "per_a_mole_per_second"/>
+            <parameter id = "kd_88" name = "BAR~Caspase-8 complex formation kd" value = "0.001" units = "per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
