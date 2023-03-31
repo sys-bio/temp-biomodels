@@ -1,0 +1,2393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.22 (Build 170) on 2018-03-06 18:11 with libSBML version 5.15.3. -->
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model metaid="COPASI0" id="Shin_2018_EGFR_PYK2_c_Met_interaction_network_model" name="Shin_2018_EGFR-PYK2-c-Met interaction network_model">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <pre>%% Supplementary Information for the manuscript
+%% Systems modelling of the EGFR-PYK2-c-Met interaction network predicted and prioritized synergistic drug combinations for Triple-negative breast cancer
+%%
+%% Sung-Young Shin,Anna-Katharina Müller, Nandini Verma, Sima Lev, and Lan K. Nguyen
+</pre>
+      </body>
+    </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#COPASI0">
+          <dc:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Shin</vCard:Family>
+                  <vCard:Given>Sungyoung</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>sungyoung.shin@monash.edu</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Monash University</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Nguyen</vCard:Family>
+                  <vCard:Given>Lan K</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>lan.k.nguyen@monash.edu</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Monash University</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+            </rdf:Bag>
+          </dc:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2018-03-06T17:03:47Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2018-03-06T17:03:47Z</dcterms:W3CDTF>
+          </dcterms:modified>
+        </rdf:Description>
+      </rdf:RDF>
+      <COPASI xmlns="http://www.copasi.org/static/sbml">
+        <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+          <rdf:Description rdf:about="#COPASI0">
+            <dcterms:created>
+              <rdf:Description>
+                <dcterms:W3CDTF>2018-03-06T17:03:47Z</dcterms:W3CDTF>
+              </rdf:Description>
+            </dcterms:created>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:EMAIL>sungyoung.shin@monash.edu</vCard:EMAIL>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Shin</vCard:Family>
+                    <vCard:Given>Sungyoung</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Monash University</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:EMAIL>lan.k.nguyen@monash.edu</vCard:EMAIL>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Nguyen</vCard:Family>
+                    <vCard:Given>Lan K</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>Monash University</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+          </rdf:Description>
+        </rdf:RDF>
+      </COPASI>
+    </annotation>
+    <listOfFunctionDefinitions>
+      <functionDefinition id="Function_for_v2" name="Function for v2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km2 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax2 </ci>
+            </bvar>
+            <bvar>
+              <ci> aPTP </ci>
+            </bvar>
+            <bvar>
+              <ci> kc2 </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <ci> Vmax2 </ci>
+                    <apply>
+                      <times/>
+                      <ci> kc2 </ci>
+                      <ci> aPTP </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                  <ci> pEGFR </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km2 </ci>
+                  <apply>
+                    <times/>
+                    <ci> pEGFR </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v4" name="Function for v4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> EGFRub </ci>
+            </bvar>
+            <bvar>
+              <ci> Km4 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax4 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax4 </ci>
+                  <ci> EGFRub </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km4 </ci>
+                  <apply>
+                    <times/>
+                    <ci> EGFRub </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v5" name="Function for v5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km5 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax5 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vs5 </ci>
+            </bvar>
+            <bvar>
+              <ci> pSTAT3 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <ci> Vs5 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> Vmax5 </ci>
+                    <ci> pSTAT3 </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> Km5 </ci>
+                    <apply>
+                      <times/>
+                      <ci> pSTAT3 </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v6" name="Function for v6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> PYK2m </ci>
+            </bvar>
+            <bvar>
+              <ci> kdeg6 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdeg6 </ci>
+                <ci> PYK2m </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v7" name="Function for v7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km7 </ci>
+            </bvar>
+            <bvar>
+              <ci> PYK2m </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax7 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax7 </ci>
+                  <ci> PYK2m </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km7 </ci>
+                  <apply>
+                    <times/>
+                    <ci> PYK2m </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v8" name="Function for v8">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> PYK2 </ci>
+            </bvar>
+            <bvar>
+              <ci> kdeg8 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdeg8 </ci>
+                <ci> PYK2 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v9" name="Function for v9">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> EMD </ci>
+            </bvar>
+            <bvar>
+              <ci> Ki9 </ci>
+            </bvar>
+            <bvar>
+              <ci> Km9 </ci>
+            </bvar>
+            <bvar>
+              <ci> PYK2 </ci>
+            </bvar>
+            <bvar>
+              <ci> kc9a </ci>
+            </bvar>
+            <bvar>
+              <ci> kc9b </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> pcMET </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <times/>
+                      <ci> kc9a </ci>
+                      <ci> pEGFR </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> kc9b </ci>
+                        <ci> pcMET </ci>
+                        <ci> rootCompartment </ci>
+                      </apply>
+                      <apply>
+                        <plus/>
+                        <cn> 1 </cn>
+                        <apply>
+                          <divide/>
+                          <ci> EMD </ci>
+                          <ci> Ki9 </ci>
+                        </apply>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <ci> PYK2 </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km9 </ci>
+                  <apply>
+                    <times/>
+                    <ci> PYK2 </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v10" name="Function for v10">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km10 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax10 </ci>
+            </bvar>
+            <bvar>
+              <ci> aPTP </ci>
+            </bvar>
+            <bvar>
+              <ci> kc10 </ci>
+            </bvar>
+            <bvar>
+              <ci> pPYK2 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <ci> Vmax10 </ci>
+                    <apply>
+                      <times/>
+                      <ci> kc10 </ci>
+                      <ci> aPTP </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                  <ci> pPYK2 </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km10 </ci>
+                  <apply>
+                    <times/>
+                    <ci> pPYK2 </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v12" name="Function for v12">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km12 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax12 </ci>
+            </bvar>
+            <bvar>
+              <ci> aPTP </ci>
+            </bvar>
+            <bvar>
+              <ci> kc12 </ci>
+            </bvar>
+            <bvar>
+              <ci> pSTAT3 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <ci> Vmax12 </ci>
+                    <apply>
+                      <times/>
+                      <ci> kc12 </ci>
+                      <ci> aPTP </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                  <ci> pSTAT3 </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km12 </ci>
+                  <apply>
+                    <times/>
+                    <ci> pSTAT3 </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v13" name="Function for v13">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km13 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax13 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vs13 </ci>
+            </bvar>
+            <bvar>
+              <ci> pSTAT3 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <ci> Vs13 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> Vmax13 </ci>
+                    <ci> pSTAT3 </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> Km13 </ci>
+                    <apply>
+                      <times/>
+                      <ci> pSTAT3 </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v14" name="Function for v14">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> cMETm </ci>
+            </bvar>
+            <bvar>
+              <ci> kdeg14 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kdeg14 </ci>
+                <ci> cMETm </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v15" name="Function for v15">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km15 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax15 </ci>
+            </bvar>
+            <bvar>
+              <ci> cMETm </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax15 </ci>
+                  <ci> cMETm </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km15 </ci>
+                  <apply>
+                    <times/>
+                    <ci> cMETm </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v16" name="Function for v16">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km16 </ci>
+            </bvar>
+            <bvar>
+              <ci> cMET </ci>
+            </bvar>
+            <bvar>
+              <ci> kc16 </ci>
+            </bvar>
+            <bvar>
+              <ci> kdeg16 </ci>
+            </bvar>
+            <bvar>
+              <ci> pCbl </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <ci> kdeg16 </ci>
+                    <apply>
+                      <times/>
+                      <ci> kc16 </ci>
+                      <ci> pCbl </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                  <ci> cMET </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km16 </ci>
+                  <apply>
+                    <times/>
+                    <ci> cMET </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v17" name="Function for v17">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> HGF </ci>
+            </bvar>
+            <bvar>
+              <ci> Km17 </ci>
+            </bvar>
+            <bvar>
+              <ci> cMET </ci>
+            </bvar>
+            <bvar>
+              <ci> caHGF </ci>
+            </bvar>
+            <bvar>
+              <ci> kc17 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <times/>
+                      <ci> kc17 </ci>
+                      <ci> HGF </ci>
+                    </apply>
+                    <ci> caHGF </ci>
+                  </apply>
+                  <ci> cMET </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km17 </ci>
+                  <apply>
+                    <times/>
+                    <ci> cMET </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v18" name="Function for v18">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km18 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax18 </ci>
+            </bvar>
+            <bvar>
+              <ci> pcMET </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax18 </ci>
+                  <ci> pcMET </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km18 </ci>
+                  <apply>
+                    <times/>
+                    <ci> pcMET </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v20" name="Function for v20">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km20 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax20 </ci>
+            </bvar>
+            <bvar>
+              <ci> aPTP </ci>
+            </bvar>
+            <bvar>
+              <ci> kc20 </ci>
+            </bvar>
+            <bvar>
+              <ci> pCbl </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <ci> Vmax20 </ci>
+                    <apply>
+                      <times/>
+                      <ci> kc20 </ci>
+                      <ci> aPTP </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                  <ci> pCbl </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km20 </ci>
+                  <apply>
+                    <times/>
+                    <ci> pCbl </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v22" name="Function for v22">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km22 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax22 </ci>
+            </bvar>
+            <bvar>
+              <ci> aPTP </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax22 </ci>
+                  <ci> aPTP </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km22 </ci>
+                  <apply>
+                    <times/>
+                    <ci> aPTP </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v24" name="Function for v24">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km24 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax24 </ci>
+            </bvar>
+            <bvar>
+              <ci> pERK </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax24 </ci>
+                  <ci> pERK </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km24 </ci>
+                  <apply>
+                    <times/>
+                    <ci> pERK </ci>
+                    <ci> rootCompartment </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="EGFR" name="EGFR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> EGFRtot </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> EGFRub </ci>
+            </bvar>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <ci> EGFRtot </ci>
+                <ci> pEGFR </ci>
+              </apply>
+              <ci> EGFRub </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="PYK2tot" name="PYK2tot">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> PYK2 </ci>
+            </bvar>
+            <bvar>
+              <ci> pPYK2 </ci>
+            </bvar>
+            <apply>
+              <plus/>
+              <ci> PYK2 </ci>
+              <ci> pPYK2 </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="STAT3" name="STAT3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> STAT3tot </ci>
+            </bvar>
+            <bvar>
+              <ci> pSTAT3 </ci>
+            </bvar>
+            <bvar>
+              <ci> STAT3uStattic </ci>
+            </bvar>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <ci> STAT3tot </ci>
+                <ci> pSTAT3 </ci>
+              </apply>
+              <ci> STAT3uStattic </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Cbl" name="Cbl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Cbltot </ci>
+            </bvar>
+            <bvar>
+              <ci> pCbl </ci>
+            </bvar>
+            <apply>
+              <minus/>
+              <ci> Cbltot </ci>
+              <ci> pCbl </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="PTP" name="PTP">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> PTPtot </ci>
+            </bvar>
+            <bvar>
+              <ci> aPTP </ci>
+            </bvar>
+            <apply>
+              <minus/>
+              <ci> PTPtot </ci>
+              <ci> aPTP </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="ERK" name="ERK">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> ERKtot </ci>
+            </bvar>
+            <bvar>
+              <ci> pERK </ci>
+            </bvar>
+            <apply>
+              <minus/>
+              <ci> ERKtot </ci>
+              <ci> pERK </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Stattic" name="Stattic">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Stattictot </ci>
+            </bvar>
+            <bvar>
+              <ci> STAT3uStattic </ci>
+            </bvar>
+            <apply>
+              <minus/>
+              <ci> Stattictot </ci>
+              <ci> STAT3uStattic </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v1" name="Function for v1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> EGF </ci>
+            </bvar>
+            <bvar>
+              <ci> EGFRtot </ci>
+            </bvar>
+            <bvar>
+              <ci> EGFRub </ci>
+            </bvar>
+            <bvar>
+              <ci> Gefitinib </ci>
+            </bvar>
+            <bvar>
+              <ci> Ki1 </ci>
+            </bvar>
+            <bvar>
+              <ci> Km1 </ci>
+            </bvar>
+            <bvar>
+              <ci> caEGF </ci>
+            </bvar>
+            <bvar>
+              <ci> kc1 </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> kc1 </ci>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <divide/>
+                      <ci> EGF </ci>
+                      <apply>
+                        <plus/>
+                        <cn> 1 </cn>
+                        <apply>
+                          <divide/>
+                          <ci> Gefitinib </ci>
+                          <ci> Ki1 </ci>
+                        </apply>
+                      </apply>
+                    </apply>
+                    <ci> caEGF </ci>
+                  </apply>
+                  <apply>
+                    <ci> EGFR </ci>
+                    <ci> EGFRtot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pEGFR </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> EGFRub </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km1 </ci>
+                  <apply>
+                    <ci> EGFR </ci>
+                    <ci> EGFRtot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pEGFR </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> EGFRub </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v3" name="Function for v3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> EGFRtot </ci>
+            </bvar>
+            <bvar>
+              <ci> EGFRub </ci>
+            </bvar>
+            <bvar>
+              <ci> Ki3a </ci>
+            </bvar>
+            <bvar>
+              <ci> Ki3b </ci>
+            </bvar>
+            <bvar>
+              <ci> Km3 </ci>
+            </bvar>
+            <bvar>
+              <ci> PF396 </ci>
+            </bvar>
+            <bvar>
+              <ci> PYK2 </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax3 </ci>
+            </bvar>
+            <bvar>
+              <ci> kc3 </ci>
+            </bvar>
+            <bvar>
+              <ci> pCbl </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> pPYK2 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <plus/>
+                        <ci> Vmax3 </ci>
+                        <apply>
+                          <times/>
+                          <ci> kc3 </ci>
+                          <ci> pCbl </ci>
+                          <ci> rootCompartment </ci>
+                        </apply>
+                      </apply>
+                      <apply>
+                        <ci> EGFR </ci>
+                        <ci> EGFRtot </ci>
+                        <apply>
+                          <times/>
+                          <ci> pEGFR </ci>
+                          <ci> rootCompartment </ci>
+                        </apply>
+                        <apply>
+                          <times/>
+                          <ci> EGFRub </ci>
+                          <ci> rootCompartment </ci>
+                        </apply>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> Km3 </ci>
+                      <apply>
+                        <ci> EGFR </ci>
+                        <ci> EGFRtot </ci>
+                        <apply>
+                          <times/>
+                          <ci> pEGFR </ci>
+                          <ci> rootCompartment </ci>
+                        </apply>
+                        <apply>
+                          <times/>
+                          <ci> EGFRub </ci>
+                          <ci> rootCompartment </ci>
+                        </apply>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <ci> Ki3a </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Ki3a </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <ci> PYK2tot </ci>
+                      <apply>
+                        <times/>
+                        <ci> PYK2 </ci>
+                        <ci> rootCompartment </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> pPYK2 </ci>
+                        <ci> rootCompartment </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> PF396 </ci>
+                        <ci> Ki3b </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v11" name="Function for v11">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Ki3b </ci>
+            </bvar>
+            <bvar>
+              <ci> Km11 </ci>
+            </bvar>
+            <bvar>
+              <ci> PF396 </ci>
+            </bvar>
+            <bvar>
+              <ci> STAT3tot </ci>
+            </bvar>
+            <bvar>
+              <ci> STAT3uStattic </ci>
+            </bvar>
+            <bvar>
+              <ci> kc11 </ci>
+            </bvar>
+            <bvar>
+              <ci> pPYK2 </ci>
+            </bvar>
+            <bvar>
+              <ci> pSTAT3 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> kc11 </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> pPYK2 </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> PF396 </ci>
+                        <ci> Ki3b </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <ci> STAT3 </ci>
+                    <ci> STAT3tot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pSTAT3 </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> STAT3uStattic </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km11 </ci>
+                  <apply>
+                    <ci> STAT3 </ci>
+                    <ci> STAT3tot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pSTAT3 </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> STAT3uStattic </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v19" name="Function for v19">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Cbltot </ci>
+            </bvar>
+            <bvar>
+              <ci> Km19 </ci>
+            </bvar>
+            <bvar>
+              <ci> kc19 </ci>
+            </bvar>
+            <bvar>
+              <ci> pCbl </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> kc19 </ci>
+                  <ci> pEGFR </ci>
+                  <ci> rootCompartment </ci>
+                  <apply>
+                    <ci> Cbl </ci>
+                    <ci> Cbltot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pCbl </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km19 </ci>
+                  <apply>
+                    <ci> Cbl </ci>
+                    <ci> Cbltot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pCbl </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v21" name="Function for v21">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Km21 </ci>
+            </bvar>
+            <bvar>
+              <ci> PTPtot </ci>
+            </bvar>
+            <bvar>
+              <ci> aPTP </ci>
+            </bvar>
+            <bvar>
+              <ci> kc21 </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> kc21 </ci>
+                  <ci> pEGFR </ci>
+                  <ci> rootCompartment </ci>
+                  <apply>
+                    <ci> PTP </ci>
+                    <ci> PTPtot </ci>
+                    <apply>
+                      <times/>
+                      <ci> aPTP </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km21 </ci>
+                  <apply>
+                    <ci> PTP </ci>
+                    <ci> PTPtot </ci>
+                    <apply>
+                      <times/>
+                      <ci> aPTP </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v23" name="Function for v23">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> EMD </ci>
+            </bvar>
+            <bvar>
+              <ci> ERKtot </ci>
+            </bvar>
+            <bvar>
+              <ci> Ki23 </ci>
+            </bvar>
+            <bvar>
+              <ci> Km23 </ci>
+            </bvar>
+            <bvar>
+              <ci> kc23a </ci>
+            </bvar>
+            <bvar>
+              <ci> kc23b </ci>
+            </bvar>
+            <bvar>
+              <ci> pEGFR </ci>
+            </bvar>
+            <bvar>
+              <ci> pERK </ci>
+            </bvar>
+            <bvar>
+              <ci> pcMET </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> kc23a </ci>
+                        <ci> pcMET </ci>
+                        <ci> rootCompartment </ci>
+                      </apply>
+                      <apply>
+                        <plus/>
+                        <cn> 1 </cn>
+                        <apply>
+                          <divide/>
+                          <ci> EMD </ci>
+                          <ci> Ki23 </ci>
+                        </apply>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> kc23b </ci>
+                      <ci> pEGFR </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <ci> ERK </ci>
+                    <ci> ERKtot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pERK </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km23 </ci>
+                  <apply>
+                    <ci> ERK </ci>
+                    <ci> ERKtot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pERK </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_v25" name="Function for v25">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> STAT3tot </ci>
+            </bvar>
+            <bvar>
+              <ci> STAT3uStattic </ci>
+            </bvar>
+            <bvar>
+              <ci> Stattictot </ci>
+            </bvar>
+            <bvar>
+              <ci> ka25 </ci>
+            </bvar>
+            <bvar>
+              <ci> kd25 </ci>
+            </bvar>
+            <bvar>
+              <ci> pSTAT3 </ci>
+            </bvar>
+            <bvar>
+              <ci> rootCompartment </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> ka25 </ci>
+                  <apply>
+                    <ci> STAT3 </ci>
+                    <ci> STAT3tot </ci>
+                    <apply>
+                      <times/>
+                      <ci> pSTAT3 </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> STAT3uStattic </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <ci> Stattic </ci>
+                    <ci> Stattictot </ci>
+                    <apply>
+                      <times/>
+                      <ci> STAT3uStattic </ci>
+                      <ci> rootCompartment </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> kd25 </ci>
+                  <ci> STAT3uStattic </ci>
+                  <ci> rootCompartment </ci>
+                </apply>
+              </apply>
+              <ci> rootCompartment </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition id="time" name="time">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance" name="substance">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-9" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="COPASI1" id="rootCompartment" name="rootCompartment" spatialDimensions="3" size="1" constant="true">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI1">
+                <dcterms:created>
+                  <rdf:Description>
+                    <dcterms:W3CDTF>2018-03-06T17:12:52Z</dcterms:W3CDTF>
+                  </rdf:Description>
+                </dcterms:created>
+              </rdf:Description>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="pEGFR" name="pEGFR" compartment="rootCompartment" initialConcentration="0.109014" boundaryCondition="false" constant="false"/>
+      <species id="EGFRub" name="EGFRub" compartment="rootCompartment" initialConcentration="6.93991" boundaryCondition="false" constant="false"/>
+      <species id="PYK2m" name="PYK2m" compartment="rootCompartment" initialConcentration="0.6219" boundaryCondition="false" constant="false"/>
+      <species id="PYK2" name="PYK2" compartment="rootCompartment" initialConcentration="9.29922" boundaryCondition="false" constant="false"/>
+      <species id="pPYK2" name="pPYK2" compartment="rootCompartment" initialConcentration="2.51016" boundaryCondition="false" constant="false"/>
+      <species id="pSTAT3" name="pSTAT3" compartment="rootCompartment" initialConcentration="1.17843" boundaryCondition="false" constant="false"/>
+      <species id="cMETm" name="cMETm" compartment="rootCompartment" initialConcentration="0.0228566" boundaryCondition="false" constant="false"/>
+      <species id="cMET" name="cMET" compartment="rootCompartment" initialConcentration="4.67164" boundaryCondition="false" constant="false"/>
+      <species id="pcMET" name="pcMET" compartment="rootCompartment" initialConcentration="0.502111" boundaryCondition="false" constant="false"/>
+      <species id="pCbl" name="pCbl" compartment="rootCompartment" initialConcentration="10.4757" boundaryCondition="false" constant="false"/>
+      <species id="aPTP" name="aPTP" compartment="rootCompartment" initialConcentration="0.49418" boundaryCondition="false" constant="false"/>
+      <species id="pERK" name="pERK" compartment="rootCompartment" initialConcentration="0.669043" boundaryCondition="false" constant="false"/>
+      <species id="STAT3uStattic" name="STAT3uStattic" compartment="rootCompartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="EGF" name="EGF" value="10" constant="true"/>
+      <parameter id="HGF" name="HGF" value="0" constant="true"/>
+      <parameter id="caSTAT3" name="caSTAT3" value="0" constant="true"/>
+      <parameter id="kc1" name="kc1" value="413.048" constant="true"/>
+      <parameter id="Km1" name="Km1" value="248.886" constant="true"/>
+      <parameter id="kc2" name="kc2" value="1406.05" constant="true"/>
+      <parameter id="Km2" name="Km2" value="3.80189" constant="true"/>
+      <parameter id="Vmax3" name="Vmax3" value="0.000103753" constant="true"/>
+      <parameter id="Km3" name="Km3" value="2.2856" constant="true"/>
+      <parameter id="Ki3a" name="Ki3a" value="0.0835603" constant="true"/>
+      <parameter id="Vmax4" name="Vmax4" value="11.1173" constant="true"/>
+      <parameter id="kc3" name="kc3" value="10.7895" constant="true"/>
+      <parameter id="Km4" name="Km4" value="90.7821" constant="true"/>
+      <parameter id="Vs5" name="Vs5" value="26.5461" constant="true"/>
+      <parameter id="Vmax5" name="Vmax5" value="34.0408" constant="true"/>
+      <parameter id="Km5" name="Km5" value="4.74242" constant="true"/>
+      <parameter id="kdeg6" name="kdeg6" value="53.5797" constant="true"/>
+      <parameter id="Vmax7" name="Vmax7" value="3.34965" constant="true"/>
+      <parameter id="Km7" name="Km7" value="3.33426" constant="true"/>
+      <parameter id="kc9a" name="kc9a" value="0.463447" constant="true"/>
+      <parameter id="kc9b" name="kc9b" value="0.988553" constant="true"/>
+      <parameter id="Km9" name="Km9" value="34.914" constant="true"/>
+      <parameter id="Vmax10" name="Vmax10" value="0.530884" constant="true"/>
+      <parameter id="Km10" name="Km10" value="9.14113" constant="true"/>
+      <parameter id="kdeg8" name="kdeg8" value="0.0566239" constant="true"/>
+      <parameter id="kc11" name="kc11" value="0.321366" constant="true"/>
+      <parameter id="Km11" name="Km11" value="20.6063" constant="true"/>
+      <parameter id="kc12" name="kc12" value="0.000289734" constant="true"/>
+      <parameter id="Km12" name="Km12" value="11.5878" constant="true"/>
+      <parameter id="Vs13" name="Vs13" value="0.0937562" constant="true"/>
+      <parameter id="Vmax13" name="Vmax13" value="0.354813" constant="true"/>
+      <parameter id="Km13" name="Km13" value="38.7258" constant="true"/>
+      <parameter id="kdeg14" name="kdeg14" value="4.56037" constant="true"/>
+      <parameter id="Vmax15" name="Vmax15" value="91.4113" constant="true"/>
+      <parameter id="Km15" name="Km15" value="6.45654" constant="true"/>
+      <parameter id="kc17" name="kc17" value="0.000810961" constant="true"/>
+      <parameter id="Km17" name="Km17" value="9.81748" constant="true"/>
+      <parameter id="Vmax18" name="Vmax18" value="0.0606736" constant="true"/>
+      <parameter id="Km18" name="Km18" value="9.95405" constant="true"/>
+      <parameter id="kdeg16" name="kdeg16" value="24.4906" constant="true"/>
+      <parameter id="kc16" name="kc16" value="1.1749" constant="true"/>
+      <parameter id="Km16" name="Km16" value="528.445" constant="true"/>
+      <parameter id="kc19" name="kc19" value="52.723" constant="true"/>
+      <parameter id="Km19" name="Km19" value="13.3045" constant="true"/>
+      <parameter id="kc20" name="kc20" value="35.6451" constant="true"/>
+      <parameter id="Km20" name="Km20" value="24.322" constant="true"/>
+      <parameter id="kc21" name="kc21" value="0.00397192" constant="true"/>
+      <parameter id="Km21" name="Km21" value="52.723" constant="true"/>
+      <parameter id="Vmax22" name="Vmax22" value="0.034914" constant="true"/>
+      <parameter id="Km22" name="Km22" value="46.4515" constant="true"/>
+      <parameter id="Vmax2" name="Vmax2" value="112.202" constant="true"/>
+      <parameter id="Vmax12" name="Vmax12" value="7.63836" constant="true"/>
+      <parameter id="Vmax20" name="Vmax20" value="0.0483059" constant="true"/>
+      <parameter id="kc23a" name="kc23a" value="7030720000" constant="true"/>
+      <parameter id="kc23b" name="kc23b" value="843335000" constant="true"/>
+      <parameter id="Km23" name="Km23" value="2.83139" constant="true"/>
+      <parameter id="Vmax24" name="Vmax24" value="4395420000" constant="true"/>
+      <parameter id="Km24" name="Km24" value="0.156675" constant="true"/>
+      <parameter id="kc10" name="kc10" value="0.00610942" constant="true"/>
+      <parameter id="Ki9" name="Ki9" value="1.65577" constant="true"/>
+      <parameter id="Ki23" name="Ki23" value="13.4896" constant="true"/>
+      <parameter id="ka25" name="ka25" value="127.35" constant="true"/>
+      <parameter id="kd25" name="kd25" value="11.749" constant="true"/>
+      <parameter id="kalEMD1" name="kalEMD1" value="9311.08" constant="true"/>
+      <parameter id="caEGF" name="caEGF" value="0.0891251" constant="true"/>
+      <parameter id="caHGF" name="caHGF" value="0.0090365" constant="true"/>
+      <parameter id="EGFRtot" name="EGFRtot" value="398.107" constant="true"/>
+      <parameter id="STAT3tot" name="STAT3tot" value="144.212" constant="true"/>
+      <parameter id="Cbltot" name="Cbltot" value="174.985" constant="true"/>
+      <parameter id="PTPtot" name="PTPtot" value="296.483" constant="true"/>
+      <parameter id="ERKtot" name="ERKtot" value="166.725" constant="true"/>
+      <parameter id="Ki1" name="Ki1" value="1" constant="true"/>
+      <parameter id="Ki3b" name="Ki3b" value="1" constant="true"/>
+      <parameter id="Gefitinib" name="Gefitinib" value="0" constant="true"/>
+      <parameter id="EMD" name="EMD" value="0" constant="true"/>
+      <parameter id="PF396" name="PF396" value="0" constant="true"/>
+      <parameter id="Stattictot" name="Stattictot" value="0" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="v1" name="v1" reversible="false">
+        <listOfProducts>
+          <speciesReference species="pEGFR" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="EGFRub"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v1 </ci>
+                <ci> EGF </ci>
+                <ci> EGFRtot </ci>
+                <ci> EGFRub </ci>
+                <ci> Gefitinib </ci>
+                <ci> Ki1 </ci>
+                <ci> Km1 </ci>
+                <ci> caEGF </ci>
+                <ci> kc1 </ci>
+                <ci> pEGFR </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v2" name="v2" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pEGFR" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="aPTP"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v2 </ci>
+                <ci> Km2 </ci>
+                <ci> Vmax2 </ci>
+                <ci> aPTP </ci>
+                <ci> kc2 </ci>
+                <ci> pEGFR </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v3" name="v3" reversible="false">
+        <listOfProducts>
+          <speciesReference species="EGFRub" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PYK2"/>
+          <modifierSpeciesReference species="pCbl"/>
+          <modifierSpeciesReference species="pEGFR"/>
+          <modifierSpeciesReference species="pPYK2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v3 </ci>
+                <ci> EGFRtot </ci>
+                <ci> EGFRub </ci>
+                <ci> Ki3a </ci>
+                <ci> Ki3b </ci>
+                <ci> Km3 </ci>
+                <ci> PF396 </ci>
+                <ci> PYK2 </ci>
+                <ci> Vmax3 </ci>
+                <ci> kc3 </ci>
+                <ci> pCbl </ci>
+                <ci> pEGFR </ci>
+                <ci> pPYK2 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v4" name="v4" reversible="false">
+        <listOfReactants>
+          <speciesReference species="EGFRub" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v4 </ci>
+                <ci> EGFRub </ci>
+                <ci> Km4 </ci>
+                <ci> Vmax4 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v5" name="v5" reversible="false">
+        <listOfProducts>
+          <speciesReference species="PYK2m" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pSTAT3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v5 </ci>
+                <ci> Km5 </ci>
+                <ci> Vmax5 </ci>
+                <ci> Vs5 </ci>
+                <ci> pSTAT3 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v6" name="v6" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PYK2m" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v6 </ci>
+                <ci> PYK2m </ci>
+                <ci> kdeg6 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v7" name="v7" reversible="false">
+        <listOfProducts>
+          <speciesReference species="PYK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PYK2m"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v7 </ci>
+                <ci> Km7 </ci>
+                <ci> PYK2m </ci>
+                <ci> Vmax7 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v8" name="v8" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PYK2" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v8 </ci>
+                <ci> PYK2 </ci>
+                <ci> kdeg8 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v9" name="v9" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PYK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pPYK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pEGFR"/>
+          <modifierSpeciesReference species="pcMET"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v9 </ci>
+                <ci> EMD </ci>
+                <ci> Ki9 </ci>
+                <ci> Km9 </ci>
+                <ci> PYK2 </ci>
+                <ci> kc9a </ci>
+                <ci> kc9b </ci>
+                <ci> pEGFR </ci>
+                <ci> pcMET </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v10" name="v10" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pPYK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PYK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="aPTP"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v10 </ci>
+                <ci> Km10 </ci>
+                <ci> Vmax10 </ci>
+                <ci> aPTP </ci>
+                <ci> kc10 </ci>
+                <ci> pPYK2 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v11" name="v11" reversible="false">
+        <listOfProducts>
+          <speciesReference species="pSTAT3" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="STAT3uStattic"/>
+          <modifierSpeciesReference species="pPYK2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v11 </ci>
+                <ci> Ki3b </ci>
+                <ci> Km11 </ci>
+                <ci> PF396 </ci>
+                <ci> STAT3tot </ci>
+                <ci> STAT3uStattic </ci>
+                <ci> kc11 </ci>
+                <ci> pPYK2 </ci>
+                <ci> pSTAT3 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v12" name="v12" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pSTAT3" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="aPTP"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v12 </ci>
+                <ci> Km12 </ci>
+                <ci> Vmax12 </ci>
+                <ci> aPTP </ci>
+                <ci> kc12 </ci>
+                <ci> pSTAT3 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v13" name="v13" reversible="false">
+        <listOfProducts>
+          <speciesReference species="cMETm" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pSTAT3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v13 </ci>
+                <ci> Km13 </ci>
+                <ci> Vmax13 </ci>
+                <ci> Vs13 </ci>
+                <ci> pSTAT3 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v14" name="v14" reversible="false">
+        <listOfReactants>
+          <speciesReference species="cMETm" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v14 </ci>
+                <ci> cMETm </ci>
+                <ci> kdeg14 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v15" name="v15" reversible="false">
+        <listOfProducts>
+          <speciesReference species="cMET" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cMETm"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v15 </ci>
+                <ci> Km15 </ci>
+                <ci> Vmax15 </ci>
+                <ci> cMETm </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v16" name="v16" reversible="false">
+        <listOfReactants>
+          <speciesReference species="cMET" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pCbl"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v16 </ci>
+                <ci> Km16 </ci>
+                <ci> cMET </ci>
+                <ci> kc16 </ci>
+                <ci> kdeg16 </ci>
+                <ci> pCbl </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v17" name="v17" reversible="false">
+        <listOfReactants>
+          <speciesReference species="cMET" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pcMET" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v17 </ci>
+                <ci> HGF </ci>
+                <ci> Km17 </ci>
+                <ci> cMET </ci>
+                <ci> caHGF </ci>
+                <ci> kc17 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v18" name="v18" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pcMET" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cMET" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v18 </ci>
+                <ci> Km18 </ci>
+                <ci> Vmax18 </ci>
+                <ci> pcMET </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v19" name="v19" reversible="false">
+        <listOfProducts>
+          <speciesReference species="pCbl" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pEGFR"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v19 </ci>
+                <ci> Cbltot </ci>
+                <ci> Km19 </ci>
+                <ci> kc19 </ci>
+                <ci> pCbl </ci>
+                <ci> pEGFR </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v20" name="v20" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pCbl" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="aPTP"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v20 </ci>
+                <ci> Km20 </ci>
+                <ci> Vmax20 </ci>
+                <ci> aPTP </ci>
+                <ci> kc20 </ci>
+                <ci> pCbl </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v21" name="v21" reversible="false">
+        <listOfProducts>
+          <speciesReference species="aPTP" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pEGFR"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v21 </ci>
+                <ci> Km21 </ci>
+                <ci> PTPtot </ci>
+                <ci> aPTP </ci>
+                <ci> kc21 </ci>
+                <ci> pEGFR </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v22" name="v22" reversible="false">
+        <listOfReactants>
+          <speciesReference species="aPTP" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v22 </ci>
+                <ci> Km22 </ci>
+                <ci> Vmax22 </ci>
+                <ci> aPTP </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v23" name="v23" reversible="false">
+        <listOfProducts>
+          <speciesReference species="pERK" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pEGFR"/>
+          <modifierSpeciesReference species="pcMET"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v23 </ci>
+                <ci> EMD </ci>
+                <ci> ERKtot </ci>
+                <ci> Ki23 </ci>
+                <ci> Km23 </ci>
+                <ci> kc23a </ci>
+                <ci> kc23b </ci>
+                <ci> pEGFR </ci>
+                <ci> pERK </ci>
+                <ci> pcMET </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v24" name="v24" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pERK" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v24 </ci>
+                <ci> Km24 </ci>
+                <ci> Vmax24 </ci>
+                <ci> pERK </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v25" name="v25" reversible="false">
+        <listOfProducts>
+          <speciesReference species="STAT3uStattic" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pSTAT3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> rootCompartment </ci>
+              <apply>
+                <ci> Function_for_v25 </ci>
+                <ci> STAT3tot </ci>
+                <ci> STAT3uStattic </ci>
+                <ci> Stattictot </ci>
+                <ci> ka25 </ci>
+                <ci> kd25 </ci>
+                <ci> pSTAT3 </ci>
+                <ci> rootCompartment </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
