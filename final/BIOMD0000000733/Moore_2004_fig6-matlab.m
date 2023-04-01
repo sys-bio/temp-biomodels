@@ -14,6 +14,7 @@
 %
 % Model name = Moore_2004_Mathematical model for CML and T cell interaction
 %
+% isDescribedBy http://identifiers.org/pubmed/15038986
 % is http://identifiers.org/biomodels.db/MODEL1902200001
 % is http://identifiers.org/biomodels.db/BIOMD0000000733
 %

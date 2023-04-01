@@ -14,6 +14,7 @@
 %
 % Model name = Mouse Iron Distribution - Deficient iron diet (No Tracer)
 %
+% isDescribedBy http://identifiers.org/pubmed/20704761
 % is http://identifiers.org/biomodels.db/MODEL1605030004
 % is http://identifiers.org/biomodels.db/BIOMD0000000737
 %

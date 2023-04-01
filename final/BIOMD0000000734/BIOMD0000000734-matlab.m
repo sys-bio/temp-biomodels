@@ -14,6 +14,7 @@
 %
 % Model name = Mouse Iron Distribution - Rich and Deficient iron diets (tracer)
 %
+% isDescribedBy http://identifiers.org/pubmed/20704761
 % is http://identifiers.org/biomodels.db/MODEL1903040001
 % is http://identifiers.org/biomodels.db/BIOMD0000000734
 %

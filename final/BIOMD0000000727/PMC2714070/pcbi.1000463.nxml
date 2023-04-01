@@ -1,0 +1,770 @@
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.0 20120330//EN" "JATS-archivearticle1.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" article-type="research-article"><?properties open_access?><front><journal-meta><journal-id journal-id-type="nlm-ta">PLoS Comput Biol</journal-id><journal-id journal-id-type="iso-abbrev">PLoS Comput. Biol</journal-id><journal-id journal-id-type="publisher-id">plos</journal-id><journal-id journal-id-type="pmc">ploscomp</journal-id><journal-title-group><journal-title>PLoS Computational Biology</journal-title></journal-title-group><issn pub-type="ppub">1553-734X</issn><issn pub-type="epub">1553-7358</issn><publisher><publisher-name>Public Library of Science</publisher-name><publisher-loc>San Francisco, USA</publisher-loc></publisher></journal-meta><article-meta><article-id pub-id-type="pmid">19680425</article-id><article-id pub-id-type="pmc">2714070</article-id><article-id pub-id-type="publisher-id">08-PLCB-RA-1003R3</article-id><article-id pub-id-type="doi">10.1371/journal.pcbi.1000463</article-id><article-categories><subj-group subj-group-type="heading"><subject>Research Article</subject></subj-group><subj-group subj-group-type="Discipline"><subject>Computational Biology/Signaling Networks</subject><subject>Computational Biology/Systems Biology</subject></subj-group></article-categories><title-group><article-title>Temporal Controls of the Asymmetric Cell Division Cycle in <italic>Caulobacter crescentus</italic>
+</article-title><alt-title alt-title-type="running-head">Cell Cycle Control in <italic>Caulobacter</italic></alt-title></title-group><contrib-group><contrib contrib-type="author"><name><surname>Li</surname><given-names>Shenghua</given-names></name><xref ref-type="aff" rid="aff1">
+<sup>1</sup>
+</xref></contrib><contrib contrib-type="author"><name><surname>Brazhnik</surname><given-names>Paul</given-names></name><xref ref-type="aff" rid="aff1">
+<sup>1</sup>
+</xref></contrib><contrib contrib-type="author"><name><surname>Sobral</surname><given-names>Bruno</given-names></name><xref ref-type="aff" rid="aff2">
+<sup>2</sup>
+</xref></contrib><contrib contrib-type="author"><name><surname>Tyson</surname><given-names>John J.</given-names></name><xref ref-type="aff" rid="aff1">
+<sup>1</sup>
+</xref><xref ref-type="aff" rid="aff2">
+<sup>2</sup>
+</xref><xref ref-type="corresp" rid="cor1">
+<sup>&#x0002a;</sup>
+</xref></contrib></contrib-group><aff id="aff1"><label>1</label><addr-line>Department of Biological Sciences, Virginia Polytechnic Institute and State University, Blacksburg, Virginia, United States of America</addr-line></aff><aff id="aff2"><label>2</label><addr-line>Virginia Bioinformatics Institute, Virginia Polytechnic Institute and State University, Blacksburg, Virginia, United States of America</addr-line></aff><contrib-group><contrib contrib-type="editor"><name><surname>Papin</surname><given-names>Jason A.</given-names></name><role>Editor</role><xref ref-type="aff" rid="edit1"/></contrib></contrib-group><aff id="edit1">University of Virginia, United States of America</aff><author-notes><corresp id="cor1">&#x0002a; E-mail: <email>tyson@vt.edu</email></corresp><fn fn-type="con"><p>Conceived and designed the experiments: SL PB JJT. Performed the experiments: SL PB JJT. Analyzed the data: SL PB JJT. Contributed reagents/materials/analysis tools: PB BS JJT. Wrote the paper: SL PB JJT.</p></fn></author-notes><pub-date pub-type="collection"><month>8</month><year>2009</year></pub-date><pub-date pub-type="epub"><day>14</day><month>8</month><year>2009</year></pub-date><volume>5</volume><issue>8</issue><elocation-id>e1000463</elocation-id><history><date date-type="received"><day>7</day><month>11</month><year>2008</year></date><date date-type="accepted"><day>9</day><month>7</month><year>2009</year></date></history><permissions><copyright-statement>Li et al.</copyright-statement><copyright-year>2009</copyright-year><license xlink:href="http://creativecommons.org/licenses/by/4.0/"><license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are properly credited.</license-p></license></permissions><abstract><p>The asymmetric cell division cycle of <italic>Caulobacter crescentus</italic> is orchestrated by an elaborate gene-protein regulatory network, centered on three major control proteins, DnaA, GcrA and CtrA. The regulatory network is cast into a quantitative computational model to investigate in a systematic fashion how these three proteins control the relevant genetic, biochemical and physiological properties of proliferating bacteria. Different controls for both swarmer and stalked cell cycles are represented in the mathematical scheme. The model is validated against observed phenotypes of wild-type cells and relevant mutants, and it predicts the phenotypes of novel mutants and of known mutants under novel experimental conditions. Because the cell cycle control proteins of <italic>Caulobacter</italic> are conserved across many species of alpha-proteobacteria, the model we are proposing here may be applicable to other genera of importance to agriculture and medicine (e.g., <italic>Rhizobium</italic>, <italic>Brucella</italic>).</p></abstract><abstract abstract-type="summary"><title>Author Summary</title><p>Because of its small genome size and the ease by which it can be manipulated genetically and biochemically, <italic>Caulobacter crescentus</italic> provides unique opportunities to study the molecular circuitry controlling the asymmetric cell division cycle of bacteria. A large amount of experimental data accumulated on this model organism in recent years needs to be quantitatively reconciled and analyzed in order to generate a full description of the process. Here, from these experimental clues, we suggest a mechanism for the principal molecular interactions that control DNA synthesis and asymmetric cell division in <italic>Caulobacter</italic> and construct a quantitative (mathematical) model of the mechanism in order to analyze the temporal dynamics of the control system. The model is centered around three &#x0201c;master regulator&#x0201d; proteins, whose timing of expression is tightly controlled by the progression of DNA replication. The model has been validated against observed phenotypes of wild-type cells and relevant mutants, and predicts phenotypes of novel mutants and of known mutants under novel experimental conditions. It provides a rigorous account of current intuitive ideas of bacterial cell cycle control and advances our understanding of bacterial cell division.</p></abstract><counts><page-count count="15"/></counts></article-meta></front><body><sec id="s1"><title>Introduction</title><p>Understanding how cell division is controlled by underlying networks of interacting genes and proteins is of fundamental importance to the life sciences, the biotech industry and human/veterinary medicine. Theoretical biologists have vigorously pursued the quantitative analysis of cell cycle controls in eukaryotes, e.g., in yeast <xref rid="pcbi.1000463-Chen1" ref-type="bibr">[1]</xref>&#x02013;<xref rid="pcbi.1000463-Tyson1" ref-type="bibr">[4]</xref>, in frog eggs <xref rid="pcbi.1000463-Marlovits1" ref-type="bibr">[5]</xref>,<xref rid="pcbi.1000463-Novak3" ref-type="bibr">[6]</xref>, in fruit flies <xref rid="pcbi.1000463-Calzone1" ref-type="bibr">[7]</xref>, and in mammalian cells <xref rid="pcbi.1000463-CsikaszNagy1" ref-type="bibr">[8]</xref>&#x02013;<xref rid="pcbi.1000463-Adelman1" ref-type="bibr">[13]</xref>, but similar studies of cell cycle regulation in prokaryotes have lagged behind. Since the early era (1980&#x02013;1991) of mathematical modeling of the initiation of DNA replication in <italic>Escherichia coli</italic>
+<xref rid="pcbi.1000463-Alberghina1" ref-type="bibr">[14]</xref>&#x02013;<xref rid="pcbi.1000463-Margalit2" ref-type="bibr">[20]</xref>, there have been few theoretical studies of cell cycle control in bacteria <xref rid="pcbi.1000463-Browning1" ref-type="bibr">[21]</xref>&#x02013;<xref rid="pcbi.1000463-Brazhnik1" ref-type="bibr">[23]</xref> until the recent appearance of two papers on the molecular regulation of DNA replication and cell division in <italic>Caulobacter crescentus</italic>
+<xref rid="pcbi.1000463-Shen1" ref-type="bibr">[24]</xref>,<xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>. <italic>Caulobacter</italic> has become a model organism for genetic analysis of prokaryotic cell cycle regulation <xref rid="pcbi.1000463-Laub1" ref-type="bibr">[26]</xref>, and the resulting wealth of molecular details provides fertile ground for computational modeling that is realistic, comprehensive and predictive.</p><p>The gram-negative, aquatic alpha-proteobacterium, <italic>Caulobacter crescentus</italic> undergoes asymmetric division producing two progeny cells with identical genome but different developmental programs: the sessile &#x0201c;stalked&#x0201d; cell immediately enters another replication cycle, whereas the flagellated &#x0201c;swarmer&#x0201d; cell swims away before differentiating into the staked morphology and re-entering the division cycle (<xref ref-type="fig" rid="pcbi-1000463-g001">Figure 1</xref>) <xref rid="pcbi.1000463-Ryan1" ref-type="bibr">[27]</xref>&#x02013;<xref rid="pcbi.1000463-Ausmees1" ref-type="bibr">[29]</xref>. In <xref ref-type="fig" rid="pcbi-1000463-g001">Figure 1</xref> we refer to the phases of the <italic>Caulobacter</italic> cell cycle as G1, S and G2/M, as is common terminology among <italic>Caulobacter</italic> researchers. The more common convention among bacteriologists is &#x0201c;C and D stages&#x0201d; (C&#x0200a;=&#x0200a;stage of DNA replication, D&#x0200a;=&#x0200a;stage from termination of DNA synthesis to cell division). The C/D distinction is convenient for rapidly growing bacteria with overlapping rounds of DNA replication. Slowly growing bacteria, like <italic>Caulobacter</italic>, can be said to have a B period (stage of unreplicated DNA), but we prefer to use the &#x0201c;eukaryotic&#x0201d; terminology of G1, S and G2/M phases because of the striking similarities between the cell cycles of <italic>Caulobacter</italic> and budding yeast <xref rid="pcbi.1000463-Brazhnik1" ref-type="bibr">[23]</xref>,<xref rid="pcbi.1000463-Amon1" ref-type="bibr">[30]</xref>
+</p><fig id="pcbi-1000463-g001" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g001</object-id><label>Figure 1</label><caption><title>Physiology of the cell division cycle in <italic>Caulobacter crescentus.</italic>
+</title><p>Three cell cycle phases can be distinguished (from the left to the right): a DNA synthesis (S) phase that takes approximately 90 min, a cell division (G2/M) phase, lasting approximately 30 min, that culminates in the separation of mother (stalked) and daughter (swarmer) cells, and a growth and differentiation (G1-like) phase of the swarmer cell that lasts approximately 30 min. The color scheme denotes protein variations through the cell division cycle: GcrA (blue), CtrA (red), DnaA (green). The &#x003b8;-like structure denotes replicating DNA. The ring in the middle of the cell indicates Z-ring assembly and constriction, leading to cell separation (cytokinesis). Symbols of different shapes at the two cell poles denote localization of proteins. Their identities are listed at the right of this figure. PD, predivisional. At the bottom, the time scale and important cell cycle-related physiological events are indicated.</p></caption><graphic xlink:href="pcbi.1000463.g001"/></fig><p>Cell division cycles of swarmer and stalked cells share the same core regulatory system that controls the cell's commitment to a new round of DNA synthesis and to the asymmetric division process <xref rid="pcbi.1000463-Holtzendorff1" ref-type="bibr">[31]</xref>. Two proteins (DnaA and GcrA) in particular control the onset of DNA replication, and a third master regulator (CtrA) controls cell division and cell fate events through a complex network of protein phosphorylation and degradation reactions (involving PleC, DivJ, PodJ, PerP, CckA, DivK and other components).</p><p>Stalked cells alternate periodically between the DNA synthesis phase (S) and the cell division phase (G2/M). Swarmer cells exhibit, in addition, a G1-like phase during which the bacterium grows and moves around, before differentiating into a stalked cell and entering into S phase. The molecular mechanism guiding a swarmer cell through G1 phase has not yet been completely worked out. But experimental evidences suggest that PodJ, PleC, and DivJ proteins regulate the phosphorylation state of DivK, which in turn controls the abundance of CtrA in the swarmer cell (high CtrA level blocks entry into S phase) <xref rid="pcbi.1000463-Paul1" ref-type="bibr">[32]</xref>&#x02013;<xref rid="pcbi.1000463-Viollier1" ref-type="bibr">[34]</xref>. Incorporating this idea into our previous model of stalked cell cycle control, we have created a mathematical model (in terms of ordinary differential equations) that allows us to investigate the temporal dynamics of these regulatory proteins and their associated physiological events in both stalked and swarmer cells. The model provides a rigorous account of the consequences of our hypotheses, which can be compared to experimental observations to test the model.</p><p>In this new version of our model we also incorporate explicitly the phosphorylation of CtrA and its regulation by CckA <xref rid="pcbi.1000463-Iniesta1" ref-type="bibr">[35]</xref>,<xref rid="pcbi.1000463-Jacobs1" ref-type="bibr">[36]</xref>, which allows us to capture the behavior of double mutants reported in <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>. Proteolysis of CtrA has also been refined to include recently described effects of RcdA and CpdR <xref rid="pcbi.1000463-Iniesta1" ref-type="bibr">[35]</xref>,<xref rid="pcbi.1000463-McGrath1" ref-type="bibr">[38]</xref>. Finally, regulation of cytokinesis via the Z-ring has been redesigned to include the FtsZ and FtsQ/A proteins, a phenomenological variable describing formation of the Z-ring, and a checkpoint signal from ongoing DNA replication via the ParA pathway <xref rid="pcbi.1000463-Thanbichler1" ref-type="bibr">[39]</xref>. As for previous model, we do not account explicitly for spatial localization of proteins, leaving this aspect of the control system for later versions.</p><sec id="s1a"><title>A Consensus Picture of Cell Cycle Controls in <italic>C. crescentus</italic>
+</title><p>The molecular network relevant to our model of the stalked cell division cycle of <italic>Caulobacter</italic> has been described in great detail previously <xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>, so here we describe only those new components of the model involved in the swarmed-to-stalked cell transition, and some details related to improvements of our core model.</p><sec id="s1a1"><title>CtrA production, phosphorylation and proteolysis</title><p>The relative abundance of CtrA in a daughter cell right after division determines the morphology of the cell: CtrA is elevated in the incipient swarmer cell, but it is degraded to very low level in the stalked cell compartment. At some later time, CtrA must be degraded in the swarmer cell during its transition to the stalked morphology. The level of CtrA in the cell is determined by the balance between protein synthesis and degradation, which processes are regulated in turn by the actions of other proteins. Production of CtrA is initiated by GcrA <xref rid="pcbi.1000463-Holtzendorff2" ref-type="bibr">[40]</xref>, promoted by CtrA itself <xref rid="pcbi.1000463-Laub2" ref-type="bibr">[41]</xref>, and is a subject to the methylation state of the <italic>ctrA</italic> gene <xref rid="pcbi.1000463-Reisenauer1" ref-type="bibr">[42]</xref>.</p><p>Once synthesized, CtrA protein must be phosphorylated into an active form, CtrA&#x0223c;P, to perform its functions <xref rid="pcbi.1000463-Ausmees1" ref-type="bibr">[29]</xref>. During the division cycle of wild type cells, CtrA&#x0223c;P follows closely the time course of CtrA (with less than 10 min delay) <xref rid="pcbi.1000463-Ryan1" ref-type="bibr">[27]</xref>,<xref rid="pcbi.1000463-Ausmees1" ref-type="bibr">[29]</xref>,<xref rid="pcbi.1000463-Holtzendorff1" ref-type="bibr">[31]</xref>,<xref rid="pcbi.1000463-Holtzendorff2" ref-type="bibr">[40]</xref>, in some mutant cells this synchrony is lost <xref rid="pcbi.1000463-Jacobs1" ref-type="bibr">[36]</xref>,<xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>.</p><p>The CckA histidine kinase contributes to CtrA phosphorylation. The <italic>cckA</italic> gene is expressed only briefly during the swarmer-to-stalked cell transition <xref rid="pcbi.1000463-Jacobs1" ref-type="bibr">[36]</xref>. Otherwise, the total CckA level is stable throughout the cell cycle <xref rid="pcbi.1000463-Jacobs2" ref-type="bibr">[43]</xref>. CckA molecules become localized and phosphorylated during the cell cycle. When phosphorylated, CckA&#x0223c;P activates CtrA phosphorylation <xref rid="pcbi.1000463-Ausmees1" ref-type="bibr">[29]</xref>. During the cell cycle, CckA&#x0223c;P concentration is tightly correlated with CtrA&#x0223c;P concentration (they show similar pattern of variation) <xref rid="pcbi.1000463-Jacobs1" ref-type="bibr">[36]</xref>,<xref rid="pcbi.1000463-Jenal1" ref-type="bibr">[44]</xref>. Because CckA contributes to the phosphorylation of several cell-cycle control proteins, there may be competition for phosphate groups among its targets. (We do not attempt to model such effects at this time.) In addition, DivL is reportedly involved, to some extent, in the process of CtrA phosphorylation <xref rid="pcbi.1000463-Ausmees1" ref-type="bibr">[29]</xref>,<xref rid="pcbi.1000463-Pierce1" ref-type="bibr">[45]</xref>.</p><p>Degradation of CtrA and its phosphorylated form, CtrA&#x0223c;P, is also regulated. The phosphorylated protein, DivK&#x0223c;P, accelerates proteolysis of both forms of CtrA <xref rid="pcbi.1000463-Hung1" ref-type="bibr">[46]</xref>. This effect was used in our previous model to define the time when CtrA starts being degraded. The mechanism of CtrA proteolysis is complicated. The protease ClpXP is directly involved in degrading CtrA and CtrA&#x0223c;P, with the help of another protein, RcdA, whose production is activated by CtrA&#x0223c;P <xref rid="pcbi.1000463-Iniesta1" ref-type="bibr">[35]</xref>,<xref rid="pcbi.1000463-Goley1" ref-type="bibr">[47]</xref>. Although ClpXP is stable throughout the cell cycle <xref rid="pcbi.1000463-Jenal2" ref-type="bibr">[48]</xref>, even though its promoter activity varies <xref rid="pcbi.1000463-Osteras1" ref-type="bibr">[49]</xref>, the localization of ClpXP is regulated by the CpdR protein. When CpdR is dephosphorylated and localized, it recruits ClpXP to the cell poles where CtrA/CtrA&#x0223c;P is degraded. Thus, the activation of CpdR by dephosphorylation can be viewed as another determining factor for CtrA and CtrA&#x0223c;P degradation <xref rid="pcbi.1000463-McGrath1" ref-type="bibr">[38]</xref>.</p><p>Finally, it needs to be mentioned that the pathways of CtrA phosphorylation and proteolysis are interwoven. High DivK&#x0223c;P represses CckA phosphorylation <xref rid="pcbi.1000463-Biondi1" ref-type="bibr">[50]</xref>, thus down-regulating indirectly CtrA phosphorylation and CtrA activity. CckA&#x0223c;P activates CpdR phosphorylation and affects CpdR localization, which represses indirectly the degradation CtrA and CtrA&#x0223c;P <xref rid="pcbi.1000463-Iniesta1" ref-type="bibr">[35]</xref>,<xref rid="pcbi.1000463-Biondi1" ref-type="bibr">[50]</xref>.</p></sec><sec id="s1a2"><title>PleC and DivJ roles in DivK phosphorylation</title><p>The histidine kinases PleC and DivJ are two proteins that facilitate dephosphorylation and phosphorylation of DivK respectively, during the cell cycle. According to microarray data, <italic>pleC</italic> expression is activated by GcrA <xref rid="pcbi.1000463-Holtzendorff2" ref-type="bibr">[40]</xref>, but total PleC protein level is relatively stable during the cell cycle <xref rid="pcbi.1000463-Viollier1" ref-type="bibr">[34]</xref>. The protein localizes to the flagellar cell pole once expressed. Localization of the protein is required for its function, and the full length PodJ<sub>L</sub> affects PleC localization <xref rid="pcbi.1000463-Hinz1" ref-type="bibr">[51]</xref>.</p><p>Expression of the polar organelle development gene <italic>podJ</italic> is upregulated by GcrA and DnaA and downregulated by CtrA&#x0223c;P <xref rid="pcbi.1000463-Holtzendorff1" ref-type="bibr">[31]</xref>,<xref rid="pcbi.1000463-Holtzendorff2" ref-type="bibr">[40]</xref>,<xref rid="pcbi.1000463-Laub2" ref-type="bibr">[41]</xref>,<xref rid="pcbi.1000463-Collier1" ref-type="bibr">[52]</xref>,<xref rid="pcbi.1000463-Hottes1" ref-type="bibr">[53]</xref>. The PodJ protein has two distinct isoforms: the full-length translation product PodJ<sub>L</sub> and a truncated form PodJ<sub>S</sub>. PodJ<sub>L</sub> localizes to the incipient swarmer pole, where it helps to recruit factors required for polar morphogenesis, including PleC. The periplasmic domain of PodJ<sub>L</sub> is degraded by a periplasmic protease PerP, giving rise to a truncated form of the protein PodJ<sub>S</sub>. Lower abundance of PodJ<sub>L</sub> leads to the release of PleC from flagellar cell pole <xref rid="pcbi.1000463-Viollier1" ref-type="bibr">[34]</xref>. During the swarmer-to-stalked cell transition, PodJ<sub>S</sub> is cleared and PodJ<sub>L</sub> is synthesized and localized again <xref rid="pcbi.1000463-Hinz1" ref-type="bibr">[51]</xref>.</p><p>The protease PerP is required for efficient truncation of PodJ<sub>L</sub>. Microarray analysis shows that <italic>perP</italic> expression is activated by CtrA&#x0223c;P <xref rid="pcbi.1000463-Laub2" ref-type="bibr">[41]</xref>,<xref rid="pcbi.1000463-Laub3" ref-type="bibr">[54]</xref>. In addition, polar PleC activity also affects, to some extent, <italic>perP</italic> expression <xref rid="pcbi.1000463-Chen2" ref-type="bibr">[55]</xref>.</p><p>Therefore, PodJ<sub>L</sub>, PerP and PleC work together in regulating the truncation of PodJ<sub>L</sub> and consequent release of PleC <xref rid="pcbi.1000463-Chen2" ref-type="bibr">[55]</xref>. This network dynamically regulates the temporal distributions of PodJ<sub>L</sub> and PodJ<sub>S</sub>, and the spatial localization of PleC. PleC, in turn, activates the dephosphorylation of DivK in the swarmer and predivisional cells through the cell division cycle <xref rid="pcbi.1000463-Hinz1" ref-type="bibr">[51]</xref>.</p><p>DivJ is present at low concentration in a swarmer cell but increases dramatically during the swarmer-to-stalked transition <xref rid="pcbi.1000463-Wheeler1" ref-type="bibr">[33]</xref>. Then, it localizes to the stalked cell pole and stays steady during the rest of the cell cycle. DivJ's localization helps the phosphorylation of DivK. PleC directly or indirectly regulates localization of DivJ <xref rid="pcbi.1000463-Wheeler1" ref-type="bibr">[33]</xref>,<xref rid="pcbi.1000463-Shapiro1" ref-type="bibr">[56]</xref>. The SpmX protein was recently reported as a factor involved in the process of DivJ localization after the release of PleC from the flagellar cell pole <xref rid="pcbi.1000463-Radhakrishnan1" ref-type="bibr">[57]</xref>. Otherwise, little is known about the regulation of DivJ in cells. High localized DivJ functions as a kinase in the stalked cell, where it activates the phosphorylation of DivK. In addition, recent data show that DivL is involved in the phosphorylation of DivK, directly or indirectly <xref rid="pcbi.1000463-Reisinger1" ref-type="bibr">[58]</xref>.</p><p>Because of the opposite localization of PleC and DivJ in a predivisional cell, a concentration gradient of DivK phosphorylation state is formed in predivisional cells, with DivK predominant at the swarmer pole and DivK&#x0223c;P predominant at the stalked pole <xref rid="pcbi.1000463-Wheeler1" ref-type="bibr">[33]</xref>,<xref rid="pcbi.1000463-Radhakrishnan1" ref-type="bibr">[57]</xref>. After division, PleC and DivJ are separated to different compartments (nascent cells). Therefore, in the nascent swarmer cell, DivK gets quickly dephosphorylated (driven by PleC), which preserves a high level of CtrA in this compartment. In the nascent stalked cells, all DivK becomes phosphorylated due to the action of DivJ, which accelerates the degradation of CtrA. During the swarmer-to-stalked cell transition (G1/S transition), release of PleC and consequent localization of DivJ at the same pole activates DivK phosphorylation <xref rid="pcbi.1000463-Radhakrishnan1" ref-type="bibr">[57]</xref> leading to rapid degradation of CtrA.</p></sec><sec id="s1a3"><title>Z-ring constriction, coupled with DNA replication</title><p>Cytokinesis in <italic>Caulobacter</italic> is regulated by a number of factors, including DNA replication and segregation, flagellum assembly, and the master regulators CtrA and DnaA <xref rid="pcbi.1000463-Hottes1" ref-type="bibr">[53]</xref>,<xref rid="pcbi.1000463-Wagner1" ref-type="bibr">[59]</xref>.</p><p>CtrA&#x0223c;P regulates transcription of a number of proteins involved in the formation and closure of the septal Z-ring, including <italic>ftsZ</italic>, <italic>ftsQ</italic>, <italic>ftsA</italic>
+<xref rid="pcbi.1000463-Rothfield1" ref-type="bibr">[60]</xref>&#x02013;<xref rid="pcbi.1000463-Harry1" ref-type="bibr">[62]</xref>. In a predivisional cell and in a swarmer cell, CtrA&#x0223c;P represses transcription of <italic>ftsZ</italic>, the gene whose product (bacterial counterpart of tubulin) is a building block of the Z-ring <xref rid="pcbi.1000463-Harry1" ref-type="bibr">[62]</xref>. DnaA, on the other hand, is an activator for <italic>ftsZ</italic> expression <xref rid="pcbi.1000463-Hottes1" ref-type="bibr">[53]</xref>. FtsZ was measured at maximal level in an early predivisional cell that has a visible Z-ring, then it decreased as CtrA&#x0223c;P level rises <xref rid="pcbi.1000463-Sackett1" ref-type="bibr">[61]</xref>. Following the assembly of the Z-ring, <italic>ftsQ</italic> and <italic>ftsA</italic> are activated by CtrA&#x0223c;P in an orderly manner <xref rid="pcbi.1000463-Sackett1" ref-type="bibr">[61]</xref>. Importantly, FtsQ, a regulator of Z-ring constriction, is only produced in predivisional cell phase when DNA is being replicated <xref rid="pcbi.1000463-Wortinger1" ref-type="bibr">[63]</xref>. It is not produced in a swarmer cell even though CtrA&#x0223c;P is high in this stage of the cell cycle.</p><p>A short DNA sequence, <italic>parS</italic>, locates close to the origin of replication (<italic>C<sub>ori</sub></italic>). The chromosome partitioning protein, ParB, binds to <italic>parS</italic> and colocalizes with the origin of replication at the flagellated pole in swarmer cells <xref rid="pcbi.1000463-Bartosik1" ref-type="bibr">[64]</xref>&#x02013;<xref rid="pcbi.1000463-Quardokus1" ref-type="bibr">[66]</xref>. Soon after the initiation of DNA replication, one copy of the origin moves to the opposite pole of cell and, as a result, ParB starts to exhibit a bipolar localization pattern. Another chromosome partitioning protein, ParA, also shows a bipolar localization pattern in the predivisional cell and may form a complex with ParB at the origin. Depletion of ParB or overexpression of ParA results in filamentous cells that lack Z-rings or form them in improper locations <xref rid="pcbi.1000463-Mohl1" ref-type="bibr">[67]</xref>. Total amounts of ParA and ParB stay constant during the cell cycle <xref rid="pcbi.1000463-Mohl2" ref-type="bibr">[68]</xref>. Correct localization of these proteins is a necessary condition for correctly positioning the Z-ring in the middle of a cell <xref rid="pcbi.1000463-Mohl1" ref-type="bibr">[67]</xref>. Moreover, nucleotide exchange between ParA-ATP and ParA-ADP is regulated by ParB <xref rid="pcbi.1000463-Easter1" ref-type="bibr">[69]</xref>. An increased level of ParA-ADP (which is proposed to be regulated by high ParB in the cytoplasm) inhibits Z-ring assembly and cell division <xref rid="pcbi.1000463-Easter1" ref-type="bibr">[69]</xref>. It has been suggested that ParA-ADP is the active form of ParA that inhibits cell division by preventing the formation and constriction of the Z-ring, directly or indirectly <xref rid="pcbi.1000463-Mohl1" ref-type="bibr">[67]</xref>. In summary, DNA replication and chromosome partitioning accompanied by ParB and ParA rearrangement results in a lower level of ParB and ParA-ADP in the cytoplasm, which releases the repression of Z-ring formation and allows Z-ring constriction in the center of the cell.</p><p>In addition, CtrA&#x0223c;P activates class II genes for flagellum assembly, including &#x003c3;<sup>54</sup>
+<xref rid="pcbi.1000463-Iniesta1" ref-type="bibr">[35]</xref>,<xref rid="pcbi.1000463-Wagner1" ref-type="bibr">[59]</xref>. The flagellar regulatory protein FlbD is activated by &#x003c3;<sup>54</sup>, which lead to the activation of a gene required for optimal FtsZ ring assembly. Recently, in <italic>Caulobacter</italic>, a spatial regulator coordinating chromosome segregation, MipZ, was recognized as an element with functions similar to those of the MinCDE system in <italic>E.coli</italic> (which serves to repress Z-ring formation and constriction) <xref rid="pcbi.1000463-Thanbichler1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000463-Margolin1" ref-type="bibr">[70]</xref>. MipZ, activated by DnaA <xref rid="pcbi.1000463-Thanbichler1" ref-type="bibr">[39]</xref>,<xref rid="pcbi.1000463-Collier2" ref-type="bibr">[71]</xref>, is also involved in communication between ParB and Z-ring assembly and constriction <xref rid="pcbi.1000463-Goley1" ref-type="bibr">[47]</xref>. Thus, Z-ring assembly and constriction are elaborately regulated, directly or indirectly, by DnaA and CtrA&#x0223c;P proteins, even though the details of how it happens in the cell are as yet unclear.</p></sec></sec></sec><sec id="s2"><title>Results</title><p>
+<xref ref-type="fig" rid="pcbi-1000463-g002">Figure 2</xref> presents an informal wiring diagram of the molecular interactions captured in our model. The corresponding mathematical model is given in Supplemental <xref ref-type="supplementary-material" rid="pcbi.1000463.s005">Table S1</xref> and outlined in <xref ref-type="sec" rid="s4">Materials and Methods</xref>. A detailed description of our model can be found on our Web site (<ext-link ext-link-type="uri" xlink:href="http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/">http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/</ext-link>), including a machine-readable version of the model (see also, <xref ref-type="supplementary-material" rid="pcbi.1000463.s004">Text S2</xref>). To simulate the molecular regulation of the cell division cycle, we solve the equations in <xref ref-type="supplementary-material" rid="pcbi.1000463.s005">Table S1</xref> subject to the parameter values and initial conditions in <xref ref-type="supplementary-material" rid="pcbi.1000463.s006">Tables S2</xref> and <xref ref-type="supplementary-material" rid="pcbi.1000463.s007">S3</xref>.</p><fig id="pcbi-1000463-g002" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g002</object-id><label>Figure 2</label><caption><title>Wiring diagram of the model.</title><p>All proteins (ovals) are assumed to be produced and degraded at specific rates. Only degradation of CtrA and CtrA&#x0223c;P is depicted explicitly (4 small circles indicate products of degradation), in order to show how these steps are regulated. Solid lines correspond to the mass flow while dashed lines denote regulatory effects. P1 and P2 denote the two promoters controlling CtrA production. Purple lines signify the role of localization/delocalization effects in corresponding regulations. The double-stranded closed curve at the bottom left represents DNA. <italic>C<sub>ori</sub></italic> is the origin of DNA replication and <italic>Ter</italic> stands for the termination site. DNA methylation sites on genes are marked by cyan stars. Z-ring closure at the far right blocks the flux of DivK and DivK&#x0223c;P between swarmer and stalked cell compartments.</p></caption><graphic xlink:href="pcbi.1000463.g002"/></fig><sec id="s2a"><title>The Model Correctly Represents the Sequence of Physiological Events during Asymmetric Cell Division in <italic>C. crescentus</italic>
+</title><p>The temporal sequence of physiological events during both the stalked cell and the swarmer cell cycle is correctly reproduced by the model. (In our simulations, we track either the swarmer, SW, or the stalked, ST, cell cycle by setting a parameter called <italic>H</italic> to 1 for ST or to 0 for SW.) After the initiation of DNA synthesis (<xref ref-type="fig" rid="pcbi-1000463-g003">Figure 3</xref>, at t&#x0200a;=&#x0200a;0 in both stalked and swarmer cell cycles), the DNA molecule is progressively replicated and then methylated over a period of &#x0223c;90 minutes. The molecular components necessary for cell division (CtrA&#x0223c;P, PodJ<sub>L</sub>/PleC, DivJ, DivK&#x0223c;P) are expressed in a timely fashion during S phase (<xref ref-type="fig" rid="pcbi-1000463-g003">Figure 3</xref>). At the end of S phase, the Z-ring starts to constrict (as described by the variable [Z] in Eq. 28 of <xref ref-type="supplementary-material" rid="pcbi.1000463.s005">Table S1</xref>), and it takes about 15 min to finish this process (<xref ref-type="fig" rid="pcbi-1000463-g003">Figure 3A&#x00026;D</xref>). After that, the predivisional cell enters into G2/M phase during which cell division (cytokinesis) begins, and the swarmer and stalked cell compartments embark on different developmental programs. During 30 min of G2/M phase, PodJ<sub>L</sub>/PleC and DivJ are completely separated into the swarmer and stalked cell compartments respectively (<xref ref-type="fig" rid="pcbi-1000463-g003">Figure 3B&#x00026;E</xref>) due to the constriction of the Z-ring (i.e., as [Z] falls from 1 to 0). During G2/M phase, the regulatory proteins PodJ<sub>L</sub>/PleC, DivJ, and DivK&#x0223c;P take on different values in our simulated swarmer and stalked cell compartments (<xref ref-type="fig" rid="pcbi-1000463-g003">Figure 3A, B, D &#x00026;E</xref>). These differences lead to different developmental tracks of the two progeny cells.</p><fig id="pcbi-1000463-g003" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g003</object-id><label>Figure 3</label><caption><title>Correlations between protein levels and the physiological features of a dividing <italic>Caulobacter</italic> cell.</title><p>Time courses of protein expressions, DNA replication and Z-ring states produced by our model for the swarmer cell cycle (A, B) and for the stalked cell cycle (D, E). Physiological changes during cell cycle progression are shown in panel C.</p></caption><graphic xlink:href="pcbi.1000463.g003"/></fig><p>After 30 min of G2/M phase, the progeny stalked cell is ready (because of its low level of CtrA&#x0223c;P, see <xref ref-type="fig" rid="pcbi-1000463-g003">Figure 3E</xref>) to enter another cell cycle. The progeny swarmer cell, however, enters into a G1-like phase which lasts about 30 min, as experimentally observed. During G1 phase, our simulation shows how the proteins (PodJ<sub>L/</sub>PleC, DivJ, DivK/DivK&#x0223c;P and CtrA/CtrA&#x0223c;P in <xref ref-type="fig" rid="pcbi-1000463-g003">Figure 3</xref>) change with time to convert the swarmer cell back to a stalked cell, ready to enter another cell cycle.</p><p>In a summary, the timing of such major events of the cell cycle as DNA replication, Z-ring assembly and constriction, cytokinesis, and cell differentiation agrees well with experimental observations <xref rid="pcbi.1000463-Laub1" ref-type="bibr">[26]</xref>,<xref rid="pcbi.1000463-Ryan1" ref-type="bibr">[27]</xref>,<xref rid="pcbi.1000463-Ausmees1" ref-type="bibr">[29]</xref>,<xref rid="pcbi.1000463-Holtzendorff1" ref-type="bibr">[31]</xref>,<xref rid="pcbi.1000463-Skerker1" ref-type="bibr">[72]</xref>.</p></sec><sec id="s2b"><title>The Model Accurately Describes Protein Expression Patterns during the Division Cycles of both Stalked and Swarmer Wild-Type Cells</title><p>
+<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4</xref> provides more details about variations of proteins included in the model during the division cycle of a swarmer cell. The swarmer cell cycle is identical to the stalked cell cycle from the initiation of DNA synthesis (at t&#x0200a;=&#x0200a;0, <xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4A&#x00026;B</xref>) until the Z-ring constriction (at t&#x0200a;=&#x0200a;90 min, see <xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4C</xref>). At this period of time, DivJ is located at the stalked cell pole and PodJ<sub>L</sub>/PleC at the swarmer cell pole (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4F</xref>). Because DivK has access to both PodJ<sub>L</sub>/PleC and DivJ in the pre-divisional cell, the level of DivK&#x0223c;P is very low at the onset of Z-ring constriction (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4G</xref>).</p><fig id="pcbi-1000463-g004" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g004</object-id><label>Figure 4</label><caption><title>Simulated variations of proteins and other model state variables during the swarmer wild-type cell cycle.</title><p>Simulation begins with initiation of DNA replication. Three cell cycles are shown. Experimental data presented on some panels by open circles and squares, crosses and asterisks are re-plotted from the following sources: (A) Total DNA from Figure 4 in <xref rid="pcbi.1000463-Dingwall1" ref-type="bibr">[84]</xref>. (B) CcrM from Figure 2 in <xref rid="pcbi.1000463-Grunenfelder1" ref-type="bibr">[85]</xref>. (C) FtsZ from Fig. 2C in <xref rid="pcbi.1000463-Martin1" ref-type="bibr">[86]</xref>; Zring from Fig. 3C in <xref rid="pcbi.1000463-Aaron1" ref-type="bibr">[87]</xref>; FtsQ from figure 2 in <xref rid="pcbi.1000463-Martin1" ref-type="bibr">[86]</xref>. (D) Z from Figure 2 in <xref rid="pcbi.1000463-Judd1" ref-type="bibr">[88]</xref>. (E) CtrA from Fig. 3C in <xref rid="pcbi.1000463-Holtzendorff2" ref-type="bibr">[40]</xref>; CtrA&#x0223c;P from Fig. 3C in <xref rid="pcbi.1000463-Jacobs1" ref-type="bibr">[36]</xref>; GcrA from Figure 3 in <xref rid="pcbi.1000463-Holtzendorff2" ref-type="bibr">[40]</xref>; DnaA from Figure 5 in <xref rid="pcbi.1000463-Zweiger1" ref-type="bibr">[89]</xref>. (F) PodJL/PleC from Fig. 1A in <xref rid="pcbi.1000463-Chen2" ref-type="bibr">[55]</xref> and Fig. 1B in <xref rid="pcbi.1000463-Viollier1" ref-type="bibr">[34]</xref>; DivJ from Fig. 2B in <xref rid="pcbi.1000463-Wheeler1" ref-type="bibr">[33]</xref>; PerP from Fig. 4 in <xref rid="pcbi.1000463-Chen2" ref-type="bibr">[55]</xref>. (G) DivK&#x0223c;P from Figure 2 in <xref rid="pcbi.1000463-Grunenfelder1" ref-type="bibr">[85]</xref>. (H) CckA&#x0223c;P from Fig. 3B in <xref rid="pcbi.1000463-Jacobs1" ref-type="bibr">[36]</xref>; CpdR from Fig. 5A in <xref rid="pcbi.1000463-Iniesta1" ref-type="bibr">[35]</xref>; RcdA from Fig. 2C in <xref rid="pcbi.1000463-McGrath1" ref-type="bibr">[38]</xref>.</p></caption><graphic xlink:href="pcbi.1000463.g004"/></fig><p>During G2/M phase (90&#x0223c;120 min in <xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4</xref>), the Z-ring assembles and constricts (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4C&#x00026;D</xref>) in about 15 min, and total DNA divides (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4A</xref>) evenly between the two progeny cells. PodJ<sub>L</sub>/PleC is separated into the swarmer cell compartment (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4F</xref>) while DivJ remains behind in the stalked cell compartment. Therefore, DivK&#x0223c;P drops sharply in the incipient swarmer cell (70&#x02013;100 min in <xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4G</xref>). With DivK&#x0223c;P level low and CckA&#x0223c;P level high (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4H</xref>) in the incipient swarmer cell, CtrA&#x0223c;P is maintained at a high level of activity (90&#x0223c;120 min in <xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4E</xref>).</p><p>During the swarmer-to-stalked cell transition (120&#x0223c;150 min in <xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4</xref>), PodJ<sub>L</sub>/PleC plummets and DivJ becomes active again (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4F</xref>); hence, DivK becomes phosphorylated and CtrA&#x0223c;P is rapidly degraded (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4E</xref>). GcrA and DnaA levels climb (<xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4E</xref>), and the new stalked cell is ready for a new round of DNA replication.</p><p>In some panels in <xref ref-type="fig" rid="pcbi-1000463-g004">Figure 4</xref> (see also <xref ref-type="supplementary-material" rid="pcbi.1000463.s002">Figure S2</xref>), we compare our simulation with experimental data, collected from many different publications. The protein variations are given in relative units. In most cases, experimental uncertainties were not reported, but it is reasonable to assume that the error bounds should be quite generous. The data sets provide us with qualitative benchmarks for our simulations, but a quantitative assessment of goodness-of-fit would be inappropriate. Based on visual comparison, we conclude that our simulated protein variations agree reasonably well with the experimentally observed patterns.</p></sec><sec id="s2c"><title>The Model Agrees with the Phenotypes of Mutant Strains</title><p>Mutant cells provide valuable information about how individual components of the cell cycle control system affect phenotypes of cells. We simulate mutants using exactly the same differential equations, parameter values, and initial conditions as for wild type (<italic>wt</italic>) cells (Tables, <xref ref-type="supplementary-material" rid="pcbi.1000463.s005">S1</xref>, <xref ref-type="supplementary-material" rid="pcbi.1000463.s006">S2</xref>, and <xref ref-type="supplementary-material" rid="pcbi.1000463.s007">S3</xref>), except for those modifications to parameters dictated by the mutation (<xref ref-type="supplementary-material" rid="pcbi.1000463.s008">Table S4</xref>). For instance, a mutant with a particular gene deleted is modeled by zeroing the production rate of the corresponding protein. This change propagates through the network, modifying the time courses of other proteins, and from these profiles we infer the phenotype of the mutant.</p><p>Here we present our simulations for <italic>ctrAD51E</italic>, <italic>ctrA&#x00394;3</italic>&#x003a9;, <italic>ctrAD51E&#x00394;3</italic>&#x003a9;, <italic>ctrA</italic> constitutive expression, <italic>ctrA<sup>op</sup></italic>, <italic>&#x00394;divJ</italic>, and <italic>&#x00394;pleC</italic>/<italic>&#x00394;podJ</italic> mutants. The first five mutants were not correctly simulated in our earlier model because we made no distinction between phosphorylated (active) and unphosphorylated (inactive) CtrA. The present model now accounts for the observed phenotypes of these <italic>ctrA</italic> mutants. The other two mutants, <italic>&#x00394;divJ</italic> and <italic>&#x00394;pleC</italic>/<italic>&#x00394;podJ</italic>, were outside the scope of our earlier model. All other mutants that we have simulated are presented in the website <ext-link ext-link-type="uri" xlink:href="http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/">http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/</ext-link>.</p><sec id="s2c1"><title>
+<italic>ctrAD51E</italic>
+</title><p>In this mutant the CtrA phosphorylation site, aspartate 51, is replaced with a glutamate residue. This creates a form of the CtrA which cannot be phosphorylated but is, nevertheless, able to activate downstream genes <xref rid="pcbi.1000463-Quon1" ref-type="bibr">[73]</xref>. When the <italic>ctrAD51E</italic> gene was expressed from a high-copy number plasmid in cells deleted for the <italic>wt</italic> chromosomal <italic>ctrA</italic> gene, the mutated cells were observed to have normal morphology and DNA content (Figure 5 in <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>).</p><fig id="pcbi-1000463-g005" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g005</object-id><label>Figure 5</label><caption><title>Simulation of <italic>ctrAD51E</italic> mutant.</title><p>
+<italic>k</italic>
+<sub>s,ctrA-P1</sub>&#x0200a;=&#x0200a;<italic>k</italic>
+<sub>s,ctrA-P2</sub>&#x0200a;=&#x0200a;0, <italic>k</italic>
+<sub>trans,CtrA&#x0223c;P</sub>&#x0200a;=&#x0200a;0, <italic>k</italic> &#x02032;&#x0200a;=&#x0200a;0.064 (40&#x00025; of WT) was added to [CtrA&#x0223c;P] equation. The vertical column of open circles here and on subsequent figures indicates the time at which the mutation is introduced. For earlier times the simulation is run with wild-type values of all parameters.</p></caption><graphic xlink:href="pcbi.1000463.g005"/></fig><p>Since in this mutant the constitutively expressed CtrA is active all the time, we simulated the mutant by turning off CtrA production from the original gene and by producing the active form of CtrA (phophorylated form in our model) constitutively. Our simulation shows (<xref ref-type="fig" rid="pcbi-1000463-g005">Figure 5</xref>) that an elevated level of CtrA&#x0223c;P does not block progression of cells through the cell cycle. The CtrA degradation machinery is able to lower the level of CtrA&#x0223c;P enough that the necessary conditions for DNA replication are satisfied, while the components for the Z-ring assembly and constriction are also available when needed. Elevated CtrA&#x0223c;P reduces to some extent GcrA, PodJ<sub>L</sub>/PleC, FtsZ and Zring, and accelerates DNA methylation, but these changes do not have lethal effects on cell cycle progression.</p><p>It can be observed from our simulation (<xref ref-type="fig" rid="pcbi-1000463-g005">Figure 5</xref>) that Z-ring closing time is a bit longer in the mutant than in <italic>wt</italic> cells. We consider this an artifact of our model, due to the oversimplified representation of the role of FtsQ. In our model, FtsQ abundance controls both the onset and duration of Z-ring constriction, while in reality this dual role may not be the case. (This artifact may also appear in other mutants.)</p></sec><sec id="s2c2"><title>
+<italic>ctrA&#x00394;3</italic>&#x003a9;</title><p>When the final three amino acids of CtrA are deleted (or substituted with a peptide tag), the rate of CtrA degradation is decreased to &#x0223c;10&#x00025; of <italic>wt</italic> rate <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>. Nonetheless, these mutant cells exhibit normal cellular morphology and DNA content (Figure 5 in <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>).</p><p>In our simulation of this mutant (<xref ref-type="fig" rid="pcbi-1000463-g006">Figure 6</xref>), CtrA and CtrA&#x0223c;P fluctuate in a manner similar to <italic>wt</italic> cells. Notice that the steady state levels of CtrA and CtrA&#x0223c;P during DNA synthesis phase are about 10-fold higher in the mutant than in <italic>wt</italic> cells because the degradation rate of CtrA (and CtrA&#x0223c;P) protein 10-fold smaller in the mutants. Nevertheless, CtrA proteolysis is still sufficient to permit DNA synthesis. Later in the cell cycle, during the &#x0223c;50 min when the <italic>ctrA</italic> gene is hemimethylated and CtrA proteolysis is minimal, both <italic>wt</italic> cells and mutant cells accumulate nearly the same amount of CtrA and CtrA&#x0223c;P. Hence, the mutant cell undergoes normal division cycle.</p><fig id="pcbi-1000463-g006" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g006</object-id><label>Figure 6</label><caption><title>Simulation of <italic>ctrA&#x00394;3</italic>&#x003a9; mutant.</title><p>
+<italic>k</italic>
+<sub>d,ctrA2</sub>&#x0200a;=&#x0200a;0.0375 (15&#x00025; of WT).</p></caption><graphic xlink:href="pcbi.1000463.g006"/></fig></sec><sec id="s2c3"><title>
+<italic>ctrAD51E&#x00394;3</italic>&#x003a9;</title><p>This double mutant, which combines the properties of <italic>ctrAD51E</italic> and <italic>ctrA&#x00394;3</italic>&#x003a9;, is observed to be filamentous and arrested in G1 phase <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>. In our simulation (<xref ref-type="fig" rid="pcbi-1000463-g007">Figure 7</xref>), CtrA&#x0223c;P rises to such a high level that DNA replication cannot be initiated, consistent with G1 arrest and a filamentous morphology. In addition, based on the variation patterns of DivJ and DivK&#x0223c;P, our model predicts that, after the introduction of mutation, the swarmer cell will differentiate into a stalked cell and then become arrested without initiation of DNA replication.</p><fig id="pcbi-1000463-g007" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g007</object-id><label>Figure 7</label><caption><title>Simulation of double mutant <italic>ctrAD51E&#x00394;3</italic>&#x003a9;.</title><p>
+<italic>k</italic>
+<sub>s,ctrA-P1</sub>&#x0200a;=&#x0200a;<italic>k</italic>
+<sub>s,ctrA-P2</sub>&#x0200a;=&#x0200a;0, <italic>k</italic>
+<sub>trans,CtrA&#x0223c;P</sub>&#x0200a;=&#x0200a;0, <italic>k</italic> &#x02032;&#x0200a;=&#x0200a;0.064 (40&#x00025; of WT) was added to [CtrA&#x0223c;P] equation, <italic>k</italic>
+<sub>d,ctrA2</sub>&#x0200a;=&#x0200a;0.0375 (15&#x00025; of WT).</p></caption><graphic xlink:href="pcbi.1000463.g007"/></fig></sec><sec id="s2c4"><title>Constitutive <italic>ctrA</italic> expression</title><p>When <italic>ctrA</italic> is constitutively expressed (the only copy of <italic>ctrA</italic> gene is on pJS14), the cell cycle is normal <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>. In our simulation (<xref ref-type="fig" rid="pcbi-1000463-g008">Figure 8</xref>), constitutive <italic>ctrA</italic> expression at mild level (20&#x00025;&#x0223c;80&#x00025; of wild-type <italic>ctrA</italic> promoter activity) does not affect the normal cell cycle. Insignificant deviations, similar to those for the <italic>ctrAD51E</italic> mutant, were observed for some proteins, Z-ring closing time, and DNA methylation. If <italic>ctrA</italic> is expressed constitutively at &#x0003c;20&#x00025; of the wild-type level, then CtrA&#x0223c;P never increases high enough to prompt expression of other essential genes, and the cell cannot proceed through the division cycle normally. The simulation results for this case are similar to those of <italic>&#x00394;ctrA</italic> mutant (data not shown here; see figure at the website <ext-link ext-link-type="uri" xlink:href="http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/">http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/</ext-link>).</p><fig id="pcbi-1000463-g008" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g008</object-id><label>Figure 8</label><caption><title>Simulation of <italic>ctrA</italic> constitutive expression.</title><p>
+<italic>ctrA</italic> is constitutively expressed at 30&#x00025; of its wild-type promoter activity: <italic>k</italic>
+<sub>s,ctrA-P1</sub>&#x0200a;=&#x0200a;<italic>k</italic>
+<sub>s,ctrA-P2</sub>&#x0200a;=&#x0200a;0, <italic>k</italic> &#x02032;&#x0200a;=&#x0200a;0.048.</p></caption><graphic xlink:href="pcbi.1000463.g008"/></fig><p>If <italic>ctrA</italic> is expressed constitutively at too high level (above 80&#x00025; of wild-type <italic>ctrA</italic> promoter activity), then CtrA&#x0223c;P reaches quite a high level even though the proteolysis pathway works normally. The high level of CtrA&#x0223c;P restricts the initiation of DNA replication and it cannot start at a right time. The cell cycle thus cannot proceed normally in this case. In <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>, <italic>ctrA</italic> is expressed from a strong promoter, but the extent of overproduction is unknown. Our model predicts that the level of CtrA protein in this viable mutant should be in the range 20&#x02013;80&#x00025; of the wild type level because, if <italic>ctrA</italic> is greatly overexpressed (as in the <italic>ctrA<sup>op</sup></italic> mutant described below), then cell cycle progression is blocked.</p></sec><sec id="s2c5"><title>
+<italic>ctrA<sup>op</sup></italic>
+</title><p>When the genomic copy of the <italic>ctrA</italic> gene is missing a coding sequence for the last three amino acids (<italic>ctrA&#x00394;3&#x003a9;</italic>), the resulted mutated CtrA protein is more stable <xref rid="pcbi.1000463-Domian1" ref-type="bibr">[37]</xref>. When this gene is introduced in cells on a high copy-number plasmid (<italic>ctrA<sup>&#x0002b;</sup></italic> (wild type)<italic>&#x0002b;P<sub>xylX</sub>-ctrA&#x00394;3</italic>) and the cells are grown on 0.2&#x00025; xylose to overexpress the stable (mutated) form of CtrA, then the mutant cells become filamentous and arrested either in G1 phase (unreplicated DNA) or in G2 phase (replicated DNA) <xref rid="pcbi.1000463-Quon2" ref-type="bibr">[74]</xref>.</p><p>In our simulation (<xref ref-type="fig" rid="pcbi-1000463-g009">Figure 9</xref>), elevated levels of DivJ and DivK&#x0223c;P indicate that the swarmer cell may have differentiated into a stalked cell. However, the high level of CtrA&#x0223c;P represses initiation of DNA replication in the mutant cell, making it arrest in G1 phase. The simulation for this case is similar to the case of <italic>ctrA</italic> constitutive expression (&#x0003e;80&#x00025; of maximum <italic>wt</italic> rate), as just described. For the stalked cell, the division cycle can be arrested either in G1 phase or G2 phase, based on our simulation reported in <xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>.</p><fig id="pcbi-1000463-g009" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g009</object-id><label>Figure 9</label><caption><title>Simulation of <italic>ctrA<sup>op</sup></italic> mutant.</title><p>
+<italic>k</italic> &#x02032;&#x0200a;=&#x0200a;0.16.</p></caption><graphic xlink:href="pcbi.1000463.g009"/></fig><p>After a longer duration (&#x0223c;200 min in our simulation), however, a new round of DNA replication starts in our simulation. This is a side-effect of the overly simplified term in our model for the initiation of DNA replication.</p></sec><sec id="s2c6"><title>
+<italic>&#x00394;divJ</italic>
+</title><p>
+<italic>divJ<sup>cs</sup></italic>
+<xref rid="pcbi.1000463-Sommer1" ref-type="bibr">[75]</xref>, <italic>divJ<sub>H338A</sub></italic>
+<xref rid="pcbi.1000463-Lam1" ref-type="bibr">[76]</xref>, <italic>&#x00394;divJ</italic>
+<xref rid="pcbi.1000463-Wheeler1" ref-type="bibr">[33]</xref>, and <italic>divJ:: &#x003a9;(Spc<sup>R</sup>)</italic>
+<xref rid="pcbi.1000463-Sciochetti1" ref-type="bibr">[77]</xref> are all described as <italic>divJ</italic> deletion mutants in experiments. In these mutant cells, DivK&#x0223c;P level is reduced and, as a result, cells contain several copies of chromosomes and became filamentous.</p><p>In our simulation of these mutants (<xref ref-type="fig" rid="pcbi-1000463-g010">Figure 10</xref>), DivK&#x0223c;P level drops as expected, and CtrA&#x0223c;P stays high, repressing a new round of DNA replication after cell division. The mutant cells arrest in G1 phase and become filamentous. Without DivJ and DivK&#x0223c;P, the cell should remain in the swarmer cell morphology.</p><fig id="pcbi-1000463-g010" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g010</object-id><label>Figure 10</label><caption><title>Simulation of <italic>&#x00394;divJ</italic> mutant.</title><p>
+<italic>k</italic>
+<sub>s,DivJ1</sub>&#x0200a;=&#x0200a;<italic>k</italic>
+<sub>s,DivJ2</sub>&#x0200a;=&#x0200a;0.</p></caption><graphic xlink:href="pcbi.1000463.g010"/></fig><p>It has been reported that DivJ is also involved in repressing the initiation of DNA replication <xref rid="pcbi.1000463-Wheeler1" ref-type="bibr">[33]</xref>, a feature that is not implemented in our model. This may be the reason why we do not see, in our simulation, accumulation of multiple chromosomes, as was reported experimentally.</p></sec><sec id="s2c7"><title>
+<italic>&#x00394;pleC</italic> and <italic>&#x00394;podJ</italic>
+</title><p>Elevated levels of DivK&#x0223c;P are observed in <italic>&#x00394;pleC</italic> mutant cells (<italic>pleC::Tn5</italic>) <xref rid="pcbi.1000463-Wheeler1" ref-type="bibr">[33]</xref>,<xref rid="pcbi.1000463-Sommer1" ref-type="bibr">[75]</xref>,<xref rid="pcbi.1000463-Wang1" ref-type="bibr">[78]</xref>,<xref rid="pcbi.1000463-Sommer2" ref-type="bibr">[79]</xref>. <italic>&#x00394;podJ</italic> mutant cells (<italic>podJ::Tn5</italic> or <italic>podJ-xylX</italic>) become filamentous, and their phenotype is similar to <italic>ctrA401</italic> cells <xref rid="pcbi.1000463-Hinz1" ref-type="bibr">[51]</xref>,<xref rid="pcbi.1000463-Crymes1" ref-type="bibr">[80]</xref>.</p><p>In our simulation (<xref ref-type="fig" rid="pcbi-1000463-g011">Figure 11</xref>), the lower level of PodJ<sub>L</sub>/PleC causes accumulation of DivK&#x0223c;P, which in turn lowers CtrA&#x0223c;P. Consequently, DivJ is elevated, which indicates (in our model) that the cell has differentiated into a stalked morphology. DNA replication could be initiated in this case but cell division does not proceed due to insufficient FtsQ (caused by low level of CtrA&#x0223c;P). Thus, such a cell is arrested in G2 phase and become filamentous in the simulation.</p><fig id="pcbi-1000463-g011" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g011</object-id><label>Figure 11</label><caption><title>Simulation of <italic>&#x00394;pleC</italic>/<italic>&#x00394;podJ</italic> mutants.</title><p>
+<italic>k</italic>
+<sub>s,PodJL</sub>&#x0200a;=&#x0200a;0.</p></caption><graphic xlink:href="pcbi.1000463.g011"/></fig></sec></sec><sec id="s2d"><title>The Model Predicts Phenotypes of Novel Mutants</title><p>Predictions of the model provide for directions for designing new experiments, including direct experimental tests of the model. In each simulation of a known mutant genotype, described above, some of the results were compared against experimental observations, and other parts may be considered as predictions, because the experimental studies did not report relevant information (e.g. variations of some proteins). These quantitative predictions are useful for future experimental exploration of these mutants that have already been studied to some extent. In addition, we present in this section simulations of some novel mutants that have not been described in the literature, to our knowledge. Some other novel mutants are also described at our website <ext-link ext-link-type="uri" xlink:href="http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/">http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/</ext-link>.</p><sec id="s2d1"><title>
+<italic>pleC<sup>op</sup></italic> and <italic>podJ<sup>op</sup></italic>
+</title><p>The effects of overexpressing PleC or PodJ have not been reported in the literature. In our simulation of these mutants (<xref ref-type="fig" rid="pcbi-1000463-g012">Figure 12</xref>), the high level of PodJ<sub>L</sub>/PleC leads to an elevated level of CtrA&#x0223c;P. If DNA replication has been initiated by this time, the cell may proceed successfully through another division cycle (as in <xref ref-type="fig" rid="pcbi-1000463-g012">Figure 12</xref>) despite a high level of CtrA&#x0223c;P. However, elevated CtrA&#x0223c;P decreases the levels of GcrA, DivK&#x0223c;P and DivJ in our simulation, which may cause problems for these mutant cells in subsequent generations. Cells may arrest in G1 with low GcrA, or they may proceed through another round of DNA replication and arrest in G2 with high CtrA&#x0223c;P. The expected phenotype depends sensitively on parameter values in the model and cannot be predicted precisely.</p><fig id="pcbi-1000463-g012" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g012</object-id><label>Figure 12</label><caption><title>Simulation of <italic>pleC<sup>op</sup>/podJ<sup>op</sup></italic> mutant.</title><p>
+<italic>k</italic>
+<sub>s,PodJL</sub>&#x0200a;=&#x0200a;0, <italic>k</italic>&#x02032;&#x0200a;=&#x0200a;0.043 (100&#x00025; of WT).</p></caption><graphic xlink:href="pcbi.1000463.g012"/></fig></sec><sec id="s2d2"><title>CckA unphosphorylated</title><p>If CckA cannot be phosphorylated, then, according to our simulation (<xref ref-type="fig" rid="pcbi-1000463-g013">Figure 13</xref>), CtrA&#x0223c;P level will fall. As a result, DivJ rises, indicating that the cell has transformed into a stalked morphology, and a new round of DNA replication is initiated, but the Z-ring cannot constrict due to insufficient FtsQ. Thus our simulation for this mutant indicates that the cell is arrested in the G2 phase with replicated chromosomes and filamentous morphology.</p><fig id="pcbi-1000463-g013" position="float"><object-id pub-id-type="doi">10.1371/journal.pcbi.1000463.g013</object-id><label>Figure 13</label><caption><title>Simulation of unphosphorylated CckA mutant.</title><p>
+<italic>k</italic>
+<sub>trans,CckA</sub>&#x0200a;=&#x0200a;0.</p></caption><graphic xlink:href="pcbi.1000463.g013"/></fig></sec></sec><sec id="s2e"><title>Website of the Model and Online Simulator</title><p>To organize all simulations (for wild-type cells and for mutants) and present them in a systematic way, we have developed a website (<ext-link ext-link-type="uri" xlink:href="http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/">http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/</ext-link>) that includes an introduction, a description of the mathematical model, wild-type simulation results, simulations of all relevant mutants, model files, modeling tools and an online simulator (<ext-link ext-link-type="uri" xlink:href="http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/onlinesimulator.php">http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/onlinesimulator.php</ext-link>) to run the mathematical model. The web site is designed to help molecular biologists design new experiments and mathematical modeler to explore the model in greater detail. The online simulator has a friendly interface for running the model without getting unnecessarily involved in the underlying differential equations and parameter settings.</p></sec></sec><sec id="s3"><title>Discussion</title><p>Molecular cell biologists have collected a large amount of experimental information about genes, proteins and biochemical reactions involved in regulating the cell division cycle of <italic>Caulobacter crescentus</italic>. These molecular details are spread over many specific publications and have not been drawn together into a coherent quantitative model until recently <xref rid="pcbi.1000463-Shen1" ref-type="bibr">[24]</xref>,<xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>. Within the framework of nonlinear ordinary differential equations, we have developed a realistic, quantitative mathematical model of the molecular machinery governing the asymmetric division cycle of <italic>Caulobacter</italic>. Our model provides an opportunity to study and analyze the system-level dynamics of the <italic>Caulobacter</italic> cell cycle (beyond the kinetics of individual biochemical reactions), in order to test hypotheses about molecular mechanisms in silico, and to suggest new experimental designs.</p><p>The process of building a computational model is itself a scientifically challenging problem because it involves integrating data from diverse sources, reconciling observations made by different researchers, identifying gaps in our knowledge, hypothesizing mechanisms to fill these gaps, and converting the comprehensive descriptive scheme into a quantitative model capable of generating accurate temporal dynamics of protein fluctuations and physiological events. Our success in building such a model indicates that there is already a &#x0201c;critical mass&#x0201d; of experimental data and theoretical ideas available to hypothesize a reasonable mechanism controlling cell division in <italic>Caulobacter</italic>. Since our knowledge is incomplete, since any model inevitably contains many assumptions, and since there are alternative ways to express reaction kinetics in mathematical form, the proposed molecular mechanism and mathematical implementation of the model must be considered as an evolving hypothesis to be continually examined, revised, and improved as new observations tell us more about the molecular regulatory system.</p><p>Confidence in the model and respect for its predictions depend on how realistic is the underlying molecular mechanism, how accurate are the mathematical representations of the reaction network, and how well are the kinetic parameters of the model constrained by experimental data. Our model, consisting of 28 differential equations (<xref ref-type="supplementary-material" rid="pcbi.1000463.s005">Table S1</xref>) with 96 parameters (<xref ref-type="supplementary-material" rid="pcbi.1000463.s006">Table S2</xref>), was fitted to available experimental data, including phenotypes of wild-type and mutant cells, evidences for specific regulatory interactions, and quantitative measurements of protein expression. From the parameter list, the degradation rate constants of proteins (18 of 55 <italic>k'</italic>s) were determined from experimental data in the literature. Four <italic>P'</italic>s, which are relative gene positions on the chromosome, were estimated from the <italic>Caulobacter</italic> genome sequence. The production rate constants of components (37 of 55 <italic>k'</italic>s), together with 31 <italic>J'</italic>s and 6 <italic>&#x003b8;'s</italic> (binding constants and thresholds), were estimated by fitting the model to data points of 28 components in wild-type cells and by further tuning the parameter values to account for the phenotypes of 33 known mutants. By carefully fitting parameter values to experimental data wherever possible, we have constructed a model that captures the dynamics of cell cycle control in wild type (stalked and swarmer) cells as well as the phenotypic characteristics of numerous mutant strains. The model predicts a large amount of phenotypic properties not previously reported in known mutants, as well as phenotypes of 7 totally novel mutants.</p><p>Cell cycle regulation in <italic>Caulobacter</italic> is known to utilize spatial as well as temporal controls <xref rid="pcbi.1000463-Goley1" ref-type="bibr">[47]</xref>,<xref rid="pcbi.1000463-Ebersbach1" ref-type="bibr">[81]</xref>,<xref rid="pcbi.1000463-Duerig1" ref-type="bibr">[82]</xref>. Spatial aspects of the control system are left for future versions of the model. As to the time domain, our model has limitations of temporal resolution and duration of a simulation. Details of simulations at the scale of 10 min or less do not necessarily have biological significance. On the other end, we can be reasonably confident of simulations of non-cycling cells up to about 400 min of run-time; for later times the model may exhibit artifacts or completely break down.</p><p>
+<italic>Caulobacter crescentus</italic> has recently been detected as a human pathogen, which makes the study of <italic>Caulobacter</italic> reproduction directly related to human health. Since many genes and mechanisms discovered in <italic>Caulobacter</italic> are evolutionarily conserved among other &#x003b1;-proteobacteria, our computational model of cell replication in <italic>Caulobacter</italic> may be extendable to other family members, in particular to the causative agents of brucellosis in cattle and Rocky Mountain spotted fever in humans. Insights gained into the temporal and spatial control of gene expression and protein interactions in <italic>Caulobacter</italic> could provide new clues for rational design of antibacterial agents and bacterial-based drug delivery technologies.</p></sec><sec id="s4"><title>Materials and Methods</title><sec id="s4a"><title>Scope of the Model</title><p>The model presented in this publication describes temporal regulation of the asymmetric cell division cycle in <italic>Caulobacter crescentus</italic>. It accounts for cell cycle regulation in both swarmer and stalked cells. In the former case, the model includes G1 (swarmer-to-stalked cell transition), S, and G2/M phases, while only S and G2/M phases are present for the stalked cell cycle. The regulatory mechanism is described at the protein level with addition of a few phenomenological variables to describe DNA replication and cytokinesis. Justification of our approach may be found in <xref rid="pcbi.1000463-Brazhnik1" ref-type="bibr">[23]</xref>,<xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>.</p><p>At the core of the model are three master regulators (DnaA, GcrA, and CtrA), as in our previous publication <xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>. Fluctuations of CtrA activity have been refined here to include explicitly protein activation via CckA-mediated phosphorylation of CtrA, and regulated degradation of CtrA by CpdR, RcdA, and ClpXP. Z-ring formation is described now by a separate variable, and its formation and closing are regulated by FtsZ and FtsQ proteins, which are described here as distinct variables, and by DNA replication. Finally, to capture regulation of the swarmer-to-stalked cell transition (differentiation), we have extended the model to include DivJ, PleC, PodJ, and PerP proteins. A complete list of the genes and proteins considered in this manuscript is provided in <xref ref-type="supplementary-material" rid="pcbi.1000463.s009">Table S5</xref>.</p></sec><sec id="s4b"><title>The Quantitative Mathematical Model</title><p>Based on our model assumptions (<xref ref-type="supplementary-material" rid="pcbi.1000463.s003">Text S1</xref>), the interaction network for cell cycle controls in <italic>Caulobacter</italic> (<xref ref-type="supplementary-material" rid="pcbi.1000463.s001">Figure S1</xref>) summarizes the current stage of knowledge compiled from the literature. The wiring diagram in <xref ref-type="fig" rid="pcbi-1000463-g002">Figure 2</xref> projects the interactions of <xref ref-type="supplementary-material" rid="pcbi.1000463.s001">Figure S1</xref> into &#x02018;protein space&#x02019; <xref rid="pcbi.1000463-Brazhnik2" ref-type="bibr">[83]</xref> and focuses on their relationships with physiological events <xref rid="pcbi.1000463-Tyson1" ref-type="bibr">[4]</xref>. The molecular mechanism is converted into a set of differential equations (Supplemental <xref ref-type="supplementary-material" rid="pcbi.1000463.s005">Table S1</xref>) describing the production, degradation, activation, inhibition, binding, release, phosphorylation, dephosphorylation, localization and delocalization of these proteins and physiological variables. The current model consists of 28 equations presented in <xref ref-type="supplementary-material" rid="pcbi.1000463.s005">Table S1</xref>, including 55 kinetic constants (<italic>k's</italic>), 31 binding constants (<italic>J's</italic>), and 6 thresholds (<italic>&#x003b8;'s</italic>). The choice of parameter values and initial conditions are given in Supplemental <xref ref-type="supplementary-material" rid="pcbi.1000463.s006">Tables S2</xref> and <xref ref-type="supplementary-material" rid="pcbi.1000463.s007">S3</xref>.</p><p>Equations of the model were solved numerically with Matlab 2007b (The MathWorks). An online simulator and machine-readable files for reproducing our simulations are made available in <xref ref-type="supplementary-material" rid="pcbi.1000463.s004">Text S2</xref> and on our website (<ext-link ext-link-type="uri" xlink:href="http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/">http://mpf.biol.vt.edu/research/caulobacter/SWST/pp/</ext-link>).</p></sec><sec id="s4c"><title>Parameter Values and Initial Conditions</title><p>Parameter values for our model (<xref ref-type="supplementary-material" rid="pcbi.1000463.s006">Table S2</xref>) were determined directly from experimental data, where possible, or chosen as in <xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref> to provide a good fit to available observations of wild type cells (see Supplemental <xref ref-type="supplementary-material" rid="pcbi.1000463.s002">Figure S2</xref>) and of mutant cells. We do not assert that this set of parameter values is optimal in any sense. Initial conditions in <xref ref-type="supplementary-material" rid="pcbi.1000463.s007">Table S3</xref> were taken to represent the beginning of DNA replication whether it is for simulating a stalked cell cycle or swarmer cell cycle, in wild-type cells or mutants.</p></sec><sec id="s4d"><title>Simulation of Mutants</title><p>The phenotypes of relevant mutants were collected from the literature. These mutants were simulated, as described in <xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>, using exactly the same equations (<xref ref-type="supplementary-material" rid="pcbi.1000463.s005">Table S1</xref>) and parameter values (<xref ref-type="supplementary-material" rid="pcbi.1000463.s006">Table S2</xref>) except for values of those parameters directly affected by the mutation (<xref ref-type="supplementary-material" rid="pcbi.1000463.s008">Table S4</xref>). In most cases, mutations are introduced in our model at the beginning of the swarmer cell, after 120 min of simulation.</p></sec></sec><sec sec-type="supplementary-material" id="s5"><title>Supporting Information</title><supplementary-material content-type="local-data" id="pcbi.1000463.s001"><label>Figure S1</label><caption><p>Known cell cycle genes and their regulatory network in C. crescentus. Adapted from <xref rid="pcbi.1000463-Li1" ref-type="bibr">[25]</xref>. The circle portion at the right denotes the protein localization process involved into CtrA proteolysis. The gray rectangle at the center represents the concentration gradient of DivK phosphorylation during the cell cycle.</p><p>(1.04 MB TIF)</p></caption><media xlink:href="pcbi.1000463.s001.tif"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s002"><label>Figure S2</label><caption><p>Comparison of simulated protein time profiles and DNA accumulation (curves) with experimental data (points).</p><p>(1.31 MB TIF)</p></caption><media xlink:href="pcbi.1000463.s002.tif"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s003"><label>Text S1</label><caption><p>Assumptions of the Model</p><p>(0.07 MB DOC)</p></caption><media xlink:href="pcbi.1000463.s003.doc"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s004"><label>Text S2</label><caption><p>Matlab Code</p><p>(0.09 MB DOC)</p></caption><media xlink:href="pcbi.1000463.s004.doc"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s005"><label>Table S1</label><caption><p>Equations of the Model</p><p>(0.08 MB DOC)</p></caption><media xlink:href="pcbi.1000463.s005.doc"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s006"><label>Table S2</label><caption><p>Parameter Values (Wild Type)</p><p>(0.22 MB DOC)</p></caption><media xlink:href="pcbi.1000463.s006.doc"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s007"><label>Table S3</label><caption><p>Initial Conditions</p><p>(0.03 MB DOC)</p></caption><media xlink:href="pcbi.1000463.s007.doc"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s008"><label>Table S4</label><caption><p>Parameter Changes (Mutants)</p><p>(0.09 MB DOC)</p></caption><media xlink:href="pcbi.1000463.s008.doc"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material><supplementary-material content-type="local-data" id="pcbi.1000463.s009"><label>Table S5</label><caption><p>Gene and proteins used in the paper</p><p>(0.05 MB DOC)</p></caption><media xlink:href="pcbi.1000463.s009.doc"><caption><p>Click here for additional data file.</p></caption></media></supplementary-material></sec></body><back><ack><p>The authors thank our many colleagues in the Tyson and Sobral research groups for valuable discussions of the model. We especially thank Dr. Jason Zwolak for providing the online simulator.</p></ack><fn-group><fn fn-type="COI-statement"><p>The authors have declared that no competing interests exist.</p></fn><fn fn-type="financial-disclosure"><p>This research was supported by grants from the James S. McDonnell Foundation (21002050 to JJT), the National Science Foundation (DMS-0817314 and DMS-0342283 to PB), and the Virginia Bioinformatics Institute (BS). The funders had no role in study design, model development and analysis, decision to publish, or preparation of the manuscript.</p></fn></fn-group><ref-list><title>References</title><ref id="pcbi.1000463-Chen1"><label>1</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Chen</surname><given-names>KC</given-names></name><name><surname>Calzone</surname><given-names>L</given-names></name><name><surname>Csikasz-Nagy</surname><given-names>A</given-names></name><name><surname>Cross</surname><given-names>FR</given-names></name><name><surname>Novak</surname><given-names>B</given-names></name><etal/></person-group>
+<year>2004</year>
+<article-title>Integrative analysis of cell cycle control in budding yeast.</article-title>
+<source>MolBiolCell</source>
+<volume>15</volume>
+<fpage>3841</fpage>
+<lpage>3862</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Novak1"><label>2</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Novak</surname><given-names>B</given-names></name><name><surname>Pataki</surname><given-names>Z</given-names></name><name><surname>Ciliberto</surname><given-names>A</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>2001</year>
+<article-title>Mathematical model of the cell division cycle of fission yeast.</article-title>
+<source>Chaos</source>
+<volume>11</volume>
+<fpage>277</fpage>
+<lpage>286</lpage>
+<pub-id pub-id-type="pmid">12779461</pub-id></element-citation></ref><ref id="pcbi.1000463-Novak2"><label>3</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Novak</surname><given-names>B</given-names></name><name><surname>Csikasz-Nagy</surname><given-names>A</given-names></name><name><surname>Gyorffy</surname><given-names>B</given-names></name><name><surname>Chen</surname><given-names>K</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>1998</year>
+<article-title>Mathematical model of the fission yeast cell cycle with checkpoint controls at the G1/S, G2/M and metaphase/anaphase transitions.</article-title>
+<source>BiophysChem</source>
+<volume>72</volume>
+<fpage>185</fpage>
+<lpage>200</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Tyson1"><label>4</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Tyson</surname><given-names>JJ</given-names></name><name><surname>Chen</surname><given-names>K</given-names></name><name><surname>Novak</surname><given-names>B</given-names></name></person-group>
+<year>2001</year>
+<article-title>Network dynamics and cell physiology.</article-title>
+<source>NatRevMolCell Biol</source>
+<volume>2</volume>
+<fpage>908</fpage>
+<lpage>916</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Marlovits1"><label>5</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Marlovits</surname><given-names>G</given-names></name><name><surname>Tyson</surname><given-names>CJ</given-names></name><name><surname>Novak</surname><given-names>B</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>1998</year>
+<article-title>Modeling M-phase control in Xenopus oocyte extracts: the surveillance mechanism for unreplicated DNA.</article-title>
+<source>BiophysChem</source>
+<volume>72</volume>
+<fpage>169</fpage>
+<lpage>184</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Novak3"><label>6</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Novak</surname><given-names>B</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>1993</year>
+<article-title>Numerical analysis of a comprehensive model of M-phase control in Xenopus oocyte extracts and intact embryos.</article-title>
+<source>JCell Sci</source>
+<volume>106(Pt 4)</volume>
+<fpage>1153</fpage>
+<lpage>1168</lpage>
+<pub-id pub-id-type="pmid">8126097</pub-id></element-citation></ref><ref id="pcbi.1000463-Calzone1"><label>7</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Calzone</surname><given-names>L</given-names></name><name><surname>Thieffry</surname><given-names>D</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name><name><surname>Novak</surname><given-names>B</given-names></name></person-group>
+<year>2007</year>
+<article-title>Dynamical modeling of syncytial mitotic cycles in Drosophila embryos.</article-title>
+<source>Mol Syst Biol</source>
+<volume>3</volume>
+<fpage>131</fpage>
+<pub-id pub-id-type="pmid">17667953</pub-id></element-citation></ref><ref id="pcbi.1000463-CsikaszNagy1"><label>8</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Csikasz-Nagy</surname><given-names>A</given-names></name><name><surname>Battogtokh</surname><given-names>D</given-names></name><name><surname>Chen</surname><given-names>KC</given-names></name><name><surname>Novak</surname><given-names>B</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>2006</year>
+<article-title>Analysis of a generic model of eukaryotic cell-cycle regulation.</article-title>
+<source>Biophys J</source>
+<volume>90</volume>
+<fpage>4361</fpage>
+<lpage>4379</lpage>
+<pub-id pub-id-type="pmid">16581849</pub-id></element-citation></ref><ref id="pcbi.1000463-Novak4"><label>9</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Novak</surname><given-names>B</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>2004</year>
+<article-title>A model for restriction point control of the mammalian cell cycle.</article-title>
+<source>J Theor Biol</source>
+<volume>230</volume>
+<fpage>563</fpage>
+<lpage>579</lpage>
+<pub-id pub-id-type="pmid">15363676</pub-id></element-citation></ref><ref id="pcbi.1000463-Ibrahim1"><label>10</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ibrahim</surname><given-names>B</given-names></name><name><surname>Diekmann</surname><given-names>S</given-names></name><name><surname>Schmitt</surname><given-names>E</given-names></name><name><surname>Dittrich</surname><given-names>P</given-names></name></person-group>
+<year>2008</year>
+<article-title>In-silico modeling of the mitotic spindle assembly checkpoint.</article-title>
+<source>PLoS ONE</source>
+<volume>3</volume>
+<fpage>e1555</fpage>
+<pub-id pub-id-type="pmid">18253502</pub-id></element-citation></ref><ref id="pcbi.1000463-Zamborszky1"><label>11</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Zamborszky</surname><given-names>J</given-names></name><name><surname>Hong</surname><given-names>CI</given-names></name><name><surname>Csikasz Nagy</surname><given-names>A</given-names></name></person-group>
+<year>2007</year>
+<article-title>Computational analysis of mammalian cell division gated by a circadian clock: quantized cell cycles and cell size control.</article-title>
+<source>J Biol Rhythms</source>
+<volume>22</volume>
+<fpage>542</fpage>
+<lpage>553</lpage>
+<pub-id pub-id-type="pmid">18057329</pub-id></element-citation></ref><ref id="pcbi.1000463-Yamasaki1"><label>12</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Yamasaki</surname><given-names>L</given-names></name></person-group>
+<year>2006</year>
+<article-title>Modeling cell cycle control and cancer with pRB tumor suppressor.</article-title>
+<source>Results Probl Cell Differ</source>
+<volume>42</volume>
+<fpage>227</fpage>
+<lpage>256</lpage>
+<pub-id pub-id-type="pmid">16903213</pub-id></element-citation></ref><ref id="pcbi.1000463-Adelman1"><label>13</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Adelman</surname><given-names>CA</given-names></name><name><surname>Petrini</surname><given-names>JH</given-names></name><name><surname>Attwooll</surname><given-names>CL</given-names></name></person-group>
+<year>2006</year>
+<article-title>Modeling disease in the mouse: lessons from DNA damage response and cell cycle control genes.</article-title>
+<source>Journal of Cellular Biochemistry</source>
+<volume>97</volume>
+<fpage>459</fpage>
+<lpage>473</lpage>
+<pub-id pub-id-type="pmid">16288461</pub-id></element-citation></ref><ref id="pcbi.1000463-Alberghina1"><label>14</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Alberghina</surname><given-names>L</given-names></name><name><surname>Mariani</surname><given-names>L</given-names></name></person-group>
+<year>1980</year>
+<article-title>Analysis of a cell cycle model for Escherichia coli.</article-title>
+<source>J Math Biol</source>
+<volume>9</volume>
+<fpage>389</fpage>
+<lpage>398</lpage>
+<pub-id pub-id-type="pmid">7005363</pub-id></element-citation></ref><ref id="pcbi.1000463-Mahaffy1"><label>15</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Mahaffy</surname><given-names>JM</given-names></name><name><surname>Zyskind</surname><given-names>JW</given-names></name></person-group>
+<year>1989</year>
+<article-title>A model for the initiation of replication in Escherichia coli.</article-title>
+<source>J Theor Biol</source>
+<volume>140</volume>
+<fpage>453</fpage>
+<lpage>477</lpage>
+<pub-id pub-id-type="pmid">2559257</pub-id></element-citation></ref><ref id="pcbi.1000463-Herrick1"><label>16</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Herrick</surname><given-names>J</given-names></name><name><surname>Bensimon</surname><given-names>D</given-names></name></person-group>
+<year>1991</year>
+<article-title>Gene regulation under growth conditions. A model for the regulation of initiation of replication in Escherichia coli.</article-title>
+<source>J Theor Biol</source>
+<volume>151</volume>
+<fpage>359</fpage>
+<lpage>366</lpage>
+<pub-id pub-id-type="pmid">1943147</pub-id></element-citation></ref><ref id="pcbi.1000463-Hansen1"><label>17</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Hansen</surname><given-names>FG</given-names></name><name><surname>Christensen</surname><given-names>BB</given-names></name><name><surname>Atlung</surname><given-names>T</given-names></name></person-group>
+<year>1991</year>
+<article-title>The initiator titration model: computer simulation of chromosome and minichromosome control.</article-title>
+<source>Res Microbiol</source>
+<volume>142</volume>
+<fpage>161</fpage>
+<lpage>167</lpage>
+<pub-id pub-id-type="pmid">1925015</pub-id></element-citation></ref><ref id="pcbi.1000463-Bremer1"><label>18</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Bremer</surname><given-names>H</given-names></name><name><surname>Churchward</surname><given-names>G</given-names></name></person-group>
+<year>1991</year>
+<article-title>Control of cyclic chromosome replication in Escherichia coli.</article-title>
+<source>Microbiol Rev</source>
+<volume>55</volume>
+<fpage>459</fpage>
+<lpage>475</lpage>
+<pub-id pub-id-type="pmid">1943997</pub-id></element-citation></ref><ref id="pcbi.1000463-Margalit1"><label>19</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Margalit</surname><given-names>H</given-names></name><name><surname>Grover</surname><given-names>NB</given-names></name></person-group>
+<year>1987</year>
+<article-title>Initiation of chromosome replication in bacteria: analysis of an inhibitor control model.</article-title>
+<source>J Bacteriol</source>
+<volume>169</volume>
+<fpage>5231</fpage>
+<lpage>5240</lpage>
+<pub-id pub-id-type="pmid">3667530</pub-id></element-citation></ref><ref id="pcbi.1000463-Margalit2"><label>20</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Margalit</surname><given-names>H</given-names></name><name><surname>Rosenberger</surname><given-names>RF</given-names></name><name><surname>Grover</surname><given-names>NB</given-names></name></person-group>
+<year>1984</year>
+<article-title>Initiation of DNA replication in bacteria: analysis of an autorepressor control model.</article-title>
+<source>J Theor Biol</source>
+<volume>111</volume>
+<fpage>183</fpage>
+<lpage>199</lpage>
+<pub-id pub-id-type="pmid">6392751</pub-id></element-citation></ref><ref id="pcbi.1000463-Browning1"><label>21</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Browning</surname><given-names>ST</given-names></name><name><surname>Castellanos</surname><given-names>M</given-names></name><name><surname>Shuler</surname><given-names>ML</given-names></name></person-group>
+<year>2004</year>
+<article-title>Robust control of initiation of prokaryotic chromosome replication: essential considerations for a minimal cell.</article-title>
+<source>Biotechnol Bioeng</source>
+<volume>88</volume>
+<fpage>575</fpage>
+<lpage>584</lpage>
+<pub-id pub-id-type="pmid">15470709</pub-id></element-citation></ref><ref id="pcbi.1000463-Keasling1"><label>22</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Keasling</surname><given-names>JD</given-names></name><name><surname>Kuo</surname><given-names>H</given-names></name><name><surname>Vahanian</surname><given-names>G</given-names></name></person-group>
+<year>1995</year>
+<article-title>A Monte Carlo simulation of the Escherichia coli cell cycle.</article-title>
+<source>J Theor Biol</source>
+<volume>176</volume>
+<fpage>411</fpage>
+<lpage>430</lpage>
+<pub-id pub-id-type="pmid">8538219</pub-id></element-citation></ref><ref id="pcbi.1000463-Brazhnik1"><label>23</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Brazhnik</surname><given-names>P</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>2006</year>
+<article-title>Cell cycle control in bacteria and yeast: a case of convergent evolution?</article-title>
+<source>Cell Cycle</source>
+<volume>5</volume>
+<fpage>522</fpage>
+<lpage>529</lpage>
+<pub-id pub-id-type="pmid">16552176</pub-id></element-citation></ref><ref id="pcbi.1000463-Shen1"><label>24</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Shen</surname><given-names>X</given-names></name><name><surname>Collier</surname><given-names>J</given-names></name><name><surname>Dill</surname><given-names>D</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>Horowitz</surname><given-names>M</given-names></name><etal/></person-group>
+<year>2008</year>
+<article-title>Architecture and inherent robustness of a bacterial cell-cycle control system.</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>105</volume>
+<fpage>11340</fpage>
+<lpage>11345</lpage>
+<pub-id pub-id-type="pmid">18685108</pub-id></element-citation></ref><ref id="pcbi.1000463-Li1"><label>25</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Li</surname><given-names>S</given-names></name><name><surname>Brazhnik</surname><given-names>P</given-names></name><name><surname>Sobral</surname><given-names>B</given-names></name><name><surname>Tyson</surname><given-names>JJ</given-names></name></person-group>
+<year>2008</year>
+<article-title>A quantitative study of the division cycle of Caulobacter crescentus stalked cells.</article-title>
+<source>PLoS Comput Biol</source>
+<volume>4</volume>
+<fpage>e9</fpage>
+<pub-id pub-id-type="pmid">18225942</pub-id></element-citation></ref><ref id="pcbi.1000463-Laub1"><label>26</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Laub</surname><given-names>MT</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name></person-group>
+<year>2007</year>
+<article-title>Systems biology of Caulobacter.</article-title>
+<source>Annu Rev Genet</source>
+<volume>41</volume>
+<fpage>429</fpage>
+<lpage>441</lpage>
+<pub-id pub-id-type="pmid">18076330</pub-id></element-citation></ref><ref id="pcbi.1000463-Ryan1"><label>27</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ryan</surname><given-names>KR</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2003</year>
+<article-title>Temporal and spatial regulation in prokaryotic cell cycle progression and development.</article-title>
+<source>AnnuRevBiochem</source>
+<volume>72</volume>
+<fpage>367</fpage>
+<lpage>394</lpage>
+</element-citation></ref><ref id="pcbi.1000463-McAdams1"><label>28</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>McAdams</surname><given-names>HH</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2003</year>
+<article-title>A bacterial cell-cycle regulatory network operating in time and space.</article-title>
+<source>Science</source>
+<volume>301</volume>
+<fpage>1874</fpage>
+<lpage>1877</lpage>
+<pub-id pub-id-type="pmid">14512618</pub-id></element-citation></ref><ref id="pcbi.1000463-Ausmees1"><label>29</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ausmees</surname><given-names>N</given-names></name><name><surname>Jacobs-Wagner</surname><given-names>C</given-names></name></person-group>
+<year>2003</year>
+<article-title>Spatial and temporal control of differentiation and cell cycle progression in Caulobacter crescentus.</article-title>
+<source>AnnuRevMicrobiol</source>
+<volume>57</volume>
+<fpage>225</fpage>
+<lpage>247</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Amon1"><label>30</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Amon</surname><given-names>A</given-names></name></person-group>
+<year>1998</year>
+<article-title>Controlling cell cycle and cell fate: common strategies in prokaryotes and eukaryotes.</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>95</volume>
+<fpage>85</fpage>
+<lpage>86</lpage>
+<pub-id pub-id-type="pmid">9419330</pub-id></element-citation></ref><ref id="pcbi.1000463-Holtzendorff1"><label>31</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Holtzendorff</surname><given-names>J</given-names></name><name><surname>Reinhardt</surname><given-names>J</given-names></name><name><surname>Viollier</surname><given-names>PH</given-names></name></person-group>
+<year>2006</year>
+<article-title>Cell cycle control by oscillating regulatory proteins in Caulobacter crescentus.</article-title>
+<source>Bioessays</source>
+<volume>28</volume>
+<fpage>355</fpage>
+<lpage>361</lpage>
+<pub-id pub-id-type="pmid">16547950</pub-id></element-citation></ref><ref id="pcbi.1000463-Paul1"><label>32</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Paul</surname><given-names>R</given-names></name><name><surname>Jaeger</surname><given-names>T</given-names></name><name><surname>Abel</surname><given-names>S</given-names></name><name><surname>Wiederkehr</surname><given-names>I</given-names></name><name><surname>Folcher</surname><given-names>M</given-names></name><etal/></person-group>
+<year>2008</year>
+<article-title>Allosteric regulation of histidine kinases by their cognate response regulator determines cell fate.</article-title>
+<source>Cell</source>
+<volume>133</volume>
+<fpage>452</fpage>
+<lpage>461</lpage>
+<pub-id pub-id-type="pmid">18455986</pub-id></element-citation></ref><ref id="pcbi.1000463-Wheeler1"><label>33</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Wheeler</surname><given-names>RT</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>1999</year>
+<article-title>Differential localization of two histidine kinases controlling bacterial cell differentiation.</article-title>
+<source>MolCell</source>
+<volume>4</volume>
+<fpage>683</fpage>
+<lpage>694</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Viollier1"><label>34</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Viollier</surname><given-names>PH</given-names></name><name><surname>Sternheim</surname><given-names>N</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2002</year>
+<article-title>A dynamically localized histidine kinase controls the asymmetric distribution of polar pili proteins.</article-title>
+<source>EMBO J</source>
+<volume>21</volume>
+<fpage>4420</fpage>
+<lpage>4428</lpage>
+<pub-id pub-id-type="pmid">12198144</pub-id></element-citation></ref><ref id="pcbi.1000463-Iniesta1"><label>35</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Iniesta</surname><given-names>AA</given-names></name><name><surname>McGrath</surname><given-names>PT</given-names></name><name><surname>Reisenauer</surname><given-names>A</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2006</year>
+<article-title>A phospho-signaling pathway controls the localization and activity of a protease complex critical for bacterial cell cycle progression.</article-title>
+<source>ProcNatlAcadSciUSA</source>
+<volume>103</volume>
+<fpage>10935</fpage>
+<lpage>10940</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Jacobs1"><label>36</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Jacobs</surname><given-names>C</given-names></name><name><surname>Ausmees</surname><given-names>N</given-names></name><name><surname>Cordwell</surname><given-names>SJ</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>Laub</surname><given-names>MT</given-names></name></person-group>
+<year>2003</year>
+<article-title>Functions of the CckA histidine kinase in Caulobacter cell cycle control.</article-title>
+<source>MolMicrobiol</source>
+<volume>47</volume>
+<fpage>1279</fpage>
+<lpage>1290</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Domian1"><label>37</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Domian</surname><given-names>IJ</given-names></name><name><surname>Quon</surname><given-names>KC</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>1997</year>
+<article-title>Cell type-specific phosphorylation and proteolysis of a transcriptional regulator controls the G1-to-S transition in a bacterial cell cycle.</article-title>
+<source>Cell</source>
+<volume>90</volume>
+<fpage>415</fpage>
+<lpage>424</lpage>
+<pub-id pub-id-type="pmid">9267022</pub-id></element-citation></ref><ref id="pcbi.1000463-McGrath1"><label>38</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>McGrath</surname><given-names>PT</given-names></name><name><surname>Iniesta</surname><given-names>AA</given-names></name><name><surname>Ryan</surname><given-names>KR</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name></person-group>
+<year>2006</year>
+<article-title>A dynamically localized protease complex and a polar specificity factor control a cell cycle master regulator.</article-title>
+<source>Cell</source>
+<volume>124</volume>
+<fpage>535</fpage>
+<lpage>547</lpage>
+<pub-id pub-id-type="pmid">16469700</pub-id></element-citation></ref><ref id="pcbi.1000463-Thanbichler1"><label>39</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Thanbichler</surname><given-names>M</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2006</year>
+<article-title>MipZ, a spatial regulator coordinating chromosome segregation with cell division in Caulobacter.</article-title>
+<source>Cell</source>
+<volume>126</volume>
+<fpage>147</fpage>
+<lpage>162</lpage>
+<pub-id pub-id-type="pmid">16839883</pub-id></element-citation></ref><ref id="pcbi.1000463-Holtzendorff2"><label>40</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Holtzendorff</surname><given-names>J</given-names></name><name><surname>Hung</surname><given-names>D</given-names></name><name><surname>Brende</surname><given-names>P</given-names></name><name><surname>Reisenauer</surname><given-names>A</given-names></name><name><surname>Viollier</surname><given-names>PH</given-names></name><etal/></person-group>
+<year>2004</year>
+<article-title>Oscillating global regulators control the genetic circuit driving a bacterial cell cycle.</article-title>
+<source>Science</source>
+<volume>304</volume>
+<fpage>983</fpage>
+<lpage>987</lpage>
+<pub-id pub-id-type="pmid">15087506</pub-id></element-citation></ref><ref id="pcbi.1000463-Laub2"><label>41</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Laub</surname><given-names>MT</given-names></name><name><surname>Chen</surname><given-names>SL</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name></person-group>
+<year>2002</year>
+<article-title>Genes directly controlled by CtrA, a master regulator of the Caulobacter cell cycle.</article-title>
+<source>Proceedings of the National Academy of Sciences of the United States of America</source>
+<volume>99</volume>
+<fpage>4632</fpage>
+<lpage>4637</lpage>
+<pub-id pub-id-type="pmid">11930012</pub-id></element-citation></ref><ref id="pcbi.1000463-Reisenauer1"><label>42</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Reisenauer</surname><given-names>A</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2002</year>
+<article-title>DNA methylation affects the cell cycle transcription of the CtrA global regulator in Caulobacter.</article-title>
+<source>EMBO J</source>
+<volume>21</volume>
+<fpage>4969</fpage>
+<lpage>4977</lpage>
+<pub-id pub-id-type="pmid">12234936</pub-id></element-citation></ref><ref id="pcbi.1000463-Jacobs2"><label>43</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Jacobs</surname><given-names>C</given-names></name><name><surname>Domian</surname><given-names>IJ</given-names></name><name><surname>Maddock</surname><given-names>JR</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>1999</year>
+<article-title>Cell cycle-dependent polar localization of an essential bacterial histidine kinase that controls DNA replication and cell division.</article-title>
+<source>Cell</source>
+<volume>97</volume>
+<fpage>111</fpage>
+<lpage>120</lpage>
+<pub-id pub-id-type="pmid">10199407</pub-id></element-citation></ref><ref id="pcbi.1000463-Jenal1"><label>44</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Jenal</surname><given-names>U</given-names></name></person-group>
+<year>2000</year>
+<article-title>Signal transduction mechanisms in Caulobacter crescentus development and cell cycle control.</article-title>
+<source>Fems Microbiology Reviews</source>
+<volume>24</volume>
+<fpage>177</fpage>
+<lpage>191</lpage>
+<pub-id pub-id-type="pmid">10717313</pub-id></element-citation></ref><ref id="pcbi.1000463-Pierce1"><label>45</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Pierce</surname><given-names>DL</given-names></name><name><surname>O'Donnol</surname><given-names>DS</given-names></name><name><surname>Allen</surname><given-names>RC</given-names></name><name><surname>Javens</surname><given-names>JW</given-names></name><name><surname>Quardokus</surname><given-names>EM</given-names></name><etal/></person-group>
+<year>2006</year>
+<article-title>Mutations in DivL and CckA rescue a divJ null mutant of Caulobacter crescentus by reducing the activity of CtrA.</article-title>
+<source>Journal of Bacteriology</source>
+<volume>188</volume>
+<fpage>2473</fpage>
+<lpage>2482</lpage>
+<pub-id pub-id-type="pmid">16547034</pub-id></element-citation></ref><ref id="pcbi.1000463-Hung1"><label>46</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Hung</surname><given-names>DY</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2002</year>
+<article-title>A signal transduction protein cues proteolytic events critical to Caulobacter cell cycle progression.</article-title>
+<source>ProcNatlAcadSciUSA</source>
+<volume>99</volume>
+<fpage>13160</fpage>
+<lpage>13165</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Goley1"><label>47</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Goley</surname><given-names>ED</given-names></name><name><surname>Iniesta</surname><given-names>AA</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2007</year>
+<article-title>Cell cycle regulation in Caulobacter: location, location, location.</article-title>
+<source>J Cell Sci</source>
+<volume>120</volume>
+<fpage>3501</fpage>
+<lpage>3507</lpage>
+<pub-id pub-id-type="pmid">17928306</pub-id></element-citation></ref><ref id="pcbi.1000463-Jenal2"><label>48</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Jenal</surname><given-names>U</given-names></name><name><surname>Fuchs</surname><given-names>T</given-names></name></person-group>
+<year>1998</year>
+<article-title>An essential protease involved in bacterial cell-cycle control.</article-title>
+<source>EMBO J</source>
+<volume>17</volume>
+<fpage>5658</fpage>
+<lpage>5669</lpage>
+<pub-id pub-id-type="pmid">9755166</pub-id></element-citation></ref><ref id="pcbi.1000463-Osteras1"><label>49</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Osteras</surname><given-names>M</given-names></name><name><surname>Stotz</surname><given-names>A</given-names></name><name><surname>Schmid</surname><given-names>NS</given-names></name><name><surname>Jenal</surname><given-names>U</given-names></name></person-group>
+<year>1999</year>
+<article-title>Identification and transcriptional control of the genes encoding the Caulobacter crescentus ClpXP protease.</article-title>
+<source>JBacteriol</source>
+<volume>181</volume>
+<fpage>3039</fpage>
+<lpage>3050</lpage>
+<pub-id pub-id-type="pmid">10322004</pub-id></element-citation></ref><ref id="pcbi.1000463-Biondi1"><label>50</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Biondi</surname><given-names>EG</given-names></name><name><surname>Reisinger</surname><given-names>SJ</given-names></name><name><surname>Skerker</surname><given-names>JM</given-names></name><name><surname>Arif</surname><given-names>M</given-names></name><name><surname>Perchuk</surname><given-names>BS</given-names></name><etal/></person-group>
+<year>2006</year>
+<article-title>Regulation of the bacterial cell cycle by an integrated genetic circuit.</article-title>
+<source>Nature</source>
+</element-citation></ref><ref id="pcbi.1000463-Hinz1"><label>51</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Hinz</surname><given-names>AJ</given-names></name><name><surname>Larson</surname><given-names>DE</given-names></name><name><surname>Smith</surname><given-names>CS</given-names></name><name><surname>Brun</surname><given-names>YV</given-names></name></person-group>
+<year>2003</year>
+<article-title>The Caulobacter crescentus polar organelle development protein PodJ is differentially localized and is required for polar targeting of the PleC development regulator.</article-title>
+<source>Molecular Microbiology</source>
+<volume>47</volume>
+<fpage>929</fpage>
+<lpage>941</lpage>
+<pub-id pub-id-type="pmid">12581350</pub-id></element-citation></ref><ref id="pcbi.1000463-Collier1"><label>52</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Collier</surname><given-names>J</given-names></name><name><surname>Murray</surname><given-names>SR</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2006</year>
+<article-title>DnaA couples DNA replication and the expression of two cell cycle master regulators.</article-title>
+<source>EMBO J</source>
+<volume>25</volume>
+<fpage>346</fpage>
+<lpage>356</lpage>
+<pub-id pub-id-type="pmid">16395331</pub-id></element-citation></ref><ref id="pcbi.1000463-Hottes1"><label>53</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Hottes</surname><given-names>AK</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name></person-group>
+<year>2005</year>
+<article-title>DnaA coordinates replication initiation and cell cycle transcription in Caulobacter crescentus.</article-title>
+<source>MolMicrobiol</source>
+<volume>58</volume>
+<fpage>1340</fpage>
+<lpage>1353</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Laub3"><label>54</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Laub</surname><given-names>MT</given-names></name><name><surname>McAdams</surname><given-names>TH</given-names></name><name><surname>Feldblyum</surname><given-names>T</given-names></name><name><surname>Fraser</surname><given-names>CM</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2000</year>
+<article-title>Global analysis of the genetic network controlling a bacterial cell cycle.</article-title>
+<source>Science</source>
+<volume>290</volume>
+<fpage>2144</fpage>
+<lpage>2148</lpage>
+<pub-id pub-id-type="pmid">11118148</pub-id></element-citation></ref><ref id="pcbi.1000463-Chen2"><label>55</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Chen</surname><given-names>JC</given-names></name><name><surname>Hottes</surname><given-names>AK</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name><name><surname>McGrath</surname><given-names>PT</given-names></name><name><surname>Viollier</surname><given-names>PH</given-names></name><etal/></person-group>
+<year>2006</year>
+<article-title>Cytokinesis signals truncation of the PodJ polarity factor by a cell cycle-regulated protease.</article-title>
+<source>EMBO J</source>
+<volume>25</volume>
+<fpage>377</fpage>
+<lpage>386</lpage>
+<pub-id pub-id-type="pmid">16395329</pub-id></element-citation></ref><ref id="pcbi.1000463-Shapiro1"><label>56</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name><name><surname>Losick</surname><given-names>R</given-names></name></person-group>
+<year>2002</year>
+<article-title>Generating and exploiting polarity in bacteria.</article-title>
+<source>Science</source>
+<volume>298</volume>
+<fpage>1942</fpage>
+<lpage>1946</lpage>
+<pub-id pub-id-type="pmid">12471245</pub-id></element-citation></ref><ref id="pcbi.1000463-Radhakrishnan1"><label>57</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Radhakrishnan</surname><given-names>SK</given-names></name><name><surname>Thanbichler</surname><given-names>M</given-names></name><name><surname>Viollier</surname><given-names>PH</given-names></name></person-group>
+<year>2008</year>
+<article-title>The dynamic interplay between a cell fate determinant and a lysozyme homolog drives the asymmetric division cycle of Caulobacter crescentus.</article-title>
+<source>Genes Dev</source>
+<volume>22</volume>
+<fpage>212</fpage>
+<lpage>225</lpage>
+<pub-id pub-id-type="pmid">18198338</pub-id></element-citation></ref><ref id="pcbi.1000463-Reisinger1"><label>58</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Reisinger</surname><given-names>SJ</given-names></name><name><surname>Huntwork</surname><given-names>S</given-names></name><name><surname>Viollier</surname><given-names>PH</given-names></name><name><surname>Ryan</surname><given-names>KR</given-names></name></person-group>
+<year>2007</year>
+<article-title>DivL performs critical cell cycle functions in Caulobacter crescentus independent of kinase activity.</article-title>
+<source>J Bacteriol</source>
+</element-citation></ref><ref id="pcbi.1000463-Wagner1"><label>59</label><element-citation publication-type="book">
+<person-group person-group-type="author"><name><surname>Wagner</surname><given-names>J</given-names></name><name><surname>Brun</surname><given-names>YV</given-names></name><name><surname>Vicente</surname><given-names>M</given-names></name><name><surname>Tamames</surname><given-names>J</given-names></name><name><surname>Valencia</surname><given-names>A</given-names></name><etal/></person-group>
+<year>2004</year>
+<source>Regulation and utilization of cell division for bacterial cell differentiation. Molecules in Time and Space: Bacterial Shape, Division and Phylogeny</source>
+<publisher-loc>New York</publisher-loc>
+<publisher-name>Kluwer Academic/Plenum Publishers</publisher-name>
+<fpage>103</fpage>
+<lpage>132</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Rothfield1"><label>60</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Rothfield</surname><given-names>L</given-names></name><name><surname>Justice</surname><given-names>S</given-names></name><name><surname>Garcia-Lara</surname><given-names>J</given-names></name></person-group>
+<year>1999</year>
+<article-title>Bacterial cell division.</article-title>
+<source>AnnuRevGenet</source>
+<volume>33</volume>
+<fpage>423</fpage>
+<lpage>448</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Sackett1"><label>61</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sackett</surname><given-names>MJ</given-names></name><name><surname>Kelly</surname><given-names>AJ</given-names></name><name><surname>Brun</surname><given-names>YV</given-names></name></person-group>
+<year>1998</year>
+<article-title>Ordered expression of ftsQA and ftsZ during the Caulobacter crescentus cell cycle.</article-title>
+<source>MolMicrobiol</source>
+<volume>28</volume>
+<fpage>421</fpage>
+<lpage>434</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Harry1"><label>62</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Harry</surname><given-names>EJ</given-names></name></person-group>
+<year>2001</year>
+<article-title>Bacterial cell division: regulating Z-ring formation.</article-title>
+<source>MolMicrobiol</source>
+<volume>40</volume>
+<fpage>795</fpage>
+<lpage>803</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Wortinger1"><label>63</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Wortinger</surname><given-names>M</given-names></name><name><surname>Sackett</surname><given-names>MJ</given-names></name><name><surname>Brun</surname><given-names>YV</given-names></name></person-group>
+<year>2000</year>
+<article-title>CtrA mediates a DNA replication checkpoint that prevents cell division in Caulobacter crescentus.</article-title>
+<source>Embo Journal</source>
+<volume>19</volume>
+<fpage>4503</fpage>
+<lpage>4512</lpage>
+<pub-id pub-id-type="pmid">10970844</pub-id></element-citation></ref><ref id="pcbi.1000463-Bartosik1"><label>64</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Bartosik</surname><given-names>AA</given-names></name><name><surname>Jagura-Burdzy</surname><given-names>G</given-names></name></person-group>
+<year>2005</year>
+<article-title>Bacterial chromosome segregation.</article-title>
+<source>Acta Biochim Pol</source>
+<volume>52</volume>
+<fpage>1</fpage>
+<lpage>34</lpage>
+<pub-id pub-id-type="pmid">15827603</pub-id></element-citation></ref><ref id="pcbi.1000463-Bignell1"><label>65</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Bignell</surname><given-names>C</given-names></name><name><surname>Thomas</surname><given-names>CM</given-names></name></person-group>
+<year>2001</year>
+<article-title>The bacterial ParA-ParB partitioning proteins.</article-title>
+<source>J Biotechnol</source>
+<volume>91</volume>
+<fpage>1</fpage>
+<lpage>34</lpage>
+<pub-id pub-id-type="pmid">11522360</pub-id></element-citation></ref><ref id="pcbi.1000463-Quardokus1"><label>66</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Quardokus</surname><given-names>EM</given-names></name><name><surname>Brun</surname><given-names>YV</given-names></name></person-group>
+<year>2002</year>
+<article-title>DNA replication initiation is required for mid-cell positioning of FtsZ rings in Caulobacter crescentus.</article-title>
+<source>Molecular Microbiology</source>
+<volume>45</volume>
+<fpage>605</fpage>
+<lpage>616</lpage>
+<pub-id pub-id-type="pmid">12139609</pub-id></element-citation></ref><ref id="pcbi.1000463-Mohl1"><label>67</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Mohl</surname><given-names>DA</given-names></name><name><surname>Easter</surname><given-names>J</given-names></name><name><surname>Gober</surname><given-names>JW</given-names></name></person-group>
+<year>2001</year>
+<article-title>The chromosome partitioning protein, ParB, is required for cytokinesis in Caulobacter crescentus.</article-title>
+<source>Molecular Microbiology</source>
+<volume>42</volume>
+<fpage>741</fpage>
+<lpage>755</lpage>
+<pub-id pub-id-type="pmid">11722739</pub-id></element-citation></ref><ref id="pcbi.1000463-Mohl2"><label>68</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Mohl</surname><given-names>DA</given-names></name><name><surname>Gober</surname><given-names>JW</given-names></name></person-group>
+<year>1997</year>
+<article-title>Cell cycle-dependent polar localization of chromosome partitioning proteins in Caulobacter crescentus.</article-title>
+<source>Cell</source>
+<volume>88</volume>
+<fpage>675</fpage>
+<lpage>684</lpage>
+<pub-id pub-id-type="pmid">9054507</pub-id></element-citation></ref><ref id="pcbi.1000463-Easter1"><label>69</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Easter</surname><given-names>J</given-names></name><name><surname>Gober</surname><given-names>JW</given-names></name></person-group>
+<year>2002</year>
+<article-title>ParB-stimulated nucleotide exchange regulates a switch in functionally distinct ParA activities.</article-title>
+<source>Molecular Cell</source>
+<volume>10</volume>
+<fpage>427</fpage>
+<lpage>434</lpage>
+<pub-id pub-id-type="pmid">12191487</pub-id></element-citation></ref><ref id="pcbi.1000463-Margolin1"><label>70</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Margolin</surname><given-names>W</given-names></name></person-group>
+<year>2006</year>
+<article-title>Bacterial division: another way to box in the ring.</article-title>
+<source>CurrBiol</source>
+<volume>16</volume>
+<fpage>R881</fpage>
+<lpage>R884</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Collier2"><label>71</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Collier</surname><given-names>J</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>2007</year>
+<article-title>A DNA methylation ratchet governs progression through a bacterial cell cycle.</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>104</volume>
+<fpage>17111</fpage>
+<lpage>17116</lpage>
+<pub-id pub-id-type="pmid">17942674</pub-id></element-citation></ref><ref id="pcbi.1000463-Skerker1"><label>72</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Skerker</surname><given-names>JM</given-names></name><name><surname>Laub</surname><given-names>MT</given-names></name></person-group>
+<year>2004</year>
+<article-title>Cell-cycle progression and the generation of asymmetry in Caulobacter crescentus.</article-title>
+<source>NatRevMicrobiol</source>
+<volume>2</volume>
+<fpage>325</fpage>
+<lpage>337</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Quon1"><label>73</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Quon</surname><given-names>KC</given-names></name><name><surname>Marczynski</surname><given-names>GT</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>1996</year>
+<article-title>Cell cycle control by an essential bacterial two-component signal transduction protein.</article-title>
+<source>Cell</source>
+<volume>84</volume>
+<fpage>83</fpage>
+<lpage>93</lpage>
+<pub-id pub-id-type="pmid">8548829</pub-id></element-citation></ref><ref id="pcbi.1000463-Quon2"><label>74</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Quon</surname><given-names>KC</given-names></name><name><surname>Yang</surname><given-names>B</given-names></name><name><surname>Domian</surname><given-names>IJ</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>Marczynski</surname><given-names>GT</given-names></name></person-group>
+<year>1998</year>
+<article-title>Negative control of bacterial DNA replication by a cell cycle regulatory protein that binds at the chromosome origin.</article-title>
+<source>Proceedings of the National Academy of Sciences of the United States of America</source>
+<volume>95</volume>
+<fpage>120</fpage>
+<lpage>125</lpage>
+<pub-id pub-id-type="pmid">9419339</pub-id></element-citation></ref><ref id="pcbi.1000463-Sommer1"><label>75</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sommer</surname><given-names>JM</given-names></name><name><surname>Newton</surname><given-names>A</given-names></name></person-group>
+<year>1991</year>
+<article-title>Pseudoreversion analysis indicates a direct role of cell division genes in polar morphogenesis and differentiation in Caulobacter crescentus.</article-title>
+<source>Genetics</source>
+<volume>129</volume>
+<fpage>623</fpage>
+<lpage>630</lpage>
+<pub-id pub-id-type="pmid">1752411</pub-id></element-citation></ref><ref id="pcbi.1000463-Lam1"><label>76</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Lam</surname><given-names>H</given-names></name><name><surname>Matroule</surname><given-names>JY</given-names></name><name><surname>Jacobs-Wagner</surname><given-names>C</given-names></name></person-group>
+<year>2003</year>
+<article-title>The asymmetric spatial distribution of bacterial signal transduction proteins coordinates cell cycle events.</article-title>
+<source>Developmental Cell</source>
+<volume>5</volume>
+<fpage>149</fpage>
+<lpage>159</lpage>
+<pub-id pub-id-type="pmid">12852859</pub-id></element-citation></ref><ref id="pcbi.1000463-Sciochetti1"><label>77</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sciochetti</surname><given-names>SA</given-names></name><name><surname>Ohta</surname><given-names>N</given-names></name><name><surname>Newton</surname><given-names>A</given-names></name></person-group>
+<year>2005</year>
+<article-title>The role of polar localization in the function of an essential Caulobacter crescentus tyrosine kinase.</article-title>
+<source>MolMicrobiol</source>
+<volume>56</volume>
+<fpage>1467</fpage>
+<lpage>1480</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Wang1"><label>78</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Wang</surname><given-names>SP</given-names></name><name><surname>Sharma</surname><given-names>PL</given-names></name><name><surname>Schoenlein</surname><given-names>PV</given-names></name><name><surname>Ely</surname><given-names>B</given-names></name></person-group>
+<year>1993</year>
+<article-title>A Histidine Protein-Kinase Is Involved in Polar Organelle Development in Caulobacter-Crescentus.</article-title>
+<source>Proceedings of the National Academy of Sciences of the United States of America</source>
+<volume>90</volume>
+<fpage>630</fpage>
+<lpage>634</lpage>
+<pub-id pub-id-type="pmid">8421698</pub-id></element-citation></ref><ref id="pcbi.1000463-Sommer2"><label>79</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Sommer</surname><given-names>JM</given-names></name><name><surname>Newton</surname><given-names>A</given-names></name></person-group>
+<year>1989</year>
+<article-title>Turning off flagellum rotation requires the pleiotropic gene pleD: pleA, pleC, and pleD define two morphogenic pathways in Caulobacter crescentus.</article-title>
+<source>JBacteriol</source>
+<volume>171</volume>
+<fpage>392</fpage>
+<lpage>401</lpage>
+<pub-id pub-id-type="pmid">2536661</pub-id></element-citation></ref><ref id="pcbi.1000463-Crymes1"><label>80</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Crymes</surname><given-names>WB</given-names></name><name><surname>Zhang</surname><given-names>DL</given-names></name><name><surname>Ely</surname><given-names>B</given-names></name></person-group>
+<year>1999</year>
+<article-title>Regulation of podJ expression during the Caulobacter crescentus cell cycle.</article-title>
+<source>Journal of Bacteriology</source>
+<volume>181</volume>
+<fpage>3967</fpage>
+<lpage>3973</lpage>
+<pub-id pub-id-type="pmid">10383964</pub-id></element-citation></ref><ref id="pcbi.1000463-Ebersbach1"><label>81</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Ebersbach</surname><given-names>G</given-names></name><name><surname>Jacobs-Wagner</surname><given-names>C</given-names></name></person-group>
+<year>2007</year>
+<article-title>Exploration into the spatial and temporal mechanisms of bacterial polarity.</article-title>
+<source>Trends Microbiol</source>
+<volume>15</volume>
+<fpage>101</fpage>
+<lpage>108</lpage>
+<pub-id pub-id-type="pmid">17275310</pub-id></element-citation></ref><ref id="pcbi.1000463-Duerig1"><label>82</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Duerig</surname><given-names>A</given-names></name><name><surname>Abel</surname><given-names>S</given-names></name><name><surname>Folcher</surname><given-names>M</given-names></name><name><surname>Nicollier</surname><given-names>M</given-names></name><name><surname>Schwede</surname><given-names>T</given-names></name><etal/></person-group>
+<year>2009</year>
+<article-title>Second messenger-mediated spatiotemporal control of protein degradation regulates bacterial cell cycle progression.</article-title>
+<source>Genes Dev</source>
+<volume>23</volume>
+<fpage>93</fpage>
+<lpage>104</lpage>
+<pub-id pub-id-type="pmid">19136627</pub-id></element-citation></ref><ref id="pcbi.1000463-Brazhnik2"><label>83</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Brazhnik</surname><given-names>P</given-names></name><name><surname>de la Fuente</surname><given-names>A</given-names></name><name><surname>Mendes</surname><given-names>P</given-names></name></person-group>
+<year>2002</year>
+<article-title>Gene networks: how to put the function in genomics.</article-title>
+<source>Trends Biotechnol</source>
+<volume>20</volume>
+<fpage>467</fpage>
+<lpage>472</lpage>
+<pub-id pub-id-type="pmid">12413821</pub-id></element-citation></ref><ref id="pcbi.1000463-Dingwall1"><label>84</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Dingwall</surname><given-names>A</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>1989</year>
+<article-title>Rate, origin, and bidirectionality of Caulobacter chromosome replication as determined by pulsed-field gel electrophoresis.</article-title>
+<source>Proc Natl Acad Sci U S A</source>
+<volume>86</volume>
+<fpage>119</fpage>
+<lpage>123</lpage>
+<pub-id pub-id-type="pmid">2911562</pub-id></element-citation></ref><ref id="pcbi.1000463-Grunenfelder1"><label>85</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Grunenfelder</surname><given-names>B</given-names></name><name><surname>Rummel</surname><given-names>G</given-names></name><name><surname>Vohradsky</surname><given-names>J</given-names></name><name><surname>Roder</surname><given-names>D</given-names></name><name><surname>Langen</surname><given-names>H</given-names></name><etal/></person-group>
+<year>2001</year>
+<article-title>Proteomic analysis of the bacterial cell cycle.</article-title>
+<source>ProcNatlAcadSciUSA</source>
+<volume>98</volume>
+<fpage>4681</fpage>
+<lpage>4686</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Martin1"><label>86</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Martin</surname><given-names>ME</given-names></name><name><surname>Trimble</surname><given-names>MJ</given-names></name><name><surname>Brun</surname><given-names>YV</given-names></name></person-group>
+<year>2004</year>
+<article-title>Cell cycle-dependent abundance, stability and localization of FtsA and FtsQ in Caulobacter crescentus.</article-title>
+<source>MolMicrobiol</source>
+<volume>54</volume>
+<fpage>60</fpage>
+<lpage>74</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Aaron1"><label>87</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Aaron</surname><given-names>M</given-names></name><name><surname>Charbon</surname><given-names>G</given-names></name><name><surname>Lam</surname><given-names>H</given-names></name><name><surname>Schwarz</surname><given-names>H</given-names></name><name><surname>Vollmer</surname><given-names>W</given-names></name><etal/></person-group>
+<year>2007</year>
+<article-title>The tubulin homologue FtsZ contributes to cell elongation by guiding cell wall precursor synthesis in Caulobacter crescentus.</article-title>
+<source>MolMicrobiol</source>
+<volume>64</volume>
+<fpage>938</fpage>
+<lpage>952</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Judd1"><label>88</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Judd</surname><given-names>EM</given-names></name><name><surname>Ryan</surname><given-names>KR</given-names></name><name><surname>Moerner</surname><given-names>WE</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name><name><surname>McAdams</surname><given-names>HH</given-names></name></person-group>
+<year>2003</year>
+<article-title>Fluorescence bleaching reveals asymmetric compartment formation prior to cell division in Caulobacter.</article-title>
+<source>ProcNatlAcadSciUSA</source>
+<volume>100</volume>
+<fpage>8235</fpage>
+<lpage>8240</lpage>
+</element-citation></ref><ref id="pcbi.1000463-Zweiger1"><label>89</label><element-citation publication-type="journal">
+<person-group person-group-type="author"><name><surname>Zweiger</surname><given-names>G</given-names></name><name><surname>Shapiro</surname><given-names>L</given-names></name></person-group>
+<year>1994</year>
+<article-title>Expression of Caulobacter dnaA as a function of the cell cycle.</article-title>
+<source>J Bacteriol</source>
+<volume>176</volume>
+<fpage>401</fpage>
+<lpage>408</lpage>
+<pub-id pub-id-type="pmid">8288535</pub-id></element-citation></ref></ref-list></back></article>
