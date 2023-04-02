@@ -41,13 +41,8 @@ jobs:
       - id: commit-final-entries
         name: Commit changes to the fixed entries
         run: |
-          git stash
-          git pull
-          set +e
-          git stash pop
           chmod a+x git_add.bat
           ./git_add.bat
-          git pull
           git commit -m "Automated update of OMEX files."
           if [[ $? = 0 ]]; then
             finalEntriesChanged=1
