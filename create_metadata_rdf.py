@@ -109,16 +109,16 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
         if citation in mastercitations and citation.title:
             metadata['title'] = citation.title
     
-        if citation.pubmed_central_id:
-            thumbnails = get_pubmed_central_open_access_graphics(
-                citation.pubmed_central_id,
-                temp_entry_dir,
-                )
-            fileList = glob.glob(temp_entry_dir + '/*.tar.gz')
-            # Iterate over the list of filepaths & remove each file.
-            for filePath in fileList:
-                os.remove(filePath)
-            metadata['thumbnails'] = [os.path.relpath(thumbnail.filename, temp_entry_dir).replace("\\", "/") for thumbnail in thumbnails]
+        # if citation.pubmed_central_id:
+        #     thumbnails = get_pubmed_central_open_access_graphics(
+        #         citation.pubmed_central_id,
+        #         temp_entry_dir,
+        #         )
+        #     fileList = glob.glob(temp_entry_dir + '/*.tar.gz')
+        #     # Iterate over the list of filepaths & remove each file.
+        #     for filePath in fileList:
+        #         os.remove(filePath)
+        #     metadata['thumbnails'] = [os.path.relpath(thumbnail.filename, temp_entry_dir).replace("\\", "/") for thumbnail in thumbnails]
 
 
 
