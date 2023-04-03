@@ -1,141 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
-<model id="SimulationForMeioticEntryInYeast" name="meiosis">
-<listOfCompartments>
-<compartment id="V" name="C" size="1.00"/>
-</listOfCompartments>
-
-<listOfSpecies>
-<species id="Rim11" name="Rim11" compartment="V" initialConcentration="0.00" charge="0"/>
-<species id="pUme6" name="pUme6" compartment="V" initialConcentration="0.00" charge="0"/>
-<species id="pSok2" name="pSok2" compartment="V" initialConcentration="1.00" charge="0"/>
-<species id="Ime1" name="Ime1" compartment="V" initialConcentration="0.00" charge="0"/>
-<species id="pIme1" name="pIme1" compartment="V" initialConcentration="0.00" charge="0"/>
-<species id="Ime2" name="Ime2" compartment="V" initialConcentration="0.00" charge="0"/>
-</listOfSpecies>
-
-<listOfParameters>
-<parameter id="sime1" value="10"/>
-<parameter id="sime2" value="10.00"/>
-<parameter id="sprimeime2" value="3"/>
-<parameter id="dime1" value="1"/>
-<parameter id="dprimeime1" value="1"/>
-<parameter id="dpime1" value="1"/>
-<parameter id="dime2" value="8.00"/>
-<parameter id="prim11" value="0.01"/>
-<parameter id="urim11" value="0.10"/>
-<parameter id="pume6" value="0.30"/>
-<parameter id="uume6" value="0.01"/>
-<parameter id="psok2" value="0.70"/>
-<parameter id="usok2" value="1.00"/>
-<parameter id="pime1" value="2"/>
-<parameter id="csok2" value="0.05"/>
-<parameter id="cime1" value="0.01"/>
-<parameter id="c1" value="0.01"/>
-<parameter id="c2" value="1.4"/>
-<parameter id="c3" value="2"/>
-</listOfParameters>
-
-<listOfReactions>
-<reaction id="rim11_1" reversible="true">
-<listOfProducts>
-<speciesReference species="Rim11"/>
-</listOfProducts>
-<kineticLaw>
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-<apply>
-<times/>
-	<ci> V </ci>
-	<apply>
-	<minus/>
-		<apply>
-			<times/>
-				<ci> urim11 </ci>
-				<apply> <minus/> <cn> 1 </cn> <ci> Rim11 </ci> </apply>
-		</apply>
-		<apply>
-			<times/>
-				<ci> prim11 </ci> <ci> Rim11 </ci>
-		</apply>
-	</apply>
-</apply>
-</math>
-</kineticLaw>
-</reaction>
-
-<reaction id="pume6_1" reversible="true">
-<listOfProducts><speciesReference species="pUme6"/>
-<speciesReference species="Rim11"/></listOfProducts>
-<kineticLaw><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>	<times/>		<ci> V </ci>		<apply>			<minus/>				<apply>					<times/>						<apply> <minus/> <cn> 1 </cn> <ci> pUme6 </ci> </apply>						<ci> pume6 </ci>						<ci> Rim11 </ci>				</apply>				<apply>					<times/>						<ci> uume6 </ci> <ci> pUme6 </ci>				</apply>		</apply></apply></math>
-</kineticLaw>
-</reaction>
-
-<reaction id="sok2_1" reversible="true">
-<listOfProducts><speciesReference species="pSok2"/>
-<speciesReference species="Ime1"/></listOfProducts>
-<kineticLaw><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>	<times/>		<ci> V </ci>		<apply>			<minus/>				<apply>					<times/>
-						<apply>
-							<divide/>
-								<ci> csok2 </ci>
-								<apply> <plus/> <ci> csok2 </ci> <ci> Ime1 </ci> </apply>
-						</apply>						<apply> <minus/> <cn> 1 </cn> <ci> pSok2 </ci> </apply>						<ci> psok2 </ci>						</apply>				<apply>					<times/>						<ci> usok2 </ci> <ci> pSok2 </ci>				</apply>		</apply></apply></math>
-</kineticLaw>
-</reaction>
-
-<reaction id="ime1_1" reversible="false">
-<listOfProducts><speciesReference species="Ime1"/>
-<speciesReference species="pSok2"/>
-<speciesReference species="Rim11"/>
-<speciesReference species="Ime2"/></listOfProducts>
-<kineticLaw><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>	<times/>		<ci> V </ci>		<apply>			<minus/>
-				<apply> <times/> 
-					<apply>
-						<divide/>
-							<ci> cime1 </ci>
-							<apply> <plus/> <ci> cime1 </ci> <ci> pSok2 </ci> </apply>
-					</apply>
-					<ci> sime1 </ci>
-				</apply>
-				<apply> <plus/>
-					<apply> <times/> <ci> pime1 </ci> <ci> Ime1 </ci> <ci> Rim11 </ci> </apply>
-					<apply> <times/> <ci> dime1 </ci> <ci> Ime1 </ci> </apply>
-					<apply> 
-						<times/> <ci> dprimeime1 </ci> <ci> Ime2 </ci>
-						<apply> 
-							<divide/> <ci> Ime1 </ci>
-								<apply> <plus/> <ci> c1 </ci> <ci> Ime1 </ci> </apply>
-						</apply>
-					</apply>
-				</apply>		</apply></apply></math>
-</kineticLaw>
-</reaction>
-
-<reaction id="pime1_1" reversible="false">
-<listOfProducts><speciesReference species="pIme1"/>
-<speciesReference species="Ime1"/>
-<speciesReference species="Rim11"/></listOfProducts>
-<kineticLaw><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>	<times/>		<ci> V </ci>		<apply>			<minus/>				<apply> <times/> <ci> pime1 </ci> <ci> Ime1 </ci> <ci> Rim11 </ci> </apply>				<apply> <times/> <ci> dpime1 </ci> <ci> pIme1 </ci> </apply>
-		</apply></apply></math>
-</kineticLaw>
-</reaction>
-
-<reaction id="ime2_1" reversible="true">
-<listOfProducts><speciesReference species="Ime2"/>
-<speciesReference species="pUme6"/>
-<speciesReference species="pIme1"/></listOfProducts><kineticLaw><math xmlns="http://www.w3.org/1998/Math/MathML"><apply>	<times/>		<ci> V </ci>		<apply>			<minus/>				<apply> <plus/>
-					<apply> <times/> <ci> sime2 </ci> <ci> pUme6 </ci> <ci> pIme1 </ci> </apply>
-					<apply> <divide/>
-						<apply> <times/> <ci> sprimeime2 </ci> <apply> <power/> <ci> Ime2 </ci> <cn>5</cn> </apply> </apply>
-						<apply> <plus/> <apply> <power/> <ci> c2 </ci> <cn>5</cn> </apply> <apply> <power/> <ci> Ime2 </ci> <cn>5</cn> </apply> </apply>
-					</apply>
-				</apply>				<apply> <divide/>
-					<apply> <times/> <ci> dime2 </ci> <ci> Ime2 </ci> </apply>
-					<apply> <plus/> <ci> c3 </ci> <ci> Ime2 </ci> </apply>
-				</apply>		</apply></apply></math>
-</kineticLaw>
-</reaction>
-
-
-</listOfReactions>
-</model>
-</sbml>
