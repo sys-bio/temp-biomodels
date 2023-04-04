@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.29 (Build 228) (http://www.copasi.org) at 2021-02-11T13:21:44Z -->
+<!-- generated with COPASI 4.37 (Build 264) (http://www.copasi.org) at 2022-10-17T12:02:34Z -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
-<COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="29" versionDevel="228" copasiSourcesModified="0">
+<COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="37" versionDevel="264" copasiSourcesModified="0">
   <ListOfFunctions>
     <Function key="Function_13" name="Mass action (irreversible)" type="MassAction" reversible="false">
       <MiriamAnnotation>
@@ -104,6 +104,27 @@ Reaction scheme where the products are created from the reactants and the change
         </vCard:ORG>
       </rdf:Description>
     </dcterms:creator>
+    <dcterms:creator>
+      <rdf:Description>
+        <vCard:EMAIL>konigmatt@googlemail.com</vCard:EMAIL>
+        <vCard:N>
+          <rdf:Description>
+            <vCard:Family>König</vCard:Family>
+            <vCard:Given>Matthias</vCard:Given>
+          </rdf:Description>
+        </vCard:N>
+        <vCard:ORG>
+          <rdf:Description>
+            <vCard:Orgname>Humboldt-University Berlin</vCard:Orgname>
+          </rdf:Description>
+        </vCard:ORG>
+      </rdf:Description>
+    </dcterms:creator>
+    <dcterms:modified>
+      <rdf:Description>
+        <dcterms:W3CDTF>2022-10-17T13:54:54</dcterms:W3CDTF>
+      </rdf:Description>
+    </dcterms:modified>
     <CopasiMT:is rdf:resource="urn:miriam:doid:DOID:0080600"/>
   </rdf:Description>
 </rdf:RDF>
@@ -552,19 +573,24 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_5" name="symptoms_nontested" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_5">
-    <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C101887" />
-    <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C173069" />
+    <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C101887"/>
+    <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:C173069"/>
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-03-19T14:01:44Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ido:0000511" />
-    <CopasiMT:is rdf:resource="urn:miriam:ido:C171133" />
+    <CopasiMT:is rdf:resource="urn:miriam:ido:0000511"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133"/>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <ListOfUnsupportedAnnotations>
           <UnsupportedAnnotation name="http://www.sbml.org/2001/ns/celldesigner">
@@ -1330,7 +1356,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_0" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5382" name="k1" value="1.94689e-06"/>
+          <Constant key="Parameter_5527" name="k1" value="1.94689e-06"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1390,7 +1416,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_3" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5381" name="k1" value="0.0008"/>
+          <Constant key="Parameter_5529" name="k1" value="0.0008"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1466,7 +1492,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_0" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5380" name="k1" value="1.94689e-06"/>
+          <Constant key="Parameter_5525" name="k1" value="1.94689e-06"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1526,7 +1552,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_1" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5379" name="k1" value="0.0008"/>
+          <Constant key="Parameter_5528" name="k1" value="0.0008"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1587,7 +1613,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_5" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5378" name="k1" value="0.30165"/>
+          <Constant key="Parameter_6010" name="k1" value="0.30165"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1648,7 +1674,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_4" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5377" name="k1" value="0.30165"/>
+          <Constant key="Parameter_6011" name="k1" value="0.30165"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1708,7 +1734,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_4" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5376" name="k1" value="500"/>
+          <Constant key="Parameter_6013" name="k1" value="500"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1767,7 +1793,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_9" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5375" name="k1" value="0.002"/>
+          <Constant key="Parameter_6009" name="k1" value="0.002"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1828,7 +1854,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_6" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5374" name="k1" value="0.067"/>
+          <Constant key="Parameter_6012" name="k1" value="0.067"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1889,7 +1915,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_7" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5373" name="k1" value="0.067"/>
+          <Constant key="Parameter_6845" name="k1" value="0.067"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -1963,7 +1989,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_12" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5372" name="k" value="3.29e-05"/>
+          <Constant key="Parameter_6846" name="k" value="3.29e-05"/>
         </ListOfConstants>
         <KineticLaw function="Function_40" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2025,7 +2051,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_11" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5371" name="k1" value="3.29e-05"/>
+          <Constant key="Parameter_6848" name="k1" value="3.29e-05"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2084,7 +2110,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_11" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5370" name="k1" value="3.29e-05"/>
+          <Constant key="Parameter_6844" name="k1" value="3.29e-05"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2143,7 +2169,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_11" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5369" name="k1" value="3.29e-05"/>
+          <Constant key="Parameter_6847" name="k1" value="3.29e-05"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2202,7 +2228,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_9" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5368" name="k1" value="0.002"/>
+          <Constant key="Parameter_4426" name="k1" value="0.002"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2261,7 +2287,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_10" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5367" name="k1" value="0.002"/>
+          <Constant key="Parameter_4427" name="k1" value="0.002"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2320,7 +2346,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_11" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5366" name="k1" value="3.29e-05"/>
+          <Constant key="Parameter_4429" name="k1" value="3.29e-05"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2379,7 +2405,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_10" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5365" name="k1" value="0.002"/>
+          <Constant key="Parameter_4425" name="k1" value="0.002"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Compartments[default]">
           <ListOfCallParameters>
@@ -2400,11 +2426,6 @@ Reaction scheme where the products are created from the reactants and the change
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#ModelParameterSet_1">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2021-02-11T13:21:12Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -2649,7 +2670,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     </InitialState>
   </Model>
   <ListOfTasks>
-    <Task key="Task_15" name="Steady-State" type="steadyState" scheduled="false" updateModel="false">
+    <Task key="Task_17" name="Steady-State" type="steadyState" scheduled="false" updateModel="false">
       <Report reference="Report_11" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="JacobianRequested" type="bool" value="1"/>
@@ -2668,7 +2689,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Target Criterion" type="string" value="Distance and Rate"/>
       </Method>
     </Task>
-    <Task key="Task_16" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
+    <Task key="Task_18" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Report reference="Report_22" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
@@ -2690,7 +2711,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Step Size" type="unsignedFloat" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_17" name="Scan" type="scan" scheduled="false" updateModel="false">
+    <Task key="Task_19" name="Scan" type="scan" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="Subtask" type="unsignedInteger" value="1"/>
         <ParameterGroup name="ScanItems">
@@ -2702,14 +2723,14 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <Method name="Scan Framework" type="ScanFramework">
       </Method>
     </Task>
-    <Task key="Task_18" name="Elementary Flux Modes" type="fluxMode" scheduled="false" updateModel="false">
+    <Task key="Task_20" name="Elementary Flux Modes" type="fluxMode" scheduled="false" updateModel="false">
       <Report reference="Report_12" target="" append="1" confirmOverwrite="1"/>
       <Problem>
       </Problem>
       <Method name="EFM Algorithm" type="EFMAlgorithm">
       </Method>
     </Task>
-    <Task key="Task_19" name="Optimization" type="optimization" scheduled="false" updateModel="false">
+    <Task key="Task_21" name="Optimization" type="optimization" scheduled="false" updateModel="false">
       <Report reference="Report_13" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="Subtask" type="cn" value="CN=Root,Vector=TaskList[Steady-State]"/>
@@ -2731,7 +2752,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Seed" type="unsignedInteger" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_20" name="Parameter Estimation" type="parameterFitting" scheduled="false" updateModel="false">
+    <Task key="Task_22" name="Parameter Estimation" type="parameterFitting" scheduled="false" updateModel="false">
       <Report reference="Report_14" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="Maximize" type="bool" value="0"/>
@@ -2762,10 +2783,10 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Stop after # Stalled Generations" type="unsignedInteger" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_21" name="Metabolic Control Analysis" type="metabolicControlAnalysis" scheduled="false" updateModel="false">
+    <Task key="Task_23" name="Metabolic Control Analysis" type="metabolicControlAnalysis" scheduled="false" updateModel="false">
       <Report reference="Report_15" target="" append="1" confirmOverwrite="1"/>
       <Problem>
-        <Parameter name="Steady-State" type="key" value="Task_15"/>
+        <Parameter name="Steady-State" type="key" value="Task_17"/>
       </Problem>
       <Method name="MCA Method (Reder)" type="MCAMethod(Reder)">
         <Parameter name="Modulation Factor" type="unsignedFloat" value="1.0000000000000001e-09"/>
@@ -2773,7 +2794,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Use Smallbone" type="bool" value="1"/>
       </Method>
     </Task>
-    <Task key="Task_22" name="Lyapunov Exponents" type="lyapunovExponents" scheduled="false" updateModel="false">
+    <Task key="Task_24" name="Lyapunov Exponents" type="lyapunovExponents" scheduled="false" updateModel="false">
       <Report reference="Report_16" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="ExponentNumber" type="unsignedInteger" value="3"/>
@@ -2788,7 +2809,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Steps" type="unsignedInteger" value="10000"/>
       </Method>
     </Task>
-    <Task key="Task_23" name="Time Scale Separation Analysis" type="timeScaleSeparationAnalysis" scheduled="false" updateModel="false">
+    <Task key="Task_25" name="Time Scale Separation Analysis" type="timeScaleSeparationAnalysis" scheduled="false" updateModel="false">
       <Report reference="Report_17" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -2801,7 +2822,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Deuflhard Tolerance" type="unsignedFloat" value="0.0001"/>
       </Method>
     </Task>
-    <Task key="Task_24" name="Sensitivities" type="sensitivities" scheduled="false" updateModel="false">
+    <Task key="Task_26" name="Sensitivities" type="sensitivities" scheduled="false" updateModel="false">
       <Report reference="Report_18" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="SubtaskType" type="unsignedInteger" value="1"/>
@@ -2825,14 +2846,14 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Delta minimum" type="unsignedFloat" value="9.9999999999999998e-13"/>
       </Method>
     </Task>
-    <Task key="Task_25" name="Moieties" type="moieties" scheduled="false" updateModel="false">
+    <Task key="Task_27" name="Moieties" type="moieties" scheduled="false" updateModel="false">
       <Report reference="Report_21" target="" append="1" confirmOverwrite="1"/>
       <Problem>
       </Problem>
       <Method name="Householder Reduction" type="Householder">
       </Method>
     </Task>
-    <Task key="Task_26" name="Cross Section" type="crosssection" scheduled="false" updateModel="false">
+    <Task key="Task_28" name="Cross Section" type="crosssection" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -2868,7 +2889,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Step Size" type="unsignedFloat" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_27" name="Linear Noise Approximation" type="linearNoiseApproximation" scheduled="false" updateModel="false">
+    <Task key="Task_29" name="Linear Noise Approximation" type="linearNoiseApproximation" scheduled="false" updateModel="false">
       <Report reference="Report_19" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="Steady-State" type="key" value=""/>
@@ -2876,7 +2897,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <Method name="Linear Noise Approximation" type="LinearNoiseApproximation">
       </Method>
     </Task>
-    <Task key="Task_28" name="Time-Course Sensitivities" type="timeSensitivities" scheduled="false" updateModel="false">
+    <Task key="Task_30" name="Time-Course Sensitivities" type="timeSensitivities" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -3548,13 +3569,13 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   </ListOfPlots>
   <GUI>
     <ListOfSliders>
-      <Slider key="Slider_0" associatedEntityKey="Task_16" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[social_distance],Reference=InitialValue" objectType="float" objectValue="534700" minValue="0" maxValue="1e+06" tickNumber="1000" tickFactor="100" scaling="linear"/>
-      <Slider key="Slider_1" associatedEntityKey="Task_16" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[lockdown_severity],Reference=InitialValue" objectType="float" objectValue="10" minValue="0" maxValue="25" tickNumber="1000" tickFactor="100" scaling="linear"/>
-      <Slider key="Slider_2" associatedEntityKey="Task_16" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_ntns],Reference=InitialValue" objectType="float" objectValue="0.508" minValue="0.4" maxValue="1.6" tickNumber="1000" tickFactor="100" scaling="linear"/>
-      <Slider key="Slider_3" associatedEntityKey="Task_16" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_nts],Reference=InitialValue" objectType="float" objectValue="0.25" minValue="0.25" maxValue="1" tickNumber="1000" tickFactor="100" scaling="linear"/>
-      <Slider key="Slider_4" associatedEntityKey="Task_16" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_tns],Reference=InitialValue" objectType="float" objectValue="0.025" minValue="0.0025" maxValue="0.025" tickNumber="1000" tickFactor="100" scaling="linear"/>
-      <Slider key="Slider_5" associatedEntityKey="Task_16" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_ts],Reference=InitialValue" objectType="float" objectValue="0.025" minValue="0.0025" maxValue="0.025" tickNumber="1000" tickFactor="100" scaling="linear"/>
-      <Slider key="Slider_6" associatedEntityKey="Task_16" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[symptoms_rate],Reference=InitialValue" objectType="float" objectValue="0.30165" minValue="0.15" maxValue="0.6" tickNumber="1000" tickFactor="100" scaling="linear"/>
+      <Slider key="Slider_0" associatedEntityKey="Task_18" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[social_distance],Reference=InitialValue" objectType="float" objectValue="534700" minValue="0" maxValue="1e+06" tickNumber="1000" tickFactor="100" scaling="linear"/>
+      <Slider key="Slider_1" associatedEntityKey="Task_18" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[lockdown_severity],Reference=InitialValue" objectType="float" objectValue="10" minValue="0" maxValue="25" tickNumber="1000" tickFactor="100" scaling="linear"/>
+      <Slider key="Slider_2" associatedEntityKey="Task_18" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_ntns],Reference=InitialValue" objectType="float" objectValue="0.508" minValue="0.4" maxValue="1.6" tickNumber="1000" tickFactor="100" scaling="linear"/>
+      <Slider key="Slider_3" associatedEntityKey="Task_18" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_nts],Reference=InitialValue" objectType="float" objectValue="0.25" minValue="0.25" maxValue="1" tickNumber="1000" tickFactor="100" scaling="linear"/>
+      <Slider key="Slider_4" associatedEntityKey="Task_18" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_tns],Reference=InitialValue" objectType="float" objectValue="0.025" minValue="0.0025" maxValue="0.025" tickNumber="1000" tickFactor="100" scaling="linear"/>
+      <Slider key="Slider_5" associatedEntityKey="Task_18" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[iota_ts],Reference=InitialValue" objectType="float" objectValue="0.025" minValue="0.0025" maxValue="0.025" tickNumber="1000" tickFactor="100" scaling="linear"/>
+      <Slider key="Slider_6" associatedEntityKey="Task_18" objectCN="CN=Root,Model=Westerhoff2020 - Corona model of extinguishable epidemic with limited time incomplete lockdown,Vector=Values[symptoms_rate],Reference=InitialValue" objectType="float" objectValue="0.30165" minValue="0.15" maxValue="0.6" tickNumber="1000" tickFactor="100" scaling="linear"/>
     </ListOfSliders>
   </GUI>
   <ListOfLayouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -4721,7 +4742,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       </ListOfRenderInformation>
     </Layout>
   </ListOfLayouts>
-  <SBMLReference file="WesterhoffCopasiTest.xml">
+  <SBMLReference file="Westerhoff2020.xml">
     <SBMLMap SBMLid="Birth_rate" COPASIkey="ModelValue_4"/>
     <SBMLMap SBMLid="Corona_death_rate_constant" COPASIkey="ModelValue_3"/>
     <SBMLMap SBMLid="Corona_recover" COPASIkey="ModelValue_6"/>
@@ -4749,6 +4770,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <SBMLMap SBMLid="governmentResponseFactorToDiagnosedInfected_0" COPASIkey="ModelValue_23"/>
     <SBMLMap SBMLid="infected_nontested_0" COPASIkey="Metabolite_0"/>
     <SBMLMap SBMLid="infected_tested_0" COPASIkey="Metabolite_1"/>
+    <SBMLMap SBMLid="infected_tested_div10" COPASIkey="Metabolite_19"/>
     <SBMLMap SBMLid="intermittent_time" COPASIkey="ModelValue_19"/>
     <SBMLMap SBMLid="lockdownPause_duration_0" COPASIkey="ModelValue_16"/>
     <SBMLMap SBMLid="lockdown_duration" COPASIkey="ModelValue_15"/>
@@ -4795,11 +4817,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_4">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2021-02-11T13:21:05Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -4813,11 +4830,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_14">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2021-02-11T13:21:05Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -4831,11 +4843,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_16">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2021-02-11T13:21:05Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -4849,11 +4856,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_68">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2021-02-11T13:21:05Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>

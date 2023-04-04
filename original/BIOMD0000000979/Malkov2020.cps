@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.29 (Build 228) (http://www.copasi.org) at 2020-12-04T04:29:46Z -->
+<!-- generated with COPASI 4.37 (Build 264) (http://www.copasi.org) at 2022-10-17T11:09:07Z -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
-<COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="29" versionDevel="228" copasiSourcesModified="0">
+<COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="37" versionDevel="264" copasiSourcesModified="0">
   <ListOfFunctions>
     <Function key="Function_13" name="Mass action (irreversible)" type="MassAction" reversible="false">
       <MiriamAnnotation>
@@ -89,6 +89,27 @@ Reaction scheme where the products are created from the reactants and the change
         </vCard:ORG>
       </rdf:Description>
     </dcterms:creator>
+    <dcterms:creator>
+      <rdf:Description>
+        <vCard:EMAIL>koenigmx@hu-berlin.de</vCard:EMAIL>
+        <vCard:N>
+          <rdf:Description>
+            <vCard:Family>König</vCard:Family>
+            <vCard:Given>Matthias</vCard:Given>
+          </rdf:Description>
+        </vCard:N>
+        <vCard:ORG>
+          <rdf:Description>
+            <vCard:Orgname>Humboldt-University Berlin</vCard:Orgname>
+          </rdf:Description>
+        </vCard:ORG>
+      </rdf:Description>
+    </dcterms:creator>
+    <dcterms:modified>
+      <rdf:Description>
+        <dcterms:W3CDTF>2022-10-17T13:05:25</dcterms:W3CDTF>
+      </rdf:Description>
+    </dcterms:modified>
     <CopasiMT:is rdf:resource="urn:miriam:doid:DOID:0080600"/>
   </rdf:Description>
 </rdf:RDF>
@@ -100,40 +121,32 @@ Reaction scheme where the products are created from the reactants and the change
     <ListOfCompartments>
       <Compartment key="Compartment_0" name="USA" simulationType="fixed" dimensionality="3" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Compartment_0">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:06:40Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:C17234"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C17234" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
       </Compartment>
     </ListOfCompartments>
     <ListOfMetabolites>
       <Metabolite key="Metabolite_0" name="Susceptible" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_0">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:06:57Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ido:0000514"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ido:0000514" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <InitialExpression>
           &lt;CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA],Vector=Metabolites[Total_population],Reference=InitialConcentration>-&lt;CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA],Vector=Metabolites[Recovered],Reference=InitialConcentration>-&lt;CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA],Vector=Metabolites[Exposed],Reference=InitialConcentration>-&lt;CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA],Vector=Metabolites[Infected],Reference=InitialConcentration>
@@ -147,13 +160,13 @@ Reaction scheme where the products are created from the reactants and the change
    xmlns:dcterms="http://purl.org/dc/terms/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_1">
-    <bqbiol:hasProperty rdf:resource="urn:miriam:ncit:0000597"/>
+    <bqbiol:hasProperty rdf:resource="urn:miriam:ido:0000597"/>
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:06:58Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:0000514"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ido:0000514"/>
     <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133"/>
   </rdf:Description>
 </rdf:RDF>
@@ -162,41 +175,32 @@ Reaction scheme where the products are created from the reactants and the change
       </Metabolite>
       <Metabolite key="Metabolite_2" name="Infected" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_2">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:06:59Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ido:0000511"/>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ido:0000511" />
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
       </Metabolite>
       <Metabolite key="Metabolite_3" name="Recovered" simulationType="reactions" compartment="Compartment_0" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_3">
-    <bqbiol:hasProperty rdf:resource="urn:miriam:ido:0000569"/>
+    <bqbiol:hasProperty rdf:resource="urn:miriam:ido:0000569" />
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:07:00Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ido:0000514"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ido:0000514" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
       </Metabolite>
       <Metabolite key="Metabolite_4" name="Total_population" simulationType="reactions" compartment="Compartment_0" addNoise="false">
@@ -302,21 +306,17 @@ Reaction scheme where the products are created from the reactants and the change
     <ListOfReactions>
       <Reaction key="Reaction_0" name="Susceptible_to_Exposed" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_0">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:07:20Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ido:0000597"/>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ido:0000597" />
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_0" stoichiometry="1"/>
@@ -329,7 +329,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Modifier metabolite="Metabolite_2" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_5390" name="beta" value="0.16668"/>
+          <Constant key="Parameter_5523" name="beta" value="0.16668"/>
         </ListOfConstants>
         <KineticLaw function="Function_40" unitType="Default" scalingCompartment="CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA]">
           <ListOfCallParameters>
@@ -350,20 +350,16 @@ Reaction scheme where the products are created from the reactants and the change
       </Reaction>
       <Reaction key="Reaction_1" name="Exposed_to_Infected" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_1">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:07:32Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C171133" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_1" stoichiometry="1"/>
@@ -372,7 +368,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_2" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5389" name="k1" value="0.19231"/>
+          <Constant key="Parameter_5526" name="k1" value="0.19231"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA]">
           <ListOfCallParameters>
@@ -387,20 +383,16 @@ Reaction scheme where the products are created from the reactants and the change
       </Reaction>
       <Reaction key="Reaction_2" name="Infected_to_Recovered" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_2">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:07:34Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:C25746"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C25746" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_2" stoichiometry="1"/>
@@ -409,7 +401,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_3" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5388" name="k1" value="0.05556"/>
+          <Constant key="Parameter_6008" name="k1" value="0.05556"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA]">
           <ListOfCallParameters>
@@ -424,21 +416,17 @@ Reaction scheme where the products are created from the reactants and the change
       </Reaction>
       <Reaction key="Reaction_3" name="Recovered_to_Susceptible_(Reinfection)" reversible="false" fast="false" addNoise="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#"
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_3">
     <dcterms:created>
       <rdf:Description>
         <dcterms:W3CDTF>2020-12-04T01:07:36Z</dcterms:W3CDTF>
       </rdf:Description>
     </dcterms:created>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:C16710"/>
-    <CopasiMT:is rdf:resource="urn:miriam:ncit:C25559"/>
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C16710" />
+    <CopasiMT:is rdf:resource="urn:miriam:ncit:C25559" />
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_3" stoichiometry="1"/>
@@ -447,7 +435,7 @@ Reaction scheme where the products are created from the reactants and the change
           <Product metabolite="Metabolite_0" stoichiometry="1"/>
         </ListOfProducts>
         <ListOfConstants>
-          <Constant key="Parameter_5387" name="k1" value="0.01667"/>
+          <Constant key="Parameter_6009" name="k1" value="0.01667"/>
         </ListOfConstants>
         <KineticLaw function="Function_13" unitType="Default" scalingCompartment="CN=Root,Model=Malkov2020 - SEIRS model of COVID-19 transmission with reinfection,Vector=Compartments[USA]">
           <ListOfCallParameters>
@@ -468,11 +456,6 @@ Reaction scheme where the products are created from the reactants and the change
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#ModelParameterSet_1">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2020-12-04T03:54:46Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
         </MiriamAnnotation>
@@ -553,7 +536,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     </InitialState>
   </Model>
   <ListOfTasks>
-    <Task key="Task_15" name="Steady-State" type="steadyState" scheduled="false" updateModel="false">
+    <Task key="Task_17" name="Steady-State" type="steadyState" scheduled="false" updateModel="false">
       <Report reference="Report_11" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="JacobianRequested" type="bool" value="1"/>
@@ -572,7 +555,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Target Criterion" type="string" value="Distance and Rate"/>
       </Method>
     </Task>
-    <Task key="Task_16" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
+    <Task key="Task_18" name="Time-Course" type="timeCourse" scheduled="false" updateModel="false">
       <Report reference="Report_12" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
@@ -594,7 +577,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Step Size" type="unsignedFloat" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_17" name="Scan" type="scan" scheduled="false" updateModel="false">
+    <Task key="Task_19" name="Scan" type="scan" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="Subtask" type="unsignedInteger" value="1"/>
         <ParameterGroup name="ScanItems">
@@ -626,14 +609,14 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <Method name="Scan Framework" type="ScanFramework">
       </Method>
     </Task>
-    <Task key="Task_18" name="Elementary Flux Modes" type="fluxMode" scheduled="false" updateModel="false">
+    <Task key="Task_20" name="Elementary Flux Modes" type="fluxMode" scheduled="false" updateModel="false">
       <Report reference="Report_13" target="" append="1" confirmOverwrite="1"/>
       <Problem>
       </Problem>
       <Method name="EFM Algorithm" type="EFMAlgorithm">
       </Method>
     </Task>
-    <Task key="Task_19" name="Optimization" type="optimization" scheduled="false" updateModel="false">
+    <Task key="Task_21" name="Optimization" type="optimization" scheduled="false" updateModel="false">
       <Report reference="Report_14" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="Subtask" type="cn" value="CN=Root,Vector=TaskList[Steady-State]"/>
@@ -655,7 +638,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Seed" type="unsignedInteger" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_20" name="Parameter Estimation" type="parameterFitting" scheduled="false" updateModel="false">
+    <Task key="Task_22" name="Parameter Estimation" type="parameterFitting" scheduled="false" updateModel="false">
       <Report reference="Report_15" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="Maximize" type="bool" value="0"/>
@@ -686,10 +669,10 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Stop after # Stalled Generations" type="unsignedInteger" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_21" name="Metabolic Control Analysis" type="metabolicControlAnalysis" scheduled="false" updateModel="false">
+    <Task key="Task_23" name="Metabolic Control Analysis" type="metabolicControlAnalysis" scheduled="false" updateModel="false">
       <Report reference="Report_16" target="" append="1" confirmOverwrite="1"/>
       <Problem>
-        <Parameter name="Steady-State" type="key" value="Task_15"/>
+        <Parameter name="Steady-State" type="key" value="Task_17"/>
       </Problem>
       <Method name="MCA Method (Reder)" type="MCAMethod(Reder)">
         <Parameter name="Modulation Factor" type="unsignedFloat" value="1.0000000000000001e-09"/>
@@ -697,7 +680,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Use Smallbone" type="bool" value="1"/>
       </Method>
     </Task>
-    <Task key="Task_22" name="Lyapunov Exponents" type="lyapunovExponents" scheduled="false" updateModel="false">
+    <Task key="Task_24" name="Lyapunov Exponents" type="lyapunovExponents" scheduled="false" updateModel="false">
       <Report reference="Report_17" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="ExponentNumber" type="unsignedInteger" value="3"/>
@@ -712,7 +695,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Steps" type="unsignedInteger" value="10000"/>
       </Method>
     </Task>
-    <Task key="Task_23" name="Time Scale Separation Analysis" type="timeScaleSeparationAnalysis" scheduled="false" updateModel="false">
+    <Task key="Task_25" name="Time Scale Separation Analysis" type="timeScaleSeparationAnalysis" scheduled="false" updateModel="false">
       <Report reference="Report_18" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -725,7 +708,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Deuflhard Tolerance" type="unsignedFloat" value="0.0001"/>
       </Method>
     </Task>
-    <Task key="Task_24" name="Sensitivities" type="sensitivities" scheduled="false" updateModel="false">
+    <Task key="Task_26" name="Sensitivities" type="sensitivities" scheduled="false" updateModel="false">
       <Report reference="Report_19" target="" append="1" confirmOverwrite="1"/>
       <Problem>
         <Parameter name="SubtaskType" type="unsignedInteger" value="1"/>
@@ -749,14 +732,14 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Delta minimum" type="unsignedFloat" value="9.9999999999999998e-13"/>
       </Method>
     </Task>
-    <Task key="Task_25" name="Moieties" type="moieties" scheduled="false" updateModel="false">
+    <Task key="Task_27" name="Moieties" type="moieties" scheduled="false" updateModel="false">
       <Report reference="Report_20" target="" append="1" confirmOverwrite="1"/>
       <Problem>
       </Problem>
       <Method name="Householder Reduction" type="Householder">
       </Method>
     </Task>
-    <Task key="Task_26" name="Cross Section" type="crosssection" scheduled="false" updateModel="false">
+    <Task key="Task_28" name="Cross Section" type="crosssection" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -792,15 +775,15 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <Parameter name="Max Internal Step Size" type="unsignedFloat" value="0"/>
       </Method>
     </Task>
-    <Task key="Task_27" name="Linear Noise Approximation" type="linearNoiseApproximation" scheduled="false" updateModel="false">
+    <Task key="Task_29" name="Linear Noise Approximation" type="linearNoiseApproximation" scheduled="false" updateModel="false">
       <Report reference="Report_21" target="" append="1" confirmOverwrite="1"/>
       <Problem>
-        <Parameter name="Steady-State" type="key" value="Task_15"/>
+        <Parameter name="Steady-State" type="key" value="Task_17"/>
       </Problem>
       <Method name="Linear Noise Approximation" type="LinearNoiseApproximation">
       </Method>
     </Task>
-    <Task key="Task_28" name="Time-Course Sensitivities" type="timeSensitivities" scheduled="false" updateModel="false">
+    <Task key="Task_30" name="Time-Course Sensitivities" type="timeSensitivities" scheduled="false" updateModel="false">
       <Problem>
         <Parameter name="AutomaticStepSize" type="bool" value="0"/>
         <Parameter name="StepNumber" type="unsignedInteger" value="100"/>
@@ -997,6 +980,25 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   </ListOfPlots>
   <GUI>
   </GUI>
+  <SBMLReference file="Malkov2020.xml">
+    <SBMLMap SBMLid="Exposed" COPASIkey="Metabolite_1"/>
+    <SBMLMap SBMLid="Exposed_to_Infected" COPASIkey="Reaction_1"/>
+    <SBMLMap SBMLid="Fraction_infected" COPASIkey="ModelValue_5"/>
+    <SBMLMap SBMLid="Infected" COPASIkey="Metabolite_2"/>
+    <SBMLMap SBMLid="Infected_to_Recovered" COPASIkey="Reaction_2"/>
+    <SBMLMap SBMLid="R_fixed" COPASIkey="ModelValue_4"/>
+    <SBMLMap SBMLid="Rate_Law_for_reaction" COPASIkey="Function_40"/>
+    <SBMLMap SBMLid="Recovered" COPASIkey="Metabolite_3"/>
+    <SBMLMap SBMLid="Recovered_to_Susceptible__Reinfection" COPASIkey="Reaction_3"/>
+    <SBMLMap SBMLid="Susceptible" COPASIkey="Metabolite_0"/>
+    <SBMLMap SBMLid="Susceptible_to_Exposed" COPASIkey="Reaction_0"/>
+    <SBMLMap SBMLid="Total_population" COPASIkey="Metabolite_4"/>
+    <SBMLMap SBMLid="USA" COPASIkey="Compartment_0"/>
+    <SBMLMap SBMLid="beta" COPASIkey="ModelValue_0"/>
+    <SBMLMap SBMLid="gamma" COPASIkey="ModelValue_3"/>
+    <SBMLMap SBMLid="omega" COPASIkey="ModelValue_1"/>
+    <SBMLMap SBMLid="sigma" COPASIkey="ModelValue_2"/>
+  </SBMLReference>
   <ListOfUnitDefinitions>
     <UnitDefinition key="Unit_5" name="second" symbol="s">
       <MiriamAnnotation>
@@ -1004,11 +1006,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_4">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2020-12-04T03:54:38Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -1022,11 +1019,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_14">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2020-12-04T03:54:38Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -1040,11 +1032,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_16">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2020-12-04T03:54:38Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
@@ -1058,11 +1045,6 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 xmlns:dcterms="http://purl.org/dc/terms/"
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <rdf:Description rdf:about="#Unit_68">
-<dcterms:created>
-<rdf:Description>
-<dcterms:W3CDTF>2020-12-04T03:54:38Z</dcterms:W3CDTF>
-</rdf:Description>
-</dcterms:created>
 </rdf:Description>
 </rdf:RDF>
       </MiriamAnnotation>
