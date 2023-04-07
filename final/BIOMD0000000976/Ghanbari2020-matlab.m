@@ -14,9 +14,6 @@
 %
 % Model name = Ghanbari2020 - forecasting the second wave of COVID-19 in Iran
 %
-% isDescribedBy http://identifiers.org/pubmed/32834656
-% is http://identifiers.org/biomodels.db/MODEL2011230001
-% is http://identifiers.org/biomodels.db/BIOMD0000000976
 %
 
 
