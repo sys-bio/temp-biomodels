@@ -14,9 +14,6 @@
 %
 % Model name = Malkov2020 - SEIRS model of COVID-19 transmission with reinfection
 %
-% isDescribedBy http://identifiers.org/pubmed/32982082
-% is http://identifiers.org/biomodels.db/MODEL2012040001
-% is http://identifiers.org/biomodels.db/BIOMD0000000979
 %
 
 
