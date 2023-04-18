@@ -1,54 +1,62 @@
-@prefix bqmodel: <http://biomodels.net/model-qualifiers/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix prism: <http://prismstandard.org/namespaces/basic/2.0/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-
-<http://omex-library.org/BIOMD0000000342.omex> bqmodel:isDescribedBy <local:00001> ;
-    prism:keyword "Biomodels" ;
-    dc:description """<body xmlns="http://www.w3.org/1999/xhtml">
-  <p>This model is from the article:      <br/>
-  <strong>Quantitative analysis of transient and sustained transforming growth factor-β signaling dynamics.</strong>
-  <br/>
-          Zhike Zi, Zipei Feng, Douglas A Chapnick, Markus Dahl, Difan Deng, Edda Klipp, Aristidis Moustakas &amp; Xuedong Liu      <em>Molecular Systems Biology</em>
-          2011 May 24;7:492.      <a href="http://www.ncbi.nlm.nih.gov/pubmed/21613981">21613981</a>
-          ,      <br/>
-  <strong>Abstract:</strong>
-  <br/>
-          Mammalian cells can decode the concentration of extracellular transforming growth factor-β (TGF-β) and transduce this cue into appropriate cell fate decisions. How variable TGF-β ligand doses quantitatively control intracellular signaling dynamics and how continuous ligand doses are translated into discontinuous cellular fate decisions remain poorly understood. Using a combined experimental and mathematical modeling approach, we discovered that cells respond differently to continuous and pulsating TGF-β stimulation. The TGF-β pathway elicits a transient signaling response to a single pulse of TGF-β stimulation, whereas it is capable of integrating repeated pulses of ligand stimulation at short time interval, resulting in sustained phospho-Smad2 and transcriptional responses. Additionally, the TGF-β pathway displays different sensitivities to ligand doses at different time scales. While ligand-induced short-term Smad2 phosphorylation is graded, long-term Smad2 phosphorylation is switch-like to a small change in TGF-β levels. Correspondingly, the short-term Smad7 gene expression is graded, while long-term PAI-1 gene expression is switch-like, as is the long-term growth inhibitory response. Our results suggest that long-term switch-like signaling responses in the TGF-β pathway might be critical for cell fate determination.      </p>
-  <p>
-    <b>Note:</b>
-  </p>
-  <p>Developer of the model: Zhike Zi</p>
-  <p>Reference: Zi Z. et al., Quantitative Analysis of Transient and Sustained Transforming Growth Factor-beta Signaling Dynamics, Molecular Systems Biology, 2011</p>
-  <p>1. The global parameter that set the type of stimulation</p>
-  <p>(a) for sustained TGF-beta stimulation: set stimulation_type = 1.</p>
-  <p>(b) for single pulse of TGF-beta stimulation: set stimulation_type = 2.</p>
-  <p>parameter &quot;single_pulse_duration&quot; is for the duration of stimulation, for example,</p>
-  <p>single_pulse_duration = 0.5, for 0.5 min (30 seconds) of TGF-beta stimulation.</p>
-  <p>*Note: make sure that the time course cover the time point when the event is triggered.</p>
-  <p>(c) for single pulse of TGF-beta stimulation in COPASI</p>
-  <p>change the trigger of event &quot;single_pulse_TGF_beta_washout&quot;</p>
-  <p>from</p>
-  <p>&quot;and(eq(stimulation_type, 2), eq(time, single_pulse_duration))&quot;   (for SBML-SAT)</p>
-  <p>to</p>
-  <p>&quot;and(eq(stimulation_type, 2), gt(time, single_pulse_duration))&quot;  (for COPASI)</p>
-  <p/>
-  <p>2. Notes for TGF-beta dose in terms of molecules per cell</p>
-  <p>(a) The following equation applies for conversion of TGF-beta dose in molecules per cell</p>
-  <p>TGF_beta_dose_mol_per_cell = initial TGF_beta_ex*1e-9*Vmed*6e23</p>
-  <p>(b) for standard experimental setup 1e6 cells in 2 mL medium</p>
-  <p>0.001 nM initial TGF_beta_ex is approximately equal to the dose of 1200 TGF-beta molecules/cell</p>
-  <p>0.050 nM initial TGF_beta_ex is approximately equal to the dose of 60000 TGF-beta molecules/cell</p>
-  <p>(c) For 1e6 cells in 10 mL medium, please change the initial compartment size of Vmed and the corresponding assignment rule for Vmed.</p>
-  <p>initial Vmed = 1e-8  (1e6 cells in 10 mL medium)</p>
-  <p>Vmed = 0.010/(1e6*exp(log(1.45)*time/1440))  (1e6 cells in 10 mL medium)</p>
-  <p/>
-  <p>3. Please note that this model contains events and the medium compartment size is varied.</p>
-  <p/>
-  <p>4. For the model simulation in SBML-SAT, please remove initialAssignments and save it as SBML Level 2 Verion 1 file.</p>
-</body>""" ;
-    dc:title "Quantitative analysis of transient and sustained transforming growth factor-β signaling dynamics" .
-
-<local:00001> rdfs:label "Zhike Zi, Zipei Feng, Douglas A Chapnick, Markus Dahl, Difan Deng, Edda Klipp, Aristidis Moustakas & Xuedong Liu. Quantitative analysis of transient and sustained transforming growth factor-β signaling dynamics. Molecular Systems Biology 7 (2011)." ;
-    dc:identifier <http://identifiers.org/doi/10.1038/msb.2011.22> .
+<?xml version="1.1" encoding="utf-8"?>
+<rdf:RDF xmlns:OMEXlib="http://omex-library.org/"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:bqmodel="http://biomodels.net/model-qualifiers/"
+   xmlns:dc="http://purl.org/dc/terms/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:local="http://omex-library.org/NewOmex.omex/NewModel.rdf#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="http://omex-library.org/BIOMD0000000342.omex">
+    <bqmodel:isDescribedBy rdf:resource="local:00001"/>
+    <ns1:keyword xmlns:ns1="http://prismstandard.org/namespaces/basic/2.0/">Biomodels</ns1:keyword>
+    <ns2:description xmlns:ns2="http://purl.org/dc/elements/1.1/">&lt;body xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;p&gt;This model is from the article:      &lt;br/&gt;
+  &lt;strong&gt;Quantitative analysis of transient and sustained transforming growth factor-β signaling dynamics.&lt;/strong&gt;
+  &lt;br/&gt;
+          Zhike Zi, Zipei Feng, Douglas A Chapnick, Markus Dahl, Difan Deng, Edda Klipp, Aristidis Moustakas &amp;amp; Xuedong Liu      &lt;em&gt;Molecular Systems Biology&lt;/em&gt;
+          2011 May 24;7:492.      &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/21613981"&gt;21613981&lt;/a&gt;
+          ,      &lt;br/&gt;
+  &lt;strong&gt;Abstract:&lt;/strong&gt;
+  &lt;br/&gt;
+          Mammalian cells can decode the concentration of extracellular transforming growth factor-β (TGF-β) and transduce this cue into appropriate cell fate decisions. How variable TGF-β ligand doses quantitatively control intracellular signaling dynamics and how continuous ligand doses are translated into discontinuous cellular fate decisions remain poorly understood. Using a combined experimental and mathematical modeling approach, we discovered that cells respond differently to continuous and pulsating TGF-β stimulation. The TGF-β pathway elicits a transient signaling response to a single pulse of TGF-β stimulation, whereas it is capable of integrating repeated pulses of ligand stimulation at short time interval, resulting in sustained phospho-Smad2 and transcriptional responses. Additionally, the TGF-β pathway displays different sensitivities to ligand doses at different time scales. While ligand-induced short-term Smad2 phosphorylation is graded, long-term Smad2 phosphorylation is switch-like to a small change in TGF-β levels. Correspondingly, the short-term Smad7 gene expression is graded, while long-term PAI-1 gene expression is switch-like, as is the long-term growth inhibitory response. Our results suggest that long-term switch-like signaling responses in the TGF-β pathway might be critical for cell fate determination.      &lt;/p&gt;
+  &lt;p&gt;
+    &lt;b&gt;Note:&lt;/b&gt;
+  &lt;/p&gt;
+  &lt;p&gt;Developer of the model: Zhike Zi&lt;/p&gt;
+  &lt;p&gt;Reference: Zi Z. et al., Quantitative Analysis of Transient and Sustained Transforming Growth Factor-beta Signaling Dynamics, Molecular Systems Biology, 2011&lt;/p&gt;
+  &lt;p&gt;1. The global parameter that set the type of stimulation&lt;/p&gt;
+  &lt;p&gt;(a) for sustained TGF-beta stimulation: set stimulation_type = 1.&lt;/p&gt;
+  &lt;p&gt;(b) for single pulse of TGF-beta stimulation: set stimulation_type = 2.&lt;/p&gt;
+  &lt;p&gt;parameter &amp;quot;single_pulse_duration&amp;quot; is for the duration of stimulation, for example,&lt;/p&gt;
+  &lt;p&gt;single_pulse_duration = 0.5, for 0.5 min (30 seconds) of TGF-beta stimulation.&lt;/p&gt;
+  &lt;p&gt;*Note: make sure that the time course cover the time point when the event is triggered.&lt;/p&gt;
+  &lt;p&gt;(c) for single pulse of TGF-beta stimulation in COPASI&lt;/p&gt;
+  &lt;p&gt;change the trigger of event &amp;quot;single_pulse_TGF_beta_washout&amp;quot;&lt;/p&gt;
+  &lt;p&gt;from&lt;/p&gt;
+  &lt;p&gt;&amp;quot;and(eq(stimulation_type, 2), eq(time, single_pulse_duration))&amp;quot;   (for SBML-SAT)&lt;/p&gt;
+  &lt;p&gt;to&lt;/p&gt;
+  &lt;p&gt;&amp;quot;and(eq(stimulation_type, 2), gt(time, single_pulse_duration))&amp;quot;  (for COPASI)&lt;/p&gt;
+  &lt;p/&gt;
+  &lt;p&gt;2. Notes for TGF-beta dose in terms of molecules per cell&lt;/p&gt;
+  &lt;p&gt;(a) The following equation applies for conversion of TGF-beta dose in molecules per cell&lt;/p&gt;
+  &lt;p&gt;TGF_beta_dose_mol_per_cell = initial TGF_beta_ex*1e-9*Vmed*6e23&lt;/p&gt;
+  &lt;p&gt;(b) for standard experimental setup 1e6 cells in 2 mL medium&lt;/p&gt;
+  &lt;p&gt;0.001 nM initial TGF_beta_ex is approximately equal to the dose of 1200 TGF-beta molecules/cell&lt;/p&gt;
+  &lt;p&gt;0.050 nM initial TGF_beta_ex is approximately equal to the dose of 60000 TGF-beta molecules/cell&lt;/p&gt;
+  &lt;p&gt;(c) For 1e6 cells in 10 mL medium, please change the initial compartment size of Vmed and the corresponding assignment rule for Vmed.&lt;/p&gt;
+  &lt;p&gt;initial Vmed = 1e-8  (1e6 cells in 10 mL medium)&lt;/p&gt;
+  &lt;p&gt;Vmed = 0.010/(1e6*exp(log(1.45)*time/1440))  (1e6 cells in 10 mL medium)&lt;/p&gt;
+  &lt;p/&gt;
+  &lt;p&gt;3. Please note that this model contains events and the medium compartment size is varied.&lt;/p&gt;
+  &lt;p/&gt;
+  &lt;p&gt;4. For the model simulation in SBML-SAT, please remove initialAssignments and save it as SBML Level 2 Verion 1 file.&lt;/p&gt;
+&lt;/body&gt;</ns2:description>
+    <ns3:title xmlns:ns3="http://purl.org/dc/elements/1.1/">Quantitative analysis of transient and sustained transforming growth factor-β signaling dynamics</ns3:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="local:00001">
+    <ns4:identifier xmlns:ns4="http://purl.org/dc/elements/1.1/"
+       rdf:resource="http://identifiers.org/doi/10.1038/msb.2011.22"/>
+    <ns5:label xmlns:ns5="http://www.w3.org/2000/01/rdf-schema#">Zhike Zi, Zipei Feng, Douglas A Chapnick, Markus Dahl, Difan Deng, Edda Klipp, Aristidis Moustakas &amp; Xuedong Liu. Quantitative analysis of transient and sustained transforming growth factor-β signaling dynamics. Molecular Systems Biology 7 (2011).</ns5:label>
+  </rdf:Description>
+</rdf:RDF>
 
