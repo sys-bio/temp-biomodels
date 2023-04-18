@@ -146,5 +146,5 @@ def run(id, sbml_filenames, temp_entry_dir, sbml_master):
     addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir)
     metadata_filename = os.path.join(temp_entry_dir, 'metadata.rdf')
     config = get_config()
-    config.OMEX_METADATA_OUTPUT_FORMAT = OmexMetadataOutputFormat.turtle
+    # config.OMEX_METADATA_OUTPUT_FORMAT = OmexMetadataOutputFormat.turtle
     BiosimulationsOmexMetaWriter().run([metadata], metadata_filename, config=config)
