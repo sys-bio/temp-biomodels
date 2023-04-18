@@ -1,1520 +1,1524 @@
-@prefix bqmodel: <http://biomodels.net/model-qualifiers/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix prism: <http://prismstandard.org/namespaces/basic/2.0/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-
-<http://omex-library.org/BIOMD0000000014.omex> bqmodel:isDescribedBy <local:00001> ;
-    prism:keyword "Biomodels" ;
-    dc:description """<body xmlns="http://www.w3.org/1999/xhtml">
-  <h1>MAPK cascade on a scaffold</h1>
-  <table border="0" cellpadding="2" cellspacing="0">
-    <thead>
-      <tr>
-        <th align="left" bgcolor="#eeeeee" valign="middle">Citation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Levchenko, A., Bruck, J., Sternberg, P.W. (2000)
+<?xml version="1.1" encoding="utf-8"?>
+<rdf:RDF xmlns:OMEXlib="http://omex-library.org/"
+   xmlns:bqbiol="http://biomodels.net/biology-qualifiers/"
+   xmlns:bqmodel="http://biomodels.net/model-qualifiers/"
+   xmlns:dc="http://purl.org/dc/terms/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:local="http://omex-library.org/NewOmex.omex/NewModel.rdf#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="http://omex-library.org/BIOMD0000000014.omex">
+    <bqmodel:isDescribedBy rdf:resource="local:00001"/>
+    <ns1:keyword xmlns:ns1="http://prismstandard.org/namespaces/basic/2.0/">Biomodels</ns1:keyword>
+    <ns2:description xmlns:ns2="http://purl.org/dc/elements/1.1/">&lt;body xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;h1&gt;MAPK cascade on a scaffold&lt;/h1&gt;
+  &lt;table border="0" cellpadding="2" cellspacing="0"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th align="left" bgcolor="#eeeeee" valign="middle"&gt;Citation&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Levchenko, A., Bruck, J., Sternberg, P.W. (2000)
 							.Scaffold proteins may biphasically affect the levels of mitogen-activated protein kinase signaling and reduce its threshold properties. Proc. Natl. Acad. Sci. USA 97(11):5818-5823.
-						<a href="http://www.pnas.org/cgi/content/abstract/97/11/5818">
+						&lt;a href="http://www.pnas.org/cgi/content/abstract/97/11/5818"&gt;
 							http://www.pnas.org/cgi/content/abstract/97/11/5818
-						</a></td>
-      </tr>
-    </tbody>
-  </table>
-  <table border="0" cellpadding="2" cellspacing="0">
-    <thead>
-      <tr>
-        <th align="left" bgcolor="#eeeeee" valign="middle">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>This model describes a basic 3-stage Mitogen Activated Protein Kinase (MAPK). Kinases in solution are written as  K[3,J], K[2,J], K[1,J] for MAPKKK, MAPKK, and MAPK, respectively, J indicates the phosphorylation level, J=0,1 for K3 and J=0,1,2 for K2 and K1. Scaffolds have three slots, for MAPK, MAPKK, and MAPKKK, respectively. Bound and free scaffold are denoted as S[i,j,k], where i, j, and k indicate the binding of K[1,i], K[2,j] and K[3,k] in their respective slots. Here i,j=-1,0,1,or,2 and k=-1,0,or,1. A value of -1 means the slot is empty, 0 means the unphorphorylated kinase is bound, 1 means the singly phosphorylated kinase is bound, and 2 means the doubly phosphorylated kinase is bound. Thus S[1,-1,2] is a scaffold with K[3,1] bound in the first slot and K[1,2] in the third slot, while the second slot is empty.Note: Indices X[I,J,K] are translated into the unindexed variable X_I_J_K and so forth in the SBML.  Negative indices are translated as mI, etc, thus S[1,-1,2] becomes S_1_m1_2.</td>
-      </tr>
-    </tbody>
-  </table>
-  <table border="0" cellpadding="2" cellspacing="0">
-    <thead>
-      <tr>
-        <th align="left" bgcolor="#eeeeee" valign="middle">Rate constant      </th>
-        <th align="left" bgcolor="#eeeeee" valign="middle">Reaction</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>a10 = 5.</td>
-        <td>MAPKP + K[1, 2] -&gt; K_MAPKP[1, 2]</td>
-      </tr>
-      <tr>
-        <td>a1 = 1.</td>
-        <td>RAFK + K[3, 0] -&gt; K_RAFK[3, 0]</td>
-      </tr>
-      <tr>
-        <td>a2 = 0.5</td>
-        <td>RAFP + K[3, 1] -&gt; K_RAFP[3, 1]</td>
-      </tr>
-      <tr>
-        <td>a3 = 3.3</td>
-        <td>K[2, 0] + K[3, 1] -&gt; K_K[2, 0, 3,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>a4 = 10.</td>
-        <td>MEKP + K[2, 1] -&gt; K_MEKP[2, 1]</td>
-      </tr>
-      <tr>
-        <td>a5 = 3.3</td>
-        <td>K[2, 1] + K[3, 1] -&gt; K_K[2, 1, 3,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>a6 = 10.</td>
-        <td>MEKP + K[2, 2] -&gt; K_MEKP[2, 2]</td>
-      </tr>
-      <tr>
-        <td>a7 = 20.</td>
-        <td>K[1, 0] + K[2, 2] -&gt; K_K[1, 0, 2,
-							 2]</td>
-      </tr>
-      <tr>
-        <td>a8 = 5.</td>
-        <td>MAPKP + K[1, 1] -&gt; K_MAPKP[1, 1]</td>
-      </tr>
-      <tr>
-        <td>a9 = 20.</td>
-        <td>K[1, 1] + K[2, 2] -&gt; K_K[1, 1, 2,
-							 2]</td>
-      </tr>
-      <tr>
-        <td>d10 = 0.4</td>
-        <td>K_MAPKP[1, 2] -&gt; MAPKP + K[1, 2]</td>
-      </tr>
-      <tr>
-        <td>d1 = 0.4</td>
-        <td>K_RAFK[3, 0] -&gt; RAFK + K[3, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[0, 0, 0] -&gt; RAFK + S[0, 0, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[0, -1, 0] -&gt; RAFK + S[0, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[0, 1, 0] -&gt; RAFK + S[0, 1, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[0, 2, 0] -&gt; RAFK + S[0, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[-1, 0, 0] -&gt; RAFK + S[-1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[1, 0, 0] -&gt; RAFK + S[1, 0, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[-1, -1, 0] -&gt; RAFK + S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[-1, 1, 0] -&gt; RAFK + S[-1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[1, -1, 0] -&gt; RAFK + S[1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[1, 1, 0] -&gt; RAFK + S[1, 1, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[-1, 2, 0] -&gt; RAFK + S[-1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[1, 2, 0] -&gt; RAFK + S[1, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[2, 0, 0] -&gt; RAFK + S[2, 0, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[2, -1, 0] -&gt; RAFK + S[2, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[2, 1, 0] -&gt; RAFK + S[2, 1, 0]</td>
-      </tr>
-      <tr>
-        <td>d1a = 0</td>
-        <td>S_RAFK[2, 2, 0] -&gt; RAFK + S[2, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>d2 = 0.5</td>
-        <td>K_RAFP[3, 1] -&gt; RAFP + K[3, 1]</td>
-      </tr>
-      <tr>
-        <td>d3 = 0.42</td>
-        <td>K_K[2, 0, 3, 1] -&gt; K[2, 0] + K[3,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>d4 = 0.8</td>
-        <td>K_MEKP[2, 1] -&gt; MEKP + K[2, 1]</td>
-      </tr>
-      <tr>
-        <td>d5 = 0.4</td>
-        <td>K_K[2, 1, 3, 1] -&gt; K[2, 1] + K[3,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>d6 = 0.8</td>
-        <td>K_MEKP[2, 2] -&gt; MEKP + K[2, 2]</td>
-      </tr>
-      <tr>
-        <td>d7 = 0.6</td>
-        <td>K_K[1, 0, 2, 2] -&gt; K[1, 0] + K[2,
-							 2]</td>
-      </tr>
-      <tr>
-        <td>d8 = 0.4</td>
-        <td>K_MAPKP[1, 1] -&gt; MAPKP + K[1, 1]</td>
-      </tr>
-      <tr>
-        <td>d9 = 0.6</td>
-        <td>K_K[1, 1, 2, 2] -&gt; K[1, 1] + K[2,
-							 2]</td>
-      </tr>
-      <tr>
-        <td>k10 = 0.1</td>
-        <td>K_MAPKP[1, 2] -&gt; MAPKP + K[1, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>K_RAFK[3, 0] -&gt; RAFK + K[3, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[0, 0, 0] -&gt; RAFK + S[0, 0, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[0, -1, 0] -&gt; RAFK + S[0, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[0, 1, 0] -&gt; RAFK + S[0, 1, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[0, 2, 0] -&gt; RAFK + S[0, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[-1, 0, 0] -&gt; RAFK + S[-1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[1, 0, 0] -&gt; RAFK + S[1, 0, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[-1, -1, 0] -&gt; RAFK + S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[-1, 1, 0] -&gt; RAFK + S[-1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[1, -1, 0] -&gt; RAFK + S[1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[1, 1, 0] -&gt; RAFK + S[1, 1, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[-1, 2, 0] -&gt; RAFK + S[-1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[1, 2, 0] -&gt; RAFK + S[1, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[2, 0, 0] -&gt; RAFK + S[2, 0, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[2, -1, 0] -&gt; RAFK + S[2, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[2, 1, 0] -&gt; RAFK + S[2, 1, 1]</td>
-      </tr>
-      <tr>
-        <td>k1 = 0.1</td>
-        <td>S_RAFK[2, 2, 0] -&gt; RAFK + S[2, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[0, 0, 0] -&gt; S_RAFK[0, 0, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[0, -1, 0] -&gt; S_RAFK[0, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[0, 1, 0] -&gt; S_RAFK[0, 1, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[0, 2, 0] -&gt; S_RAFK[0, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[-1, 0, 0] -&gt; S_RAFK[-1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[1, 0, 0] -&gt; S_RAFK[1, 0, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[-1, -1, 0] -&gt; S_RAFK[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[-1, 1, 0] -&gt; S_RAFK[-1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[1, -1, 0] -&gt; S_RAFK[1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[1, 1, 0] -&gt; S_RAFK[1, 1, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[-1, 2, 0] -&gt; S_RAFK[-1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[1, 2, 0] -&gt; S_RAFK[1, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[2, 0, 0] -&gt; S_RAFK[2, 0, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[2, -1, 0] -&gt; S_RAFK[2, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[2, 1, 0] -&gt; S_RAFK[2, 1, 0]</td>
-      </tr>
-      <tr>
-        <td>k1a = 100</td>
-        <td>RAFK + S[2, 2, 0] -&gt; S_RAFK[2, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>k2 = 0.1</td>
-        <td>K_RAFP[3, 1] -&gt; RAFP + K[3, 0]</td>
-      </tr>
-      <tr>
-        <td>k3 = 0.1</td>
-        <td>K_K[2, 0, 3, 1] -&gt; K[2, 1] + K[3,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k3 = 0.1</td>
-        <td>S[0, 0, 1] -&gt; S[0, 1, 1]</td>
-      </tr>
-      <tr>
-        <td>k3 = 0.1</td>
-        <td>S[-1, 0, 1] -&gt; S[-1, 1, 1]</td>
-      </tr>
-      <tr>
-        <td>k3 = 0.1</td>
-        <td>S[1, 0, 1] -&gt; S[1, 1, 1]</td>
-      </tr>
-      <tr>
-        <td>k3 = 0.1</td>
-        <td>S[2, 0, 1] -&gt; S[2, 1, 1]</td>
-      </tr>
-      <tr>
-        <td>k4 = 0.1</td>
-        <td>K_MEKP[2, 1] -&gt; MEKP + K[2, 0]</td>
-      </tr>
-      <tr>
-        <td>k5 = 0.1</td>
-        <td>K_K[2, 1, 3, 1] -&gt; K[2, 2] + K[3,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>k5a = 0.1</td>
-        <td>S[0, 1, 1] -&gt; S[0, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k5a = 0.1</td>
-        <td>S[-1, 1, 1] -&gt; S[-1, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k5a = 0.1</td>
-        <td>S[1, 1, 1] -&gt; S[1, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k5a = 0.1</td>
-        <td>S[2, 1, 1] -&gt; S[2, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k6 = 0.1</td>
-        <td>K_MEKP[2, 2] -&gt; MEKP + K[2, 1]</td>
-      </tr>
-      <tr>
-        <td>k7 = 0.1</td>
-        <td>K_K[1, 0, 2, 2] -&gt; K[1, 1] + K[2,
-							 2]</td>
-      </tr>
-      <tr>
-        <td>k7 = 0.1</td>
-        <td>S[0, 2, 0] -&gt; S[1, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>k7 = 0.1</td>
-        <td>S[0, 2, -1] -&gt; S[1, 2, -1]</td>
-      </tr>
-      <tr>
-        <td>k7 = 0.1</td>
-        <td>S[0, 2, 1] -&gt; S[1, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>k8 = 0.1</td>
-        <td>K_MAPKP[1, 1] -&gt; MAPKP + K[1, 0]</td>
-      </tr>
-      <tr>
-        <td>k9 = 0.1</td>
-        <td>K_K[1, 1, 2, 2] -&gt; K[1, 2] + K[2,
-							 2]</td>
-      </tr>
-      <tr>
-        <td>k9a = 0.1</td>
-        <td>S[1, 2, 0] -&gt; S[2, 2, 0]</td>
-      </tr>
-      <tr>
-        <td>k9a = 0.1</td>
-        <td>S[1, 2, -1] -&gt; S[2, 2, -1]</td>
-      </tr>
-      <tr>
-        <td>k9a = 0.1</td>
-        <td>S[1, 2, 1] -&gt; S[2, 2, 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 0, 0] -&gt; K[1, 0] + S[-1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 0, 0] -&gt; K[2, 0] + S[0, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 0, 0] -&gt; K[3, 0] + S[0, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 0, -1] -&gt; K[1, 0] + S[-1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 0, 1] -&gt; K[1, 0] + S[-1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 0, -1] -&gt; K[2, 0] + S[0, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 0, 1] -&gt; K[2, 0] + S[0, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, -1, 0] -&gt; K[1, 0] + S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 1, 0] -&gt; K[1, 0] + S[-1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, -1, 0] -&gt; K[3, 0] + S[0, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 1, 0] -&gt; K[3, 0] + S[0, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, -1, -1] -&gt; K[1, 0] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, -1, 1] -&gt; K[1, 0] + S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 1, -1] -&gt; K[1, 0] + S[-1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 1, 1] -&gt; K[1, 0] + S[-1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 2, 0] -&gt; K[1, 0] + S[-1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 2, 0] -&gt; K[3, 0] + S[0, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 2, -1] -&gt; K[1, 0] + S[-1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[0, 2, 1] -&gt; K[1, 0] + S[-1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[-1, 0, 0] -&gt; K[2, 0] + S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[1, 0, 0] -&gt; K[2, 0] + S[1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[-1, 0, 0] -&gt; K[3, 0] + S[-1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[1, 0, 0] -&gt; K[3, 0] + S[1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[-1, 0, -1] -&gt; K[2, 0] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[-1, 0, 1] -&gt; K[2, 0] + S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[1, 0, -1] -&gt; K[2, 0] + S[1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[1, 0, 1] -&gt; K[2, 0] + S[1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[-1, -1, 0] -&gt; K[3, 0] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[-1, 1, 0] -&gt; K[3, 0] + S[-1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[1, -1, 0] -&gt; K[3, 0] + S[1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[1, 1, 0] -&gt; K[3, 0] + S[1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[-1, 2, 0] -&gt; K[3, 0] + S[-1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[1, 2, 0] -&gt; K[3, 0] + S[1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[2, 0, 0] -&gt; K[2, 0] + S[2, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[2, 0, 0] -&gt; K[3, 0] + S[2, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[2, 0, -1] -&gt; K[2, 0] + S[2, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[2, 0, 1] -&gt; K[2, 0] + S[2, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[2, -1, 0] -&gt; K[3, 0] + S[2, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[2, 1, 0] -&gt; K[3, 0] + S[2, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>koff = 0.5</td>
-        <td>S[2, 2, 0] -&gt; K[3, 0] + S[2, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 0, 0] -&gt; S[0, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 0, -1] -&gt; S[0, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 0, 1] -&gt; S[0, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, -1, 0] -&gt; S[0, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 1, 0] -&gt; S[0, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, -1, -1] -&gt; S[0, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, -1, 1] -&gt; S[0, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 1, -1] -&gt; S[0, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 1, 1] -&gt; S[0, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 2, 0] -&gt; S[0, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 2, -1] -&gt; S[0, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[1, 0] + S[-1, 2, 1] -&gt; S[0, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[0, -1, 0] -&gt; S[0, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[0, -1, -1] -&gt; S[0, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[0, -1, 1] -&gt; S[0, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[-1, -1, 0] -&gt; S[-1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[1, -1, 0] -&gt; S[1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[-1, -1, -1] -&gt; S[-1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[-1, -1, 1] -&gt; S[-1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[1, -1, -1] -&gt; S[1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[1, -1, 1] -&gt; S[1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[2, -1, 0] -&gt; S[2, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[2, -1, -1] -&gt; S[2, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[2, 0] + S[2, -1, 1] -&gt; S[2, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[0, 0, -1] -&gt; S[0, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[0, -1, -1] -&gt; S[0, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[0, 1, -1] -&gt; S[0, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[0, 2, -1] -&gt; S[0, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[-1, 0, -1] -&gt; S[-1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[1, 0, -1] -&gt; S[1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[-1, -1, -1] -&gt; S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[-1, 1, -1] -&gt; S[-1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[1, -1, -1] -&gt; S[1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[1, 1, -1] -&gt; S[1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[-1, 2, -1] -&gt; S[-1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[1, 2, -1] -&gt; S[1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[2, 0, -1] -&gt; S[2, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[2, -1, -1] -&gt; S[2, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[2, 1, -1] -&gt; S[2, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kon = 10</td>
-        <td>K[3, 0] + S[2, 2, -1] -&gt; S[2, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 0, 1] -&gt; K[3, 1] + S[0, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 1, 0] -&gt; K[2, 1] + S[0, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 1, -1] -&gt; K[2, 1] + S[0, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 1, 1] -&gt; K[2, 1] + S[0, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, -1, 1] -&gt; K[3, 1] + S[0, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 1, 1] -&gt; K[3, 1] + S[0, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 2, 0] -&gt; K[2, 2] + S[0, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 2, -1] -&gt; K[2, 2] + S[0, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 2, 1] -&gt; K[2, 2] + S[0, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[0, 2, 1] -&gt; K[3, 1] + S[0, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 0, 0] -&gt; K[1, 1] + S[-1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 0, -1] -&gt; K[1, 1] + S[-1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 0, 1] -&gt; K[1, 1] + S[-1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 0, 1] -&gt; K[3, 1] + S[-1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 0, 1] -&gt; K[3, 1] + S[1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, -1, 0] -&gt; K[1, 1] + S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 1, 0] -&gt; K[1, 1] + S[-1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 1, 0] -&gt; K[2, 1] + S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 1, 0] -&gt; K[2, 1] + S[1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, -1, -1] -&gt; K[1, 1] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, -1, 1] -&gt; K[1, 1] + S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 1, -1] -&gt; K[1, 1] + S[-1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 1, 1] -&gt; K[1, 1] + S[-1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 1, -1] -&gt; K[2, 1] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 1, 1] -&gt; K[2, 1] + S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 1, -1] -&gt; K[2, 1] + S[1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 1, 1] -&gt; K[2, 1] + S[1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, -1, 1] -&gt; K[3, 1] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 1, 1] -&gt; K[3, 1] + S[-1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, -1, 1] -&gt; K[3, 1] + S[1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 1, 1] -&gt; K[3, 1] + S[1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 2, 0] -&gt; K[1, 1] + S[-1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 2, 0] -&gt; K[2, 2] + S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 2, 0] -&gt; K[2, 2] + S[1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 2, -1] -&gt; K[1, 1] + S[-1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 2, 1] -&gt; K[1, 1] + S[-1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 2, -1] -&gt; K[2, 2] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 2, 1] -&gt; K[2, 2] + S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 2, -1] -&gt; K[2, 2] + S[1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 2, 1] -&gt; K[2, 2] + S[1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[-1, 2, 1] -&gt; K[3, 1] + S[-1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[1, 2, 1] -&gt; K[3, 1] + S[1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 0, 0] -&gt; K[1, 2] + S[-1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 0, -1] -&gt; K[1, 2] + S[-1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 0, 1] -&gt; K[1, 2] + S[-1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 0, 1] -&gt; K[3, 1] + S[2, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, -1, 0] -&gt; K[1, 2] + S[-1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 1, 0] -&gt; K[1, 2] + S[-1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 1, 0] -&gt; K[2, 1] + S[2, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, -1, -1] -&gt; K[1, 2] + S[-1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, -1, 1] -&gt; K[1, 2] + S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 1, -1] -&gt; K[1, 2] + S[-1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 1, 1] -&gt; K[1, 2] + S[-1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 1, -1] -&gt; K[2, 1] + S[2, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 1, 1] -&gt; K[2, 1] + S[2, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, -1, 1] -&gt; K[3, 1] + S[2, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 1, 1] -&gt; K[3, 1] + S[2, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 2, 0] -&gt; K[1, 2] + S[-1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 2, 0] -&gt; K[2, 2] + S[2, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 2, -1] -&gt; K[1, 2] + S[-1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 2, 1] -&gt; K[1, 2] + S[-1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 2, -1] -&gt; K[2, 2] + S[2, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 2, 1] -&gt; K[2, 2] + S[2, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpoff = 0.05</td>
-        <td>S[2, 2, 1] -&gt; K[3, 1] + S[2, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 0, 0] -&gt; S[1, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 0, -1] -&gt; S[1, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 0, 1] -&gt; S[1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, -1, 0] -&gt; S[1, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 1, 0] -&gt; S[1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, -1, -1] -&gt; S[1, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, -1, 1] -&gt; S[1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 1, -1] -&gt; S[1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 1, 1] -&gt; S[1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 2, 0] -&gt; S[1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 2, -1] -&gt; S[1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 1] + S[-1, 2, 1] -&gt; S[1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 0, 0] -&gt; S[2, 0,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 0, -1] -&gt; S[2, 0,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 0, 1] -&gt; S[2, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, -1, 0] -&gt; S[2, -1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 1, 0] -&gt; S[2, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, -1, -1] -&gt; S[2, -1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, -1, 1] -&gt; S[2, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 1, -1] -&gt; S[2, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 1, 1] -&gt; S[2, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 2, 0] -&gt; S[2, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 2, -1] -&gt; S[2, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[1, 2] + S[-1, 2, 1] -&gt; S[2, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[0, -1, 0] -&gt; S[0, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[0, -1, -1] -&gt; S[0, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[0, -1, 1] -&gt; S[0, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[-1, -1, 0] -&gt; S[-1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[1, -1, 0] -&gt; S[1, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[-1, -1, -1] -&gt; S[-1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[-1, -1, 1] -&gt; S[-1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[1, -1, -1] -&gt; S[1, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[1, -1, 1] -&gt; S[1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[2, -1, 0] -&gt; S[2, 1,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[2, -1, -1] -&gt; S[2, 1,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 1] + S[2, -1, 1] -&gt; S[2, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[0, -1, 0] -&gt; S[0, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[0, -1, -1] -&gt; S[0, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[0, -1, 1] -&gt; S[0, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[-1, -1, 0] -&gt; S[-1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[1, -1, 0] -&gt; S[1, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[-1, -1, -1] -&gt; S[-1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[-1, -1, 1] -&gt; S[-1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[1, -1, -1] -&gt; S[1, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[1, -1, 1] -&gt; S[1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[2, -1, 0] -&gt; S[2, 2,
-							 0]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[2, -1, -1] -&gt; S[2, 2,
-							 -1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[2, 2] + S[2, -1, 1] -&gt; S[2, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[0, 0, -1] -&gt; S[0, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[0, -1, -1] -&gt; S[0, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[0, 1, -1] -&gt; S[0, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[0, 2, -1] -&gt; S[0, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[-1, 0, -1] -&gt; S[-1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[1, 0, -1] -&gt; S[1, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[-1, -1, -1] -&gt; S[-1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[-1, 1, -1] -&gt; S[-1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[1, -1, -1] -&gt; S[1, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[1, 1, -1] -&gt; S[1, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[-1, 2, -1] -&gt; S[-1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[1, 2, -1] -&gt; S[1, 2,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[2, 0, -1] -&gt; S[2, 0,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[2, -1, -1] -&gt; S[2, -1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[2, 1, -1] -&gt; S[2, 1,
-							 1]</td>
-      </tr>
-      <tr>
-        <td>kpon = 0</td>
-        <td>K[3, 1] + S[2, 2, -1] -&gt; S[2, 2,
-							 1]</td>
-      </tr>
-    </tbody>
-  </table>
-  <table border="0" cellpadding="2" cellspacing="0">
-    <thead>
-      <tr>
-        <th align="left" bgcolor="#eeeeee" valign="middle">Variable</th>
-        <th align="left" bgcolor="#eeeeee" valign="middle">IC  </th>
-        <th align="left" bgcolor="#eeeeee" valign="middle">ODE</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>MAPKP</td>
-        <td>0.3</td>
-        <td>MAPKP&apos;[t] == -(a8*MAPKP[t]*K[1, 1][t]) - a10*MAPKP[
+						&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;table border="0" cellpadding="2" cellspacing="0"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th align="left" bgcolor="#eeeeee" valign="middle"&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;This model describes a basic 3-stage Mitogen Activated Protein Kinase (MAPK). Kinases in solution are written as  K[3,J], K[2,J], K[1,J] for MAPKKK, MAPKK, and MAPK, respectively, J indicates the phosphorylation level, J=0,1 for K3 and J=0,1,2 for K2 and K1. Scaffolds have three slots, for MAPK, MAPKK, and MAPKKK, respectively. Bound and free scaffold are denoted as S[i,j,k], where i, j, and k indicate the binding of K[1,i], K[2,j] and K[3,k] in their respective slots. Here i,j=-1,0,1,or,2 and k=-1,0,or,1. A value of -1 means the slot is empty, 0 means the unphorphorylated kinase is bound, 1 means the singly phosphorylated kinase is bound, and 2 means the doubly phosphorylated kinase is bound. Thus S[1,-1,2] is a scaffold with K[3,1] bound in the first slot and K[1,2] in the third slot, while the second slot is empty.Note: Indices X[I,J,K] are translated into the unindexed variable X_I_J_K and so forth in the SBML.  Negative indices are translated as mI, etc, thus S[1,-1,2] becomes S_1_m1_2.&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;table border="0" cellpadding="2" cellspacing="0"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th align="left" bgcolor="#eeeeee" valign="middle"&gt;Rate constant      &lt;/th&gt;
+        &lt;th align="left" bgcolor="#eeeeee" valign="middle"&gt;Reaction&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a10 = 5.&lt;/td&gt;
+        &lt;td&gt;MAPKP + K[1, 2] -&amp;gt; K_MAPKP[1, 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a1 = 1.&lt;/td&gt;
+        &lt;td&gt;RAFK + K[3, 0] -&amp;gt; K_RAFK[3, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a2 = 0.5&lt;/td&gt;
+        &lt;td&gt;RAFP + K[3, 1] -&amp;gt; K_RAFP[3, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a3 = 3.3&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + K[3, 1] -&amp;gt; K_K[2, 0, 3,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a4 = 10.&lt;/td&gt;
+        &lt;td&gt;MEKP + K[2, 1] -&amp;gt; K_MEKP[2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a5 = 3.3&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + K[3, 1] -&amp;gt; K_K[2, 1, 3,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a6 = 10.&lt;/td&gt;
+        &lt;td&gt;MEKP + K[2, 2] -&amp;gt; K_MEKP[2, 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a7 = 20.&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + K[2, 2] -&amp;gt; K_K[1, 0, 2,
+							 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a8 = 5.&lt;/td&gt;
+        &lt;td&gt;MAPKP + K[1, 1] -&amp;gt; K_MAPKP[1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;a9 = 20.&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + K[2, 2] -&amp;gt; K_K[1, 1, 2,
+							 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d10 = 0.4&lt;/td&gt;
+        &lt;td&gt;K_MAPKP[1, 2] -&amp;gt; MAPKP + K[1, 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1 = 0.4&lt;/td&gt;
+        &lt;td&gt;K_RAFK[3, 0] -&amp;gt; RAFK + K[3, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, 0, 0] -&amp;gt; RAFK + S[0, 0, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, -1, 0] -&amp;gt; RAFK + S[0, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, 1, 0] -&amp;gt; RAFK + S[0, 1, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, 2, 0] -&amp;gt; RAFK + S[0, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, 0, 0] -&amp;gt; RAFK + S[-1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, 0, 0] -&amp;gt; RAFK + S[1, 0, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, -1, 0] -&amp;gt; RAFK + S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, 1, 0] -&amp;gt; RAFK + S[-1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, -1, 0] -&amp;gt; RAFK + S[1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, 1, 0] -&amp;gt; RAFK + S[1, 1, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, 2, 0] -&amp;gt; RAFK + S[-1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, 2, 0] -&amp;gt; RAFK + S[1, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, 0, 0] -&amp;gt; RAFK + S[2, 0, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, -1, 0] -&amp;gt; RAFK + S[2, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, 1, 0] -&amp;gt; RAFK + S[2, 1, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d1a = 0&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, 2, 0] -&amp;gt; RAFK + S[2, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d2 = 0.5&lt;/td&gt;
+        &lt;td&gt;K_RAFP[3, 1] -&amp;gt; RAFP + K[3, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d3 = 0.42&lt;/td&gt;
+        &lt;td&gt;K_K[2, 0, 3, 1] -&amp;gt; K[2, 0] + K[3,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d4 = 0.8&lt;/td&gt;
+        &lt;td&gt;K_MEKP[2, 1] -&amp;gt; MEKP + K[2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d5 = 0.4&lt;/td&gt;
+        &lt;td&gt;K_K[2, 1, 3, 1] -&amp;gt; K[2, 1] + K[3,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d6 = 0.8&lt;/td&gt;
+        &lt;td&gt;K_MEKP[2, 2] -&amp;gt; MEKP + K[2, 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d7 = 0.6&lt;/td&gt;
+        &lt;td&gt;K_K[1, 0, 2, 2] -&amp;gt; K[1, 0] + K[2,
+							 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d8 = 0.4&lt;/td&gt;
+        &lt;td&gt;K_MAPKP[1, 1] -&amp;gt; MAPKP + K[1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;d9 = 0.6&lt;/td&gt;
+        &lt;td&gt;K_K[1, 1, 2, 2] -&amp;gt; K[1, 1] + K[2,
+							 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k10 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_MAPKP[1, 2] -&amp;gt; MAPKP + K[1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_RAFK[3, 0] -&amp;gt; RAFK + K[3, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, 0, 0] -&amp;gt; RAFK + S[0, 0, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, -1, 0] -&amp;gt; RAFK + S[0, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, 1, 0] -&amp;gt; RAFK + S[0, 1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[0, 2, 0] -&amp;gt; RAFK + S[0, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, 0, 0] -&amp;gt; RAFK + S[-1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, 0, 0] -&amp;gt; RAFK + S[1, 0, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, -1, 0] -&amp;gt; RAFK + S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, 1, 0] -&amp;gt; RAFK + S[-1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, -1, 0] -&amp;gt; RAFK + S[1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, 1, 0] -&amp;gt; RAFK + S[1, 1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[-1, 2, 0] -&amp;gt; RAFK + S[-1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[1, 2, 0] -&amp;gt; RAFK + S[1, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, 0, 0] -&amp;gt; RAFK + S[2, 0, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, -1, 0] -&amp;gt; RAFK + S[2, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, 1, 0] -&amp;gt; RAFK + S[2, 1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1 = 0.1&lt;/td&gt;
+        &lt;td&gt;S_RAFK[2, 2, 0] -&amp;gt; RAFK + S[2, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[0, 0, 0] -&amp;gt; S_RAFK[0, 0, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[0, -1, 0] -&amp;gt; S_RAFK[0, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[0, 1, 0] -&amp;gt; S_RAFK[0, 1, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[0, 2, 0] -&amp;gt; S_RAFK[0, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[-1, 0, 0] -&amp;gt; S_RAFK[-1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[1, 0, 0] -&amp;gt; S_RAFK[1, 0, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[-1, -1, 0] -&amp;gt; S_RAFK[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[-1, 1, 0] -&amp;gt; S_RAFK[-1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[1, -1, 0] -&amp;gt; S_RAFK[1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[1, 1, 0] -&amp;gt; S_RAFK[1, 1, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[-1, 2, 0] -&amp;gt; S_RAFK[-1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[1, 2, 0] -&amp;gt; S_RAFK[1, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[2, 0, 0] -&amp;gt; S_RAFK[2, 0, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[2, -1, 0] -&amp;gt; S_RAFK[2, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[2, 1, 0] -&amp;gt; S_RAFK[2, 1, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k1a = 100&lt;/td&gt;
+        &lt;td&gt;RAFK + S[2, 2, 0] -&amp;gt; S_RAFK[2, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k2 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_RAFP[3, 1] -&amp;gt; RAFP + K[3, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k3 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_K[2, 0, 3, 1] -&amp;gt; K[2, 1] + K[3,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k3 = 0.1&lt;/td&gt;
+        &lt;td&gt;S[0, 0, 1] -&amp;gt; S[0, 1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k3 = 0.1&lt;/td&gt;
+        &lt;td&gt;S[-1, 0, 1] -&amp;gt; S[-1, 1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k3 = 0.1&lt;/td&gt;
+        &lt;td&gt;S[1, 0, 1] -&amp;gt; S[1, 1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k3 = 0.1&lt;/td&gt;
+        &lt;td&gt;S[2, 0, 1] -&amp;gt; S[2, 1, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k4 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_MEKP[2, 1] -&amp;gt; MEKP + K[2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k5 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_K[2, 1, 3, 1] -&amp;gt; K[2, 2] + K[3,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k5a = 0.1&lt;/td&gt;
+        &lt;td&gt;S[0, 1, 1] -&amp;gt; S[0, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k5a = 0.1&lt;/td&gt;
+        &lt;td&gt;S[-1, 1, 1] -&amp;gt; S[-1, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k5a = 0.1&lt;/td&gt;
+        &lt;td&gt;S[1, 1, 1] -&amp;gt; S[1, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k5a = 0.1&lt;/td&gt;
+        &lt;td&gt;S[2, 1, 1] -&amp;gt; S[2, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k6 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_MEKP[2, 2] -&amp;gt; MEKP + K[2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k7 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_K[1, 0, 2, 2] -&amp;gt; K[1, 1] + K[2,
+							 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k7 = 0.1&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 0] -&amp;gt; S[1, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k7 = 0.1&lt;/td&gt;
+        &lt;td&gt;S[0, 2, -1] -&amp;gt; S[1, 2, -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k7 = 0.1&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 1] -&amp;gt; S[1, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k8 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_MAPKP[1, 1] -&amp;gt; MAPKP + K[1, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k9 = 0.1&lt;/td&gt;
+        &lt;td&gt;K_K[1, 1, 2, 2] -&amp;gt; K[1, 2] + K[2,
+							 2]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k9a = 0.1&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 0] -&amp;gt; S[2, 2, 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k9a = 0.1&lt;/td&gt;
+        &lt;td&gt;S[1, 2, -1] -&amp;gt; S[2, 2, -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;k9a = 0.1&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 1] -&amp;gt; S[2, 2, 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 0, 0] -&amp;gt; K[1, 0] + S[-1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 0, 0] -&amp;gt; K[2, 0] + S[0, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 0, 0] -&amp;gt; K[3, 0] + S[0, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 0, -1] -&amp;gt; K[1, 0] + S[-1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 0, 1] -&amp;gt; K[1, 0] + S[-1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 0, -1] -&amp;gt; K[2, 0] + S[0, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 0, 1] -&amp;gt; K[2, 0] + S[0, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, -1, 0] -&amp;gt; K[1, 0] + S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 1, 0] -&amp;gt; K[1, 0] + S[-1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, -1, 0] -&amp;gt; K[3, 0] + S[0, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 1, 0] -&amp;gt; K[3, 0] + S[0, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, -1, -1] -&amp;gt; K[1, 0] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, -1, 1] -&amp;gt; K[1, 0] + S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 1, -1] -&amp;gt; K[1, 0] + S[-1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 1, 1] -&amp;gt; K[1, 0] + S[-1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 0] -&amp;gt; K[1, 0] + S[-1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 0] -&amp;gt; K[3, 0] + S[0, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 2, -1] -&amp;gt; K[1, 0] + S[-1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 1] -&amp;gt; K[1, 0] + S[-1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[-1, 0, 0] -&amp;gt; K[2, 0] + S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[1, 0, 0] -&amp;gt; K[2, 0] + S[1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[-1, 0, 0] -&amp;gt; K[3, 0] + S[-1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[1, 0, 0] -&amp;gt; K[3, 0] + S[1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[-1, 0, -1] -&amp;gt; K[2, 0] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[-1, 0, 1] -&amp;gt; K[2, 0] + S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[1, 0, -1] -&amp;gt; K[2, 0] + S[1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[1, 0, 1] -&amp;gt; K[2, 0] + S[1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[-1, -1, 0] -&amp;gt; K[3, 0] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[-1, 1, 0] -&amp;gt; K[3, 0] + S[-1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[1, -1, 0] -&amp;gt; K[3, 0] + S[1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[1, 1, 0] -&amp;gt; K[3, 0] + S[1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[-1, 2, 0] -&amp;gt; K[3, 0] + S[-1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 0] -&amp;gt; K[3, 0] + S[1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[2, 0, 0] -&amp;gt; K[2, 0] + S[2, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[2, 0, 0] -&amp;gt; K[3, 0] + S[2, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[2, 0, -1] -&amp;gt; K[2, 0] + S[2, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[2, 0, 1] -&amp;gt; K[2, 0] + S[2, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[2, -1, 0] -&amp;gt; K[3, 0] + S[2, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[2, 1, 0] -&amp;gt; K[3, 0] + S[2, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;koff = 0.5&lt;/td&gt;
+        &lt;td&gt;S[2, 2, 0] -&amp;gt; K[3, 0] + S[2, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 0, 0] -&amp;gt; S[0, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 0, -1] -&amp;gt; S[0, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 0, 1] -&amp;gt; S[0, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, -1, 0] -&amp;gt; S[0, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 1, 0] -&amp;gt; S[0, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, -1, -1] -&amp;gt; S[0, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, -1, 1] -&amp;gt; S[0, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 1, -1] -&amp;gt; S[0, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 1, 1] -&amp;gt; S[0, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 2, 0] -&amp;gt; S[0, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 2, -1] -&amp;gt; S[0, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[1, 0] + S[-1, 2, 1] -&amp;gt; S[0, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[0, -1, 0] -&amp;gt; S[0, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[0, -1, -1] -&amp;gt; S[0, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[0, -1, 1] -&amp;gt; S[0, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[-1, -1, 0] -&amp;gt; S[-1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[1, -1, 0] -&amp;gt; S[1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[-1, -1, -1] -&amp;gt; S[-1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[-1, -1, 1] -&amp;gt; S[-1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[1, -1, -1] -&amp;gt; S[1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[1, -1, 1] -&amp;gt; S[1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[2, -1, 0] -&amp;gt; S[2, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[2, -1, -1] -&amp;gt; S[2, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[2, 0] + S[2, -1, 1] -&amp;gt; S[2, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[0, 0, -1] -&amp;gt; S[0, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[0, -1, -1] -&amp;gt; S[0, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[0, 1, -1] -&amp;gt; S[0, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[0, 2, -1] -&amp;gt; S[0, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[-1, 0, -1] -&amp;gt; S[-1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[1, 0, -1] -&amp;gt; S[1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[-1, -1, -1] -&amp;gt; S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[-1, 1, -1] -&amp;gt; S[-1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[1, -1, -1] -&amp;gt; S[1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[1, 1, -1] -&amp;gt; S[1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[-1, 2, -1] -&amp;gt; S[-1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[1, 2, -1] -&amp;gt; S[1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[2, 0, -1] -&amp;gt; S[2, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[2, -1, -1] -&amp;gt; S[2, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[2, 1, -1] -&amp;gt; S[2, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kon = 10&lt;/td&gt;
+        &lt;td&gt;K[3, 0] + S[2, 2, -1] -&amp;gt; S[2, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 0, 1] -&amp;gt; K[3, 1] + S[0, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 1, 0] -&amp;gt; K[2, 1] + S[0, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 1, -1] -&amp;gt; K[2, 1] + S[0, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 1, 1] -&amp;gt; K[2, 1] + S[0, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, -1, 1] -&amp;gt; K[3, 1] + S[0, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 1, 1] -&amp;gt; K[3, 1] + S[0, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 0] -&amp;gt; K[2, 2] + S[0, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 2, -1] -&amp;gt; K[2, 2] + S[0, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 1] -&amp;gt; K[2, 2] + S[0, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[0, 2, 1] -&amp;gt; K[3, 1] + S[0, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 0, 0] -&amp;gt; K[1, 1] + S[-1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 0, -1] -&amp;gt; K[1, 1] + S[-1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 0, 1] -&amp;gt; K[1, 1] + S[-1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 0, 1] -&amp;gt; K[3, 1] + S[-1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 0, 1] -&amp;gt; K[3, 1] + S[1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, -1, 0] -&amp;gt; K[1, 1] + S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 1, 0] -&amp;gt; K[1, 1] + S[-1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 1, 0] -&amp;gt; K[2, 1] + S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 1, 0] -&amp;gt; K[2, 1] + S[1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, -1, -1] -&amp;gt; K[1, 1] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, -1, 1] -&amp;gt; K[1, 1] + S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 1, -1] -&amp;gt; K[1, 1] + S[-1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 1, 1] -&amp;gt; K[1, 1] + S[-1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 1, -1] -&amp;gt; K[2, 1] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 1, 1] -&amp;gt; K[2, 1] + S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 1, -1] -&amp;gt; K[2, 1] + S[1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 1, 1] -&amp;gt; K[2, 1] + S[1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, -1, 1] -&amp;gt; K[3, 1] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 1, 1] -&amp;gt; K[3, 1] + S[-1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, -1, 1] -&amp;gt; K[3, 1] + S[1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 1, 1] -&amp;gt; K[3, 1] + S[1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 0] -&amp;gt; K[1, 1] + S[-1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 2, 0] -&amp;gt; K[2, 2] + S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 0] -&amp;gt; K[2, 2] + S[1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 2, -1] -&amp;gt; K[1, 1] + S[-1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 1] -&amp;gt; K[1, 1] + S[-1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 2, -1] -&amp;gt; K[2, 2] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 2, 1] -&amp;gt; K[2, 2] + S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 2, -1] -&amp;gt; K[2, 2] + S[1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 1] -&amp;gt; K[2, 2] + S[1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[-1, 2, 1] -&amp;gt; K[3, 1] + S[-1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[1, 2, 1] -&amp;gt; K[3, 1] + S[1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 0, 0] -&amp;gt; K[1, 2] + S[-1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 0, -1] -&amp;gt; K[1, 2] + S[-1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 0, 1] -&amp;gt; K[1, 2] + S[-1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 0, 1] -&amp;gt; K[3, 1] + S[2, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, -1, 0] -&amp;gt; K[1, 2] + S[-1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 1, 0] -&amp;gt; K[1, 2] + S[-1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 1, 0] -&amp;gt; K[2, 1] + S[2, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, -1, -1] -&amp;gt; K[1, 2] + S[-1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, -1, 1] -&amp;gt; K[1, 2] + S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 1, -1] -&amp;gt; K[1, 2] + S[-1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 1, 1] -&amp;gt; K[1, 2] + S[-1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 1, -1] -&amp;gt; K[2, 1] + S[2, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 1, 1] -&amp;gt; K[2, 1] + S[2, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, -1, 1] -&amp;gt; K[3, 1] + S[2, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 1, 1] -&amp;gt; K[3, 1] + S[2, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 2, 0] -&amp;gt; K[1, 2] + S[-1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 2, 0] -&amp;gt; K[2, 2] + S[2, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 2, -1] -&amp;gt; K[1, 2] + S[-1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 2, 1] -&amp;gt; K[1, 2] + S[-1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 2, -1] -&amp;gt; K[2, 2] + S[2, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 2, 1] -&amp;gt; K[2, 2] + S[2, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpoff = 0.05&lt;/td&gt;
+        &lt;td&gt;S[2, 2, 1] -&amp;gt; K[3, 1] + S[2, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 0, 0] -&amp;gt; S[1, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 0, -1] -&amp;gt; S[1, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 0, 1] -&amp;gt; S[1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, -1, 0] -&amp;gt; S[1, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 1, 0] -&amp;gt; S[1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, -1, -1] -&amp;gt; S[1, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, -1, 1] -&amp;gt; S[1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 1, -1] -&amp;gt; S[1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 1, 1] -&amp;gt; S[1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 2, 0] -&amp;gt; S[1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 2, -1] -&amp;gt; S[1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 1] + S[-1, 2, 1] -&amp;gt; S[1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 0, 0] -&amp;gt; S[2, 0,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 0, -1] -&amp;gt; S[2, 0,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 0, 1] -&amp;gt; S[2, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, -1, 0] -&amp;gt; S[2, -1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 1, 0] -&amp;gt; S[2, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, -1, -1] -&amp;gt; S[2, -1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, -1, 1] -&amp;gt; S[2, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 1, -1] -&amp;gt; S[2, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 1, 1] -&amp;gt; S[2, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 2, 0] -&amp;gt; S[2, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 2, -1] -&amp;gt; S[2, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[1, 2] + S[-1, 2, 1] -&amp;gt; S[2, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[0, -1, 0] -&amp;gt; S[0, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[0, -1, -1] -&amp;gt; S[0, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[0, -1, 1] -&amp;gt; S[0, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[-1, -1, 0] -&amp;gt; S[-1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[1, -1, 0] -&amp;gt; S[1, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[-1, -1, -1] -&amp;gt; S[-1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[-1, -1, 1] -&amp;gt; S[-1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[1, -1, -1] -&amp;gt; S[1, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[1, -1, 1] -&amp;gt; S[1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[2, -1, 0] -&amp;gt; S[2, 1,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[2, -1, -1] -&amp;gt; S[2, 1,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 1] + S[2, -1, 1] -&amp;gt; S[2, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[0, -1, 0] -&amp;gt; S[0, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[0, -1, -1] -&amp;gt; S[0, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[0, -1, 1] -&amp;gt; S[0, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[-1, -1, 0] -&amp;gt; S[-1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[1, -1, 0] -&amp;gt; S[1, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[-1, -1, -1] -&amp;gt; S[-1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[-1, -1, 1] -&amp;gt; S[-1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[1, -1, -1] -&amp;gt; S[1, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[1, -1, 1] -&amp;gt; S[1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[2, -1, 0] -&amp;gt; S[2, 2,
+							 0]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[2, -1, -1] -&amp;gt; S[2, 2,
+							 -1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[2, 2] + S[2, -1, 1] -&amp;gt; S[2, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[0, 0, -1] -&amp;gt; S[0, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[0, -1, -1] -&amp;gt; S[0, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[0, 1, -1] -&amp;gt; S[0, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[0, 2, -1] -&amp;gt; S[0, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[-1, 0, -1] -&amp;gt; S[-1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[1, 0, -1] -&amp;gt; S[1, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[-1, -1, -1] -&amp;gt; S[-1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[-1, 1, -1] -&amp;gt; S[-1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[1, -1, -1] -&amp;gt; S[1, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[1, 1, -1] -&amp;gt; S[1, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[-1, 2, -1] -&amp;gt; S[-1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[1, 2, -1] -&amp;gt; S[1, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[2, 0, -1] -&amp;gt; S[2, 0,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[2, -1, -1] -&amp;gt; S[2, -1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[2, 1, -1] -&amp;gt; S[2, 1,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;kpon = 0&lt;/td&gt;
+        &lt;td&gt;K[3, 1] + S[2, 2, -1] -&amp;gt; S[2, 2,
+							 1]&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;table border="0" cellpadding="2" cellspacing="0"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th align="left" bgcolor="#eeeeee" valign="middle"&gt;Variable&lt;/th&gt;
+        &lt;th align="left" bgcolor="#eeeeee" valign="middle"&gt;IC  &lt;/th&gt;
+        &lt;th align="left" bgcolor="#eeeeee" valign="middle"&gt;ODE&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;MAPKP&lt;/td&gt;
+        &lt;td&gt;0.3&lt;/td&gt;
+        &lt;td&gt;MAPKP&amp;apos;[t] == -(a8*MAPKP[t]*K[1, 1][t]) - a10*MAPKP[
 							t]*K[1, 2][t] + d8*K_MAPKP[1, 1][t] + k8*K_MAPKP[
 							1, 1][t] + d10*K_MAPKP[1, 2][t] + k10*K_MAPKP[1,
-							 2][t]</td>
-      </tr>
-      <tr>
-        <td>MEKP</td>
-        <td>0.2</td>
-        <td>MEKP&apos;[t] == -(a4*MEKP[t]*K[2, 1][t]) - a6*MEKP[t]*
+							 2][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;MEKP&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;MEKP&amp;apos;[t] == -(a4*MEKP[t]*K[2, 1][t]) - a6*MEKP[t]*
 							K[2, 2][t] + d4*K_MEKP[2, 1][t] + k4*K_MEKP[2,
 							 1][t] + d6*K_MEKP[2, 2][t] + k6*K_MEKP[2, 2]
-							[t]</td>
-      </tr>
-      <tr>
-        <td>RAFK</td>
-        <td>0.1</td>
-        <td>RAFK&apos;[t] == -(a1*RAFK[t]*K[3, 0][t]) + d1*K_RAFK[3,
+							[t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;RAFK&lt;/td&gt;
+        &lt;td&gt;0.1&lt;/td&gt;
+        &lt;td&gt;RAFK&amp;apos;[t] == -(a1*RAFK[t]*K[3, 0][t]) + d1*K_RAFK[3,
 							 0][t] + k1*K_RAFK[3, 0][t] - k1a*RAFK[t]*S[-1,
 							 -1, 0][t] - k1a*RAFK[t]*S[-1, 0, 0][t] -
 							 k1a*RAFK[t]*S[-1, 1, 0][t] - k1a*RAFK[t]*S[-1, 2,
@@ -1544,18 +1548,18 @@
 							 d1a*S_RAFK[2, 0, 0][t] + k1*S_RAFK[2, 0, 0][
 							t] + d1a*S_RAFK[2, 1, 0][t] + k1*S_RAFK[2, 1,
 							 0][t] + d1a*S_RAFK[2, 2, 0][t] + k1*S_RAFK[
-							2, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>RAFP</td>
-        <td>0.3</td>
-        <td>RAFP&apos;[t] == -(a2*RAFP[t]*K[3, 1][t]) + d2*K_RAFP[3,
-							 1][t] + k2*K_RAFP[3, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K[1, 0]</td>
-        <td>0.4</td>
-        <td>(K[1, 0])&apos;[t] == -(a7*K[1, 0][t]*K[2, 2][t]) +
+							2, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;RAFP&lt;/td&gt;
+        &lt;td&gt;0.3&lt;/td&gt;
+        &lt;td&gt;RAFP&amp;apos;[t] == -(a2*RAFP[t]*K[3, 1][t]) + d2*K_RAFP[3,
+							 1][t] + k2*K_RAFP[3, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[1, 0]&lt;/td&gt;
+        &lt;td&gt;0.4&lt;/td&gt;
+        &lt;td&gt;(K[1, 0])&amp;apos;[t] == -(a7*K[1, 0][t]*K[2, 2][t]) +
 							 d7*K_K[1, 0, 2, 2][t] + k8*K_MAPKP[1, 1][t]
 							 - kon*K[1, 0][t]*S[-1, -1, -1][t] - kon*K[1,
 							 0][t]*S[-1, -1, 0][t] - kon*K[1, 0][t]*S[-1,
@@ -1572,12 +1576,12 @@
 							S[0, 0, 1][t] + koff*S[0, 1, -1][t] +
 							 koff*S[0, 1, 0][t] + koff*S[0, 1, 1][t]
 							 + koff*S[0, 2, -1][t] + koff*S[0, 2, 0]
-							[t] + koff*S[0, 2, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K[1, 1]</td>
-        <td>0</td>
-        <td>(K[1, 1])&apos;[t] == -(a8*MAPKP[t]*K[1, 1][t]) -
+							[t] + koff*S[0, 2, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K[1, 1])&amp;apos;[t] == -(a8*MAPKP[t]*K[1, 1][t]) -
 							 a9*K[1, 1][t]*K[2, 2][t] + k7*K_K[1, 0, 2,
 							 2][t] + d9*K_K[1, 1, 2, 2][t] + d8*
 							K_MAPKP[1, 1][t] + k10*K_MAPKP[1, 2][t] - kpon*K[
@@ -1596,12 +1600,12 @@
 							 1][t] + kpoff*S[1, 1, -1][t] + kpoff*S[1,
 							 1, 0][t] + kpoff*S[1, 1, 1][t] + kpoff*
 							S[1, 2, -1][t] + kpoff*S[1, 2, 0][t] +
-							 kpoff*S[1, 2, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K[1, 2]</td>
-        <td>0</td>
-        <td>(K[1, 2])&apos;[t] == -(a10*MAPKP[t]*K[1, 2][t]) +
+							 kpoff*S[1, 2, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[1, 2]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K[1, 2])&amp;apos;[t] == -(a10*MAPKP[t]*K[1, 2][t]) +
 							 k9*K_K[1, 1, 2, 2][t] + d10*K_MAPKP[1, 2][t]
 							 - kpon*K[1, 2][t]*S[-1, -1, -1][t] - kpon*K[
 							1, 2][t]*S[-1, -1, 0][t] - kpon*K[1, 2][t]*S[-1,
@@ -1618,12 +1622,12 @@
 							 kpoff*S[2, 0, 1][t] + kpoff*S[2, 1, -1][t]
 							 + kpoff*S[2, 1, 0][t] + kpoff*S[2, 1,
 							 1][t] + kpoff*S[2, 2, -1][t] + kpoff*S[2,
-							 2, 0][t] + kpoff*S[2, 2, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K[2, 0]</td>
-        <td>0.2</td>
-        <td>(K[2, 0])&apos;[t] == -(a3*K[2, 0][t]*K[3, 1][t]) +
+							 2, 0][t] + kpoff*S[2, 2, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[2, 0]&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;(K[2, 0])&amp;apos;[t] == -(a3*K[2, 0][t]*K[3, 1][t]) +
 							 d3*K_K[2, 0, 3, 1][t] + k4*K_MEKP[2, 1][t]
 							 - kon*K[2, 0][t]*S[-1, -1, -1][t] - kon*K[2,
 							 0][t]*S[-1, -1, 0][t] - kon*K[2, 0][t]*S[-1,
@@ -1640,12 +1644,12 @@
 							2, -1, -1][t] - kon*K[2, 0][t]*S[2, -1, 0][t]
 							 - kon*K[2, 0][t]*S[2, -1, 1][t] + koff*S[2,
 							 0, -1][t] + koff*S[2, 0, 0][t] + koff*
-							S[2, 0, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K[2, 1]</td>
-        <td>0</td>
-        <td>(K[2, 1])&apos;[t] == -(a4*MEKP[t]*K[2, 1][t]) -
+							S[2, 0, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[2, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K[2, 1])&amp;apos;[t] == -(a4*MEKP[t]*K[2, 1][t]) -
 							 a5*K[2, 1][t]*K[3, 1][t] + k3*K_K[2, 0, 3,
 							 1][t] + d5*K_K[2, 1, 3, 1][t] + d4*
 							K_MEKP[2, 1][t] + k6*K_MEKP[2, 2][t] - kpon*K[2,
@@ -1664,12 +1668,12 @@
 							 1][t]*S[2, -1, -1][t] - kpon*K[2, 1][t]*S[2,
 							 -1, 0][t] - kpon*K[2, 1][t]*S[2, -1, 1][t]
 							 + kpoff*S[2, 1, -1][t] + kpoff*S[2, 1,
-							 0][t] + kpoff*S[2, 1, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K[2, 2]</td>
-        <td>0</td>
-        <td>(K[2, 2])&apos;[t] == -(a6*MEKP[t]*K[2, 2][t]) -
+							 0][t] + kpoff*S[2, 1, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[2, 2]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K[2, 2])&amp;apos;[t] == -(a6*MEKP[t]*K[2, 2][t]) -
 							 a7*K[1, 0][t]*K[2, 2][t] - a9*K[1, 1][t]*K[2,
 							 2][t] + d7*K_K[1, 0, 2, 2][t] + k7*K_K[
 							1, 0, 2, 2][t] + d9*K_K[1, 1, 2, 2][t]
@@ -1690,12 +1694,12 @@
 							 2][t]*S[2, -1, -1][t] - kpon*K[2, 2][t]*S[2,
 							 -1, 0][t] - kpon*K[2, 2][t]*S[2, -1, 1][t]
 							 + kpoff*S[2, 2, -1][t] + kpoff*S[2, 2,
-							 0][t] + kpoff*S[2, 2, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K[3, 0]</td>
-        <td>0.3</td>
-        <td>(K[3, 0])&apos;[t] == -(a1*RAFK[t]*K[3, 0][t]) +
+							 0][t] + kpoff*S[2, 2, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[3, 0]&lt;/td&gt;
+        &lt;td&gt;0.3&lt;/td&gt;
+        &lt;td&gt;(K[3, 0])&amp;apos;[t] == -(a1*RAFK[t]*K[3, 0][t]) +
 							 d1*K_RAFK[3, 0][t] + k2*K_RAFP[3, 1][t] -
 							 kon*K[3, 0][t]*S[-1, -1, -1][t] + koff*S[-1,
 							 -1, 0][t] - kon*K[3, 0][t]*S[-1, 0, -1][t]
@@ -1716,12 +1720,12 @@
 							 -1, 0][t] - kon*K[3, 0][t]*S[2, 0, -1][t]
 							 + koff*S[2, 0, 0][t] - kon*K[3, 0][t]*S[2,
 							 1, -1][t] + koff*S[2, 1, 0][t] - kon*K[
-							3, 0][t]*S[2, 2, -1][t] + koff*S[2, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>K[3, 1]</td>
-        <td>0</td>
-        <td>(K[3, 1])&apos;[t] == -(a2*RAFP[t]*K[3, 1][t]) -
+							3, 0][t]*S[2, 2, -1][t] + koff*S[2, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K[3, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K[3, 1])&amp;apos;[t] == -(a2*RAFP[t]*K[3, 1][t]) -
 							 a3*K[2, 0][t]*K[3, 1][t] - a5*K[2, 1][t]*K[3,
 							 1][t] + d3*K_K[2, 0, 3, 1][t] + k3*K_K[
 							2, 0, 3, 1][t] + d5*K_K[2, 1, 3, 1][t]
@@ -1747,76 +1751,76 @@
 							2, 0, -1][t] + kpoff*S[2, 0, 1][t] -
 							 kpon*K[3, 1][t]*S[2, 1, -1][t] + kpoff*S[2,
 							 1, 1][t] - kpon*K[3, 1][t]*S[2, 2, -1][t]
-							 + kpoff*S[2, 2, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K_K[1, 0, 2, 2]</td>
-        <td>0</td>
-        <td>(K_K[1, 0, 2, 2])&apos;[t] == a7*K[1, 0][t]*K[2,
+							 + kpoff*S[2, 2, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_K[1, 0, 2, 2]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_K[1, 0, 2, 2])&amp;apos;[t] == a7*K[1, 0][t]*K[2,
 							 2][t] - d7*K_K[1, 0, 2, 2][t] - k7*K_K[
-							1, 0, 2, 2][t]</td>
-      </tr>
-      <tr>
-        <td>K_K[1, 1, 2, 2]</td>
-        <td>0</td>
-        <td>(K_K[1, 1, 2, 2])&apos;[t] == a9*K[1, 1][t]*K[2,
+							1, 0, 2, 2][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_K[1, 1, 2, 2]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_K[1, 1, 2, 2])&amp;apos;[t] == a9*K[1, 1][t]*K[2,
 							 2][t] - d9*K_K[1, 1, 2, 2][t] - k9*K_K[
-							1, 1, 2, 2][t]</td>
-      </tr>
-      <tr>
-        <td>K_K[2, 0, 3, 1]</td>
-        <td>0</td>
-        <td>(K_K[2, 0, 3, 1])&apos;[t] == a3*K[2, 0][t]*K[3,
+							1, 1, 2, 2][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_K[2, 0, 3, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_K[2, 0, 3, 1])&amp;apos;[t] == a3*K[2, 0][t]*K[3,
 							 1][t] - d3*K_K[2, 0, 3, 1][t] - k3*K_K[
-							2, 0, 3, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K_K[2, 1, 3, 1]</td>
-        <td>0</td>
-        <td>(K_K[2, 1, 3, 1])&apos;[t] == a5*K[2, 1][t]*K[3,
+							2, 0, 3, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_K[2, 1, 3, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_K[2, 1, 3, 1])&amp;apos;[t] == a5*K[2, 1][t]*K[3,
 							 1][t] - d5*K_K[2, 1, 3, 1][t] - k5*K_K[
-							2, 1, 3, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K_MAPKP[1, 1]</td>
-        <td>0</td>
-        <td>(K_MAPKP[1, 1])&apos;[t] == a8*MAPKP[t]*K[1, 1][t] -
-							 d8*K_MAPKP[1, 1][t] - k8*K_MAPKP[1, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K_MAPKP[1, 2]</td>
-        <td>0</td>
-        <td>(K_MAPKP[1, 2])&apos;[t] == a10*MAPKP[t]*K[1, 2][t] -
-							 d10*K_MAPKP[1, 2][t] - k10*K_MAPKP[1, 2][t]</td>
-      </tr>
-      <tr>
-        <td>K_MEKP[2, 1]</td>
-        <td>0</td>
-        <td>(K_MEKP[2, 1])&apos;[t] == a4*MEKP[t]*K[2, 1][t] -
-							 d4*K_MEKP[2, 1][t] - k4*K_MEKP[2, 1][t]</td>
-      </tr>
-      <tr>
-        <td>K_MEKP[2, 2]</td>
-        <td>0</td>
-        <td>(K_MEKP[2, 2])&apos;[t] == a6*MEKP[t]*K[2, 2][t] -
-							 d6*K_MEKP[2, 2][t] - k6*K_MEKP[2, 2][t]</td>
-      </tr>
-      <tr>
-        <td>K_RAFK[3, 0]</td>
-        <td>0</td>
-        <td>(K_RAFK[3, 0])&apos;[t] == a1*RAFK[t]*K[3, 0][t] -
-							 d1*K_RAFK[3, 0][t] - k1*K_RAFK[3, 0][t]</td>
-      </tr>
-      <tr>
-        <td>K_RAFP[3, 1]</td>
-        <td>0</td>
-        <td>(K_RAFP[3, 1])&apos;[t] == a2*RAFP[t]*K[3, 1][t] -
-							 d2*K_RAFP[3, 1][t] - k2*K_RAFP[3, 1][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, -1, -1]</td>
-        <td>0.1</td>
-        <td>(S[-1, -1, -1])&apos;[t] == -(kon*K[1, 0][t]*S[-1,
+							2, 1, 3, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_MAPKP[1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_MAPKP[1, 1])&amp;apos;[t] == a8*MAPKP[t]*K[1, 1][t] -
+							 d8*K_MAPKP[1, 1][t] - k8*K_MAPKP[1, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_MAPKP[1, 2]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_MAPKP[1, 2])&amp;apos;[t] == a10*MAPKP[t]*K[1, 2][t] -
+							 d10*K_MAPKP[1, 2][t] - k10*K_MAPKP[1, 2][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_MEKP[2, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_MEKP[2, 1])&amp;apos;[t] == a4*MEKP[t]*K[2, 1][t] -
+							 d4*K_MEKP[2, 1][t] - k4*K_MEKP[2, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_MEKP[2, 2]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_MEKP[2, 2])&amp;apos;[t] == a6*MEKP[t]*K[2, 2][t] -
+							 d6*K_MEKP[2, 2][t] - k6*K_MEKP[2, 2][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_RAFK[3, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_RAFK[3, 0])&amp;apos;[t] == a1*RAFK[t]*K[3, 0][t] -
+							 d1*K_RAFK[3, 0][t] - k1*K_RAFK[3, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;K_RAFP[3, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(K_RAFP[3, 1])&amp;apos;[t] == a2*RAFP[t]*K[3, 1][t] -
+							 d2*K_RAFP[3, 1][t] - k2*K_RAFP[3, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, -1, -1]&lt;/td&gt;
+        &lt;td&gt;0.1&lt;/td&gt;
+        &lt;td&gt;(S[-1, -1, -1])&amp;apos;[t] == -(kon*K[1, 0][t]*S[-1,
 							 -1, -1][t]) - kpon*K[1, 1][t]*S[-1, -1, -1][
 							t] - kpon*K[1, 2][t]*S[-1, -1, -1][t] - kon*
 							K[2, 0][t]*S[-1, -1, -1][t] - kpon*K[2, 1][t]*S[-
@@ -1827,12 +1831,12 @@
 							 0, -1][t] + kpoff*S[-1, 1, -1][t] +
 							 kpoff*S[-1, 2, -1][t] + koff*S[0, -1, -1][t]
 							 + kpoff*S[1, -1, -1][t] + kpoff*S[2, -1,
-							 -1][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, -1, 0]</td>
-        <td>0</td>
-        <td>(S[-1, -1, 0])&apos;[t] == kon*K[3, 0][t]*S[-1, -1,
+							 -1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, -1, 0])&amp;apos;[t] == kon*K[3, 0][t]*S[-1, -1,
 							 -1][t] - koff*S[-1, -1, 0][t] - k1a*RAFK[t]*
 							S[-1, -1, 0][t] - kon*K[1, 0][t]*S[-1, -1, 0]
 							[t] - kpon*K[1, 1][t]*S[-1, -1, 0][t] - kpon*
@@ -1842,12 +1846,12 @@
 							1, 0, 0][t] + kpoff*S[-1, 1, 0][t] +
 							 kpoff*S[-1, 2, 0][t] + koff*S[0, -1, 0][t]
 							 + kpoff*S[1, -1, 0][t] + kpoff*S[2, -1,
-							 0][t] + d1a*S_RAFK[-1, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, -1, 1]</td>
-        <td>0</td>
-        <td>(S[-1, -1, 1])&apos;[t] == kpon*K[3, 1][t]*S[-1, -
+							 0][t] + d1a*S_RAFK[-1, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, -1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, -1, 1])&amp;apos;[t] == kpon*K[3, 1][t]*S[-1, -
 							1, -1][t] - kpoff*S[-1, -1, 1][t] - kon*K[1,
 							 0][t]*S[-1, -1, 1][t] - kpon*K[1, 1][t]*S[-1,
 							 -1, 1][t] - kpon*K[1, 2][t]*S[-1, -1, 1][t]
@@ -1857,12 +1861,12 @@
 							 kpoff*S[-1, 1, 1][t] + kpoff*S[-1, 2, 1][t]
 							 + koff*S[0, -1, 1][t] + kpoff*S[1, -1,
 							 1][t] + kpoff*S[2, -1, 1][t] + k1*S_RAFK[-1,
-							 -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 0, -1]</td>
-        <td>0</td>
-        <td>(S[-1, 0, -1])&apos;[t] == kon*K[2, 0][t]*S[-1, -1,
+							 -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 0, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 0, -1])&amp;apos;[t] == kon*K[2, 0][t]*S[-1, -1,
 							 -1][t] - koff*S[-1, 0, -1][t] - kon*K[1,
 							 0][t]*S[-1, 0, -1][t] - kpon*K[1, 1][t]*S[-1,
 							 0, -1][t] - kpon*K[1, 2][t]*S[-1, 0, -1][t]
@@ -1870,36 +1874,36 @@
 							 1][t]*S[-1, 0, -1][t] + koff*S[-1, 0, 0][t]
 							 + kpoff*S[-1, 0, 1][t] + koff*S[0, 0, -
 							1][t] + kpoff*S[1, 0, -1][t] + kpoff*S[2, 0,
-							 -1][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 0, 0]</td>
-        <td>0</td>
-        <td>(S[-1, 0, 0])&apos;[t] == kon*K[2, 0][t]*S[-1, -1,
+							 -1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 0, 0])&amp;apos;[t] == kon*K[2, 0][t]*S[-1, -1,
 							 0][t] + kon*K[3, 0][t]*S[-1, 0, -1][t] -
 							 2*koff*S[-1, 0, 0][t] - k1a*RAFK[t]*S[-1, 0,
 							 0][t] - kon*K[1, 0][t]*S[-1, 0, 0][t] -
 							 kpon*K[1, 1][t]*S[-1, 0, 0][t] - kpon*K[1,
 							 2][t]*S[-1, 0, 0][t] + koff*S[0, 0, 0][t]
 							 + kpoff*S[1, 0, 0][t] + kpoff*S[2, 0,
-							 0][t] + d1a*S_RAFK[-1, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 0, 1]</td>
-        <td>0</td>
-        <td>(S[-1, 0, 1])&apos;[t] == kon*K[2, 0][t]*S[-1, -1,
+							 0][t] + d1a*S_RAFK[-1, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 0, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 0, 1])&amp;apos;[t] == kon*K[2, 0][t]*S[-1, -1,
 							 1][t] + kpon*K[3, 1][t]*S[-1, 0, -1][t] -
 							 k3*S[-1, 0, 1][t] - koff*S[-1, 0, 1][t]
 							 - kpoff*S[-1, 0, 1][t] - kon*K[1, 0][t]*S[-
 							1, 0, 1][t] - kpon*K[1, 1][t]*S[-1, 0, 1][t]
 							 - kpon*K[1, 2][t]*S[-1, 0, 1][t] + koff*S[0,
 							 0, 1][t] + kpoff*S[1, 0, 1][t] + kpoff*
-							S[2, 0, 1][t] + k1*S_RAFK[-1, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 1, -1]</td>
-        <td>0</td>
-        <td>(S[-1, 1, -1])&apos;[t] == kpon*K[2, 1][t]*S[-1, -
+							S[2, 0, 1][t] + k1*S_RAFK[-1, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 1, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 1, -1])&amp;apos;[t] == kpon*K[2, 1][t]*S[-1, -
 							1, -1][t] - kpoff*S[-1, 1, -1][t] - kon*K[1,
 							 0][t]*S[-1, 1, -1][t] - kpon*K[1, 1][t]*S[-1,
 							 1, -1][t] - kpon*K[1, 2][t]*S[-1, 1, -1][t]
@@ -1907,12 +1911,12 @@
 							 1][t]*S[-1, 1, -1][t] + koff*S[-1, 1, 0][t]
 							 + kpoff*S[-1, 1, 1][t] + koff*S[0, 1, -
 							1][t] + kpoff*S[1, 1, -1][t] + kpoff*S[2, 1,
-							 -1][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 1, 0]</td>
-        <td>0</td>
-        <td>(S[-1, 1, 0])&apos;[t] == kpon*K[2, 1][t]*S[-1, -1,
+							 -1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 1, 0])&amp;apos;[t] == kpon*K[2, 1][t]*S[-1, -1,
 							 0][t] + kon*K[3, 0][t]*S[-1, 1, -1][t] -
 							 koff*S[-1, 1, 0][t] - kpoff*S[-1, 1, 0][t]
 							 - k1a*RAFK[t]*S[-1, 1, 0][t] - kon*K[1, 0][
@@ -1920,24 +1924,24 @@
 							 0][t] - kpon*K[1, 2][t]*S[-1, 1, 0][t] +
 							 koff*S[0, 1, 0][t] + kpoff*S[1, 1, 0][t]
 							 + kpoff*S[2, 1, 0][t] + d1a*S_RAFK[-1, 1,
-							 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 1, 1]</td>
-        <td>0</td>
-        <td>(S[-1, 1, 1])&apos;[t] == kpon*K[2, 1][t]*S[-1, -1,
+							 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 1, 1])&amp;apos;[t] == kpon*K[2, 1][t]*S[-1, -1,
 							 1][t] + k3*S[-1, 0, 1][t] + kpon*K[3,
 							 1][t]*S[-1, 1, -1][t] - k5a*S[-1, 1, 1][t]
 							 - 2*kpoff*S[-1, 1, 1][t] - kon*K[1, 0][t]*S[
 							-1, 1, 1][t] - kpon*K[1, 1][t]*S[-1, 1, 1][t]
 							 - kpon*K[1, 2][t]*S[-1, 1, 1][t] + koff*S[0,
 							 1, 1][t] + kpoff*S[1, 1, 1][t] + kpoff*
-							S[2, 1, 1][t] + k1*S_RAFK[-1, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 2, -1]</td>
-        <td>0</td>
-        <td>(S[-1, 2, -1])&apos;[t] == kpon*K[2, 2][t]*S[-1, -
+							S[2, 1, 1][t] + k1*S_RAFK[-1, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 2, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 2, -1])&amp;apos;[t] == kpon*K[2, 2][t]*S[-1, -
 							1, -1][t] - kpoff*S[-1, 2, -1][t] - kon*K[1,
 							 0][t]*S[-1, 2, -1][t] - kpon*K[1, 1][t]*S[-1,
 							 2, -1][t] - kpon*K[1, 2][t]*S[-1, 2, -1][t]
@@ -1945,12 +1949,12 @@
 							 1][t]*S[-1, 2, -1][t] + koff*S[-1, 2, 0][t]
 							 + kpoff*S[-1, 2, 1][t] + koff*S[0, 2, -
 							1][t] + kpoff*S[1, 2, -1][t] + kpoff*S[2, 2,
-							 -1][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 2, 0]</td>
-        <td>0</td>
-        <td>(S[-1, 2, 0])&apos;[t] == kpon*K[2, 2][t]*S[-1, -1,
+							 -1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 2, 0])&amp;apos;[t] == kpon*K[2, 2][t]*S[-1, -1,
 							 0][t] + kon*K[3, 0][t]*S[-1, 2, -1][t] -
 							 koff*S[-1, 2, 0][t] - kpoff*S[-1, 2, 0][t]
 							 - k1a*RAFK[t]*S[-1, 2, 0][t] - kon*K[1, 0][
@@ -1958,24 +1962,24 @@
 							 0][t] - kpon*K[1, 2][t]*S[-1, 2, 0][t] +
 							 koff*S[0, 2, 0][t] + kpoff*S[1, 2, 0][t]
 							 + kpoff*S[2, 2, 0][t] + d1a*S_RAFK[-1, 2,
-							 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[-1, 2, 1]</td>
-        <td>0</td>
-        <td>(S[-1, 2, 1])&apos;[t] == kpon*K[2, 2][t]*S[-1, -1,
+							 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[-1, 2, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[-1, 2, 1])&amp;apos;[t] == kpon*K[2, 2][t]*S[-1, -1,
 							 1][t] + k5a*S[-1, 1, 1][t] + kpon*K[3,
 							 1][t]*S[-1, 2, -1][t] - 2*kpoff*S[-1, 2, 1][
 							t] - kon*K[1, 0][t]*S[-1, 2, 1][t] - kpon*K[
 							1, 1][t]*S[-1, 2, 1][t] - kpon*K[1, 2][t]*S[-1,
 							 2, 1][t] + koff*S[0, 2, 1][t] + kpoff*
 							S[1, 2, 1][t] + kpoff*S[2, 2, 1][t] +
-							 k1*S_RAFK[-1, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, -1, -1]</td>
-        <td>0</td>
-        <td>(S[0, -1, -1])&apos;[t] == kon*K[1, 0][t]*S[-1, -1,
+							 k1*S_RAFK[-1, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, -1, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, -1, -1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, -1,
 							 -1][t] - koff*S[0, -1, -1][t] - kon*K[2,
 							 0][t]*S[0, -1, -1][t] - kpon*K[2, 1][t]*S[0,
 							 -1, -1][t] - kpon*K[2, 2][t]*S[0, -1, -1][t]
@@ -1983,124 +1987,124 @@
 							 1][t]*S[0, -1, -1][t] + koff*S[0, -1, 0][t]
 							 + kpoff*S[0, -1, 1][t] + koff*S[0, 0, -
 							1][t] + kpoff*S[0, 1, -1][t] + kpoff*S[0, 2,
-							 -1][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, -1, 0]</td>
-        <td>0</td>
-        <td>(S[0, -1, 0])&apos;[t] == kon*K[1, 0][t]*S[-1, -1,
+							 -1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, -1, 0])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, -1,
 							 0][t] + kon*K[3, 0][t]*S[0, -1, -1][t] -
 							 2*koff*S[0, -1, 0][t] - k1a*RAFK[t]*S[0, -1,
 							 0][t] - kon*K[2, 0][t]*S[0, -1, 0][t] -
 							 kpon*K[2, 1][t]*S[0, -1, 0][t] - kpon*K[2,
 							 2][t]*S[0, -1, 0][t] + koff*S[0, 0, 0][t]
 							 + kpoff*S[0, 1, 0][t] + kpoff*S[0, 2,
-							 0][t] + d1a*S_RAFK[0, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, -1, 1]</td>
-        <td>0</td>
-        <td>(S[0, -1, 1])&apos;[t] == kon*K[1, 0][t]*S[-1, -1,
+							 0][t] + d1a*S_RAFK[0, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, -1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, -1, 1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, -1,
 							 1][t] + kpon*K[3, 1][t]*S[0, -1, -1][t] -
 							 koff*S[0, -1, 1][t] - kpoff*S[0, -1, 1][t]
 							 - kon*K[2, 0][t]*S[0, -1, 1][t] - kpon*K[2,
 							 1][t]*S[0, -1, 1][t] - kpon*K[2, 2][t]*S[0,
 							 -1, 1][t] + koff*S[0, 0, 1][t] + kpoff*
 							S[0, 1, 1][t] + kpoff*S[0, 2, 1][t] +
-							 k1*S_RAFK[0, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 0, -1]</td>
-        <td>0</td>
-        <td>(S[0, 0, -1])&apos;[t] == kon*K[1, 0][t]*S[-1, 0,
+							 k1*S_RAFK[0, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 0, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 0, -1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 0,
 							 -1][t] + kon*K[2, 0][t]*S[0, -1, -1][t] -
 							 2*koff*S[0, 0, -1][t] - kon*K[3, 0][t]*S[0,
 							 0, -1][t] - kpon*K[3, 1][t]*S[0, 0, -1][t]
 							 + koff*S[0, 0, 0][t] + kpoff*S[0, 0, 1]
-							[t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 0, 0]</td>
-        <td>0</td>
-        <td>(S[0, 0, 0])&apos;[t] == kon*K[1, 0][t]*S[-1, 0,
+							[t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 0, 0])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 0,
 							 0][t] + kon*K[2, 0][t]*S[0, -1, 0][t] +
 							 kon*K[3, 0][t]*S[0, 0, -1][t] - 3*koff*S[0,
 							 0, 0][t] - k1a*RAFK[t]*S[0, 0, 0][t] +
-							 d1a*S_RAFK[0, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 0, 1]</td>
-        <td>0</td>
-        <td>(S[0, 0, 1])&apos;[t] == kon*K[1, 0][t]*S[-1, 0,
+							 d1a*S_RAFK[0, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 0, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 0, 1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 0,
 							 1][t] + kon*K[2, 0][t]*S[0, -1, 1][t] +
 							 kpon*K[3, 1][t]*S[0, 0, -1][t] - k3*S[0, 0,
 							 1][t] - 2*koff*S[0, 0, 1][t] - kpoff*S[0,
-							 0, 1][t] + k1*S_RAFK[0, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 1, -1]</td>
-        <td>0</td>
-        <td>(S[0, 1, -1])&apos;[t] == kon*K[1, 0][t]*S[-1, 1,
+							 0, 1][t] + k1*S_RAFK[0, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 1, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 1, -1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 1,
 							 -1][t] + kpon*K[2, 1][t]*S[0, -1, -1][t] -
 							 koff*S[0, 1, -1][t] - kpoff*S[0, 1, -1][t]
 							 - kon*K[3, 0][t]*S[0, 1, -1][t] - kpon*K[3,
 							 1][t]*S[0, 1, -1][t] + koff*S[0, 1, 0][t]
-							 + kpoff*S[0, 1, 1][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 1, 0]</td>
-        <td>0</td>
-        <td>(S[0, 1, 0])&apos;[t] == kon*K[1, 0][t]*S[-1, 1,
+							 + kpoff*S[0, 1, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 1, 0])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 1,
 							 0][t] + kpon*K[2, 1][t]*S[0, -1, 0][t] +
 							 kon*K[3, 0][t]*S[0, 1, -1][t] - 2*koff*S[0,
 							 1, 0][t] - kpoff*S[0, 1, 0][t] - k1a*
-							RAFK[t]*S[0, 1, 0][t] + d1a*S_RAFK[0, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 1, 1]</td>
-        <td>0</td>
-        <td>(S[0, 1, 1])&apos;[t] == kon*K[1, 0][t]*S[-1, 1,
+							RAFK[t]*S[0, 1, 0][t] + d1a*S_RAFK[0, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 1, 1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 1,
 							 1][t] + kpon*K[2, 1][t]*S[0, -1, 1][t] +
 							 k3*S[0, 0, 1][t] + kpon*K[3, 1][t]*S[0, 1,
 							 -1][t] - k5a*S[0, 1, 1][t] - koff*S[0,
 							 1, 1][t] - 2*kpoff*S[0, 1, 1][t] + k1*
-							S_RAFK[0, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 2, -1]</td>
-        <td>0</td>
-        <td>(S[0, 2, -1])&apos;[t] == kon*K[1, 0][t]*S[-1, 2,
+							S_RAFK[0, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 2, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 2, -1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 2,
 							 -1][t] + kpon*K[2, 2][t]*S[0, -1, -1][t] -
 							 k7*S[0, 2, -1][t] - koff*S[0, 2, -1][t]
 							 - kpoff*S[0, 2, -1][t] - kon*K[3, 0][t]*S[0,
 							 2, -1][t] - kpon*K[3, 1][t]*S[0, 2, -1][t]
 							 + koff*S[0, 2, 0][t] + kpoff*S[0, 2, 1]
-							[t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 2, 0]</td>
-        <td>0</td>
-        <td>(S[0, 2, 0])&apos;[t] == kon*K[1, 0][t]*S[-1, 2,
+							[t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 2, 0])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 2,
 							 0][t] + kpon*K[2, 2][t]*S[0, -1, 0][t] +
 							 kon*K[3, 0][t]*S[0, 2, -1][t] - k7*S[0, 2,
 							 0][t] - 2*koff*S[0, 2, 0][t] - kpoff*S[0,
 							 2, 0][t] - k1a*RAFK[t]*S[0, 2, 0][t] +
-							 d1a*S_RAFK[0, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[0, 2, 1]</td>
-        <td>0</td>
-        <td>(S[0, 2, 1])&apos;[t] == kon*K[1, 0][t]*S[-1, 2,
+							 d1a*S_RAFK[0, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[0, 2, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[0, 2, 1])&amp;apos;[t] == kon*K[1, 0][t]*S[-1, 2,
 							 1][t] + kpon*K[2, 2][t]*S[0, -1, 1][t] +
 							 k5a*S[0, 1, 1][t] + kpon*K[3, 1][t]*S[0, 2,
 							 -1][t] - k7*S[0, 2, 1][t] - koff*S[0,
 							 2, 1][t] - 2*kpoff*S[0, 2, 1][t] + k1*
-							S_RAFK[0, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, -1, -1]</td>
-        <td>0</td>
-        <td>(S[1, -1, -1])&apos;[t] == kpon*K[1, 1][t]*S[-1, -
+							S_RAFK[0, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, -1, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, -1, -1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, -
 							1, -1][t] - kpoff*S[1, -1, -1][t] - kon*K[2,
 							 0][t]*S[1, -1, -1][t] - kpon*K[2, 1][t]*S[1,
 							 -1, -1][t] - kpon*K[2, 2][t]*S[1, -1, -1][t]
@@ -2108,12 +2112,12 @@
 							 1][t]*S[1, -1, -1][t] + koff*S[1, -1, 0][t]
 							 + kpoff*S[1, -1, 1][t] + koff*S[1, 0, -
 							1][t] + kpoff*S[1, 1, -1][t] + kpoff*S[1, 2,
-							 -1][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, -1, 0]</td>
-        <td>0</td>
-        <td>(S[1, -1, 0])&apos;[t] == kpon*K[1, 1][t]*S[-1, -1,
+							 -1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, -1, 0])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, -1,
 							 0][t] + kon*K[3, 0][t]*S[1, -1, -1][t] -
 							 koff*S[1, -1, 0][t] - kpoff*S[1, -1, 0][t]
 							 - k1a*RAFK[t]*S[1, -1, 0][t] - kon*K[2, 0][
@@ -2121,110 +2125,110 @@
 							 0][t] - kpon*K[2, 2][t]*S[1, -1, 0][t] +
 							 koff*S[1, 0, 0][t] + kpoff*S[1, 1, 0][t]
 							 + kpoff*S[1, 2, 0][t] + d1a*S_RAFK[1, -1,
-							 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, -1, 1]</td>
-        <td>0</td>
-        <td>(S[1, -1, 1])&apos;[t] == kpon*K[1, 1][t]*S[-1, -1,
+							 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, -1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, -1, 1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, -1,
 							 1][t] + kpon*K[3, 1][t]*S[1, -1, -1][t] -
 							 2*kpoff*S[1, -1, 1][t] - kon*K[2, 0][t]*S[1,
 							 -1, 1][t] - kpon*K[2, 1][t]*S[1, -1, 1][t]
 							 - kpon*K[2, 2][t]*S[1, -1, 1][t] + koff*S[1,
 							 0, 1][t] + kpoff*S[1, 1, 1][t] + kpoff*
-							S[1, 2, 1][t] + k1*S_RAFK[1, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 0, -1]</td>
-        <td>0</td>
-        <td>(S[1, 0, -1])&apos;[t] == kpon*K[1, 1][t]*S[-1, 0,
+							S[1, 2, 1][t] + k1*S_RAFK[1, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 0, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 0, -1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 0,
 							 -1][t] + kon*K[2, 0][t]*S[1, -1, -1][t] -
 							 koff*S[1, 0, -1][t] - kpoff*S[1, 0, -1][t]
 							 - kon*K[3, 0][t]*S[1, 0, -1][t] - kpon*K[3,
 							 1][t]*S[1, 0, -1][t] + koff*S[1, 0, 0][t]
-							 + kpoff*S[1, 0, 1][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 0, 0]</td>
-        <td>0</td>
-        <td>(S[1, 0, 0])&apos;[t] == kpon*K[1, 1][t]*S[-1, 0,
+							 + kpoff*S[1, 0, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 0, 0])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 0,
 							 0][t] + kon*K[2, 0][t]*S[1, -1, 0][t] +
 							 kon*K[3, 0][t]*S[1, 0, -1][t] - 2*koff*S[1,
 							 0, 0][t] - kpoff*S[1, 0, 0][t] - k1a*
-							RAFK[t]*S[1, 0, 0][t] + d1a*S_RAFK[1, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 0, 1]</td>
-        <td>0</td>
-        <td>(S[1, 0, 1])&apos;[t] == kpon*K[1, 1][t]*S[-1, 0,
+							RAFK[t]*S[1, 0, 0][t] + d1a*S_RAFK[1, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 0, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 0, 1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 0,
 							 1][t] + kon*K[2, 0][t]*S[1, -1, 1][t] +
 							 kpon*K[3, 1][t]*S[1, 0, -1][t] - k3*S[1, 0,
 							 1][t] - koff*S[1, 0, 1][t] - 2*kpoff*S[1,
-							 0, 1][t] + k1*S_RAFK[1, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 1, -1]</td>
-        <td>0</td>
-        <td>(S[1, 1, -1])&apos;[t] == kpon*K[1, 1][t]*S[-1, 1,
+							 0, 1][t] + k1*S_RAFK[1, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 1, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 1, -1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 1,
 							 -1][t] + kpon*K[2, 1][t]*S[1, -1, -1][t] -
 							 2*kpoff*S[1, 1, -1][t] - kon*K[3, 0][t]*S[1,
 							 1, -1][t] - kpon*K[3, 1][t]*S[1, 1, -1][t]
 							 + koff*S[1, 1, 0][t] + kpoff*S[1, 1, 1]
-							[t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 1, 0]</td>
-        <td>0</td>
-        <td>(S[1, 1, 0])&apos;[t] == kpon*K[1, 1][t]*S[-1, 1,
+							[t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 1, 0])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 1,
 							 0][t] + kpon*K[2, 1][t]*S[1, -1, 0][t] +
 							 kon*K[3, 0][t]*S[1, 1, -1][t] - koff*S[1, 1,
 							 0][t] - 2*kpoff*S[1, 1, 0][t] - k1a*RAFK[t]*
-							S[1, 1, 0][t] + d1a*S_RAFK[1, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 1, 1]</td>
-        <td>0</td>
-        <td>(S[1, 1, 1])&apos;[t] == kpon*K[1, 1][t]*S[-1, 1,
+							S[1, 1, 0][t] + d1a*S_RAFK[1, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 1, 1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 1,
 							 1][t] + kpon*K[2, 1][t]*S[1, -1, 1][t] +
 							 k3*S[1, 0, 1][t] + kpon*K[3, 1][t]*S[1, 1,
 							 -1][t] - k5a*S[1, 1, 1][t] - 3*kpoff*S[1,
-							 1, 1][t] + k1*S_RAFK[1, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 2, -1]</td>
-        <td>0</td>
-        <td>(S[1, 2, -1])&apos;[t] == kpon*K[1, 1][t]*S[-1, 2,
+							 1, 1][t] + k1*S_RAFK[1, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 2, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 2, -1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 2,
 							 -1][t] + k7*S[0, 2, -1][t] + kpon*K[2,
 							 2][t]*S[1, -1, -1][t] - k9a*S[1, 2, -1][t]
 							 - 2*kpoff*S[1, 2, -1][t] - kon*K[3, 0][t]*S[
 							1, 2, -1][t] - kpon*K[3, 1][t]*S[1, 2, -1][t]
 							 + koff*S[1, 2, 0][t] + kpoff*S[1, 2, 1]
-							[t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 2, 0]</td>
-        <td>0</td>
-        <td>(S[1, 2, 0])&apos;[t] == kpon*K[1, 1][t]*S[-1, 2,
+							[t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 2, 0])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 2,
 							 0][t] + k7*S[0, 2, 0][t] + kpon*K[2, 2]
 							[t]*S[1, -1, 0][t] + kon*K[3, 0][t]*S[1, 2, -
 							1][t] - k9a*S[1, 2, 0][t] - koff*S[1, 2,
 							 0][t] - 2*kpoff*S[1, 2, 0][t] - k1a*RAFK[t]*
-							S[1, 2, 0][t] + d1a*S_RAFK[1, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[1, 2, 1]</td>
-        <td>0</td>
-        <td>(S[1, 2, 1])&apos;[t] == kpon*K[1, 1][t]*S[-1, 2,
+							S[1, 2, 0][t] + d1a*S_RAFK[1, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[1, 2, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[1, 2, 1])&amp;apos;[t] == kpon*K[1, 1][t]*S[-1, 2,
 							 1][t] + k7*S[0, 2, 1][t] + kpon*K[2, 2]
 							[t]*S[1, -1, 1][t] + k5a*S[1, 1, 1][t] +
 							 kpon*K[3, 1][t]*S[1, 2, -1][t] - k9a*S[1, 2,
 							 1][t] - 3*kpoff*S[1, 2, 1][t] + k1*S_RAFK[1,
-							 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, -1, -1]</td>
-        <td>0</td>
-        <td>(S[2, -1, -1])&apos;[t] == kpon*K[1, 2][t]*S[-1, -
+							 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, -1, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, -1, -1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, -
 							1, -1][t] - kpoff*S[2, -1, -1][t] - kon*K[2,
 							 0][t]*S[2, -1, -1][t] - kpon*K[2, 1][t]*S[2,
 							 -1, -1][t] - kpon*K[2, 2][t]*S[2, -1, -1][t]
@@ -2232,12 +2236,12 @@
 							 1][t]*S[2, -1, -1][t] + koff*S[2, -1, 0][t]
 							 + kpoff*S[2, -1, 1][t] + koff*S[2, 0, -
 							1][t] + kpoff*S[2, 1, -1][t] + kpoff*S[2, 2,
-							 -1][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, -1, 0]</td>
-        <td>0</td>
-        <td>(S[2, -1, 0])&apos;[t] == kpon*K[1, 2][t]*S[-1, -1,
+							 -1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, -1, 0])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, -1,
 							 0][t] + kon*K[3, 0][t]*S[2, -1, -1][t] -
 							 koff*S[2, -1, 0][t] - kpoff*S[2, -1, 0][t]
 							 - k1a*RAFK[t]*S[2, -1, 0][t] - kon*K[2, 0][
@@ -2245,225 +2249,229 @@
 							 0][t] - kpon*K[2, 2][t]*S[2, -1, 0][t] +
 							 koff*S[2, 0, 0][t] + kpoff*S[2, 1, 0][t]
 							 + kpoff*S[2, 2, 0][t] + d1a*S_RAFK[2, -1,
-							 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, -1, 1]</td>
-        <td>0</td>
-        <td>(S[2, -1, 1])&apos;[t] == kpon*K[1, 2][t]*S[-1, -1,
+							 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, -1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, -1, 1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, -1,
 							 1][t] + kpon*K[3, 1][t]*S[2, -1, -1][t] -
 							 2*kpoff*S[2, -1, 1][t] - kon*K[2, 0][t]*S[2,
 							 -1, 1][t] - kpon*K[2, 1][t]*S[2, -1, 1][t]
 							 - kpon*K[2, 2][t]*S[2, -1, 1][t] + koff*S[2,
 							 0, 1][t] + kpoff*S[2, 1, 1][t] + kpoff*
-							S[2, 2, 1][t] + k1*S_RAFK[2, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 0, -1]</td>
-        <td>0</td>
-        <td>(S[2, 0, -1])&apos;[t] == kpon*K[1, 2][t]*S[-1, 0,
+							S[2, 2, 1][t] + k1*S_RAFK[2, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 0, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 0, -1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 0,
 							 -1][t] + kon*K[2, 0][t]*S[2, -1, -1][t] -
 							 koff*S[2, 0, -1][t] - kpoff*S[2, 0, -1][t]
 							 - kon*K[3, 0][t]*S[2, 0, -1][t] - kpon*K[3,
 							 1][t]*S[2, 0, -1][t] + koff*S[2, 0, 0][t]
-							 + kpoff*S[2, 0, 1][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 0, 0]</td>
-        <td>0</td>
-        <td>(S[2, 0, 0])&apos;[t] == kpon*K[1, 2][t]*S[-1, 0,
+							 + kpoff*S[2, 0, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 0, 0])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 0,
 							 0][t] + kon*K[2, 0][t]*S[2, -1, 0][t] +
 							 kon*K[3, 0][t]*S[2, 0, -1][t] - 2*koff*S[2,
 							 0, 0][t] - kpoff*S[2, 0, 0][t] - k1a*
-							RAFK[t]*S[2, 0, 0][t] + d1a*S_RAFK[2, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 0, 1]</td>
-        <td>0</td>
-        <td>(S[2, 0, 1])&apos;[t] == kpon*K[1, 2][t]*S[-1, 0,
+							RAFK[t]*S[2, 0, 0][t] + d1a*S_RAFK[2, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 0, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 0, 1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 0,
 							 1][t] + kon*K[2, 0][t]*S[2, -1, 1][t] +
 							 kpon*K[3, 1][t]*S[2, 0, -1][t] - k3*S[2, 0,
 							 1][t] - koff*S[2, 0, 1][t] - 2*kpoff*S[2,
-							 0, 1][t] + k1*S_RAFK[2, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 1, -1]</td>
-        <td>0</td>
-        <td>(S[2, 1, -1])&apos;[t] == kpon*K[1, 2][t]*S[-1, 1,
+							 0, 1][t] + k1*S_RAFK[2, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 1, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 1, -1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 1,
 							 -1][t] + kpon*K[2, 1][t]*S[2, -1, -1][t] -
 							 2*kpoff*S[2, 1, -1][t] - kon*K[3, 0][t]*S[2,
 							 1, -1][t] - kpon*K[3, 1][t]*S[2, 1, -1][t]
 							 + koff*S[2, 1, 0][t] + kpoff*S[2, 1, 1]
-							[t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 1, 0]</td>
-        <td>0</td>
-        <td>(S[2, 1, 0])&apos;[t] == kpon*K[1, 2][t]*S[-1, 1,
+							[t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 1, 0])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 1,
 							 0][t] + kpon*K[2, 1][t]*S[2, -1, 0][t] +
 							 kon*K[3, 0][t]*S[2, 1, -1][t] - koff*S[2, 1,
 							 0][t] - 2*kpoff*S[2, 1, 0][t] - k1a*RAFK[t]*
-							S[2, 1, 0][t] + d1a*S_RAFK[2, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 1, 1]</td>
-        <td>0</td>
-        <td>(S[2, 1, 1])&apos;[t] == kpon*K[1, 2][t]*S[-1, 1,
+							S[2, 1, 0][t] + d1a*S_RAFK[2, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 1, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 1, 1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 1,
 							 1][t] + kpon*K[2, 1][t]*S[2, -1, 1][t] +
 							 k3*S[2, 0, 1][t] + kpon*K[3, 1][t]*S[2, 1,
 							 -1][t] - k5a*S[2, 1, 1][t] - 3*kpoff*S[2,
-							 1, 1][t] + k1*S_RAFK[2, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 2, -1]</td>
-        <td>0</td>
-        <td>(S[2, 2, -1])&apos;[t] == kpon*K[1, 2][t]*S[-1, 2,
+							 1, 1][t] + k1*S_RAFK[2, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 2, -1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 2, -1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 2,
 							 -1][t] + k9a*S[1, 2, -1][t] + kpon*K[2,
 							 2][t]*S[2, -1, -1][t] - 2*kpoff*S[2, 2, -1][
 							t] - kon*K[3, 0][t]*S[2, 2, -1][t] - kpon*K[
 							3, 1][t]*S[2, 2, -1][t] + koff*S[2, 2, 0][t]
-							 + kpoff*S[2, 2, 1][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 2, 0]</td>
-        <td>0</td>
-        <td>(S[2, 2, 0])&apos;[t] == kpon*K[1, 2][t]*S[-1, 2,
+							 + kpoff*S[2, 2, 1][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 2, 0])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 2,
 							 0][t] + k9a*S[1, 2, 0][t] + kpon*K[2,
 							 2][t]*S[2, -1, 0][t] + kon*K[3, 0][t]*S[2,
 							 2, -1][t] - koff*S[2, 2, 0][t] - 2*
 							kpoff*S[2, 2, 0][t] - k1a*RAFK[t]*S[2, 2, 0][t]
-							 + d1a*S_RAFK[2, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S[2, 2, 1]</td>
-        <td>0</td>
-        <td>(S[2, 2, 1])&apos;[t] == kpon*K[1, 2][t]*S[-1, 2,
+							 + d1a*S_RAFK[2, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S[2, 2, 1]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S[2, 2, 1])&amp;apos;[t] == kpon*K[1, 2][t]*S[-1, 2,
 							 1][t] + k9a*S[1, 2, 1][t] + kpon*K[2,
 							 2][t]*S[2, -1, 1][t] + k5a*S[2, 1, 1][t]
 							 + kpon*K[3, 1][t]*S[2, 2, -1][t] - 3*kpoff*
-							S[2, 2, 1][t] + k1*S_RAFK[2, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[-1, -1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[-1, -1, 0])&apos;[t] == k1a*RAFK[t]*S[-1, -1,
+							S[2, 2, 1][t] + k1*S_RAFK[2, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[-1, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[-1, -1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[-1, -1,
 							 0][t] - d1a*S_RAFK[-1, -1, 0][t] - k1*
-							S_RAFK[-1, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[-1, 0, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[-1, 0, 0])&apos;[t] == k1a*RAFK[t]*S[-1, 0,
+							S_RAFK[-1, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[-1, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[-1, 0, 0])&amp;apos;[t] == k1a*RAFK[t]*S[-1, 0,
 							 0][t] - d1a*S_RAFK[-1, 0, 0][t] - k1*S_RAFK[
-							-1, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[-1, 1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[-1, 1, 0])&apos;[t] == k1a*RAFK[t]*S[-1, 1,
+							-1, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[-1, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[-1, 1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[-1, 1,
 							 0][t] - d1a*S_RAFK[-1, 1, 0][t] - k1*S_RAFK[
-							-1, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[-1, 2, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[-1, 2, 0])&apos;[t] == k1a*RAFK[t]*S[-1, 2,
+							-1, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[-1, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[-1, 2, 0])&amp;apos;[t] == k1a*RAFK[t]*S[-1, 2,
 							 0][t] - d1a*S_RAFK[-1, 2, 0][t] - k1*S_RAFK[
-							-1, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[0, -1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[0, -1, 0])&apos;[t] == k1a*RAFK[t]*S[0, -1,
+							-1, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[0, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[0, -1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[0, -1,
 							 0][t] - d1a*S_RAFK[0, -1, 0][t] - k1*S_RAFK[
-							0, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[0, 0, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[0, 0, 0])&apos;[t] == k1a*RAFK[t]*S[0, 0,
+							0, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[0, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[0, 0, 0])&amp;apos;[t] == k1a*RAFK[t]*S[0, 0,
 							 0][t] - d1a*S_RAFK[0, 0, 0][t] - k1*S_RAFK[
-							0, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[0, 1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[0, 1, 0])&apos;[t] == k1a*RAFK[t]*S[0, 1,
+							0, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[0, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[0, 1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[0, 1,
 							 0][t] - d1a*S_RAFK[0, 1, 0][t] - k1*S_RAFK[
-							0, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[0, 2, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[0, 2, 0])&apos;[t] == k1a*RAFK[t]*S[0, 2,
+							0, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[0, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[0, 2, 0])&amp;apos;[t] == k1a*RAFK[t]*S[0, 2,
 							 0][t] - d1a*S_RAFK[0, 2, 0][t] - k1*S_RAFK[
-							0, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[1, -1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[1, -1, 0])&apos;[t] == k1a*RAFK[t]*S[1, -1,
+							0, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[1, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[1, -1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[1, -1,
 							 0][t] - d1a*S_RAFK[1, -1, 0][t] - k1*S_RAFK[
-							1, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[1, 0, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[1, 0, 0])&apos;[t] == k1a*RAFK[t]*S[1, 0,
+							1, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[1, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[1, 0, 0])&amp;apos;[t] == k1a*RAFK[t]*S[1, 0,
 							 0][t] - d1a*S_RAFK[1, 0, 0][t] - k1*S_RAFK[
-							1, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[1, 1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[1, 1, 0])&apos;[t] == k1a*RAFK[t]*S[1, 1,
+							1, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[1, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[1, 1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[1, 1,
 							 0][t] - d1a*S_RAFK[1, 1, 0][t] - k1*S_RAFK[
-							1, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[1, 2, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[1, 2, 0])&apos;[t] == k1a*RAFK[t]*S[1, 2,
+							1, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[1, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[1, 2, 0])&amp;apos;[t] == k1a*RAFK[t]*S[1, 2,
 							 0][t] - d1a*S_RAFK[1, 2, 0][t] - k1*S_RAFK[
-							1, 2, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[2, -1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[2, -1, 0])&apos;[t] == k1a*RAFK[t]*S[2, -1,
+							1, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[2, -1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[2, -1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[2, -1,
 							 0][t] - d1a*S_RAFK[2, -1, 0][t] - k1*S_RAFK[
-							2, -1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[2, 0, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[2, 0, 0])&apos;[t] == k1a*RAFK[t]*S[2, 0,
+							2, -1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[2, 0, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[2, 0, 0])&amp;apos;[t] == k1a*RAFK[t]*S[2, 0,
 							 0][t] - d1a*S_RAFK[2, 0, 0][t] - k1*S_RAFK[
-							2, 0, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[2, 1, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[2, 1, 0])&apos;[t] == k1a*RAFK[t]*S[2, 1,
+							2, 0, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[2, 1, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[2, 1, 0])&amp;apos;[t] == k1a*RAFK[t]*S[2, 1,
 							 0][t] - d1a*S_RAFK[2, 1, 0][t] - k1*S_RAFK[
-							2, 1, 0][t]</td>
-      </tr>
-      <tr>
-        <td>S_RAFK[2, 2, 0]</td>
-        <td>0</td>
-        <td>(S_RAFK[2, 2, 0])&apos;[t] == k1a*RAFK[t]*S[2, 2,
+							2, 1, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;S_RAFK[2, 2, 0]&lt;/td&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;(S_RAFK[2, 2, 0])&amp;apos;[t] == k1a*RAFK[t]*S[2, 2,
 							 0][t] - d1a*S_RAFK[2, 2, 0][t] - k1*S_RAFK[
-							2, 2, 0][t]</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>Generated by Cellerator Version 1.0 update 2.1203 using Mathematica 4.2 for 
+							2, 2, 0][t]&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;p&gt;Generated by Cellerator Version 1.0 update 2.1203 using Mathematica 4.2 for 
 				Mac OS X (June 4, 2002), December 4, 2002 15:06:10, using (PowerMac,PowerPC,Mac 
-				OS X,MacOSX,Darwin)</p>
-  <p>author=B.E.Shapiro</p>
-</body>""" ;
-    dc:title "Scaffold proteins may biphasically affect the levels of mitogen-activated protein kinase signaling and reduce its threshold properties" .
-
-<local:00001> rdfs:label "Andre Levchenko, Jehoshua Bruck & Paul W. Sternberg. Scaffold proteins may biphasically affect the levels of mitogen-activated protein kinase signaling and reduce its threshold properties. Proceedings of the National Academy of Sciences 97, 11 (2000)." ;
-    dc:identifier <http://identifiers.org/doi/10.1073/pnas.97.11.5818> .
+				OS X,MacOSX,Darwin)&lt;/p&gt;
+  &lt;p&gt;author=B.E.Shapiro&lt;/p&gt;
+&lt;/body&gt;</ns2:description>
+    <ns3:title xmlns:ns3="http://purl.org/dc/elements/1.1/">Scaffold proteins may biphasically affect the levels of mitogen-activated protein kinase signaling and reduce its threshold properties</ns3:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="local:00001">
+    <ns4:identifier xmlns:ns4="http://purl.org/dc/elements/1.1/"
+       rdf:resource="http://identifiers.org/doi/10.1073/pnas.97.11.5818"/>
+    <ns5:label xmlns:ns5="http://www.w3.org/2000/01/rdf-schema#">Andre Levchenko, Jehoshua Bruck &amp; Paul W. Sternberg. Scaffold proteins may biphasically affect the levels of mitogen-activated protein kinase signaling and reduce its threshold properties. Proceedings of the National Academy of Sciences 97, 11 (2000).</ns5:label>
+  </rdf:Description>
+</rdf:RDF>
 
