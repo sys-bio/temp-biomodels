@@ -137,8 +137,6 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     fix_filenames.run(id, temp_entry_dir)
     fix_sedml_extensions.run(temp_entry_dir)
 
-    master_sbml = get_master_file_from_manifest.run(temp_entry_dir)
-
     omex_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.omex'), recursive=True)
     omex_filenames.sort()
     remove_omex.run(id, omex_filenames, temp_entry_dir)
@@ -156,6 +154,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     copasi_filenames.sort()
     sbml_filenames.sort()
 
+    master_sbml = get_master_file_from_manifest.run(temp_entry_dir)
     remove_urn_sbml_files.run(sbml_filenames)
     remove_initial_rdf_file.run(rdf_filenames)
     remove_failed_pdfs.run(pdf_filenames)

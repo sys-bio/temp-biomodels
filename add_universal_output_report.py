@@ -31,7 +31,8 @@ def create_generic_sedml(sedml_filenames, sbml_filenames):
         sim.setOutputEndTime(10)
         sim.setNumberOfPoints(1000)
         alg = sim.createAlgorithm()
-        alg.setKisaoID(19)
+        alg.setKisaoID(694) #'ODE solver'
+        alg.setName("ODE solver")
         
         #Create a task that merges the two.
         task = doc.createTask()
