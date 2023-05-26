@@ -19,6 +19,7 @@ import remove_bad_octave_files
 import remove_bad_scilab_files
 import remove_bad_vcml_files
 import remove_bad_pdfs
+import remove_duplicates
 import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
@@ -136,6 +137,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     # Fix files/filenames
     fix_filenames.run(id, temp_entry_dir)
     fix_sedml_extensions.run(temp_entry_dir)
+    remove_duplicates.run(temp_entry_dir)
 
     master_sbml = get_master_file_from_manifest.run(temp_entry_dir)
 
