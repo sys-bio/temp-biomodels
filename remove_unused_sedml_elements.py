@@ -196,6 +196,7 @@ def remove_unused_sims_and_mods(doc):
 
 
 def run(id, sedml_filenames):
+    removed_sedml_files = []
     for sedml_filename in sedml_filenames:
         if "Parmar2017_Deficient_Rich_tracer" in sedml_filename or "Parmar2017_Adequate_tracer" in sedml_filename:
             continue
@@ -210,6 +211,8 @@ def run(id, sedml_filenames):
             if doc.getNumModels() == 0:
                 # Remove the SED-ML file entirely
                 os.remove(sedml_filename)
-                sedml_filenames.remove(sedml_filename)
+                removed_sedml_files.append(sedml_filename)
             else:
                 libsedml.writeSedMLToFile(doc, sedml_filename)
+    for sedml_filename in removed_sedml_files:
+        sedml_filenames.remove(sedml_filename)
