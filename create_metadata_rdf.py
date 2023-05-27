@@ -93,22 +93,21 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
         citations.append(citation)
         if doiID in masterIDs:
             mastercitations.append(citation)
-            
-    sorted(citations, key=lambda x : x.get_citation())
 
     if len(citations)==0:
         citations.append(no_pubmed_or_doi[id])
         mastercitations.append(no_pubmed_or_doi[id])
+
+    citations = sorted(citations, key=lambda x : x.get_citation())
 
     for citation in citations:
         cite = {
             "uri": citation.get_uri(),
             "label": citation.get_citation(),
             }
+        
         metadata['citations'].append(cite)
-        if citation in mastercitations and citation.title:
-            metadata['title'] = citation.title
-    
+
         # if citation.pubmed_central_id:
         #     thumbnails = get_pubmed_central_open_access_graphics(
         #         citation.pubmed_central_id,
@@ -119,6 +118,25 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
         #     for filePath in fileList:
         #         os.remove(filePath)
         #     metadata['thumbnails'] = [os.path.relpath(thumbnail.filename, temp_entry_dir).replace("\\", "/") for thumbnail in thumbnails]
+    
+    for citation in mastercitations:
+        if citation.title:
+            metadata['title'] = citation.title
+        if citation.authors:
+            metadata['authors'] = citation.authors
+        if citation.date:
+            metadata['date'] = citation.date
+        if citation.title:
+            metadata['title'] = citation.title
+
+def addThumbnailToMetadata(metadata, temp_entry_dir):
+    for root, dirs, files in os.walk(temp_entry_dir):
+        for file in files:
+            if file[-4:] == ".png":
+                if 'thumbnails' not in metadata:
+                    metadata['thumbnails'] = []
+                metadata['thumbnails'].append(file)
+
 
 
 
@@ -130,6 +148,7 @@ def run(id, sbml_filenames, temp_entry_dir, sbml_master):
         'keywords': [
             'Biomodels',
             ],
+        # 'contributors': ["The Biomodels Curation Team", "The Center for Reproducible Biomedical Modeling"]
         }
     pubmedIDs = set()
     doiIDs = set()
@@ -144,6 +163,7 @@ def run(id, sbml_filenames, temp_entry_dir, sbml_master):
         print("Original master sbml file:", sbml_master)
         assert(False) #Need to find new master SBML filename
     addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir)
+    addThumbnailToMetadata(metadata, temp_entry_dir)
     metadata_filename = os.path.join(temp_entry_dir, 'metadata.rdf')
     config = get_config()
     # config.OMEX_METADATA_OUTPUT_FORMAT = OmexMetadataOutputFormat.turtle

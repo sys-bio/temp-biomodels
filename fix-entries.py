@@ -28,6 +28,7 @@ import remove_urn_sbml_files
 import remove_initial_rdf_file
 import remove_omex
 import remove_failed_pdfs
+import remove_zero_size
 import rename_sbml_files
 import rename_xpp_to_ode
 import validate_sbml as validate_sbml_module
@@ -137,6 +138,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     # Fix files/filenames
     fix_filenames.run(id, temp_entry_dir)
     fix_sedml_extensions.run(temp_entry_dir)
+    remove_zero_size.run(temp_entry_dir)
     remove_duplicates.run(temp_entry_dir)
 
     master_sbml = get_master_file_from_manifest.run(temp_entry_dir)

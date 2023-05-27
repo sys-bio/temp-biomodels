@@ -21,7 +21,8 @@ def create_generic_sedml(sedml_filenames, sbml_filenames):
         mid1 = mid[0]
         if mid1.isdigit():
             mid = "_" + mid
-        model.setId(mid)
+        ret = model.setId(mid)
+        assert(ret == libsedml.LIBSEDML_OPERATION_SUCCESS)
 
         #Create a generic 10-second simulation
         sim = doc.createUniformTimeCourse()

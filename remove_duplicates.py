@@ -41,6 +41,8 @@ def check_for_duplicates(path, hash=hashlib.sha1):
     for dirpath, dirnames, filenames in os.walk(path):
         # get all files that have the same size - they are the collision candidates
         for filename in filenames:
+            if "curation_image" in filename:
+                continue
             full_path = os.path.join(dirpath, filename)
             try:
                 # if the target is a symlink (soft one), this will 
@@ -80,7 +82,7 @@ def check_for_duplicates(path, hash=hashlib.sha1):
                 duplicate = hashes_full.get(full_hash)
                 if duplicate:
                     duplicates.append((filename, duplicate))
-                    print("Duplicate found: {} and {}".format(filename, duplicate))
+                    # print("Duplicate found: {} and {}".format(filename, duplicate))
                 else:
                     hashes_full[full_hash] = filename
             except (OSError,):
@@ -97,4 +99,7 @@ def run(dirname: str):
     """
     dupes = check_for_duplicates(dirname)
     for (file1, file2) in dupes:
-        os.remove(file2)
+        if "manual" in file1 and "manual" not in file2:
+            os.remove(file1)
+        else:
+            os.remove(file2)
