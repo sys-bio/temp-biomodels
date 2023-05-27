@@ -22,6 +22,9 @@ class NonStandardRef():
     citation: str = None
     uri: str = None
     title: str = None
+    authors: str = None
+    date: str = None
+    
     pubmed_central_id = None
 
 
@@ -126,8 +129,6 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
             metadata['authors'] = citation.authors
         if citation.date:
             metadata['date'] = citation.date
-        if citation.title:
-            metadata['title'] = citation.title
 
 def addThumbnailToMetadata(metadata, temp_entry_dir):
     for root, dirs, files in os.walk(temp_entry_dir):
