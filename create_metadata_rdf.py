@@ -104,6 +104,8 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
         mastercitation = no_pubmed_or_doi[id]
 
     citations = sorted(citations, key=lambda x : x.get_citation())
+    if not mastercitation:
+        mastercitation = citations[0]
 
     for citation in citations:
         cite = {
