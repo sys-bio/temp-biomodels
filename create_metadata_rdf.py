@@ -84,22 +84,24 @@ def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, mast
 
 def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir):
     citations = []
-    mastercitations = []
+    mastercitation = None
     for pmid in pubmedIDs:
         citation = get_reference(pubmed_id=pmid)
         citations.append(citation)
         if pmid in masterIDs:
-            mastercitations.append(citation)
+            if not mastercitation or mastercitation.date < citation.date:
+                mastercitation = citation
 
     for doiID in doiIDs:
         citation = get_reference(doi=doiID)
         citations.append(citation)
         if doiID in masterIDs:
-            mastercitations.append(citation)
+            if not mastercitation or mastercitation.date < citation.date:
+                mastercitation = citation
 
     if len(citations)==0:
         citations.append(no_pubmed_or_doi[id])
-        mastercitations.append(no_pubmed_or_doi[id])
+        mastercitation = no_pubmed_or_doi[id]
 
     citations = sorted(citations, key=lambda x : x.get_citation())
 
@@ -122,13 +124,12 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entr
         #         os.remove(filePath)
         #     metadata['thumbnails'] = [os.path.relpath(thumbnail.filename, temp_entry_dir).replace("\\", "/") for thumbnail in thumbnails]
     
-    for citation in mastercitations:
-        if citation.title:
-            metadata['title'] = citation.title
-        if citation.authors:
-            metadata['authors'] = citation.authors
-        if citation.date:
-            metadata['date'] = citation.date
+    if mastercitation.title:
+        metadata['title'] = mastercitation.title
+    if mastercitation.authors:
+        metadata['authors'] = mastercitation.authors
+    if mastercitation.date:
+        metadata['date'] = mastercitation.date
 
 def addThumbnailToMetadata(metadata, temp_entry_dir):
     for root, dirs, files in os.walk(temp_entry_dir):
