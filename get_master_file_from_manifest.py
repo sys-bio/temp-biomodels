@@ -5,8 +5,6 @@ Created on Wed Mar 22 15:12:43 2023
 @author: Lucian
 """
 
-import csv
-import requests
 import xml.etree.ElementTree as ET
   
 def getMaster(xmlfile):
