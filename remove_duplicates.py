@@ -101,5 +101,7 @@ def run(dirname: str):
     for (file1, file2) in dupes:
         if "manual" in file1 and "manual" not in file2:
             os.remove(file1)
+        elif "_urn" in file1 and "_urn" not in file2:
+            os.remove(file1)
         else:
             os.remove(file2)
