@@ -15,6 +15,7 @@ from biosimulators_utils.omex_meta.data_model import OmexMetadataOutputFormat
 import Bio.Entrez
 Bio.Entrez.email = 'lpsmith@uw.edu'
 import operator, glob
+import requests
 
 class NonStandardRef():
     """ Journal article not from pubmed or doi
@@ -50,7 +51,7 @@ no_pubmed_or_doi = {
     "BIOMD0000001045" : NonStandardRef('Smith, David, and Lang Moore. "The SIR model for spread of disease-the differential equation model." Convergence (2004).', "https://www.maa.org/press/periodicals/loci/joma/the-sir-model-for-spread-of-disease-the-differential-equation-model", "The SIR Model for Spread of Disease - The Differential Equation Model"),
     }
 
-def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, masterIDs):
+def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs):
     doc = libsbml.readSBMLFromFile(filename)
     model = doc.getModel()
     
@@ -74,38 +75,33 @@ def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, mast
             if "pubmed/" in rURI:
                 pmid = rURI.split("/")[-1]
                 pubmedIDs.add(pmid)
-                if master:
-                    masterIDs.add(pmid)
             if "identifiers.org/doi/" in rURI:
                 uripos = rURI.find("org/doi/")
                 doiIDs.add(rURI[uripos+8:])
-                if master:
-                    masterIDs.add(rURI[uripos+8:])
 
-def addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir):
+def addCitationsToMetadata(pubmedIDs, doiIDs, masterID, metadata, id, temp_entry_dir):
     citations = []
     mastercitation = None
+    if "pubmed" in masterID:
+        mastercitation = get_reference(pubmed_id=masterID.split("/")[-1])
+    elif "doi" in masterID:
+        doivec = masterID.split("/")
+        mastercitation = get_reference(doi=doivec[-2] + "/" + doivec[-1])
+    else:
+        mastercitation = no_pubmed_or_doi[id]
+    
     for pmid in pubmedIDs:
         citation = get_reference(pubmed_id=pmid)
         citations.append(citation)
-        if pmid in masterIDs:
-            if not mastercitation or mastercitation.date < citation.date:
-                mastercitation = citation
 
     for doiID in doiIDs:
         citation = get_reference(doi=doiID)
         citations.append(citation)
-        if doiID in masterIDs:
-            if not mastercitation or mastercitation.date < citation.date:
-                mastercitation = citation
 
     if len(citations)==0:
-        citations.append(no_pubmed_or_doi[id])
-        mastercitation = no_pubmed_or_doi[id]
+        citations.append(mastercitation)
 
     citations = sorted(citations, key=lambda x : x.get_citation())
-    if not mastercitation:
-        mastercitation = citations[0]
 
     for citation in citations:
         cite = {
@@ -141,7 +137,12 @@ def addThumbnailToMetadata(metadata, temp_entry_dir):
                     metadata['thumbnails'] = []
                 metadata['thumbnails'].append(file)
 
-
+def getMasterRefFromBiomodels(id):
+    req = requests.post("https://www.ebi.ac.uk/biomodels/" + id + "?format=json")
+    req.raise_for_status()
+    res = req.json()
+    return res["publication"]["link"]
+    
 
 
 def run(id, sbml_filenames, temp_entry_dir, sbml_master):
@@ -156,17 +157,13 @@ def run(id, sbml_filenames, temp_entry_dir, sbml_master):
         }
     pubmedIDs = set()
     doiIDs = set()
-    masterIDs = set()
+    masterID = getMasterRefFromBiomodels(id)
     for filename in sbml_filenames:
         master = False
         if sbml_master in filename:
             master = True
-        parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs, masterIDs)
-    if len(masterIDs)==0 and not len(pubmedIDs)==0 and not len(doiIDs)==0:
-        print("No master SBML file for", id)
-        print("Original master sbml file:", sbml_master)
-        assert(False) #Need to find new master SBML filename
-    addCitationsToMetadata(pubmedIDs, doiIDs, masterIDs, metadata, id, temp_entry_dir)
+        parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs)
+    addCitationsToMetadata(pubmedIDs, doiIDs, masterID, metadata, id, temp_entry_dir)
     addThumbnailToMetadata(metadata, temp_entry_dir)
     metadata_filename = os.path.join(temp_entry_dir, 'metadata.rdf')
     config = get_config()
