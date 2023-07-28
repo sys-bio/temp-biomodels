@@ -160,6 +160,8 @@ def run(id, sbml_filenames, temp_entry_dir, sbml_master):
     masterID = getMasterRefFromBiomodels(id)
     if "http://identifiers.org/pubmed/24285357" == masterID:
         masterID = "http://identifiers.org/pubmed/24757149"
+    if "http://identifiers.org/pubmed/25771250" == masterID:
+        masterID = "http://identifiers.org/pubmed/26148348"
     for filename in sbml_filenames:
         master = False
         if sbml_master in filename:
