@@ -4,6 +4,8 @@ import os
 from biosimulators_utils.model_lang.sbml.utils import get_parameters_variables_outputs_for_simulation
 from biosimulators_utils.sedml.data_model import UniformTimeCourseSimulation
 
+qual_models = {"BIOMD0000000562_url.xml", "BIOMD0000000592_url.xml", "BIOMD0000000593_url.xml"}
+
 def create_generic_sedml(sedml_filenames, sbml_filenames):
     for sbml_filename in sbml_filenames:
         sedml_filename = sbml_filename.replace(".xml", ".sedml")
@@ -34,6 +36,8 @@ def create_generic_sedml(sedml_filenames, sbml_filenames):
         sim.setNumberOfPoints(1000)
         alg = sim.createAlgorithm()
         alg.setKisaoID(19)
+        if os.path.basename(sbml_filename) in qual_models:
+            alg.setKisaoID(449)
         
         #Create a task that merges the two.
         task = doc.createTask()
@@ -68,6 +72,10 @@ def getAllIdsAndNamespacesFromSBML(sbml_filename, seddoc):
     sedns = seddoc.getSedNamespaces()
     sbml_ns = doc.getURI()
     sedns.addNamespace(sbml_ns, "sbml")
+    if os.path.basename(sbml_filename) in qual_models:
+        qualModel = model.getPlugin("qual")
+        for qs in range(qualModel.getNumQualitativeSpecies()):
+            ret.append((qualModel.getQualitativeSpecies(qs).getId(), "qual_species"))
     return ret
 
 def matchSBMLIds(doc, sbml_filenames):
@@ -184,6 +192,8 @@ def getTargetFor(sbmlid):
         raise NotImplementedError("Don't want to implement speciesReference targets if I don't need to")
     if sbmlid[1] == "product":
         raise NotImplementedError("Don't want to implement speciesReference targets if I don't need to")
+    if sbmlid[1] == "qual_species":
+        return "/sbml:sbml/sbml:model/qual:listOfQualitativeSpecies/qual:qualitativeSpecies[@qual:id=&apos;" + sbmlid[0] + "&apos;]"
     
 
 def defineDatagenForAllTargets(doc, task_ids):
