@@ -224,7 +224,7 @@ def defineDatagenForAllTargets(doc, task_ids):
         for sbmlid in removeList:
             sbmlids.remove(sbmlid)
             if len(sbmlids) == 0:
-                task_ids.remove(taskref)
+                del task_ids[taskref]
     #Anything left in sbmlids needs to be added
     for taskref in task_ids:
         sbmlids = task_ids[taskref]
