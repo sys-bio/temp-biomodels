@@ -73,6 +73,8 @@ def getAllIdsAndNamespacesFromSBML(sbml_filename, seddoc):
     sbml_ns = doc.getURI()
     sedns.addNamespace(sbml_ns, "sbml")
     if os.path.basename(sbml_filename) in qual_models:
+        sed_ns = seddoc.getNamespaces()
+        sed_ns.add("http://www.sbml.org/sbml/level3/version1/qual/version1", "qual")
         qualModel = model.getPlugin("qual")
         for qs in range(qualModel.getNumQualitativeSpecies()):
             ret.append((qualModel.getQualitativeSpecies(qs).getId(), "qual_species"))
