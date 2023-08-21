@@ -120,7 +120,7 @@ function xdot=f(t,x)
 % assignmentRule: variable = f_P_M_A
 	global_par_f_P_M_A=global_par_n^global_par_x*global_par_M_Astar/(x(1)^global_par_x+global_par_n^global_par_x*global_par_M_Astar);
 % assignmentRule: variable = log_Pneumococcal__P
-	global_par_log_Pneumococcal__P=log(10, x(1));
+	global_par_log_Pneumococcal__P=log10(x(1));
 
 % Reaction: id = reaction_for__P_production, name = reaction for  P production
 	reaction_reaction_for__P_production=compartment_compartment*Rate_Law_for_reaction_for__P_production(global_par_r, x(1), global_par_K_P);
