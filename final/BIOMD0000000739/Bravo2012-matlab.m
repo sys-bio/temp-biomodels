@@ -155,7 +155,6 @@ function xdot=f(t,x)
 % Parameter:   id =  R24_dis, name = R24_dis
 	global_par_R24_dis=0.0035;
 % Parameter:   id =  time_minutes, name = time_minutes
-% Parameter:   id =  Curve_Va_Xa, name = Curve_Va:Xa
 % Parameter:   id =  Curve_Va, name = Curve_Va
 % Parameter:   id =  Curve_va_i_506, name = Curve_va_i_506
 % Parameter:   id =  param_for_curve_va_i_506_normalise, name = param_for_curve_va_i_506_normalise
@@ -167,8 +166,6 @@ function xdot=f(t,x)
 	global_par_Metabolite_13=0.0;
 % assignmentRule: variable = time_minutes
 	global_par_time_minutes=time/60;
-% assignmentRule: variable = Curve_Va_Xa
-	global_par_Curve_Va_Xa=x(14)/global_par_Metabolite_13;
 % assignmentRule: variable = Curve_Va
 	global_par_Curve_Va=x(3)/global_par_Metabolite_2;
 % assignmentRule: variable = param_for_curve_va_i_506_normalise

@@ -5,12 +5,13 @@
   </listOfModels>
   <listOfSimulations>
     <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="10000" numberOfSteps="1000">
-      <algorithm name="Deterministic (LSODA)" kisaoID="KISAO_0000560">
+      <algorithm name="ODE solver" kisaoID="KISAO_0000694">
         <listOfAlgorithmParameters>
           <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
           <algorithmParameter name="Absolute Tolerance" kisaoID="KISAO:0000211" value="1e-12"/>
           <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="0"/>
           <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="10000"/>
+          <algorithmParameter name="use stiff solver" kisaoID="KISAO:0000671" value="false"/>
         </listOfAlgorithmParameters>
       </algorithm>
     </uniformTimeCourse>
@@ -19,7 +20,12 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <repeatedTask id="task2" range="range0" resetModel="true">
       <listOfRanges>
-        <uniformRange id="range0" start="5e-05" end="0.035" numberOfSteps="5" type="linear"/>
+        <vectorRange id="range0">
+          <value> 5e-05 </value>
+          <value> 0.01 </value>
+          <value> 0.02 </value>
+          <value> 0.035 </value>
+        </vectorRange>
       </listOfRanges>
       <listOfChanges>
         <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;c&apos;]" range="range0">
