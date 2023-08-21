@@ -49,6 +49,7 @@ ALGORITHMS = {
     os.path.join('BIOMD0000000569', 'Dutta-Roy2015.sedml'): 'KISAO_0000027',
     os.path.join('BIOMD0000000926', 'Rhodes2019-Immune-Mediated theory of Metastasis.sedml'): 'KISAO_0000566',
     os.path.join('BIOMD0000000952', 'Rodenfels2019_V1.sedml'): 'KISAO_0000304',
+    os.path.join('BIOMD0000000732', 'Kirschner_1998.sedml'): 'KISAO_0000694',
 }
 
 DEFAULT_PARAMETERS = {

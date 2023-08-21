@@ -62,6 +62,24 @@ def fixChitnes2008(sed):
     sed.removeOutput("plot_6_task1")
 
 
+def fixKirschner1998(sed):
+    # reason: "Does not reproduce published figure"
+    sim = sed.getSimulation(0)
+    alg = sim.getAlgorithm()
+    alg.setName("ODE solver")
+    alg.setKisaoID(694)
+    param = alg.createAlgorithmParameter()
+    param.setName("use stiff solver")
+    param.setKisaoID(671)
+    param.setValue("false")
+    
+    rt = sed.getTask(1)
+    rt.removeRange(0)
+    vrange = rt.createVectorRange()
+    vrange.setId("range0")
+    vrange.setValues([5e-5, .01, .02, .035])
+    
+
 def get_orig(sed_list, copasi_name, new_sedml, id, guesses):
     for sed_file in sed_list:
         if sed_file == copasi_name.replace("cps", "sedml"):
@@ -353,6 +371,9 @@ def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
             if "Chitnis2008.sedml" in copasi_sed:
                 #Couldn't fix this in yml because of indenting issues.
                 fixChitnes2008(sed)
+            if "Kirschner_1998.sedml" in copasi_sed:
+                fixKirschner1998(sed)
+                
         # sedml = libsedml.writeSedMLToString(sed)
         # if "numberOfSteps" in sedml:
         #     print(copasi_sed, "has 'numberOfSteps'")
