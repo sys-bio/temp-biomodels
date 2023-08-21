@@ -19,7 +19,7 @@
     <task id="task1" modelReference="model" simulationReference="sim1"/>
     <repeatedTask id="task2" range="range0" resetModel="true">
       <listOfRanges>
-        <uniformRange id="range0" start="0.1" end="4" numberOfSteps="100" type="linear"/>
+        <uniformRange id="range0" start="0.1" end="1" numberOfSteps="24" type="linear"/>
       </listOfRanges>
       <listOfChanges>
         <setValue modelReference="model" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Mass&apos;]" range="range0">
@@ -90,12 +90,44 @@
         <variable id="p2_CKIT_6_task1" name="[CKIT]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CKIT&apos;]" taskReference="task1" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
+    <dataGenerator id="_1_task2" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2__1_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2__1_task2" name="Time" symbol="urn:sedml:symbol:time" taskReference="task2" term="KISAO:0000832"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Cdh1_1_task2" name="[Cdh1]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_Cdh1_1_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_Cdh1_1_task2" name="[Cdh1]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Cdh1&apos;]" taskReference="task2" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CycA_2_task2" name="[CycA]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_CycA_2_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_CycA_2_task2" name="[CycA]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CycA&apos;]" taskReference="task2" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
     <dataGenerator id="CycB_3_task2" name="[CycB]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> p2_CycB_3_task2 </ci>
       </math>
       <listOfVariables>
         <variable id="p2_CycB_3_task2" name="[CycB]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CycB&apos;]" taskReference="task2" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="CycE_4_task2" name="[CycE]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_CycE_4_task2 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_CycE_4_task2" name="[CycE]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CycE&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="Mass_5_task2" name="[Mass]">
@@ -106,12 +138,12 @@
         <variable id="p2_Mass_5_task2" name="[Mass]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Mass&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
-    <dataGenerator id="auto_time_for_task2" name="Time">
+    <dataGenerator id="CKIT_6_task2" name="[CKIT]">
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> auto_time_for_task2_var </ci>
+        <ci> p2_CKIT_6_task2 </ci>
       </math>
       <listOfVariables>
-        <variable id="auto_time_for_task2_var" symbol="urn:sedml:symbol:time" taskReference="task2"/>
+        <variable id="p2_CKIT_6_task2" name="[CKIT]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;CKIT&apos;]" taskReference="task2" term="KISAO:0000838"/>
       </listOfVariables>
     </dataGenerator>
     <dataGenerator id="auto_dg_for_task1_APC">
@@ -2836,7 +2868,7 @@
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot_1_task1" name="plot">
+    <plot2D id="plot_1_task1" name="plot 1">
       <listOfCurves>
         <curve id="p2_curve_1_task1" name="[Cdh1]|Time" logX="false" style="style1" xDataReference="_1_task1" logY="false" yDataReference="Cdh1_1_task1"/>
         <curve id="p2_curve_2_task1" name="[CycA]|Time" logX="false" style="style2" xDataReference="_1_task1" logY="false" yDataReference="CycA_2_task1"/>
@@ -2846,7 +2878,22 @@
         <curve id="p2_curve_6_task1" name="[CKIT]|Time" logX="false" style="style2" xDataReference="_1_task1" logY="false" yDataReference="CKIT_6_task1"/>
       </listOfCurves>
     </plot2D>
-    <plot2D id="plot_4_task2" name="Bif">
+    <plot2D id="plot_2_task1" name="Bif (A)">
+      <listOfCurves>
+        <curve id="p3_curve_1_task1" name="[CycB]|[Mass]" logX="false" style="style3" xDataReference="Mass_5_task1" logY="false" yDataReference="CycB_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_3_task2" name="plot 2">
+      <listOfCurves>
+        <curve id="p2_curve_1_task2" name="[Cdh1]|Time" logX="false" style="style1" xDataReference="_1_task2" logY="false" yDataReference="Cdh1_1_task2"/>
+        <curve id="p2_curve_2_task2" name="[CycA]|Time" logX="false" style="style2" xDataReference="_1_task2" logY="false" yDataReference="CycA_2_task2"/>
+        <curve id="p2_curve_3_task2" name="[CycB]|Time" logX="false" style="style2" xDataReference="_1_task2" logY="false" yDataReference="CycB_3_task2"/>
+        <curve id="p2_curve_4_task2" name="[CycE]|Time" logX="false" style="style2" xDataReference="_1_task2" logY="false" yDataReference="CycE_4_task2"/>
+        <curve id="p2_curve_5_task2" name="[Mass]|Time" logX="false" style="style2" xDataReference="_1_task2" logY="false" yDataReference="Mass_5_task2"/>
+        <curve id="p2_curve_6_task2" name="[CKIT]|Time" logX="false" style="style2" xDataReference="_1_task2" logY="false" yDataReference="CKIT_6_task2"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_4_task2" name="Bif (B)">
       <listOfCurves>
         <curve id="p3_curve_1_task2" name="[CycB]|[Mass]" logX="false" style="style3" xDataReference="Mass_5_task2" logY="false" yDataReference="CycB_3_task2"/>
       </listOfCurves>
@@ -3034,7 +3081,7 @@
     </report>
     <report id="autogen_report_for_task2" name="Auto-generated report for task2, including all symbols in SBML with mathematical meaning, both constant and variable.">
       <listOfDataSets>
-        <dataSet id="autogen_time_for_task2" label="Time" dataReference="auto_time_for_task2"/>
+        <dataSet id="autogen_time_for_task2" label="Time" dataReference="_1_task2"/>
         <dataSet id="autogen_task2_APC" label="APC" dataReference="auto_dg_for_task2_APC"/>
         <dataSet id="autogen_task2_APCP" label="APCP" dataReference="auto_dg_for_task2_APCP"/>
         <dataSet id="autogen_task2_BCKI" label="BCKI" dataReference="auto_dg_for_task2_BCKI"/>
