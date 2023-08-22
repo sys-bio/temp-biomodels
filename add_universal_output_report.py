@@ -304,7 +304,23 @@ def addPlot(doc, datagen_ids, task_times):
                         curve.setId("autogen_curve_" + taskref + "_" + sbmlid[0])
                         #curve.setDataReference(dgid)
                         curve.setName(sbmlid[0])
-    
+            if plot.getNumCurves()==0:
+                plot.setName("Auto-generated plot for " + taskref + ", including all qualitative species.")
+                yaxis.setName("Qualitative Species")
+                for (dgid, sbmlid) in datagen_ids[taskref]:
+                    if sbmlid[1] == "qual_species":
+                        curve = plot.createCurve()
+                        curve.setLogX(False)
+                        curve.setLogY(False)
+                        curve.setXDataReference(time)
+                        curve.setYDataReference(dgid)
+                        curve.setId("autogen_curve_" + taskref + "_" + sbmlid[0])
+                        #curve.setDataReference(dgid)
+                        curve.setName(sbmlid[0])
+            if plot.getNumCurves()==0:
+                print("No data found for any curve.")
+                assert(False)
+                
 
 def run(sedml_filenames, sbml_filenames):
     if len(sedml_filenames) == 0:
