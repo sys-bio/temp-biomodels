@@ -244,20 +244,21 @@ def defineDatagenForAllTargets(doc, task_ids):
                 
 def addReport(doc, datagen_ids, task_times):
     for taskref in datagen_ids:
-        report = doc.createReport()
-        report.setId("autogen_report_for_" + taskref)
-        report.setName("Auto-generated report for " + taskref + ", including all symbols in SBML with mathematical meaning, both constant and variable.")
-        if taskref in task_times:
-            time = task_times[taskref]
-            dataset = report.createDataSet()
-            dataset.setId("autogen_time_for_" + taskref)
-            dataset.setDataReference(time)
-            dataset.setLabel("Time")
-        for (dgid, sbmlid) in datagen_ids[taskref]:
-            dataset = report.createDataSet()
-            dataset.setId("autogen_" + taskref + "_" + sbmlid[0])
-            dataset.setDataReference(dgid)
-            dataset.setLabel(sbmlid[0])
+        if doc.getOutput("autogen_report_for_" + taskref) == None:
+            report = doc.createReport()
+            report.setId("autogen_report_for_" + taskref)
+            report.setName("Auto-generated report for " + taskref + ", including all symbols in SBML with mathematical meaning, both constant and variable.")
+            if taskref in task_times:
+                time = task_times[taskref]
+                dataset = report.createDataSet()
+                dataset.setId("autogen_time_for_" + taskref)
+                dataset.setDataReference(time)
+                dataset.setLabel("Time")
+            for (dgid, sbmlid) in datagen_ids[taskref]:
+                dataset = report.createDataSet()
+                dataset.setId("autogen_" + taskref + "_" + sbmlid[0])
+                dataset.setDataReference(dgid)
+                dataset.setLabel(sbmlid[0])
     
 
 def addPlot(doc, datagen_ids, task_times):
@@ -269,31 +270,19 @@ def addPlot(doc, datagen_ids, task_times):
     for taskref in datagen_ids:
         if taskref not in task_times:
             continue
-        plot = doc.createPlot2D()
-        plot.setId("autogen_plot_for_" + taskref)
-        plot.setName("Auto-generated plot for " + taskref + ", including all species.")
-        time = task_times[taskref]
-        xaxis = plot.createXAxis()
-        xaxis.setName("Time")
-        xaxis.setType(libsedml.SEDML_AXISTYPE_LINEAR)
-        yaxis = plot.createYAxis()
-        yaxis.setName("Species")
-        yaxis.setType(libsedml.SEDML_AXISTYPE_LINEAR)
-        for (dgid, sbmlid) in datagen_ids[taskref]:
-            if sbmlid[1] == "species":
-                curve = plot.createCurve()
-                curve.setLogX(False)
-                curve.setLogY(False)
-                curve.setXDataReference(time)
-                curve.setYDataReference(dgid)
-                curve.setId("autogen_curve_" + taskref + "_" + sbmlid[0])
-                #curve.setDataReference(dgid)
-                curve.setName(sbmlid[0])
-        if plot.getNumCurves()==0:
-            plot.setName("Auto-generated plot for " + taskref + ", including all parameters.")
-            yaxis.setName("Parameter")
+        if doc.getOutput("autogen_plot_for_" + taskref) == None:
+            plot = doc.createPlot2D()
+            plot.setId("autogen_plot_for_" + taskref)
+            plot.setName("Auto-generated plot for " + taskref + ", including all species.")
+            time = task_times[taskref]
+            xaxis = plot.createXAxis()
+            xaxis.setName("Time")
+            xaxis.setType(libsedml.SEDML_AXISTYPE_LINEAR)
+            yaxis = plot.createYAxis()
+            yaxis.setName("Species")
+            yaxis.setType(libsedml.SEDML_AXISTYPE_LINEAR)
             for (dgid, sbmlid) in datagen_ids[taskref]:
-                if sbmlid[1] == "parameter":
+                if sbmlid[1] == "species":
                     curve = plot.createCurve()
                     curve.setLogX(False)
                     curve.setLogY(False)
@@ -302,6 +291,19 @@ def addPlot(doc, datagen_ids, task_times):
                     curve.setId("autogen_curve_" + taskref + "_" + sbmlid[0])
                     #curve.setDataReference(dgid)
                     curve.setName(sbmlid[0])
+            if plot.getNumCurves()==0:
+                plot.setName("Auto-generated plot for " + taskref + ", including all parameters.")
+                yaxis.setName("Parameter")
+                for (dgid, sbmlid) in datagen_ids[taskref]:
+                    if sbmlid[1] == "parameter":
+                        curve = plot.createCurve()
+                        curve.setLogX(False)
+                        curve.setLogY(False)
+                        curve.setXDataReference(time)
+                        curve.setYDataReference(dgid)
+                        curve.setId("autogen_curve_" + taskref + "_" + sbmlid[0])
+                        #curve.setDataReference(dgid)
+                        curve.setName(sbmlid[0])
     
 
 def run(sedml_filenames, sbml_filenames):
