@@ -341,8 +341,9 @@ def run(id, sbml_files):
     if id in upgrade_to_l2v4:
         for file in sbml_files:
             doc = libsbml.readSBMLFromFile(file)
-            doc.setLevelAndVersion(2, 4, strict=False)
-            libsbml.writeSBMLToFile(doc, file)
+            if doc.getLevel() <= 2 and doc.getVersion() <= 3:
+                doc.setLevelAndVersion(2, 4, strict=False)
+                libsbml.writeSBMLToFile(doc, file)
     elif id in make_boundary:
         (cfile, sid) = make_boundary[id]
         for file in sbml_files:
