@@ -39,6 +39,11 @@ def create_generic_sedml(sedml_filenames, sbml_filenames):
         if os.path.basename(sbml_filename) in qual_models:
             alg.setKisaoID(449)
         
+        if os.path.basename(sedml_filename) == "BIOMD0000000356_url.sedml":
+            algparm = alg.createAlgorithmParameter()
+            algparm.setKisaoID(211)
+            algparm.setValue("1e-10")
+        
         #Create a task that merges the two.
         task = doc.createTask()
         task.setId("task1")
