@@ -65,6 +65,7 @@ def fixChitnes2008(sed):
 def fixKirschner1998(sed):
     # reason: "Does not reproduce published figure"
     sim = sed.getSimulation(0)
+    sim.setOutputEndTime(1000)
     alg = sim.getAlgorithm()
     alg.setName("ODE solver")
     alg.setKisaoID(694)
