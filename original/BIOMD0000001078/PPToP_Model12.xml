@@ -1,0 +1,575 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model id="PPToP_Model12" metaid="COPASI0" name="Hammaren_Geissen_2022_Model12">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+     <p>The model encodes the general biological process of protein synthesis and post-translational modification (PTM, such as protein phosphorylation), viewed through the eyes of a specific, widely-used experimental method. Specifically, we model measurements of pulsed stable isotope labelling of amino acids in cell culture (pSILAC), which is a method often used to quantify protein turnover (i.e. the degradation of old and replacement with new) of proteins in a cell.</p>
+  </body>
+    </notes>
+    <annotation>
+      <COPASI xmlns="http://www.copasi.org/static/sbml">
+        <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+          <rdf:Description rdf:about="#COPASI0">
+            <dcterms:bibliographicCitation>
+              <rdf:Description>
+                <dcterms:description>Protein-Peptide Turnover Profiling reveals the order of PTM addition and removal during protein maturation</dcterms:description>
+                <CopasiMT:isDescribedBy rdf:resource="urn:miriam:pubmed:36460637"/>
+              </rdf:Description>
+            </dcterms:bibliographicCitation>
+            <dcterms:bibliographicCitation>
+              <rdf:Description>
+                <dcterms:description>Protein-Peptide Turnover Profiling reveals the order of PTM addition and removal during protein maturation</dcterms:description>
+                <CopasiMT:isDescribedBy rdf:resource="urn:miriam:doi:10.1038/s41467-022-35054-2"/>
+              </rdf:Description>
+            </dcterms:bibliographicCitation>
+            <dcterms:created>
+              <rdf:Description>
+                <dcterms:W3CDTF>2022-12-16T08:59:27Z</dcterms:W3CDTF>
+              </rdf:Description>
+            </dcterms:created>
+            <dcterms:creator>
+              <rdf:Description>
+                <vCard:EMAIL>eva.geissen@embl.de</vCard:EMAIL>
+                <vCard:N>
+                  <rdf:Description>
+                    <vCard:Family>Geissen</vCard:Family>
+                    <vCard:Given>Eva-Maria</vCard:Given>
+                  </rdf:Description>
+                </vCard:N>
+                <vCard:ORG>
+                  <rdf:Description>
+                    <vCard:Orgname>EMBL</vCard:Orgname>
+                  </rdf:Description>
+                </vCard:ORG>
+              </rdf:Description>
+            </dcterms:creator>
+          </rdf:Description>
+        </rdf:RDF>
+      </COPASI>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#COPASI0">
+	<dc:creator>
+	<rdf:Bag>
+	<rdf:li rdf:parseType="Resource">
+	<vCard:N rdf:parseType="Resource">
+	<vCard:Family>Geissen</vCard:Family>
+	<vCard:Given>Eva-Maria</vCard:Given>
+	</vCard:N>
+	<vCard:EMAIL>eva.geissen@embl.de</vCard:EMAIL>
+	<vCard:ORG rdf:parseType="Resource">
+	<vCard:Orgname>EMBL</vCard:Orgname>
+	</vCard:ORG>
+	</rdf:li>
+	</rdf:Bag>
+	</dc:creator>
+	<dcterms:created rdf:parseType="Resource">
+	<dcterms:W3CDTF>2022-12-16T08:59:27Z</dcterms:W3CDTF>
+	</dcterms:created>
+	<dcterms:modified rdf:parseType="Resource">
+	<dcterms:W3CDTF>2022-12-16T08:59:27Z</dcterms:W3CDTF>
+	</dcterms:modified>
+	<bqbiol:isDescribedBy>
+	<rdf:Bag>
+	<rdf:li rdf:resource="http://identifiers.org/doi/10.1038/s41467-022-35054-2"/>
+	</rdf:Bag>
+	</bqbiol:isDescribedBy>
+	<bqbiol:isDescribedBy>
+	<rdf:Bag>
+	<rdf:li rdf:resource="http://identifiers.org/pubmed/36460637"/>
+	</rdf:Bag>
+	</bqbiol:isDescribedBy>
+	<bqbiol:hasProperty>
+	<rdf:Bag>
+	<rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000045"/>
+	</rdf:Bag>
+	</bqbiol:hasProperty>
+	</rdf:Description>
+	
+	
+	
+      </rdf:RDF>
+    </annotation>
+      <listOfUnitDefinitions>
+      <unitDefinition id="substance" name="substance">
+        <listOfUnits>
+          <unit exponent="1" kind="mole" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="length" name="length">
+        <listOfUnits>
+          <unit exponent="1" kind="metre" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="area" name="area">
+        <listOfUnits>
+          <unit exponent="2" kind="metre" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="volume" name="volume">
+        <listOfUnits>
+          <unit exponent="1" kind="litre" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time" name="time">
+        <listOfUnits>
+          <unit exponent="1" kind="second" multiplier="1" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment constant="true" id="compartment" metaid="COPASI1" name="compartment" size="1" spatialDimensions="3">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI1"/>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+            </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="compartment" constant="false" id="Pu" initialConcentration="0.195652173913043" metaid="COPASI2" name="Pu_old">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </species>
+      <species boundaryCondition="false" compartment="compartment" constant="false" id="Pp" initialConcentration="0.0217391304347826" metaid="COPASI3" name="Pp_old">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </species>
+      <species boundaryCondition="true" compartment="compartment" constant="false" id="Pu_new" initialConcentration="0" metaid="COPASI4" name="Pu_new">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </species>
+      <species boundaryCondition="true" compartment="compartment" constant="false" id="Pp_new" initialConcentration="0" metaid="COPASI5" name="Pp_new">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="kdegu" metaid="COPASI6" name="kdegu" value="0.5">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI6"/>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="true" id="kdegp" metaid="COPASI7" name="kdegp" value="0.1">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="true" id="ke" metaid="COPASI8" name="ke" value="0.8">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI8"/>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="true" id="kw" metaid="COPASI9" name="kw" value="0.1">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI9"/>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="Pu_total" metaid="COPASI10" name="Pu_old+new" value="0.195652173913043">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="Pp_total" metaid="COPASI11" name="Pp_old+new" value="0.0217391304347826">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="true" id="ksyn" metaid="COPASI12" name="ksyn" value="0.1">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+              <rdf:Description rdf:about="#COPASI12"/>
+            </rdf:RDF>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="Pu_observable" metaid="COPASI13" name="Ou_Pu_old_observable" value="1">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="Pp_observable" metaid="COPASI14" name="Op_Pp_old_observable" value="1">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="EntProt_observable" metaid="COPASI15" name="O_P_observable" value="1">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="Pu_old_clearance" metaid="COPASI20" name="Pu_old_clearance" value="0">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="Pp_old_clearance" metaid="COPASI21" name="Pp_old_clearance" value="0">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter constant="false" id="P_old_clearance" metaid="COPASI22" name="P_old_clearance" value="0">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+            </parameter>
+      <parameter id="ModelValue_4_0" name="Initial for Pp_old+new" value="0.0217391304347826">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="Pp_total"/>
+        </annotation>
+            </parameter>
+      <parameter id="ModelValue_5_0" name="Initial for Pu_old+new" value="0.195652173913043">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="Pu_total"/>
+        </annotation>
+            </parameter>
+      <parameter id="ModelValue_9_0" name="Initial for kdegp" value="0.1">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="kdegp"/>
+        </annotation>
+            </parameter>
+      <parameter id="ModelValue_7_0" name="Initial for kdegu" value="0.5">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="kdegu"/>
+        </annotation>
+            </parameter>
+      <parameter id="ModelValue_8_0" name="Initial for ke" value="0.8">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="ke"/>
+        </annotation>
+            </parameter>
+      <parameter id="ModelValue_3_0" name="Initial for ksyn" value="0.1">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="ksyn"/>
+        </annotation>
+            </parameter>
+      <parameter id="ModelValue_6_0" name="Initial for kw" value="0.1">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="kw"/>
+        </annotation>
+            </parameter>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="Pu">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> Pu_total </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="Pp">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> Pp_total </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="ModelValue_4_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> Pp_total </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="ModelValue_5_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> Pu_total </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="ModelValue_9_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> kdegp </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="ModelValue_7_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> kdegu </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="ModelValue_8_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> ke </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="ModelValue_3_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> ksyn </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="ModelValue_6_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> kw </ci>
+        </math>
+            </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule variable="Pu_total">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> ModelValue_3_0 </ci>
+              <apply>
+                <plus/>
+                <ci> ModelValue_9_0 </ci>
+                <ci> ModelValue_8_0 </ci>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci> ModelValue_9_0 </ci>
+                <ci> ModelValue_7_0 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ModelValue_7_0 </ci>
+                <ci> ModelValue_8_0 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ModelValue_9_0 </ci>
+                <ci> ModelValue_6_0 </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="Pu_observable">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <divide/>
+            <ci> Pu </ci>
+            <ci> ModelValue_5_0 </ci>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="Pu_old_clearance">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <ln/>
+            <ci> Pu_observable </ci>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="Pp_total">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> ModelValue_3_0 </ci>
+              <ci> ModelValue_6_0 </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci> ModelValue_9_0 </ci>
+                <ci> ModelValue_7_0 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ModelValue_7_0 </ci>
+                <ci> ModelValue_8_0 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> ModelValue_9_0 </ci>
+                <ci> ModelValue_6_0 </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="Pp_new">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <minus/>
+            <ci> ModelValue_4_0 </ci>
+            <ci> Pp </ci>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="Pp_observable">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <divide/>
+            <ci> Pp </ci>
+            <ci> ModelValue_4_0 </ci>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="Pp_old_clearance">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <ln/>
+            <ci> Pp_observable </ci>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="EntProt_observable">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <ci> Pp </ci>
+              <ci> Pu </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci> ModelValue_4_0 </ci>
+              <ci> ModelValue_5_0 </ci>
+            </apply>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="P_old_clearance">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <ln/>
+            <ci> EntProt_observable </ci>
+          </apply>
+        </math>
+            </assignmentRule>
+      <assignmentRule variable="Pu_new">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <minus/>
+            <ci> ModelValue_5_0 </ci>
+            <ci> Pu </ci>
+          </apply>
+        </math>
+            </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="Pu_degradation" metaid="COPASI16" name="Pu degradation" reversible="false">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+              <listOfReactants>
+          <speciesReference species="Pu" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <ci> kdegu </ci>
+              <ci> Pu </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="PTM_writing" metaid="COPASI17" name="PTM writing" reversible="false">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+              <listOfReactants>
+          <speciesReference species="Pu" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Pp" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <ci> kw </ci>
+              <ci> Pu </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="PTM_erasing" metaid="COPASI18" name="PTM erasing" reversible="false">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+              <listOfReactants>
+          <speciesReference species="Pp" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Pu" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <ci> ke </ci>
+              <ci> Pp </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="Pp_degradation" metaid="COPASI19" name="Pp degradation" reversible="false">
+        <annotation>
+          <COPASI xmlns="http://www.copasi.org/static/sbml">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+          </COPASI>
+        </annotation>
+              <listOfReactants>
+          <speciesReference species="Pp" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <ci> kdegp </ci>
+              <ci> Pp </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

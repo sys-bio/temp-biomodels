@@ -1,0 +1,19 @@
+FROM condaforge/mambaforge:22.11.1-4
+# Built from base of https://github.com/nilshoffmann/Automatic-Identification-and-Counting-of-Blood-Cells
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt update && \
+    apt install -y --no-install-recommends libglib2.0-0 libgl1-mesa-dev libdbus-1-3 libfontconfig1  libxkbcommon-x11-0 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+COPY environment.yml .
+RUN mamba env create -f environment.yml && mamba clean -afy
+SHELL ["conda", "run", "-n", "RBCs", "/bin/bash", "-c"]
+WORKDIR /rbc
+COPY README-ONNX.md .
+COPY *.py .
+COPY data data
+COPY predict-onnx.py .
+COPY darkflow darkflow 
+COPY output/saved_model.onnx output/saved_model.onnx
+COPY output/meta.pkl output/meta.pkl
+ENTRYPOINT ["conda","run","--no-capture-output", "-n", "RBCs", "python3", "predict-onnx.py" ]

@@ -1,0 +1,54 @@
+%without noise
+%necessary: diff_equations_article_deterministic.m
+
+%Matlab code:
+T=4*24*3600; %time step is in second
+initial_conditions=[3.82007920893978,-17.5981186613022,-0.644229940134898,-0.803527836803535,5.57377096632541,2.16500000000000e-320];
+
+[~, solution] = ode15s(@(t, variables) diff_equations_article_deterministic(t, variables), (0:1:T), initial_conditions);
+
+figure;
+plot([0:1/3600:4*24],solution);
+xlim([0 T/3600]);
+xlabel('t (h)');
+legend('V_v','V_m','x','y','H','n');
+
+%result (uploaded picture): spider_basic_database_no_light_article.jpg
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%with noise
+%necessary:
+%SDE_Toolbox_1.4.1 - citation: U. Picchini. SDE Toolbox: Simulation and Estimation of Stochastic Differential Equations with Matlab, http://sdetoolbox.sourceforge.net
+%uploaded files: mySDE_sdefile.m and SDE_library_setup.m
+
+%Matlab code:
+SDE_library_run
+
+%Answers:
+N %estimate parameters from data?
+
+N %load data from an ASCII file?
+
+MYSDEITO %model name
+
+%initial conditions
+3.82007920893978 
+-17.5981186613022
+-0.644229940134898
+-0.803527836803535
+5.57377096632541
+2.16500000000000e-320
+
+10 %number of trajectories
+
+0 %T0
+
+172800 %T
+
+1 %integration stepsize
+
+EM %=Euler-Maruyama, integration method
+
+%results (uploaded pictures): spider_sde_V_m_no_light_article.jpg, spider_sde_V_v_no_light_article.jpg, spider_sde_H_no_light_article.jpg

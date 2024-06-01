@@ -1,0 +1,868 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model id="model" metaid="d2d" name="Adlung2021 - Cell-to-cell variability in JAK2/STAT5 pathway ">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+     <p>A mathematical model for cell-to-cell variability in JAK2/STAT5 pathway components and cytoplasmic volumes defines survival threshold in erythroid progenitor cells</p>
+  </body>
+    </notes>
+    <annotation>
+	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+        <rdf:Description rdf:about="#d2d">
+	<bqbiol:hasProperty>
+	<rdf:Bag>
+	<rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000046"/>
+	</rdf:Bag>
+	</bqbiol:hasProperty>
+	</rdf:Description>
+	
+	
+	
+	
+	</rdf:RDF>
+	</annotation>
+      <listOfUnitDefinitions>
+      <unitDefinition id="time" name="time">
+        <listOfUnits>
+          <unit exponent="1" kind="second" multiplier="60" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="nM" name="nM">
+        <listOfUnits>
+          <unit exponent="1" kind="mole" multiplier="1E-9" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="au" name="arbitraryunits">
+</unitDefinition>
+      <unitDefinition id="pl" name="pl">
+        <listOfUnits>
+          <unit exponent="1" kind="litre" multiplier="1E-12" scale="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment constant="true" id="cyt" size="0.4" spatialDimensions="3" units="pl"/>
+      <compartment constant="true" id="nuc" size="0.275" spatialDimensions="3" units="pl"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="EpoRJAK2" initialConcentration="1" name="EpoRJAK2" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="EpoRpJAK2" initialConcentration="1" name="EpoRpJAK2" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="p1EpoRpJAK2" initialConcentration="1" name="p1EpoRpJAK2" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="p2EpoRpJAK2" initialConcentration="1" name="p2EpoRpJAK2" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="p12EpoRpJAK2" initialConcentration="1" name="p12EpoRpJAK2" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="SHP1" initialConcentration="1" name="SHP1" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="SHP1Act" initialConcentration="1" name="SHP1Act" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="STAT5" initialConcentration="1" name="STAT5" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="pSTAT5" initialConcentration="1" name="pSTAT5" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="nuc" constant="false" hasOnlySubstanceUnits="false" id="npSTAT5" initialConcentration="1" name="npSTAT5" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="nuc" constant="false" hasOnlySubstanceUnits="false" id="CISnRNA1" initialConcentration="1" name="CISnRNA1" substanceUnits="au"/>
+      <species boundaryCondition="false" compartment="nuc" constant="false" hasOnlySubstanceUnits="false" id="CISnRNA2" initialConcentration="1" name="CISnRNA2" substanceUnits="au"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="CISRNA" initialConcentration="1" name="CISRNA" substanceUnits="au"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="CIS" initialConcentration="1" name="CIS" substanceUnits="nM"/>
+      <species boundaryCondition="false" compartment="cyt" constant="false" hasOnlySubstanceUnits="false" id="SOCS3" initialConcentration="1" name="SOCS3" substanceUnits="nM"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="ActD" name="ActD" value="0"/>
+      <parameter constant="true" id="CISEqc" name="CISEqc" value="0.767538787148837"/>
+      <parameter constant="true" id="CISInh" name="CISInh" value="4.3834039529483E8"/>
+      <parameter constant="true" id="CISRNADelay" name="CISRNADelay" value="0.119845304696486"/>
+      <parameter constant="true" id="CISRNAEqc" name="CISRNAEqc" value="1"/>
+      <parameter constant="true" id="CISRNATurn" name="CISRNATurn" value="0.119809412320528"/>
+      <parameter constant="true" id="CISTurn" name="CISTurn" value="0.0178232876161209"/>
+      <parameter constant="true" id="DeaEpoRJAKActSHP1" name="DeaEpoRJAKActSHP1" value="0.000885910280224449"/>
+      <parameter constant="true" id="EpoRActJAK2" name="EpoRActJAK2" value="0.326237934674659"/>
+      <parameter constant="true" id="JAK2ActEpo" name="JAK2ActEpo" value="0.0520769792397573"/>
+      <parameter constant="true" id="SHP1ActEpoR" name="SHP1ActEpoR" value="1"/>
+      <parameter constant="true" id="SHP1Dea" name="SHP1Dea" value="0.00557392820000894"/>
+      <parameter constant="true" id="SOCS3Eqc" name="SOCS3Eqc" value="0.162493786913208"/>
+      <parameter constant="true" id="SOCS3EqcOE" name="SOCS3EqcOE" value="828.06160444759"/>
+      <parameter constant="true" id="SOCS3Inh" name="SOCS3Inh" value="0.010341350346111"/>
+      <parameter constant="true" id="SOCS3Turn" name="SOCS3Turn" value="0.0806005449025786"/>
+      <parameter constant="true" id="SOCS3oe" name="SOCS3oe" value="0"/>
+      <parameter constant="true" id="STAT5ActEpoR" name="STAT5ActEpoR" value="0.299136651563824"/>
+      <parameter constant="true" id="STAT5ActJAK2" name="STAT5ActJAK2" value="0.0513253755320527"/>
+      <parameter constant="true" id="STAT5Exp" name="STAT5Exp" value="0.0112157105187786"/>
+      <parameter constant="true" id="STAT5Imp" name="STAT5Imp" value="0.0404763494591488"/>
+      <parameter constant="true" id="epo_level" name="epo_level" value="5"/>
+      <parameter constant="false" id="init_EpoRJAK2" name="init_EpoRJAK2" value="3.97504832099667"/>
+      <parameter constant="false" id="init_SHP1" name="init_SHP1" value="26.7236153222782"/>
+      <parameter constant="false" id="init_STAT5" name="init_STAT5" value="79.7242077843376"/>
+      <parameter constant="false" id="Epo" name="Epo" value="0"/>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="EpoRJAK2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> init_EpoRJAK2 </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="EpoRpJAK2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="p1EpoRpJAK2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="p2EpoRpJAK2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="p12EpoRpJAK2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="SHP1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> init_SHP1 </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="SHP1Act">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="STAT5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> init_STAT5 </ci>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="pSTAT5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="npSTAT5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="CISnRNA1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="CISnRNA2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="CISRNA">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="CIS">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+      <initialAssignment symbol="SOCS3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <cn type="integer"> 0 </cn>
+        </math>
+            </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule variable="Epo">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <ci> epo_level </ci>
+        </math>
+            </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="v1_v_0" name="v_0" reversible="false">
+        <listOfReactants>
+          <speciesReference species="EpoRJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="EpoRpJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SOCS3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Epo </ci>
+                  <ci> EpoRJAK2 </ci>
+                  <ci> JAK2ActEpo </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> SOCS3 </ci>
+                      <ci> SOCS3Inh </ci>
+                    </apply>
+                    <ci> SOCS3Eqc </ci>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v2_v_1" name="v_1" reversible="false">
+        <listOfReactants>
+          <speciesReference species="EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="EpoRJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SHP1Act"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> DeaEpoRJAKActSHP1 </ci>
+                  <ci> EpoRpJAK2 </ci>
+                  <ci> SHP1Act </ci>
+                </apply>
+                <ci> SHP1ActEpoR </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v3_v_2" name="v_2" reversible="false">
+        <listOfReactants>
+          <speciesReference species="EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p1EpoRpJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SOCS3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> EpoRpJAK2 </ci>
+                  <ci> EpoRActJAK2 </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> SOCS3 </ci>
+                      <ci> SOCS3Inh </ci>
+                    </apply>
+                    <ci> SOCS3Eqc </ci>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v4_v_3" name="v_3" reversible="false">
+        <listOfReactants>
+          <speciesReference species="EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p2EpoRpJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SOCS3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <cn type="integer"> 3 </cn>
+                  <ci> EpoRpJAK2 </ci>
+                  <ci> EpoRActJAK2 </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> SOCS3 </ci>
+                      <ci> SOCS3Inh </ci>
+                    </apply>
+                    <ci> SOCS3Eqc </ci>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v5_v_4" name="v_4" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p1EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p12EpoRpJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SOCS3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <cn type="integer"> 3 </cn>
+                  <ci> EpoRActJAK2 </ci>
+                  <ci> p1EpoRpJAK2 </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> SOCS3 </ci>
+                      <ci> SOCS3Inh </ci>
+                    </apply>
+                    <ci> SOCS3Eqc </ci>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v6_v_5" name="v_5" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p2EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="p12EpoRpJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SOCS3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> EpoRActJAK2 </ci>
+                  <ci> p2EpoRpJAK2 </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> SOCS3 </ci>
+                      <ci> SOCS3Inh </ci>
+                    </apply>
+                    <ci> SOCS3Eqc </ci>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v7_v_6" name="v_6" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p1EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="EpoRJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SHP1Act"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> DeaEpoRJAKActSHP1 </ci>
+                  <ci> SHP1Act </ci>
+                  <ci> p1EpoRpJAK2 </ci>
+                </apply>
+                <ci> SHP1ActEpoR </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v8_v_7" name="v_7" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p2EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="EpoRJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SHP1Act"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> DeaEpoRJAKActSHP1 </ci>
+                  <ci> SHP1Act </ci>
+                  <ci> p2EpoRpJAK2 </ci>
+                </apply>
+                <ci> SHP1ActEpoR </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v9_v_8" name="v_8" reversible="false">
+        <listOfReactants>
+          <speciesReference species="p12EpoRpJAK2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="EpoRJAK2" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SHP1Act"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> DeaEpoRJAKActSHP1 </ci>
+                  <ci> SHP1Act </ci>
+                  <ci> p12EpoRpJAK2 </ci>
+                </apply>
+                <ci> SHP1ActEpoR </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v12_v_11" name="v_11" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SHP1Act" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="EpoRpJAK2"/>
+          <modifierSpeciesReference species="SHP1"/>
+          <modifierSpeciesReference species="p12EpoRpJAK2"/>
+          <modifierSpeciesReference species="p1EpoRpJAK2"/>
+          <modifierSpeciesReference species="p2EpoRpJAK2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> SHP1 </ci>
+              <ci> SHP1ActEpoR </ci>
+              <apply>
+                <plus/>
+                <ci> EpoRpJAK2 </ci>
+                <ci> p12EpoRpJAK2 </ci>
+                <ci> p1EpoRpJAK2 </ci>
+                <ci> p2EpoRpJAK2 </ci>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v13_v_12" name="v_12" reversible="false">
+        <listOfReactants>
+          <speciesReference species="SHP1Act" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> SHP1Dea </ci>
+              <ci> SHP1Act </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v14_v_13" name="v_13" reversible="false">
+        <listOfReactants>
+          <speciesReference species="STAT5" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pSTAT5" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="EpoRpJAK2"/>
+          <modifierSpeciesReference species="SOCS3"/>
+          <modifierSpeciesReference species="p12EpoRpJAK2"/>
+          <modifierSpeciesReference species="p1EpoRpJAK2"/>
+          <modifierSpeciesReference species="p2EpoRpJAK2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> STAT5 </ci>
+                  <ci> STAT5ActJAK2 </ci>
+                  <apply>
+                    <plus/>
+                    <ci> EpoRpJAK2 </ci>
+                    <ci> p12EpoRpJAK2 </ci>
+                    <ci> p1EpoRpJAK2 </ci>
+                    <ci> p2EpoRpJAK2 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> SOCS3 </ci>
+                      <ci> SOCS3Inh </ci>
+                    </apply>
+                    <ci> SOCS3Eqc </ci>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v15_v_14" name="v_14" reversible="false">
+        <listOfReactants>
+          <speciesReference species="STAT5" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="pSTAT5" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="CIS"/>
+          <modifierSpeciesReference species="SOCS3"/>
+          <modifierSpeciesReference species="p12EpoRpJAK2"/>
+          <modifierSpeciesReference species="p1EpoRpJAK2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> STAT5 </ci>
+                  <ci> STAT5ActEpoR </ci>
+                  <apply>
+                    <power/>
+                    <apply>
+                      <plus/>
+                      <ci> p12EpoRpJAK2 </ci>
+                      <ci> p1EpoRpJAK2 </ci>
+                    </apply>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> SOCS3 </ci>
+                        <ci> SOCS3Inh </ci>
+                      </apply>
+                      <ci> SOCS3Eqc </ci>
+                    </apply>
+                    <cn type="integer"> 1 </cn>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> CIS </ci>
+                        <ci> CISInh </ci>
+                      </apply>
+                      <ci> CISEqc </ci>
+                    </apply>
+                    <cn type="integer"> 1 </cn>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v16_v_15" name="v_15" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pSTAT5" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="npSTAT5" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> STAT5Imp </ci>
+              <ci> pSTAT5 </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v17_v_16" name="v_16" reversible="false">
+        <listOfReactants>
+          <speciesReference species="npSTAT5" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="STAT5" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> nuc </ci>
+              <ci> STAT5Exp </ci>
+              <ci> npSTAT5 </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v18_v_17" name="v_17" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CISnRNA1" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="npSTAT5"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> nuc </ci>
+              <apply>
+                <minus/>
+                <ci> CISRNAEqc </ci>
+              </apply>
+              <ci> CISRNATurn </ci>
+              <ci> npSTAT5 </ci>
+              <apply>
+                <minus/>
+                <ci> ActD </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v19_v_18" name="v_18" reversible="false">
+        <listOfReactants>
+          <speciesReference species="CISnRNA1" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="CISnRNA2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> nuc </ci>
+              <ci> CISnRNA1 </ci>
+              <ci> CISRNADelay </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v20_v_19" name="v_19" reversible="false">
+        <listOfReactants>
+          <speciesReference species="CISnRNA2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="CISRNA" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> nuc </ci>
+              <ci> CISnRNA2 </ci>
+              <ci> CISRNADelay </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v21_v_20" name="v_20" reversible="false">
+        <listOfReactants>
+          <speciesReference species="CISRNA" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> CISRNA </ci>
+              <ci> CISRNATurn </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v22_v_21" name="v_21" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CIS" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="CISRNA"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> CISRNA </ci>
+              <ci> CISEqc </ci>
+              <ci> CISTurn </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v23_v_22" name="v_22" reversible="false">
+        <listOfReactants>
+          <speciesReference species="CIS" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> CIS </ci>
+              <ci> CISTurn </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v24_v_23" name="v_23" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SOCS3" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="npSTAT5"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <apply>
+                <minus/>
+                <ci> SOCS3Eqc </ci>
+              </apply>
+              <ci> SOCS3Turn </ci>
+              <ci> npSTAT5 </ci>
+              <apply>
+                <minus/>
+                <ci> ActD </ci>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v25_v_24" name="v_24" reversible="false">
+        <listOfReactants>
+          <speciesReference species="SOCS3" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> SOCS3 </ci>
+              <ci> SOCS3Turn </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction id="v26_v_25" name="v_25" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SOCS3" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> cyt </ci>
+              <ci> SOCS3oe </ci>
+              <ci> SOCS3Eqc </ci>
+              <ci> SOCS3Turn </ci>
+              <ci> SOCS3EqcOE </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

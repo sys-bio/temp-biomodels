@@ -30,6 +30,11 @@ def remove_empty_containers(filename):
                 repeated_task_ids.remove(task_id)
                 removed_task_ids.append(task_id)
                 changed = True
+            if task.getNumRanges() == 0:
+                doc.removeTask(task_id)
+                repeated_task_ids.remove(task_id)
+                removed_task_ids.append(task_id)
+                changed = True
 
         removed_sub_task = False
         for task_id in repeated_task_ids:

@@ -49,7 +49,9 @@ no_pubmed_or_doi = {
     "BIOMD0000000456" : NonStandardRef('Smallbone, Kieran. "Metabolic Control Analysis: Rereading Reder." arXiv preprint arXiv:1305.6449 (2013).', "http://arxiv.org/pdf/1305.6449v1.pdf", "Metabolic Control Analysis: Rereading Reder."),
     "BIOMD0000000882" : NonStandardRef('Munz, Philip, et al. "When zombies attack!: mathematical modelling of an outbreak of zombie infection." Infectious disease modelling research progress 4 (2009): 133-150.', "http://identifiers.org/isbn/ISBN:1607413477", "When zombies attack!: Mathematical modelling of an outbreak of zombie infection"),
     "BIOMD0000001045" : NonStandardRef('Smith, David, and Lang Moore. "The SIR model for spread of disease-the differential equation model." Convergence (2004).', "https://www.maa.org/press/periodicals/loci/joma/the-sir-model-for-spread-of-disease-the-differential-equation-model", "The SIR Model for Spread of Disease - The Differential Equation Model"),
+    "BIOMD0000001070" : NonStandardRef('Kong, Xiangzhe, Huang, Wenbing, and Yang Liu. "Conditional Antibody Design as 3D Equivariant Graph Translation.", arXiv preprint arXiv:2208.06073 (2022).', "http://identifiers.org/doi/10.48550/arXiv.2208.06073", "Conditional Antibody Design as 3D Equivariant Graph Translation."),
     }
+
 
 def parseDocAndAddToMetadata(filename, metadata, master, pubmedIDs, doiIDs):
     doc = libsbml.readSBMLFromFile(filename)
@@ -89,6 +91,9 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterID, metadata, id, temp_entry
         mastercitation = get_reference(doi=doivec[-1])
     else:
         mastercitation = no_pubmed_or_doi[id]
+    if not mastercitation:
+        mastercitation = no_pubmed_or_doi[id]
+        
     
     for pmid in pubmedIDs:
         citation = get_reference(pubmed_id=pmid)

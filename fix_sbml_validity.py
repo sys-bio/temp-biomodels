@@ -264,6 +264,7 @@ uri_replacements = {
         "uniprot/GO:0005893": "go/GO:0005893",
         "uniprot/PR:000050007": "pr/PR:000050007",
         "unists/P00734": "uniprot/P00734",
+        "org/GO:": "org/go/GO:",
         }
 
 def fixURI(uri):
@@ -285,6 +286,8 @@ def retestAllIdentifiersURIs(file):
                 if "identifiers.org" in word:
                     for charstr in word.split('"'):
                         if "identifiers.org" in charstr:
+                            if "org/GO:" in charstr:
+                                bad_uris.append((file, charstr, "Missing 'go/'"))
 #                            if "omim" in charstr:
 #                                continue
 #                            if "psimi" in charstr:
@@ -377,28 +380,30 @@ def run(id, sbml_files):
                     for charstr in word.split('"'):
                         if "identifiers.org" in charstr:
                             charvec = charstr.strip("'>/").split("/")
+                            # print(charvec)
                             for n in range(len(charvec)):
                                 if charvec[n] == "identifiers.org":
-                                    pmid = charvec[n+2]
-                                    if charvec[n+1] not in VALID_IDENTIFIERS_NAMESPACES:
-                                        # if checkAndAddIdentifiersNamespace(charvec[n+1]):
-                                            bad_identifiers_ns.add(charvec[n+1])
-                                    assert charvec[n-1] == ""
-                                    assert "http" in charvec[n-2]
-                                    if charvec[n+1] == "pubmed" and pmid not in good_pmids and pmid not in bad_pmids:
-                                        assert(len(pmid)>0)
-                                        url = "https://pubmed.ncbi.nlm.nih.gov/" + pmid
-                                        try:
-                                            if "+" in pmid:
-                                                #These make valid URLs, but are invalid URIs: they don't fit the pubmed id pattern.
-                                                bad_pmids.add(pmid)
-                                            elif urllib.request.urlopen(url).getcode() > 400:
-                                                bad_pmids.add(pmid)
-                                            else:
-                                                good_pmids.add(pmid)
-                                                pmids_changed = True
-                                        except:
-                                                bad_pmids.add(pmid)
+                                    if len(charvec) > n+2:
+                                        pmid = charvec[n+2]
+                                        if charvec[n+1] not in VALID_IDENTIFIERS_NAMESPACES:
+                                            # if checkAndAddIdentifiersNamespace(charvec[n+1]):
+                                                bad_identifiers_ns.add(charvec[n+1])
+                                        assert charvec[n-1] == ""
+                                        assert "http" in charvec[n-2]
+                                        if charvec[n+1] == "pubmed" and pmid not in good_pmids and pmid not in bad_pmids:
+                                            assert(len(pmid)>0)
+                                            url = "https://pubmed.ncbi.nlm.nih.gov/" + pmid
+                                            try:
+                                                if "+" in pmid:
+                                                    #These make valid URLs, but are invalid URIs: they don't fit the pubmed id pattern.
+                                                    bad_pmids.add(pmid)
+                                                elif urllib.request.urlopen(url).getcode() > 400:
+                                                    bad_pmids.add(pmid)
+                                                else:
+                                                    good_pmids.add(pmid)
+                                                    pmids_changed = True
+                                            except:
+                                                    bad_pmids.add(pmid)
         f.close()
         if pmids_changed:
             gp_file = open("good_pmids.p", "wb")
