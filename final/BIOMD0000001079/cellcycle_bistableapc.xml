@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model id="cellcycle_bistableapc" metaid="cellcycle_bistableapc">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+     <p>Models the production and degradation of cyclin B that drives the early embryonic cell cycle.
+
+Cyclin B is degraded by APC/C. The activity of APC/C is modelled not through biochemical interactions, but through a "functional response curve". This can be ultrasensitive (with the parameter alpha = 0). In this case, the system does not oscillate. Importantly, the response can be made bistable and the form of the bistability can be easily prescribed. With a bistable response, the system oscillates.
+
+The uploaded file corresponds to the model used for Figs.3H, I in the publication.</p>
+  </body>
+    </notes>
+    <annotation>
+	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#cellcycle_bistableapc">
+          <bqmodel:isDescribedBy>
+	<rdf:Bag>
+	<rdf:li rdf:resource="http://identifiers.org/doi:10.1371/journal.pcbi.1009008"/>
+	</rdf:Bag>
+	</bqmodel:isDescribedBy>
+	<bqbiol:hasProperty>
+	<rdf:Bag>
+	<rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000045"/>
+	</rdf:Bag>
+	</bqbiol:hasProperty>
+	
+	<bqmodel:is>
+	<rdf:Bag>
+	<rdf:li rdf:resource="http://identifiers.org/biomodels.db:MODEL2212060001"/>
+	</rdf:Bag>
+	</bqmodel:is>
+	</rdf:Description>
+	
+	
+	
+	</rdf:RDF>
+	</annotation>
+      <listOfFunctionDefinitions>
+      <functionDefinition id="Xi">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> x </ci>
+            </bvar>
+            <bvar>
+              <ci> alpha </ci>
+            </bvar>
+            <bvar>
+              <ci> r </ci>
+            </bvar>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <times/>
+                <ci> alpha </ci>
+                <ci> x </ci>
+                <apply>
+                  <minus/>
+                  <ci> x </ci>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> x </ci>
+                  <ci> r </ci>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+            </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfCompartments>
+      <compartment constant="true" id="default_compartment" sboTerm="SBO:0000410" size="1" spatialDimensions="3"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species boundaryCondition="false" compartment="default_compartment" constant="false" hasOnlySubstanceUnits="false" id="CycCdk" initialAmount="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="ks" value="1.1"/>
+      <parameter constant="true" id="bdeg" value="0.1"/>
+      <parameter constant="false" id="APC" value="0"/>
+      <parameter constant="true" id="epsilon" value="0.01"/>
+      <parameter constant="true" id="n" value="15"/>
+      <parameter constant="true" id="K" value="20"/>
+      <parameter constant="true" id="alpha" value="4.16"/>
+      <parameter constant="true" id="r" value="0.5"/>
+    </listOfParameters>
+    <listOfRules>
+      <rateRule variable="APC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <cn type="integer"> 1 </cn>
+              <ci> epsilon </ci>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <divide/>
+                <apply>
+                  <power/>
+                  <ci> CycCdk </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <power/>
+                    <apply>
+                      <times/>
+                      <ci> K </ci>
+                      <apply>
+                        <ci> Xi </ci>
+                        <ci> APC </ci>
+                        <ci> alpha </ci>
+                        <ci> r </ci>
+                      </apply>
+                    </apply>
+                    <ci> n </ci>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <ci> CycCdk </ci>
+                    <ci> n </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> APC </ci>
+            </apply>
+          </apply>
+        </math>
+            </rateRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction fast="false" id="_J0" reversible="true">
+        <listOfProducts>
+          <speciesReference constant="true" species="CycCdk" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <ci> ks </ci>
+          </math>
+                </kineticLaw>
+      </reaction>
+      <reaction fast="false" id="_J1" reversible="true">
+        <listOfReactants>
+          <speciesReference constant="true" species="CycCdk" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> bdeg </ci>
+              <ci> CycCdk </ci>
+              <ci> APC </ci>
+            </apply>
+          </math>
+                </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
