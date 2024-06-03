@@ -29,6 +29,9 @@ def run(id, sedml_filenames):
     for sedml_filename in sedml_filenames:
         doc = libsedml.readSedMLFromFile(sedml_filename)
         changed = False
+        if (doc.getVersion() != 4):
+            doc.setVersion(4)
+            changed = True
         changed = make_algorithms_generic(doc) or changed
         if (changed):
             # print("Modified", id, os.path.basename(sedml_filename))
