@@ -57,22 +57,22 @@ DEFAULT_PARAMETERS = {
         'KISAO_0000415': '1000000',
         'KISAO_0000488': None,
     },
-    'KISAO_0000560': {
-        'KISAO_0000211': '1e-12',
+    'KISAO_0000694': {
+        'KISAO_0000571': '1e-12',
         'KISAO_0000216': 'false',
         'KISAO_0000415': '10000',
         'KISAO_0000467': None,
         'KISAO_0000209': '1e-6',
     },
     'KISAO_0000304': {
-        'KISAO_0000211': '1e-6',
+        'KISAO_0000571': '1e-6',
         'KISAO_0000559': '0.001',
         'KISAO_0000216': 'false',
         'KISAO_0000415': '1000000000',
         'KISAO_0000209': '1e-4',
     },
     'KISAO_0000566': {
-        'KISAO_0000211': '1e-6',
+        'KISAO_0000561': '1e-6',
         'KISAO_0000565': '1e-6',
         'KISAO_0000567': 'true',
         'KISAO_0000415': '100',
@@ -103,7 +103,7 @@ def run(id, dirname):
     sedml_filenames.sort()
     for sedml_filename in sedml_filenames:
         rel_sedml_filename = os.path.relpath(sedml_filename, dirname)
-        algorithm_kisao_id = ALGORITHMS.get(os.path.join(id, rel_sedml_filename), 'KISAO_0000560')
+        algorithm_kisao_id = ALGORITHMS.get(os.path.join(id, rel_sedml_filename), 'KISAO_0000694')
 
         doc = libsedml.readSedMLFromFile(sedml_filename)
 
@@ -120,7 +120,7 @@ def run(id, dirname):
                 for parameter_kisao_id, value in ALT_PARAMETERS.get(os.path.join(id, rel_sedml_filename), {}).items():
                     parameter_values[parameter_kisao_id] = value
 
-                if algorithm_kisao_id == 'KISAO_0000560':
+                if algorithm_kisao_id == 'KISAO_0000694':
                     parameter_values['KISAO_0000415'] = str(sorted(list(parameters['Max Internal Steps'].keys()))[-1])
 
                 for parameter_kisao_id, value in parameter_values.items():

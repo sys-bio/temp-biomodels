@@ -11,6 +11,7 @@ import re
 import difflib
 import libsedml
 import basico
+import kisao
 
 # These COPASI files are invalid (the later two were fixed by hand in manual-fixes).
 bad_copasi_filenames = set(["MODEL1305060000_edited.cps"])  # "Aubert2002.cps", "khajanchi2017.cps"]
@@ -223,6 +224,9 @@ def fix_dataset_labels(sed):
             pass
 
 def fix_uniform_time_course(sed):
+    Kisao = kisao.Kisao()
+    generic_ode = Kisao.get_term("KISAO_0000694")
+    generic_ss = Kisao.get_term("KISAO_0000407")
     for o in range(sed.getNumSimulations()):
         sim = sed.getSimulation(o)
         try:
@@ -231,98 +235,26 @@ def fix_uniform_time_course(sed):
                 out = sim.getOutputStartTime()
                 if init > out:
                     sim.setOutputStartTime(init)
+            #Change the algorithm to the generic 'ODE solver'.
+            if sim.isSetAlgorithm():
+                alg = sim.getAlgorithm()
+                kid = alg.getKisaoID()
+                alg_term = Kisao.get_term(kid)
+                alts = kisao.utils.get_substitutable_algorithms(alg_term)
+                if generic_ode in alts:
+                    alg.setKisaoID(694)
+                    alg.setName("ODE solver")
+                elif generic_ss in alts:
+                    alg.setKisaoID(407)
+                    alg.setName("Steady state root-finding method")
+                for p in range(alg.getNumAlgorithmParameters()):
+                    param = alg.getAlgorithmParameter(p)
+                    #Change 'absolute tolerance' to 'absolute tolerance adjustment factor', since that's what COPASI actually uses.
+                    if param.getKisaoIDasInt() == 211:
+                        param.setKisaoID(571)
+                        param.setName("Absolute tolerance adjustment factor")
         except:
             pass
-
-#Copasi v4.35 now produces its own l1v4 styles, so we don't have to recreate them.
-
-# def createStyleFrom(sed, plot, p, prevstyles, usedstyles):
-#     plotname = plot['name']
-#     for curve in plot['curves']:
-#         curvename = curve['name']
-#         linetype = curve['line_type']
-#         linethickness = curve['line_width']
-#         linesubtype = curve['line_subtype']
-#         symboltype = curve['symbol']
-#         color = curve['color']
-#         styleid = "copasi_style" + str(len(prevstyles)+1)
-#         if (linetype, linethickness, linesubtype, symboltype, color) in prevstyles:
-#             styleid = prevstyles[(linetype, linethickness, linesubtype, symboltype, color)]
-#         else:
-#             prevstyles[(linetype, linethickness, linesubtype, symboltype, color)] = styleid
-#             style = sed.createStyle()
-#             style.setId(styleid)
-#             style.setName("Line/marker style " + str(len(prevstyles)) + " from COPASI.")
-
-#             line = style.createLineStyle()
-#             if linetype == "points" or linetype == "symbols":
-#                 line.setType(libsedml.SEDML_LINETYPE_NONE)
-#             else:
-#                 if "#" in color:
-#                     line.setColor(color.replace("#", ""))
-
-#                 line.setThickness(linethickness)
-
-#                 if linesubtype == "solid":
-#                     line.setType(libsedml.SEDML_LINETYPE_SOLID)
-#                 elif linesubtype == "dotted":
-#                     line.setType(libsedml.SEDML_LINETYPE_DOT)
-#                 elif linesubtype == "dashed":
-#                     line.setType(libsedml.SEDML_LINETYPE_DASH)
-#                 elif linesubtype == "dot_dash":
-#                     line.setType(libsedml.SEDML_LINETYPE_DASHDOT)
-#                 elif linesubtype == "dot_dot_dash":
-#                     line.setType(libsedml.SEDML_LINETYPE_DASHDOTDOT)
-#                 else:
-#                     raise NotImplementedError("Unknown COPASI line type " + str(linesubtype))
-
-#             # symbols
-#             symbol = style.createMarkerStyle()
-#             if linetype == "lines":
-#                 symbol.setType(libsedml.SEDML_MARKERTYPE_NONE)
-#             else:
-#                 if "#" in color:
-#                     symbol.setLineColor(color.replace('#', ''))
-
-#                 if linetype == "points" or symboltype == "circle":
-#                     symbol.setType(libsedml.SEDML_MARKERTYPE_CIRCLE)
-#                 else:
-#                     symbol.setType(libsedml.SEDML_MARKERTYPE_XCROSS)
-
-#                 if linetype == "points":
-#                     symbol.setSize(1)
-#                 elif symboltype == "circle":
-#                     symbol.setSize(3)
-#                 elif symboltype == "small_cross":
-#                     symbol.setSize(3)
-#                 elif symboltype == "large_cross":
-#                     symbol.setSize(6)
-
-#         for o in range(sed.getNumOutputs()):
-#             output = sed.getOutput(o)
-#             try:
-#                 for c in range(output.getNumCurves()):
-#                     curve = output.getCurve(c)
-#                     if curve.getName() in curvename or (output.getName() == plotname and not curve.isSetStyle()):
-#                         curve.setStyle(styleid)
-#                         usedstyles.add(styleid)
-#             except:
-#                 pass
-
-
-# def addPlotDetails(sed, dm):
-#     if dm.getNumPlotSpecifications() == 0:
-#         return
-#     basico.set_current_model(dm)
-#     pdl = dm.getPlotDefinitionList()
-#     prevstyles = {}
-#     usedstyles = set()
-#     for p in range(pdl.size()):
-#         plot = basico.get_plot_dict(p)
-#         createStyleFrom(sed, plot, p, prevstyles, usedstyles)
-#     for style in prevstyles:
-#         if prevstyles[style] not in usedstyles:
-#             sed.removeStyle(prevstyles[style])
 
 def regen_sedml(c_file, id, sbml_filenames, sedml_filenames):
     dm = COPASI.CRootContainer.addDatamodel()

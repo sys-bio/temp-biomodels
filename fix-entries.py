@@ -13,6 +13,7 @@ import fix_sbml_validity
 import fix_sedml_extensions
 import fix_sed_plot_names
 import get_master_file_from_manifest
+import make_algorithms_generic
 import recreate_sedml_from_copasi
 import remove_bad_images_created_by_sbfc
 import remove_bad_octave_files
@@ -206,6 +207,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
     remove_unused_sedml_elements.run(id, sedml_filenames)
     fix_sed_plot_names.run(id, sedml_filenames)
+    make_algorithms_generic.run(id, sedml_filenames)
     add_universal_output_report.run(sedml_filenames, sbml_filenames)
 
     fix_copasi_algorithms.run(id, temp_entry_dir)
