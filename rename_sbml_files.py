@@ -60,4 +60,4 @@ def run(id, sbml_filenames, sbml_master):
     if ":" in sbml_master:
         sbml_master = sbml_master.replace(":", "_")
         
-    return sbml_master
+    return os.path.basename(sbml_master)

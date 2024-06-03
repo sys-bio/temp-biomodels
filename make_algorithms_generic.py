@@ -15,11 +15,11 @@ def make_algorithms_generic(doc):
             alg_term = Kisao.get_term(kid)
             alts = kisao.utils.get_substitutable_algorithms(alg_term)
             if generic_ode in alts:
-                alg.setKisaoID(694) #'ODE solver'
+                alg.setKisaoID(694)
                 alg.setName("ODE solver")
                 changed = True
             elif generic_ss in alts:
-                alg.setKisaoID(407) #'ODE solver'
+                alg.setKisaoID(407)
                 alg.setName("Steady state root-finding method")
                 changed = True
     return changed
