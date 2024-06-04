@@ -9,16 +9,112 @@
   <rdf:Description rdf:about="http://omex-library.org/BIOMD0000000272.omex">
     <bqmodel:isDescribedBy rdf:resource="local:00001"/>
     <ns1:keyword xmlns:ns1="http://prismstandard.org/namespaces/basic/2.0/">Biomodels</ns1:keyword>
-    <ns2:title xmlns:ns2="http://purl.org/dc/elements/1.1/">Covering a broad dynamic range: information processing at the erythropoietin receptor</ns2:title>
-    <ns3:thumbnail xmlns:ns3="http://www.collex.org/schema#"
-       rdf:resource="http://omex-library.org/BIOMD0000000272.omex/BIOMD0000000272.png"/>
+    <ns2:description xmlns:ns2="http://purl.org/dc/elements/1.1/">&lt;body xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;p&gt;This is the auxiliary model described in the article:      &lt;br/&gt;
+  &lt;strong&gt;Covering a Broad Dynamic Range: Information Processing at the Erythropoietin Receptor&lt;/strong&gt;
+  &lt;br/&gt;
+          Verena Becker, Marcel Schilling, Julie Bachmann, Ute Baumann, Andreas Raue, Thomas Maiwald, Jens Timmer and Ursula Klingmüller;      &lt;em&gt;Science&lt;/em&gt;
+          Published Online May 20, 2010; DOI:      &lt;a href="http://dx.doi.org/10.1126/science.1184913"&gt;10.1126/science.1184913&lt;/a&gt;
+          PMID:      &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/20488988"&gt;20488988&lt;/a&gt;
+  &lt;br/&gt;
+          Abstract:      &lt;br/&gt;
+          Cell surface receptors convert extracellular cues into receptor activation, thereby triggering intracellular signaling networks and controlling cellular decisions. A major unresolved issue is the identification of receptor properties that critically determine processing of ligand-encoded information. We show by mathematical modeling of quantitative data and experimental validation that rapid ligand depletion and replenishment of cell surface receptor are characteristic features of the erythropoietin (Epo) receptor (EpoR). The amount of Epo-EpoR complexes and EpoR activation integrated over time corresponds linearly to ligand input, covering a broad range of ligand concentrations. This relation solely depends on EpoR turnover independent of ligand binding, suggesting an essential role of large intracellular receptor pools. These receptor properties enable the system to cope with basal and acute demand in the hematopoietic system.      &lt;/p&gt;
+  &lt;p&gt;SBML model exported from PottersWheel.&lt;/p&gt;
+  &lt;pre&gt;% PottersWheel model definition file
+
+function m = BeckerSchilling2010_EpoR_AuxiliaryMode()
+
+m             = pwGetEmptyModel();
+
+%% Meta information
+
+m.ID          = &amp;apos;BeckerSchilling2010_EpoR_AuxiliaryMode&amp;apos;;
+m.name        = &amp;apos;BeckerSchilling2010_EpoR_AuxiliaryModel&amp;apos;;
+m.description = &amp;apos;BeckerSchilling2010_EpoR_AuxiliaryModel&amp;apos;;
+m.authors     = {&amp;apos;Verena Becker&amp;apos;,&amp;apos; Marcel Schilling&amp;apos;};
+m.dates       = {&amp;apos;2010&amp;apos;};
+m.type        = &amp;apos;PW-2-0-42&amp;apos;;
+
+%% X: Dynamic variables
+% m = pwAddX(m, ID, startValue, type, minValue, maxValue, unit, compartment, name, description, typeOfStartValue)
+
+m = pwAddX(m, &amp;apos;EpoR&amp;apos;     ,      76, &amp;apos;fix&amp;apos;   ,   0, 10000,   [], &amp;apos;cell&amp;apos;, []  , []  , []             , []  , &amp;apos;protein.generic&amp;apos;);
+m = pwAddX(m, &amp;apos;SAv&amp;apos;      , 999.293, &amp;apos;global&amp;apos;, 900,  1100,   [], &amp;apos;cell&amp;apos;, []  , []  , []             , []  , &amp;apos;protein.generic&amp;apos;);
+m = pwAddX(m, &amp;apos;SAv_EpoR&amp;apos; ,       0, &amp;apos;fix&amp;apos;   ,   0, 10000,   [], &amp;apos;cell&amp;apos;, []  , []  , []             , []  , &amp;apos;protein.generic&amp;apos;);
+m = pwAddX(m, &amp;apos;SAv_EpoRi&amp;apos;,       0, &amp;apos;fix&amp;apos;   ,   0, 10000,   [], &amp;apos;cell&amp;apos;, []  , []  , []             , []  , &amp;apos;protein.generic&amp;apos;);
+m = pwAddX(m, &amp;apos;dSAvi&amp;apos;    ,       0, &amp;apos;fix&amp;apos;   ,   0, 10000,   [], &amp;apos;cell&amp;apos;, []  , []  , []             , []  , &amp;apos;protein.generic&amp;apos;);
+m = pwAddX(m, &amp;apos;dSAve&amp;apos;    ,       0, &amp;apos;fix&amp;apos;   ,   0, 10000,   [], &amp;apos;cell&amp;apos;, []  , []  , []             , []  , &amp;apos;protein.generic&amp;apos;);
+
+
+%% R: Reactions
+% m = pwAddR(m, reactants, products, modifiers, type, options, rateSignature, parameters, description, ID, name, fast, compartments, parameterTrunks, designerPropsR, stoichiometry, reversible)
+
+m = pwAddR(m, {            }, {&amp;apos;EpoR&amp;apos;      }, {  }, &amp;apos;C&amp;apos; , [] , &amp;apos;k1*k2&amp;apos;, {&amp;apos;kt&amp;apos;,&amp;apos;Bmax_SAv&amp;apos;}, [], &amp;apos;reaction0001&amp;apos;);
+m = pwAddR(m, {&amp;apos;EpoR&amp;apos;      }, {            }, {  }, &amp;apos;MA&amp;apos;, [] , []     , {&amp;apos;kt&amp;apos;           }, [], &amp;apos;reaction0002&amp;apos;);
+m = pwAddR(m, {&amp;apos;SAv&amp;apos;,&amp;apos;EpoR&amp;apos;}, {&amp;apos;SAv_EpoR&amp;apos;  }, {  }, &amp;apos;MA&amp;apos;, [] , []     , {&amp;apos;kon_SAv&amp;apos;      }, [], &amp;apos;reaction0003&amp;apos;);
+m = pwAddR(m, {&amp;apos;SAv_EpoR&amp;apos;  }, {&amp;apos;SAv&amp;apos;,&amp;apos;EpoR&amp;apos;}, {  }, &amp;apos;MA&amp;apos;, [] , []     , {&amp;apos;koff_SAv&amp;apos;     }, [], &amp;apos;reaction0004&amp;apos;);
+m = pwAddR(m, {&amp;apos;SAv_EpoR&amp;apos;  }, {&amp;apos;SAv_EpoRi&amp;apos; }, {  }, &amp;apos;MA&amp;apos;, [] , []     , {&amp;apos;kt&amp;apos;           }, [], &amp;apos;reaction0005&amp;apos;);
+m = pwAddR(m, {&amp;apos;SAv_EpoRi&amp;apos; }, {&amp;apos;SAv&amp;apos;       }, {  }, &amp;apos;MA&amp;apos;, [] , []     , {&amp;apos;kex_SAv&amp;apos;      }, [], &amp;apos;reaction0006&amp;apos;);
+m = pwAddR(m, {&amp;apos;SAv_EpoRi&amp;apos; }, {&amp;apos;dSAvi&amp;apos;     }, {  }, &amp;apos;MA&amp;apos;, [] , []     , {&amp;apos;kdi&amp;apos;          }, [], &amp;apos;reaction0007&amp;apos;);
+m = pwAddR(m, {&amp;apos;SAv_EpoRi&amp;apos; }, {&amp;apos;dSAve&amp;apos;     }, {  }, &amp;apos;MA&amp;apos;, [] , []     , {&amp;apos;kde&amp;apos;          }, [], &amp;apos;reaction0008&amp;apos;);
+
+
+
+%% C: Compartments
+% m = pwAddC(m, ID, size,  outside, spatialDimensions, name, unit, constant)
+
+m = pwAddC(m, &amp;apos;cell&amp;apos;, 1);
+
+
+%% K: Dynamical parameters
+% m = pwAddK(m, ID, value, type, minValue, maxValue, unit, name, description)
+
+m = pwAddK(m, &amp;apos;kt&amp;apos;      , 0.0329366   , &amp;apos;global&amp;apos;, 1e-007, 1000);
+m = pwAddK(m, &amp;apos;Bmax_SAv&amp;apos;, 76          , &amp;apos;fix&amp;apos;   , 61    , 91  );
+m = pwAddK(m, &amp;apos;kon_SAv&amp;apos; , 2.29402e-006, &amp;apos;global&amp;apos;, 1e-007, 1000);
+m = pwAddK(m, &amp;apos;koff_SAv&amp;apos;, 0.00679946  , &amp;apos;global&amp;apos;, 1e-007, 1000);
+m = pwAddK(m, &amp;apos;kex_SAv&amp;apos; , 0.01101     , &amp;apos;global&amp;apos;, 1e-007, 1000);
+m = pwAddK(m, &amp;apos;kdi&amp;apos;     , 0.00317871  , &amp;apos;global&amp;apos;, 1e-007, 1000);
+m = pwAddK(m, &amp;apos;kde&amp;apos;     , 0.0164042   , &amp;apos;global&amp;apos;, 1e-007, 1000);
+
+
+%% Default sampling time points
+m.t = 0:3:99;
+
+
+%% Y: Observables
+% m = pwAddY(m, rhs, ID, scalingParameter, errorModel, noiseType, unit, name, description, alternativeIDs, designerProps)
+
+m = pwAddY(m, &amp;apos;SAv + dSAve&amp;apos;      , &amp;apos;SAv_extracellular_obs&amp;apos;);
+m = pwAddY(m, &amp;apos;SAv_EpoR&amp;apos;         , &amp;apos;SAv_cellsurface_obs&amp;apos;  );
+m = pwAddY(m, &amp;apos;SAv_EpoRi + dSAvi&amp;apos;, &amp;apos;SAv_intracellular_obs&amp;apos;);
+
+
+%% S: Scaling parameters
+% m = pwAddS(m, ID, value, type, minValue, maxValue, unit, name, description)
+
+m = pwAddS(m, &amp;apos;scale_SAv_extracellular_obs&amp;apos;, 1, &amp;apos;fix&amp;apos;, 0, 100);
+m = pwAddS(m, &amp;apos;scale_SAv_cellsurface_obs&amp;apos;  , 1, &amp;apos;fix&amp;apos;, 0, 100);
+m = pwAddS(m, &amp;apos;scale_SAv_intracellular_obs&amp;apos;, 1, &amp;apos;fix&amp;apos;, 0, 100);
+
+
+%% Designer properties (do not modify)
+m.designerPropsM = [1 1 1 0 0 0 400 250 600 400 1 1 1 0 0 0 0];&lt;/pre&gt;
+  &lt;p&gt;This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2010 The BioModels.net Team.      &lt;br/&gt;
+          For more information see the      &lt;a href="http://www.ebi.ac.uk/biomodels/legal.html" target="_blank"&gt;terms of use&lt;/a&gt;
+          .      &lt;br/&gt;
+          To cite BioModels Database, please use:      &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank"&gt;Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;</ns2:description>
+    <ns3:title xmlns:ns3="http://purl.org/dc/elements/1.1/">Covering a broad dynamic range: information processing at the erythropoietin receptor</ns3:title>
     <ns4:thumbnail xmlns:ns4="http://www.collex.org/schema#"
+       rdf:resource="http://omex-library.org/BIOMD0000000272.omex/BIOMD0000000272.png"/>
+    <ns5:thumbnail xmlns:ns5="http://www.collex.org/schema#"
        rdf:resource="http://omex-library.org/BIOMD0000000272.omex/curation_image.png"/>
   </rdf:Description>
   <rdf:Description rdf:about="local:00001">
-    <ns5:identifier xmlns:ns5="http://purl.org/dc/elements/1.1/"
+    <ns6:identifier xmlns:ns6="http://purl.org/dc/elements/1.1/"
        rdf:resource="http://identifiers.org/doi/10.1126/science.1184913"/>
-    <ns6:label xmlns:ns6="http://www.w3.org/2000/01/rdf-schema#">Verena Becker, Marcel Schilling, Julie Bachmann, Ute Baumann, Andreas Raue, Thomas Maiwald, Jens Timmer &amp; Ursula Klingmüller. Covering a broad dynamic range: information processing at the erythropoietin receptor. Science 328, 5984 (2010).</ns6:label>
+    <ns7:label xmlns:ns7="http://www.w3.org/2000/01/rdf-schema#">Verena Becker, Marcel Schilling, Julie Bachmann, Ute Baumann, Andreas Raue, Thomas Maiwald, Jens Timmer &amp; Ursula Klingmüller. Covering a broad dynamic range: information processing at the erythropoietin receptor. Science 328, 5984 (2010).</ns7:label>
   </rdf:Description>
 </rdf:RDF>
 
