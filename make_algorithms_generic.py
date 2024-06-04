@@ -22,6 +22,10 @@ def make_algorithms_generic(doc):
                 alg.setKisaoID(407)
                 alg.setName("Steady state root-finding method")
                 changed = True
+            for ap in alg.getListOfAlgorithmParameters():
+                if (ap.getKisaoIDasInt() == 211) :
+                    ap.setKisaoID(571)
+                    ap.setName("Absolute tolerance adjustment factor")
     return changed
 
 
