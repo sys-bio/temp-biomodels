@@ -49,11 +49,8 @@ def run(id, sbml_filenames, sbml_master):
                 os.rename(filename, newfilename)
                 remove_list.append((filename, newfilename))
         for (old, new) in remove_list:
-            try:
-                sbml_filenames.remove(old)
-                sbml_filenames.append(new)
-            except:
-                pass
+            sbml_filenames.remove(old)
+            sbml_filenames.append(new)
     if id in REMOVE:
         old = REMOVE[id]
         if sbml_master == old:
