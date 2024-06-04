@@ -6,6 +6,7 @@ Created on Wed Mar 22 15:12:43 2023
 """
 
 import xml.etree.ElementTree as ET
+import os
   
 def getMaster(xmlfile):
   
@@ -18,7 +19,7 @@ def getMaster(xmlfile):
     for child in root.iter():
         attributes = child.attrib
         if 'master' in attributes and attributes['master'] == 'true':
-            return attributes['location']
+            return os.path.basename(attributes['location'])
       
     # return news items list
     return None

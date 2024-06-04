@@ -1,6 +1,5 @@
 import os
 
-# Files that end in '.xml' but aren't SBML:
 RENAME = {"BIOMD0000001013": ("Leon-Triana2021 (eqs 1 and 2).xml", "Leon-Triana2021 - eqs 1 and 2.xml"),
           "BIOMD0000001027": ("Zake2021_Metformin+Mice+PO.xml", "Zake2021_Metformin_Mice_PO.xml"),
           "BIOMD0000001028": ("Zake2021_Metformin+Human+single+PO+dose.xml", "Zake2021_Metformin_Human_single_PO_dose.xml"),
@@ -13,6 +12,10 @@ RENAME = {"BIOMD0000001013": ("Leon-Triana2021 (eqs 1 and 2).xml", "Leon-Triana2
           "BIOMD0000000781": ("Wang2016:2.xml", "Wang2016_2.xml"),
           "BIOMD0000000782": ("Wang2016:3.xml", "Wang2016_3.xml"),
           "BIOMD0000000795": ("Chen2011:2.xml", "Chen2011_2.xml"),
+          "BIOMD0000000683": ("MODEL1006230062.xml", "BIOMD0000000683.xml"),
+          "BIOMD0000000923": ("Liò2012_Modelling osteomyelitis_Control Model.xml", "Lio2012_Modelling osteomyelitis_Control Model.xml"),
+          "BIOMD0000000928": ("Baker2017_Fig14..xml", "Baker2017_Fig14.xml"),
+          "BIOMD0000001046": ("Raman2005_MAP.xml", "MAP.xml"),
           }
 
 REMOVE = {"BIOMD0000000642": ("MODEL1304190001_urn.xml"),
@@ -32,6 +35,7 @@ def run(id, sbml_filenames, sbml_master):
     Args:
         id (:obj:`str`): id of BioModels entry
         sbml_filenames(:obj:'list'): list of SBML files to check.
+        sbml_master(:obj:`str`): The 'master' SBML file, according to Biomodels (needs to be changed if the file was also changed)
 
     """
     remove_list = []
