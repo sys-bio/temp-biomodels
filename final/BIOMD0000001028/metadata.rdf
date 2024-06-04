@@ -9,14 +9,49 @@
   <rdf:Description rdf:about="http://omex-library.org/BIOMD0000001028.omex">
     <bqmodel:isDescribedBy rdf:resource="local:00001"/>
     <ns1:keyword xmlns:ns1="http://prismstandard.org/namespaces/basic/2.0/">Biomodels</ns1:keyword>
-    <ns2:title xmlns:ns2="http://purl.org/dc/elements/1.1/">Physiologically based metformin pharmacokinetics model of mice and scale-up to humans for the estimation of concentrations in various tissues</ns2:title>
-    <ns3:thumbnail xmlns:ns3="http://www.collex.org/schema#"
+    <ns2:description xmlns:ns2="http://purl.org/dc/elements/1.1/">&lt;body xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;p&gt;This model is supplementary material of publication &amp;quot;Physiologically based metformin pharmacokinetics model of mice and scale-up to humans for the estimation of concentrations in various tissues&amp;quot;
+by Darta Maija Zake, Linda Zaharenko, JanisKurlovics, Vitalijs Komasilovs, Egils Stalidzans and Janis Klovins.
+
+
+This is a whole-body model representing the pharmacokinetics of metformin in the human body. The model is in the form of Ordinary differential equations and describes metformin concentration in 21 compartments. 
+
+The model consists of 21 compartments (“compartments” in COPASI model) describing various tissues or tissue sub-compartments and body fluids of metformin action (venous and arterial plasma, red blood cells, intestine, kidney, heart, fat, muscle, brain, lungs, stomach, liver, portal vein, remainder, urine and feces). Body weight and the weight of all compartments is expressed as a volume in mL and for the calculations it is assumed that 1mL = 1g. The volumes of most compartments are calculated as a fraction of the body weight/volume, and the fractions are determined from literature data, the volumes of the stomach lumen and intestine lumen are fixed and do not change depending on the body weight.  Similarly, the volume of external urine and feces is set to 1L, but those are “volumeless” compartments as they are only necessary for the calculation of metformin amount, not concentration. 
+
+
+The model consists of 21 species (“species” in COPASI model) that correspond to the metformin concentrations in the 21 compartments. The initial concentrations for all the species are 0 nmol/mL as metformin is not produced in the body and can only be detected after dose administration. 
+
+
+The model consists of 35 reactions – they describe the transport processes of metformin in the body. The reactions include local parameters that are involved only in that particular reaction and global parameters – parameters that are used in multiple reactions or are calculated depending on another parameter e.g. scale-up coefficients. 
+
+
+The model consists of 62 global quantities – parameters involved in multiple reactions or necessary for another parameter calculation:
+
+1.Parameters describing peroral metformin dose (Metformin Dose in Lumen in mg).
+
+2.Parameter describing human physiology – body weight (in mL), cardiac output, blood flow to different compartments described as Q”compartment_name” (for example Qliver describes blood flow to the liver compartment). Qgfr refers to the glomerular filtration rate. 
+
+3.Parameters involved in the scale-up of the model
+•Tissue:plasma partition coefficients (Ktp) that were estimated in the mice model.
+•Kidney coefficient that is used for the scale-up of metformin elimination and is involved in the calculation of the rate parameters in the reactions “13.4. KidneyPlasma -&amp;gt; KidneyTissue” and “13.5. KidneyTissue -&amp;gt; KidneyTubular”. This parameter was determined using parameter estimation. 
+•Intestine coefficient that is involved in the calculation of the intestinal reaction rates of the reactions (03.2. IntestineLumen -&amp;gt; Enterocytes (PMAT OCT3),  03.3. Enterocytes -&amp;gt; IntestineVascular (OCT1), 03.4. IntestineLumen -&amp;gt; IntestineVascular (Saturable), 03.6. IntestineLumen -&amp;gt; Enterocytes (Diffusion) ,  03.7. IntestineLumen -&amp;gt; IntestineVascular (Diffusion)). The parmaeters for these reactions are taken from Proctor publication and the intectine coefficient is used for the scale-up from the cell-culture to the human intestine. 
+
+4.Parameters involved in the calculation of metformin amount in mg, these parameters are named mg”Compartment_name” (for example mgLiver describes the metformin amount in mg in the liver tissues). 
+
+
+
+The time points of dose release are defined as “events” in COPASI and can be changed as necessary. The current model has 14 events and is set for a multiple-dose regimen for 7-day long twice-daily metformin administration. 
+
+Time course simulations can be accessed through the section “Time Course” in this section the time duration and intervals can be changed. When time-course simulations are run three plots are created – Metformin amount in the 21 compartments, metformin concentrations in the compartments and reaction fluxes of all the reactions (see “Output Specifications” -&amp;gt; “Plots” to activate or deactivate plots). The time-course also includes multiple &amp;quot;Sliders&amp;quot; that allow to easily change 3 parameters - &amp;quot;Body Weight&amp;quot;, &amp;quot;Cardiac Output&amp;quot;, &amp;quot;Metformin Dose in Lumen in mg&amp;quot;.&lt;/p&gt;
+&lt;/body&gt;</ns2:description>
+    <ns3:title xmlns:ns3="http://purl.org/dc/elements/1.1/">Physiologically based metformin pharmacokinetics model of mice and scale-up to humans for the estimation of concentrations in various tissues</ns3:title>
+    <ns4:thumbnail xmlns:ns4="http://www.collex.org/schema#"
        rdf:resource="http://omex-library.org/BIOMD0000001028.omex/curation_image.png"/>
   </rdf:Description>
   <rdf:Description rdf:about="local:00001">
-    <ns4:identifier xmlns:ns4="http://purl.org/dc/elements/1.1/"
+    <ns5:identifier xmlns:ns5="http://purl.org/dc/elements/1.1/"
        rdf:resource="http://identifiers.org/doi/10.1371/journal.pone.0249594"/>
-    <ns5:label xmlns:ns5="http://www.w3.org/2000/01/rdf-schema#">Darta Maija Zake, Janis Kurlovics, Linda Zaharenko, Vitalijs Komasilovs, Janis Klovins &amp; Egils Stalidzans. Physiologically based metformin pharmacokinetics model of mice and scale-up to humans for the estimation of concentrations in various tissues. PLOS ONE 16, 4 (2021).</ns5:label>
+    <ns6:label xmlns:ns6="http://www.w3.org/2000/01/rdf-schema#">Darta Maija Zake, Janis Kurlovics, Linda Zaharenko, Vitalijs Komasilovs, Janis Klovins &amp; Egils Stalidzans. Physiologically based metformin pharmacokinetics model of mice and scale-up to humans for the estimation of concentrations in various tissues. PLOS ONE 16, 4 (2021).</ns6:label>
   </rdf:Description>
 </rdf:RDF>
 
