@@ -100,10 +100,12 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterID, metadata, id, temp_entry
     for pmid in pubmedIDs:
         citation = get_reference(pubmed_id=pmid)
         citations.append(citation)
+        time.sleep(1.0)
 
     for doiID in doiIDs:
         citation = get_reference(doi=doiID)
         citations.append(citation)
+        time.sleep(1.0)
 
     if len(citations)==0:
         citations.append(mastercitation)
