@@ -16,6 +16,7 @@ import Bio.Entrez
 Bio.Entrez.email = 'lpsmith@uw.edu'
 import operator, glob
 import requests
+import time
 
 class NonStandardRef():
     """ Journal article not from pubmed or doi
@@ -89,6 +90,7 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterID, metadata, id, temp_entry
     elif "doi" in masterID:
         doivec = masterID.split("doi/")
         mastercitation = get_reference(doi=doivec[-1])
+        time.sleep(1.0)
     else:
         mastercitation = no_pubmed_or_doi[id]
     if not mastercitation:
