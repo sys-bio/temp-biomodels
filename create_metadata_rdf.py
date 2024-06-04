@@ -87,10 +87,11 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterID, metadata, id, temp_entry
     mastercitation = None
     if "pubmed" in masterID:
         mastercitation = get_reference(pubmed_id=masterID.split("/")[-1])
+        time.sleep(2.0)
     elif "doi" in masterID:
         doivec = masterID.split("doi/")
         mastercitation = get_reference(doi=doivec[-1])
-        time.sleep(1.0)
+        time.sleep(2.0)
     else:
         mastercitation = no_pubmed_or_doi[id]
     if not mastercitation:
@@ -100,12 +101,12 @@ def addCitationsToMetadata(pubmedIDs, doiIDs, masterID, metadata, id, temp_entry
     for pmid in pubmedIDs:
         citation = get_reference(pubmed_id=pmid)
         citations.append(citation)
-        time.sleep(1.0)
+        time.sleep(2.0)
 
     for doiID in doiIDs:
         citation = get_reference(doi=doiID)
         citations.append(citation)
-        time.sleep(1.0)
+        time.sleep(2.0)
 
     if len(citations)==0:
         citations.append(mastercitation)
