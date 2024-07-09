@@ -3,22 +3,21 @@
 
 import create_omex
 import os
-import csv
+import json
 
 
 FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
 OMEX_DIR = os.path.join(os.path.dirname(__file__), 'omex_files')
-BIOMODELS_MASTER = "all_masters.csv"
+BIOMODELS_MASTER = "all_masters.json"
 
 def create_all_omex():
     """ Create all the omex files.
     """
     git_add_file = open("git_add.bat", "w")
     mastertable = {}
-    with open(BIOMODELS_MASTER) as csvfile:
-        rev_reader = csv.reader(csvfile)
-        for row in rev_reader:
-            mastertable[row[0]] = row[1]
+    f = open(BIOMODELS_MASTER, "r")
+    mastertable = json.load(f)
+    f.close()
     for dirname in os.listdir("final/"):
     
         print("Creating omex file for", dirname)
