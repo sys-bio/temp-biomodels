@@ -48,12 +48,16 @@ import shutil
 import tempfile
 import warnings
 import math
+import json
 
 MANUALLY_FIXED_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'manual-fixes')
 FINAL_ENTRIES_DIR = os.path.join(os.path.dirname(__file__), 'final')
 OMEX_DIR = os.path.join(os.path.dirname(__file__), 'omex_files')
 
 global_sbml_validation_errors = []
+
+all_masters = {}
+only_masters = False
 
 
 def get_entry_ids():
@@ -165,7 +169,13 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     remove_initial_rdf_file.run(rdf_filenames)
     remove_failed_pdfs.run(pdf_filenames)
     remove_non_sbml.run(id, sbml_filenames)
+
     master_sbml = rename_sbml_files.run(id, sbml_filenames, master_sbml)
+    all_masters[id] = master_sbml
+    
+    if only_masters:
+        return
+
     rename_xpp_to_ode.run(xpp_filenames)
 
     # SED-ML files: recreate from COPASI, then fix the model sources.
@@ -254,7 +264,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
 
     ###################################################
     # Build manifest and create OMEX file
-    create_omex.process(id, temp_entry_dir, OMEX_DIR, False)
+    create_omex.process(id, temp_entry_dir, OMEX_DIR, False, master_sbml)
 
     ###################################################
     # Move temporary directory to final location
@@ -371,3 +381,8 @@ if __name__ == "__main__":
         git_add_file.write("git add final/" + id + "/*\n")
     git_add_file.write("git add good_pmids.p\n")
     git_add_file.close()
+
+    if only_masters:
+        with open('all_masters.json', 'w') as f:
+            json.dump(all_masters, f)        
+
