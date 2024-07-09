@@ -15,7 +15,6 @@ RENAME = {"BIOMD0000000683": ("MODEL1006230062.xml", "BIOMD0000000683.xml"),
           "BIOMD0000001028": ("Zake2021_Metformin+Human+single+PO+dose.xml", "Zake2021_Metformin_Human_single_PO_dose.xml"),
           "BIOMD0000001029": ("Zake2021_Metformin+Human+multiple+PO+dose.xml", "Zake2021_Metformin_Human_multiple_PO_dose.xml"),
           "BIOMD0000001039": ("Zake2021_Metformin+Mice+IV.xml", "Zake2021_Metformin_Mice_IV.xml"),
-          "BIOMD0000001046": ("Raman2005_MAP.xml", "MAP.xml"),
           }
 
 REMOVE = {"BIOMD0000000642": ("MODEL1304190001_urn.xml"),
