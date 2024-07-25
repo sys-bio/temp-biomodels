@@ -24,6 +24,7 @@ import remove_duplicates
 import remove_converted_files_for_non_kinetic_models
 import remove_empty_containers_from_sedml_doc
 import remove_non_sbml
+import remove_qual_and_fbc_sedml
 import remove_unused_sedml_elements
 import remove_urn_sbml_files
 import remove_initial_rdf_file
@@ -209,7 +210,10 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     sbml_filenames.sort()
 
     fix_sbml_validity.run(id, sbml_filenames)
-
+    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    sedml_filenames.sort()
+    
+    remove_qual_and_fbc_sedml(id, sedml_filenames, sbml_filenames)
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     sedml_filenames.sort()
 
