@@ -213,10 +213,6 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     sedml_filenames.sort()
     
-    remove_qual_and_fbc_sedml.run(id, sedml_filenames, sbml_filenames)
-    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
-    sedml_filenames.sort()
-
     remove_empty_containers_from_sedml_doc.run(sedml_filenames)
     decrease_excessive_numbers_of_time_course_steps.run(sedml_filenames)
     remove_unused_sedml_elements.run(id, sedml_filenames)
@@ -228,6 +224,12 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
 
     remove_bad_images_created_by_sbfc.run(temp_entry_dir)
     remove_bad_pdfs.run(temp_entry_dir)
+
+    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    sbml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.xml'), recursive=True)
+    remove_qual_and_fbc_sedml.run(id, sedml_filenames, sbml_filenames)
+    sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
+    sedml_filenames.sort()
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
     octave_filenames.sort()
