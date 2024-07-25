@@ -5,7 +5,7 @@ import os
 
 def hasQualOrFBC(sbml_filenames):
     for filename in sbml_filenames:
-        f = open(filename, "r")
+        f = open(filename, "r", encoding="utf-8")
         for line in f:
             if "qual:" in line:
                 return True
