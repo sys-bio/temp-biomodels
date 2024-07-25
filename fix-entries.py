@@ -213,7 +213,7 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     sedml_filenames.sort()
     
-    remove_qual_and_fbc_sedml(id, sedml_filenames, sbml_filenames)
+    remove_qual_and_fbc_sedml.run(id, sedml_filenames, sbml_filenames)
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     sedml_filenames.sort()
 
