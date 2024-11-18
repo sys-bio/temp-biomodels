@@ -49,7 +49,7 @@ def fixHasProperty(file):
     doc = libsbml.readSBMLFromFile(file)
     sstr = libsbml.writeSBMLToString(doc)
     sstr = sstr.replace("bqmodel:hasProperty", "bqbiol:hasProperty")
-    out = open(file, "w", encoding="utf8")
+    out = open(file, "w", encoding="utf-8")
     out.write(sstr)
     out.close()
 
