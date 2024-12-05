@@ -33,6 +33,7 @@ import remove_failed_pdfs
 import remove_zero_size
 import rename_sbml_files
 import rename_xpp_to_ode
+import replace_sedml
 import validate_sbml as validate_sbml_module
 
 from biomodels_qc.utils import are_biopax_files_the_same, build_combine_archive
@@ -230,6 +231,8 @@ def fix_entry(id, convert_files=False, guess_file_name=None, validate_sbml=False
     remove_qual_and_fbc_sedml.run(id, sedml_filenames, sbml_filenames)
     sedml_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*.sedml'), recursive=True)
     sedml_filenames.sort()
+    
+    replace_sedml.run(id, sedml_filenames)
 
     octave_filenames = glob.glob(os.path.join(temp_entry_dir, '**', '*-octave.m'), recursive=True)
     octave_filenames.sort()
