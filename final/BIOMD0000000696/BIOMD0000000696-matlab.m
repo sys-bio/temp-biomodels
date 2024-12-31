@@ -231,9 +231,9 @@ global_par_P_theta = x(11);
 
 	xdot=zeros(11,1);
 	% rateRule: variable = sum_abs_dx8
-	xdot(10) = abs(rateOf(x(8)));
+	xdot(10) = abs(x(8));
 	% rateRule: variable = P_theta
-	xdot(11) = abs(rateOf(x(6)));
+	xdot(11) = abs(x(6));
 	
 % Species:   id = x1, name = x1, affected by kineticLaw
 	xdot(1) = (1/(compartment_Cell))*(( 1.0 * reaction_r001___mA_transcription) + (-1.0 * reaction_r002___A_translation) + ( 1.0 * reaction_r002___A_translation) + (-1.0 * reaction_r003___mA_degradation));
