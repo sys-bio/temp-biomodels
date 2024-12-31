@@ -23,8 +23,7 @@
 
 function main()
 %Initial conditions vector
-	x0=zeros(15,1);
-	x0(15) = 60.0;
+	x0=zeros(14,1);
 	x0(1) = 60.0;
 	x0(2) = 0.0;
 	x0(3) = 0.0;
@@ -132,8 +131,8 @@ function xdot=f(t,x)
 	x(6)=x(2)+x(1);
 % assignmentRule: variable = cdk1a
 	x(13)=x(1);
-% rateRule: variable = Stotal
-x(12) = x(15);
+% assignmentRule: variable = Stotal
+	x(12)=x(8)+x(9)+x(7)+x(11);
 
 % Reaction: id = Cyclin_B1_Cdk1_unphosphorylated_degradation, name = Cyclin B1 Cdk1 unphosphorylated degradation
 	reaction_Cyclin_B1_Cdk1_unphosphorylated_degradation=compartment_nuclear*function_for_cdk1a_degradation_by_apc_1(x(4), x(2), global_par_k_dest);
@@ -179,9 +178,7 @@ x(12) = x(15);
 
 % Species:   id = Plx1_total, name = Plx1_total, constant	const_species_Plx1_total=1.0;
 
-	xdot=zeros(15,1);
-	% rateRule: variable = Stotal
-	xdot(15) = rateOf(x(8))+rateOf(x(9))+rateOf(x(7))+rateOf(x(11));
+	xdot=zeros(14,1);
 	
 % Species:   id = Cyclin_B1_Cdk1_complex_phosphorylated, name = Cyclin B1 Cdk1 complex phosphorylated( Active), affected by kineticLaw
 	xdot(1) = (1/(compartment_nuclear))*(( 1.0 * reaction_Cyclin_B1_Cdk1_phosphorylated_synthesis) + (-1.0 * reaction_Cyclin_B1_Cdk1_phosphorylated_degradation) + (-1.0 * reaction_Cyclin_B1_Cdk1_phosphorylated_dephosphorylation) + ( 1.0 * reaction_Cyclin_B1_Cdk1_phosphorylated_phosphorylation));
