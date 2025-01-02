@@ -1531,7 +1531,7 @@ a biological device demonstrating desired behaviour.
           </COPASI>
         </annotation>
       </parameter>
-      <parameter metaid="COPASI42" id="sum_abs_dx8" name="sum(abs_dx8)" value="0" constant="false">
+      <parameter metaid="COPASI42" id="sum_abs_dx8" name="sum(abs_dx8)" value="1e-15" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#COPASI42">
@@ -1729,8 +1729,12 @@ a biological device demonstrating desired behaviour.
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
-            <cn> 1 </cn>
-            <ci> J1 </ci>
+            <cn type="integer"> 1 </cn>
+            <apply>
+              <max/>
+              <cn type="e-notation"> 1 <sep/> -15 </cn>
+              <ci> J1 </ci>
+            </apply>
           </apply>
         </math>
       </assignmentRule>
@@ -1739,14 +1743,24 @@ a biological device demonstrating desired behaviour.
           <apply>
             <divide/>
             <apply>
-              <minus/>
-              <ci> x8 </ci>
-              <ci> Metabolite_16 </ci>
+              <abs/>
+              <apply>
+                <minus/>
+                <ci> x8 </ci>
+                <ci> Metabolite_16 </ci>
+              </apply>
             </apply>
             <apply>
-              <minus/>
-              <ci> x9 </ci>
-              <ci> Metabolite_17 </ci>
+              <max/>
+              <cn type="e-notation"> 1 <sep/> -15 </cn>
+              <apply>
+                <abs/>
+                <apply>
+                  <minus/>
+                  <ci> x9 </ci>
+                  <ci> Metabolite_17 </ci>
+                </apply>
+              </apply>
             </apply>
           </apply>
         </math>
@@ -1755,8 +1769,12 @@ a biological device demonstrating desired behaviour.
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
-            <cn> 1 </cn>
-            <ci> J2 </ci>
+            <cn type="integer"> 1 </cn>
+            <apply>
+              <max/>
+              <cn type="e-notation"> 1 <sep/> -15 </cn>
+              <ci> J2 </ci>
+            </apply>
           </apply>
         </math>
       </assignmentRule>
