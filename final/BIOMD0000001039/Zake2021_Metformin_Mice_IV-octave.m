@@ -14,7 +14,6 @@
 %
 % Model name = Zake2021 - PBPK model of metformin in mice: single dose intavenous
 %
-% unknownQualifier http://identifiers.org/biomodels.db/MODEL2103020002
 % isDescribedBy http://identifiers.org/pubmed/33826656
 % is http://identifiers.org/biomodels.db/MODEL2103020002
 % is http://identifiers.org/biomodels.db/BIOMD0000001039

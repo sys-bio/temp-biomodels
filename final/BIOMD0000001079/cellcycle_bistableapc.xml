@@ -1,43 +1,39 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
-  <model id="cellcycle_bistableapc" metaid="cellcycle_bistableapc">
+  <model metaid="cellcycle_bistableapc" id="cellcycle_bistableapc">
     <notes>
       <body xmlns="http://www.w3.org/1999/xhtml">
-     <p>Models the production and degradation of cyclin B that drives the early embryonic cell cycle.
+        <p>Models the production and degradation of cyclin B that drives the early embryonic cell cycle.
 
-Cyclin B is degraded by APC/C. The activity of APC/C is modelled not through biochemical interactions, but through a "functional response curve". This can be ultrasensitive (with the parameter alpha = 0). In this case, the system does not oscillate. Importantly, the response can be made bistable and the form of the bistability can be easily prescribed. With a bistable response, the system oscillates.
+Cyclin B is degraded by APC/C. The activity of APC/C is modelled not through biochemical interactions, but through a &quot;functional response curve&quot;. This can be ultrasensitive (with the parameter alpha = 0). In this case, the system does not oscillate. Importantly, the response can be made bistable and the form of the bistability can be easily prescribed. With a bistable response, the system oscillates.
 
 The uploaded file corresponds to the model used for Figs.3H, I in the publication.</p>
-  </body>
+      </body>
     </notes>
     <annotation>
-	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
         <rdf:Description rdf:about="#cellcycle_bistableapc">
           <bqmodel:isDescribedBy>
-	<rdf:Bag>
-	<rdf:li rdf:resource="http://identifiers.org/doi:10.1371/journal.pcbi.1009008"/>
-	</rdf:Bag>
-	</bqmodel:isDescribedBy>
-	<bqbiol:hasProperty>
-	<rdf:Bag>
-	<rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000045"/>
-	</rdf:Bag>
-	</bqbiol:hasProperty>
-	
-	<bqmodel:is>
-	<rdf:Bag>
-	<rdf:li rdf:resource="http://identifiers.org/biomodels.db:MODEL2212060001"/>
-	</rdf:Bag>
-	</bqmodel:is>
-	</rdf:Description>
-	
-	
-	
-	</rdf:RDF>
-	</annotation>
-      <listOfFunctionDefinitions>
+            <rdf:Bag>
+              <rdf:li rdf:resource="http://identifiers.org/doi:10.1371/journal.pcbi.1009008"/>
+            </rdf:Bag>
+          </bqmodel:isDescribedBy>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000045"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+          <bqmodel:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="http://identifiers.org/biomodels.db:MODEL2212060001"/>
+            </rdf:Bag>
+          </bqmodel:is>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfFunctionDefinitions>
       <functionDefinition id="Xi">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> x </ci>
@@ -69,27 +65,27 @@ The uploaded file corresponds to the model used for Figs.3H, I in the publicatio
             </apply>
           </lambda>
         </math>
-            </functionDefinition>
+      </functionDefinition>
     </listOfFunctionDefinitions>
     <listOfCompartments>
-      <compartment constant="true" id="default_compartment" sboTerm="SBO:0000410" size="1" spatialDimensions="3"/>
+      <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species boundaryCondition="false" compartment="default_compartment" constant="false" hasOnlySubstanceUnits="false" id="CycCdk" initialAmount="0"/>
+      <species id="CycCdk" compartment="default_compartment" initialAmount="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
-      <parameter constant="true" id="ks" value="1.1"/>
-      <parameter constant="true" id="bdeg" value="0.1"/>
-      <parameter constant="false" id="APC" value="0"/>
-      <parameter constant="true" id="epsilon" value="0.01"/>
-      <parameter constant="true" id="n" value="15"/>
-      <parameter constant="true" id="K" value="20"/>
-      <parameter constant="true" id="alpha" value="4.16"/>
-      <parameter constant="true" id="r" value="0.5"/>
+      <parameter id="ks" value="1.1" constant="true"/>
+      <parameter id="bdeg" value="0.1" constant="true"/>
+      <parameter id="APC" value="0" constant="false"/>
+      <parameter id="epsilon" value="0.01" constant="true"/>
+      <parameter id="n" value="15" constant="true"/>
+      <parameter id="K" value="20" constant="true"/>
+      <parameter id="alpha" value="4.16" constant="true"/>
+      <parameter id="r" value="0.5" constant="true"/>
     </listOfParameters>
     <listOfRules>
       <rateRule variable="APC">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <apply>
@@ -133,25 +129,25 @@ The uploaded file corresponds to the model used for Figs.3H, I in the publicatio
             </apply>
           </apply>
         </math>
-            </rateRule>
+      </rateRule>
     </listOfRules>
     <listOfReactions>
-      <reaction fast="false" id="_J0" reversible="true">
+      <reaction id="_J0" reversible="true" fast="false">
         <listOfProducts>
-          <speciesReference constant="true" species="CycCdk" stoichiometry="1"/>
+          <speciesReference species="CycCdk" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> ks </ci>
           </math>
-                </kineticLaw>
+        </kineticLaw>
       </reaction>
-      <reaction fast="false" id="_J1" reversible="true">
+      <reaction id="_J1" reversible="true" fast="false">
         <listOfReactants>
-          <speciesReference constant="true" species="CycCdk" stoichiometry="1"/>
+          <speciesReference species="CycCdk" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> bdeg </ci>
@@ -159,7 +155,7 @@ The uploaded file corresponds to the model used for Figs.3H, I in the publicatio
               <ci> APC </ci>
             </apply>
           </math>
-                </kineticLaw>
+        </kineticLaw>
       </reaction>
     </listOfReactions>
   </model>

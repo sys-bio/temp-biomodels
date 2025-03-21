@@ -1,48 +1,41 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
-  <model id="cellcycle_switches" metaid="cellcycle_switches" name="DeBoeck2021 - Modular approach to modeling the cell cycle, 5 ODE model with 3 bistable switches">
+  <model metaid="cellcycle_switches" id="cellcycle_switches" name="DeBoeck2021 - Modular approach to modeling the cell cycle, 5 ODE model with 3 bistable switches">
     <notes>
       <body xmlns="http://www.w3.org/1999/xhtml">
-     <p>Model of the mammalian cell cycle as a chain of bistable switches. 
+        <p>Model of the mammalian cell cycle as a chain of bistable switches. 
 
 There are three bistable responses: response of E2F to Cyclin D, of Cdk1 to Cyclin B and of APC/C to Cdk1 activity.  The model for the given parameters admits a complex limit cycle characterized by transitions through the bistable switches. 
 The bistable responses are modeled directly using a functional motif, not through biochemical interactions. This modular approach allows us to easily modify the properties of the bistable response curves. This version of the model corresponds to Fig. 7 in the publication. 
 We illustrated how, using this model, the system can be coupled to the circadian clock, by periodically modifying thresholds of one of the switches. We also illustrated how to implement the restriction point checkpoint using this model (those applications are not coded in the associated sbml file and can be seen in Fig. 8 of the publication). 
 
 A related, simpler model that illustrates the bistable motif is <a href="https://identifiers.org/biomodels.db:MODEL2212060001" target="_blank">MODEL2212060001</a>.</p>
-  </body>
+      </body>
     </notes>
     <annotation>
-	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
         <rdf:Description rdf:about="#cellcycle_switches">
           <bqmodel:isDescribedBy>
-	<rdf:Bag>
-	<rdf:li rdf:resource="http://identifiers.org/doi:10.1371/journal.pcbi.1009008"/>
-	</rdf:Bag>
-	</bqmodel:isDescribedBy>
-	<bqbiol:hasProperty>
-	<rdf:Bag>
-	<rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000045"/>
-	</rdf:Bag>
-	</bqbiol:hasProperty>
-	
-	<bqmodel:is>
-	<rdf:Bag>
-	<rdf:li rdf:resource="http://identifiers.org/biomodels.db:MODEL2212060002"/>
-	</rdf:Bag>
-	</bqmodel:is>
-	</rdf:Description>
-	
-	
-	
-	
-	
-	
-	</rdf:RDF>
-	</annotation>
-      <listOfFunctionDefinitions>
+            <rdf:Bag>
+              <rdf:li rdf:resource="http://identifiers.org/doi:10.1371/journal.pcbi.1009008"/>
+            </rdf:Bag>
+          </bqmodel:isDescribedBy>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="http://identifiers.org/mamo/MAMO_0000045"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+          <bqmodel:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="http://identifiers.org/biomodels.db:MODEL2212060002"/>
+            </rdf:Bag>
+          </bqmodel:is>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfFunctionDefinitions>
       <functionDefinition id="xi">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> x </ci>
@@ -74,40 +67,40 @@ A related, simpler model that illustrates the bistable motif is <a href="https:/
             </apply>
           </lambda>
         </math>
-            </functionDefinition>
+      </functionDefinition>
     </listOfFunctionDefinitions>
     <listOfCompartments>
-      <compartment constant="true" id="default_compartment" sboTerm="SBO:0000410" size="1" spatialDimensions="3"/>
+      <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species boundaryCondition="false" compartment="default_compartment" constant="false" hasOnlySubstanceUnits="false" id="CycD" initialAmount="1E-12"/>
-      <species boundaryCondition="false" compartment="default_compartment" constant="false" hasOnlySubstanceUnits="false" id="CycB" initialAmount="1E-12"/>
+      <species id="CycD" compartment="default_compartment" initialAmount="1e-12" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="CycB" compartment="default_compartment" initialAmount="1e-12" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
-      <parameter constant="true" id="d_syn" value="0.15"/>
-      <parameter constant="true" id="d_deg" value="0.009"/>
-      <parameter constant="false" id="APC" value="1E-12"/>
-      <parameter constant="true" id="delta_d" value="0.05"/>
-      <parameter constant="true" id="b_syn" value="0.03"/>
-      <parameter constant="false" id="E2F" value="1E-12"/>
-      <parameter constant="true" id="b_deg" value="0.003"/>
-      <parameter constant="true" id="delta_b" value="0.05"/>
-      <parameter constant="true" id="epsilon_e2f" value="0.01"/>
-      <parameter constant="true" id="n" value="15"/>
-      <parameter constant="true" id="K_cyc_e2f" value="120"/>
-      <parameter constant="true" id="alpha_e2f" value="5"/>
-      <parameter constant="true" id="r" value="0.5"/>
-      <parameter constant="false" id="Cdk" value="1E-12"/>
-      <parameter constant="true" id="epsilon_cdk" value="0.01"/>
-      <parameter constant="true" id="K_cyc_cdk" value="40"/>
-      <parameter constant="true" id="alpha_cdk" value="5"/>
-      <parameter constant="true" id="epsilon_apc" value="0.01"/>
-      <parameter constant="true" id="K_cdk_apc" value="20"/>
-      <parameter constant="true" id="alpha_apc" value="5"/>
+      <parameter id="d_syn" value="0.15" constant="true"/>
+      <parameter id="d_deg" value="0.009" constant="true"/>
+      <parameter id="APC" value="1e-12" constant="false"/>
+      <parameter id="delta_d" value="0.05" constant="true"/>
+      <parameter id="b_syn" value="0.03" constant="true"/>
+      <parameter id="E2F" value="1e-12" constant="false"/>
+      <parameter id="b_deg" value="0.003" constant="true"/>
+      <parameter id="delta_b" value="0.05" constant="true"/>
+      <parameter id="epsilon_e2f" value="0.01" constant="true"/>
+      <parameter id="n" value="15" constant="true"/>
+      <parameter id="K_cyc_e2f" value="120" constant="true"/>
+      <parameter id="alpha_e2f" value="5" constant="true"/>
+      <parameter id="r" value="0.5" constant="true"/>
+      <parameter id="Cdk" value="1e-12" constant="false"/>
+      <parameter id="epsilon_cdk" value="0.01" constant="true"/>
+      <parameter id="K_cyc_cdk" value="40" constant="true"/>
+      <parameter id="alpha_cdk" value="5" constant="true"/>
+      <parameter id="epsilon_apc" value="0.01" constant="true"/>
+      <parameter id="K_cdk_apc" value="20" constant="true"/>
+      <parameter id="alpha_apc" value="5" constant="true"/>
     </listOfParameters>
     <listOfRules>
       <rateRule variable="APC">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <apply>
@@ -151,9 +144,9 @@ A related, simpler model that illustrates the bistable motif is <a href="https:/
             </apply>
           </apply>
         </math>
-            </rateRule>
+      </rateRule>
       <rateRule variable="E2F">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <apply>
@@ -197,9 +190,9 @@ A related, simpler model that illustrates the bistable motif is <a href="https:/
             </apply>
           </apply>
         </math>
-            </rateRule>
+      </rateRule>
       <rateRule variable="Cdk">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <apply>
@@ -251,25 +244,25 @@ A related, simpler model that illustrates the bistable motif is <a href="https:/
             </apply>
           </apply>
         </math>
-            </rateRule>
+      </rateRule>
     </listOfRules>
     <listOfReactions>
-      <reaction fast="false" id="_J0" reversible="true">
+      <reaction id="_J0" reversible="true" fast="false">
         <listOfProducts>
-          <speciesReference constant="true" species="CycD" stoichiometry="1"/>
+          <speciesReference species="CycD" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> d_syn </ci>
           </math>
-                </kineticLaw>
+        </kineticLaw>
       </reaction>
-      <reaction fast="false" id="_J1" reversible="true">
+      <reaction id="_J1" reversible="true" fast="false">
         <listOfReactants>
-          <speciesReference constant="true" species="CycD" stoichiometry="1"/>
+          <speciesReference species="CycD" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> d_deg </ci>
@@ -281,28 +274,28 @@ A related, simpler model that illustrates the bistable motif is <a href="https:/
               </apply>
             </apply>
           </math>
-                </kineticLaw>
+        </kineticLaw>
       </reaction>
-      <reaction fast="false" id="_J2" reversible="true">
+      <reaction id="_J2" reversible="true" fast="false">
         <listOfProducts>
-          <speciesReference constant="true" species="CycB" stoichiometry="1"/>
+          <speciesReference species="CycB" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> b_syn </ci>
               <ci> E2F </ci>
             </apply>
           </math>
-                </kineticLaw>
+        </kineticLaw>
       </reaction>
-      <reaction fast="false" id="_J3" reversible="true">
+      <reaction id="_J3" reversible="true" fast="false">
         <listOfReactants>
-          <speciesReference constant="true" species="CycB" stoichiometry="1"/>
+          <speciesReference species="CycB" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> b_deg </ci>
@@ -314,7 +307,7 @@ A related, simpler model that illustrates the bistable motif is <a href="https:/
               </apply>
             </apply>
           </math>
-                </kineticLaw>
+        </kineticLaw>
       </reaction>
     </listOfReactions>
   </model>

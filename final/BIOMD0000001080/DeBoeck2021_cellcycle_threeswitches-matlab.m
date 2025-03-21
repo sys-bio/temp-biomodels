@@ -14,7 +14,6 @@
 %
 % Model name = DeBoeck2021 - Modular approach to modeling the cell cycle, 5 ODE model with 3 bistable switches
 %
-% unknownQualifier http://identifiers.org/mamo/MAMO_0000045
 % isDescribedBy http://identifiers.org/doi:10.1371/journal.pcbi.1009008
 % is http://identifiers.org/biomodels.db/MODEL2212060002
 % is http://identifiers.org/biomodels.db/BIOMD0000001080
