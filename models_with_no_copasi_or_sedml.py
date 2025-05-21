@@ -9,7 +9,7 @@ from os import walk
 
 noSed = []
 copasiButNoSed = []
-for root, dirs, files in walk("final/"):
+for root, dirs, files in walk("original/"):
     sedml = False
     copasi = False
     for file in files:
@@ -18,9 +18,9 @@ for root, dirs, files in walk("final/"):
         if ".sedml" in file:
             sedml = True
     if not copasi and not sedml:
-        noSed.append(root.replace("final/", ""))
+        noSed.append(root.replace("original/", ""))
     elif copasi and not sedml:
-        copasiButNoSed.append(root.replace("final/", ""))
+        copasiButNoSed.append(root.replace("original/", ""))
 
 out = open("noSED.txt", "w")
 for biomd in noSed:
