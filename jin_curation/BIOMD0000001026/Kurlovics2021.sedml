@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Updated to match published figure(s) by Jin Xu, with Lucian Smith -->
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version4" xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core" level="1" version="4">
+  <listOfModels>
+    <model id="model" language="urn:sedml:language:sbml" source="Kurlovics2021.xml"/>
+  </listOfModels>
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="40" numberOfSteps="1000">
+      <algorithm name="ODE solver" kisaoID="KISAO_0000694">
+        <listOfAlgorithmParameters>
+          <algorithmParameter name="Relative Tolerance" kisaoID="KISAO:0000209" value="1e-06"/>
+          <algorithmParameter name="Absolute tolerance adjustment factor" kisaoID="KISAO:0000571" value="1e-12"/>
+          <algorithmParameter name="Integrate Reduced Model" kisaoID="KISAO:0000216" value="false"/>
+          <algorithmParameter name="Max Internal Steps" kisaoID="KISAO:0000415" value="100000"/>
+        </listOfAlgorithmParameters>
+      </algorithm>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfTasks>
+    <task id="task1" modelReference="model" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="_1_task1" name="Time">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2__1_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2__1_task1" name="Time" symbol="urn:sedml:symbol:time" taskReference="task1" term="KISAO:0000832"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Mpl_1_task1" name="Values[Mpl]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_Mpl_1_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_Mpl_1_task1" name="Values[Mpl]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Mpl&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Mrbc_2_task1" name="[Mrbc]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p2_Mrbc_2_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p2_Mrbc_2_task1" name="[Mrbc]" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=&apos;Mrbc&apos;]" taskReference="task1" term="KISAO:0000838"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Vin_1_task1" name="(Vin).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_Vin_1_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_Vin_1_task1" name="(Vin).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Vin&apos;]" taskReference="task1" term="KISAO:0000639"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Vout_2_task1" name="(Vout).Flux">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_Vout_2_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_Vout_2_task1" name="(Vout).Flux" target="/sbml:sbml/sbml:model/sbml:listOfReactions/sbml:reaction[@id=&apos;Vout&apos;]" taskReference="task1" term="KISAO:0000639"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="Summary_flux_to_RBC_3_task1" name="Values[Summary flux to RBC]">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> p3_Summary_flux_to_RBC_3_task1 </ci>
+      </math>
+      <listOfVariables>
+        <variable id="p3_Summary_flux_to_RBC_3_task1" name="Values[Summary flux to RBC]" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Summary_flux_to_RBC&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_A">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_A__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_A__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;A&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_B">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_B__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_B__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;B&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_d">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_d__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_d__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;d&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Kin">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Kin__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Kin__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Kin&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_c">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_c__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_c__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;c&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_Kout">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_Kout__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_Kout__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;Kout&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ModelValue_1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ModelValue_1__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ModelValue_1__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ModelValue_1&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ModelValue_2">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ModelValue_2__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ModelValue_2__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ModelValue_2&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ModelValue_5">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ModelValue_5__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ModelValue_5__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ModelValue_5&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_ModelValue_3">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_ModelValue_3__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_ModelValue_3__x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id=&apos;ModelValue_3&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+    <dataGenerator id="auto_dg_for_task1_RBC">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> auto_dg_for_task1_RBC__x </ci>
+      </math>
+      <listOfVariables>
+        <variable id="auto_dg_for_task1_RBC__x" target="/sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id=&apos;RBC&apos;]" taskReference="task1"/>
+      </listOfVariables>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_1_task1" name="Figure 7A Metformin concentration dynamics">
+      <xAxis name="Time, h" type="linear" min="0" max="40" grid="false"/>
+      <yAxis name="Metformin concentration, ng/mL" type="linear" min="0" max="650" grid="false"/>
+      <listOfCurves>
+        <curve id="p2_curve_1_task1" name="Plasma" logX="false" style="solid_red" xDataReference="_1_task1" logY="false" yDataReference="Mpl_1_task1"/>
+        <curve id="p2_curve_2_task1" name="RBC" logX="false" style="solid_green" xDataReference="_1_task1" logY="false" yDataReference="Mrbc_2_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot_2_task1" name="Figure 7B Reaction fluxes">
+      <xAxis name="Time, h" type="linear" min="0" max="40" grid="false"/>
+      <yAxis name="Metformin flux, ng/h" type="linear" min="-10000" max="65000" grid="false"/>
+      <listOfCurves>
+        <curve id="p3_curve_1_task1" name="To RBC" logX="false" style="solid_blue" xDataReference="_1_task1" logY="false" yDataReference="Vin_1_task1"/>
+        <curve id="p3_curve_2_task1" name="From RBC" logX="false" style="solid_green" xDataReference="_1_task1" logY="false" yDataReference="Vout_2_task1"/>
+        <curve id="p3_curve_3_task1" name="Summary flux" logX="false" style="solid_red" xDataReference="_1_task1" logY="false" yDataReference="Summary_flux_to_RBC_3_task1"/>
+      </listOfCurves>
+    </plot2D>
+    <report id="autogen_report_for_task1" name="Auto-generated report for task1, including all symbols in SBML with mathematical meaning, both constant and variable.">
+      <listOfDataSets>
+        <dataSet id="autogen_time_for_task1" label="Time" dataReference="_1_task1"/>
+        <dataSet id="autogen_task1_Mpl" label="Mpl" dataReference="Mpl_1_task1"/>
+        <dataSet id="autogen_task1_Mrbc" label="Mrbc" dataReference="Mrbc_2_task1"/>
+        <dataSet id="autogen_task1_Vin" label="Vin" dataReference="Vin_1_task1"/>
+        <dataSet id="autogen_task1_Vout" label="Vout" dataReference="Vout_2_task1"/>
+        <dataSet id="autogen_task1_Summary_flux_to_RBC" label="Summary_flux_to_RBC" dataReference="Summary_flux_to_RBC_3_task1"/>
+        <dataSet id="autogen_task1_A" label="A" dataReference="auto_dg_for_task1_A"/>
+        <dataSet id="autogen_task1_B" label="B" dataReference="auto_dg_for_task1_B"/>
+        <dataSet id="autogen_task1_d" label="d" dataReference="auto_dg_for_task1_d"/>
+        <dataSet id="autogen_task1_Kin" label="Kin" dataReference="auto_dg_for_task1_Kin"/>
+        <dataSet id="autogen_task1_c" label="c" dataReference="auto_dg_for_task1_c"/>
+        <dataSet id="autogen_task1_Kout" label="Kout" dataReference="auto_dg_for_task1_Kout"/>
+        <dataSet id="autogen_task1_ModelValue_1" label="ModelValue_1" dataReference="auto_dg_for_task1_ModelValue_1"/>
+        <dataSet id="autogen_task1_ModelValue_2" label="ModelValue_2" dataReference="auto_dg_for_task1_ModelValue_2"/>
+        <dataSet id="autogen_task1_ModelValue_5" label="ModelValue_5" dataReference="auto_dg_for_task1_ModelValue_5"/>
+        <dataSet id="autogen_task1_ModelValue_3" label="ModelValue_3" dataReference="auto_dg_for_task1_ModelValue_3"/>
+        <dataSet id="autogen_task1_RBC" label="RBC" dataReference="auto_dg_for_task1_RBC"/>
+      </listOfDataSets>
+    </report>
+  </listOfOutputs>
+  <listOfStyles>
+    <style id="solid_red">
+      <line type="solid" color="ff0000"/>
+      <marker type="none"/>
+    </style>
+    <style id="solid_green">
+      <line type="solid" color="00ff00"/>
+      <marker type="none"/>
+    </style>
+    <style id="solid_blue">
+      <line type="solid" color="0000ff"/>
+      <marker type="none"/>
+    </style>
+  </listOfStyles>
+</sedML>
